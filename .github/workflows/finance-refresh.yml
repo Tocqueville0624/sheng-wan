@@ -13,7 +13,7 @@ jobs:
       SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'Sheng Wan academic website research swan0624@uw.edu' }}
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
           version: 10.32.1
       - uses: actions/setup-node@v4
