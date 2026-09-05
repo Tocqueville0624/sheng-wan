@@ -131,7 +131,6 @@ export default function GalleryExperience({ images }: Props) {
             Contact sheet
           </button>
         </div>
-        <span>{images.length} photographs</span>
       </div>
 
       {view === "editorial" ? (
