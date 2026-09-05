@@ -31,7 +31,7 @@
         { "pattern": "www.shengwan.org", "custom_domain": true }
       ],
       "vars": {
-        "FINANCE_PUBLIC_UPDATES": "disabled",
+        "FINANCE_PUBLIC_UPDATES": "enabled",
         "CANONICAL_ORIGIN": "https://shengwan.org"
       },
       "durable_objects": {
