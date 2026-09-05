@@ -1,0 +1,13 @@
+---
+import { site } from "@/config/site";
+import DoveMark from "@components/DoveMark.astro";
+import ContactLinks from "@components/ContactLinks.astro";
+---
+
+<footer class="site-footer">
+  <div class="footer-doves"><DoveMark /></div>
+  <div class="shell footer-inner">
+    <p>© {new Date().getFullYear()} {site.name}</p>
+    <ContactLinks />
+  </div>
+</footer>

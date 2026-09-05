@@ -1,0 +1,41 @@
+---
+import type { ResponsiveImage } from "@/types/media";
+
+type Props = {
+  image: ResponsiveImage;
+  sizes?: string;
+  loading?: "eager" | "lazy";
+  fetchpriority?: "high" | "low" | "auto";
+  class?: string;
+};
+
+const {
+  image,
+  sizes = "(max-width: 720px) 100vw, 50vw",
+  loading = "lazy",
+  fetchpriority = "auto",
+  class: className
+} = Astro.props;
+const srcset = (candidates: ResponsiveImage["sources"]["avif"]) =>
+  candidates.map((candidate) => `${candidate.src} ${candidate.width}w`).join(", ");
+const fallback = image.sources.jpeg.at(-1)?.src ?? image.sources.webp.at(-1)?.src ?? "";
+---
+
+<picture
+  class:list={["responsive-picture", className]}
+  style={`--placeholder: url("${image.placeholder}")`}
+>
+  <source type="image/avif" srcset={srcset(image.sources.avif)} sizes={sizes} />
+  <source type="image/webp" srcset={srcset(image.sources.webp)} sizes={sizes} />
+  <img
+    src={fallback}
+    srcset={srcset(image.sources.jpeg)}
+    sizes={sizes}
+    width={image.width}
+    height={image.height}
+    alt={image.alt}
+    loading={loading}
+    decoding="async"
+    fetchpriority={fetchpriority}
+  />
+</picture>

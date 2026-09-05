@@ -1,0 +1,118 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import OliveMascot from "@components/OliveMascot.astro";
+import ThalesOlive from "@/features/finance/ThalesOlive";
+import snapshot from "@/data/generated/finance.json";
+import type { FinanceManifest } from "@/features/finance/types";
+import { upgradeCompany } from "../../../scripts/finance/v2-model";
+import catalog from "@/data/generated/finance-catalog.json";
+import type { CatalogCompany } from "@/features/finance/v2-types";
+const saved = snapshot as FinanceManifest;
+---
+
+<BaseLayout
+  title="Thales’ Olive"
+  description="A source-grounded financial statement explorer by Sheng Wan."
+  pageClass="playground-page"
+>
+  <header class="page-intro shell olive-intro">
+    <div>
+      <p class="eyebrow">Playground / Financial statements</p>
+      <h1 class="page-title">Thales’ Olive</h1>
+      <p class="lede">
+        Explore revenue by business, and follow the costs and profits behind each reporting period.
+      </p>
+    </div>
+    <OliveMascot />
+  </header>
+  <section class="section-block shell" aria-label="Financial statement explorer">
+    <ThalesOlive
+      initialCompany={upgradeCompany(saved.companies[0])}
+      featured={saved.companies.map((s) => ({
+        ...catalog.companies.find((c) => c.ticker === s.ticker)!,
+        name: s.name
+      })) as CatalogCompany[]}
+      canonicalHost={new URL(Astro.site ?? Astro.url.origin).host}
+      client:load
+    />
+  </section>
+  <section class="section-block shell quote-section" aria-labelledby="why-name">
+    <div class="quote-heading">
+      <h2 id="why-name">Can PhDs Be Rich?</h2>
+    </div>
+    <figure>
+      <blockquote>
+        <p>
+          “Thales, so the story goes, because of his poverty was taunted with the uselessness of
+          philosophy; but from his knowledge of astronomy he had observed while it was still winter
+          that there was going to be a large crop of olives, so he raised a small sum of money and
+          paid round deposits for the whole of the olive-presses in Miletus and Chios, which he
+          hired at a low rent as nobody was running him up; and when the season arrived, there was a
+          sudden demand for a number of presses at the same time, and by letting them out on what
+          terms he liked he realized a large sum of money, so proving that it is easy for
+          philosophers to be rich if they choose, but this is not what they care about.”
+        </p>
+      </blockquote>
+      <figcaption>
+        — Aristotle, <cite
+          ><a
+            href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0058:book=1:section=1259a"
+            >Politics</a
+          ></cite
+        > I.11, 1259a16
+      </figcaption>
+    </figure>
+  </section>
+</BaseLayout>
+
+<style>
+  .olive-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 2rem;
+  }
+  .olive-intro :global(.olive-mascot) {
+    width: 9rem;
+  }
+  .quote-section {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.45fr) minmax(0, 1fr);
+    gap: clamp(2rem, 8vw, 7rem);
+    border-top: 1px solid var(--border);
+  }
+  .quote-heading h2 {
+    margin: 0.2rem 0;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 480;
+  }
+  .quote-section figure {
+    margin: 0;
+  }
+  .quote-section blockquote {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+    font-variation-settings: "opsz" 42;
+    line-height: 1.52;
+  }
+  .quote-section figcaption {
+    margin-top: 1.2rem;
+    color: var(--muted);
+    font-size: 0.84rem;
+  }
+  @media (max-width: 700px) {
+    .olive-intro {
+      grid-template-columns: 1fr;
+    }
+    .olive-intro :global(.olive-mascot) {
+      width: 7rem;
+    }
+    .quote-section {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

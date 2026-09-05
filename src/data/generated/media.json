@@ -1,0 +1,1370 @@
+{
+  "generatedAt": "2026-09-02T02:19:40.774Z",
+  "home": {
+    "id": "sheng-portrait",
+    "alt": "Portrait of Sheng Wan outdoors on a ship deck under a blue sky.",
+    "width": 1254,
+    "height": 1254,
+    "aspectRatio": 1,
+    "dominantColor": "#88b8e8",
+    "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAoACgDASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAAMBAgQFBv/EABcBAQEBAQAAAAAAAAAAAAAAAAECAAP/2gAMAwEAAhADEAAAAdDIp05sryOkU4USpc3IVEJBaWNt3nwSkAzrAz//xAAeEAACAgICAwAAAAAAAAAAAAABAgASAxEQIQQiQf/aAAgBAQABBQKWMsYSYG62sdgED5RA9kDb4VLTXYDS1JQNMnk6N9Ysb+iAMX2MXzhG7//EABoRAAICAwAAAAAAAAAAAAAAAAABEBECEiH/2gAIAQMBAT8BNXFUNo4ZRR//xAAaEQACAgMAAAAAAAAAAAAAAAAAEQEQAhIh/9oACAECAQE/AWbU2RB0xpn/xAAfEAACAgEEAwAAAAAAAAAAAAAAARAxEQISImEgIUH/2gAIAQEABj8Cm5b02jcJz1GEuzlZ7GtHwTdnJmWx7b8MH//EABwQAQACAgMBAAAAAAAAAAAAAAEAESExQVFhEP/aAAgBAQABPyEE1Me56zkKJHtFEENRLdOmGSblxIc63FCVkblTMisYHC5RZYNUS7iIaIgcDAZmi33Ho+BcbgHiuZ1UPhPjoWep/9oADAMBAAIAAwAAABBJz7gnD38D/8QAGhEBAAMAAwAAAAAAAAAAAAAAAQAQESExQf/aAAgBAwEBPxAHyYdzIHk0MVgM/8QAGhEBAQEAAwEAAAAAAAAAAAAAAQARECExQf/aAAgBAgEBPxBH2xnVpa8yMo4Msv/EACAQAQADAAICAgMAAAAAAAAAAAEAESExYUFRcbGBkfH/2gAIAQEAAT8QQtVA6APxAuUxRaOpjLdZD+di3UpTzNM5Cl2fEKBY0fD5l2cVkQmgCbXrxAdTna3rIuWjdOR28OmsXmCZpMCL8ytxOgqoah32XjJVxJitX2wAHzqX7JllCRy7uzYmOx+39ROScrMa5qK0a4y3FLQrjqf/2Q==",
+    "sources": {
+      "avif": [
+        {
+          "src": "/media/home/sheng-portrait-480.avif",
+          "width": 480
+        },
+        {
+          "src": "/media/home/sheng-portrait-800.avif",
+          "width": 800
+        },
+        {
+          "src": "/media/home/sheng-portrait-1254.avif",
+          "width": 1254
+        }
+      ],
+      "webp": [
+        {
+          "src": "/media/home/sheng-portrait-480.webp",
+          "width": 480
+        },
+        {
+          "src": "/media/home/sheng-portrait-800.webp",
+          "width": 800
+        },
+        {
+          "src": "/media/home/sheng-portrait-1254.webp",
+          "width": 1254
+        }
+      ],
+      "jpeg": [
+        {
+          "src": "/media/home/sheng-portrait-480.jpg",
+          "width": 480
+        },
+        {
+          "src": "/media/home/sheng-portrait-800.jpg",
+          "width": 800
+        },
+        {
+          "src": "/media/home/sheng-portrait-1254.jpg",
+          "width": 1254
+        }
+      ]
+    }
+  },
+  "hugo": [
+    {
+      "id": "hugo-main",
+      "alt": "Hugo, a long-haired tabby cat, sits beside a small classical bust.",
+      "width": 1320,
+      "height": 1266,
+      "aspectRatio": 1.0427,
+      "dominantColor": "#c8c8b8",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAmACgDASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAAMBBAUCBv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAABvnE4szQpVuiQ4atMqqjk2XjPJfQoAz6oEAH/xAAeEAACAwACAwEAAAAAAAAAAAABAgADERASISIyQf/aAAgBAQABBQLjZuAHRxe00xG7IW9pd4nbZS4lew2DdJjHyp9swNWpl+Kfxfr/xAAUEQEAAAAAAAAAAAAAAAAAAAAw/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAw/9oACAECAQE/AR//xAAcEAACAgIDAAAAAAAAAAAAAAABEQAQAjEgIVH/2gAIAQEABj8CtngPY24CIBt3qLVu0J2IMRf/xAAeEAADAQEAAgMBAAAAAAAAAAAAAREhMVFhQYGx8f/aAAgBAQABPyGlJTjesa2IhCGuMpRURfbwa6x5YvgCSqcOonhkuqqxL+uk7f2HS95rGGK2/wDDqueiTtCTgITTp8mkknuEtqC5s6f/2gAMAwEAAgADAAAAEG7QC+fAPvf/xAAaEQACAgMAAAAAAAAAAAAAAAAAARARICEx/9oACAEDAQE/EJrdD7gj/8QAGREAAwEBAQAAAAAAAAAAAAAAAAERECEx/9oACAECAQE/EEy5OHiHS4z/xAAgEAEBAAMAAgIDAQAAAAAAAAABEQAhMUFREHGRscHx/9oACAEBAAE/EPgBCFILtx+Ierih0KfWafEHWrPR/uG4VtL+P33C1iJPU8YleBhQxKzSdX3iTmVN89ZcFA+ir/MqvXS8+smAR4GuwyKsVgcuD4JY3WnjBCAcVa/OCmoho3kHQx2hVYYmQ0B6MUQ6dXrjx6Ec/9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/hugo/hugo-main-480.avif",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-main-800.avif",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-main-1280.avif",
+            "width": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/hugo/hugo-main-480.webp",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-main-800.webp",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-main-1280.webp",
+            "width": 1280
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/hugo/hugo-main-480.jpg",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-main-800.jpg",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-main-1280.jpg",
+            "width": 1280
+          }
+        ]
+      }
+    },
+    {
+      "id": "hugo-close-portrait",
+      "alt": "Close portrait of Hugo resting on an office chair.",
+      "width": 4032,
+      "height": 3024,
+      "aspectRatio": 1.3333,
+      "dominantColor": "#080808",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAeACgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAwQAAgUB/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQAC/9oADAMBAAIQAxAAAAGtkmsaSIa6BmnKXV4ISEXumhM6N//EAB8QAAICAgEFAAAAAAAAAAAAAAECABEDEgQTITEyQv/aAAgBAQABBQJXBY7GdFhANiOMbUU+RqYObHn7GNbb2BEYzGTbZjKJms7yp//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BX//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BX//EABwQAAIDAAMBAAAAAAAAAAAAAAABAhEhEDFRcf/aAAgBAQAGPwJUySs1FRgrNImYbpH5wmMqxd0Xaa9KiazDvj//xAAfEAADAAICAgMAAAAAAAAAAAAAAREhMUFRYXGxwdH/2gAIAQEAAT8hRFDmBOouuC9jNcLkch16Qmbv7MW9XLEaZ4WHGSsaF8zwITZvZDsfaFJPo20rB9qNY5F0J5Y/wBXKCalOtOej/9oADAMBAAIAAwAAABDYn9KUD//EABYRAQEBAAAAAAAAAAAAAAAAAAARAf/aAAgBAwEBPxBEXFV//8QAFhEBAQEAAAAAAAAAAAAAAAAAAAER/9oACAECAQE/ENStZUjH/8QAIBABAAICAwACAwAAAAAAAAAAAQARIUExUWFxgaHB0f/aAAgBAQABPxAiCvUCW6QOpUWaigZlYpUtTHcopN9qvzFYVgufH9iJoo94hVwILXuIKdBJftcNdq/QgMi70XCryLIMpMjsup00Qa6L5AYGJ0B2IRNClrkmQsXmAHD1xxCMIxWDW4yBHoVf5n//2Q==",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/hugo/hugo-close-portrait-480.avif",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-close-portrait-800.avif",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-close-portrait-1280.avif",
+            "width": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/hugo/hugo-close-portrait-480.webp",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-close-portrait-800.webp",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-close-portrait-1280.webp",
+            "width": 1280
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/hugo/hugo-close-portrait-480.jpg",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-close-portrait-800.jpg",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-close-portrait-1280.jpg",
+            "width": 1280
+          }
+        ]
+      }
+    },
+    {
+      "id": "hugo-backpack",
+      "alt": "A younger Hugo sits inside an open backpack and looks upward.",
+      "width": 3024,
+      "height": 4032,
+      "aspectRatio": 0.75,
+      "dominantColor": "#181818",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAoAB4DASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAQMEAAL/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/2gAMAwEAAhADEAAAAZzG/NaeGkx54s6pibCztQfsf//EAB0QAAICAwADAAAAAAAAAAAAAAABAhEDECESE0H/2gAIAQEAAQUC9qPK4p2plGMfJ/BRUSbIPTHwwvt6cTGqP//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BX//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BX//EABoQAAICAwAAAAAAAAAAAAAAAAARECEgMHH/2gAIAQEABj8CjmbZWmj/xAAfEAEAAwACAgMBAAAAAAAAAAABABEhMUFhcVGBobH/2gAIAQEAAT8hH6biErm43O1HVW4ZVzLjOLp8xUHUC6fDP2DG5NFxLj6lw2eP5HgUWrsmj1GBlnqa+RP/2gAMAwEAAgADAAAAEHaATwgP/8QAFxEAAwEAAAAAAAAAAAAAAAAAARARAP/aAAgBAwEBPxCl1Df/xAAaEQEBAAIDAAAAAAAAAAAAAAABABARITFh/9oACAECAQE/EEC9tScYer//xAAfEAEAAwEAAwADAQAAAAAAAAABABEhMUFRgXGhscH/2gAIAQEAAT8Q6GhKlDs4y8lUSYx8/IlUr+Vua7j7bURzwR4fccbdK+4dzct9eP1MEapxPY9ItC7lmwBunA7Os2ov4saMDTyv8vc3qfIDFbOH+p4JdKoc/iAWrMGta78n/9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/hugo/hugo-backpack-480.avif",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-backpack-800.avif",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-backpack-1280.avif",
+            "width": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/hugo/hugo-backpack-480.webp",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-backpack-800.webp",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-backpack-1280.webp",
+            "width": 1280
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/hugo/hugo-backpack-480.jpg",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-backpack-800.jpg",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-backpack-1280.jpg",
+            "width": 1280
+          }
+        ]
+      }
+    },
+    {
+      "id": "hugo-window",
+      "alt": "Hugo watches through a glass door.",
+      "width": 3024,
+      "height": 4032,
+      "aspectRatio": 0.75,
+      "dominantColor": "#382808",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAoAB4DASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAAUBAwQCBv/EABYBAQEBAAAAAAAAAAAAAAAAAAECA//aAAwDAQACEAMQAAABWwGd2N1DtPP2xuGptGVO+wGMgTX/xAAdEAACAgIDAQAAAAAAAAAAAAAAAgERAxAEITNB/9oACAEBAAEFAtfMXnuOlKFwzYqSwmCI1yJmFFGehms//8QAFhEAAwAAAAAAAAAAAAAAAAAAAAEg/9oACAEDAQE/AZR//8QAFhEAAwAAAAAAAAAAAAAAAAAAAAEg/9oACAECAQE/AZZ//8QAGhAAAwADAQAAAAAAAAAAAAAAARAhABEgIv/aAAgBAQAGPwJjgOqDPVQ04v/EABwQAQEBAAIDAQAAAAAAAAAAAAEAESFREDFhQf/aAAgBAQABPyFL0w8IZ9+bb9kzCOHoPJY+/RyzN5tIGtdEGGBkZLFY4MDDou8PDkyPV2//2gAMAwEAAgADAAAAEBlfgQYf/8QAFxEBAAMAAAAAAAAAAAAAAAAAAQAgMf/aAAgBAwEBPxCpNn//xAAYEQADAQEAAAAAAAAAAAAAAAAAAREQMf/aAAgBAgEBPxBMudx3Yf/EACAQAQACAQMFAQAAAAAAAAAAAAEAESExQVFhcYGRoeH/2gAIAQEAAT8QB1gGArMcJdWVt5ezGkpB1lT3Tpivk44gKAR4N2MaN2md3QiBcgS2jm7HmIW+34PMChDgmQcuC8B+xAmPQKIBUS/o+ZLq18J//9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/hugo/hugo-window-480.avif",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-window-800.avif",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-window-1280.avif",
+            "width": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/hugo/hugo-window-480.webp",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-window-800.webp",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-window-1280.webp",
+            "width": 1280
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/hugo/hugo-window-480.jpg",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-window-800.jpg",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-window-1280.jpg",
+            "width": 1280
+          }
+        ]
+      }
+    },
+    {
+      "id": "hugo-lounging",
+      "alt": "Hugo lounges on a carpet with one paw tucked under their chin.",
+      "width": 5712,
+      "height": 4284,
+      "aspectRatio": 1.3333,
+      "dominantColor": "#c8b8a8",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAeACgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAUBAgME/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAGeinNmssIuSYh1rWNpUcOFNmg0D//EAB8QAAICAgEFAAAAAAAAAAAAAAECAAMREgQQEyExQv/aAAgBAQABBQKD0Z9SwahbvHcXAKNHcITDxTkowY1NFrt62JuNiDWdl//EABURAQEAAAAAAAAAAAAAAAAAAAEg/9oACAEDAQE/ASv/xAAVEQEBAAAAAAAAAAAAAAAAAAABIP/aAAgBAgEBPwFr/8QAHhAAAgICAgMAAAAAAAAAAAAAAAERIQIQICIyQXL/2gAIAQEABj8CaFJQ9PL2dnqskQyiU0RlRVngn9cv/8QAHRABAAMAAwADAAAAAAAAAAAAAQARITFRYUGBkf/aAAgBAQABPyHQHWNaEAVSFw+z9imighGDyCi7IxS3qMxHLKlkrEO3vEnJZ8MyO/kr7n6XLg2QKeE4gmdMpF5n/9oADAMBAAIAAwAAABClnHxX/wD/xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8QjIjWKx//xAAXEQEBAQEAAAAAAAAAAAAAAAABABFh/9oACAECAQE/EFrs8sYYbb//xAAfEAEBAAICAgMBAAAAAAAAAAABEQAxIVFBkXGBscH/2gAIAQEAAT8Qgcg8B06fZjBF8jgEBTmY/Oj3/Ms36GQbx41O3All6RyuYdlyex8iPrE43ALfu4XoVwqYx5WkkyEVi7R+HNQg64NyM3gbI/cuZymWJ2F05a1dl6xx2nOf/9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/hugo/hugo-lounging-480.avif",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-lounging-800.avif",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-lounging-1280.avif",
+            "width": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/hugo/hugo-lounging-480.webp",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-lounging-800.webp",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-lounging-1280.webp",
+            "width": 1280
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/hugo/hugo-lounging-480.jpg",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-lounging-800.jpg",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-lounging-1280.jpg",
+            "width": 1280
+          }
+        ]
+      }
+    },
+    {
+      "id": "hugo-cushions",
+      "alt": "Hugo peeks out from beneath navy cushions on a sofa.",
+      "width": 4032,
+      "height": 3024,
+      "aspectRatio": 1.3333,
+      "dominantColor": "#080808",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAeACgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIEBQP/xAAWAQEBAQAAAAAAAAAAAAAAAAACAAH/2gAMAwEAAhADEAAAAWOihQURTI65mFabTAVk4u0ZSbn/xAAbEAADAQADAQAAAAAAAAAAAAAAAQIRAxITIf/aAAgBAQABBQJShws9YZFzjEfTkh9z0oR2NLxj4zTTTRn/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AV//xAAWEQADAAAAAAAAAAAAAAAAAAAAASD/2gAIAQIBAT8BFP8A/8QAGhAAAgMBAQAAAAAAAAAAAAAAATEAECARIf/aAAgBAQAGPwJRRETgOD5Twsdv/8QAGxAAAwEBAQEBAAAAAAAAAAAAAAERIUExcbH/2gAIAQEAAT8ha4FapziHgN+kzfRoP4ZYYpq9JqB0IeBMHQ+5iEGFaDtsbD//2gAMAwEAAgADAAAAEMP81zQv/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQAREP/aAAgBAwEBPxCVt7hf/8QAGBEAAwEBAAAAAAAAAAAAAAAAAAEREEH/2gAIAQIBAT8QI4R4kVn/xAAfEAEAAwABBAMAAAAAAAAAAAABABEhMUFRYXGRscH/2gAIAQEAAT8QC34Iz3F26+oUCo65f3KQV9jTErVAouDnqNdfAr+SgkNYKXFerHsqAAdECba+YS125Ih7iHUrdKgG16AsUMilJycStAl8kyl8FSvWz//Z",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/hugo/hugo-cushions-480.avif",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-cushions-800.avif",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-cushions-1280.avif",
+            "width": 1280
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/hugo/hugo-cushions-480.webp",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-cushions-800.webp",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-cushions-1280.webp",
+            "width": 1280
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/hugo/hugo-cushions-480.jpg",
+            "width": 480
+          },
+          {
+            "src": "/media/hugo/hugo-cushions-800.jpg",
+            "width": 800
+          },
+          {
+            "src": "/media/hugo/hugo-cushions-1280.jpg",
+            "width": 1280
+          }
+        ]
+      }
+    }
+  ],
+  "gallery": [
+    {
+      "id": "canyon-afterglow",
+      "alt": "Sunset light washes layered red cliffs and mesas beneath a pastel sky.",
+      "width": 6048,
+      "height": 4024,
+      "aspectRatio": 1.503,
+      "dominantColor": "#d8b8c8",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAgMEAAH/xAAWAQEBAQAAAAAAAAAAAAAAAAABAgP/2gAMAwEAAhADEAAAAbyhYXSKCTmXqiUo2Z60dSAsyMn/xAAbEAACAwEBAQAAAAAAAAAAAAAAAQIREhAgQf/aAAgBAQABBQKmvDFNlyNM0OQmaLs0OQufOf/EABgRAAMBAQAAAAAAAAAAAAAAAAABEgMQ/9oACAEDAQE/AZIHmhd//8QAFxEAAwEAAAAAAAAAAAAAAAAAABESIP/aAAgBAgEBPwFlFY//xAAYEAEBAAMAAAAAAAAAAAAAAAAAMRAhMP/aAAgBAQAGPwLERFVVVrl//8QAGxAAAwADAQEAAAAAAAAAAAAAAAERITFBYRD/2gAIAQEAAT8hWwi+FDVCiiUJzwMxpbOLQgsiltnsPhDjgfy2Ns//2gAMAwEAAgADAAAAEIgP2rzf/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARMf/aAAgBAwEBPxDNhtEh5KFt/8QAGBEAAwEBAAAAAAAAAAAAAAAAAAERITH/2gAIAQIBAT8Qz0tCceEIf//EAB4QAQADAAICAwAAAAAAAAAAAAEAESExUUFhcYGR/9oACAEBAAE/EANZfq/Ub8j8jnIEEdR4+SjGgqnIzjKF7iiioOaKZqtt8EWjXtYKUfc4rse4gYATbxAVGLqVp81EFRY4VZ//2Q==",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/canyon-afterglow-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/canyon-afterglow-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/canyon-afterglow-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/canyon-afterglow-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/canyon-afterglow-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/canyon-afterglow-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/canyon-afterglow-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/canyon-afterglow-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/canyon-afterglow-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 6",
+        "lens": "TAMRON 35-150mm F/2-2.8 Di III VXD A058Z",
+        "focalLength": "35 mm",
+        "aperture": "f/7.1",
+        "shutterSpeed": "1/40 s",
+        "iso": "ISO 100",
+        "capturedAt": "2025-03-27"
+      }
+    },
+    {
+      "id": "milky-way-desert-road",
+      "alt": "The Milky Way arcs over a winding desert road and dark mountain ridge.",
+      "width": 6048,
+      "height": 4024,
+      "aspectRatio": 1.503,
+      "dominantColor": "#383838",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAEDAgQF/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAHzK2qnGurBxlxduec0SYgLP//EABsQAAIDAQEBAAAAAAAAAAAAAAABAhESEBMh/9oACAEBAAEFAlEwZKGiJhiQ4jRpHpIds+lcfbP/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AV//xAAWEQADAAAAAAAAAAAAAAAAAAAAESD/2gAIAQIBAT8BHP8A/8QAGRAAAgMBAAAAAAAAAAAAAAAAACABITEw/9oACAEBAAY/AmqEwo3h/8QAGxABAQEAAwEBAAAAAAAAAAAAAQARECExQVH/2gAIAQEAAT8ho6Ty5Mj00g+3Zfull4my8BJtVYvrMeQ2r//aAAwDAQACAAMAAAAQXrBm/N//xAAXEQADAQAAAAAAAAAAAAAAAAAAESAx/9oACAEDAQE/ENEKP//EABYRAQEBAAAAAAAAAAAAAAAAABEQIP/aAAgBAgEBPxBhx//EAB0QAQACAgMBAQAAAAAAAAAAAAEAESExQWFxUYH/2gAIAQEAAT8QSrqbjiAajhklRiUAnNkQtDujiCsZeSolqL/IGaXrLId1qBkJ7bi2+6aJYux+2sQ6/Jwn1zFTTEpynkV237P/2Q==",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/milky-way-desert-road-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/milky-way-desert-road-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/milky-way-desert-road-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/milky-way-desert-road-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/milky-way-desert-road-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/milky-way-desert-road-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/milky-way-desert-road-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/milky-way-desert-road-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/milky-way-desert-road-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 6",
+        "lens": "TAMRON 35-150mm F/2-2.8 Di III VXD A058Z",
+        "focalLength": "35 mm",
+        "aperture": "f/2",
+        "shutterSpeed": "20 s",
+        "iso": "ISO 800",
+        "capturedAt": "2025-03-27"
+      }
+    },
+    {
+      "id": "brooklyn-bridge-dusk",
+      "alt": "The Brooklyn Bridge crosses a dusk skyline centered on One World Trade Center.",
+      "width": 8256,
+      "height": 5504,
+      "aspectRatio": 1.5,
+      "dominantColor": "#080808",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAIDBAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAZPCljoZihoDzO1tLmNKiFCX/8QAHBAAAgMBAAMAAAAAAAAAAAAAAAECERIDECEx/9oACAEBAAEFAlEyUUmOBKdSl1OTsb9fV4U3FuVi6URRlGUUjKP/xAAXEQEBAQEAAAAAAAAAAAAAAAARAAEQ/9oACAEDAQE/ASI3rt//xAAWEQEBAQAAAAAAAAAAAAAAAAARABD/2gAIAQIBAT8BZnCL/8QAGxAAAgIDAQAAAAAAAAAAAAAAAAERMQIgQRD/2gAIAQEABj8C1UMUWZSxLqekklc8oooo/8QAHRAAAwACAwEBAAAAAAAAAAAAAAERMWEhQVEQkf/aAAgBAQABPyH5GpLVGL8OqXaERMw/dcEsGgTSuVYL8K7kkhTWWJ5Q3CEvKNA0DUH4j//aAAwDAQACAAMAAAAQTPBuv/8A/8QAFhEBAQEAAAAAAAAAAAAAAAAAEBEA/9oACAEDAQE/EGrqX//EABYRAQEBAAAAAAAAAAAAAAAAABEAEP/aAAgBAgEBPxDARg3/xAAfEAEAAwABBAMAAAAAAAAAAAABABEhYTFBUXGB0fH/2gAIAQEAAT8QwLIcIBpSdNC6sldzHoSTDuwN6UrZdHiGG51Z9/UooVlZ0llWbJcFeV32Gg+SDK+CmeI65Je7AXuwcQK7HnZSYEFG09k/MlLgn//Z",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/brooklyn-bridge-dusk-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/brooklyn-bridge-dusk-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/brooklyn-bridge-dusk-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/brooklyn-bridge-dusk-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/brooklyn-bridge-dusk-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/brooklyn-bridge-dusk-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/brooklyn-bridge-dusk-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/brooklyn-bridge-dusk-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/brooklyn-bridge-dusk-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 7",
+        "lens": "TAMRON 35-150mm F/2-2.8 Di III VXD A058Z",
+        "focalLength": "77 mm",
+        "aperture": "f/2.5",
+        "shutterSpeed": "1/50 s",
+        "iso": "ISO 250",
+        "capturedAt": "2025-09-08"
+      }
+    },
+    {
+      "id": "mountain-cloud",
+      "alt": "Pink-lit cloud drifts across a snow-streaked mountain above dark fir trees.",
+      "width": 4024,
+      "height": 6048,
+      "aspectRatio": 0.6653,
+      "dominantColor": "#282828",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAoABsDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEBQL/xAAWAQEBAQAAAAAAAAAAAAAAAAABAAL/2gAMAwEAAhADEAAAAU0tasM+hLFfECR11wFTPCyLBv/EABwQAAMBAAIDAAAAAAAAAAAAAAABAhEQEgMhMf/aAAgBAQABBQKZOo54mTCuFWjtQ/phPnY+117NYmJmmn//xAAXEQADAQAAAAAAAAAAAAAAAAAAAREQ/9oACAEDAQE/AYNFLv8A/8QAFhEBAQEAAAAAAAAAAAAAAAAAEQAg/9oACAECAQE/AWc//8QAGxAAAQQDAAAAAAAAAAAAAAAAAAERIDEQISL/2gAIAQEABj8CzUWQ6g6m1Lj/AP/EAB4QAAMBAAICAwAAAAAAAAAAAAABESExQRBRYXGR/9oACAEBAAE/IQVoiMZELKIhp3BwZxo5RtRqd1H0Qs3VnwNypnWucD939FIT1g8+P//aAAwDAQACAAMAAAAQJvN7DB//xAAXEQEAAwAAAAAAAAAAAAAAAAARECAh/9oACAEDAQE/EDCDKP/EABYRAQEBAAAAAAAAAAAAAAAAAAEAEP/aAAgBAgEBPxCGCM//xAAeEAEAAgICAwEAAAAAAAAAAAABABEhMUFhUXHBgf/aAAgBAQABPxBrMQtUIqmIC2lDBiWOTqEElhodEpQ3zyxw7CHmEIqfYRQ/Sb2Rg2IxyH5DCo7tSz902wxRSpBwae454qp//9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/mountain-cloud-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/mountain-cloud-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/mountain-cloud-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/mountain-cloud-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/mountain-cloud-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/mountain-cloud-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/mountain-cloud-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/mountain-cloud-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/mountain-cloud-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 6",
+        "lens": "TAMRON 35-150mm F/2-2.8 Di III VXD A058Z",
+        "focalLength": "119 mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/400 s",
+        "iso": "ISO 100",
+        "capturedAt": "2025-10-06"
+      }
+    },
+    {
+      "id": "tall-ship-rigging",
+      "alt": "Tall-ship masts and rigging form a lattice against peach and blue evening clouds.",
+      "width": 3891,
+      "height": 5848,
+      "aspectRatio": 0.6654,
+      "dominantColor": "#a8c8c8",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAoABsDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIDBAH/xAAXAQEBAQEAAAAAAAAAAAAAAAABAAID/9oADAMBAAIQAxAAAAFl1yKfNYyxvnLW/GmGcMdLoBr/xAAdEAACAQUBAQAAAAAAAAAAAAAAARECEBIhMhMi/9oACAEBAAEFAsRreEnkIfV30iLVL6TMh1Dq3JLP/8QAFhEBAQEAAAAAAAAAAAAAAAAAABEB/9oACAEDAQE/AVxmIiP/xAAWEQEBAQAAAAAAAAAAAAAAAAARABD/2gAIAQIBAT8BxnG//8QAGBAAAwEBAAAAAAAAAAAAAAAAAREgAAL/2gAIAQEABj8CwgKAo5v/xAAfEAACAgICAwEAAAAAAAAAAAAAAREhMUEQYXGBkfD/2gAIAQEAAT8hVR0SUE9OKoeZ0otqGR0JxsWG5t+i2VD4WkWmLIqeT8sgKnkbPR3L4f/aAAwDAQACAAMAAAAQD03ifC//xAAXEQEBAQEAAAAAAAAAAAAAAAAAAREx/9oACAEDAQE/EORBVXDD/8QAGBEBAQEBAQAAAAAAAAAAAAAAAQAREEH/2gAIAQIBAT8Q9sZHA2r/xAAgEAEAAgIBBAMAAAAAAAAAAAABABEhMXFRYYGhkeHw/9oACAEBAAE/EDRZk0G5lJZL6wLjkxy36h27z8QnkyheTTDNCuKnbhzCC6BazE82VyiRTls3fmV6p4iooa9walKj+JuPIyRA4SMUNHaNemQ0PP3MmEOhKMUcCf/Z",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/tall-ship-rigging-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/tall-ship-rigging-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/tall-ship-rigging-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/tall-ship-rigging-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/tall-ship-rigging-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/tall-ship-rigging-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/tall-ship-rigging-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/tall-ship-rigging-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/tall-ship-rigging-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 6",
+        "lens": "NIKKOR Z 24-70mm f/4 S",
+        "focalLength": "70 mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/640 s",
+        "iso": "ISO 100",
+        "capturedAt": "2023-01-02"
+      }
+    },
+    {
+      "id": "mountain-light",
+      "alt": "A shaft of late light reaches jagged mountain peaks above a shadowed valley and lake.",
+      "width": 8256,
+      "height": 5504,
+      "aspectRatio": 1.5,
+      "dominantColor": "#080808",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAEDBAIF/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAHeTedcR6yozManb85ptjBlCQf/xAAcEAACAgIDAAAAAAAAAAAAAAAAAQIRAxMQEiD/2gAIAQEAAQUCXDsakNSFM2EspLJZZtNhLJZ2L9f/xAAVEQEBAAAAAAAAAAAAAAAAAAARIP/aAAgBAwEBPwFr/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwFf/8QAGBABAQADAAAAAAAAAAAAAAAAMQAQIDD/2gAIAQEABj8CjZnLx//EABsQAQEBAAMBAQAAAAAAAAAAAAEAETFRYRAg/9oACAEBAAE/IR5Ok87qt2pe7TIcYtjin3BeGw8wBkx+N/H/2gAMAwEAAgADAAAAEJLws6w//8QAFxEAAwEAAAAAAAAAAAAAAAAAAAERIP/aAAgBAwEBPxCBtFx//8QAFxEBAAMAAAAAAAAAAAAAAAAAAQARIP/aAAgBAgEBPxCmA5//xAAdEAEAAgIDAQEAAAAAAAAAAAABABEhQTFRYXGB/9oACAEBAAE/EFMZsvVhM9bezSD6TjoPILgZjbtoNkeqht3FRZXvEZbtfZCsH7BNmeXKoD7AeCOncILi5b3LxLZ//9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/mountain-light-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/mountain-light-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/mountain-light-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/mountain-light-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/mountain-light-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/mountain-light-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/mountain-light-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/mountain-light-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/mountain-light-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 7",
+        "lens": "TAMRON 35-150mm F/2-2.8 Di III VXD A058Z",
+        "focalLength": "150 mm",
+        "aperture": "f/9",
+        "shutterSpeed": "1/125 s",
+        "iso": "ISO 64",
+        "capturedAt": "2024-08-26"
+      }
+    },
+    {
+      "id": "volcanic-peak-haze",
+      "alt": "A snow-covered volcanic peak rises through warm haze beyond dark rocky ridges.",
+      "width": 4024,
+      "height": 6048,
+      "aspectRatio": 0.6653,
+      "dominantColor": "#080808",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAoABsDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAgQAAQMF/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAENiYMBcs5DnL3lfXSExqS5GpD/xAAbEAACAwEBAQAAAAAAAAAAAAAAAQIREhATIf/aAAgBAQABBQJIUDBki+WfBSsUhyZpilR6DkbLL7//xAAWEQEBAQAAAAAAAAAAAAAAAAARACD/2gAIAQMBAT8BIz//xAAWEQEBAQAAAAAAAAAAAAAAAAARACD/2gAIAQIBAT8BZz//xAAXEAEBAQEAAAAAAAAAAAAAAAAgMQAh/9oACAEBAAY/Al0XUU//xAAcEAADAAMAAwAAAAAAAAAAAAAAAREQIVExQWH/2gAIAQEAAT8hqNzI9IVEE7Q+XwmtOYB08izR97ZsrZXWFjbeP//aAAwDAQACAAMAAAAQQVoWj/8A/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQAQEf/aAAgBAwEBPxArRu7/AP/EABYRAQEBAAAAAAAAAAAAAAAAAAEAEP/aAAgBAgEBPxBhUg3/xAAfEAEAAQQDAAMAAAAAAAAAAAABABEhMUFRYXGBkaH/2gAIAQEAAT8Qd4jjEUanmFdGBbVYEi2epSsanJFr/uRxDwaiB8DURsWwQKIPWaPUGVa6FlYqkit0Zw/dMLRhlGVn/9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/volcanic-peak-haze-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/volcanic-peak-haze-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/volcanic-peak-haze-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/volcanic-peak-haze-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/volcanic-peak-haze-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/volcanic-peak-haze-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/volcanic-peak-haze-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/volcanic-peak-haze-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/volcanic-peak-haze-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 6",
+        "lens": "TAMRON 35-150mm F/2-2.8 Di III VXD A058Z",
+        "focalLength": "99 mm",
+        "aperture": "f/9",
+        "shutterSpeed": "1/320 s",
+        "iso": "ISO 100",
+        "capturedAt": "2024-09-07"
+      }
+    },
+    {
+      "id": "alpine-reflection",
+      "alt": "A rugged snow-capped mountain and surrounding forest reflect in a still alpine lake.",
+      "width": 6048,
+      "height": 4024,
+      "aspectRatio": 1.503,
+      "dominantColor": "#6898b8",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAgH/xAAXAQEBAQEAAAAAAAAAAAAAAAABAAID/9oADAMBAAIQAxAAAAHLpbNc+nJzTSETNKe02fWBQME//8QAGxAAAwADAQEAAAAAAAAAAAAAAAECAxETEhD/2gAIAQEAAQUCUig8HkaItJ9E08qO5WZkwqOcJPHJzKliNmzfz//EABYRAQEBAAAAAAAAAAAAAAAAAAAREv/aAAgBAwEBPwHLKKqv/8QAFhEBAQEAAAAAAAAAAAAAAAAAABES/9oACAECAQE/AdNNIiP/xAAaEAACAwEBAAAAAAAAAAAAAAAAMRARIAEh/9oACAEBAAY/As+9HQ5Yrh7/AP/EAB0QAQADAAIDAQAAAAAAAAAAAAEAESEQUTFBYYH/2gAIAQEAAT8hs5TxT3kgJj9QdDiJq7jjGKGtgQv02Uhqhaj9ID3cx4lu4ruK7ls//9oADAMBAAIAAwAAABAPb6XL3//EABcRAQEBAQAAAAAAAAAAAAAAAAEQAGH/2gAIAQMBAT8QNSXeZ//EABgRAAIDAAAAAAAAAAAAAAAAAAABEBEh/9oACAECAQE/ENzIpSp//8QAHRABAAMAAwADAAAAAAAAAAAAAQARITFBUWFx8P/aAAgBAQABPxDqT4oAytgHUMOIm3aUruiZOktWAgkN0PESk7Og52Nki1aTiX8dFc7lqBQBWTRWwFlQ6rdN8bLYFVq/33Be8R9UXyp7Ufaf/9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/alpine-reflection-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/alpine-reflection-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/alpine-reflection-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/alpine-reflection-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/alpine-reflection-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/alpine-reflection-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/alpine-reflection-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/alpine-reflection-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/alpine-reflection-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 6",
+        "lens": "TAMRON 35-150mm F/2-2.8 Di III VXD A058Z",
+        "focalLength": "35 mm",
+        "aperture": "f/8",
+        "shutterSpeed": "1/250 s",
+        "iso": "ISO 100",
+        "capturedAt": "2024-09-07"
+      }
+    },
+    {
+      "id": "aurora-horizon",
+      "alt": "Bands of pink, orange, and green aurora glow above a rocky mountain horizon under dense stars.",
+      "width": 7723,
+      "height": 5149,
+      "aspectRatio": 1.4999,
+      "dominantColor": "#080808",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAwQFAAIB/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAIB/9oADAMBAAIQAxAAAAGeYrC1eaQiZmNhR5H2cp8T+wuDqf/EABsQAAMAAgMAAAAAAAAAAAAAAAABAgMSEBMx/9oACAEBAAEFAlJqajkpCSFJoVJSETnO8eUdC5XjP//EABgRAAMBAQAAAAAAAAAAAAAAAAABEhET/9oACAEDAQE/AYOZAnhTKZ//xAAXEQEBAQEAAAAAAAAAAAAAAAABABEC/9oACAECAQE/AdLS2TY5LC//xAAVEAEBAAAAAAAAAAAAAAAAAAAwIf/aAAgBAQAGPwI6P//EABwQAAICAgMAAAAAAAAAAAAAAAABEDERISBBUf/aAAgBAQABPyElwxU03GjhjsmrR5jDozC2JqLGFD//2gAMAwEAAgADAAAAENgjjIQf/8QAGBEBAQEBAQAAAAAAAAAAAAAAAQARMUH/2gAIAQMBAT8Q2wpRJxZ8bX2//8QAGBEBAQEBAQAAAAAAAAAAAAAAAAERMUH/2gAIAQIBAT8Qiqyh0r8ZP//EAB4QAQADAAICAwAAAAAAAAAAAAEAESFBcTFhUaHB/9oACAEBAAE/EDoyeqdZ6YIOShALVHctrIFQfhABlhhExYAgI8o5OLXUEuQzX6gOjiAU9XLQL5Yy7Vp/II//2Q==",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/aurora-horizon-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/aurora-horizon-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/aurora-horizon-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/aurora-horizon-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/aurora-horizon-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/aurora-horizon-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/aurora-horizon-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/aurora-horizon-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/aurora-horizon-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 7",
+        "lens": "35.0 mm f/1.4",
+        "focalLength": "35 mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "30 s",
+        "iso": "ISO 640",
+        "capturedAt": "2024-08-11"
+      }
+    },
+    {
+      "id": "milky-way-mountain-road",
+      "alt": "The Milky Way rises above a curving mountain road bordered by snow and rock.",
+      "width": 8256,
+      "height": 5504,
+      "aspectRatio": 1.5,
+      "dominantColor": "#080808",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAMEAQUC/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQD/2gAMAwEAAhADEAAAAeVUu6o/PSmSAeCiyPRvmSVhhH//xAAbEAEAAgMBAQAAAAAAAAAAAAABAAIDEiEQIP/aAAgBAQABBQKpA5rEiSnZQmnGsseVzoOXjktH6//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BX//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BX//EABcQAAMBAAAAAAAAAAAAAAAAAAARMCH/2gAIAQEABj8CmkYof//EAB8QAAIBBAIDAAAAAAAAAAAAAAABERAhMWEgQVFxgf/aAAgBAQABPyGUbNJcDw9iyQzzWVchxWbRtj3j4M32KiyNjP/aAAwDAQACAAMAAAAQuEOUez//xAAXEQADAQAAAAAAAAAAAAAAAAAAAREQ/9oACAEDAQE/EIyMgnC5/8QAFxEBAQEBAAAAAAAAAAAAAAAAEQABEP/aAAgBAgEBPxBnJtxjn//EAB0QAQACAgMBAQAAAAAAAAAAAAEAESFBMVFhEJH/2gAIAQEAAT8Q6EZcO2tTHU8ZRFUFHSKtTjTFLAFKFmFxKKyytQCmAFVzHfycBLssejiLqtvm2EjgxEoGINDVfP8A/9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/milky-way-mountain-road-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/milky-way-mountain-road-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/milky-way-mountain-road-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/milky-way-mountain-road-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/milky-way-mountain-road-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/milky-way-mountain-road-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/milky-way-mountain-road-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/milky-way-mountain-road-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/milky-way-mountain-road-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 7",
+        "lens": "35.0 mm f/1.4",
+        "focalLength": "35 mm",
+        "aperture": "f/1.4",
+        "shutterSpeed": "20 s",
+        "iso": "ISO 800",
+        "capturedAt": "2024-08-11"
+      }
+    },
+    {
+      "id": "snowfield-observers",
+      "alt": "Two people sit on a bright snowfield beneath a vast wall of jagged white peaks.",
+      "width": 8256,
+      "height": 5504,
+      "aspectRatio": 1.5,
+      "dominantColor": "#f8f8f8",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAQMEAAL/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAgH/2gAMAwEAAhADEAAAAV0E3HR57zU446Y9sVMKhqDVY//EABwQAAICAwEBAAAAAAAAAAAAAAACAREDEhMhIP/aAAgBAQABBQJVIQ1NSVPFFfxSzcjA18WObVyqHx0L8Mf/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AV//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AV//xAAbEAACAgMBAAAAAAAAAAAAAAAAASExEBEgEv/aAAgBAQAGPwLpm5Lxv0Q0WiyJ6//EAB8QAQACAgICAwAAAAAAAAAAAAEAESExEFFhoXGB0f/aAAgBAQABPyHhAcccUc76iUNfkG8HVQYaP1FXSRFhjceUwH0JoCz6jC7L4iahqXGLE//aAAwDAQACAAMAAAAQpF+LlO//xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAgBAwEBPxCIiIj/xAAWEQEBAQAAAAAAAAAAAAAAAAAAEQH/2gAIAQIBAT8QqquqzX//xAAeEAEAAgIDAAMAAAAAAAAAAAABABEhMUFRYXGR8f/aAAgBAQABPxDCYnlHKFKb8iOoSsSw5cBuZNlLui43NIbOfiZRVKDBfYSifdS/Jjm1v6l4CLTW3iupQblyrVxa5UKJfqqnh0n7lDmNQwS75iTXcS+Z/9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/snowfield-observers-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/snowfield-observers-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/snowfield-observers-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/snowfield-observers-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/snowfield-observers-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/snowfield-observers-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/snowfield-observers-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/snowfield-observers-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/snowfield-observers-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 7",
+        "lens": "NIKKOR Z 24-70mm f/4 S",
+        "focalLength": "70 mm",
+        "aperture": "f/4",
+        "shutterSpeed": "1/3200 s",
+        "iso": "ISO 64",
+        "capturedAt": "2025-04-05"
+      }
+    },
+    {
+      "id": "total-solar-eclipse",
+      "alt": "The black disk of a total solar eclipse is ringed by a white corona and a bright diamond of sunlight.",
+      "width": 5017,
+      "height": 3345,
+      "aspectRatio": 1.4999,
+      "dominantColor": "#080808",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBBAUC/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAABx3o0BdTXzSuAT2uS5V5CAD//xAAfEAABAwMFAAAAAAAAAAAAAAABAAIDBBAREhMgISL/2gAIAQEAAQUCTW5ToiAbBU59y1GpS9OsHYW6ETnn/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwFf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwFf/8QAGxAAAQQDAAAAAAAAAAAAAAAAAQAREiAhMFH/2gAIAQEABj8CsFhGjxEu6P/EABsQAQACAwEBAAAAAAAAAAAAAAEAERAhUSBB/9oACAEBAAE/ITGuSMFZBsmvTXOwAjLKxnwSLlvv/9oADAMBAAIAAwAAABAhTxADD//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QX//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QX//EABwQAQEBAAIDAQAAAAAAAAAAAAEAETFRECFhcf/aAAgBAQABPxA7IwDWDDD2WqZYxcgg7ncoJg5fs+LhaGYYMoThLEPwT3vecbKqarMeNnx//9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/total-solar-eclipse-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/total-solar-eclipse-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/total-solar-eclipse-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/total-solar-eclipse-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/total-solar-eclipse-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/total-solar-eclipse-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/total-solar-eclipse-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/total-solar-eclipse-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/total-solar-eclipse-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 7",
+        "lens": "200.0-500.0 mm f/5.6",
+        "focalLength": "500 mm",
+        "aperture": "f/8",
+        "shutterSpeed": "1/15 s",
+        "iso": "ISO 64",
+        "capturedAt": "2024-04-08"
+      }
+    },
+    {
+      "id": "waterfront-windows",
+      "alt": "Floor-to-ceiling windows frame a hazy waterfront and mountains in pale morning light.",
+      "width": 8022,
+      "height": 5348,
+      "aspectRatio": 1.5,
+      "dominantColor": "#080808",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAgQAAwUB/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAErVXE7WwUuPLYoXZo6zrBmBDUUh//EAB4QAAICAgIDAAAAAAAAAAAAAAECABEDEhMiBBAh/9oACAEBAAEFAkEC9+IFuAUy8ebG1NvN5tPK+wHsW6lxRyrMrhgxMs+7qf/EABYRAQEBAAAAAAAAAAAAAAAAABEAIP/aAAgBAwEBPwEjP//EABYRAQEBAAAAAAAAAAAAAAAAABEAIP/aAAgBAgEBPwFnP//EABoQAAMBAAMAAAAAAAAAAAAAAAABEDERICH/2gAIAQEABj8CnqNjExDExTTThTen/8QAGxABAAMBAQEBAAAAAAAAAAAAAQARITFRQWH/2gAIAQEAAT8hak8UiU/SNATZ9jzIp50jmFDdXXsTJ3Za/JjpZ2dDNIxH2pQ3pU0Tdp7Lgl5qBbgnsW+oclrLLGp//9oADAMBAAIAAwAAABAp87BL/wD/xAAXEQEBAQEAAAAAAAAAAAAAAAABABAR/9oACAEDAQE/EAsG4aX/xAAXEQADAQAAAAAAAAAAAAAAAAABEBEA/9oACAECAQE/ECWpxf/EACIQAQACAgEDBQEAAAAAAAAAAAEAESExQVFh0XGBkaHhwf/aAAgBAQABPxCtzzk0rH3j+xcDtwvT+wS1fZwX0ezFj1BQQdIUCWnL0/kpQU06648RcTCnzMmm1v28TAkjfqTLGz4ZlwjkLMdMxKoNA1nmAeDI0aGGzA0a4h2mU4h2U9427ySw2rC+Zdp//9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/waterfront-windows-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/waterfront-windows-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/waterfront-windows-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/waterfront-windows-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/waterfront-windows-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/waterfront-windows-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/waterfront-windows-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/waterfront-windows-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/waterfront-windows-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 7",
+        "lens": "NIKKOR Z 24-70mm f/4 S",
+        "focalLength": "70 mm",
+        "aperture": "f/11",
+        "shutterSpeed": "1/200 s",
+        "iso": "ISO 64",
+        "capturedAt": "2025-09-13"
+      }
+    },
+    {
+      "id": "blossoms-and-row-houses",
+      "alt": "Soft pink blossoms blur across pastel blue and yellow row-house façades.",
+      "width": 5916,
+      "height": 3936,
+      "aspectRatio": 1.503,
+      "dominantColor": "#e8d8d8",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAgMF/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQIA/9oADAMBAAIQAxAAAAFm9cZWprFgUDSptzh6q2iiPmYn/8QAHhAAAgIDAAMBAAAAAAAAAAAAAQIAEQMSISIjMkH/2gAIAQEAAQUCUQXZPVEMQaywXHjNhD2E1k2C50sqzVNjG+sh9mAlg/G/P//EABgRAAIDAAAAAAAAAAAAAAAAAAAQAQIR/9oACAEDAQE/AbGKX//EABkRAAEFAAAAAAAAAAAAAAAAABAAAQIRIf/aAAgBAgEBPwGOKwx//8QAHxAAAgEDBQEAAAAAAAAAAAAAAAERECExAiBBUYFh/9oACAEBAAY/AjGyHcalyckURqsX8MIn5RjnsaPD/8QAHhABAAIDAAIDAAAAAAAAAAAAAQARITFBUWFxofD/2gAIAQEAAT8hrT3FifvEoJQ9iNlTq9+ouVatxXsrRCBx4XHJktfEKHrWpePUboqXZsg2x2HW7G/EqIaoxQ9ig1hoWrg4/mp//9oADAMBAAIAAwAAABDcD968P//EABgRAAMBAQAAAAAAAAAAAAAAAAABESEQ/9oACAEDAQE/ENNUnj6ilh//xAAbEQACAgMBAAAAAAAAAAAAAAAAAREhEDFRcf/aAAgBAgEBPxCppdNcLT9IoiT/xAAfEAEAAgICAwEBAAAAAAAAAAABABEhMUFhUYGh4fD/2gAIAQEAAT8QpqAfwhNl3tEkMOjdMvjM3k3ChUdIbK7ZBzBptQtEKSg2O33xDqgr2NmuIZGxdm3GIC2qY6qWqKR8yEVUZkzT58scth/YREQ+DVmo6X18jQggYtFqZeKuObRsHdRN0v/Z",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/blossoms-and-row-houses-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/blossoms-and-row-houses-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/blossoms-and-row-houses-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/blossoms-and-row-houses-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/blossoms-and-row-houses-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/blossoms-and-row-houses-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/blossoms-and-row-houses-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/blossoms-and-row-houses-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/blossoms-and-row-houses-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 6",
+        "lens": "70.0-200.0 mm f/2.8",
+        "focalLength": "200 mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/3200 s",
+        "iso": "ISO 100",
+        "capturedAt": "2023-03-07"
+      }
+    },
+    {
+      "id": "horse-at-sunset",
+      "alt": "A dark horse stands behind a wooden fence with jagged mountains glowing at sunset.",
+      "width": 8256,
+      "height": 5504,
+      "aspectRatio": 1.5,
+      "dominantColor": "#f8d8b8",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAbACgDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAQBAgUD/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAIB/9oADAMBAAIQAxAAAAHoI01RRzKSpqneNhsyWgMvJs//xAAfEAACAgIBBQAAAAAAAAAAAAAAAQIRAxIQEyAhIjH/2gAIAQEAAQUCRsqWQXkoj8l6xU4tY50dSPF2VShPU2Yil2f/xAAXEQADAQAAAAAAAAAAAAAAAAAAERIg/9oACAEDAQE/AaGVj//EABYRAQEBAAAAAAAAAAAAAAAAAAAREv/aAAgBAgEBPwHKIqq//8QAHBAAAgICAwAAAAAAAAAAAAAAABEBECAhMTJR/9oACAEBAAY/Ahs3epGcnsX2pE5f/8QAHRAAAwEAAgMBAAAAAAAAAAAAAAERIVFhEDFxQf/aAAgBAQABPyFU1aemSF7pcGFTo2JcYs3TYeuF9I+QfMLpz6NaV9ieuYORq/03be4/DqQ0uCLRrIf/2gAMAwEAAgADAAAAEMVTQDv/AP/EABgRAAMBAQAAAAAAAAAAAAAAAAABEUEQ/9oACAEDAQE/EKeFaLpo/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAEQESFBUf/aAAgBAgEBPxCnRrobGEUf/8QAHhABAAMAAgMBAQAAAAAAAAAAAQARITFRQXGBYeH/2gAIAQEAAT8QoAJ2MSdUa/V6h6dMBdkfGzHESBUaDzN88MPcTI4xMJLKvLEYDyfnERyYD4l20VjaW4grR8Kyky6qsetYWhCpgriaKQTqpY23eo7EV/Yk45qFbwuf/9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/horse-at-sunset-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/horse-at-sunset-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/horse-at-sunset-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/horse-at-sunset-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/horse-at-sunset-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/horse-at-sunset-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/horse-at-sunset-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/horse-at-sunset-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/horse-at-sunset-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 7",
+        "lens": "70.0-200.0 mm f/2.8",
+        "focalLength": "135 mm",
+        "aperture": "f/2.8",
+        "shutterSpeed": "1/160 s",
+        "iso": "ISO 64",
+        "capturedAt": "2024-07-14"
+      }
+    },
+    {
+      "id": "winter-volcano",
+      "alt": "A solitary snow-covered volcanic peak rises above rolling white ridges beneath a deep blue sky.",
+      "width": 5504,
+      "height": 8256,
+      "aspectRatio": 0.6667,
+      "dominantColor": "#e8e8e8",
+      "placeholder": "data:image/jpeg;base64,/9j/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wgARCAAoABsDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAMEAQIF/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAMCAf/aAAwDAQACEAMQAAABSP2k5OLVF9EVM6ZxrDyXBrLew4//xAAcEAACAgIDAAAAAAAAAAAAAAAAAQIREhMDEDL/2gAIAQEAAQUCoooooxZKDRQlHpvI1kaajAXvITFOhcqRsif/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AV//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AV//xAAcEAABAwUAAAAAAAAAAAAAAAAAARExECAhMEH/2gAIAQEABj8C1Y5RnYkWyCD/xAAdEAACAgIDAQAAAAAAAAAAAAABEQAhEDFBUWFx/9oACAEBAAE/IRjOMSDaE2gxEs3GhpTqy1hxTDBvQHZDiG1iuvZ8DDxioASLyoFR/9oADAMBAAIAAwAAABAbrpp7/wD/xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8QxiLGtr//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8Q1qpWMj//xAAgEAEAAgMBAAEFAAAAAAAAAAABABEhMUFhURBxgZGh/9oACAEBAAE/ELOR8/TVeonxEQdX4gesdPIu9Q4VXAMModVe0QbGCSbGvzH5U6hjz2DAtUS1+5Y66KaJWXMf2W5R95RL2R9rsKtNi2EEC37J/9k=",
+      "sources": {
+        "avif": [
+          {
+            "src": "/media/gallery/winter-volcano-720.avif",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/winter-volcano-1440.avif",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/winter-volcano-2400.avif",
+            "width": 2400
+          }
+        ],
+        "webp": [
+          {
+            "src": "/media/gallery/winter-volcano-720.webp",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/winter-volcano-1440.webp",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/winter-volcano-2400.webp",
+            "width": 2400
+          }
+        ],
+        "jpeg": [
+          {
+            "src": "/media/gallery/winter-volcano-720.jpg",
+            "width": 720
+          },
+          {
+            "src": "/media/gallery/winter-volcano-1440.jpg",
+            "width": 1440
+          },
+          {
+            "src": "/media/gallery/winter-volcano-2400.jpg",
+            "width": 2400
+          }
+        ]
+      },
+      "exif": {
+        "camera": "Nikon NIKON Z 7",
+        "lens": "NIKKOR Z 24-70mm f/4 S",
+        "focalLength": "70 mm",
+        "aperture": "f/11",
+        "shutterSpeed": "1/500 s",
+        "iso": "ISO 64",
+        "capturedAt": "2025-04-05"
+      }
+    }
+  ]
+}

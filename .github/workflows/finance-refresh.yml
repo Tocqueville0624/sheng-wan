@@ -1,0 +1,46 @@
+name: Refresh official finance data
+on:
+  schedule:
+    - cron: "27 14 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'Sheng Wan academic website research swan0624@uw.edu' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.18.0
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/cache@v4
+        with:
+          path: .cache/finance/sec
+          key: sec-filings-${{ github.run_id }}
+          restore-keys: sec-filings-
+      - run: pnpm data:update
+      - name: Refresh dated constituent catalog (retain previous on failure)
+        continue-on-error: true
+        run: pnpm data:catalog
+      - run: pnpm test
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-finance-snapshot
+          path: |
+            src/data/generated/finance.json
+            src/data/generated/finance-catalog.json
+      - name: Publish validated snapshot to KV (opt-in)
+        if: vars.FINANCE_PUBLISH == 'true'
+        run: pnpm data:update -- --publish
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_KV_NAMESPACE_ID: ${{ secrets.CLOUDFLARE_KV_NAMESPACE_ID }}

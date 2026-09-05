@@ -1,0 +1,41 @@
+---
+import DoveMark from "@components/DoveMark.astro";
+import Picture from "@components/Picture.astro";
+import ContactLinks from "@components/ContactLinks.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import manifestData from "@/data/generated/media.json";
+import type { MediaManifest } from "@/types/media";
+
+const manifest = manifestData as MediaManifest;
+---
+
+<BaseLayout pageClass="home-page">
+  <section class="home-hero shell">
+    <div class="home-copy">
+      <p class="home-interests">Political Theory, Gender Equality, Digital Space</p>
+      <h1 class="display-title">Welcome, I’m Sheng.</h1>
+      <p class="lede">
+        I am a PhD student in the Department of Political Science at the University of Washington in
+        Seattle. My primary research interests are feminist political theory, gender equality in
+        China, and political sentiments in digital spaces.
+      </p>
+      <div class="hero-actions">
+        <a class="button button--primary" href="/cv">View CV</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Contact Me:</span>
+        <ContactLinks />
+      </div>
+    </div>
+    <div class="portrait-wrap sky-surface">
+      <div class="hero-doves"><DoveMark /></div>
+      <Picture
+        image={manifest.home}
+        class="portrait-frame"
+        sizes="(max-width: 840px) min(92vw, 496px), min(40vw, 560px)"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </section>
+</BaseLayout>

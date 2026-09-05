@@ -1,0 +1,22 @@
+{
+  "title": "Hugo zzee Mascot",
+  "role": "Political Science Mascot 2025-2026",
+  "sourceUrl": "https://www.polisci.washington.edu/people/hugo-zzee-mascot",
+  "capturedAt": "2026-09-02T05:41:46Z",
+  "archiveScope": "Complete profile title, role, biography, and original published portrait. The offline reading layout excludes unrelated department navigation, scripts, sharing widgets, and trackers.",
+  "biography": {
+    "sourceSelector": ".field-name-field-biography .field-item",
+    "characters": 1171,
+    "words": 165,
+    "sha256": "c64dd8fdf8bc05eba06e194101c79b03a94bca3e3f36affb73087030677fe63f",
+    "hashMethod": "UTF-8 text content with whitespace collapsed to single spaces and leading/trailing whitespace removed; no punctuation or wording changes."
+  },
+  "portrait": {
+    "sourceUrl": "https://www.polisci.washington.edu/sites/polisci/files/styles/portrait/public/profile-images/Hugo_3x4_blurred.jpg?itok=EhW05OL3",
+    "localPath": "assets/hugo-uw-portrait.jpg",
+    "width": 200,
+    "height": 250,
+    "sha256": "5323ac1a5b5d949ab0fb15ee67aeedf9cf2da56b107a7a2208dfad7a0fe3e641",
+    "hashMethod": "SHA-256 of the unchanged downloaded JPEG bytes."
+  }
+}

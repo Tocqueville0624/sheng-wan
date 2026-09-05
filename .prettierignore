@@ -1,0 +1,7 @@
+.astro/
+.lighthouseci/
+dist/
+node_modules/
+playwright-report/
+public/media/
+test-results/

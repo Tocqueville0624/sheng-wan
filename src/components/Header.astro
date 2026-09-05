@@ -1,0 +1,110 @@
+---
+import { navigation, playgroundNavigation, site } from "@/config/site";
+import ThemeToggle from "./ThemeToggle.astro";
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? currentPath === href : currentPath.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="header-inner shell">
+    <a class="wordmark" href="/" aria-label={`${site.name}, home`}>
+      <span>{site.name}</span><span class="wordmark-divider" aria-hidden="true">|</span>
+      <span class="wordmark-discipline">Political Science</span>
+    </a>
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-controls="primary-navigation"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Open navigation</span>
+      <span></span><span></span>
+    </button>
+    <nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation">
+      <ul>
+        {
+          navigation.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="playground-nav">
+          <button
+            class="playground-trigger"
+            type="button"
+            popovertarget="playground-links"
+            aria-controls="playground-links"
+            aria-expanded="false"
+            data-active={currentPath.startsWith("/playground") || undefined}
+          >
+            Playground
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"
+              ><path d="m3 4.5 3 3 3-3"></path></svg
+            >
+          </button>
+          <div id="playground-links" class="playground-menu" popover="auto">
+            {
+              playgroundNavigation.map((item) => (
+                <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+                  {item.label}
+                </a>
+              ))
+            }
+          </div>
+        </li>
+      </ul>
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
+  const navigation = document.querySelector<HTMLElement>(".primary-navigation");
+  toggle?.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    navigation?.toggleAttribute("data-open", !open);
+  });
+
+  // Native Popover supplies keyboard activation, Escape and outside-click dismissal.
+  const playground = document.querySelector<HTMLButtonElement>(".playground-trigger");
+  const menu = document.querySelector<HTMLElement>(".playground-menu");
+  const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const setActivation = () =>
+    playground?.setAttribute("popovertargetaction", hover.matches ? "show" : "toggle");
+  setActivation();
+  hover.addEventListener("change", setActivation);
+  let closeTimer: ReturnType<typeof setTimeout> | undefined;
+  const cancelClose = () => clearTimeout(closeTimer);
+  const positionMenu = () => {
+    if (!playground || !menu?.matches(":popover-open")) return;
+    const rect = playground.getBoundingClientRect();
+    menu.style.top = `${rect.bottom + 10}px`;
+    menu.style.left = `${Math.max(16, Math.min(rect.left, window.innerWidth - menu.offsetWidth - 16))}px`;
+  };
+  const deferClose = () => {
+    if (!hover.matches || menu?.matches(":focus-within")) return;
+    closeTimer = setTimeout(() => menu?.hidePopover(), 140);
+  };
+  playground?.addEventListener("pointerenter", () => {
+    cancelClose();
+    if (hover.matches) {
+      menu?.showPopover();
+      positionMenu();
+    }
+  });
+  playground?.addEventListener("pointerleave", deferClose);
+  menu?.addEventListener("pointerenter", cancelClose);
+  menu?.addEventListener("pointerleave", deferClose);
+  menu?.addEventListener("toggle", () => {
+    playground?.setAttribute("aria-expanded", String(menu.matches(":popover-open")));
+    positionMenu();
+  });
+  window.addEventListener("resize", positionMenu);
+</script>

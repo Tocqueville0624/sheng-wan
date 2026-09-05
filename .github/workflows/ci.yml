@@ -1,0 +1,75 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  PUBLIC_SITE_URL: https://shengwan.org
+  PUBLIC_SITE_INDEXABLE: "true"
+  ASTRO_TELEMETRY_DISABLED: "1"
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.18.0
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm verify
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+      - name: Save verified site
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-site
+          path: dist/
+          retention-days: 14
+      - name: Save browser failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-failures
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+          if-no-files-found: ignore
+  deploy:
+    needs: verify
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.DEPLOYMENT_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production
+    concurrency:
+      group: production-deployment
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.18.0
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v4
+        with:
+          name: verified-site
+          path: dist/
+      - name: Deploy verified assets and Worker
+        run: pnpm exec wrangler deploy --env production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Check production
+        run: pnpm exec tsx scripts/deployment/smoke.ts https://shengwan.org
