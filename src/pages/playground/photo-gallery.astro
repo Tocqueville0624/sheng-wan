@@ -12,12 +12,7 @@ const manifest = manifestData as MediaManifest;
   description="Photography by Sheng Wan, presented as an editorial gallery and contact sheet."
 >
   <header class="page-intro shell gallery-intro">
-    <p class="eyebrow">Photography</p>
-    <h1 class="page-title">Light, distance, and a sense of place.</h1>
-    <p class="lede">
-      A selection of sixteen photographs. Choose an editorial sequence or scan the complete contact
-      sheet.
-    </p>
+    <h1 class="eyebrow">Photography</h1>
   </header>
   <GalleryExperience images={manifest.gallery} client:load />
 </BaseLayout>
@@ -25,9 +20,5 @@ const manifest = manifestData as MediaManifest;
 <style>
   .gallery-intro {
     padding-bottom: 1.5rem;
-  }
-  .gallery-intro .page-title {
-    max-width: 24ch;
-    font-size: clamp(2.6rem, 5.2vw, 4rem);
   }
 </style>
