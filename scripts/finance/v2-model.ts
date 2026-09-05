@@ -131,12 +131,24 @@ export function validateV2(company: CompanyV2) {
           throw new Error("Metric source does not match the SEC issuer.");
       }
       const m = p.metrics;
+      const adjustments = p.grossProfitAdjustments ?? [];
+      if (
+        adjustments.some(
+          (item) => !item.label || !Number.isFinite(item.amount) || item.sourceUrl !== p.sourceUrl
+        )
+      )
+        throw new Error("Invalid reported gross profit adjustment provenance.");
       const tol = roundingTolerance(m.revenue ?? m.netIncome ?? 1);
       if (
         m.revenue !== undefined &&
         m.costOfRevenue !== undefined &&
         m.grossProfit !== undefined &&
-        Math.abs(m.revenue - m.costOfRevenue - m.grossProfit) > tol
+        Math.abs(
+          m.revenue -
+            m.costOfRevenue +
+            adjustments.reduce((sum, item) => sum + item.amount, 0) -
+            m.grossProfit
+        ) > tol
       )
         throw new Error("Gross profit does not reconcile.");
       if (

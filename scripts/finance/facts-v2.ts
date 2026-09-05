@@ -190,7 +190,23 @@ export function extractFactsV2(
   for (const group of groups.values()) {
     const days = (Date.parse(group.end) - Date.parse(group.start)) / 86400000;
     const kind = days >= 330 ? "annual" : days >= 70 && days <= 105 ? "quarterly" : undefined;
-    const fiscal = calendar.get(group.end);
+    let fiscal = calendar.get(group.end);
+    // Comparative columns have the filing's fy/fp, not their own. Recover the
+    // earlier fiscal label only from a known current period in the same filing
+    // and a matching annual cycle (including 52/53-week calendars).
+    if (!fiscal && kind) {
+      const current = calendar.get(group.filing.reportDate);
+      const gap = (Date.parse(group.filing.reportDate) - Date.parse(group.end)) / 86400000;
+      const years = Math.round(gap / 365.25);
+      if (
+        current &&
+        years >= 1 &&
+        years <= 3 &&
+        Math.abs(gap - years * 365.25) <= 14 &&
+        (kind === "annual" ? current.quarter === 4 : /^(10-Q)(\/A)?$/.test(group.filing.form))
+      )
+        fiscal = { year: current.year - years, quarter: current.quarter };
+    }
     if (!kind || !fiscal || (kind === "quarterly" && !fiscal.quarter)) continue;
     // A 10-Q may report trailing-twelve-month metrics. Duration alone does not
     // make those an annual fiscal statement (Amazon reports such TTM series).

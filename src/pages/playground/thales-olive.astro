@@ -2,12 +2,10 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import OliveMascot from "@components/OliveMascot.astro";
 import ThalesOlive from "@/features/finance/ThalesOlive";
-import snapshot from "@/data/generated/finance.json";
-import type { FinanceManifest } from "@/features/finance/types";
-import { upgradeCompany } from "../../../scripts/finance/v2-model";
+import snapshot from "@/data/generated/finance-history.json";
 import catalog from "@/data/generated/finance-catalog.json";
-import type { CatalogCompany } from "@/features/finance/v2-types";
-const saved = snapshot as FinanceManifest;
+import type { CatalogCompany, FinanceHistory } from "@/features/finance/v2-types";
+const saved = snapshot as FinanceHistory;
 ---
 
 <BaseLayout
@@ -27,7 +25,7 @@ const saved = snapshot as FinanceManifest;
   </header>
   <section class="section-block shell" aria-label="Financial statement explorer">
     <ThalesOlive
-      initialCompany={upgradeCompany(saved.companies[0])}
+      initialCompany={saved.companies[0]}
       featured={saved.companies.map((s) => ({
         ...catalog.companies.find((c) => c.ticker === s.ticker)!,
         name: s.name

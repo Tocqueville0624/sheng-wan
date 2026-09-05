@@ -152,6 +152,38 @@ describe("finance v2 provenance and coverage", () => {
   it("does not manufacture a fourth quarter from a year alone", () => {
     expect(extractFactsV2(fixture(), identity, [filing]).quarterly).toEqual([]);
   });
+  it("recovers a comparative fiscal year from the same filing without using the filing year as its label", () => {
+    const doc = fixture();
+    for (const concept of Object.values(doc.facts["us-gaap"])) {
+      const f = concept.units.USD[0];
+      concept.units.USD.push({ ...f, start: "2023-02-01", end: "2024-01-31", val: f.val * 0.8 });
+    }
+    const data = extractFactsV2(doc, identity, [filing]);
+    expect(data.annual.map((p) => p.id)).toEqual(["FY2024", "FY2026"]);
+    expect(data.annual[0].metrics.revenue).toBe(80);
+    expect(data.annual[0].filedAt).toBe(filing.filedAt);
+    expect(data.annual[0].metricSources.revenue?.accession).toBe(accession);
+    // A different fiscal season is not an annual comparative.
+    for (const concept of Object.values(doc.facts["us-gaap"])) {
+      concept.units.USD[1].start = "2023-07-01";
+      concept.units.USD[1].end = "2024-06-30";
+    }
+    expect(extractFactsV2(doc, identity, [filing]).annual.map((p) => p.id)).toEqual(["FY2026"]);
+  });
+  it("recovers a prior-year quarterly comparison but never maps a 9-month total to a quarter", () => {
+    const doc = fixture();
+    const quarterly = { ...filing, form: "10-Q", reportDate: "2025-10-31" };
+    for (const concept of Object.values(doc.facts["us-gaap"])) {
+      const f = concept.units.USD[0];
+      Object.assign(f, { form: "10-Q", fp: "Q3", start: "2025-08-01", end: "2025-10-31" });
+      concept.units.USD.push({ ...f, start: "2024-08-01", end: "2024-10-31", val: f.val * 0.8 });
+      concept.units.USD.push({ ...f, start: "2024-02-01", end: "2024-10-31", val: f.val * 3 });
+    }
+    expect(extractFactsV2(doc, identity, [quarterly]).quarterly.map((p) => p.id)).toEqual([
+      "2025-Q3",
+      "2026-Q3"
+    ]);
+  });
 
   it("does not relabel trailing-twelve-month quarterly disclosures as fiscal years", () => {
     const doc = fixture();

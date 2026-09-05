@@ -206,6 +206,10 @@ export function convertPeriodToUsd(
       ...adjustment,
       revenue: adjustment.revenue / rate
     })),
+    grossProfitAdjustments: period.grossProfitAdjustments?.map((adjustment) => ({
+      ...adjustment,
+      amount: adjustment.amount / rate
+    })),
     operatingExpenseDetails: period.operatingExpenseDetails?.map((item) => ({
       ...item,
       amount: item.amount / rate

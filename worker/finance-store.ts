@@ -1,9 +1,14 @@
 import catalogData from "../src/data/generated/finance-catalog.json";
-import bundledData from "../src/data/generated/finance.json";
+import bundledData from "../src/data/generated/finance-history.json";
 import { companies } from "../scripts/finance/companies";
 import { filingAdapters } from "../scripts/finance/adapters";
 import { extractInlinePeriods, parseInlineXbrl } from "../scripts/finance/ixbrl";
-import { extractTsmHtml } from "../scripts/finance/tsm-html";
+import {
+  extractTsmHtml,
+  extractTsmAnnualHtml,
+  tsmQuarterlyCandidates,
+  tsmQuarterlyExhibit
+} from "../scripts/finance/tsm-html";
 import { averageRate, parseH10TaiwanDollar, type FxObservation } from "../scripts/finance/fed";
 import { convertPeriodToUsd } from "../scripts/finance/extract";
 import {
@@ -12,13 +17,12 @@ import {
   convertBasicTwd,
   type FactsDocument
 } from "../scripts/finance/facts-v2";
-import { mergeV2, upgradeCompany, upgradePeriod, validateV2 } from "../scripts/finance/v2-model";
+import { mergeV2, upgradePeriod, validateV2 } from "../scripts/finance/v2-model";
 import {
   SEC_USER_AGENT,
   assertSecUrl,
   parseFilings,
   readBounded,
-  tsmFinancialExhibits,
   type RecentFilings,
   type SecFiling,
   type Submissions
@@ -29,15 +33,16 @@ import {
   type CompanyResponse,
   type CompanyV2,
   type FinanceCatalog,
+  type FinanceHistory,
   type FinanceJob
 } from "../src/features/finance/v2-types";
-import type { FinanceManifest, FinancialPeriod } from "../src/features/finance/types";
+import type { FinancialPeriod } from "../src/features/finance/types";
 
 export const catalog = catalogData as FinanceCatalog;
-const bundled = bundledData as FinanceManifest;
+const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.7";
+const ENGINE_VERSION = "finance-v2.8";
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -46,7 +51,7 @@ export const catalogIdentity = (ticker: string) =>
   catalog.companies.find((c) => c.ticker === ticker.toUpperCase().replace("-", "."));
 export const bundledCompany = (identity: CatalogCompany) => {
   const original = bundled.companies.find((c) => c.cik === identity.cik);
-  return original ? { ...upgradeCompany(original), ticker: identity.ticker } : undefined;
+  return original ? { ...original, ticker: identity.ticker } : undefined;
 };
 type Task = {
   engineVersion?: string;
@@ -61,8 +66,22 @@ type Task = {
   changed: boolean;
   fx?: FxObservation[];
   exhibit?: string;
+  exhibitReportDate?: string;
 };
 type IndexEntry = { cik: string; ticker: string; updatedAt: string };
+
+async function periodVersion(company: CompanyV2) {
+  const hash = new Uint8Array(
+    await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(JSON.stringify([company.annual, company.quarterly]))
+    )
+  );
+  return [...hash]
+    .slice(0, 10)
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
 
 /** Single SQLite-backed coordinator keeps request spacing and deduplication global. */
 export class FinanceStore {
@@ -75,7 +94,27 @@ export class FinanceStore {
   }
   private async company(identity: CatalogCompany): Promise<CompanyV2 | undefined> {
     const saved = await this.ctx.storage.get<CompanyV2>(`company:${identity.cik}`);
-    return saved ? { ...saved, ticker: identity.ticker } : bundledCompany(identity);
+    const baseline = bundledCompany(identity);
+    if (!saved) return baseline;
+    if (
+      baseline &&
+      ["annual", "quarterly"].some((kind) =>
+        baseline[kind as "annual" | "quarterly"].some(
+          (p) =>
+            !saved[kind as "annual" | "quarterly"].some(
+              (old) => old.startDate === p.startDate && old.endDate === p.endDate
+            )
+        )
+      )
+    ) {
+      // A previously saved short history must not hide a newer deployment's
+      // validated backfill. Merge coherent periods without making source calls.
+      const merged = mergeV2(baseline, { ...saved, ticker: identity.ticker });
+      merged.version = await periodVersion(merged);
+      merged.updatedAt = [baseline.updatedAt, saved.updatedAt].sort().at(-1)!;
+      return merged;
+    }
+    return { ...saved, ticker: identity.ticker };
   }
   private async active(cik: string) {
     const id = await this.ctx.storage.get<string>(`active:${cik}`);
@@ -241,13 +280,7 @@ export class FinanceStore {
       next.version = old.version;
       next.updatedAt = old.updatedAt;
     } else {
-      const hash = new Uint8Array(
-        await crypto.subtle.digest("SHA-256", new TextEncoder().encode(contents))
-      );
-      next.version = [...hash]
-        .slice(0, 10)
-        .map((b) => b.toString(16).padStart(2, "0"))
-        .join("");
+      next.version = await periodVersion(next);
       next.updatedAt = next.checkedAt;
       task.changed = true;
     }
@@ -362,15 +395,10 @@ export class FinanceStore {
         const annual = task.filings
           .filter((f) => f.form === (mappedTicker === "TSM" ? "20-F" : "10-K"))
           .slice(0, 10);
-        const quarterly = task.filings
-          .filter((f) =>
-            mappedTicker === "TSM"
-              ? f.form === "6-K" &&
-                /^tsm-fsx/i.test(f.primaryDocument) &&
-                !f.reportDate.endsWith("-12-31")
-              : f.form === "10-Q"
-          )
-          .slice(0, 20);
+        const quarterly =
+          mappedTicker === "TSM"
+            ? tsmQuarterlyCandidates(task.filings)
+            : task.filings.filter((f) => f.form === "10-Q").slice(0, 20);
         // New statements first; older unsupported taxonomy never blocks recent data.
         task.todo = [...annual, ...quarterly].sort((a, b) =>
           b.reportDate.localeCompare(a.reportDate)
@@ -382,17 +410,20 @@ export class FinanceStore {
       task.job.state = "backfilling";
       const filing = task.todo[task.cursor];
       task.job.message = `Reading reviewed business categories: ${filing.reportDate} (${task.cursor + 1}/${task.todo.length}).`;
-      const cacheKey = `filing:v3:${identity.cik}:${filing.accession}`;
+      const cacheKey = `filing:v4:${identity.cik}:${filing.accession}`;
       try {
         let periods = await this.ctx.storage.get<FinancialPeriod[]>(cacheKey);
         if (!periods) {
           if (mappedTicker === "TSM" && filing.form === "6-K" && !task.exhibit) {
-            const index = JSON.parse(
-              await this.fetchSource(`${filing.directoryUrl}index.json`)
-            ) as { directory: { item: { name: string }[] } };
-            const exhibits = tsmFinancialExhibits(index.directory.item.map((i) => i.name));
-            if (exhibits.length !== 1) throw new Error("No unique consolidated report exhibit.");
-            task.exhibit = filing.directoryUrl + exhibits[0];
+            const exhibit = tsmQuarterlyExhibit(await this.fetchSource(filing.sourceUrl), filing);
+            if (!exhibit) {
+              if (/^tsm-fsx/i.test(filing.primaryDocument))
+                throw new Error("No unique described consolidated quarterly exhibit.");
+              task.cursor++;
+              return;
+            }
+            task.exhibit = exhibit.url;
+            task.exhibitReportDate = exhibit.reportDate;
             task.job.total++;
             return;
           }
@@ -400,14 +431,16 @@ export class FinanceStore {
           periods =
             mappedTicker === "TSM" && filing.form === "6-K"
               ? extractTsmHtml(html, task.exhibit!, filing.filedAt)
-              : extractInlinePeriods(
-                  parseInlineXbrl(html),
-                  config,
-                  filingAdapters[config.ticker],
-                  filing.sourceUrl,
-                  filing.filedAt
-                );
-          if (!periods.some((p) => p.endDate === filing.reportDate))
+              : mappedTicker === "TSM" && !/<ix:nonFraction\b/i.test(html)
+                ? extractTsmAnnualHtml(html, filing.sourceUrl, filing.filedAt)
+                : extractInlinePeriods(
+                    parseInlineXbrl(html),
+                    config,
+                    filingAdapters[config.ticker],
+                    filing.sourceUrl,
+                    filing.filedAt
+                  );
+          if (!periods.some((p) => p.endDate === (task.exhibitReportDate ?? filing.reportDate)))
             throw new Error("Current report period lacks a reviewed breakdown.");
           periods = periods.map((p) => ({ ...p, accession: filing.accession }));
           if (mappedTicker === "TSM")
@@ -432,6 +465,7 @@ export class FinanceStore {
       }
       task.cursor++;
       task.exhibit = undefined;
+      task.exhibitReportDate = undefined;
     }
   }
   async alarm() {

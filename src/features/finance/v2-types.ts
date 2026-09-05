@@ -22,6 +22,11 @@ export type CompanyV2 = Omit<CompanyDataset, "schemaVersion" | "annual" | "quart
   checkedAt?: string;
   warnings: string[];
 };
+export type FinanceHistory = {
+  schemaVersion: 2;
+  capturedAt: string;
+  companies: CompanyV2[];
+};
 export type CatalogCompany = {
   ticker: string;
   name: string;

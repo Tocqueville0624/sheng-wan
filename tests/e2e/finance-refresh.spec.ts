@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { readFile } from "node:fs/promises";
-import { mockFinance, savedCompanies } from "./finance-fixtures";
+import { mockFinance, savedCompanies, initialCompany } from "./finance-fixtures";
 import { amount } from "../../src/features/finance/BasicHistory";
 import type { CompanyV2 } from "../../src/features/finance/v2-types";
 
@@ -64,7 +64,7 @@ for (const { name, change } of rejected)
     await mockFinance(page, { AAPL: next });
     await page.goto("/playground/thales-olive/");
     await expect(page.getByRole("button", { name: "Retry connection" })).toBeVisible();
-    await expect(page.locator(".finance-source")).toContainText(apple.version);
+    await expect(page.locator(".finance-source")).toContainText(initialCompany.version);
     await expect(page.locator(".finance-source")).not.toContainText(next.version);
     await expect(page.locator(".history-chart")).toContainText("iPhone");
   });
@@ -80,7 +80,7 @@ test("a source failure preserves charts and offers a connection retry", async ({
   await page.goto("/playground/thales-olive/");
   await expect(page.locator(".finance-update")).toContainText("SEC temporarily unavailable");
   await expect(page.locator(".history-chart")).toBeVisible();
-  await expect(page.locator(".finance-source")).toContainText(apple.version);
+  await expect(page.locator(".finance-source")).toContainText(initialCompany.version);
 });
 
 test("company, frequency, period, KPIs, chart and history URL stay in sync", async ({
