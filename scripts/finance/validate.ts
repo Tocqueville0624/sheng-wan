@@ -8,12 +8,13 @@ import type {
 // Dollar-denominated floating-point tolerance, not permission to alter a reported flow.
 export const roundingTolerance = (revenue: number) => Math.max(0.000001, Math.abs(revenue) * 1e-9);
 
-export function isReconciled(metrics: FinancialMetrics) {
+export function isReconciled(metrics: FinancialMetrics, grossAdjustment = 0) {
   if (Object.values(metrics).some((value) => value !== undefined && !Number.isFinite(value)))
     return false;
   const tolerance = roundingTolerance(metrics.revenue);
   return (
-    Math.abs(metrics.revenue - metrics.costOfRevenue - metrics.grossProfit) <= tolerance &&
+    Math.abs(metrics.revenue - metrics.costOfRevenue + grossAdjustment - metrics.grossProfit) <=
+      tolerance &&
     Math.abs(metrics.grossProfit - metrics.operatingExpenses - metrics.operatingIncome) <=
       tolerance &&
     Math.abs(
@@ -26,7 +27,20 @@ export function isReconciled(metrics: FinancialMetrics) {
 }
 
 export function validatePeriod(period: FinancialPeriod) {
-  if (!isReconciled(period.metrics)) throw new Error(`${period.id}: accounting identities fail.`);
+  const adjustments = period.grossProfitAdjustments ?? [];
+  if (
+    adjustments.some(
+      (item) => !item.label || !Number.isFinite(item.amount) || item.sourceUrl !== period.sourceUrl
+    )
+  )
+    throw new Error(`${period.id}: invalid reported gross profit adjustments.`);
+  if (
+    !isReconciled(
+      period.metrics,
+      adjustments.reduce((sum, item) => sum + item.amount, 0)
+    )
+  )
+    throw new Error(`${period.id}: accounting identities fail.`);
   if (!(period.metrics.revenue > 0)) throw new Error(`${period.id}: revenue must be positive.`);
   if (period.metrics.costOfRevenue < 0 || period.metrics.operatingExpenses < 0)
     throw new Error(`${period.id}: expenses must not be negative.`);

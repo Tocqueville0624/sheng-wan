@@ -263,7 +263,8 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         "source",
         "filed_at",
         "snapshot",
-        "metric_provenance"
+        "metric_provenance",
+        "gross_profit_adjustments"
       ],
       ...periods.map((p) => [
         selection.ticker,
@@ -277,7 +278,8 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         p.sourceUrl,
         p.filedAt,
         company?.version,
-        JSON.stringify(p.metricSources)
+        JSON.stringify(p.metricSources),
+        JSON.stringify(p.grossProfitAdjustments ?? [])
       ])
     ];
     downloadFile(
@@ -624,6 +626,15 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
                           Filed {source.filedAt}
                         </a>
                         {source.inputs && <span> · Inputs: {source.inputs.join("; ")}</span>}
+                      </li>
+                    ))}
+                    {current.grossProfitAdjustments?.map((item) => (
+                      <li key={item.label}>
+                        <strong>Gross profit adjustment</strong>: {item.label} ·{" "}
+                        {amount(item.amount, current.displayCurrency)} ·{" "}
+                        <a href={item.sourceUrl} target="_blank" rel="noreferrer">
+                          Source filing
+                        </a>
                       </li>
                     ))}
                   </ul>

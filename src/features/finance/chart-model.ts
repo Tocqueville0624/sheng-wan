@@ -85,6 +85,12 @@ export function revenueAdjustmentLabel(adjustment: RevenueSegment) {
 
 export function buildStatementFlow(period: FinancialPeriod): FlowResult {
   const m = period.metrics;
+  if (period.grossProfitAdjustments?.some((item) => item.amount !== 0))
+    return {
+      ok: false,
+      reason:
+        "This filing reports separate gross-profit adjustments. Use the statement table and source filing; this flow chart does not model those adjustments."
+    };
   const { equityMethodIncome = 0, incomeTax, ...positiveMetrics } = m;
   if (Object.values(m).some((value) => value !== undefined && !Number.isFinite(value))) {
     return { ok: false, reason: "This statement contains non-finite financial values." };

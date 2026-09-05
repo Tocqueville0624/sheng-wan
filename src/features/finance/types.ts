@@ -43,6 +43,7 @@ export type FinancialPeriod = {
   };
   derived: boolean;
   metrics: FinancialMetrics;
+  grossProfitAdjustments?: { label: string; amount: number; sourceUrl: string }[];
   segments?: RevenueSegment[];
   revenueAdjustments?: RevenueSegment[];
   operatingExpenseDetails?: { id: string; label: string; amount: number }[];
