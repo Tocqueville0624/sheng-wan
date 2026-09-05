@@ -342,7 +342,7 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
               <span>{c.ticker}</span>
               <small>{c.name}</small>
               <small>
-                {c.status === "processing"
+                {(job?.ticker === c.ticker ? busy : c.status === "processing")
                   ? "Processing"
                   : c.status === "ready" || datasets[c.ticker]
                     ? "Saved data"
