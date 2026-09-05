@@ -11,6 +11,8 @@ type Env = {
   FINANCE_STORE?: DurableObjectNamespace;
   FINANCE_PUBLIC_UPDATES?: string;
   CANONICAL_ORIGIN?: string;
+  STAGING_ACCESS_REQUIRED?: string;
+  STAGING_ACCESS_TOKEN?: string;
 };
 
 const allowedPeriods = new Set<PeriodKind>(["annual", "quarterly"]);
@@ -233,6 +235,29 @@ export async function apiV2(request: Request, env: Env) {
 
 export default {
   async fetch(request: Request, env: Env) {
+    if (env.STAGING_ACCESS_REQUIRED === "true") {
+      const headers = { "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow" };
+      if (!env.STAGING_ACCESS_TOKEN)
+        return new Response("Staging access is not configured.", { status: 503, headers });
+      const authorization = request.headers.get("Authorization") ?? "";
+      const expected = `Bearer ${env.STAGING_ACCESS_TOKEN}`;
+      const encoder = new TextEncoder();
+      const [actualHash, expectedHash] = await Promise.all(
+        [authorization.slice(0, 512), expected].map(
+          async (value) =>
+            new Uint8Array(await crypto.subtle.digest("SHA-256", encoder.encode(value)))
+        )
+      );
+      const difference = actualHash.reduce(
+        (value, byte, index) => value | (byte ^ expectedHash[index]),
+        0
+      );
+      if (authorization.length > 512 || difference !== 0)
+        return new Response("Authentication required.", {
+          status: 401,
+          headers: { ...headers, "WWW-Authenticate": 'Bearer realm="staging"' }
+        });
+    }
     const url = new URL(request.url);
     if (env.CANONICAL_ORIGIN && url.hostname === "www.shengwan.org") {
       const target = new URL(env.CANONICAL_ORIGIN);

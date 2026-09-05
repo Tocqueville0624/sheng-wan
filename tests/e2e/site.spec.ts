@@ -81,6 +81,7 @@ for (const route of routes) {
 
 test("theme and Playground interactions work", async ({ page }) => {
   await page.goto("/playground/thales-olive");
+  await expect(page.locator("astro-island[ssr]")).toHaveCount(0);
   await page.getByRole("button", { name: /Microsoft/ }).click();
   await expect(page.getByRole("heading", { name: "Microsoft" })).toBeVisible();
   await page.getByRole("button", { name: /Quarterly/ }).click();
