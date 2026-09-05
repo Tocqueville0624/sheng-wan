@@ -42,7 +42,13 @@
       "name": "sheng-wan-staging",
       "workers_dev": true,
       "preview_urls": false,
-      "vars": { "FINANCE_PUBLIC_UPDATES": "disabled" },
+      "vars": { "FINANCE_PUBLIC_UPDATES": "disabled", "STAGING_ACCESS_REQUIRED": "true" },
+      "assets": {
+        "directory": "./dist",
+        "binding": "ASSETS",
+        "run_worker_first": true,
+        "not_found_handling": "404-page"
+      },
       "durable_objects": {
         "bindings": [{ "name": "FINANCE_STORE", "class_name": "FinanceStore" }]
       }
