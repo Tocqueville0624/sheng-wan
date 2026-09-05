@@ -22,7 +22,7 @@ pnpm dev
 ```
 
 Use `pnpm preview` to build the site and run it through the same Worker entry point used in production. The default Wrangler URL is `http://localhost:8787`.
-For local SEC imports, copy `.dev.vars.example` to the ignored `.dev.vars`; it enables only the local preview. The deployed configuration deliberately defaults to `FINANCE_PUBLIC_UPDATES=disabled` until edge validation is complete.
+For local SEC imports, copy `.dev.vars.example` to the ignored `.dev.vars`; it enables only the local preview. Production updates are enabled after protected cloud acceptance. Preview and staging configurations keep `FINANCE_PUBLIC_UPDATES=disabled` by default; any future environment must pass edge validation before enabling public updates.
 
 Important commands:
 

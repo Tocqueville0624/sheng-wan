@@ -149,7 +149,8 @@ test("catalog search does not crawl; empty and basic-only coverage are honest", 
 test("an import resumes after reload and reveals validated data when the shared job finishes", async ({
   page
 }) => {
-  await mockFinance(page);
+  // The catalog snapshot can still say processing after the polled job completes.
+  await mockFinance(page, {}, ["GOOG"]);
   let started = false,
     done = false,
     posts = 0;
@@ -183,8 +184,11 @@ test("an import resumes after reload and reveals validated data when the shared 
   await expect(page.getByRole("button", { name: "SEC task in progress" })).toBeDisabled();
   await page.reload();
   await expect(page.locator(".finance-update")).toContainText("Fetching SEC sources.");
+  await expect(page.locator('[data-ticker="GOOG"]')).toContainText("Processing");
   done = true;
   await expect(page.locator(".history-chart")).toBeVisible({ timeout: 10000 });
   await expect(page.locator(".finance-update")).toContainText("Validated data saved.");
+  await expect(page.locator('[data-ticker="GOOG"]')).toContainText("Saved data");
+  await expect(page.locator('[data-ticker="GOOG"]')).not.toContainText("Processing");
   expect(posts).toBe(1);
 });

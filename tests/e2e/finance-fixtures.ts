@@ -6,7 +6,11 @@ import type { CompanyDataset } from "../../src/features/finance/types";
 import type { CompanyV2 } from "../../src/features/finance/v2-types";
 
 export const savedCompanies = bundled.companies.map((c) => upgradeCompany(c as CompanyDataset));
-export async function mockFinance(page: Page, overrides: Record<string, CompanyV2 | null> = {}) {
+export async function mockFinance(
+  page: Page,
+  overrides: Record<string, CompanyV2 | null> = {},
+  processingTickers: string[] = []
+) {
   await page.route("**/api/finance/v2/**", async (route) => {
     const path = new URL(route.request().url()).pathname.replace("/api/finance/v2", "");
     if (path === "/catalog")
@@ -16,7 +20,11 @@ export async function mockFinance(page: Page, overrides: Record<string, CompanyV
           available: true,
           companies: catalog.companies.map((c) => ({
             ...c,
-            status: savedCompanies.some((s) => s.cik === c.cik) ? "ready" : "available"
+            status: processingTickers.includes(c.ticker)
+              ? "processing"
+              : savedCompanies.some((s) => s.cik === c.cik)
+                ? "ready"
+                : "available"
           }))
         }
       });
