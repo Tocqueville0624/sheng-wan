@@ -49,7 +49,8 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
                 : nonoperating || node.group === "equity" || taxBenefit
                   ? node.y - 8
                   : node.y - 43 - (lines.length - 1) * lineHeight;
-  const valueY = titleY + lines.length * lineHeight + (main ? 7 : 4);
+  // Leave room for the taller Arial fallback metrics used by Linux/Android.
+  const valueY = titleY + lines.length * lineHeight + (main ? 12 : 4);
   const marginY = valueY + (main ? 23 : 21);
   return (
     <g>
