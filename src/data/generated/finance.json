@@ -1,0 +1,3854 @@
+{
+  "schemaVersion": 1,
+  "version": "2026-09-02-0112ced17058",
+  "updatedAt": "2026-09-02T06:06:22.774Z",
+  "dataStatus": "verified",
+  "note": "All companies use automatically extracted official SEC statements with reconciled business revenue; no synthetic data.",
+  "companies": [
+    {
+      "schemaVersion": 1,
+      "version": "2026-09-02-0112ced17058",
+      "ticker": "AAPL",
+      "name": "Apple",
+      "cik": "0000320193",
+      "accent": "#607d8b",
+      "reportingCurrency": "USD",
+      "latestPeriod": "Q3 FY2026",
+      "dataStatus": "verified",
+      "updatedAt": "2026-09-02T06:06:01.783Z",
+      "note": "Automatically extracted from SEC annual and quarterly inline-XBRL filings. Business categories are matched by exact taxonomy dimensions and reconcile to reported revenue; coverage reflects available reviewed filings, not estimates.",
+      "annual": [
+        {
+          "id": "FY2023",
+          "label": "FY 2023",
+          "kind": "annual",
+          "fiscalYear": 2023,
+          "startDate": "2022-09-25",
+          "endDate": "2023-09-30",
+          "filedAt": "2025-10-31",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 383285000000,
+            "costOfRevenue": 214137000000,
+            "grossProfit": 169148000000,
+            "operatingExpenses": 54847000000,
+            "operatingIncome": 114301000000,
+            "pretaxIncome": 113736000000,
+            "incomeTax": 16741000000,
+            "netIncome": 96995000000,
+            "researchAndDevelopment": 29915000000,
+            "sellingGeneralAndAdministrative": 24932000000
+          },
+          "segments": [
+            {
+              "id": "iphone",
+              "label": "iPhone",
+              "revenue": 200583000000
+            },
+            {
+              "id": "mac",
+              "label": "Mac",
+              "revenue": 29357000000
+            },
+            {
+              "id": "ipad",
+              "label": "iPad",
+              "revenue": 28300000000
+            },
+            {
+              "id": "wearables-home-accessories",
+              "label": "Wearables, Home and Accessories",
+              "revenue": 39845000000
+            },
+            {
+              "id": "services",
+              "label": "Services",
+              "revenue": 85200000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+          "segmentBasis": "Net sales by product and service category, not geographic reportable segments.",
+          "accession": "0000320193-25-000079"
+        },
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2023-10-01",
+          "endDate": "2024-09-28",
+          "filedAt": "2025-10-31",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 391035000000,
+            "costOfRevenue": 210352000000,
+            "grossProfit": 180683000000,
+            "operatingExpenses": 57467000000,
+            "operatingIncome": 123216000000,
+            "pretaxIncome": 123485000000,
+            "incomeTax": 29749000000,
+            "netIncome": 93736000000,
+            "researchAndDevelopment": 31370000000,
+            "sellingGeneralAndAdministrative": 26097000000
+          },
+          "segments": [
+            {
+              "id": "iphone",
+              "label": "iPhone",
+              "revenue": 201183000000
+            },
+            {
+              "id": "mac",
+              "label": "Mac",
+              "revenue": 29984000000
+            },
+            {
+              "id": "ipad",
+              "label": "iPad",
+              "revenue": 26694000000
+            },
+            {
+              "id": "wearables-home-accessories",
+              "label": "Wearables, Home and Accessories",
+              "revenue": 37005000000
+            },
+            {
+              "id": "services",
+              "label": "Services",
+              "revenue": 96169000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+          "segmentBasis": "Net sales by product and service category, not geographic reportable segments.",
+          "accession": "0000320193-25-000079"
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2024-09-29",
+          "endDate": "2025-09-27",
+          "filedAt": "2025-10-31",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 416161000000,
+            "costOfRevenue": 220960000000,
+            "grossProfit": 195201000000,
+            "operatingExpenses": 62151000000,
+            "operatingIncome": 133050000000,
+            "pretaxIncome": 132729000000,
+            "incomeTax": 20719000000,
+            "netIncome": 112010000000,
+            "researchAndDevelopment": 34550000000,
+            "sellingGeneralAndAdministrative": 27601000000
+          },
+          "segments": [
+            {
+              "id": "iphone",
+              "label": "iPhone",
+              "revenue": 209586000000
+            },
+            {
+              "id": "mac",
+              "label": "Mac",
+              "revenue": 33708000000
+            },
+            {
+              "id": "ipad",
+              "label": "iPad",
+              "revenue": 28023000000
+            },
+            {
+              "id": "wearables-home-accessories",
+              "label": "Wearables, Home and Accessories",
+              "revenue": 35686000000
+            },
+            {
+              "id": "services",
+              "label": "Services",
+              "revenue": 109158000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+          "segmentBasis": "Net sales by product and service category, not geographic reportable segments.",
+          "accession": "0000320193-25-000079"
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2025-Q1",
+          "label": "Q1 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 1,
+          "startDate": "2024-09-29",
+          "endDate": "2024-12-28",
+          "filedAt": "2026-01-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 124300000000,
+            "costOfRevenue": 66025000000,
+            "grossProfit": 58275000000,
+            "operatingExpenses": 15443000000,
+            "operatingIncome": 42832000000,
+            "pretaxIncome": 42584000000,
+            "incomeTax": 6254000000,
+            "netIncome": 36330000000,
+            "researchAndDevelopment": 8268000000,
+            "sellingGeneralAndAdministrative": 7175000000
+          },
+          "segments": [
+            {
+              "id": "iphone",
+              "label": "iPhone",
+              "revenue": 69138000000
+            },
+            {
+              "id": "mac",
+              "label": "Mac",
+              "revenue": 8987000000
+            },
+            {
+              "id": "ipad",
+              "label": "iPad",
+              "revenue": 8088000000
+            },
+            {
+              "id": "wearables-home-accessories",
+              "label": "Wearables, Home and Accessories",
+              "revenue": 11747000000
+            },
+            {
+              "id": "services",
+              "label": "Services",
+              "revenue": 26340000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm",
+          "segmentBasis": "Net sales by product and service category, not geographic reportable segments.",
+          "accession": "0000320193-26-000006"
+        },
+        {
+          "id": "2025-Q2",
+          "label": "Q2 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 2,
+          "startDate": "2024-12-29",
+          "endDate": "2025-03-29",
+          "filedAt": "2026-05-01",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 95359000000,
+            "costOfRevenue": 50492000000,
+            "grossProfit": 44867000000,
+            "operatingExpenses": 15278000000,
+            "operatingIncome": 29589000000,
+            "pretaxIncome": 29310000000,
+            "incomeTax": 4530000000,
+            "netIncome": 24780000000,
+            "researchAndDevelopment": 8550000000,
+            "sellingGeneralAndAdministrative": 6728000000
+          },
+          "segments": [
+            {
+              "id": "iphone",
+              "label": "iPhone",
+              "revenue": 46841000000
+            },
+            {
+              "id": "mac",
+              "label": "Mac",
+              "revenue": 7949000000
+            },
+            {
+              "id": "ipad",
+              "label": "iPad",
+              "revenue": 6402000000
+            },
+            {
+              "id": "wearables-home-accessories",
+              "label": "Wearables, Home and Accessories",
+              "revenue": 7522000000
+            },
+            {
+              "id": "services",
+              "label": "Services",
+              "revenue": 26645000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm",
+          "segmentBasis": "Net sales by product and service category, not geographic reportable segments.",
+          "accession": "0000320193-26-000013"
+        },
+        {
+          "id": "2025-Q3",
+          "label": "Q3 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 3,
+          "startDate": "2025-03-30",
+          "endDate": "2025-06-28",
+          "filedAt": "2026-07-31",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 94036000000,
+            "costOfRevenue": 50318000000,
+            "grossProfit": 43718000000,
+            "operatingExpenses": 15516000000,
+            "operatingIncome": 28202000000,
+            "pretaxIncome": 28031000000,
+            "incomeTax": 4597000000,
+            "netIncome": 23434000000,
+            "researchAndDevelopment": 8866000000,
+            "sellingGeneralAndAdministrative": 6650000000
+          },
+          "segments": [
+            {
+              "id": "iphone",
+              "label": "iPhone",
+              "revenue": 44582000000
+            },
+            {
+              "id": "mac",
+              "label": "Mac",
+              "revenue": 8046000000
+            },
+            {
+              "id": "ipad",
+              "label": "iPad",
+              "revenue": 6581000000
+            },
+            {
+              "id": "wearables-home-accessories",
+              "label": "Wearables, Home and Accessories",
+              "revenue": 7404000000
+            },
+            {
+              "id": "services",
+              "label": "Services",
+              "revenue": 27423000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+          "segmentBasis": "Net sales by product and service category, not geographic reportable segments.",
+          "accession": "0000320193-26-000020"
+        },
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2025-09-28",
+          "endDate": "2025-12-27",
+          "filedAt": "2026-01-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 143756000000,
+            "costOfRevenue": 74525000000,
+            "grossProfit": 69231000000,
+            "operatingExpenses": 18379000000,
+            "operatingIncome": 50852000000,
+            "pretaxIncome": 51002000000,
+            "incomeTax": 8905000000,
+            "netIncome": 42097000000,
+            "researchAndDevelopment": 10887000000,
+            "sellingGeneralAndAdministrative": 7492000000
+          },
+          "segments": [
+            {
+              "id": "iphone",
+              "label": "iPhone",
+              "revenue": 85269000000
+            },
+            {
+              "id": "mac",
+              "label": "Mac",
+              "revenue": 8386000000
+            },
+            {
+              "id": "ipad",
+              "label": "iPad",
+              "revenue": 8595000000
+            },
+            {
+              "id": "wearables-home-accessories",
+              "label": "Wearables, Home and Accessories",
+              "revenue": 11493000000
+            },
+            {
+              "id": "services",
+              "label": "Services",
+              "revenue": 30013000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm",
+          "segmentBasis": "Net sales by product and service category, not geographic reportable segments.",
+          "accession": "0000320193-26-000006"
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2025-12-28",
+          "endDate": "2026-03-28",
+          "filedAt": "2026-05-01",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 111184000000,
+            "costOfRevenue": 56403000000,
+            "grossProfit": 54781000000,
+            "operatingExpenses": 18896000000,
+            "operatingIncome": 35885000000,
+            "pretaxIncome": 35833000000,
+            "incomeTax": 6255000000,
+            "netIncome": 29578000000,
+            "researchAndDevelopment": 11419000000,
+            "sellingGeneralAndAdministrative": 7477000000
+          },
+          "segments": [
+            {
+              "id": "iphone",
+              "label": "iPhone",
+              "revenue": 56994000000
+            },
+            {
+              "id": "mac",
+              "label": "Mac",
+              "revenue": 8399000000
+            },
+            {
+              "id": "ipad",
+              "label": "iPad",
+              "revenue": 6914000000
+            },
+            {
+              "id": "wearables-home-accessories",
+              "label": "Wearables, Home and Accessories",
+              "revenue": 7901000000
+            },
+            {
+              "id": "services",
+              "label": "Services",
+              "revenue": 30976000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm",
+          "segmentBasis": "Net sales by product and service category, not geographic reportable segments.",
+          "accession": "0000320193-26-000013"
+        },
+        {
+          "id": "2026-Q3",
+          "label": "Q3 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 3,
+          "startDate": "2026-03-29",
+          "endDate": "2026-06-27",
+          "filedAt": "2026-07-31",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 109417000000,
+            "costOfRevenue": 54647000000,
+            "grossProfit": 54770000000,
+            "operatingExpenses": 19075000000,
+            "operatingIncome": 35695000000,
+            "pretaxIncome": 36267000000,
+            "incomeTax": 6478000000,
+            "netIncome": 29789000000,
+            "researchAndDevelopment": 11729000000,
+            "sellingGeneralAndAdministrative": 7346000000
+          },
+          "segments": [
+            {
+              "id": "iphone",
+              "label": "iPhone",
+              "revenue": 54252000000
+            },
+            {
+              "id": "mac",
+              "label": "Mac",
+              "revenue": 10352000000
+            },
+            {
+              "id": "ipad",
+              "label": "iPad",
+              "revenue": 6191000000
+            },
+            {
+              "id": "wearables-home-accessories",
+              "label": "Wearables, Home and Accessories",
+              "revenue": 7883000000
+            },
+            {
+              "id": "services",
+              "label": "Services",
+              "revenue": 30739000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+          "segmentBasis": "Net sales by product and service category, not geographic reportable segments.",
+          "accession": "0000320193-26-000020"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "version": "2026-09-02-0112ced17058",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "cik": "0000789019",
+      "accent": "#4f8fba",
+      "reportingCurrency": "USD",
+      "latestPeriod": "FY 2026",
+      "dataStatus": "verified",
+      "updatedAt": "2026-09-02T06:06:01.783Z",
+      "note": "Automatically extracted from SEC annual and quarterly inline-XBRL filings. Business categories are matched by exact taxonomy dimensions and reconcile to reported revenue; coverage reflects available reviewed filings, not estimates.",
+      "annual": [
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2023-07-01",
+          "endDate": "2024-06-30",
+          "filedAt": "2026-07-29",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 245122000000,
+            "costOfRevenue": 74114000000,
+            "grossProfit": 171008000000,
+            "operatingExpenses": 61575000000,
+            "operatingIncome": 109433000000,
+            "pretaxIncome": 107787000000,
+            "incomeTax": 19651000000,
+            "netIncome": 88136000000,
+            "researchAndDevelopment": 29510000000
+          },
+          "segments": [
+            {
+              "id": "productivity",
+              "label": "Productivity & Business Processes",
+              "revenue": 106820000000
+            },
+            {
+              "id": "intelligent-cloud",
+              "label": "Intelligent Cloud",
+              "revenue": 87464000000
+            },
+            {
+              "id": "personal-computing",
+              "label": "More Personal Computing",
+              "revenue": 50838000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+          "segmentBasis": "Revenue by reportable operating segment; comparative periods use the classification in the cited filing.",
+          "accession": "0001193125-26-323660"
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2024-07-01",
+          "endDate": "2025-06-30",
+          "filedAt": "2026-07-29",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 281724000000,
+            "costOfRevenue": 87831000000,
+            "grossProfit": 193893000000,
+            "operatingExpenses": 65365000000,
+            "operatingIncome": 128528000000,
+            "pretaxIncome": 123627000000,
+            "incomeTax": 21795000000,
+            "netIncome": 101832000000,
+            "researchAndDevelopment": 32488000000
+          },
+          "segments": [
+            {
+              "id": "productivity",
+              "label": "Productivity & Business Processes",
+              "revenue": 120810000000
+            },
+            {
+              "id": "intelligent-cloud",
+              "label": "Intelligent Cloud",
+              "revenue": 106265000000
+            },
+            {
+              "id": "personal-computing",
+              "label": "More Personal Computing",
+              "revenue": 54649000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+          "segmentBasis": "Revenue by reportable operating segment; comparative periods use the classification in the cited filing.",
+          "accession": "0001193125-26-323660"
+        },
+        {
+          "id": "FY2026",
+          "label": "FY 2026",
+          "kind": "annual",
+          "fiscalYear": 2026,
+          "startDate": "2025-07-01",
+          "endDate": "2026-06-30",
+          "filedAt": "2026-07-29",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 331839000000,
+            "costOfRevenue": 106374000000,
+            "grossProfit": 225465000000,
+            "operatingExpenses": 70228000000,
+            "operatingIncome": 155237000000,
+            "pretaxIncome": 165934000000,
+            "incomeTax": 32185000000,
+            "netIncome": 133749000000,
+            "researchAndDevelopment": 35562000000
+          },
+          "segments": [
+            {
+              "id": "productivity",
+              "label": "Productivity & Business Processes",
+              "revenue": 139996000000
+            },
+            {
+              "id": "intelligent-cloud",
+              "label": "Intelligent Cloud",
+              "revenue": 137791000000
+            },
+            {
+              "id": "personal-computing",
+              "label": "More Personal Computing",
+              "revenue": 54052000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+          "segmentBasis": "Revenue by reportable operating segment; comparative periods use the classification in the cited filing.",
+          "accession": "0001193125-26-323660"
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2025-Q1",
+          "label": "Q1 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 1,
+          "startDate": "2024-07-01",
+          "endDate": "2024-09-30",
+          "filedAt": "2025-10-29",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 65585000000,
+            "costOfRevenue": 20099000000,
+            "grossProfit": 45486000000,
+            "operatingExpenses": 14934000000,
+            "operatingIncome": 30552000000,
+            "pretaxIncome": 30269000000,
+            "incomeTax": 5602000000,
+            "netIncome": 24667000000,
+            "researchAndDevelopment": 7544000000
+          },
+          "segments": [
+            {
+              "id": "productivity",
+              "label": "Productivity & Business Processes",
+              "revenue": 28317000000
+            },
+            {
+              "id": "intelligent-cloud",
+              "label": "Intelligent Cloud",
+              "revenue": 24092000000
+            },
+            {
+              "id": "personal-computing",
+              "label": "More Personal Computing",
+              "revenue": 13176000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+          "segmentBasis": "Revenue by reportable operating segment; comparative periods use the classification in the cited filing.",
+          "accession": "0001193125-25-256321"
+        },
+        {
+          "id": "2025-Q2",
+          "label": "Q2 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 2,
+          "startDate": "2024-10-01",
+          "endDate": "2024-12-31",
+          "filedAt": "2026-01-28",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 69632000000,
+            "costOfRevenue": 21799000000,
+            "grossProfit": 47833000000,
+            "operatingExpenses": 16180000000,
+            "operatingIncome": 31653000000,
+            "pretaxIncome": 29365000000,
+            "incomeTax": 5257000000,
+            "netIncome": 24108000000,
+            "researchAndDevelopment": 7917000000
+          },
+          "segments": [
+            {
+              "id": "productivity",
+              "label": "Productivity & Business Processes",
+              "revenue": 29437000000
+            },
+            {
+              "id": "intelligent-cloud",
+              "label": "Intelligent Cloud",
+              "revenue": 25544000000
+            },
+            {
+              "id": "personal-computing",
+              "label": "More Personal Computing",
+              "revenue": 14651000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+          "segmentBasis": "Revenue by reportable operating segment; comparative periods use the classification in the cited filing.",
+          "accession": "0001193125-26-027207"
+        },
+        {
+          "id": "2025-Q3",
+          "label": "Q3 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 3,
+          "startDate": "2025-01-01",
+          "endDate": "2025-03-31",
+          "filedAt": "2026-04-29",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 70066000000,
+            "costOfRevenue": 21919000000,
+            "grossProfit": 48147000000,
+            "operatingExpenses": 16147000000,
+            "operatingIncome": 32000000000,
+            "pretaxIncome": 31377000000,
+            "incomeTax": 5553000000,
+            "netIncome": 25824000000,
+            "researchAndDevelopment": 8198000000
+          },
+          "segments": [
+            {
+              "id": "productivity",
+              "label": "Productivity & Business Processes",
+              "revenue": 29944000000
+            },
+            {
+              "id": "intelligent-cloud",
+              "label": "Intelligent Cloud",
+              "revenue": 26751000000
+            },
+            {
+              "id": "personal-computing",
+              "label": "More Personal Computing",
+              "revenue": 13371000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+          "segmentBasis": "Revenue by reportable operating segment; comparative periods use the classification in the cited filing.",
+          "accession": "0001193125-26-191507"
+        },
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2025-07-01",
+          "endDate": "2025-09-30",
+          "filedAt": "2025-10-29",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 77673000000,
+            "costOfRevenue": 24043000000,
+            "grossProfit": 53630000000,
+            "operatingExpenses": 15669000000,
+            "operatingIncome": 37961000000,
+            "pretaxIncome": 34301000000,
+            "incomeTax": 6554000000,
+            "netIncome": 27747000000,
+            "researchAndDevelopment": 8146000000
+          },
+          "segments": [
+            {
+              "id": "productivity",
+              "label": "Productivity & Business Processes",
+              "revenue": 33020000000
+            },
+            {
+              "id": "intelligent-cloud",
+              "label": "Intelligent Cloud",
+              "revenue": 30897000000
+            },
+            {
+              "id": "personal-computing",
+              "label": "More Personal Computing",
+              "revenue": 13756000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+          "segmentBasis": "Revenue by reportable operating segment; comparative periods use the classification in the cited filing.",
+          "accession": "0001193125-25-256321"
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2025-10-01",
+          "endDate": "2025-12-31",
+          "filedAt": "2026-01-28",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 81273000000,
+            "costOfRevenue": 25978000000,
+            "grossProfit": 55295000000,
+            "operatingExpenses": 17020000000,
+            "operatingIncome": 38275000000,
+            "pretaxIncome": 48246000000,
+            "incomeTax": 9788000000,
+            "netIncome": 38458000000,
+            "researchAndDevelopment": 8504000000
+          },
+          "segments": [
+            {
+              "id": "productivity",
+              "label": "Productivity & Business Processes",
+              "revenue": 34116000000
+            },
+            {
+              "id": "intelligent-cloud",
+              "label": "Intelligent Cloud",
+              "revenue": 32907000000
+            },
+            {
+              "id": "personal-computing",
+              "label": "More Personal Computing",
+              "revenue": 14250000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+          "segmentBasis": "Revenue by reportable operating segment; comparative periods use the classification in the cited filing.",
+          "accession": "0001193125-26-027207"
+        },
+        {
+          "id": "2026-Q3",
+          "label": "Q3 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 3,
+          "startDate": "2026-01-01",
+          "endDate": "2026-03-31",
+          "filedAt": "2026-04-29",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 82886000000,
+            "costOfRevenue": 26828000000,
+            "grossProfit": 56058000000,
+            "operatingExpenses": 17660000000,
+            "operatingIncome": 38398000000,
+            "pretaxIncome": 39340000000,
+            "incomeTax": 7562000000,
+            "netIncome": 31778000000,
+            "researchAndDevelopment": 8915000000
+          },
+          "segments": [
+            {
+              "id": "productivity",
+              "label": "Productivity & Business Processes",
+              "revenue": 35013000000
+            },
+            {
+              "id": "intelligent-cloud",
+              "label": "Intelligent Cloud",
+              "revenue": 34681000000
+            },
+            {
+              "id": "personal-computing",
+              "label": "More Personal Computing",
+              "revenue": 13192000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+          "segmentBasis": "Revenue by reportable operating segment; comparative periods use the classification in the cited filing.",
+          "accession": "0001193125-26-191507"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "version": "2026-09-02-0112ced17058",
+      "ticker": "GOOGL",
+      "name": "Alphabet",
+      "cik": "0001652044",
+      "accent": "#6b8fc9",
+      "reportingCurrency": "USD",
+      "latestPeriod": "Q2 FY2026",
+      "dataStatus": "verified",
+      "updatedAt": "2026-09-02T06:06:01.783Z",
+      "note": "Automatically extracted from SEC annual and quarterly inline-XBRL filings. Business categories are matched by exact taxonomy dimensions and reconcile to reported revenue; coverage reflects available reviewed filings, not estimates.",
+      "annual": [
+        {
+          "id": "FY2023",
+          "label": "FY 2023",
+          "kind": "annual",
+          "fiscalYear": 2023,
+          "startDate": "2023-01-01",
+          "endDate": "2023-12-31",
+          "filedAt": "2026-02-05",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 307394000000,
+            "costOfRevenue": 133332000000,
+            "grossProfit": 174062000000,
+            "operatingExpenses": 89769000000,
+            "operatingIncome": 84293000000,
+            "pretaxIncome": 85717000000,
+            "incomeTax": 11922000000,
+            "netIncome": 73795000000,
+            "researchAndDevelopment": 45427000000
+          },
+          "segments": [
+            {
+              "id": "search",
+              "label": "Google Search & other",
+              "revenue": 175033000000
+            },
+            {
+              "id": "youtube",
+              "label": "YouTube ads",
+              "revenue": 31510000000
+            },
+            {
+              "id": "network",
+              "label": "Google Network",
+              "revenue": 31312000000
+            },
+            {
+              "id": "subscriptions-platforms-devices",
+              "label": "Subscriptions, platforms & devices",
+              "revenue": 34688000000
+            },
+            {
+              "id": "cloud",
+              "label": "Google Cloud",
+              "revenue": 33088000000
+            },
+            {
+              "id": "other-bets",
+              "label": "Other Bets",
+              "revenue": 1527000000
+            }
+          ],
+          "revenueAdjustments": [
+            {
+              "id": "hedging",
+              "label": "Hedging gains (losses)",
+              "revenue": 236000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+          "segmentBasis": "Disaggregated Google Services revenue plus Google Cloud and Other Bets; consolidated hedging gains or losses are reported separately, not assigned to a business.",
+          "accession": "0001652044-26-000018"
+        },
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2024-01-01",
+          "endDate": "2024-12-31",
+          "filedAt": "2026-02-05",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 350018000000,
+            "costOfRevenue": 146306000000,
+            "grossProfit": 203712000000,
+            "operatingExpenses": 91322000000,
+            "operatingIncome": 112390000000,
+            "pretaxIncome": 119815000000,
+            "incomeTax": 19697000000,
+            "netIncome": 100118000000,
+            "researchAndDevelopment": 49326000000
+          },
+          "segments": [
+            {
+              "id": "search",
+              "label": "Google Search & other",
+              "revenue": 198084000000
+            },
+            {
+              "id": "youtube",
+              "label": "YouTube ads",
+              "revenue": 36147000000
+            },
+            {
+              "id": "network",
+              "label": "Google Network",
+              "revenue": 30359000000
+            },
+            {
+              "id": "subscriptions-platforms-devices",
+              "label": "Subscriptions, platforms & devices",
+              "revenue": 40340000000
+            },
+            {
+              "id": "cloud",
+              "label": "Google Cloud",
+              "revenue": 43229000000
+            },
+            {
+              "id": "other-bets",
+              "label": "Other Bets",
+              "revenue": 1648000000
+            }
+          ],
+          "revenueAdjustments": [
+            {
+              "id": "hedging",
+              "label": "Hedging gains (losses)",
+              "revenue": 211000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+          "segmentBasis": "Disaggregated Google Services revenue plus Google Cloud and Other Bets; consolidated hedging gains or losses are reported separately, not assigned to a business.",
+          "accession": "0001652044-26-000018"
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "filedAt": "2026-02-05",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 402836000000,
+            "costOfRevenue": 162535000000,
+            "grossProfit": 240301000000,
+            "operatingExpenses": 111262000000,
+            "operatingIncome": 129039000000,
+            "pretaxIncome": 158826000000,
+            "incomeTax": 26656000000,
+            "netIncome": 132170000000,
+            "researchAndDevelopment": 61087000000
+          },
+          "segments": [
+            {
+              "id": "search",
+              "label": "Google Search & other",
+              "revenue": 224532000000
+            },
+            {
+              "id": "youtube",
+              "label": "YouTube ads",
+              "revenue": 40367000000
+            },
+            {
+              "id": "network",
+              "label": "Google Network",
+              "revenue": 29792000000
+            },
+            {
+              "id": "subscriptions-platforms-devices",
+              "label": "Subscriptions, platforms & devices",
+              "revenue": 48030000000
+            },
+            {
+              "id": "cloud",
+              "label": "Google Cloud",
+              "revenue": 58705000000
+            },
+            {
+              "id": "other-bets",
+              "label": "Other Bets",
+              "revenue": 1537000000
+            }
+          ],
+          "revenueAdjustments": [
+            {
+              "id": "hedging",
+              "label": "Hedging gains (losses)",
+              "revenue": -127000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+          "segmentBasis": "Disaggregated Google Services revenue plus Google Cloud and Other Bets; consolidated hedging gains or losses are reported separately, not assigned to a business.",
+          "accession": "0001652044-26-000018"
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2024-Q3",
+          "label": "Q3 FY2024",
+          "kind": "quarterly",
+          "fiscalYear": 2024,
+          "fiscalQuarter": 3,
+          "startDate": "2024-07-01",
+          "endDate": "2024-09-30",
+          "filedAt": "2025-10-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 88268000000,
+            "costOfRevenue": 36474000000,
+            "grossProfit": 51794000000,
+            "operatingExpenses": 23273000000,
+            "operatingIncome": 28521000000,
+            "pretaxIncome": 31706000000,
+            "incomeTax": 5405000000,
+            "netIncome": 26301000000,
+            "researchAndDevelopment": 12447000000
+          },
+          "segments": [
+            {
+              "id": "search",
+              "label": "Google Search & other",
+              "revenue": 49385000000
+            },
+            {
+              "id": "youtube",
+              "label": "YouTube ads",
+              "revenue": 8921000000
+            },
+            {
+              "id": "network",
+              "label": "Google Network",
+              "revenue": 7548000000
+            },
+            {
+              "id": "subscriptions-platforms-devices",
+              "label": "Subscriptions, platforms & devices",
+              "revenue": 10656000000
+            },
+            {
+              "id": "cloud",
+              "label": "Google Cloud",
+              "revenue": 11353000000
+            },
+            {
+              "id": "other-bets",
+              "label": "Other Bets",
+              "revenue": 388000000
+            }
+          ],
+          "revenueAdjustments": [
+            {
+              "id": "hedging",
+              "label": "Hedging gains (losses)",
+              "revenue": 17000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+          "segmentBasis": "Disaggregated Google Services revenue plus Google Cloud and Other Bets; consolidated hedging gains or losses are reported separately, not assigned to a business.",
+          "accession": "0001652044-25-000091"
+        },
+        {
+          "id": "2025-Q1",
+          "label": "Q1 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 1,
+          "startDate": "2025-01-01",
+          "endDate": "2025-03-31",
+          "filedAt": "2026-04-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 90234000000,
+            "costOfRevenue": 36361000000,
+            "grossProfit": 53873000000,
+            "operatingExpenses": 23267000000,
+            "operatingIncome": 30606000000,
+            "pretaxIncome": 41789000000,
+            "incomeTax": 7249000000,
+            "netIncome": 34540000000,
+            "researchAndDevelopment": 13556000000
+          },
+          "segments": [
+            {
+              "id": "search",
+              "label": "Google Search & other",
+              "revenue": 50702000000
+            },
+            {
+              "id": "youtube",
+              "label": "YouTube ads",
+              "revenue": 8927000000
+            },
+            {
+              "id": "network",
+              "label": "Google Network",
+              "revenue": 7256000000
+            },
+            {
+              "id": "subscriptions-platforms-devices",
+              "label": "Subscriptions, platforms & devices",
+              "revenue": 10379000000
+            },
+            {
+              "id": "cloud",
+              "label": "Google Cloud",
+              "revenue": 12260000000
+            },
+            {
+              "id": "other-bets",
+              "label": "Other Bets",
+              "revenue": 450000000
+            }
+          ],
+          "revenueAdjustments": [
+            {
+              "id": "hedging",
+              "label": "Hedging gains (losses)",
+              "revenue": 260000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+          "segmentBasis": "Disaggregated Google Services revenue plus Google Cloud and Other Bets; consolidated hedging gains or losses are reported separately, not assigned to a business.",
+          "accession": "0001652044-26-000048"
+        },
+        {
+          "id": "2025-Q2",
+          "label": "Q2 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 2,
+          "startDate": "2025-04-01",
+          "endDate": "2025-06-30",
+          "filedAt": "2026-07-23",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 96428000000,
+            "costOfRevenue": 39039000000,
+            "grossProfit": 57389000000,
+            "operatingExpenses": 26118000000,
+            "operatingIncome": 31271000000,
+            "pretaxIncome": 33933000000,
+            "incomeTax": 5737000000,
+            "netIncome": 28196000000,
+            "researchAndDevelopment": 13808000000
+          },
+          "segments": [
+            {
+              "id": "search",
+              "label": "Google Search & other",
+              "revenue": 54190000000
+            },
+            {
+              "id": "youtube",
+              "label": "YouTube ads",
+              "revenue": 9796000000
+            },
+            {
+              "id": "network",
+              "label": "Google Network",
+              "revenue": 7354000000
+            },
+            {
+              "id": "subscriptions-platforms-devices",
+              "label": "Subscriptions, platforms & devices",
+              "revenue": 11203000000
+            },
+            {
+              "id": "cloud",
+              "label": "Google Cloud",
+              "revenue": 13624000000
+            },
+            {
+              "id": "other-bets",
+              "label": "Other Bets",
+              "revenue": 373000000
+            }
+          ],
+          "revenueAdjustments": [
+            {
+              "id": "hedging",
+              "label": "Hedging gains (losses)",
+              "revenue": -112000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+          "segmentBasis": "Disaggregated Google Services revenue plus Google Cloud and Other Bets; consolidated hedging gains or losses are reported separately, not assigned to a business.",
+          "accession": "0001652044-26-000071"
+        },
+        {
+          "id": "2025-Q3",
+          "label": "Q3 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 3,
+          "startDate": "2025-07-01",
+          "endDate": "2025-09-30",
+          "filedAt": "2025-10-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 102346000000,
+            "costOfRevenue": 41369000000,
+            "grossProfit": 60977000000,
+            "operatingExpenses": 29749000000,
+            "operatingIncome": 31228000000,
+            "pretaxIncome": 43987000000,
+            "incomeTax": 9008000000,
+            "netIncome": 34979000000,
+            "researchAndDevelopment": 15151000000
+          },
+          "segments": [
+            {
+              "id": "search",
+              "label": "Google Search & other",
+              "revenue": 56567000000
+            },
+            {
+              "id": "youtube",
+              "label": "YouTube ads",
+              "revenue": 10261000000
+            },
+            {
+              "id": "network",
+              "label": "Google Network",
+              "revenue": 7354000000
+            },
+            {
+              "id": "subscriptions-platforms-devices",
+              "label": "Subscriptions, platforms & devices",
+              "revenue": 12870000000
+            },
+            {
+              "id": "cloud",
+              "label": "Google Cloud",
+              "revenue": 15157000000
+            },
+            {
+              "id": "other-bets",
+              "label": "Other Bets",
+              "revenue": 344000000
+            }
+          ],
+          "revenueAdjustments": [
+            {
+              "id": "hedging",
+              "label": "Hedging gains (losses)",
+              "revenue": -207000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm",
+          "segmentBasis": "Disaggregated Google Services revenue plus Google Cloud and Other Bets; consolidated hedging gains or losses are reported separately, not assigned to a business.",
+          "accession": "0001652044-25-000091"
+        },
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2026-01-01",
+          "endDate": "2026-03-31",
+          "filedAt": "2026-04-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 109896000000,
+            "costOfRevenue": 41271000000,
+            "grossProfit": 68625000000,
+            "operatingExpenses": 28929000000,
+            "operatingIncome": 39696000000,
+            "pretaxIncome": 77412000000,
+            "incomeTax": 14834000000,
+            "netIncome": 62578000000,
+            "researchAndDevelopment": 17032000000
+          },
+          "segments": [
+            {
+              "id": "search",
+              "label": "Google Search & other",
+              "revenue": 60399000000
+            },
+            {
+              "id": "youtube",
+              "label": "YouTube ads",
+              "revenue": 9883000000
+            },
+            {
+              "id": "network",
+              "label": "Google Network",
+              "revenue": 6971000000
+            },
+            {
+              "id": "subscriptions-platforms-devices",
+              "label": "Subscriptions, platforms & devices",
+              "revenue": 12384000000
+            },
+            {
+              "id": "cloud",
+              "label": "Google Cloud",
+              "revenue": 20028000000
+            },
+            {
+              "id": "other-bets",
+              "label": "Other Bets",
+              "revenue": 411000000
+            }
+          ],
+          "revenueAdjustments": [
+            {
+              "id": "hedging",
+              "label": "Hedging gains (losses)",
+              "revenue": -180000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/goog-20260331.htm",
+          "segmentBasis": "Disaggregated Google Services revenue plus Google Cloud and Other Bets; consolidated hedging gains or losses are reported separately, not assigned to a business.",
+          "accession": "0001652044-26-000048"
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-30",
+          "filedAt": "2026-07-23",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 119796000000,
+            "costOfRevenue": 45943000000,
+            "grossProfit": 73853000000,
+            "operatingExpenses": 33083000000,
+            "operatingIncome": 40770000000,
+            "pretaxIncome": 138753000000,
+            "incomeTax": 26560000000,
+            "netIncome": 112193000000,
+            "researchAndDevelopment": 18219000000
+          },
+          "segments": [
+            {
+              "id": "search",
+              "label": "Google Search & other",
+              "revenue": 63271000000
+            },
+            {
+              "id": "youtube",
+              "label": "YouTube ads",
+              "revenue": 11055000000
+            },
+            {
+              "id": "network",
+              "label": "Google Network",
+              "revenue": 7303000000
+            },
+            {
+              "id": "subscriptions-platforms-devices",
+              "label": "Subscriptions, platforms & devices",
+              "revenue": 12911000000
+            },
+            {
+              "id": "cloud",
+              "label": "Google Cloud",
+              "revenue": 24768000000
+            },
+            {
+              "id": "other-bets",
+              "label": "Other Bets",
+              "revenue": 382000000
+            }
+          ],
+          "revenueAdjustments": [
+            {
+              "id": "hedging",
+              "label": "Hedging gains (losses)",
+              "revenue": 106000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+          "segmentBasis": "Disaggregated Google Services revenue plus Google Cloud and Other Bets; consolidated hedging gains or losses are reported separately, not assigned to a business.",
+          "accession": "0001652044-26-000071"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "version": "2026-09-02-0112ced17058",
+      "ticker": "AMZN",
+      "name": "Amazon",
+      "cik": "0001018724",
+      "accent": "#8a7c65",
+      "reportingCurrency": "USD",
+      "latestPeriod": "Q2 FY2026",
+      "dataStatus": "verified",
+      "updatedAt": "2026-09-02T06:06:01.783Z",
+      "note": "Automatically extracted from SEC annual and quarterly inline-XBRL filings. Business categories are matched by exact taxonomy dimensions and reconcile to reported revenue; coverage reflects available reviewed filings, not estimates.",
+      "annual": [
+        {
+          "id": "FY2023",
+          "label": "FY 2023",
+          "kind": "annual",
+          "fiscalYear": 2023,
+          "startDate": "2023-01-01",
+          "endDate": "2023-12-31",
+          "filedAt": "2026-02-06",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 574785000000,
+            "costOfRevenue": 304739000000,
+            "grossProfit": 270046000000,
+            "operatingExpenses": 233194000000,
+            "operatingIncome": 36852000000,
+            "pretaxIncome": 37557000000,
+            "incomeTax": 7120000000,
+            "netIncome": 30425000000,
+            "equityMethodIncome": -12000000
+          },
+          "segments": [
+            {
+              "id": "online-stores",
+              "label": "Online stores",
+              "revenue": 231872000000
+            },
+            {
+              "id": "physical-stores",
+              "label": "Physical stores",
+              "revenue": 20030000000
+            },
+            {
+              "id": "seller-services",
+              "label": "Third-party seller services",
+              "revenue": 140053000000
+            },
+            {
+              "id": "advertising",
+              "label": "Advertising services",
+              "revenue": 46906000000
+            },
+            {
+              "id": "subscriptions",
+              "label": "Subscription services",
+              "revenue": 40209000000
+            },
+            {
+              "id": "aws",
+              "label": "AWS",
+              "revenue": 90757000000
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 4958000000
+            }
+          ],
+          "operatingExpenseDetails": [
+            {
+              "id": "fulfillment",
+              "label": "Fulfillment",
+              "amount": 90619000000
+            },
+            {
+              "id": "technology-infrastructure",
+              "label": "Technology and infrastructure",
+              "amount": 85622000000
+            },
+            {
+              "id": "sales-marketing",
+              "label": "Sales and marketing",
+              "amount": 44370000000
+            },
+            {
+              "id": "general-administrative",
+              "label": "General and administrative",
+              "amount": 11816000000
+            },
+            {
+              "id": "other-operating-expense",
+              "label": "Other operating expenses, net",
+              "amount": 767000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+          "segmentBasis": "Net sales by product and service group, not geographic reportable operating segments.",
+          "accession": "0001018724-26-000004"
+        },
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2024-01-01",
+          "endDate": "2024-12-31",
+          "filedAt": "2026-02-06",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 637959000000,
+            "costOfRevenue": 326288000000,
+            "grossProfit": 311671000000,
+            "operatingExpenses": 243078000000,
+            "operatingIncome": 68593000000,
+            "pretaxIncome": 68614000000,
+            "incomeTax": 9265000000,
+            "netIncome": 59248000000,
+            "equityMethodIncome": -101000000
+          },
+          "segments": [
+            {
+              "id": "online-stores",
+              "label": "Online stores",
+              "revenue": 247029000000
+            },
+            {
+              "id": "physical-stores",
+              "label": "Physical stores",
+              "revenue": 21215000000
+            },
+            {
+              "id": "seller-services",
+              "label": "Third-party seller services",
+              "revenue": 156146000000
+            },
+            {
+              "id": "advertising",
+              "label": "Advertising services",
+              "revenue": 56214000000
+            },
+            {
+              "id": "subscriptions",
+              "label": "Subscription services",
+              "revenue": 44374000000
+            },
+            {
+              "id": "aws",
+              "label": "AWS",
+              "revenue": 107556000000
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 5425000000
+            }
+          ],
+          "operatingExpenseDetails": [
+            {
+              "id": "fulfillment",
+              "label": "Fulfillment",
+              "amount": 98505000000
+            },
+            {
+              "id": "technology-infrastructure",
+              "label": "Technology and infrastructure",
+              "amount": 88544000000
+            },
+            {
+              "id": "sales-marketing",
+              "label": "Sales and marketing",
+              "amount": 43907000000
+            },
+            {
+              "id": "general-administrative",
+              "label": "General and administrative",
+              "amount": 11359000000
+            },
+            {
+              "id": "other-operating-expense",
+              "label": "Other operating expenses, net",
+              "amount": 763000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+          "segmentBasis": "Net sales by product and service group, not geographic reportable operating segments.",
+          "accession": "0001018724-26-000004"
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "filedAt": "2026-02-06",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 716924000000,
+            "costOfRevenue": 356414000000,
+            "grossProfit": 360510000000,
+            "operatingExpenses": 280535000000,
+            "operatingIncome": 79975000000,
+            "pretaxIncome": 97311000000,
+            "incomeTax": 19087000000,
+            "netIncome": 77670000000,
+            "equityMethodIncome": -554000000
+          },
+          "segments": [
+            {
+              "id": "online-stores",
+              "label": "Online stores",
+              "revenue": 269287000000
+            },
+            {
+              "id": "physical-stores",
+              "label": "Physical stores",
+              "revenue": 22561000000
+            },
+            {
+              "id": "seller-services",
+              "label": "Third-party seller services",
+              "revenue": 172162000000
+            },
+            {
+              "id": "advertising",
+              "label": "Advertising services",
+              "revenue": 68635000000
+            },
+            {
+              "id": "subscriptions",
+              "label": "Subscription services",
+              "revenue": 49619000000
+            },
+            {
+              "id": "aws",
+              "label": "AWS",
+              "revenue": 128725000000
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 5935000000
+            }
+          ],
+          "operatingExpenseDetails": [
+            {
+              "id": "fulfillment",
+              "label": "Fulfillment",
+              "amount": 109074000000
+            },
+            {
+              "id": "technology-infrastructure",
+              "label": "Technology and infrastructure",
+              "amount": 108521000000
+            },
+            {
+              "id": "sales-marketing",
+              "label": "Sales and marketing",
+              "amount": 47129000000
+            },
+            {
+              "id": "general-administrative",
+              "label": "General and administrative",
+              "amount": 11172000000
+            },
+            {
+              "id": "other-operating-expense",
+              "label": "Other operating expenses, net",
+              "amount": 4639000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+          "segmentBasis": "Net sales by product and service group, not geographic reportable operating segments.",
+          "accession": "0001018724-26-000004"
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2024-Q3",
+          "label": "Q3 FY2024",
+          "kind": "quarterly",
+          "fiscalYear": 2024,
+          "fiscalQuarter": 3,
+          "startDate": "2024-07-01",
+          "endDate": "2024-09-30",
+          "filedAt": "2025-10-31",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/amzn-20250930.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 158877000000,
+            "costOfRevenue": 80977000000,
+            "grossProfit": 77900000000,
+            "operatingExpenses": 60489000000,
+            "operatingIncome": 17411000000,
+            "pretaxIncome": 18037000000,
+            "incomeTax": 2706000000,
+            "netIncome": 15328000000,
+            "equityMethodIncome": -3000000
+          },
+          "segments": [
+            {
+              "id": "online-stores",
+              "label": "Online stores",
+              "revenue": 61411000000
+            },
+            {
+              "id": "physical-stores",
+              "label": "Physical stores",
+              "revenue": 5228000000
+            },
+            {
+              "id": "seller-services",
+              "label": "Third-party seller services",
+              "revenue": 37864000000
+            },
+            {
+              "id": "advertising",
+              "label": "Advertising services",
+              "revenue": 14331000000
+            },
+            {
+              "id": "subscriptions",
+              "label": "Subscription services",
+              "revenue": 11278000000
+            },
+            {
+              "id": "aws",
+              "label": "AWS",
+              "revenue": 27452000000
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 1313000000
+            }
+          ],
+          "operatingExpenseDetails": [
+            {
+              "id": "fulfillment",
+              "label": "Fulfillment",
+              "amount": 24660000000
+            },
+            {
+              "id": "technology-infrastructure",
+              "label": "Technology and infrastructure",
+              "amount": 22245000000
+            },
+            {
+              "id": "sales-marketing",
+              "label": "Sales and marketing",
+              "amount": 10609000000
+            },
+            {
+              "id": "general-administrative",
+              "label": "General and administrative",
+              "amount": 2713000000
+            },
+            {
+              "id": "other-operating-expense",
+              "label": "Other operating expenses, net",
+              "amount": 262000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/amzn-20250930.htm",
+          "segmentBasis": "Net sales by product and service group, not geographic reportable operating segments.",
+          "accession": "0001018724-25-000123"
+        },
+        {
+          "id": "2025-Q1",
+          "label": "Q1 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 1,
+          "startDate": "2025-01-01",
+          "endDate": "2025-03-31",
+          "filedAt": "2026-04-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 155667000000,
+            "costOfRevenue": 76976000000,
+            "grossProfit": 78691000000,
+            "operatingExpenses": 60286000000,
+            "operatingIncome": 18405000000,
+            "pretaxIncome": 21679000000,
+            "incomeTax": 4553000000,
+            "netIncome": 17127000000,
+            "equityMethodIncome": 1000000
+          },
+          "segments": [
+            {
+              "id": "online-stores",
+              "label": "Online stores",
+              "revenue": 57407000000
+            },
+            {
+              "id": "physical-stores",
+              "label": "Physical stores",
+              "revenue": 5533000000
+            },
+            {
+              "id": "seller-services",
+              "label": "Third-party seller services",
+              "revenue": 36512000000
+            },
+            {
+              "id": "advertising",
+              "label": "Advertising services",
+              "revenue": 13921000000
+            },
+            {
+              "id": "subscriptions",
+              "label": "Subscription services",
+              "revenue": 11715000000
+            },
+            {
+              "id": "aws",
+              "label": "AWS",
+              "revenue": 29267000000
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 1312000000
+            }
+          ],
+          "operatingExpenseDetails": [
+            {
+              "id": "fulfillment",
+              "label": "Fulfillment",
+              "amount": 24593000000
+            },
+            {
+              "id": "technology-infrastructure",
+              "label": "Technology and infrastructure",
+              "amount": 22994000000
+            },
+            {
+              "id": "sales-marketing",
+              "label": "Sales and marketing",
+              "amount": 9763000000
+            },
+            {
+              "id": "general-administrative",
+              "label": "General and administrative",
+              "amount": 2628000000
+            },
+            {
+              "id": "other-operating-expense",
+              "label": "Other operating expenses, net",
+              "amount": 308000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+          "segmentBasis": "Net sales by product and service group, not geographic reportable operating segments.",
+          "accession": "0001018724-26-000014"
+        },
+        {
+          "id": "2025-Q2",
+          "label": "Q2 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 2,
+          "startDate": "2025-04-01",
+          "endDate": "2025-06-30",
+          "filedAt": "2026-07-31",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 167702000000,
+            "costOfRevenue": 80809000000,
+            "grossProfit": 86893000000,
+            "operatingExpenses": 67722000000,
+            "operatingIncome": 19171000000,
+            "pretaxIncome": 20857000000,
+            "incomeTax": 2678000000,
+            "netIncome": 18164000000,
+            "equityMethodIncome": -15000000
+          },
+          "segments": [
+            {
+              "id": "online-stores",
+              "label": "Online stores",
+              "revenue": 61485000000
+            },
+            {
+              "id": "physical-stores",
+              "label": "Physical stores",
+              "revenue": 5595000000
+            },
+            {
+              "id": "seller-services",
+              "label": "Third-party seller services",
+              "revenue": 40348000000
+            },
+            {
+              "id": "advertising",
+              "label": "Advertising services",
+              "revenue": 15694000000
+            },
+            {
+              "id": "subscriptions",
+              "label": "Subscription services",
+              "revenue": 12208000000
+            },
+            {
+              "id": "aws",
+              "label": "AWS",
+              "revenue": 30873000000
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 1499000000
+            }
+          ],
+          "operatingExpenseDetails": [
+            {
+              "id": "fulfillment",
+              "label": "Fulfillment",
+              "amount": 25976000000
+            },
+            {
+              "id": "technology-infrastructure",
+              "label": "Technology and infrastructure",
+              "amount": 27166000000
+            },
+            {
+              "id": "sales-marketing",
+              "label": "Sales and marketing",
+              "amount": 11416000000
+            },
+            {
+              "id": "general-administrative",
+              "label": "General and administrative",
+              "amount": 2965000000
+            },
+            {
+              "id": "other-operating-expense",
+              "label": "Other operating expenses, net",
+              "amount": 199000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+          "segmentBasis": "Net sales by product and service group, not geographic reportable operating segments.",
+          "accession": "0001018724-26-000026"
+        },
+        {
+          "id": "2025-Q3",
+          "label": "Q3 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 3,
+          "startDate": "2025-07-01",
+          "endDate": "2025-09-30",
+          "filedAt": "2025-10-31",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/amzn-20250930.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 180169000000,
+            "costOfRevenue": 88670000000,
+            "grossProfit": 91499000000,
+            "operatingExpenses": 74077000000,
+            "operatingIncome": 17422000000,
+            "pretaxIncome": 28170000000,
+            "incomeTax": 6910000000,
+            "netIncome": 21187000000,
+            "equityMethodIncome": -73000000
+          },
+          "segments": [
+            {
+              "id": "online-stores",
+              "label": "Online stores",
+              "revenue": 67407000000
+            },
+            {
+              "id": "physical-stores",
+              "label": "Physical stores",
+              "revenue": 5578000000
+            },
+            {
+              "id": "seller-services",
+              "label": "Third-party seller services",
+              "revenue": 42486000000
+            },
+            {
+              "id": "advertising",
+              "label": "Advertising services",
+              "revenue": 17703000000
+            },
+            {
+              "id": "subscriptions",
+              "label": "Subscription services",
+              "revenue": 12574000000
+            },
+            {
+              "id": "aws",
+              "label": "AWS",
+              "revenue": 33006000000
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 1415000000
+            }
+          ],
+          "operatingExpenseDetails": [
+            {
+              "id": "fulfillment",
+              "label": "Fulfillment",
+              "amount": 27679000000
+            },
+            {
+              "id": "technology-infrastructure",
+              "label": "Technology and infrastructure",
+              "amount": 28962000000
+            },
+            {
+              "id": "sales-marketing",
+              "label": "Sales and marketing",
+              "amount": 11686000000
+            },
+            {
+              "id": "general-administrative",
+              "label": "General and administrative",
+              "amount": 2875000000
+            },
+            {
+              "id": "other-operating-expense",
+              "label": "Other operating expenses, net",
+              "amount": 2875000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/amzn-20250930.htm",
+          "segmentBasis": "Net sales by product and service group, not geographic reportable operating segments.",
+          "accession": "0001018724-25-000123"
+        },
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2026-01-01",
+          "endDate": "2026-03-31",
+          "filedAt": "2026-04-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 181519000000,
+            "costOfRevenue": 87463000000,
+            "grossProfit": 94056000000,
+            "operatingExpenses": 70204000000,
+            "operatingIncome": 23852000000,
+            "pretaxIncome": 39834000000,
+            "incomeTax": 9560000000,
+            "netIncome": 30255000000,
+            "equityMethodIncome": -19000000
+          },
+          "segments": [
+            {
+              "id": "online-stores",
+              "label": "Online stores",
+              "revenue": 64254000000
+            },
+            {
+              "id": "physical-stores",
+              "label": "Physical stores",
+              "revenue": 5785000000
+            },
+            {
+              "id": "seller-services",
+              "label": "Third-party seller services",
+              "revenue": 41578000000
+            },
+            {
+              "id": "advertising",
+              "label": "Advertising services",
+              "revenue": 17243000000
+            },
+            {
+              "id": "subscriptions",
+              "label": "Subscription services",
+              "revenue": 13427000000
+            },
+            {
+              "id": "aws",
+              "label": "AWS",
+              "revenue": 37587000000
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 1645000000
+            }
+          ],
+          "operatingExpenseDetails": [
+            {
+              "id": "fulfillment",
+              "label": "Fulfillment",
+              "amount": 27289000000
+            },
+            {
+              "id": "technology-infrastructure",
+              "label": "Technology and infrastructure",
+              "amount": 29567000000
+            },
+            {
+              "id": "sales-marketing",
+              "label": "Sales and marketing",
+              "amount": 10314000000
+            },
+            {
+              "id": "general-administrative",
+              "label": "General and administrative",
+              "amount": 2587000000
+            },
+            {
+              "id": "other-operating-expense",
+              "label": "Other operating expenses, net",
+              "amount": 447000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+          "segmentBasis": "Net sales by product and service group, not geographic reportable operating segments.",
+          "accession": "0001018724-26-000014"
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-30",
+          "filedAt": "2026-07-31",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 200606000000,
+            "costOfRevenue": 95778000000,
+            "grossProfit": 104828000000,
+            "operatingExpenses": 77367000000,
+            "operatingIncome": 27461000000,
+            "pretaxIncome": 80857000000,
+            "incomeTax": 18199000000,
+            "netIncome": 62647000000,
+            "equityMethodIncome": -11000000
+          },
+          "segments": [
+            {
+              "id": "online-stores",
+              "label": "Online stores",
+              "revenue": 70432000000
+            },
+            {
+              "id": "physical-stores",
+              "label": "Physical stores",
+              "revenue": 5794000000
+            },
+            {
+              "id": "seller-services",
+              "label": "Third-party seller services",
+              "revenue": 46780000000
+            },
+            {
+              "id": "advertising",
+              "label": "Advertising services",
+              "revenue": 19809000000
+            },
+            {
+              "id": "subscriptions",
+              "label": "Subscription services",
+              "revenue": 13730000000
+            },
+            {
+              "id": "aws",
+              "label": "AWS",
+              "revenue": 42232000000
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 1829000000
+            }
+          ],
+          "operatingExpenseDetails": [
+            {
+              "id": "fulfillment",
+              "label": "Fulfillment",
+              "amount": 29633000000
+            },
+            {
+              "id": "technology-infrastructure",
+              "label": "Technology and infrastructure",
+              "amount": 33158000000
+            },
+            {
+              "id": "sales-marketing",
+              "label": "Sales and marketing",
+              "amount": 11698000000
+            },
+            {
+              "id": "general-administrative",
+              "label": "General and administrative",
+              "amount": 2788000000
+            },
+            {
+              "id": "other-operating-expense",
+              "label": "Other operating expenses, net",
+              "amount": 90000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+          "segmentBasis": "Net sales by product and service group, not geographic reportable operating segments.",
+          "accession": "0001018724-26-000026"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "version": "2026-09-02-0112ced17058",
+      "ticker": "META",
+      "name": "Meta",
+      "cik": "0001326801",
+      "accent": "#497fa6",
+      "reportingCurrency": "USD",
+      "latestPeriod": "Q2 FY2026",
+      "dataStatus": "verified",
+      "updatedAt": "2026-09-02T06:06:01.783Z",
+      "note": "Automatically extracted from SEC annual and quarterly inline-XBRL filings. Business categories are matched by exact taxonomy dimensions and reconcile to reported revenue; coverage reflects available reviewed filings, not estimates.",
+      "annual": [
+        {
+          "id": "FY2023",
+          "label": "FY 2023",
+          "kind": "annual",
+          "fiscalYear": 2023,
+          "startDate": "2023-01-01",
+          "endDate": "2023-12-31",
+          "filedAt": "2026-01-29",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 134902000000,
+            "costOfRevenue": 25959000000,
+            "grossProfit": 108943000000,
+            "operatingExpenses": 62192000000,
+            "operatingIncome": 46751000000,
+            "pretaxIncome": 47428000000,
+            "incomeTax": 8330000000,
+            "netIncome": 39098000000,
+            "researchAndDevelopment": 38483000000
+          },
+          "segments": [
+            {
+              "id": "family-of-apps",
+              "label": "Family of Apps",
+              "revenue": 133006000000
+            },
+            {
+              "id": "reality-labs",
+              "label": "Reality Labs",
+              "revenue": 1896000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+          "segmentBasis": "Revenue by reportable operating segment: Family of Apps and Reality Labs.",
+          "accession": "0001628280-26-003942"
+        },
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2024-01-01",
+          "endDate": "2024-12-31",
+          "filedAt": "2026-01-29",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 164501000000,
+            "costOfRevenue": 30161000000,
+            "grossProfit": 134340000000,
+            "operatingExpenses": 64960000000,
+            "operatingIncome": 69380000000,
+            "pretaxIncome": 70663000000,
+            "incomeTax": 8303000000,
+            "netIncome": 62360000000,
+            "researchAndDevelopment": 43873000000
+          },
+          "segments": [
+            {
+              "id": "family-of-apps",
+              "label": "Family of Apps",
+              "revenue": 162355000000
+            },
+            {
+              "id": "reality-labs",
+              "label": "Reality Labs",
+              "revenue": 2146000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+          "segmentBasis": "Revenue by reportable operating segment: Family of Apps and Reality Labs.",
+          "accession": "0001628280-26-003942"
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "filedAt": "2026-01-29",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 200966000000,
+            "costOfRevenue": 36175000000,
+            "grossProfit": 164791000000,
+            "operatingExpenses": 81515000000,
+            "operatingIncome": 83276000000,
+            "pretaxIncome": 85932000000,
+            "incomeTax": 25474000000,
+            "netIncome": 60458000000,
+            "researchAndDevelopment": 57372000000
+          },
+          "segments": [
+            {
+              "id": "family-of-apps",
+              "label": "Family of Apps",
+              "revenue": 198759000000
+            },
+            {
+              "id": "reality-labs",
+              "label": "Reality Labs",
+              "revenue": 2207000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+          "segmentBasis": "Revenue by reportable operating segment: Family of Apps and Reality Labs.",
+          "accession": "0001628280-26-003942"
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2024-Q3",
+          "label": "Q3 FY2024",
+          "kind": "quarterly",
+          "fiscalYear": 2024,
+          "fiscalQuarter": 3,
+          "startDate": "2024-07-01",
+          "endDate": "2024-09-30",
+          "filedAt": "2025-10-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828025047240/meta-20250930.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 40589000000,
+            "costOfRevenue": 7375000000,
+            "grossProfit": 33214000000,
+            "operatingExpenses": 15864000000,
+            "operatingIncome": 17350000000,
+            "pretaxIncome": 17822000000,
+            "incomeTax": 2134000000,
+            "netIncome": 15688000000,
+            "researchAndDevelopment": 11177000000
+          },
+          "segments": [
+            {
+              "id": "family-of-apps",
+              "label": "Family of Apps",
+              "revenue": 40319000000
+            },
+            {
+              "id": "reality-labs",
+              "label": "Reality Labs",
+              "revenue": 270000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828025047240/meta-20250930.htm",
+          "segmentBasis": "Revenue by reportable operating segment: Family of Apps and Reality Labs.",
+          "accession": "0001628280-25-047240"
+        },
+        {
+          "id": "2025-Q1",
+          "label": "Q1 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 1,
+          "startDate": "2025-01-01",
+          "endDate": "2025-03-31",
+          "filedAt": "2026-04-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026028526/meta-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 42314000000,
+            "costOfRevenue": 7572000000,
+            "grossProfit": 34742000000,
+            "operatingExpenses": 17187000000,
+            "operatingIncome": 17555000000,
+            "pretaxIncome": 18382000000,
+            "incomeTax": 1738000000,
+            "netIncome": 16644000000,
+            "researchAndDevelopment": 12150000000
+          },
+          "segments": [
+            {
+              "id": "family-of-apps",
+              "label": "Family of Apps",
+              "revenue": 41902000000
+            },
+            {
+              "id": "reality-labs",
+              "label": "Reality Labs",
+              "revenue": 412000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026028526/meta-20260331.htm",
+          "segmentBasis": "Revenue by reportable operating segment: Family of Apps and Reality Labs.",
+          "accession": "0001628280-26-028526"
+        },
+        {
+          "id": "2025-Q2",
+          "label": "Q2 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 2,
+          "startDate": "2025-04-01",
+          "endDate": "2025-06-30",
+          "filedAt": "2026-07-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050705/meta-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 47516000000,
+            "costOfRevenue": 8491000000,
+            "grossProfit": 39025000000,
+            "operatingExpenses": 18584000000,
+            "operatingIncome": 20441000000,
+            "pretaxIncome": 20534000000,
+            "incomeTax": 2197000000,
+            "netIncome": 18337000000,
+            "researchAndDevelopment": 12942000000
+          },
+          "segments": [
+            {
+              "id": "family-of-apps",
+              "label": "Family of Apps",
+              "revenue": 47146000000
+            },
+            {
+              "id": "reality-labs",
+              "label": "Reality Labs",
+              "revenue": 370000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050705/meta-20260630.htm",
+          "segmentBasis": "Revenue by reportable operating segment: Family of Apps and Reality Labs.",
+          "accession": "0001628280-26-050705"
+        },
+        {
+          "id": "2025-Q3",
+          "label": "Q3 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 3,
+          "startDate": "2025-07-01",
+          "endDate": "2025-09-30",
+          "filedAt": "2025-10-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828025047240/meta-20250930.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 51242000000,
+            "costOfRevenue": 9206000000,
+            "grossProfit": 42036000000,
+            "operatingExpenses": 21501000000,
+            "operatingIncome": 20535000000,
+            "pretaxIncome": 21663000000,
+            "incomeTax": 18954000000,
+            "netIncome": 2709000000,
+            "researchAndDevelopment": 15144000000
+          },
+          "segments": [
+            {
+              "id": "family-of-apps",
+              "label": "Family of Apps",
+              "revenue": 50772000000
+            },
+            {
+              "id": "reality-labs",
+              "label": "Reality Labs",
+              "revenue": 470000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828025047240/meta-20250930.htm",
+          "segmentBasis": "Revenue by reportable operating segment: Family of Apps and Reality Labs.",
+          "accession": "0001628280-25-047240"
+        },
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2026-01-01",
+          "endDate": "2026-03-31",
+          "filedAt": "2026-04-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026028526/meta-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 56311000000,
+            "costOfRevenue": 10218000000,
+            "grossProfit": 46093000000,
+            "operatingExpenses": 23221000000,
+            "operatingIncome": 22872000000,
+            "pretaxIncome": 21752000000,
+            "incomeTax": -5021000000,
+            "netIncome": 26773000000,
+            "researchAndDevelopment": 17699000000
+          },
+          "segments": [
+            {
+              "id": "family-of-apps",
+              "label": "Family of Apps",
+              "revenue": 55909000000
+            },
+            {
+              "id": "reality-labs",
+              "label": "Reality Labs",
+              "revenue": 402000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026028526/meta-20260331.htm",
+          "segmentBasis": "Revenue by reportable operating segment: Family of Apps and Reality Labs.",
+          "accession": "0001628280-26-028526"
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-30",
+          "filedAt": "2026-07-30",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050705/meta-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 60801000000,
+            "costOfRevenue": 11330000000,
+            "grossProfit": 49471000000,
+            "operatingExpenses": 30696000000,
+            "operatingIncome": 18775000000,
+            "pretaxIncome": 18756000000,
+            "incomeTax": 2908000000,
+            "netIncome": 15848000000,
+            "researchAndDevelopment": 21656000000
+          },
+          "segments": [
+            {
+              "id": "family-of-apps",
+              "label": "Family of Apps",
+              "revenue": 60370000000
+            },
+            {
+              "id": "reality-labs",
+              "label": "Reality Labs",
+              "revenue": 431000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050705/meta-20260630.htm",
+          "segmentBasis": "Revenue by reportable operating segment: Family of Apps and Reality Labs.",
+          "accession": "0001628280-26-050705"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "version": "2026-09-02-0112ced17058",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "cik": "0001045810",
+      "accent": "#71834f",
+      "reportingCurrency": "USD",
+      "latestPeriod": "Q2 FY2027",
+      "dataStatus": "verified",
+      "updatedAt": "2026-09-02T06:06:01.783Z",
+      "note": "Automatically extracted from SEC annual and quarterly inline-XBRL filings. Business categories are matched by exact taxonomy dimensions and reconcile to reported revenue; coverage reflects available reviewed filings, not estimates.",
+      "annual": [
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2023-01-30",
+          "endDate": "2024-01-28",
+          "filedAt": "2026-02-25",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 60922000000,
+            "costOfRevenue": 16621000000,
+            "grossProfit": 44301000000,
+            "operatingExpenses": 11329000000,
+            "operatingIncome": 32972000000,
+            "pretaxIncome": 33818000000,
+            "incomeTax": 4058000000,
+            "netIncome": 29760000000,
+            "researchAndDevelopment": 8675000000,
+            "sellingGeneralAndAdministrative": 2654000000
+          },
+          "segments": [
+            {
+              "id": "data-center",
+              "label": "Data Center",
+              "revenue": 47525000000
+            },
+            {
+              "id": "gaming",
+              "label": "Gaming",
+              "revenue": 10447000000
+            },
+            {
+              "id": "professional-visualization",
+              "label": "Professional Visualization",
+              "revenue": 1553000000
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 1091000000
+            },
+            {
+              "id": "oem-other",
+              "label": "OEM & other",
+              "revenue": 306000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+          "segmentBasis": "Revenue by specialized market; Data Center includes Compute and Networking, which are not counted again as separate categories.",
+          "accession": "0001045810-26-000021"
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2024-01-29",
+          "endDate": "2025-01-26",
+          "filedAt": "2026-02-25",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 130497000000,
+            "costOfRevenue": 32639000000,
+            "grossProfit": 97858000000,
+            "operatingExpenses": 16405000000,
+            "operatingIncome": 81453000000,
+            "pretaxIncome": 84026000000,
+            "incomeTax": 11146000000,
+            "netIncome": 72880000000,
+            "researchAndDevelopment": 12914000000,
+            "sellingGeneralAndAdministrative": 3491000000
+          },
+          "segments": [
+            {
+              "id": "data-center",
+              "label": "Data Center",
+              "revenue": 115186000000
+            },
+            {
+              "id": "gaming",
+              "label": "Gaming",
+              "revenue": 11350000000
+            },
+            {
+              "id": "professional-visualization",
+              "label": "Professional Visualization",
+              "revenue": 1878000000
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 1694000000
+            },
+            {
+              "id": "oem-other",
+              "label": "OEM & other",
+              "revenue": 389000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+          "segmentBasis": "Revenue by specialized market; Data Center includes Compute and Networking, which are not counted again as separate categories.",
+          "accession": "0001045810-26-000021"
+        },
+        {
+          "id": "FY2026",
+          "label": "FY 2026",
+          "kind": "annual",
+          "fiscalYear": 2026,
+          "startDate": "2025-01-27",
+          "endDate": "2026-01-25",
+          "filedAt": "2026-02-25",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 215938000000,
+            "costOfRevenue": 62475000000,
+            "grossProfit": 153463000000,
+            "operatingExpenses": 23076000000,
+            "operatingIncome": 130387000000,
+            "pretaxIncome": 141450000000,
+            "incomeTax": 21383000000,
+            "netIncome": 120067000000,
+            "researchAndDevelopment": 18497000000,
+            "sellingGeneralAndAdministrative": 4579000000
+          },
+          "segments": [
+            {
+              "id": "data-center",
+              "label": "Data Center",
+              "revenue": 193737000000
+            },
+            {
+              "id": "gaming",
+              "label": "Gaming",
+              "revenue": 16042000000
+            },
+            {
+              "id": "professional-visualization",
+              "label": "Professional Visualization",
+              "revenue": 3191000000
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 2349000000
+            },
+            {
+              "id": "oem-other",
+              "label": "OEM & other",
+              "revenue": 619000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+          "segmentBasis": "Revenue by specialized market; Data Center includes Compute and Networking, which are not counted again as separate categories.",
+          "accession": "0001045810-26-000021"
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2025-Q3",
+          "label": "Q3 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 3,
+          "startDate": "2024-07-29",
+          "endDate": "2024-10-27",
+          "filedAt": "2025-11-19",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000230/nvda-20251026.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 35082000000,
+            "costOfRevenue": 8926000000,
+            "grossProfit": 26156000000,
+            "operatingExpenses": 4287000000,
+            "operatingIncome": 21869000000,
+            "pretaxIncome": 22316000000,
+            "incomeTax": 3007000000,
+            "netIncome": 19309000000,
+            "researchAndDevelopment": 3390000000,
+            "sellingGeneralAndAdministrative": 897000000
+          },
+          "segments": [
+            {
+              "id": "data-center",
+              "label": "Data Center",
+              "revenue": 30771000000
+            },
+            {
+              "id": "gaming",
+              "label": "Gaming",
+              "revenue": 3279000000
+            },
+            {
+              "id": "professional-visualization",
+              "label": "Professional Visualization",
+              "revenue": 486000000
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 449000000
+            },
+            {
+              "id": "oem-other",
+              "label": "OEM & other",
+              "revenue": 97000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000230/nvda-20251026.htm",
+          "segmentBasis": "Revenue by specialized market; Data Center includes Compute and Networking, which are not counted again as separate categories.",
+          "accession": "0001045810-25-000230"
+        },
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2025-01-27",
+          "endDate": "2025-04-27",
+          "filedAt": "2026-05-20",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000052/nvda-20260426.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 44062000000,
+            "costOfRevenue": 17394000000,
+            "grossProfit": 26668000000,
+            "operatingExpenses": 5030000000,
+            "operatingIncome": 21638000000,
+            "pretaxIncome": 21910000000,
+            "incomeTax": 3135000000,
+            "netIncome": 18775000000,
+            "researchAndDevelopment": 3989000000,
+            "sellingGeneralAndAdministrative": 1041000000
+          },
+          "segments": [
+            {
+              "id": "data-center",
+              "label": "Data Center",
+              "revenue": 39112000000
+            },
+            {
+              "id": "edge-computing",
+              "label": "Edge Computing",
+              "revenue": 4950000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000052/nvda-20260426.htm",
+          "segmentBasis": "Revenue by specialized market under the FY2027 classification: Data Center and Edge Computing. Older annual filings use the prior Gaming/Professional Visualization/Automotive/OEM classification; those categories are not assumed comparable to Edge Computing.",
+          "accession": "0001045810-26-000052"
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2025-04-28",
+          "endDate": "2025-07-27",
+          "filedAt": "2026-08-26",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 46743000000,
+            "costOfRevenue": 12890000000,
+            "grossProfit": 33853000000,
+            "operatingExpenses": 5413000000,
+            "operatingIncome": 28440000000,
+            "pretaxIncome": 31206000000,
+            "incomeTax": 4784000000,
+            "netIncome": 26422000000,
+            "researchAndDevelopment": 4291000000,
+            "sellingGeneralAndAdministrative": 1122000000
+          },
+          "segments": [
+            {
+              "id": "data-center",
+              "label": "Data Center",
+              "revenue": 41096000000
+            },
+            {
+              "id": "edge-computing",
+              "label": "Edge Computing",
+              "revenue": 5647000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+          "segmentBasis": "Revenue by specialized market under the FY2027 classification: Data Center and Edge Computing. Older annual filings use the prior Gaming/Professional Visualization/Automotive/OEM classification; those categories are not assumed comparable to Edge Computing.",
+          "accession": "0001045810-26-000075"
+        },
+        {
+          "id": "2026-Q3",
+          "label": "Q3 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 3,
+          "startDate": "2025-07-28",
+          "endDate": "2025-10-26",
+          "filedAt": "2025-11-19",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000230/nvda-20251026.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 57006000000,
+            "costOfRevenue": 15157000000,
+            "grossProfit": 41849000000,
+            "operatingExpenses": 5839000000,
+            "operatingIncome": 36010000000,
+            "pretaxIncome": 37936000000,
+            "incomeTax": 6026000000,
+            "netIncome": 31910000000,
+            "researchAndDevelopment": 4705000000,
+            "sellingGeneralAndAdministrative": 1134000000
+          },
+          "segments": [
+            {
+              "id": "data-center",
+              "label": "Data Center",
+              "revenue": 51215000000
+            },
+            {
+              "id": "gaming",
+              "label": "Gaming",
+              "revenue": 4265000000
+            },
+            {
+              "id": "professional-visualization",
+              "label": "Professional Visualization",
+              "revenue": 760000000
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 592000000
+            },
+            {
+              "id": "oem-other",
+              "label": "OEM & other",
+              "revenue": 174000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000230/nvda-20251026.htm",
+          "segmentBasis": "Revenue by specialized market; Data Center includes Compute and Networking, which are not counted again as separate categories.",
+          "accession": "0001045810-25-000230"
+        },
+        {
+          "id": "2027-Q1",
+          "label": "Q1 FY2027",
+          "kind": "quarterly",
+          "fiscalYear": 2027,
+          "fiscalQuarter": 1,
+          "startDate": "2026-01-26",
+          "endDate": "2026-04-26",
+          "filedAt": "2026-05-20",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000052/nvda-20260426.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 81615000000,
+            "costOfRevenue": 20458000000,
+            "grossProfit": 61157000000,
+            "operatingExpenses": 7621000000,
+            "operatingIncome": 53536000000,
+            "pretaxIncome": 69903000000,
+            "incomeTax": 11582000000,
+            "netIncome": 58321000000,
+            "researchAndDevelopment": 6321000000,
+            "sellingGeneralAndAdministrative": 1300000000
+          },
+          "segments": [
+            {
+              "id": "data-center",
+              "label": "Data Center",
+              "revenue": 75246000000
+            },
+            {
+              "id": "edge-computing",
+              "label": "Edge Computing",
+              "revenue": 6369000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000052/nvda-20260426.htm",
+          "segmentBasis": "Revenue by specialized market under the FY2027 classification: Data Center and Edge Computing. Older annual filings use the prior Gaming/Professional Visualization/Automotive/OEM classification; those categories are not assumed comparable to Edge Computing.",
+          "accession": "0001045810-26-000052"
+        },
+        {
+          "id": "2027-Q2",
+          "label": "Q2 FY2027",
+          "kind": "quarterly",
+          "fiscalYear": 2027,
+          "fiscalQuarter": 2,
+          "startDate": "2026-04-27",
+          "endDate": "2026-07-26",
+          "filedAt": "2026-08-26",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 96221000000,
+            "costOfRevenue": 24079000000,
+            "grossProfit": 72142000000,
+            "operatingExpenses": 8408000000,
+            "operatingIncome": 63734000000,
+            "pretaxIncome": 71507000000,
+            "incomeTax": 11819000000,
+            "netIncome": 59688000000,
+            "researchAndDevelopment": 7054000000,
+            "sellingGeneralAndAdministrative": 1354000000
+          },
+          "segments": [
+            {
+              "id": "data-center",
+              "label": "Data Center",
+              "revenue": 89023000000
+            },
+            {
+              "id": "edge-computing",
+              "label": "Edge Computing",
+              "revenue": 7198000000
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+          "segmentBasis": "Revenue by specialized market under the FY2027 classification: Data Center and Edge Computing. Older annual filings use the prior Gaming/Professional Visualization/Automotive/OEM classification; those categories are not assumed comparable to Edge Computing.",
+          "accession": "0001045810-26-000075"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "version": "2026-09-02-0112ced17058",
+      "ticker": "TSM",
+      "name": "TSMC",
+      "cik": "0001046179",
+      "accent": "#8a6c9a",
+      "reportingCurrency": "TWD",
+      "latestPeriod": "Q2 FY2026",
+      "dataStatus": "verified",
+      "updatedAt": "2026-09-02T06:06:01.783Z",
+      "note": "Automatically extracted from SEC 20-F inline XBRL and exact 6-K consolidated statement tables. Native TWD is converted consistently using Federal Reserve period-average rates. Operating expenses are net of reported other operating income.",
+      "annual": [
+        {
+          "id": "FY2023",
+          "label": "FY 2023",
+          "kind": "annual",
+          "fiscalYear": 2023,
+          "startDate": "2023-01-01",
+          "endDate": "2023-12-31",
+          "filedAt": "2026-04-16",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000162828026025362/tsm-20251231.htm",
+          "reportingCurrency": "TWD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 69391981699.0633,
+            "costOfRevenue": 31670788734.791122,
+            "grossProfit": 37721192964.27219,
+            "operatingExpenses": 8142035302.398615,
+            "operatingIncome": 29579157661.87357,
+            "pretaxIncome": 31436178577.2298,
+            "incomeTax": 4118086059.265333,
+            "netIncome": 27318092517.96447,
+            "researchAndDevelopment": 5854105566.857205
+          },
+          "segments": [
+            {
+              "id": "high-performance-computing",
+              "label": "High-performance computing",
+              "revenue": 30006185577.376766
+            },
+            {
+              "id": "smartphone",
+              "label": "Smartphone",
+              "revenue": 26158847992.388794
+            },
+            {
+              "id": "internet-of-things",
+              "label": "Internet of Things",
+              "revenue": 5197539312.980052
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 4290319260.84636
+            },
+            {
+              "id": "digital-consumer-electronics",
+              "label": "Digital consumer electronics",
+              "revenue": 1508699287.6093533
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 2230390267.8619776
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000162828026025362/tsm-20251231.htm",
+          "segmentBasis": "Revenue by customer platform, as reported in native TWD; the same period-average exchange rate is applied to total revenue and every category. These are not separate reportable operating segments.",
+          "accession": "0001628280-26-025362",
+          "fx": {
+            "rate": 31.152530120481924,
+            "unit": "TWD per USD",
+            "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+            "startDate": "2023-01-01",
+            "endDate": "2023-12-31"
+          }
+        },
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2024-01-01",
+          "endDate": "2024-12-31",
+          "filedAt": "2026-04-16",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000162828026025362/tsm-20251231.htm",
+          "reportingCurrency": "TWD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 90147447193.71616,
+            "costOfRevenue": 39554578170.17635,
+            "grossProfit": 50592869023.5398,
+            "operatingExpenses": 9415594401.082066,
+            "operatingIncome": 41177274622.45774,
+            "pretaxIncome": 43786943303.51051,
+            "incomeTax": 7734168178.490332,
+            "netIncome": 36052775125.02019,
+            "researchAndDevelopment": 6359540844.056737
+          },
+          "segments": [
+            {
+              "id": "high-performance-computing",
+              "label": "High-performance computing",
+              "revenue": 45999918175.388115
+            },
+            {
+              "id": "smartphone",
+              "label": "Smartphone",
+              "revenue": 31306259756.53643
+            },
+            {
+              "id": "internet-of-things",
+              "label": "Internet of Things",
+              "revenue": 5155244170.896053
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 4339421755.369975
+            },
+            {
+              "id": "digital-consumer-electronics",
+              "label": "Digital consumer electronics",
+              "revenue": 1493796815.8636017
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 1852806519.661981
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000162828026025362/tsm-20251231.htm",
+          "segmentBasis": "Revenue by customer platform, as reported in native TWD; the same period-average exchange rate is applied to total revenue and every category. These are not separate reportable operating segments.",
+          "accession": "0001628280-26-025362",
+          "fx": {
+            "rate": 32.106374501992015,
+            "unit": "TWD per USD",
+            "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+            "startDate": "2024-01-01",
+            "endDate": "2024-12-31"
+          }
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "filedAt": "2026-04-16",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000162828026025362/tsm-20251231.htm",
+          "reportingCurrency": "TWD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 122217162266.39824,
+            "costOfRevenue": 49019655217.112885,
+            "grossProfit": 73197507049.28535,
+            "operatingExpenses": 11076147040.968643,
+            "operatingIncome": 62121360008.31672,
+            "pretaxIncome": 65508450158.312164,
+            "incomeTax": 11118741152.296656,
+            "netIncome": 54389709006.0155,
+            "researchAndDevelopment": 7906853175.932454
+          },
+          "segments": [
+            {
+              "id": "high-performance-computing",
+              "label": "High-performance computing",
+              "revenue": 70362295403.87885
+            },
+            {
+              "id": "smartphone",
+              "label": "Smartphone",
+              "revenue": 35641610099.119965
+            },
+            {
+              "id": "internet-of-things",
+              "label": "Internet of Things",
+              "revenue": 6129919900.610535
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 5989389814.889686
+            },
+            {
+              "id": "digital-consumer-electronics",
+              "label": "Digital consumer electronics",
+              "revenue": 1540013758.459464
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 2553933289.439742
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000162828026025362/tsm-20251231.htm",
+          "segmentBasis": "Revenue by customer platform, as reported in native TWD; the same period-average exchange rate is applied to total revenue and every category. These are not separate reportable operating segments.",
+          "accession": "0001628280-26-025362",
+          "fx": {
+            "rate": 31.166279999999983,
+            "unit": "TWD per USD",
+            "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+            "startDate": "2025-01-01",
+            "endDate": "2025-12-31"
+          }
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2024-Q3",
+          "label": "Q3 FY2024",
+          "kind": "quarterly",
+          "fiscalYear": 2024,
+          "fiscalQuarter": 3,
+          "startDate": "2024-07-01",
+          "endDate": "2024-09-30",
+          "filedAt": "2025-11-14",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617925000128/a2025q3consolidatedreport-.htm",
+          "reportingCurrency": "TWD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 23527847641.906605,
+            "costOfRevenue": 9921207127.026373,
+            "grossProfit": 13606640514.880232,
+            "operatingIncome": 11173018386.644085,
+            "pretaxIncome": 11898358832.809097,
+            "incomeTax": 1830548099.6854584,
+            "netIncome": 10067810733.123638,
+            "researchAndDevelopment": 1634727734.817324,
+            "operatingExpenses": 2433622128.236148
+          },
+          "segments": [
+            {
+              "id": "high-performance-computing",
+              "label": "High-performance computing",
+              "revenue": 12057005650.133076
+            },
+            {
+              "id": "smartphone",
+              "label": "Smartphone",
+              "revenue": 7974700751.996129
+            },
+            {
+              "id": "internet-of-things",
+              "label": "Internet of Things",
+              "revenue": 1556419515.1221874
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 1104755580.9339464
+            },
+            {
+              "id": "digital-consumer-electronics",
+              "label": "Digital consumer electronics",
+              "revenue": 353206941.2049359
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 481759202.516332
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617925000128/a2025q3consolidatedreport-.htm",
+          "segmentBasis": "Revenue by customer platform, as reported in native TWD; the same period-average exchange rate is applied to total revenue and every category. These are not separate reportable operating segments.",
+          "accession": "0001046179-25-000128",
+          "fx": {
+            "rate": 32.2890625,
+            "unit": "TWD per USD",
+            "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+            "startDate": "2024-07-01",
+            "endDate": "2024-09-30"
+          }
+        },
+        {
+          "id": "2025-Q1",
+          "label": "Q1 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 1,
+          "startDate": "2025-01-01",
+          "endDate": "2025-03-31",
+          "filedAt": "2026-05-15",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000278/a2026q1consolidatedreport-.htm",
+          "reportingCurrency": "TWD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 25515714045.62423,
+            "costOfRevenue": 10515091217.559896,
+            "grossProfit": 15000622828.064335,
+            "operatingIncome": 12376421975.78736,
+            "pretaxIncome": 13100454115.10225,
+            "incomeTax": 2133148496.055104,
+            "netIncome": 10967305619.047144,
+            "researchAndDevelopment": 1719205674.3703866,
+            "operatingExpenses": 2624200852.276975
+          },
+          "segments": [
+            {
+              "id": "high-performance-computing",
+              "label": "High-performance computing",
+              "revenue": 14995395663.853987
+            },
+            {
+              "id": "smartphone",
+              "label": "Smartphone",
+              "revenue": 7102454990.305972
+            },
+            {
+              "id": "internet-of-things",
+              "label": "Internet of Things",
+              "revenue": 1177295834.807789
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 1308181831.5482035
+            },
+            {
+              "id": "digital-consumer-electronics",
+              "label": "Digital consumer electronics",
+              "revenue": 351228039.41407204
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 581157685.6942071
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000278/a2026q1consolidatedreport-.htm",
+          "segmentBasis": "Revenue by customer platform, as reported in native TWD; the same period-average exchange rate is applied to total revenue and every category. These are not separate reportable operating segments.",
+          "accession": "0001046179-26-000278",
+          "fx": {
+            "rate": 32.891639344262295,
+            "unit": "TWD per USD",
+            "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+            "startDate": "2025-01-01",
+            "endDate": "2025-03-31"
+          }
+        },
+        {
+          "id": "2025-Q2",
+          "label": "Q2 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 2,
+          "startDate": "2025-04-01",
+          "endDate": "2025-06-30",
+          "filedAt": "2026-08-14",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000541/a2026q2consolidatedreport-.htm",
+          "reportingCurrency": "TWD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 30241861195.81756,
+            "costOfRevenue": 12514715492.371273,
+            "grossProfit": 17727145703.446285,
+            "operatingIncome": 15008476514.434935,
+            "pretaxIncome": 15967479155.699945,
+            "incomeTax": 3094224039.7269278,
+            "netIncome": 12873255115.973017,
+            "researchAndDevelopment": 1984610080.2969232,
+            "operatingExpenses": 2718669189.0113497
+          },
+          "segments": [
+            {
+              "id": "high-performance-computing",
+              "label": "High-performance computing",
+              "revenue": 18173623971.3563
+            },
+            {
+              "id": "smartphone",
+              "label": "Smartphone",
+              "revenue": 8095210662.732354
+            },
+            {
+              "id": "internet-of-things",
+              "label": "Internet of Things",
+              "revenue": 1434651604.9103465
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 1393547835.7871356
+            },
+            {
+              "id": "digital-consumer-electronics",
+              "label": "Digital consumer electronics",
+              "revenue": 485712971.3974336
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 659114149.6339856
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000541/a2026q2consolidatedreport-.htm",
+          "segmentBasis": "Revenue by customer platform, as reported in native TWD; the same period-average exchange rate is applied to total revenue and every category. These are not separate reportable operating segments.",
+          "accession": "0001046179-26-000541",
+          "fx": {
+            "rate": 30.87746031746033,
+            "unit": "TWD per USD",
+            "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+            "startDate": "2025-04-01",
+            "endDate": "2025-06-30"
+          }
+        },
+        {
+          "id": "2025-Q3",
+          "label": "Q3 FY2025",
+          "kind": "quarterly",
+          "fiscalYear": 2025,
+          "fiscalQuarter": 3,
+          "startDate": "2025-07-01",
+          "endDate": "2025-09-30",
+          "filedAt": "2025-11-14",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617925000128/a2025q3consolidatedreport-.htm",
+          "reportingCurrency": "TWD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 33058228375.23351,
+            "costOfRevenue": 13403896400.655378,
+            "grossProfit": 19654331974.578133,
+            "operatingIncome": 16720322027.07075,
+            "pretaxIncome": 17544648712.730766,
+            "incomeTax": 2458321229.767384,
+            "netIncome": 15086327482.963385,
+            "researchAndDevelopment": 2128666228.3585365,
+            "operatingExpenses": 2934009947.507384
+          },
+          "segments": [
+            {
+              "id": "high-performance-computing",
+              "label": "High-performance computing",
+              "revenue": 18654138434.405106
+            },
+            {
+              "id": "smartphone",
+              "label": "Smartphone",
+              "revenue": 9909792980.808367
+            },
+            {
+              "id": "internet-of-things",
+              "label": "Internet of Things",
+              "revenue": 1778288218.9036038
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 1689319916.9301736
+            },
+            {
+              "id": "digital-consumer-electronics",
+              "label": "Digital consumer electronics",
+              "revenue": 401538403.09737754
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 625150421.0888828
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617925000128/a2025q3consolidatedreport-.htm",
+          "segmentBasis": "Revenue by customer platform, as reported in native TWD; the same period-average exchange rate is applied to total revenue and every category. These are not separate reportable operating segments.",
+          "accession": "0001046179-25-000128",
+          "fx": {
+            "rate": 29.944687499999993,
+            "unit": "TWD per USD",
+            "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+            "startDate": "2025-07-01",
+            "endDate": "2025-09-30"
+          }
+        },
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2026-01-01",
+          "endDate": "2026-03-31",
+          "filedAt": "2026-05-15",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000278/a2026q1consolidatedreport-.htm",
+          "reportingCurrency": "TWD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 35855123683.55585,
+            "costOfRevenue": 12102625196.430052,
+            "grossProfit": 23752498487.125797,
+            "operatingIncome": 20833472231.321003,
+            "pretaxIncome": 21745056030.247116,
+            "incomeTax": 3635718842.2547474,
+            "netIncome": 18109337187.99237,
+            "researchAndDevelopment": 2142154088.75114,
+            "operatingExpenses": 2919026255.804793
+          },
+          "segments": [
+            {
+              "id": "high-performance-computing",
+              "label": "High-performance computing",
+              "revenue": 21964596530.081264
+            },
+            {
+              "id": "smartphone",
+              "label": "Smartphone",
+              "revenue": 9298777098.018078
+            },
+            {
+              "id": "internet-of-things",
+              "label": "Internet of Things",
+              "revenue": 1947207833.87926
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 1472885600.4851148
+            },
+            {
+              "id": "digital-consumer-electronics",
+              "label": "Digital consumer electronics",
+              "revenue": 380745133.82121235
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 790911487.2709179
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000278/a2026q1consolidatedreport-.htm",
+          "segmentBasis": "Revenue by customer platform, as reported in native TWD; the same period-average exchange rate is applied to total revenue and every category. These are not separate reportable operating segments.",
+          "accession": "0001046179-26-000278",
+          "fx": {
+            "rate": 31.630163934426232,
+            "unit": "TWD per USD",
+            "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+            "startDate": "2026-01-01",
+            "endDate": "2026-03-31"
+          }
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-30",
+          "filedAt": "2026-08-14",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000541/a2026q2consolidatedreport-.htm",
+          "reportingCurrency": "TWD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 40198070181.16617,
+            "costOfRevenue": 12975646268.941586,
+            "grossProfit": 27222423912.22458,
+            "operatingIncome": 24257262473.94513,
+            "pretaxIncome": 27289486847.246857,
+            "incomeTax": 4925136373.86426,
+            "netIncome": 22364350473.382595,
+            "researchAndDevelopment": 2314530306.02866,
+            "operatingExpenses": 2965161438.27945
+          },
+          "segments": [
+            {
+              "id": "high-performance-computing",
+              "label": "High-performance computing",
+              "revenue": 26274997371.659332
+            },
+            {
+              "id": "smartphone",
+              "label": "Smartphone",
+              "revenue": 8963668788.391706
+            },
+            {
+              "id": "internet-of-things",
+              "label": "Internet of Things",
+              "revenue": 2026838364.3313131
+            },
+            {
+              "id": "automotive",
+              "label": "Automotive",
+              "revenue": 1698028195.0185592
+            },
+            {
+              "id": "digital-consumer-electronics",
+              "label": "Digital consumer electronics",
+              "revenue": 400450389.0024562
+            },
+            {
+              "id": "other",
+              "label": "Other",
+              "revenue": 834087072.7627966
+            }
+          ],
+          "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000541/a2026q2consolidatedreport-.htm",
+          "segmentBasis": "Revenue by customer platform, as reported in native TWD; the same period-average exchange rate is applied to total revenue and every category. These are not separate reportable operating segments.",
+          "accession": "0001046179-26-000541",
+          "fx": {
+            "rate": 31.603015873015863,
+            "unit": "TWD per USD",
+            "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+            "startDate": "2026-04-01",
+            "endDate": "2026-06-30"
+          }
+        }
+      ]
+    }
+  ]
+}

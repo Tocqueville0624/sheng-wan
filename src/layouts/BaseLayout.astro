@@ -1,0 +1,87 @@
+---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/newsreader";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import ScrollBoundaryFeedback from "@components/ScrollBoundaryFeedback.astro";
+import { site } from "@/config/site";
+import "@/styles/global.css";
+
+type Props = {
+  title?: string;
+  description?: string;
+  image?: string;
+  pageClass?: string;
+};
+
+const {
+  title = site.title,
+  description = site.description,
+  image = "/social-card.svg",
+  pageClass = ""
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const fullTitle = title === site.title ? title : `${title} — ${site.name}`;
+const socialImage = new URL(image, Astro.site ?? Astro.url.origin);
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: "PhD Student in Political Science",
+  affiliation: {
+    "@type": "CollegeOrUniversity",
+    name: "University of Washington"
+  },
+  email: `mailto:${site.email}`,
+  sameAs: [site.links.github, site.links.linkedin]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    {
+      import.meta.env.PUBLIC_SITE_INDEXABLE !== "true" && (
+        <meta name="robots" content="noindex, nofollow" />
+      )
+    }
+    <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1c26" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{fullTitle}</title>
+    <script is:inline>
+      (() => {
+        try {
+          const saved = localStorage.getItem("sheng-theme");
+          if (saved === "light" || saved === "dark") document.documentElement.dataset.theme = saved;
+        } catch {
+          /* Privacy settings may disable storage; retain the system theme. */
+        }
+      })();
+    </script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body class={pageClass}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="site-page-clip">
+      <div class="site-page">
+        <Header />
+        <main id="main-content">
+          <slot />
+        </main>
+        <Footer />
+      </div>
+    </div>
+    <ScrollBoundaryFeedback />
+  </body>
+</html>

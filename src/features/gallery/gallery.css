@@ -1,0 +1,291 @@
+html:has(.gallery-experience) {
+  scrollbar-gutter: stable;
+}
+
+html:has(.focus-dialog[open]) {
+  overflow: hidden;
+}
+
+.gallery-experience {
+  width: min(1380px, calc(100vw - 2rem));
+  margin-inline: auto;
+  --gallery-gap: clamp(0.6rem, 1vw, 1rem);
+}
+
+.gallery-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.view-switcher {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--control-radius, 6px);
+  background: var(--surface);
+  padding: 0.25rem;
+}
+
+.view-switcher button,
+.focus-toolbar button {
+  min-height: 2.75rem;
+  border: 0;
+  border-radius: calc(var(--control-radius, 6px) - 2px);
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.view-switcher button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--background);
+}
+
+.editorial-gallery {
+  display: grid;
+  gap: var(--gallery-gap);
+}
+
+.editorial-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gallery-gap);
+}
+
+.editorial-photo {
+  min-width: 0;
+  max-width: 100%;
+  flex-basis: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  padding: 0;
+}
+
+.gallery-picture {
+  display: block;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+}
+
+.gallery-picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.contact-sheet {
+  display: grid;
+  gap: var(--gallery-gap);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.contact-sheet button {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border: 0;
+  border-radius: 0.2rem;
+  background: var(--sky-soft);
+  cursor: zoom-in;
+  padding: 0;
+}
+
+.contact-sheet .gallery-picture,
+.contact-sheet img {
+  width: 100%;
+  height: 100%;
+}
+
+.contact-sheet img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.focus-dialog {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  background: color-mix(in srgb, var(--focus-color) 22%, #071017 78%);
+  color: white;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
+
+.focus-dialog::backdrop {
+  background: rgb(0 0 0 / 0.82);
+}
+
+.focus-dialog[open] {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.focus-toolbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  height: 4.5rem;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: space-between;
+  padding-inline: 1.25rem;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.focus-toolbar > div {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.focus-toolbar button {
+  background: rgb(255 255 255 / 0.12);
+  color: white;
+}
+
+.focus-stage {
+  position: relative;
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 4.5rem 1.5rem;
+}
+
+.focus-stage .gallery-picture {
+  /* A definite flex area resolves both image limits. Auto grid tracks instead
+     grew to a portrait's intrinsic height and clipped it at the picture edge. */
+  display: flex;
+  overflow: visible;
+  width: 100%;
+  min-width: 0;
+  max-width: 1380px;
+  height: 100%;
+  min-height: 0;
+  max-height: 900px;
+  align-items: center;
+  justify-content: center;
+  background: none;
+}
+
+.focus-stage img {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: 100%;
+  flex: 0 1 auto;
+  object-fit: contain;
+  box-shadow: 0 30px 100px rgb(0 0 0 / 0.34);
+}
+
+.focus-arrow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: grid;
+  width: 3rem;
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: var(--control-radius, 6px);
+  background: rgb(0 0 0 / 0.25);
+  color: white;
+  cursor: pointer;
+}
+
+.focus-arrow--previous {
+  left: 1rem;
+}
+
+.focus-arrow--next {
+  right: 1rem;
+}
+
+.exif-panel {
+  position: absolute;
+  z-index: 3;
+  top: calc(4.75rem + env(safe-area-inset-top));
+  right: 1.25rem;
+  display: grid;
+  width: min(21rem, calc(100vw - 2.5rem));
+  max-height: calc(100% - 5.75rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  overflow: auto;
+  margin: 0;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: var(--control-radius, 6px);
+  background: rgb(4 13 19 / 0.82);
+  padding: 1rem;
+  gap: 0.6rem;
+  backdrop-filter: blur(20px);
+}
+
+.exif-panel div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  font-size: 0.75rem;
+}
+
+.exif-panel dt {
+  color: rgb(255 255 255 / 0.6);
+  text-transform: capitalize;
+}
+
+.exif-panel dd {
+  margin: 0;
+  text-align: right;
+}
+
+@media (max-width: 760px) {
+  .gallery-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .editorial-row {
+    display: grid;
+    gap: var(--gallery-gap);
+  }
+  .editorial-photo {
+    display: block;
+    width: 100%;
+  }
+  .contact-sheet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .focus-stage {
+    padding: 0.5rem 0.75rem 5rem;
+  }
+  .focus-arrow {
+    top: auto;
+    bottom: 1rem;
+    translate: 0;
+  }
+}
+
+@media (max-width: 760px) and (orientation: landscape) {
+  .focus-stage {
+    padding: 0.5rem 4.5rem 1rem;
+  }
+  .focus-arrow {
+    top: 50%;
+    bottom: auto;
+    translate: 0 -50%;
+  }
+}

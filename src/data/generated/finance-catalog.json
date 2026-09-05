@@ -1,0 +1,3541 @@
+{
+  "schemaVersion": 2,
+  "asOf": "2026-09-04T22:06:05.049Z",
+  "sourceUrl": "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
+  "sourceHash": "c00e017ab6463af9dc1a11a6cd9420a3875a799278d56b8f98bf4c8ed4a5cb95",
+  "secMapping": {
+    "sourceUrl": "https://www.sec.gov/files/company_tickers.json",
+    "checkedAt": "2026-09-04T22:06:05.052Z",
+    "sourceHash": "f987a9fba01e1c1858ddcf0c032d77be301843860d7a0571efaa92ec3f938926"
+  },
+  "companies": [
+    {
+      "ticker": "MMM",
+      "name": "3M",
+      "cik": "0000066740",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AOS",
+      "name": "A. O. Smith",
+      "cik": "0000091142",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ABT",
+      "name": "Abbott Laboratories",
+      "cik": "0000001800",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ABBV",
+      "name": "AbbVie",
+      "cik": "0001551152",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ACN",
+      "name": "Accenture",
+      "cik": "0001467373",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ADBE",
+      "name": "Adobe Inc.",
+      "cik": "0000796343",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices",
+      "cik": "0000002488",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AES",
+      "name": "AES Corporation",
+      "cik": "0000874761",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AFL",
+      "name": "Aflac",
+      "cik": "0000004977",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "A",
+      "name": "Agilent Technologies",
+      "cik": "0001090872",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "APD",
+      "name": "Air Products",
+      "cik": "0000002969",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ABNB",
+      "name": "Airbnb",
+      "cik": "0001559720",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AKAM",
+      "name": "Akamai Technologies",
+      "cik": "0001086222",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ALB",
+      "name": "Albemarle Corporation",
+      "cik": "0000915913",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ARE",
+      "name": "Alexandria Real Estate Equities",
+      "cik": "0001035443",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ALGN",
+      "name": "Align Technology",
+      "cik": "0001097149",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ALLE",
+      "name": "Allegion",
+      "cik": "0001579241",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LNT",
+      "name": "Alliant Energy",
+      "cik": "0000352541",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ALL",
+      "name": "Allstate",
+      "cik": "0000899051",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc. (Class A)",
+      "cik": "0001652044",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GOOG",
+      "name": "Alphabet Inc. (Class C)",
+      "cik": "0001652044",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MO",
+      "name": "Altria",
+      "cik": "0000764180",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon",
+      "cik": "0001018724",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AMCR",
+      "name": "Amcor",
+      "cik": "0001748790",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AEE",
+      "name": "Ameren",
+      "cik": "0001002910",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AEP",
+      "name": "American Electric Power",
+      "cik": "0000004904",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AXP",
+      "name": "American Express",
+      "cik": "0000004962",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AIG",
+      "name": "American International Group",
+      "cik": "0000005272",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AMT",
+      "name": "American Tower",
+      "cik": "0001053507",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AWK",
+      "name": "American Water Works",
+      "cik": "0001410636",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AMP",
+      "name": "Ameriprise Financial",
+      "cik": "0000820027",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AME",
+      "name": "Ametek",
+      "cik": "0001037868",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AMGN",
+      "name": "Amgen",
+      "cik": "0000318154",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "APH",
+      "name": "Amphenol",
+      "cik": "0000820313",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ADI",
+      "name": "Analog Devices",
+      "cik": "0000006281",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AON",
+      "name": "Aon plc",
+      "cik": "0000315293",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "APA",
+      "name": "APA Corporation",
+      "cik": "0001841666",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "APO",
+      "name": "Apollo Global Management",
+      "cik": "0001858681",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "cik": "0000320193",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AMAT",
+      "name": "Applied Materials",
+      "cik": "0000006951",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "APP",
+      "name": "AppLovin",
+      "cik": "0001751008",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "APTV",
+      "name": "Aptiv",
+      "cik": "0001521332",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ACGL",
+      "name": "Arch Capital Group",
+      "cik": "0000947484",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ADM",
+      "name": "Archer Daniels Midland",
+      "cik": "0000007084",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ARES",
+      "name": "Ares Management",
+      "cik": "0001176948",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ANET",
+      "name": "Arista Networks",
+      "cik": "0001596532",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AJG",
+      "name": "Arthur J. Gallagher & Co.",
+      "cik": "0000354190",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AIZ",
+      "name": "Assurant",
+      "cik": "0001267238",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "T",
+      "name": "AT&T",
+      "cik": "0000732717",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ATO",
+      "name": "Atmos Energy",
+      "cik": "0000731802",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ADSK",
+      "name": "Autodesk",
+      "cik": "0000769397",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ADP",
+      "name": "Automatic Data Processing",
+      "cik": "0000008670",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AZO",
+      "name": "AutoZone",
+      "cik": "0000866787",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AVY",
+      "name": "Avery Dennison",
+      "cik": "0000008818",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AXON",
+      "name": "Axon Enterprise",
+      "cik": "0001069183",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BKR",
+      "name": "Baker Hughes",
+      "cik": "0001701605",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BALL",
+      "name": "Ball Corporation",
+      "cik": "0000009389",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BAC",
+      "name": "Bank of America",
+      "cik": "0000070858",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BAX",
+      "name": "Baxter International",
+      "cik": "0000010456",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BDX",
+      "name": "Becton Dickinson",
+      "cik": "0000010795",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BRK.B",
+      "name": "Berkshire Hathaway",
+      "cik": "0001067983",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BBY",
+      "name": "Best Buy",
+      "cik": "0000764478",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TECH",
+      "name": "Bio-Techne",
+      "cik": "0000842023",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BIIB",
+      "name": "Biogen",
+      "cik": "0000875045",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BLK",
+      "name": "BlackRock",
+      "cik": "0002012383",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BX",
+      "name": "Blackstone Inc.",
+      "cik": "0001393818",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "XYZ",
+      "name": "Block, Inc.",
+      "cik": "0001512673",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BNY",
+      "name": "BNY Mellon",
+      "cik": "0001390777",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BA",
+      "name": "Boeing",
+      "cik": "0000012927",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BKNG",
+      "name": "Booking Holdings",
+      "cik": "0001075531",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BSX",
+      "name": "Boston Scientific",
+      "cik": "0000885725",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BMY",
+      "name": "Bristol Myers Squibb",
+      "cik": "0000014272",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "AVGO",
+      "name": "Broadcom",
+      "cik": "0001730168",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BR",
+      "name": "Broadridge Financial Solutions",
+      "cik": "0001383312",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BRO",
+      "name": "Brown & Brown",
+      "cik": "0000079282",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BF.B",
+      "name": "Brown–Forman",
+      "cik": "0000014693",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BLDR",
+      "name": "Builders FirstSource",
+      "cik": "0001316835",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BG",
+      "name": "Bunge Global",
+      "cik": "0001996862",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BXP",
+      "name": "BXP, Inc.",
+      "cik": "0001037540",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CHRW",
+      "name": "C.H. Robinson",
+      "cik": "0001043277",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CDNS",
+      "name": "Cadence Design Systems",
+      "cik": "0000813672",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CPT",
+      "name": "Camden Property Trust",
+      "cik": "0000906345",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "COF",
+      "name": "Capital One",
+      "cik": "0000927628",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CAH",
+      "name": "Cardinal Health",
+      "cik": "0000721371",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CCL",
+      "name": "Carnival Corporation",
+      "cik": "0000815097",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CARR",
+      "name": "Carrier Global",
+      "cik": "0001783180",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CVNA",
+      "name": "Carvana",
+      "cik": "0001690820",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CASY",
+      "name": "Casey's",
+      "cik": "0000726958",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CAT",
+      "name": "Caterpillar Inc.",
+      "cik": "0000018230",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CBOE",
+      "name": "Cboe Global Markets",
+      "cik": "0001374310",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CBRE",
+      "name": "CBRE Group",
+      "cik": "0001138118",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CDW",
+      "name": "CDW Corporation",
+      "cik": "0001402057",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "COR",
+      "name": "Cencora",
+      "cik": "0001140859",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CNC",
+      "name": "Centene Corporation",
+      "cik": "0001071739",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CNP",
+      "name": "CenterPoint Energy",
+      "cik": "0001130310",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CF",
+      "name": "CF Industries",
+      "cik": "0001324404",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CRL",
+      "name": "Charles River Laboratories",
+      "cik": "0001100682",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SCHW",
+      "name": "Charles Schwab Corporation",
+      "cik": "0000316709",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CHTR",
+      "name": "Charter Communications",
+      "cik": "0001091667",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CVX",
+      "name": "Chevron Corporation",
+      "cik": "0000093410",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CMG",
+      "name": "Chipotle Mexican Grill",
+      "cik": "0001058090",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CB",
+      "name": "Chubb Limited",
+      "cik": "0000896159",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CHD",
+      "name": "Church & Dwight",
+      "cik": "0000313927",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CIEN",
+      "name": "Ciena",
+      "cik": "0000936395",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CI",
+      "name": "Cigna",
+      "cik": "0001739940",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CINF",
+      "name": "Cincinnati Financial",
+      "cik": "0000020286",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CTAS",
+      "name": "Cintas",
+      "cik": "0000723254",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CSCO",
+      "name": "Cisco",
+      "cik": "0000858877",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "C",
+      "name": "Citigroup",
+      "cik": "0000831001",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CFG",
+      "name": "Citizens Financial Group",
+      "cik": "0000759944",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CLX",
+      "name": "Clorox",
+      "cik": "0000021076",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CME",
+      "name": "CME Group",
+      "cik": "0001156375",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CMS",
+      "name": "CMS Energy",
+      "cik": "0000811156",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KO",
+      "name": "Coca-Cola Company (The)",
+      "cik": "0000021344",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CTSH",
+      "name": "Cognizant",
+      "cik": "0001058290",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "COHR",
+      "name": "Coherent Corp.",
+      "cik": "0000820318",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "COIN",
+      "name": "Coinbase",
+      "cik": "0001679788",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CL",
+      "name": "Colgate-Palmolive",
+      "cik": "0000021665",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CMCSA",
+      "name": "Comcast",
+      "cik": "0001166691",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FIX",
+      "name": "Comfort Systems USA",
+      "cik": "0001035983",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "COP",
+      "name": "ConocoPhillips",
+      "cik": "0001163165",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ED",
+      "name": "Consolidated Edison",
+      "cik": "0001047862",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "STZ",
+      "name": "Constellation Brands",
+      "cik": "0000016918",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CEG",
+      "name": "Constellation Energy",
+      "cik": "0001868275",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "COO",
+      "name": "Cooper Companies (The)",
+      "cik": "0000711404",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CPRT",
+      "name": "Copart",
+      "cik": "0000900075",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GLW",
+      "name": "Corning Inc.",
+      "cik": "0000024741",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CPAY",
+      "name": "Corpay",
+      "cik": "0001175454",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CTVA",
+      "name": "Corteva",
+      "cik": "0001755672",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CSGP",
+      "name": "CoStar Group",
+      "cik": "0001057352",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "COST",
+      "name": "Costco",
+      "cik": "0000909832",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CRH",
+      "name": "CRH plc",
+      "cik": "0000849395",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike",
+      "cik": "0001535527",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CCI",
+      "name": "Crown Castle",
+      "cik": "0001051470",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CSX",
+      "name": "CSX Corporation",
+      "cik": "0000277948",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CMI",
+      "name": "Cummins",
+      "cik": "0000026172",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CVS",
+      "name": "CVS Health",
+      "cik": "0000064803",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DHR",
+      "name": "Danaher Corporation",
+      "cik": "0000313616",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DRI",
+      "name": "Darden Restaurants",
+      "cik": "0000940944",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DDOG",
+      "name": "Datadog",
+      "cik": "0001561550",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DVA",
+      "name": "DaVita",
+      "cik": "0000927066",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DECK",
+      "name": "Deckers Brands",
+      "cik": "0000910521",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DE",
+      "name": "Deere & Company",
+      "cik": "0000315189",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DELL",
+      "name": "Dell Technologies",
+      "cik": "0001571996",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DAL",
+      "name": "Delta Air Lines",
+      "cik": "0000027904",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DVN",
+      "name": "Devon Energy",
+      "cik": "0001090012",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DXCM",
+      "name": "Dexcom",
+      "cik": "0001093557",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FANG",
+      "name": "Diamondback Energy",
+      "cik": "0001539838",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DLR",
+      "name": "Digital Realty",
+      "cik": "0001297996",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DG",
+      "name": "Dollar General",
+      "cik": "0000029534",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DLTR",
+      "name": "Dollar Tree",
+      "cik": "0000935703",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "D",
+      "name": "Dominion Energy",
+      "cik": "0000715957",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DPZ",
+      "name": "Domino's",
+      "cik": "0001286681",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DASH",
+      "name": "DoorDash",
+      "cik": "0001792789",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DOV",
+      "name": "Dover Corporation",
+      "cik": "0000029905",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DOW",
+      "name": "Dow Inc.",
+      "cik": "0001751788",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DHI",
+      "name": "D. R. Horton",
+      "cik": "0000882184",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DTE",
+      "name": "DTE Energy",
+      "cik": "0000936340",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DUK",
+      "name": "Duke Energy",
+      "cik": "0001326160",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DD",
+      "name": "DuPont",
+      "cik": "0001666700",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ETN",
+      "name": "Eaton Corporation",
+      "cik": "0001551182",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EBAY",
+      "name": "eBay Inc.",
+      "cik": "0001065088",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ECHO",
+      "name": "EchoStar",
+      "cik": "0001415404",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ECL",
+      "name": "Ecolab",
+      "cik": "0000031462",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EIX",
+      "name": "Edison International",
+      "cik": "0000827052",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EW",
+      "name": "Edwards Lifesciences",
+      "cik": "0001099800",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ELV",
+      "name": "Elevance Health",
+      "cik": "0001156039",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EME",
+      "name": "Emcor",
+      "cik": "0000105634",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EMR",
+      "name": "Emerson Electric",
+      "cik": "0000032604",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ETR",
+      "name": "Entergy",
+      "cik": "0000065984",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EOG",
+      "name": "EOG Resources",
+      "cik": "0000821189",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EQT",
+      "name": "EQT Corporation",
+      "cik": "0000033213",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EFX",
+      "name": "Equifax",
+      "cik": "0000033185",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EQIX",
+      "name": "Equinix",
+      "cik": "0001101239",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ERIE",
+      "name": "Erie Indemnity",
+      "cik": "0000922621",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ESS",
+      "name": "Essex Property Trust",
+      "cik": "0000920522",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EL",
+      "name": "Estée Lauder Companies (The)",
+      "cik": "0001001250",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EG",
+      "name": "Everest Group",
+      "cik": "0001095073",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EVRG",
+      "name": "Evergy",
+      "cik": "0001711269",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ES",
+      "name": "Eversource Energy",
+      "cik": "0000072741",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EXC",
+      "name": "Exelon",
+      "cik": "0001109357",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EXE",
+      "name": "Expand Energy",
+      "cik": "0000895126",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EXPE",
+      "name": "Expedia Group",
+      "cik": "0001324424",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EXPD",
+      "name": "Expeditors International",
+      "cik": "0000746515",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "EXR",
+      "name": "Extra Space Storage",
+      "cik": "0001289490",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "XOM",
+      "name": "ExxonMobil",
+      "cik": "0002115436",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FFIV",
+      "name": "F5, Inc.",
+      "cik": "0001048695",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FDS",
+      "name": "FactSet",
+      "cik": "0001013237",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FICO",
+      "name": "Fair Isaac",
+      "cik": "0000814547",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FAST",
+      "name": "Fastenal",
+      "cik": "0000815556",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FRT",
+      "name": "Federal Realty Investment Trust",
+      "cik": "0000034903",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FDX",
+      "name": "FedEx",
+      "cik": "0001048911",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FDXF",
+      "name": "FedEx Freight",
+      "cik": "0002082247",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FERG",
+      "name": "Ferguson Enterprises",
+      "cik": "0002011641",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FIS",
+      "name": "Fidelity National Information Services",
+      "cik": "0001136893",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FITB",
+      "name": "Fifth Third Bancorp",
+      "cik": "0000035527",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FSLR",
+      "name": "First Solar",
+      "cik": "0001274494",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FE",
+      "name": "FirstEnergy",
+      "cik": "0001031296",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FISV",
+      "name": "Fiserv",
+      "cik": "0000798354",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FLEX",
+      "name": "Flex Ltd.",
+      "cik": "0000866374",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "F",
+      "name": "Ford Motor Company",
+      "cik": "0000037996",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FTNT",
+      "name": "Fortinet",
+      "cik": "0001262039",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FTV",
+      "name": "Fortive",
+      "cik": "0001659166",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FOXA",
+      "name": "Fox Corporation (Class A)",
+      "cik": "0001754301",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FOX",
+      "name": "Fox Corporation (Class B)",
+      "cik": "0001754301",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "BEN",
+      "name": "Franklin Resources",
+      "cik": "0000038777",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "FCX",
+      "name": "Freeport-McMoRan",
+      "cik": "0000831259",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GRMN",
+      "name": "Garmin",
+      "cik": "0001121788",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IT",
+      "name": "Gartner",
+      "cik": "0000749251",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GE",
+      "name": "GE Aerospace",
+      "cik": "0000040545",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GEHC",
+      "name": "GE HealthCare",
+      "cik": "0001932393",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GEV",
+      "name": "GE Vernova",
+      "cik": "0001996810",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GEN",
+      "name": "Gen Digital",
+      "cik": "0000849399",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GNRC",
+      "name": "Generac",
+      "cik": "0001474735",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GD",
+      "name": "General Dynamics",
+      "cik": "0000040533",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GIS",
+      "name": "General Mills",
+      "cik": "0000040704",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GM",
+      "name": "General Motors",
+      "cik": "0001467858",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GPC",
+      "name": "Genuine Parts Company",
+      "cik": "0000040987",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GILD",
+      "name": "Gilead Sciences",
+      "cik": "0000882095",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GPN",
+      "name": "Global Payments",
+      "cik": "0001123360",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GL",
+      "name": "Globe Life",
+      "cik": "0000320335",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GDDY",
+      "name": "GoDaddy",
+      "cik": "0001609711",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GS",
+      "name": "Goldman Sachs",
+      "cik": "0000886982",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HAL",
+      "name": "Halliburton",
+      "cik": "0000045012",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HIG",
+      "name": "Hartford (The)",
+      "cik": "0000874766",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HAS",
+      "name": "Hasbro",
+      "cik": "0000046080",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HCA",
+      "name": "HCA Healthcare",
+      "cik": "0000860730",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DOC",
+      "name": "Healthpeak Properties",
+      "cik": "0000765880",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HSIC",
+      "name": "Henry Schein",
+      "cik": "0001000228",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HSY",
+      "name": "Hershey Company (The)",
+      "cik": "0000047111",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HPE",
+      "name": "Hewlett Packard Enterprise",
+      "cik": "0001645590",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HLT",
+      "name": "Hilton Worldwide",
+      "cik": "0001585689",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HD",
+      "name": "Home Depot (The)",
+      "cik": "0000354950",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HONA",
+      "name": "Honeywell Aerospace",
+      "cik": "0002089271",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HON",
+      "name": "Honeywell Technologies",
+      "cik": "0000773840",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HRL",
+      "name": "Hormel Foods",
+      "cik": "0000048465",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HST",
+      "name": "Host Hotels & Resorts",
+      "cik": "0001070750",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HWM",
+      "name": "Howmet Aerospace",
+      "cik": "0000004281",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HPQ",
+      "name": "HP Inc.",
+      "cik": "0000047217",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HUBB",
+      "name": "Hubbell Incorporated",
+      "cik": "0000048898",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HUM",
+      "name": "Humana",
+      "cik": "0000049071",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HBAN",
+      "name": "Huntington Bancshares",
+      "cik": "0000049196",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HII",
+      "name": "Huntington Ingalls Industries",
+      "cik": "0001501585",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IBM",
+      "name": "IBM",
+      "cik": "0000051143",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IEX",
+      "name": "IDEX Corporation",
+      "cik": "0000832101",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IDXX",
+      "name": "Idexx Laboratories",
+      "cik": "0000874716",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ITW",
+      "name": "Illinois Tool Works",
+      "cik": "0000049826",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "INCY",
+      "name": "Incyte",
+      "cik": "0000879169",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IR",
+      "name": "Ingersoll Rand",
+      "cik": "0001699150",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PODD",
+      "name": "Insulet Corporation",
+      "cik": "0001145197",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "INTC",
+      "name": "Intel",
+      "cik": "0000050863",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IBKR",
+      "name": "Interactive Brokers",
+      "cik": "0001381197",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ICE",
+      "name": "Intercontinental Exchange",
+      "cik": "0001571949",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IFF",
+      "name": "International Flavors & Fragrances",
+      "cik": "0000051253",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IP",
+      "name": "International Paper",
+      "cik": "0000051434",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "INTU",
+      "name": "Intuit",
+      "cik": "0000896878",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ISRG",
+      "name": "Intuitive Surgical",
+      "cik": "0001035267",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IVZ",
+      "name": "Invesco",
+      "cik": "0000914208",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "INVH",
+      "name": "Invitation Homes",
+      "cik": "0001687229",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IQV",
+      "name": "IQVIA",
+      "cik": "0001478242",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "IRM",
+      "name": "Iron Mountain",
+      "cik": "0001020569",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "JBHT",
+      "name": "J.B. Hunt",
+      "cik": "0000728535",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "JBL",
+      "name": "Jabil",
+      "cik": "0000898293",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "JKHY",
+      "name": "Jack Henry & Associates",
+      "cik": "0000779152",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "J",
+      "name": "Jacobs Solutions",
+      "cik": "0000052988",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "JNJ",
+      "name": "Johnson & Johnson",
+      "cik": "0000200406",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "JCI",
+      "name": "Johnson Controls",
+      "cik": "0000833444",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "JPM",
+      "name": "JPMorgan Chase",
+      "cik": "0000019617",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KVUE",
+      "name": "Kenvue",
+      "cik": "0001944048",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KDP",
+      "name": "Keurig Dr Pepper",
+      "cik": "0001418135",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KEY",
+      "name": "KeyCorp",
+      "cik": "0000091576",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KEYS",
+      "name": "Keysight Technologies",
+      "cik": "0001601046",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KMB",
+      "name": "Kimberly-Clark",
+      "cik": "0000055785",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KIM",
+      "name": "Kimco Realty",
+      "cik": "0000879101",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KMI",
+      "name": "Kinder Morgan",
+      "cik": "0001506307",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KKR",
+      "name": "KKR & Co.",
+      "cik": "0001404912",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KLAC",
+      "name": "KLA Corporation",
+      "cik": "0000319201",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KHC",
+      "name": "Kraft Heinz",
+      "cik": "0001637459",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "KR",
+      "name": "Kroger",
+      "cik": "0000056873",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LHX",
+      "name": "L3Harris",
+      "cik": "0000202058",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LH",
+      "name": "Labcorp",
+      "cik": "0000920148",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LRCX",
+      "name": "Lam Research",
+      "cik": "0000707549",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LVS",
+      "name": "Las Vegas Sands",
+      "cik": "0001300514",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LDOS",
+      "name": "Leidos",
+      "cik": "0001336920",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LEN",
+      "name": "Lennar",
+      "cik": "0000920760",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LII",
+      "name": "Lennox International",
+      "cik": "0001069202",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LLY",
+      "name": "Lilly (Eli)",
+      "cik": "0000059478",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LIN",
+      "name": "Linde plc",
+      "cik": "0001707925",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LYV",
+      "name": "Live Nation Entertainment",
+      "cik": "0001335258",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LMT",
+      "name": "Lockheed Martin",
+      "cik": "0000936468",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "L",
+      "name": "Loews Corporation",
+      "cik": "0000060086",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LOW",
+      "name": "Lowe's",
+      "cik": "0000060667",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LULU",
+      "name": "Lululemon Athletica",
+      "cik": "0001397187",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LITE",
+      "name": "Lumentum",
+      "cik": "0001633978",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LYB",
+      "name": "LyondellBasell",
+      "cik": "0001489393",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MTB",
+      "name": "M&T Bank",
+      "cik": "0000036270",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MPC",
+      "name": "Marathon Petroleum",
+      "cik": "0001510295",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MAR",
+      "name": "Marriott International",
+      "cik": "0001048286",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MRSH",
+      "name": "Marsh McLennan",
+      "cik": "0000062709",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MLM",
+      "name": "Martin Marietta Materials",
+      "cik": "0000916076",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell Technology",
+      "cik": "0001835632",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MAS",
+      "name": "Masco",
+      "cik": "0000062996",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MA",
+      "name": "Mastercard",
+      "cik": "0001141391",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MKC",
+      "name": "McCormick & Company",
+      "cik": "0000063754",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MCD",
+      "name": "McDonald's",
+      "cik": "0000063908",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MCK",
+      "name": "McKesson Corporation",
+      "cik": "0000927653",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MDT",
+      "name": "Medtronic",
+      "cik": "0001613103",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MRK",
+      "name": "Merck & Co.",
+      "cik": "0000310158",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "META",
+      "name": "Meta Platforms",
+      "cik": "0001326801",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MET",
+      "name": "MetLife",
+      "cik": "0001099219",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MTD",
+      "name": "Mettler Toledo",
+      "cik": "0001037646",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MGM",
+      "name": "MGM Resorts",
+      "cik": "0000789570",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MCHP",
+      "name": "Microchip Technology",
+      "cik": "0000827054",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology",
+      "cik": "0000723125",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "cik": "0000789019",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MAA",
+      "name": "Mid-America Apartment Communities",
+      "cik": "0000912595",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MRNA",
+      "name": "Moderna",
+      "cik": "0001682852",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TAP",
+      "name": "Molson Coors Beverage Company",
+      "cik": "0000024545",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MDLZ",
+      "name": "Mondelez International",
+      "cik": "0001103982",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MPWR",
+      "name": "Monolithic Power Systems",
+      "cik": "0001280452",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MNST",
+      "name": "Monster Beverage",
+      "cik": "0000865752",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MCO",
+      "name": "Moody's Corporation",
+      "cik": "0001059556",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MS",
+      "name": "Morgan Stanley",
+      "cik": "0000895421",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MOS",
+      "name": "Mosaic Company (The)",
+      "cik": "0001285785",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MSI",
+      "name": "Motorola Solutions",
+      "cik": "0000068505",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "MSCI",
+      "name": "MSCI",
+      "cik": "0001408198",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NDAQ",
+      "name": "Nasdaq, Inc.",
+      "cik": "0001120193",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NTAP",
+      "name": "NetApp",
+      "cik": "0001002047",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NFLX",
+      "name": "Netflix",
+      "cik": "0001065280",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NEM",
+      "name": "Newmont",
+      "cik": "0001164727",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NWSA",
+      "name": "News Corp (Class A)",
+      "cik": "0001564708",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NWS",
+      "name": "News Corp (Class B)",
+      "cik": "0001564708",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NEE",
+      "name": "NextEra Energy",
+      "cik": "0000753308",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NKE",
+      "name": "Nike, Inc.",
+      "cik": "0000320187",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NI",
+      "name": "NiSource",
+      "cik": "0001111711",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NDSN",
+      "name": "Nordson Corporation",
+      "cik": "0000072331",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NSC",
+      "name": "Norfolk Southern",
+      "cik": "0000702165",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NTRS",
+      "name": "Northern Trust",
+      "cik": "0000073124",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NOC",
+      "name": "Northrop Grumman",
+      "cik": "0001133421",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NCLH",
+      "name": "Norwegian Cruise Line Holdings",
+      "cik": "0001513761",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NRG",
+      "name": "NRG Energy",
+      "cik": "0001013871",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NUE",
+      "name": "Nucor",
+      "cik": "0000073309",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NVDA",
+      "name": "Nvidia",
+      "cik": "0001045810",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NVR",
+      "name": "NVR, Inc.",
+      "cik": "0000906163",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NXPI",
+      "name": "NXP Semiconductors",
+      "cik": "0001413447",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ORLY",
+      "name": "O'Reilly Automotive",
+      "cik": "0000898173",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "OXY",
+      "name": "Occidental Petroleum",
+      "cik": "0000797468",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ODFL",
+      "name": "Old Dominion",
+      "cik": "0000878927",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "OMC",
+      "name": "Omnicom Group",
+      "cik": "0000029989",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ON",
+      "name": "ON Semiconductor",
+      "cik": "0001097864",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "OKE",
+      "name": "Oneok",
+      "cik": "0001039684",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ORCL",
+      "name": "Oracle Corporation",
+      "cik": "0001341439",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "OTIS",
+      "name": "Otis Worldwide",
+      "cik": "0001781335",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PCAR",
+      "name": "Paccar",
+      "cik": "0000075362",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PKG",
+      "name": "Packaging Corporation of America",
+      "cik": "0000075677",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PLTR",
+      "name": "Palantir Technologies",
+      "cik": "0001321655",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PANW",
+      "name": "Palo Alto Networks",
+      "cik": "0001327567",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PSKY",
+      "name": "Paramount Skydance Corporation",
+      "cik": "0002041610",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PH",
+      "name": "Parker Hannifin",
+      "cik": "0000076334",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PAYX",
+      "name": "Paychex",
+      "cik": "0000723531",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PYPL",
+      "name": "PayPal",
+      "cik": "0001633917",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PNR",
+      "name": "Pentair",
+      "cik": "0000077360",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PEP",
+      "name": "PepsiCo",
+      "cik": "0000077476",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PFE",
+      "name": "Pfizer",
+      "cik": "0000078003",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PCG",
+      "name": "PG&E Corporation",
+      "cik": "0001004980",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PM",
+      "name": "Philip Morris International",
+      "cik": "0001413329",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PSX",
+      "name": "Phillips 66",
+      "cik": "0001534701",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PNW",
+      "name": "Pinnacle West Capital",
+      "cik": "0000764622",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PNC",
+      "name": "PNC Financial Services",
+      "cik": "0000713676",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PPG",
+      "name": "PPG Industries",
+      "cik": "0000079879",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PPL",
+      "name": "PPL Corporation",
+      "cik": "0000922224",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PFG",
+      "name": "Principal Financial Group",
+      "cik": "0001126328",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PG",
+      "name": "Procter & Gamble",
+      "cik": "0000080424",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PGR",
+      "name": "Progressive Corporation",
+      "cik": "0000080661",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PLD",
+      "name": "Prologis",
+      "cik": "0001045609",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PRU",
+      "name": "Prudential Financial",
+      "cik": "0001137774",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PEG",
+      "name": "Public Service Enterprise Group",
+      "cik": "0000788784",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PTC",
+      "name": "PTC Inc.",
+      "cik": "0000857005",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PSA",
+      "name": "Public Storage",
+      "cik": "0001393311",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PHM",
+      "name": "PulteGroup",
+      "cik": "0000822416",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "PWR",
+      "name": "Quanta Services",
+      "cik": "0001050915",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "QCOM",
+      "name": "Qualcomm",
+      "cik": "0000804328",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DGX",
+      "name": "Quest Diagnostics",
+      "cik": "0001022079",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "Q",
+      "name": "Qnity Electronics",
+      "cik": "0002058873",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "RL",
+      "name": "Ralph Lauren Corporation",
+      "cik": "0001037038",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "RJF",
+      "name": "Raymond James Financial",
+      "cik": "0000720005",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "RDDT",
+      "name": "Reddit",
+      "cik": "0001713445",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "RTX",
+      "name": "RTX Corporation",
+      "cik": "0000101829",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "O",
+      "name": "Realty Income",
+      "cik": "0000726728",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "REG",
+      "name": "Regency Centers",
+      "cik": "0000910606",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "REGN",
+      "name": "Regeneron Pharmaceuticals",
+      "cik": "0000872589",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "RF",
+      "name": "Regions Financial Corporation",
+      "cik": "0001281761",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "RSG",
+      "name": "Republic Services",
+      "cik": "0001060391",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "RMD",
+      "name": "ResMed|",
+      "cik": "0000943819",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "RVTY",
+      "name": "Revvity",
+      "cik": "0000031791",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "HOOD",
+      "name": "Robinhood Markets",
+      "cik": "0001783879",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ROK",
+      "name": "Rockwell Automation",
+      "cik": "0001024478",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ROL",
+      "name": "Rollins, Inc.",
+      "cik": "0000084839",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ROP",
+      "name": "Roper Technologies",
+      "cik": "0000882835",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ROST",
+      "name": "Ross Stores",
+      "cik": "0000745732",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "RCL",
+      "name": "Royal Caribbean Group",
+      "cik": "0000884887",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SPGI",
+      "name": "S&P Global",
+      "cik": "0000064040",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "CRM",
+      "name": "Salesforce",
+      "cik": "0001108524",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SNDK",
+      "name": "Sandisk",
+      "cik": "0002023554",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SBAC",
+      "name": "SBA Communications",
+      "cik": "0001034054",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SLB",
+      "name": "Schlumberger",
+      "cik": "0000087347",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "STX",
+      "name": "Seagate Technology",
+      "cik": "0001137789",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SRE",
+      "name": "Sempra",
+      "cik": "0001032208",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "NOW",
+      "name": "ServiceNow",
+      "cik": "0001373715",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SHW",
+      "name": "Sherwin-Williams",
+      "cik": "0000089800",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SPG",
+      "name": "Simon Property Group",
+      "cik": "0001063761",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SWKS",
+      "name": "Skyworks Solutions",
+      "cik": "0000004127",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SJM",
+      "name": "J.M. Smucker Company (The)",
+      "cik": "0000091419",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SW",
+      "name": "Smurfit Westrock",
+      "cik": "0002005951",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SNA",
+      "name": "Snap-on",
+      "cik": "0000091440",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SOLV",
+      "name": "Solventum",
+      "cik": "0001964738",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SO",
+      "name": "Southern Company",
+      "cik": "0000092122",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "LUV",
+      "name": "Southwest Airlines",
+      "cik": "0000092380",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SWK",
+      "name": "Stanley Black & Decker",
+      "cik": "0000093556",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SBUX",
+      "name": "Starbucks",
+      "cik": "0000829224",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "STT",
+      "name": "State Street Corporation",
+      "cik": "0000093751",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "STLD",
+      "name": "Steel Dynamics",
+      "cik": "0001022671",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "STE",
+      "name": "Steris",
+      "cik": "0001757898",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SYK",
+      "name": "Stryker Corporation",
+      "cik": "0000310764",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SMCI",
+      "name": "Supermicro",
+      "cik": "0001375365",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SYF",
+      "name": "Synchrony Financial",
+      "cik": "0001601712",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SNPS",
+      "name": "Synopsys",
+      "cik": "0000883241",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "SYY",
+      "name": "Sysco",
+      "cik": "0000096021",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TMUS",
+      "name": "T-Mobile US",
+      "cik": "0001283699",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TROW",
+      "name": "T. Rowe Price",
+      "cik": "0001113169",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TTWO",
+      "name": "Take-Two Interactive",
+      "cik": "0000946581",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TPR",
+      "name": "Tapestry, Inc.",
+      "cik": "0001116132",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TRGP",
+      "name": "Targa Resources",
+      "cik": "0001389170",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TGT",
+      "name": "Target Corporation",
+      "cik": "0000027419",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TEL",
+      "name": "TE Connectivity",
+      "cik": "0001385157",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TDY",
+      "name": "Teledyne Technologies",
+      "cik": "0001094285",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TER",
+      "name": "Teradyne",
+      "cik": "0000097210",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TSLA",
+      "name": "Tesla, Inc.",
+      "cik": "0001318605",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TXN",
+      "name": "Texas Instruments",
+      "cik": "0000097476",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TPL",
+      "name": "Texas Pacific Land Corporation",
+      "cik": "0001811074",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TXT",
+      "name": "Textron",
+      "cik": "0000217346",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TMO",
+      "name": "Thermo Fisher Scientific",
+      "cik": "0000097745",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TJX",
+      "name": "TJX Companies",
+      "cik": "0000109198",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TKO",
+      "name": "TKO Group Holdings",
+      "cik": "0001973266",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TTD",
+      "name": "Trade Desk (The)",
+      "cik": "0001671933",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TSCO",
+      "name": "Tractor Supply",
+      "cik": "0000916365",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TT",
+      "name": "Trane Technologies",
+      "cik": "0001466258",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TDG",
+      "name": "TransDigm Group",
+      "cik": "0001260221",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TRV",
+      "name": "Travelers Companies (The)",
+      "cik": "0000086312",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TRMB",
+      "name": "Trimble Inc.",
+      "cik": "0000864749",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TFC",
+      "name": "Truist Financial",
+      "cik": "0000092230",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TYL",
+      "name": "Tyler Technologies",
+      "cik": "0000860731",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TSN",
+      "name": "Tyson Foods",
+      "cik": "0000100493",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "USB",
+      "name": "U.S. Bancorp",
+      "cik": "0000036104",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "UBER",
+      "name": "Uber",
+      "cik": "0001543151",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "UDR",
+      "name": "UDR, Inc.",
+      "cik": "0000074208",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ULTA",
+      "name": "Ulta Beauty",
+      "cik": "0001403568",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "UNP",
+      "name": "Union Pacific Corporation",
+      "cik": "0000100885",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "UAL",
+      "name": "United Airlines Holdings",
+      "cik": "0000100517",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "UPS",
+      "name": "United Parcel Service",
+      "cik": "0001090727",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "URI",
+      "name": "United Rentals",
+      "cik": "0001067701",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "UNH",
+      "name": "UnitedHealth Group",
+      "cik": "0000731766",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "UHS",
+      "name": "Universal Health Services",
+      "cik": "0000352915",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VLO",
+      "name": "Valero Energy",
+      "cik": "0001035002",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VEEV",
+      "name": "Veeva Systems",
+      "cik": "0001393052",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VTR",
+      "name": "Ventas",
+      "cik": "0000740260",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VLTO",
+      "name": "Veralto",
+      "cik": "0001967680",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VRSN",
+      "name": "Verisign",
+      "cik": "0001014473",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VRSK",
+      "name": "Verisk Analytics",
+      "cik": "0001442145",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VZ",
+      "name": "Verizon",
+      "cik": "0000732712",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VRTX",
+      "name": "Vertex Pharmaceuticals",
+      "cik": "0000875320",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VRT",
+      "name": "Vertiv",
+      "cik": "0001674101",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VTRS",
+      "name": "Viatris",
+      "cik": "0001792044",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VICI",
+      "name": "Vici Properties",
+      "cik": "0001705696",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "V",
+      "name": "Visa Inc.",
+      "cik": "0001403161",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VST",
+      "name": "Vistra Corp.",
+      "cik": "0001692819",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VMRK",
+      "name": "Vivmark Residential",
+      "cik": "0000906107",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "VMC",
+      "name": "Vulcan Materials Company",
+      "cik": "0001396009",
+      "sector": "Materials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WRB",
+      "name": "W. R. Berkley Corporation",
+      "cik": "0000011544",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "GWW",
+      "name": "W. W. Grainger",
+      "cik": "0000277135",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WAB",
+      "name": "Wabtec",
+      "cik": "0000943452",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WMT",
+      "name": "Walmart",
+      "cik": "0000104169",
+      "sector": "Consumer Staples",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "DIS",
+      "name": "Walt Disney Company (The)",
+      "cik": "0001744489",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WBD",
+      "name": "Warner Bros. Discovery",
+      "cik": "0001437107",
+      "sector": "Communication Services",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WM",
+      "name": "Waste Management",
+      "cik": "0000823768",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WAT",
+      "name": "Waters Corporation",
+      "cik": "0001000697",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WEC",
+      "name": "WEC Energy Group",
+      "cik": "0000783325",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WFC",
+      "name": "Wells Fargo",
+      "cik": "0000072971",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WELL",
+      "name": "Welltower",
+      "cik": "0000766704",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WST",
+      "name": "West Pharmaceutical Services",
+      "cik": "0000105770",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WDC",
+      "name": "Western Digital",
+      "cik": "0000106040",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WY",
+      "name": "Weyerhaeuser",
+      "cik": "0000106535",
+      "sector": "Real Estate",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WSM",
+      "name": "Williams-Sonoma, Inc.",
+      "cik": "0000719955",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WMB",
+      "name": "Williams Companies",
+      "cik": "0000107263",
+      "sector": "Energy",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WTW",
+      "name": "Willis Towers Watson",
+      "cik": "0001140536",
+      "sector": "Financials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WDAY",
+      "name": "Workday, Inc.",
+      "cik": "0001327811",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "WYNN",
+      "name": "Wynn Resorts",
+      "cik": "0001174922",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "XEL",
+      "name": "Xcel Energy",
+      "cik": "0000072903",
+      "sector": "Utilities",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "XYL",
+      "name": "Xylem Inc.",
+      "cik": "0001524472",
+      "sector": "Industrials",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "YUM",
+      "name": "Yum! Brands",
+      "cik": "0001041061",
+      "sector": "Consumer Discretionary",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ZBRA",
+      "name": "Zebra Technologies",
+      "cik": "0000877212",
+      "sector": "Information Technology",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ZBH",
+      "name": "Zimmer Biomet",
+      "cik": "0001136869",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "ZTS",
+      "name": "Zoetis",
+      "cik": "0001555280",
+      "sector": "Health Care",
+      "universe": "sp500"
+    },
+    {
+      "ticker": "TSM",
+      "name": "TSMC",
+      "cik": "0001046179",
+      "sector": "Information Technology",
+      "universe": "additional"
+    }
+  ]
+}

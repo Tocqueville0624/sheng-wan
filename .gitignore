@@ -1,0 +1,39 @@
+.DS_Store
+.astro/
+.env
+.env.*
+!.env.example
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+coverage/
+dist/
+.lighthouseci/
+.cache/finance/
+node_modules/
+playwright-report/
+test-results/
+
+# Local source media. Only sanitized web derivatives are committed.
+/Photos/
+/Sheng_Main.PNG
+/Hugo_Main.jpg
+/Hugo1.HEIC
+/Hugo2.HEIC
+/Hugo3.HEIC
+/Hugo4.HEIC
+/Hugo5.HEIC
+/RenderCV_EngineeringResumes_Theme.zip
+/RenderCV_EngineeringResumes_Theme (1).pdf
+/sources/cv/
+
+# Local review history and owner-specific deployment handoff.
+/docs/reviews/
+/docs/agent/deployment.md
+/视觉参考.jpg
+/Olive Reference/
+/飞鸟1.jpg
+/飞鸟2.jpg
+/飞鸟3.jpg
+/飞鸟4.jpg

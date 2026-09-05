@@ -1,0 +1,237 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Picture from "@components/Picture.astro";
+import DoveMark from "@components/DoveMark.astro";
+import manifestData from "@/data/generated/media.json";
+import type { MediaManifest } from "@/types/media";
+
+const [profile] = await getCollection("hugo");
+if (!profile) throw new Error("Hugo profile is missing");
+const { Content } = await render(profile);
+const manifest = manifestData as MediaManifest;
+const [mainPhoto, ...storyPhotos] = manifest.hugo;
+if (!mainPhoto) throw new Error("Hugo media is missing");
+---
+
+<BaseLayout
+  title={profile.data.title}
+  description="Meet Hugo, the University of Washington Political Science mascot."
+>
+  <section class="hugo-hero shell">
+    <div>
+      <p class="eyebrow">{profile.data.subtitle}</p>
+      <h1 class="page-title">{profile.data.title}</h1>
+      <p class="lede">
+        A feline theorist of justice, civic virtue, and the constitutional importance of naps.
+      </p>
+      <a class="button button--secondary" href="/archive/hugo-uw-profile/">Historical UW Profile</a>
+    </div>
+    <Picture
+      image={mainPhoto}
+      class="hugo-main-photo"
+      sizes="(max-width: 840px) 92vw, 42vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </section>
+
+  <section class="hugo-story shell">
+    <article class="hugo-prose">
+      <Content />
+      <p class="source-note">
+        Originally written by Sheng Wan for the <a
+          href={profile.data.sourceUrl}
+          target="_blank"
+          rel="noopener">{profile.data.sourceLabel}</a
+        >.
+      </p>
+    </article>
+    <div class="hugo-photo-wall sky-surface" aria-label="Photographs of Hugo">
+      <div class="hugo-wall-birds" aria-hidden="true"><DoveMark /></div>
+      {
+        storyPhotos.map((image, index) => (
+          <figure class:list={["hugo-polaroid", `hugo-polaroid--${image.id}`]}>
+            <div class="hugo-photo-window">
+              <Picture
+                image={image}
+                sizes="(max-width: 480px) 75vw, (max-width: 840px) 40vw, 25vw"
+                loading={index < 2 ? "eager" : "lazy"}
+              />
+            </div>
+          </figure>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hugo-hero {
+    display: grid;
+    align-items: center;
+    gap: clamp(2rem, 6vw, 5rem);
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.8fr);
+    padding-block: clamp(2.5rem, 5vw, 4.5rem);
+  }
+  .hugo-hero .lede {
+    max-width: 38ch;
+    margin: 1.75rem 0;
+  }
+  :global(.hugo-main-photo) {
+    overflow: hidden;
+    border: 0.75rem solid #fffdf7;
+    border-bottom-width: 2.25rem;
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+  }
+  :global(.hugo-main-photo img) {
+    width: 100%;
+    height: auto;
+  }
+  .hugo-story {
+    display: grid;
+    align-items: start;
+    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: minmax(18rem, 0.7fr) minmax(0, 1fr);
+  }
+  .hugo-prose {
+    position: sticky;
+    top: 8rem;
+    color: var(--text);
+    font-size: 1.05rem;
+  }
+  .hugo-prose :global(p) {
+    margin: 0 0 1.5rem;
+    text-wrap: pretty;
+  }
+  .source-note {
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .hugo-photo-wall {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-items: start;
+    gap: 2rem 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 6.5rem clamp(1.25rem, 2.5vw, 2rem) 2.5rem;
+  }
+  .hugo-wall-birds {
+    --dove-width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0.8rem;
+    right: 1.25rem;
+    width: min(60%, 14rem);
+    pointer-events: none;
+  }
+  .hugo-polaroid {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    background: #fffdf7;
+    padding: clamp(0.5rem, 0.8vw, 0.75rem);
+    padding-bottom: clamp(1.6rem, 2.4vw, 2rem);
+    box-shadow:
+      0 3px 5px rgb(23 49 65 / 0.1),
+      0 9px 17px rgb(23 49 65 / 0.16);
+  }
+  .hugo-polaroid::before {
+    position: absolute;
+    z-index: 1;
+    top: 0.25rem;
+    left: calc(50% - 0.23rem);
+    width: 0.46rem;
+    height: 0.46rem;
+    border: 1px solid #40627a;
+    border-radius: 50%;
+    background: #638ca7;
+    box-shadow:
+      inset 1px 1px 0 rgb(255 255 255 / 0.6),
+      1px 2px 2px rgb(23 49 65 / 0.3);
+    content: "";
+  }
+  .hugo-photo-window {
+    overflow: hidden;
+  }
+  .hugo-photo-window :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .hugo-polaroid--hugo-close-portrait {
+    margin-top: 1.25rem;
+    rotate: -4deg;
+  }
+  .hugo-polaroid--hugo-backpack {
+    width: 91%;
+    justify-self: end;
+    rotate: 4deg;
+  }
+  .hugo-polaroid--hugo-window {
+    width: 91%;
+    justify-self: center;
+    rotate: 3deg;
+  }
+  .hugo-polaroid--hugo-lounging {
+    margin-top: 1.5rem;
+    rotate: -4deg;
+  }
+  .hugo-polaroid--hugo-cushions {
+    width: 66%;
+    grid-column: 1 / -1;
+    justify-self: center;
+    rotate: -3deg;
+  }
+  .hugo-polaroid--hugo-cushions .hugo-photo-window {
+    aspect-ratio: 1.38;
+  }
+  .hugo-polaroid--hugo-cushions :global(.responsive-picture) {
+    display: block;
+    height: 100%;
+  }
+  .hugo-polaroid--hugo-cushions :global(img) {
+    height: 100%;
+    object-fit: cover;
+    object-position: 61% 38%;
+    transform: scale(1.38);
+    transform-origin: 61% 38%;
+  }
+  @media (max-width: 840px) {
+    .hugo-hero,
+    .hugo-story {
+      grid-template-columns: 1fr;
+    }
+    .hugo-prose {
+      position: static;
+    }
+  }
+  @media (max-width: 480px) {
+    .hugo-photo-wall {
+      grid-template-columns: 1fr;
+      padding: 5.5rem 1.65rem 2.25rem;
+      gap: 1.8rem;
+    }
+    .hugo-polaroid {
+      width: 88%;
+      margin-top: 0;
+      grid-column: 1;
+    }
+    .hugo-polaroid--hugo-backpack,
+    .hugo-polaroid--hugo-window {
+      width: 73%;
+    }
+    .hugo-polaroid:nth-of-type(odd) {
+      justify-self: start;
+    }
+    .hugo-polaroid:nth-of-type(even) {
+      justify-self: end;
+    }
+  }
+</style>

@@ -1,0 +1,141 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/config/site";
+
+const [resume] = await getCollection("cv");
+if (!resume) throw new Error("CV content is missing");
+const cv = resume.data;
+---
+
+<BaseLayout title="Curriculum Vitae" description={`Curriculum vitae for ${site.name}.`}>
+  <header class="page-intro shell cv-header">
+    <div>
+      <p class="eyebrow">Curriculum Vitae</p>
+      <h1 class="page-title">Sheng Wan</h1>
+      <ul class="cv-contact">
+        <li>{site.office}</li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
+      </ul>
+    </div>
+    <a class="button button--primary" href="/downloads/sheng-wan-cv.pdf" download>Download PDF</a>
+  </header>
+
+  <div class="shell">
+    <section class="cv-section" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <ol class="cv-list">
+        {
+          cv.education.map((entry) => (
+            <li class="cv-entry">
+              <div>
+                <h3>{entry.title}</h3>
+                {entry.subtitle && <p class="entry-subtitle">{entry.subtitle}</p>}
+                {entry.details.length > 0 && (
+                  <ul class="entry-details">
+                    {entry.details.map((detail) => (
+                      <li>{detail}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <time>{entry.date}</time>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="cv-section" aria-labelledby="awards-heading">
+      <h2 id="awards-heading">Awards & Fellowships</h2>
+      <ol class="cv-list">
+        {
+          cv.awards.map((entry) => (
+            <li class="cv-entry">
+              <div>
+                <>
+                  <h3>{entry.title}</h3>
+                  <p class="entry-subtitle">{entry.subtitle}</p>
+                </>
+              </div>
+              <time>{entry.date}</time>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="cv-section" aria-labelledby="conferences-heading">
+      <h2 id="conferences-heading">Conference Presentations</h2>
+      <ol class="cv-list">
+        {
+          cv.conferences.map((entry) => (
+            <li class="cv-entry">
+              <div>
+                <>
+                  <h3>“{entry.title}”</h3>
+                  <p class="entry-subtitle">{entry.subtitle}</p>
+                </>
+              </div>
+              <time>{entry.date}</time>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="cv-section" aria-labelledby="teaching-heading">
+      <h2 id="teaching-heading">Teaching</h2>
+      <ol class="cv-list">
+        {
+          cv.teaching.map((course) => (
+            <li class="cv-entry">
+              <div>
+                <h3>
+                  {course.role}, {course.code}: {course.title}
+                </h3>
+                <p class="entry-subtitle">{course.institution}</p>
+              </div>
+              <time>{course.terms.join(", ")}</time>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="cv-section" aria-labelledby="papers-heading">
+      <h2 id="papers-heading">Papers in Progress</h2>
+      <ol class="cv-list">
+        {
+          cv.papers.map((paper) => (
+            <li>
+              <>
+                <h3>{paper.title}</h3>
+                <p>{paper.description}</p>
+              </>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="cv-section" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+      <ul class="cv-list">
+        {
+          cv.skills.map((skill) => (
+            <li>
+              <strong>{skill.label}:</strong> {skill.value}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="cv-section" aria-labelledby="memberships-heading">
+      <h2 id="memberships-heading">Memberships</h2>
+      <ul class="cv-list">{cv.memberships.map((membership) => <li>{membership}</li>)}</ul>
+    </section>
+  </div>
+</BaseLayout>

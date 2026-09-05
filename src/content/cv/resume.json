@@ -1,0 +1,104 @@
+{
+  "education": [
+    {
+      "date": "September 2024–present",
+      "title": "University of Washington",
+      "subtitle": "PhD in Political Science (in progress)",
+      "details": ["Subfields: Political Theory, Comparative Politics, Political Methodology"]
+    },
+    {
+      "date": "June 2026",
+      "title": "University of Washington",
+      "subtitle": "MA in Political Science",
+      "details": []
+    },
+    {
+      "date": "May 2024",
+      "title": "University of Virginia",
+      "subtitle": "BA in Politics (Foreign Affairs)",
+      "details": []
+    }
+  ],
+  "awards": [
+    {
+      "date": "June 2025",
+      "title": "Humane Studies Fellowship",
+      "subtitle": "Institute for Humane Studies (IHS)",
+      "details": []
+    }
+  ],
+  "conferences": [
+    {
+      "date": "April 2026",
+      "title": "Does Digital Feminism Provoke Population-Level Backlash? Evidence from Post-MeToo China",
+      "subtitle": "Midwest Political Science Association Conference",
+      "details": []
+    },
+    {
+      "date": "April 2026",
+      "title": "Limits and Promise of Standpoint Theory in Politics: Knowledge, Justice, and an Aristotelian Perspective",
+      "subtitle": "Western Political Science Association Annual Meeting",
+      "details": []
+    }
+  ],
+  "teaching": [
+    {
+      "code": "POL S 201",
+      "title": "Introduction to Political Theory",
+      "role": "Teaching Assistant",
+      "institution": "University of Washington",
+      "terms": ["Spring 2026", "Autumn 2024"],
+      "url": "https://www.washington.edu/students/crscat/polisci.html"
+    },
+    {
+      "code": "POL S 310",
+      "title": "The Western Tradition of Political Thought, Modern",
+      "role": "Teaching Assistant",
+      "institution": "University of Washington",
+      "terms": ["Winter 2026"],
+      "url": "https://www.washington.edu/students/crscat/polisci.html"
+    },
+    {
+      "code": "POL S 302",
+      "title": "Free Will, Nature, and Nurture in Politics and Society",
+      "role": "Teaching Assistant",
+      "institution": "University of Washington",
+      "terms": ["Autumn 2025"],
+      "url": "https://www.washington.edu/students/crscat/polisci.html"
+    },
+    {
+      "code": "POL S 313",
+      "title": "Gender and Politics",
+      "role": "Teaching Assistant",
+      "institution": "University of Washington",
+      "terms": ["Spring 2025"],
+      "url": "https://www.washington.edu/students/crscat/polisci.html"
+    },
+    {
+      "code": "POL S 331",
+      "title": "Government and Politics in the Middle East and North Africa",
+      "role": "Teaching Assistant",
+      "institution": "University of Washington",
+      "terms": ["Winter 2025"],
+      "url": "https://www.washington.edu/students/crscat/polisci.html"
+    }
+  ],
+  "papers": [
+    {
+      "title": "Does Digital Feminism Provoke Population-Level Backlash? Evidence from Post-MeToo China",
+      "description": "Explores the causal relationship between individuals’ exposure to online feminist discourse and their attitudes toward gender equality using a difference-in-differences strategy centered on the MeToo movement."
+    }
+  ],
+  "skills": [
+    {
+      "label": "Languages",
+      "value": "Chinese (native), English (proficient), Japanese (intermediate)"
+    },
+    { "label": "Statistical analysis", "value": "R and RStudio" },
+    {
+      "label": "Prompt engineering and LLM evaluations",
+      "value": "Experience across 10+ projects at Outlier AI and Handshake AI"
+    }
+  ],
+  "memberships": ["American Political Science Association"]
+}

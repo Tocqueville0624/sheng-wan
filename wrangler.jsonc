@@ -1,0 +1,51 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sheng-wan-preview",
+  "workers_dev": true,
+  "preview_urls": false,
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-09-01",
+  // Enable public mutations only after the actual edge SEC/alarm/free-tier check.
+  // .dev.vars enables the existing localhost preview independently.
+  "vars": { "FINANCE_PUBLIC_UPDATES": "disabled" },
+  "durable_objects": {
+    "bindings": [{ "name": "FINANCE_STORE", "class_name": "FinanceStore" }]
+  },
+  "migrations": [{ "tag": "finance-v2-sqlite", "new_sqlite_classes": ["FinanceStore"] }],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "env": {
+    "production": {
+      "name": "sheng-wan",
+      "workers_dev": false,
+      "preview_urls": false,
+      "routes": [
+        { "pattern": "shengwan.org", "custom_domain": true },
+        { "pattern": "www.shengwan.org", "custom_domain": true }
+      ],
+      "vars": {
+        "FINANCE_PUBLIC_UPDATES": "disabled",
+        "CANONICAL_ORIGIN": "https://shengwan.org"
+      },
+      "durable_objects": {
+        "bindings": [{ "name": "FINANCE_STORE", "class_name": "FinanceStore" }]
+      }
+    },
+    "staging": {
+      "name": "sheng-wan-staging",
+      "workers_dev": true,
+      "preview_urls": false,
+      "vars": { "FINANCE_PUBLIC_UPDATES": "disabled" },
+      "durable_objects": {
+        "bindings": [{ "name": "FINANCE_STORE", "class_name": "FinanceStore" }]
+      }
+    }
+  }
+}

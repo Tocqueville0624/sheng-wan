@@ -1,0 +1,2 @@
+# Local Wrangler preview only; public deployment stays disabled in wrangler.jsonc.
+FINANCE_PUBLIC_UPDATES=enabled

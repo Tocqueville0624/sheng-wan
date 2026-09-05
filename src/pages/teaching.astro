@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const [resume] = await getCollection("cv");
+if (!resume) throw new Error("CV content is missing");
+---
+
+<BaseLayout
+  title="Teaching"
+  description="Teaching experience of Sheng Wan at the University of Washington."
+>
+  <header class="page-intro shell">
+    <p class="eyebrow">Teaching</p>
+    <h1 class="page-title">Courses & classrooms.</h1>
+    <p class="lede">
+      Teaching assistantships in political theory, gender and politics, and comparative politics at
+      the University of Washington.
+    </p>
+  </header>
+  <section class="section-block shell teaching-grid" aria-label="Courses taught">
+    {
+      resume.data.teaching.map((course) => (
+        <a class="teaching-card card" href={course.url} target="_blank" rel="noopener">
+          <div>
+            <span class="course-code">{course.code}</span>
+            <h2>{course.title}</h2>
+            <p class="metadata">
+              {course.role} · {course.institution}
+            </p>
+          </div>
+          <p>
+            {course.terms.join(" · ")} <span aria-hidden="true">↗</span>
+          </p>
+        </a>
+      ))
+    }
+  </section>
+</BaseLayout>

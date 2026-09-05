@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const research = await getCollection("research");
+---
+
+<BaseLayout
+  title="Research"
+  description="Research by Sheng Wan on digital feminism, gender equality, and political theory."
+  pageClass="research-page"
+>
+  <header class="page-intro shell">
+    <h1 class="eyebrow">Research</h1>
+  </header>
+  <section class="section-block shell" aria-label="Working papers">
+    {
+      research.map((paper) => (
+        <article class="research-card card">
+          <div class="status-row">
+            <span class="tag">{paper.data.status}</span>
+            <span class="tag">{paper.data.venue}</span>
+          </div>
+          <h2>{paper.data.title}</h2>
+          {paper.data.abstract && <p class="lede">{paper.data.abstract}</p>}
+          {paper.data.keywords.length > 0 && (
+            <div class="status-row" aria-label="Keywords">
+              {paper.data.keywords.map((keyword) => (
+                <span class="tag">{keyword}</span>
+              ))}
+            </div>
+          )}
+          {paper.data.paperUrl && (
+            <a class="button button--secondary" href={paper.data.paperUrl}>
+              Read paper
+            </a>
+          )}
+        </article>
+      ))
+    }
+  </section>
+</BaseLayout>
