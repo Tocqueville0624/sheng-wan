@@ -82,6 +82,28 @@ afterEach(() => {
 });
 
 describe("persistent public finance queue", () => {
+  it("restores a verified business breakdown hidden by a complete older basic-only history", async () => {
+    const { store, storage } = await create();
+    const identity = catalogIdentity("AMZN")!;
+    const full = structuredClone(bundledCompany(identity)!);
+    const prior = structuredClone(full);
+    for (const period of [...prior.annual, ...prior.quarterly]) {
+      delete period.segments;
+      delete period.segmentSourceUrl;
+      delete period.segmentBasis;
+      delete period.revenueAdjustments;
+      period.coverage.segments = false;
+      period.coverage.sankey = false;
+    }
+    await storage.put(`company:${identity.cik}`, prior);
+    const fetcher = vi.fn();
+    vi.stubGlobal("fetch", fetcher);
+    const result = (await read(store, "/companies/AMZN")) as { company: CompanyV2 };
+    expect(result.company.annual).toEqual(full.annual);
+    expect(result.company.quarterly).toEqual(full.quarterly);
+    expect(fetcher).not.toHaveBeenCalled();
+    expect(await storage.get(`company:${identity.cik}`)).toEqual(prior);
+  });
   it("keeps newly verified business margins visible over a full older stored history without crawling", async () => {
     const { store, storage } = await create();
     const identity = catalogIdentity("MSFT")!;
