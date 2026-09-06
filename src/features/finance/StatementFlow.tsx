@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import type { CompanyDataset, FinancialPeriod } from "./types";
 import {
   buildStatementFlow,
+  businessGrossMargin,
   layoutStatementFlow,
   percent,
   shortMoney,
@@ -37,7 +38,7 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
     main || node.group === "revenue-base"
       ? node.y - 83
       : source
-        ? node.y + node.height / 2 - (lines.length * lineHeight + 21) / 2
+        ? node.y + node.height / 2 - (lines.length * lineHeight + (node.business ? 49 : 21)) / 2
         : upperInput
           ? node.y - (lines.length * lineHeight + 49)
           : detail
@@ -51,9 +52,9 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
                   : node.y - 43 - (lines.length - 1) * lineHeight;
   // Leave room for the taller Arial fallback metrics used by Linux/Android.
   const valueY = titleY + lines.length * lineHeight + (main ? 12 : 4);
-  const marginY = valueY + (main ? 23 : 21);
+  const marginY = valueY + (main || node.business ? 23 : 21);
   return (
-    <g>
+    <g data-flow-node={node.id}>
       <text
         x={x}
         y={titleY}
@@ -78,12 +79,23 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
       >
         {shortMoney(node.amount)}
       </text>
-      <text x={x} y={marginY} textAnchor={textAnchor} fill={colors.muted} fontSize={13}>
+      <text
+        x={x}
+        y={marginY}
+        textAnchor={textAnchor}
+        fill={colors.muted}
+        fontSize={node.business ? 17 : 13}
+      >
         {node.amount > 0 && node.amount / revenue < 0.001
           ? "<0.1%"
           : percent(node.amount / revenue)}
         {node.tone === "profit" && main ? " margin" : " of revenue"}
       </text>
+      {node.business && (
+        <text x={x} y={marginY + 23} textAnchor={textAnchor} fill={colors.muted} fontSize={17}>
+          Gross margin: {businessGrossMargin(node.business)}
+        </text>
+      )}
     </g>
   );
 }
@@ -140,8 +152,10 @@ export function StatementFlow({
     );
   }
   const layout = layoutStatementFlow(result.graph);
-  const graph = { ...layout, height: layout.height + (period.fx ? 48 : 0) };
-  const footerTop = graph.height - (period.fx ? 126 : 78);
+  const hasBusinesses = layout.nodes.some((node) => node.business);
+  const businessNoteHeight = hasBusinesses ? 24 : 0;
+  const graph = { ...layout, height: layout.height + (period.fx ? 48 : 0) + businessNoteHeight };
+  const footerTop = graph.height - (period.fx ? 126 : 78) - businessNoteHeight;
   const hasSegments = graph.nodes.some((node) => node.group === "segment");
   const hasExpenseDetail = graph.nodes.some((node) => node.group === "detail");
   const sourceUrl = period.sourceUrl;
@@ -268,13 +282,19 @@ export function StatementFlow({
           <text x={50} y={footerTop + 50} fill={colors.muted} fontSize={12}>
             {sourceUrl}
           </text>
+          {hasBusinesses && (
+            <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={14}>
+              Business gross margin = gross profit ÷ business revenue. — = unavailable for this
+              category and period; never estimated.
+            </text>
+          )}
           {period.fx && (
             <g fill={colors.muted} fontSize={12}>
-              <text x={50} y={footerTop + 74}>
+              <text x={50} y={footerTop + 74 + businessNoteHeight}>
                 Original currency: TWD. Converted at {period.fx.rate.toFixed(4)} TWD/USD, Federal
                 Reserve H.10 period average ({period.fx.startDate}–{period.fx.endDate}).
               </text>
-              <text x={50} y={footerTop + 96}>
+              <text x={50} y={footerTop + 96 + businessNoteHeight}>
                 {period.fx.sourceUrl}
               </text>
             </g>
@@ -302,6 +322,8 @@ export function StatementFlow({
                 <th scope="col">Line item</th>
                 <th scope="col">Amount (USD)</th>
                 <th scope="col">Share of revenue</th>
+                {hasBusinesses && <th scope="col">Business gross profit (USD)</th>}
+                {hasBusinesses && <th scope="col">Business gross margin</th>}
               </tr>
             </thead>
             <tbody>
@@ -313,16 +335,54 @@ export function StatementFlow({
                   </th>
                   <td>${node.amount.toLocaleString("en-US", { maximumFractionDigits: 2 })}</td>
                   <td>{percent(node.amount / period.metrics.revenue)}</td>
+                  {hasBusinesses && (
+                    <td>
+                      {node.business?.grossProfit !== undefined
+                        ? `$${node.business.grossProfit.toLocaleString("en-US", { maximumFractionDigits: 2 })}`
+                        : node.business
+                          ? "Unavailable"
+                          : "Not applicable"}
+                    </td>
+                  )}
+                  {hasBusinesses && (
+                    <td>{node.business ? businessGrossMargin(node.business) : "Not applicable"}</td>
+                  )}
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        {graph.nodes.some((node) => node.business?.grossProfitSource) && (
+          <div className="business-margin-sources">
+            <h3>Business gross margin sources</h3>
+            {graph.nodes.flatMap((node) => {
+              const source = node.business?.grossProfitSource;
+              if (!source) return [];
+              return [
+                <p className="chart-note" key={node.id}>
+                  <strong>{node.label}.</strong>{" "}
+                  {source.method === "reported"
+                    ? "Reported gross profit"
+                    : "Reported cost of revenue"}
+                  : {source.reportingCurrency}{" "}
+                  {source.value.toLocaleString("en-US", { maximumFractionDigits: 2 })}.{" "}
+                  <code>{source.tag}</code>. {source.startDate}–{source.endDate}.{" "}
+                  <a href={source.sourceUrl} target="_blank" rel="noreferrer">
+                    Source filing
+                  </a>
+                  .
+                </p>
+              ];
+            })}
+          </div>
+        )}
         <p className="chart-note">
           Revenue = cost of revenue + gross profit. Gross profit = operating expenses + operating
           profit. Pretax profit = operating profit + net non-operating items. Pretax profit minus
           income tax plus separately reported after-tax equity-method income equals net profit.
           Business revenue plus separately reported revenue adjustments equals consolidated revenue.{" "}
+          {hasBusinesses &&
+            "Business gross margin divides the category’s reported gross profit, or revenue minus its reported cost of revenue, by that category’s revenue. — means unavailable for this category and period; no allocation is estimated. "}
           <a href={sourceUrl} target="_blank" rel="noreferrer">
             Original filing
           </a>

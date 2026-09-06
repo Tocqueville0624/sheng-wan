@@ -6,7 +6,7 @@ import type {
   FinancialPeriod,
   RevenueSegment
 } from "../../src/features/finance/types";
-import { validatePeriod } from "./validate";
+import { roundingTolerance, validatePeriod, validateSegmentGrossProfits } from "./validate";
 
 type XmlNode = Record<string, unknown>;
 export type XbrlContext = {
@@ -278,6 +278,112 @@ function categories(facts: XbrlFact[], rules: SegmentRule[]) {
   return result;
 }
 
+type SegmentPeriod = Pick<
+  FinancialPeriod,
+  | "id"
+  | "segments"
+  | "revenueAdjustments"
+  | "segmentSourceUrl"
+  | "sourceUrl"
+  | "accession"
+  | "filedAt"
+  | "startDate"
+  | "endDate"
+  | "reportingCurrency"
+  | "fx"
+> & { displayCurrency: string };
+
+/** Supplement a statement only with gross profit from its own exact revenue category. */
+export function enrichSegmentGrossProfits<T extends SegmentPeriod>(
+  period: T,
+  parsed: ParsedFiling,
+  adapter: FilingAdapter,
+  sourceUrl: string
+): T {
+  if (!period.segments?.length) return period;
+  const ruleSets = [
+    adapter.segments,
+    ...(adapter.segmentAlternatives ?? []).map((a) => a.segments)
+  ];
+  const rules = ruleSets.find(
+    (set) =>
+      set.length === period.segments!.length &&
+      set.every((rule) => period.segments!.some((s) => s.id === rule.id))
+  );
+  if (!rules?.some((rule) => rule.grossProfitTags?.length || rule.costOfRevenueTags?.length))
+    return period;
+  if (sourceUrl !== period.segmentSourceUrl || sourceUrl !== period.sourceUrl)
+    throw new Error(`${period.id}: gross profit must come from the business revenue filing.`);
+  const url = new URL(sourceUrl);
+  const archive = url.pathname.match(/^\/Archives\/edgar\/data\/(\d+)\/(\d{18})\//);
+  if (url.protocol !== "https:" || url.hostname !== "www.sec.gov" || !archive)
+    throw new Error(`${period.id}: business gross profit requires an SEC filing source.`);
+  const rawAccession = archive[2];
+  const accession = `${rawAccession.slice(0, 10)}-${rawAccession.slice(10, 12)}-${rawAccession.slice(12)}`;
+  const rate = period.reportingCurrency === period.displayCurrency ? 1 : period.fx?.rate;
+  if (!rate || !Number.isFinite(rate) || rate <= 0)
+    throw new Error(`${period.id}: business gross profit requires the statement's FX rate.`);
+  const facts = parsed.facts.filter(
+    (fact) =>
+      Number(fact.context.cik) === Number(archive[1]) &&
+      fact.context.start === period.startDate &&
+      fact.context.end === period.endDate &&
+      fact.currency === period.reportingCurrency
+  );
+  const segments = period.segments.map((segment) => {
+    const rule = rules.find((candidate) => candidate.id === segment.id)!;
+    if (!rule.grossProfitTags?.length && !rule.costOfRevenueTags?.length) return segment;
+    const revenueRules = [rule, ...(rule.alternatives ?? [])];
+    const matches = revenueRules.flatMap((candidate) => {
+      const value = exactValue(facts, [candidate.tag], candidate.dimensions);
+      return value === undefined ? [] : [{ ...candidate, value }];
+    });
+    if (!matches.length) return segment;
+    if (new Set(matches.map((match) => match.value)).size > 1)
+      throw new Error(`${period.id}: conflicting business revenue aliases for ${segment.id}.`);
+    const revenue = matches[0];
+    if (Math.abs(revenue.value / rate - segment.revenue) > roundingTolerance(segment.revenue))
+      throw new Error(`${period.id}: business gross profit revenue mismatch for ${segment.id}.`);
+    const get = (tags: string[] | undefined) => {
+      for (const tag of tags ?? []) {
+        const value = exactValue(facts, [tag], revenue.dimensions);
+        if (value !== undefined) return { tag, value };
+      }
+      return undefined;
+    };
+    const reported = get(rule.grossProfitTags);
+    const cost = get(rule.costOfRevenueTags);
+    if (!reported && !cost) return segment;
+    if (
+      reported &&
+      cost &&
+      Math.abs(revenue.value - cost.value - reported.value) > roundingTolerance(revenue.value)
+    )
+      throw new Error(`${period.id}: conflicting business gross profit for ${segment.id}.`);
+    const source = reported ?? cost!;
+    return {
+      ...segment,
+      grossProfit: (reported ? reported.value : revenue.value - cost!.value) / rate,
+      grossProfitSource: {
+        sourceUrl,
+        accession,
+        filedAt: period.filedAt,
+        startDate: period.startDate,
+        endDate: period.endDate,
+        reportingCurrency: period.reportingCurrency,
+        method: reported ? ("reported" as const) : ("revenue-minus-cost" as const),
+        revenueTag: revenue.tag,
+        tag: source.tag,
+        dimensions: { ...revenue.dimensions },
+        value: source.value
+      }
+    };
+  });
+  const enriched = { ...period, segments };
+  validateSegmentGrossProfits(enriched);
+  return enriched;
+}
+
 export function extractInlinePeriods(
   parsed: ParsedFiling,
   company: CompanyConfig,
@@ -390,8 +496,9 @@ export function extractInlinePeriods(
       segmentSourceUrl: sourceUrl,
       segmentBasis
     };
-    validatePeriod(period);
-    periods.push(period);
+    const enriched = enrichSegmentGrossProfits(period, parsed, adapter, sourceUrl);
+    validatePeriod(enriched);
+    periods.push(enriched);
   }
   return periods.sort((a, b) => a.endDate.localeCompare(b.endDate));
 }

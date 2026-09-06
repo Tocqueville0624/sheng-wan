@@ -15,10 +15,27 @@ export type FinancialMetrics = {
   equityMethodIncome?: number;
 };
 
+export type SegmentGrossProfitSource = {
+  sourceUrl: string;
+  accession?: string;
+  filedAt: string;
+  startDate: string;
+  endDate: string;
+  reportingCurrency: string;
+  method: "reported" | "revenue-minus-cost";
+  revenueTag: string;
+  tag: string;
+  dimensions: Record<string, string>;
+  /** The original reported gross profit or cost, before any display-currency conversion. */
+  value: number;
+};
+
 export type RevenueSegment = {
   id: string;
   label: string;
   revenue: number;
+  grossProfit?: number;
+  grossProfitSource?: SegmentGrossProfitSource;
 };
 
 export type FinancialPeriod = {

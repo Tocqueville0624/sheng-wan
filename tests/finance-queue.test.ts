@@ -82,6 +82,29 @@ afterEach(() => {
 });
 
 describe("persistent public finance queue", () => {
+  it("keeps newly verified business margins visible over a full older stored history without crawling", async () => {
+    const { store, storage } = await create();
+    const identity = catalogIdentity("MSFT")!;
+    const full = structuredClone(bundledCompany(identity)!);
+    expect(full.annual.at(-1)!.segments!.some((segment) => segment.grossProfit !== undefined)).toBe(
+      true
+    );
+    const prior = structuredClone(full);
+    for (const period of [...prior.annual, ...prior.quarterly]) {
+      for (const segment of period.segments ?? []) {
+        delete segment.grossProfit;
+        delete segment.grossProfitSource;
+      }
+    }
+    await storage.put(`company:${identity.cik}`, prior);
+    const fetcher = vi.fn();
+    vi.stubGlobal("fetch", fetcher);
+    const result = (await read(store, "/companies/MSFT")) as { company: CompanyV2 };
+    expect(result.company.annual).toEqual(full.annual);
+    expect(result.company.quarterly).toEqual(full.quarterly);
+    expect(fetcher).not.toHaveBeenCalled();
+    expect(await storage.get(`company:${identity.cik}`)).toEqual(prior);
+  });
   it("keeps a deployed historical backfill visible over an older short stored snapshot without crawling", async () => {
     const { store, storage } = await create();
     const identity = catalogIdentity("MSFT")!;

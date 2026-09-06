@@ -5,7 +5,7 @@ import type {
   FinancialPeriod
 } from "../../src/features/finance/types";
 import type { CompanyV2, PeriodV2, MetricSource } from "../../src/features/finance/v2-types";
-import { validatePeriod, roundingTolerance } from "./validate";
+import { validatePeriod, validateSegmentGrossProfits, roundingTolerance } from "./validate";
 
 export function statementPeriod(period: PeriodV2): FinancialPeriod | undefined {
   if (period.displayCurrency !== "USD") return;
@@ -131,6 +131,7 @@ export function validateV2(company: CompanyV2) {
           throw new Error("Metric source does not match the SEC issuer.");
       }
       const m = p.metrics;
+      validateSegmentGrossProfits(p);
       const adjustments = p.grossProfitAdjustments ?? [];
       if (
         adjustments.some(
@@ -198,6 +199,25 @@ export function mergeV2(previous: CompanyV2 | undefined, incoming: CompanyV2): C
         Object.keys(old.metrics).length > Object.keys(p.metrics).length
       )
         continue;
+      if (old && sameStatementExceptSegmentGrossProfit(old, p)) {
+        // A legacy same-filing response may omit optional gross-profit fields.
+        // Retain only the missing source/value pairs; never splice across filings
+        // or across a changed category, currency, amount, or statement metric.
+        byDates.set(key, {
+          ...p,
+          segments: p.segments?.map((segment) => {
+            const prior = old.segments?.find((candidate) => candidate.id === segment.id);
+            return segment.grossProfit === undefined && prior?.grossProfit !== undefined
+              ? {
+                  ...segment,
+                  grossProfit: prior.grossProfit,
+                  grossProfitSource: prior.grossProfitSource
+                }
+              : segment;
+          })
+        });
+        continue;
+      }
       byDates.set(key, p);
     }
     merged[kind] = [...byDates.values()]
@@ -209,4 +229,26 @@ export function mergeV2(previous: CompanyV2 | undefined, incoming: CompanyV2): C
     .at(-1)!.label;
   validateV2(merged);
   return merged;
+}
+
+function sameStatementExceptSegmentGrossProfit(a: PeriodV2, b: PeriodV2) {
+  const stable = (value: unknown): string => {
+    if (Array.isArray(value)) return `[${value.map(stable).join(",")}]`;
+    if (value && typeof value === "object")
+      return `{${Object.entries(value)
+        .filter(([, child]) => child !== undefined)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([key, child]) => `${JSON.stringify(key)}:${stable(child)}`)
+        .join(",")}}`;
+    return JSON.stringify(value);
+  };
+  const withoutGrossProfit = (period: PeriodV2) => ({
+    ...period,
+    segments: period.segments?.map((segment) => ({
+      id: segment.id,
+      label: segment.label,
+      revenue: segment.revenue
+    }))
+  });
+  return stable(withoutGrossProfit(a)) === stable(withoutGrossProfit(b));
 }

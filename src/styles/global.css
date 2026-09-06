@@ -641,6 +641,18 @@ select {
   padding-block: clamp(1.5rem, 3vw, 2.5rem);
 }
 
+.teaching-page .page-intro {
+  padding-bottom: 0.5rem;
+}
+
+.teaching-page .page-intro .eyebrow {
+  margin-bottom: 0;
+}
+
+.teaching-page .teaching-grid {
+  padding-top: 1rem;
+}
+
 .research-page .page-intro {
   padding-block: clamp(1.75rem, 3vw, 2.5rem) clamp(0.5rem, 1vw, 0.75rem);
 }
