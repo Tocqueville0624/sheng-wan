@@ -201,7 +201,11 @@ export function convertPeriodToUsd(
     metrics: Object.fromEntries(
       Object.entries(period.metrics).map(([key, value]) => [key, divide(value)])
     ) as FinancialMetrics,
-    segments: period.segments?.map((segment) => ({ ...segment, revenue: segment.revenue / rate })),
+    segments: period.segments?.map((segment) => ({
+      ...segment,
+      revenue: segment.revenue / rate,
+      ...(segment.grossProfit === undefined ? {} : { grossProfit: segment.grossProfit / rate })
+    })),
     revenueAdjustments: period.revenueAdjustments?.map((adjustment) => ({
       ...adjustment,
       revenue: adjustment.revenue / rate

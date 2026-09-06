@@ -42,7 +42,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.8";
+const ENGINE_VERSION = "finance-v2.9";
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -98,17 +98,32 @@ export class FinanceStore {
     if (!saved) return baseline;
     if (
       baseline &&
-      ["annual", "quarterly"].some((kind) =>
-        baseline[kind as "annual" | "quarterly"].some(
-          (p) =>
-            !saved[kind as "annual" | "quarterly"].some(
-              (old) => old.startDate === p.startDate && old.endDate === p.endDate
-            )
-        )
+      (["annual", "quarterly"] as const).some((kind) =>
+        baseline[kind].some((p) => {
+          const old = saved[kind].find(
+            (candidate) => candidate.startDate === p.startDate && candidate.endDate === p.endDate
+          );
+          return (
+            !old ||
+            (p.sourceUrl === old.sourceUrl &&
+              p.filedAt === old.filedAt &&
+              p.segments?.some(
+                (segment) =>
+                  segment.grossProfit !== undefined &&
+                  old.segments?.some(
+                    (prior) =>
+                      prior.id === segment.id &&
+                      prior.revenue === segment.revenue &&
+                      prior.grossProfit === undefined
+                  )
+              ))
+          );
+        })
       )
     ) {
       // A previously saved short history must not hide a newer deployment's
-      // validated backfill. Merge coherent periods without making source calls.
+      // validated history or source-backed business margins. Merge coherent
+      // periods without making source calls or changing the stored snapshot.
       const merged = mergeV2(baseline, { ...saved, ticker: identity.ticker });
       merged.version = await periodVersion(merged);
       merged.updatedAt = [baseline.updatedAt, saved.updatedAt].sort().at(-1)!;

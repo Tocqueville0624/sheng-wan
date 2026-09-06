@@ -12,6 +12,7 @@ export type FlowNode = {
   id: string;
   label: string;
   amount: number;
+  business?: RevenueSegment;
   tone: FlowTone;
   group:
     | "segment"
@@ -150,7 +151,9 @@ export function buildStatementFlow(period: FinancialPeriod): FlowResult {
     tone: FlowTone,
     group: FlowNode["group"]
   ) => {
-    nodes.push({ id, label, amount, tone, group });
+    const entry: FlowNode = { id, label, amount, tone, group };
+    nodes.push(entry);
+    return entry;
   };
   const link = (source: string, target: string, value: number, tone: FlowTone) => {
     if (value > 0) links.push({ source, target, value, tone });
@@ -161,7 +164,8 @@ export function buildStatementFlow(period: FinancialPeriod): FlowResult {
   const entryNode = negativeAdjustments.length ? "revenue-base" : "revenue";
   if (!segmentProblem(period)) {
     period.segments!.forEach((segment) => {
-      node(`segment-${segment.id}`, segment.label, segment.revenue, "revenue", "segment");
+      node(`segment-${segment.id}`, segment.label, segment.revenue, "revenue", "segment").business =
+        segment;
       link(`segment-${segment.id}`, entryNode, segment.revenue, "revenue");
     });
   }
@@ -352,7 +356,7 @@ export function layoutStatementFlow(graph: StatementFlow) {
       x = mainX[node.id];
       y = mainY[node.id];
     } else if (node.group === "segment") {
-      x = 185;
+      x = 230;
       y = 0; // Filled after the actual downstream extent is known.
     } else if (node.group === "cost") {
       x = mainX.gross;
@@ -388,7 +392,7 @@ export function layoutStatementFlow(graph: StatementFlow) {
   });
   const sources = nodes.filter((node) => node.group === "segment");
   const sourceRows = sources.map((node) =>
-    Math.max(node.height, wrapLabel(node.label, 17).length * 20 + 50)
+    Math.max(node.height, wrapLabel(node.label, 17).length * 20 + (node.business ? 78 : 50))
   );
   const naturalSourceHeight = sourceRows.reduce((sum, height) => sum + height, 0);
   const details = nodes.filter((node) => node.group === "detail");
@@ -474,6 +478,22 @@ export function shortMoney(value: number) {
 
 export function percent(value: number) {
   return `${(value * 100).toFixed(1)}%`;
+}
+
+export function businessGrossMargin(segment: RevenueSegment) {
+  if (
+    segment.grossProfit === undefined ||
+    !segment.grossProfitSource ||
+    !Number.isFinite(segment.grossProfit) ||
+    !Number.isFinite(segment.revenue) ||
+    segment.revenue <= 0
+  )
+    return "—";
+  const ratio = segment.grossProfit / segment.revenue;
+  if (!Number.isFinite(ratio)) return "—";
+  if (ratio > 0 && ratio < 0.001) return "<0.1%";
+  if (ratio < 0 && ratio > -0.001) return ">−0.1%";
+  return percent(ratio).replace("-", "−");
 }
 
 export function wrapLabel(label: string, maxLength = 22) {

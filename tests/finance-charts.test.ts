@@ -4,6 +4,7 @@ import type { FinanceManifest, FinancialPeriod } from "../src/features/finance/t
 import {
   buildRevenueHistory,
   buildStatementFlow,
+  businessGrossMargin,
   layoutStatementFlow,
   segmentProblem,
   accountingTolerance,
@@ -32,6 +33,46 @@ const fixture = (changes: Partial<FinancialPeriod["metrics"]> = {}): FinancialPe
     sellingGeneralAndAdministrative: 7,
     ...changes
   }
+});
+
+it("distinguishes unavailable, zero, tiny and negative business gross margins", () => {
+  const business = {
+    id: "services",
+    label: "Services",
+    revenue: 100,
+    grossProfitSource: {
+      sourceUrl: base.sourceUrl,
+      filedAt: base.filedAt,
+      startDate: base.startDate,
+      endDate: base.endDate,
+      reportingCurrency: "USD",
+      method: "reported" as const,
+      revenueTag: "us-gaap:Revenues",
+      tag: "us-gaap:GrossProfit",
+      dimensions: { "srt:ProductOrServiceAxis": "us-gaap:ServiceMember" },
+      value: 0
+    }
+  };
+  expect(businessGrossMargin(business)).toBe("—");
+  expect(businessGrossMargin({ ...business, grossProfit: 0 })).toBe("0.0%");
+  expect(businessGrossMargin({ ...business, grossProfit: 0.01 })).toBe("<0.1%");
+  expect(businessGrossMargin({ ...business, grossProfit: -0.01 })).toBe(">−0.1%");
+  expect(businessGrossMargin({ ...business, grossProfit: -125 })).toBe("−125.0%");
+  expect(businessGrossMargin({ ...business, grossProfit: 75.4 })).toBe("75.4%");
+  expect(businessGrossMargin({ ...business, revenue: 0, grossProfit: -5 })).toBe("—");
+  expect(businessGrossMargin({ ...business, grossProfit: NaN })).toBe("—");
+  expect(businessGrossMargin({ ...business, grossProfit: 50, grossProfitSource: undefined })).toBe(
+    "—"
+  );
+  const period = fixture();
+  period.segments![1] = { ...business, revenue: 29 };
+  period.revenueAdjustments = [{ id: "hedging", label: "Hedging gain", revenue: 1 }];
+  const result = buildStatementFlow(period);
+  if (!result.ok) throw new Error(result.reason);
+  expect(result.graph.nodes.find((node) => node.id === "segment-services")?.business).toBeDefined();
+  expect(
+    result.graph.nodes.find((node) => node.id === "adjustment-hedging")?.business
+  ).toBeUndefined();
 });
 
 function expectConserved(graph: StatementFlow, revenue: number) {
@@ -250,7 +291,9 @@ describe("income statement Sankey", () => {
     const layout = layoutStatementFlow(result.graph);
     const stages = layout.nodes.filter((node) => node.group === "main");
     expect(new Set(stages.map((node) => node.y)).size).toBe(5);
-    expect(layout.nodes.find((node) => node.group === "segment")!.x).toBeLessThan(200);
+    expect(layout.nodes.find((node) => node.group === "segment")!.x).toBeLessThan(
+      Math.min(...stages.map((node) => node.x)) - 80
+    );
     expect(layout.links.every((link) => link.path.includes(" C "))).toBe(true);
   });
 

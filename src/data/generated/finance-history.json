@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "capturedAt": "2026-09-05T23:31:32.309Z",
+  "capturedAt": "2026-09-06T02:08:42.475Z",
   "companies": [
     {
       "schemaVersion": 2,
@@ -11,8 +11,8 @@
       "reportingCurrency": "USD",
       "latestPeriod": "Q3 FY2026",
       "dataStatus": "verified",
-      "version": "78e551eb2b4766dcefd0",
-      "updatedAt": "2026-09-05T22:10:26.170Z",
+      "version": "6f05fad165579aa87b63",
+      "updatedAt": "2026-09-06T02:08:42.475Z",
       "annual": [
         {
           "id": "FY2016",
@@ -175,7 +175,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 32700000000
+              "revenue": 32700000000,
+              "grossProfit": 17989000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019319000119/a10-k20199282019.htm",
+                "accession": "0000320193-19-000119",
+                "filedAt": "2019-10-31",
+                "startDate": "2016-09-25",
+                "endDate": "2017-09-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 14711000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019319000119/a10-k20199282019.htm",
@@ -317,7 +333,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 39748000000
+              "revenue": 39748000000,
+              "grossProfit": 24156000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019320000096/aapl-20200926.htm",
+                "accession": "0000320193-20-000096",
+                "filedAt": "2020-10-30",
+                "startDate": "2017-10-01",
+                "endDate": "2018-09-29",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 15592000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019320000096/aapl-20200926.htm",
@@ -459,7 +491,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 46291000000
+              "revenue": 46291000000,
+              "grossProfit": 29505000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
+                "accession": "0000320193-21-000105",
+                "filedAt": "2021-10-29",
+                "startDate": "2018-09-30",
+                "endDate": "2019-09-28",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 16786000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm",
@@ -601,7 +649,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 53768000000
+              "revenue": 53768000000,
+              "grossProfit": 35495000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
+                "accession": "0000320193-22-000108",
+                "filedAt": "2022-10-28",
+                "startDate": "2019-09-29",
+                "endDate": "2020-09-26",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 18273000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm",
@@ -743,7 +807,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 68425000000
+              "revenue": 68425000000,
+              "grossProfit": 47710000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+                "accession": "0000320193-23-000106",
+                "filedAt": "2023-11-03",
+                "startDate": "2020-09-27",
+                "endDate": "2021-09-25",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 20715000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
@@ -885,7 +965,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 78129000000
+              "revenue": 78129000000,
+              "grossProfit": 56054000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+                "accession": "0000320193-24-000123",
+                "filedAt": "2024-11-01",
+                "startDate": "2021-09-26",
+                "endDate": "2022-09-24",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 22075000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
@@ -1027,7 +1123,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 85200000000
+              "revenue": 85200000000,
+              "grossProfit": 60345000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+                "accession": "0000320193-25-000079",
+                "filedAt": "2025-10-31",
+                "startDate": "2022-09-25",
+                "endDate": "2023-09-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 24855000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
@@ -1169,7 +1281,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 96169000000
+              "revenue": 96169000000,
+              "grossProfit": 71050000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+                "accession": "0000320193-25-000079",
+                "filedAt": "2025-10-31",
+                "startDate": "2023-10-01",
+                "endDate": "2024-09-28",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 25119000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
@@ -1311,7 +1439,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 109158000000
+              "revenue": 109158000000,
+              "grossProfit": 82314000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+                "accession": "0000320193-25-000079",
+                "filedAt": "2025-10-31",
+                "startDate": "2024-09-29",
+                "endDate": "2025-09-27",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 26844000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
@@ -1456,7 +1600,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 13156000000
+              "revenue": 13156000000,
+              "grossProfit": 8844000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000065/aapl-20210626.htm",
+                "accession": "0000320193-21-000065",
+                "filedAt": "2021-07-28",
+                "startDate": "2020-03-29",
+                "endDate": "2020-06-27",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 4312000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000065/aapl-20210626.htm",
@@ -1663,7 +1823,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 15761000000
+              "revenue": 15761000000,
+              "grossProfit": 10780000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000007/aapl-20211225.htm",
+                "accession": "0000320193-22-000007",
+                "filedAt": "2022-01-28",
+                "startDate": "2020-09-27",
+                "endDate": "2020-12-26",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 4981000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000007/aapl-20211225.htm",
@@ -1806,7 +1982,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 16901000000
+              "revenue": 16901000000,
+              "grossProfit": 11843000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000059/aapl-20220326.htm",
+                "accession": "0000320193-22-000059",
+                "filedAt": "2022-04-29",
+                "startDate": "2020-12-27",
+                "endDate": "2021-03-27",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 5058000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000059/aapl-20220326.htm",
@@ -1949,7 +2141,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 17486000000
+              "revenue": 17486000000,
+              "grossProfit": 12206000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000070/aapl-20220625.htm",
+                "accession": "0000320193-22-000070",
+                "filedAt": "2022-07-29",
+                "startDate": "2021-03-28",
+                "endDate": "2021-06-26",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 5280000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000070/aapl-20220625.htm",
@@ -2092,7 +2300,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 19516000000
+              "revenue": 19516000000,
+              "grossProfit": 14123000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000006/aapl-20221231.htm",
+                "accession": "0000320193-23-000006",
+                "filedAt": "2023-02-03",
+                "startDate": "2021-09-26",
+                "endDate": "2021-12-25",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 5393000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000006/aapl-20221231.htm",
@@ -2235,7 +2459,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 19821000000
+              "revenue": 19821000000,
+              "grossProfit": 14392000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000064/aapl-20230401.htm",
+                "accession": "0000320193-23-000064",
+                "filedAt": "2023-05-05",
+                "startDate": "2021-12-26",
+                "endDate": "2022-03-26",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 5429000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000064/aapl-20230401.htm",
@@ -2378,7 +2618,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 19604000000
+              "revenue": 19604000000,
+              "grossProfit": 14015000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000077/aapl-20230701.htm",
+                "accession": "0000320193-23-000077",
+                "filedAt": "2023-08-04",
+                "startDate": "2022-03-27",
+                "endDate": "2022-06-25",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 5589000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000077/aapl-20230701.htm",
@@ -2521,7 +2777,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 20766000000
+              "revenue": 20766000000,
+              "grossProfit": 14709000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000006/aapl-20231230.htm",
+                "accession": "0000320193-24-000006",
+                "filedAt": "2024-02-02",
+                "startDate": "2022-09-25",
+                "endDate": "2022-12-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 6057000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000006/aapl-20231230.htm",
@@ -2664,7 +2936,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 20907000000
+              "revenue": 20907000000,
+              "grossProfit": 14842000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000069/aapl-20240330.htm",
+                "accession": "0000320193-24-000069",
+                "filedAt": "2024-05-03",
+                "startDate": "2023-01-01",
+                "endDate": "2023-04-01",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 6065000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000069/aapl-20240330.htm",
@@ -2807,7 +3095,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 21213000000
+              "revenue": 21213000000,
+              "grossProfit": 14965000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000081/aapl-20240629.htm",
+                "accession": "0000320193-24-000081",
+                "filedAt": "2024-08-02",
+                "startDate": "2023-04-02",
+                "endDate": "2023-07-01",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 6248000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000081/aapl-20240629.htm",
@@ -2950,7 +3254,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 23117000000
+              "revenue": 23117000000,
+              "grossProfit": 16837000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000008/aapl-20241228.htm",
+                "accession": "0000320193-25-000008",
+                "filedAt": "2025-01-31",
+                "startDate": "2023-10-01",
+                "endDate": "2023-12-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 6280000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000008/aapl-20241228.htm",
@@ -3093,7 +3413,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 23867000000
+              "revenue": 23867000000,
+              "grossProfit": 17809000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000057/aapl-20250329.htm",
+                "accession": "0000320193-25-000057",
+                "filedAt": "2025-05-02",
+                "startDate": "2023-12-31",
+                "endDate": "2024-03-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 6058000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000057/aapl-20250329.htm",
@@ -3236,7 +3572,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 24213000000
+              "revenue": 24213000000,
+              "grossProfit": 17917000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000073/aapl-20250628.htm",
+                "accession": "0000320193-25-000073",
+                "filedAt": "2025-08-01",
+                "startDate": "2024-03-31",
+                "endDate": "2024-06-29",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 6296000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000073/aapl-20250628.htm",
@@ -3379,7 +3731,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 26340000000
+              "revenue": 26340000000,
+              "grossProfit": 19762000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm",
+                "accession": "0000320193-26-000006",
+                "filedAt": "2026-01-30",
+                "startDate": "2024-09-29",
+                "endDate": "2024-12-28",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 6578000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm",
@@ -3522,7 +3890,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 26645000000
+              "revenue": 26645000000,
+              "grossProfit": 20183000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm",
+                "accession": "0000320193-26-000013",
+                "filedAt": "2026-05-01",
+                "startDate": "2024-12-29",
+                "endDate": "2025-03-29",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 6462000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm",
@@ -3665,7 +4049,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 27423000000
+              "revenue": 27423000000,
+              "grossProfit": 20725000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+                "accession": "0000320193-26-000020",
+                "filedAt": "2026-07-31",
+                "startDate": "2025-03-30",
+                "endDate": "2025-06-28",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 6698000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
@@ -3808,7 +4208,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 30013000000
+              "revenue": 30013000000,
+              "grossProfit": 22966000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm",
+                "accession": "0000320193-26-000006",
+                "filedAt": "2026-01-30",
+                "startDate": "2025-09-28",
+                "endDate": "2025-12-27",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 7047000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm",
@@ -3951,7 +4367,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 30976000000
+              "revenue": 30976000000,
+              "grossProfit": 23752000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm",
+                "accession": "0000320193-26-000013",
+                "filedAt": "2026-05-01",
+                "startDate": "2025-12-28",
+                "endDate": "2026-03-28",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 7224000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm",
@@ -4094,7 +4526,23 @@
             {
               "id": "services",
               "label": "Services",
-              "revenue": 30739000000
+              "revenue": 30739000000,
+              "grossProfit": 23245000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+                "accession": "0000320193-26-000020",
+                "filedAt": "2026-07-31",
+                "startDate": "2026-03-29",
+                "endDate": "2026-06-27",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+                },
+                "value": 7494000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
@@ -4205,8 +4653,8 @@
       "reportingCurrency": "USD",
       "latestPeriod": "FY 2026",
       "dataStatus": "verified",
-      "version": "4ddfb6ca7636c1e63be0",
-      "updatedAt": "2026-09-05T23:13:29.617Z",
+      "version": "c6bcc16cbb89da3535d0",
+      "updatedAt": "2026-09-06T02:08:42.475Z",
       "annual": [
         {
           "id": "FY2017",
@@ -4958,17 +5406,65 @@
             {
               "id": "productivity",
               "label": "Productivity & Business Processes",
-              "revenue": 94151000000
+              "revenue": 94151000000,
+              "grossProfit": 76949000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+                "accession": "0000950170-25-100235",
+                "filedAt": "2025-07-30",
+                "startDate": "2022-07-01",
+                "endDate": "2023-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:ProductivityAndBusinessProcessesMember"
+                },
+                "value": 17202000000
+              }
             },
             {
               "id": "intelligent-cloud",
               "label": "Intelligent Cloud",
-              "revenue": 72944000000
+              "revenue": 72944000000,
+              "grossProfit": 48835000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+                "accession": "0000950170-25-100235",
+                "filedAt": "2025-07-30",
+                "startDate": "2022-07-01",
+                "endDate": "2023-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:IntelligentCloudMember"
+                },
+                "value": 24109000000
+              }
             },
             {
               "id": "personal-computing",
               "label": "More Personal Computing",
-              "revenue": 44820000000
+              "revenue": 44820000000,
+              "grossProfit": 20268000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+                "accession": "0000950170-25-100235",
+                "filedAt": "2025-07-30",
+                "startDate": "2022-07-01",
+                "endDate": "2023-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:MorePersonalComputingMember"
+                },
+                "value": 24552000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
@@ -5081,17 +5577,65 @@
             {
               "id": "productivity",
               "label": "Productivity & Business Processes",
-              "revenue": 106820000000
+              "revenue": 106820000000,
+              "grossProfit": 87209000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+                "accession": "0001193125-26-323660",
+                "filedAt": "2026-07-29",
+                "startDate": "2023-07-01",
+                "endDate": "2024-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:ProductivityAndBusinessProcessesMember"
+                },
+                "value": 19611000000
+              }
             },
             {
               "id": "intelligent-cloud",
               "label": "Intelligent Cloud",
-              "revenue": 87464000000
+              "revenue": 87464000000,
+              "grossProfit": 57853000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+                "accession": "0001193125-26-323660",
+                "filedAt": "2026-07-29",
+                "startDate": "2023-07-01",
+                "endDate": "2024-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:IntelligentCloudMember"
+                },
+                "value": 29611000000
+              }
             },
             {
               "id": "personal-computing",
               "label": "More Personal Computing",
-              "revenue": 50838000000
+              "revenue": 50838000000,
+              "grossProfit": 25946000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+                "accession": "0001193125-26-323660",
+                "filedAt": "2026-07-29",
+                "startDate": "2023-07-01",
+                "endDate": "2024-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:MorePersonalComputingMember"
+                },
+                "value": 24892000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
@@ -5204,17 +5748,65 @@
             {
               "id": "productivity",
               "label": "Productivity & Business Processes",
-              "revenue": 120810000000
+              "revenue": 120810000000,
+              "grossProfit": 98388000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+                "accession": "0001193125-26-323660",
+                "filedAt": "2026-07-29",
+                "startDate": "2024-07-01",
+                "endDate": "2025-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:ProductivityAndBusinessProcessesMember"
+                },
+                "value": 22422000000
+              }
             },
             {
               "id": "intelligent-cloud",
               "label": "Intelligent Cloud",
-              "revenue": 106265000000
+              "revenue": 106265000000,
+              "grossProfit": 66094000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+                "accession": "0001193125-26-323660",
+                "filedAt": "2026-07-29",
+                "startDate": "2024-07-01",
+                "endDate": "2025-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:IntelligentCloudMember"
+                },
+                "value": 40171000000
+              }
             },
             {
               "id": "personal-computing",
               "label": "More Personal Computing",
-              "revenue": 54649000000
+              "revenue": 54649000000,
+              "grossProfit": 29411000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+                "accession": "0001193125-26-323660",
+                "filedAt": "2026-07-29",
+                "startDate": "2024-07-01",
+                "endDate": "2025-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:MorePersonalComputingMember"
+                },
+                "value": 25238000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
@@ -5327,17 +5919,65 @@
             {
               "id": "productivity",
               "label": "Productivity & Business Processes",
-              "revenue": 139996000000
+              "revenue": 139996000000,
+              "grossProfit": 114979000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+                "accession": "0001193125-26-323660",
+                "filedAt": "2026-07-29",
+                "startDate": "2025-07-01",
+                "endDate": "2026-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:ProductivityAndBusinessProcessesMember"
+                },
+                "value": 25017000000
+              }
             },
             {
               "id": "intelligent-cloud",
               "label": "Intelligent Cloud",
-              "revenue": 137791000000
+              "revenue": 137791000000,
+              "grossProfit": 79915000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+                "accession": "0001193125-26-323660",
+                "filedAt": "2026-07-29",
+                "startDate": "2025-07-01",
+                "endDate": "2026-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:IntelligentCloudMember"
+                },
+                "value": 57876000000
+              }
             },
             {
               "id": "personal-computing",
               "label": "More Personal Computing",
-              "revenue": 54052000000
+              "revenue": 54052000000,
+              "grossProfit": 30571000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+                "accession": "0001193125-26-323660",
+                "filedAt": "2026-07-29",
+                "startDate": "2025-07-01",
+                "endDate": "2026-06-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:MorePersonalComputingMember"
+                },
+                "value": 23481000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
@@ -7151,17 +7791,65 @@
             {
               "id": "productivity",
               "label": "Productivity & Business Processes",
-              "revenue": 28317000000
+              "revenue": 28317000000,
+              "grossProfit": 23023000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+                "accession": "0001193125-25-256321",
+                "filedAt": "2025-10-29",
+                "startDate": "2024-07-01",
+                "endDate": "2024-09-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:ProductivityAndBusinessProcessesMember"
+                },
+                "value": 5294000000
+              }
             },
             {
               "id": "intelligent-cloud",
               "label": "Intelligent Cloud",
-              "revenue": 24092000000
+              "revenue": 24092000000,
+              "grossProfit": 15478000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+                "accession": "0001193125-25-256321",
+                "filedAt": "2025-10-29",
+                "startDate": "2024-07-01",
+                "endDate": "2024-09-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:IntelligentCloudMember"
+                },
+                "value": 8614000000
+              }
             },
             {
               "id": "personal-computing",
               "label": "More Personal Computing",
-              "revenue": 13176000000
+              "revenue": 13176000000,
+              "grossProfit": 6985000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+                "accession": "0001193125-25-256321",
+                "filedAt": "2025-10-29",
+                "startDate": "2024-07-01",
+                "endDate": "2024-09-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:MorePersonalComputingMember"
+                },
+                "value": 6191000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
@@ -7275,17 +7963,65 @@
             {
               "id": "productivity",
               "label": "Productivity & Business Processes",
-              "revenue": 29437000000
+              "revenue": 29437000000,
+              "grossProfit": 23868000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+                "accession": "0001193125-26-027207",
+                "filedAt": "2026-01-28",
+                "startDate": "2024-10-01",
+                "endDate": "2024-12-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:ProductivityAndBusinessProcessesMember"
+                },
+                "value": 5569000000
+              }
             },
             {
               "id": "intelligent-cloud",
               "label": "Intelligent Cloud",
-              "revenue": 25544000000
+              "revenue": 25544000000,
+              "grossProfit": 16139000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+                "accession": "0001193125-26-027207",
+                "filedAt": "2026-01-28",
+                "startDate": "2024-10-01",
+                "endDate": "2024-12-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:IntelligentCloudMember"
+                },
+                "value": 9405000000
+              }
             },
             {
               "id": "personal-computing",
               "label": "More Personal Computing",
-              "revenue": 14651000000
+              "revenue": 14651000000,
+              "grossProfit": 7826000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+                "accession": "0001193125-26-027207",
+                "filedAt": "2026-01-28",
+                "startDate": "2024-10-01",
+                "endDate": "2024-12-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:MorePersonalComputingMember"
+                },
+                "value": 6825000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
@@ -7399,17 +8135,65 @@
             {
               "id": "productivity",
               "label": "Productivity & Business Processes",
-              "revenue": 29944000000
+              "revenue": 29944000000,
+              "grossProfit": 24427000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+                "accession": "0001193125-26-191507",
+                "filedAt": "2026-04-29",
+                "startDate": "2025-01-01",
+                "endDate": "2025-03-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:ProductivityAndBusinessProcessesMember"
+                },
+                "value": 5517000000
+              }
             },
             {
               "id": "intelligent-cloud",
               "label": "Intelligent Cloud",
-              "revenue": 26751000000
+              "revenue": 26751000000,
+              "grossProfit": 16444000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+                "accession": "0001193125-26-191507",
+                "filedAt": "2026-04-29",
+                "startDate": "2025-01-01",
+                "endDate": "2025-03-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:IntelligentCloudMember"
+                },
+                "value": 10307000000
+              }
             },
             {
               "id": "personal-computing",
               "label": "More Personal Computing",
-              "revenue": 13371000000
+              "revenue": 13371000000,
+              "grossProfit": 7276000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+                "accession": "0001193125-26-191507",
+                "filedAt": "2026-04-29",
+                "startDate": "2025-01-01",
+                "endDate": "2025-03-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:MorePersonalComputingMember"
+                },
+                "value": 6095000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
@@ -7523,17 +8307,65 @@
             {
               "id": "productivity",
               "label": "Productivity & Business Processes",
-              "revenue": 33020000000
+              "revenue": 33020000000,
+              "grossProfit": 27299000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+                "accession": "0001193125-25-256321",
+                "filedAt": "2025-10-29",
+                "startDate": "2025-07-01",
+                "endDate": "2025-09-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:ProductivityAndBusinessProcessesMember"
+                },
+                "value": 5721000000
+              }
             },
             {
               "id": "intelligent-cloud",
               "label": "Intelligent Cloud",
-              "revenue": 30897000000
+              "revenue": 30897000000,
+              "grossProfit": 18583000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+                "accession": "0001193125-25-256321",
+                "filedAt": "2025-10-29",
+                "startDate": "2025-07-01",
+                "endDate": "2025-09-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:IntelligentCloudMember"
+                },
+                "value": 12314000000
+              }
             },
             {
               "id": "personal-computing",
               "label": "More Personal Computing",
-              "revenue": 13756000000
+              "revenue": 13756000000,
+              "grossProfit": 7748000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
+                "accession": "0001193125-25-256321",
+                "filedAt": "2025-10-29",
+                "startDate": "2025-07-01",
+                "endDate": "2025-09-30",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:MorePersonalComputingMember"
+                },
+                "value": 6008000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/msft-20250930.htm",
@@ -7647,17 +8479,65 @@
             {
               "id": "productivity",
               "label": "Productivity & Business Processes",
-              "revenue": 34116000000
+              "revenue": 34116000000,
+              "grossProfit": 28006000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+                "accession": "0001193125-26-027207",
+                "filedAt": "2026-01-28",
+                "startDate": "2025-10-01",
+                "endDate": "2025-12-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:ProductivityAndBusinessProcessesMember"
+                },
+                "value": 6110000000
+              }
             },
             {
               "id": "intelligent-cloud",
               "label": "Intelligent Cloud",
-              "revenue": 32907000000
+              "revenue": 32907000000,
+              "grossProfit": 19341000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+                "accession": "0001193125-26-027207",
+                "filedAt": "2026-01-28",
+                "startDate": "2025-10-01",
+                "endDate": "2025-12-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:IntelligentCloudMember"
+                },
+                "value": 13566000000
+              }
             },
             {
               "id": "personal-computing",
               "label": "More Personal Computing",
-              "revenue": 14250000000
+              "revenue": 14250000000,
+              "grossProfit": 7948000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
+                "accession": "0001193125-26-027207",
+                "filedAt": "2026-01-28",
+                "startDate": "2025-10-01",
+                "endDate": "2025-12-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:MorePersonalComputingMember"
+                },
+                "value": 6302000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm",
@@ -7771,17 +8651,65 @@
             {
               "id": "productivity",
               "label": "Productivity & Business Processes",
-              "revenue": 35013000000
+              "revenue": 35013000000,
+              "grossProfit": 28816000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+                "accession": "0001193125-26-191507",
+                "filedAt": "2026-04-29",
+                "startDate": "2026-01-01",
+                "endDate": "2026-03-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:ProductivityAndBusinessProcessesMember"
+                },
+                "value": 6197000000
+              }
             },
             {
               "id": "intelligent-cloud",
               "label": "Intelligent Cloud",
-              "revenue": 34681000000
+              "revenue": 34681000000,
+              "grossProfit": 19561000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+                "accession": "0001193125-26-191507",
+                "filedAt": "2026-04-29",
+                "startDate": "2026-01-01",
+                "endDate": "2026-03-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:IntelligentCloudMember"
+                },
+                "value": 15120000000
+              }
             },
             {
               "id": "personal-computing",
               "label": "More Personal Computing",
-              "revenue": 13192000000
+              "revenue": 13192000000,
+              "grossProfit": 7681000000,
+              "grossProfitSource": {
+                "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",
+                "accession": "0001193125-26-191507",
+                "filedAt": "2026-04-29",
+                "startDate": "2026-01-01",
+                "endDate": "2026-03-31",
+                "reportingCurrency": "USD",
+                "method": "revenue-minus-cost",
+                "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                "tag": "us-gaap:CostOfGoodsAndServicesSold",
+                "dimensions": {
+                  "us-gaap:StatementBusinessSegmentsAxis": "msft:MorePersonalComputingMember"
+                },
+                "value": 5511000000
+              }
             }
           ],
           "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm",

@@ -26,7 +26,92 @@ export function isReconciled(metrics: FinancialMetrics, grossAdjustment = 0) {
   );
 }
 
+export function validateSegmentGrossProfits(
+  period: Pick<
+    FinancialPeriod,
+    | "id"
+    | "segments"
+    | "revenueAdjustments"
+    | "sourceUrl"
+    | "segmentSourceUrl"
+    | "accession"
+    | "filedAt"
+    | "startDate"
+    | "endDate"
+    | "reportingCurrency"
+    | "fx"
+  > & { displayCurrency: string }
+) {
+  if (
+    period.revenueAdjustments?.some(
+      (item) => item.grossProfit !== undefined || item.grossProfitSource !== undefined
+    )
+  )
+    throw new Error(`${period.id}: revenue adjustments are not businesses with gross margins.`);
+  const qname = /^[A-Za-z_][\w.-]*:[A-Za-z_][\w.-]*$/;
+  for (const segment of period.segments ?? []) {
+    if (segment.grossProfit === undefined && segment.grossProfitSource === undefined) continue;
+    const source = segment.grossProfitSource;
+    if (
+      !Number.isFinite(segment.grossProfit) ||
+      !source ||
+      source.sourceUrl !== period.sourceUrl ||
+      source.sourceUrl !== period.segmentSourceUrl ||
+      source.filedAt !== period.filedAt ||
+      source.startDate !== period.startDate ||
+      source.endDate !== period.endDate ||
+      source.reportingCurrency !== period.reportingCurrency ||
+      !/^[A-Z]{3}$/.test(source.reportingCurrency) ||
+      !["reported", "revenue-minus-cost"].includes(source.method) ||
+      !qname.test(source.revenueTag) ||
+      !Number.isFinite(source.value) ||
+      !source.dimensions ||
+      typeof source.dimensions !== "object" ||
+      Array.isArray(source.dimensions) ||
+      !Object.keys(source.dimensions).length ||
+      Object.entries(source.dimensions).some(
+        ([axis, member]) => !qname.test(axis) || !qname.test(member)
+      )
+    )
+      throw new Error(`${period.id}: invalid business gross profit or provenance.`);
+    const url = new URL(source.sourceUrl);
+    const rawAccession = url.pathname.match(/^\/Archives\/edgar\/data\/\d+\/(\d{18})\//)?.[1];
+    if (
+      url.protocol !== "https:" ||
+      url.hostname !== "www.sec.gov" ||
+      url.username ||
+      url.password ||
+      !rawAccession ||
+      (source.accession && source.accession.replaceAll("-", "") !== rawAccession) ||
+      (period.accession && source.accession !== period.accession)
+    )
+      throw new Error(`${period.id}: business gross profit source does not match its filing.`);
+    const tags =
+      source.method === "reported"
+        ? ["us-gaap:GrossProfit", "ifrs-full:GrossProfit"]
+        : [
+            "us-gaap:CostOfRevenue",
+            "us-gaap:CostOfGoodsAndServicesSold",
+            "us-gaap:CostOfSales",
+            "ifrs-full:CostOfSales"
+          ];
+    if (!tags.includes(source.tag) || (source.method === "revenue-minus-cost" && source.value < 0))
+      throw new Error(`${period.id}: unsupported business gross profit concept.`);
+    const rate = period.reportingCurrency === period.displayCurrency ? 1 : period.fx?.rate;
+    if (!rate || !Number.isFinite(rate) || rate <= 0)
+      throw new Error(`${period.id}: business gross profit is missing its currency conversion.`);
+    const expected =
+      source.method === "reported" ? source.value / rate : segment.revenue - source.value / rate;
+    if (
+      Math.abs(segment.grossProfit! - expected) > roundingTolerance(segment.revenue) ||
+      segment.grossProfit! - segment.revenue > roundingTolerance(segment.revenue)
+    )
+      throw new Error(`${period.id}: business gross profit does not reconcile with its source.`);
+  }
+}
+
 export function validatePeriod(period: FinancialPeriod) {
+  validateSegmentGrossProfits(period);
   const adjustments = period.grossProfitAdjustments ?? [];
   if (
     adjustments.some(

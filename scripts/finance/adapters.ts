@@ -9,6 +9,9 @@ export type SegmentRule = DimensionRule & {
   id: string;
   label: string;
   alternatives?: DimensionRule[];
+  /** These concepts must use the exact same dimension set as this category's revenue. */
+  grossProfitTags?: string[];
+  costOfRevenueTags?: string[];
 };
 
 export type FilingAdapter = {
@@ -68,7 +71,9 @@ export const filingAdapters: Record<string, FilingAdapter> = {
         id: "services",
         label: "Services",
         tag: contractRevenue,
-        dimensions: { [productAxis]: "us-gaap:ServiceMember" }
+        dimensions: { [productAxis]: "us-gaap:ServiceMember" },
+        grossProfitTags: ["us-gaap:GrossProfit"],
+        costOfRevenueTags: ["us-gaap:CostOfGoodsAndServicesSold"]
       }
     ]
   },
@@ -84,19 +89,25 @@ export const filingAdapters: Record<string, FilingAdapter> = {
         id: "productivity",
         label: "Productivity & Business Processes",
         tag: contractRevenue,
-        dimensions: { [businessAxis]: "msft:ProductivityAndBusinessProcessesMember" }
+        dimensions: { [businessAxis]: "msft:ProductivityAndBusinessProcessesMember" },
+        grossProfitTags: ["us-gaap:GrossProfit"],
+        costOfRevenueTags: ["us-gaap:CostOfGoodsAndServicesSold"]
       },
       {
         id: "intelligent-cloud",
         label: "Intelligent Cloud",
         tag: contractRevenue,
-        dimensions: { [businessAxis]: "msft:IntelligentCloudMember" }
+        dimensions: { [businessAxis]: "msft:IntelligentCloudMember" },
+        grossProfitTags: ["us-gaap:GrossProfit"],
+        costOfRevenueTags: ["us-gaap:CostOfGoodsAndServicesSold"]
       },
       {
         id: "personal-computing",
         label: "More Personal Computing",
         tag: contractRevenue,
-        dimensions: { [businessAxis]: "msft:MorePersonalComputingMember" }
+        dimensions: { [businessAxis]: "msft:MorePersonalComputingMember" },
+        grossProfitTags: ["us-gaap:GrossProfit"],
+        costOfRevenueTags: ["us-gaap:CostOfGoodsAndServicesSold"]
       }
     ]
   },
