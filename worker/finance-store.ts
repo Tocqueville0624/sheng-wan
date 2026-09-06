@@ -105,6 +105,7 @@ export class FinanceStore {
           );
           return (
             !old ||
+            (p.coverage.segments && !old.coverage.segments) ||
             (p.sourceUrl === old.sourceUrl &&
               p.filedAt === old.filedAt &&
               p.segments?.some(
