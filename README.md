@@ -1,6 +1,6 @@
 # Sheng Wan — Academic Website
 
-An English-language academic website and public coding portfolio for Sheng Wan, a PhD student in Political Science at the University of Washington. The site combines fast static academic pages with three carefully scoped Playground projects.
+Hi there, thank you so much for stopping by. This is a home for my academic work and a few projects I have wanted to try, and I am very excited that coding agents in Codex can help me realize the content and front-end design that I have in mind within a few hours. I hope you enjoy exploring the website, and of course, the cute pictures of Hugo!
 
 ## Stack
 
