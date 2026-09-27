@@ -23,7 +23,9 @@ export const navigation = [
 ] as const;
 
 export const playgroundNavigation = [
-  { href: "/playground/thales-olive", label: "Thales’ Olive" },
+  { href: "/playground/thales-olive", label: "Thales' Olive - Earnings Report Reader" },
+  { href: "/playground/product-search-quality", label: "Product Search Quality" },
+  { href: "/playground/amelia-torch", label: "Amelia - GPU Multiple Imputation" },
   { href: "/playground/hugo-le-chatssius", label: "Hugo, Le Chatssius" },
   { href: "/playground/photo-gallery", label: "Photo Gallery" }
 ] as const;

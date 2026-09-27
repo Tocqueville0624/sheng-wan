@@ -1,0 +1,224 @@
+---
+const masks = [
+  [false, true, false, true],
+  [false, true, false, true],
+  [false, true, false, true],
+  [false, false, true, true],
+  [false, false, true, true],
+  [false, false, true, true]
+];
+---
+
+<figure class="project-figure amelia-mechanism">
+  <div class="mechanism-steps">
+    <div class="mechanism-step">
+      <span class="mechanism-number">1</span>
+      <h3>Group the missingness</h3>
+      <div class="missingness-grid" aria-hidden="true">
+        {
+          masks.map((row, index) => (
+            <div class:list={["missingness-row", { "pattern-break": index === 3 }]}>
+              {row.map((missing) => (
+                <span class:list={{ missing }} />
+              ))}
+            </div>
+          ))
+        }
+      </div>
+      <p>Rows with the same missing variables share a conditional covariance calculation.</p>
+      <p class="mechanism-legend">
+        <span aria-hidden="true"></span> Observed <span class="missing-key" aria-hidden="true"
+        ></span> Missing
+      </p>
+    </div>
+    <div class="mechanism-step mechanism-compute">
+      <span class="mechanism-number">2</span>
+      <h3>Compute with matrices</h3>
+      <div class="matrix-operations">
+        <p><span>E-step</span> Conditional means + uncertainty</p>
+        <p
+          class="matrix-formula"
+          aria-label="Y transpose times Y, plus conditional covariance corrections"
+        >
+          Y<sup>T</sup>Y + C
+        </p>
+        <p><span>M-step</span> Update the mean and covariance</p>
+      </div>
+      <p>
+        PyTorch can run these matrix operations across GPU cores. Large row groups provide work to
+        share.
+      </p>
+    </div>
+    <div class="mechanism-step">
+      <span class="mechanism-number">3</span>
+      <h3>Check, repeat, draw</h3>
+      <div class="iteration-loop" aria-hidden="true">
+        <span>Estimate</span><span>→</span><span>Check</span>
+        <span class="loop-return">Repeat until convergence</span>
+      </div>
+      <p>
+        Each EM iteration depends on the last. Then draw missing values and repeat for another
+        bootstrap sample.
+      </p>
+    </div>
+  </div>
+  <div class="mechanism-boundary">
+    <strong>The complete call still matters.</strong>
+    <span
+      >CPU preparation → device transfer → matrix work → synchronization and returned results</span
+    >
+    <p>
+      Transfers and small operations add overhead. Imputation replicas currently run one at a time;
+      the R compatibility route keeps all steps outside EM in R.
+    </p>
+  </div>
+  <figcaption class="project-caption">
+    Conceptual view of the implementation. Y contains observed values and conditional means; C
+    retains the uncertainty in missing values. GPU parallelism occurs within matrix operations,
+    while the statistical sequence is preserved. The relative cost of each stage has not yet been
+    profiled.
+  </figcaption>
+</figure>
+
+<style>
+  .mechanism-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.75rem;
+  }
+  .mechanism-step {
+    min-width: 0;
+  }
+  .mechanism-step h3 {
+    margin: 0.65rem 0 1.25rem;
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-weight: 500;
+  }
+  .mechanism-step p {
+    margin: 0.85rem 0 0;
+    font-size: 0.94rem;
+  }
+  .mechanism-number {
+    color: var(--accent-strong);
+    font-size: 0.85rem;
+  }
+  .missingness-grid {
+    display: grid;
+    gap: 4px;
+    max-width: 10rem;
+    height: 8.5rem;
+    align-content: center;
+  }
+  .missingness-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+  }
+  .missingness-row span {
+    height: 0.8rem;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+  }
+  .missingness-row .missing {
+    background: var(--surface);
+    border-style: dashed;
+  }
+  .pattern-break {
+    margin-top: 0.6rem;
+  }
+  .mechanism-step .mechanism-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+  .mechanism-legend span {
+    width: 0.65rem;
+    height: 0.65rem;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+  }
+  .mechanism-legend .missing-key {
+    margin-left: 0.4rem;
+    background: var(--surface);
+    border-style: dashed;
+  }
+  .matrix-operations {
+    display: grid;
+    align-content: center;
+    min-height: 8.5rem;
+    padding: 0.7rem;
+    background: var(--sky-soft);
+    border: 1px solid var(--border);
+  }
+  .matrix-operations p {
+    margin: 0;
+    font-size: 0.75rem;
+  }
+  .matrix-operations span {
+    display: block;
+    font-weight: 650;
+  }
+  .matrix-operations .matrix-formula {
+    margin: 0.55rem 0;
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--accent-strong);
+  }
+  .iteration-loop {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 0.5rem;
+    align-content: center;
+    min-height: 8.5rem;
+    font-size: 0.92rem;
+  }
+  .loop-return {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--accent);
+    padding-top: 0.5rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .mechanism-boundary {
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .mechanism-boundary strong,
+  .mechanism-boundary span {
+    display: block;
+  }
+  .mechanism-boundary span {
+    margin-top: 0.5rem;
+    color: var(--accent-strong);
+  }
+  .mechanism-boundary p {
+    margin: 0.5rem 0 0;
+  }
+  @media (max-width: 800px) {
+    .mechanism-steps {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .mechanism-step + .mechanism-step {
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+    }
+    .mechanism-step h3 {
+      margin-bottom: 0.75rem;
+    }
+    .missingness-grid {
+      height: auto;
+    }
+    .matrix-operations,
+    .iteration-loop {
+      min-height: auto;
+      max-width: 23rem;
+    }
+  }
+</style>

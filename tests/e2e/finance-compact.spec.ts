@@ -77,7 +77,8 @@ for (const colorScheme of ["light", "dark"] as const)
     await expect(page.locator(".table-panel tbody tr")).toHaveCount(20);
     await expect(
       page.getByRole("heading", { name: "Revenue and net income", exact: true })
-    ).toHaveCount(0);
+    ).toBeVisible();
+    await expect(page.locator(".basic-history-chart")).toBeVisible();
     await expect(page.locator(".history-chart")).toHaveCount(0);
     const region = page.getByRole("region", { name: "Financial history table", exact: true });
     await region.scrollIntoViewIfNeeded();

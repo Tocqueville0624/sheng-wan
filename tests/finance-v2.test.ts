@@ -1,6 +1,14 @@
 import { describe, expect, it } from "vitest";
 import bundled from "../src/data/generated/finance.json";
-import { upgradeCompany, validateV2, mergeV2 } from "../scripts/finance/v2-model";
+import history from "../src/data/generated/finance-history.json";
+import {
+  upgradeCompany,
+  validateV2,
+  mergeV2,
+  normalizeBasicCompany
+} from "../scripts/finance/v2-model";
+import imported from "./fixtures/finance/imported-companies.json";
+import type { CompanyV2 } from "../src/features/finance/v2-types";
 import {
   extractFactsV2,
   parseFactsDocument,
@@ -54,12 +62,88 @@ function fixture(): FactsDocument {
   };
 }
 describe("finance v2 provenance and coverage", () => {
+  it("does not turn a narrow reported cost into invented consolidated gross profit", () => {
+    const doc = fixture();
+    const fact = doc.facts["us-gaap"].Revenues.units.USD[0];
+    doc.facts["us-gaap"].CostOfGoodsAndServicesSold = {
+      label: "Cost of Goods and Services Sold",
+      units: { USD: [{ ...fact, val: 10 }] }
+    };
+    doc.facts["us-gaap"].OperatingIncomeLoss = {
+      label: "Operating income",
+      units: { USD: [{ ...fact, val: 30 }] }
+    };
+    const period = extractFactsV2(doc, identity, [filing]).annual[0];
+    expect(period.metrics.revenue).toBe(100);
+    expect(period.metrics.costOfRevenue).toBe(10);
+    expect(period.metrics.grossProfit).toBeUndefined();
+    expect(period.metrics.operatingExpenses).toBeUndefined();
+    expect(period.coverage.sankey).toBe(false);
+    // An independently reported subtotal corroborates the calculation's scope.
+    doc.facts["us-gaap"].OperatingExpenses = {
+      label: "Operating expenses",
+      units: { USD: [{ ...fact, val: 60 }] }
+    };
+    expect(extractFactsV2(doc, identity, [filing]).annual[0].metrics.grossProfit).toBe(90);
+  });
+  it("repairs previously saved MCD cost-scope errors without changing reported facts", () => {
+    const company = imported.companies.find((c) => c.ticker === "MCD")! as CompanyV2;
+    const prior = structuredClone(company);
+    expect(company.quarterly.at(-1)!.metrics.grossProfit).toBe(6419000000);
+    const fixed = normalizeBasicCompany(company);
+    expect(fixed.quarterly.at(-1)!.metrics.grossProfit).toBeUndefined();
+    expect(fixed.quarterly.at(-1)!.metrics.operatingExpenses).toBeUndefined();
+    expect(fixed.quarterly.at(-1)!.metrics.revenue).toBe(7099000000);
+    expect(fixed.quarterly.at(-1)!.metrics.netIncome).toBe(2362000000);
+    expect(company).toEqual(prior);
+    expect(normalizeBasicCompany(fixed)).toBe(fixed);
+    expect(() => validateV2(fixed)).not.toThrow();
+    for (const raw of imported.companies)
+      expect(() => validateV2(normalizeBasicCompany(raw as CompanyV2))).not.toThrow();
+  });
+  it("isolates conflicting old facts while retaining an independently valid later filing", () => {
+    const doc = fixture();
+    const earlier = {
+      ...filing,
+      accession: "0000104169-25-000001",
+      filedAt: "2025-03-01",
+      reportDate: "2025-01-31"
+    };
+    const base = doc.facts["us-gaap"].Revenues.units.USD[0];
+    const older = {
+      ...base,
+      accn: earlier.accession,
+      filed: earlier.filedAt,
+      start: "2024-02-01",
+      end: earlier.reportDate,
+      fy: 2025
+    };
+    doc.facts["us-gaap"].Revenues.units.USD.push({ ...older, val: 80 }, { ...older, val: 81 });
+    const company = extractFactsV2(doc, identity, [filing, earlier]);
+    expect(company.annual.map((p) => p.id)).toEqual(["FY2026"]);
+    expect(company.warnings.some((w) => w.includes("Conflicting Revenues"))).toBe(true);
+  });
   it("uses a taxonomy identifier when SEC IFRS concepts have null labels", () => {
     const doc = fixture();
     doc.facts["us-gaap"].Revenues.label = null;
     const next = extractFactsV2(doc, identity, [filing]);
     expect(next.annual[0].metricSources.revenue?.label).toBe("us-gaap:Revenues");
     expect(() => validateV2(next)).not.toThrow();
+  });
+  it("discloses when the SEC filing index is newer than available standard facts", () => {
+    const newer = {
+      ...filing,
+      accession: "0000104169-26-000002",
+      form: "10-Q",
+      reportDate: "2026-04-30",
+      filedAt: "2026-05-20"
+    };
+    const next = extractFactsV2(fixture(), identity, [filing, newer]);
+    expect(
+      next.warnings.some((w) => w.includes("2026-04-30") && w.includes("only 2026-01-31"))
+    ).toBe(true);
+    expect(next.annual[0].metrics.revenue).toBe(100);
+    expect(next.quarterly).toHaveLength(0);
   });
   it("converts only native TWD facts with observed FX and preserves missing metrics", () => {
     const doc = fixture();
@@ -128,7 +212,10 @@ describe("finance v2 provenance and coverage", () => {
     const fact = doc.facts["us-gaap"].Revenues.units.USD[0];
     doc.facts["us-gaap"].CostOfRevenue = { label: "Cost", units: { USD: [{ ...fact, val: 60 }] } };
     doc.facts["us-gaap"].GrossProfit = { label: "Gross", units: { USD: [{ ...fact, val: 42 }] } };
-    expect(() => extractFactsV2(doc, identity, [filing])).toThrow(/No supported/);
+    const result = extractFactsV2(doc, identity, [filing]);
+    expect(result.annual[0].metrics).toEqual({ revenue: 100, netIncome: -5 });
+    expect(result.annual[0].coverage.sankey).toBe(false);
+    expect(result.warnings.some((warning) => warning.includes("incompatible scopes"))).toBe(true);
   });
   it("fails on conflicting same-tag values and issuer mismatch", () => {
     const doc = fixture();
@@ -148,6 +235,22 @@ describe("finance v2 provenance and coverage", () => {
     const data = extractFactsV2(doc, { ...identity, sector: "Financials" }, [filing]);
     expect(data.annual[0].metrics.revenue).toBe(100);
     expect(data.annual[0].coverage.sankey).toBe(false);
+  });
+  it("uses confirmed SEC business-services classification for non-bank financial revenue", () => {
+    const doc = fixture();
+    doc.facts["us-gaap"].RevenueFromContractWithCustomerExcludingAssessedTax =
+      doc.facts["us-gaap"].Revenues;
+    delete doc.facts["us-gaap"].Revenues;
+    const financial = { ...identity, sector: "Financials" };
+    const bank = extractFactsV2(doc, financial, [filing], undefined, "6021");
+    expect(bank.annual[0].metrics.revenue).toBeUndefined();
+    expect(bank.warnings.some((w) => w.includes("total-revenue"))).toBe(true);
+    expect(extractFactsV2(doc, financial, [filing]).annual[0].metrics.revenue).toBeUndefined();
+    const service = extractFactsV2(doc, financial, [filing], undefined, "7389");
+    expect(service.annual[0].metrics.revenue).toBe(100);
+    expect(service.annual[0].metricSources.revenue?.tag).toBe(
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+    );
   });
   it("does not manufacture a fourth quarter from a year alone", () => {
     expect(extractFactsV2(fixture(), identity, [filing]).quarterly).toEqual([]);
@@ -310,6 +413,35 @@ describe("catalog, limits and compatibility", () => {
       {} as never
     );
     expect(post.status).toBe(503);
+  });
+  it("normalizes bundled fallback cost scope without changing reviewed periods or the source snapshot", async () => {
+    const before = structuredClone(history);
+    for (const ticker of ["GOOGL", "AMZN", "META"]) {
+      const original = history.companies.find((company) => company.ticker === ticker)! as CompanyV2;
+      const unreviewed = original.annual.find(
+        (period) => period.metricSources.grossProfit?.tag === "revenue - costOfRevenue"
+      )!;
+      expect(unreviewed.metrics.grossProfit).toBeTypeOf("number");
+      const response = await apiV2(
+        new Request(`https://site.test/api/finance/v2/companies/${ticker}`),
+        {} as never
+      );
+      const { company, available } = (await response.json()) as {
+        company: CompanyV2;
+        available: boolean;
+      };
+      expect(available).toBe(false);
+      const fixed = company.annual.find((period) => period.id === unreviewed.id)!;
+      expect(fixed.metrics.grossProfit).toBeUndefined();
+      expect(fixed.metrics.operatingExpenses).toBeUndefined();
+      expect(fixed.metrics.netIncome).toBe(unreviewed.metrics.netIncome);
+      expect(fixed.coverage.sankey).toBe(false);
+      for (const kind of ["annual", "quarterly"] as const)
+        for (const period of original[kind].filter((p) => p.coverage.segments))
+          expect(company[kind].find((p) => p.id === period.id)).toEqual(period);
+      expect(() => validateV2(company)).not.toThrow();
+    }
+    expect(history).toEqual(before);
   });
   it("rejects cross-origin update requests and read-only refresh calls", async () => {
     expect(

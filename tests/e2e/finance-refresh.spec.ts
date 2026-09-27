@@ -130,8 +130,9 @@ test("catalog search does not crawl; empty and basic-only coverage are honest", 
   await expect(page.locator(".finance-source")).toContainText(basic.version);
   await expect(
     page.getByRole("heading", { name: "Revenue and net income", exact: true })
-  ).toHaveCount(0);
-  await expect(page.locator(".history-chart")).toHaveCount(0);
+  ).toBeVisible();
+  await expect(page.locator(".basic-history-chart")).toBeVisible();
+  await expect(page.locator(".metrics-chart")).toBeVisible();
   await expect(page.locator(".kpi-grid")).toContainText(
     amount(basic.annual.at(-1)!.metrics.revenue)
   );
@@ -141,6 +142,7 @@ test("catalog search does not crawl; empty and basic-only coverage are honest", 
   await page.locator('[data-ticker="BRK.B"]').click();
   await expect(page.getByRole("button", { name: "Get SEC data" })).toBeEnabled();
   await expect(page.locator(".history-chart")).toHaveCount(0);
+  await expect(page.locator(".basic-history-chart")).toHaveCount(0);
   await page.getByRole("searchbox").fill("NotAnIssuer12345");
   await expect(page.getByText("No matching company.")).toBeVisible();
   expect(writes).toBe(0);

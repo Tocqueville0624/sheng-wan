@@ -3,6 +3,8 @@ import { FinanceStore, catalog, catalogIdentity } from "../worker/finance-store"
 import type { FinanceJob } from "../src/features/finance/v2-types";
 import { bundledCompany } from "../worker/finance-store";
 import type { CompanyV2 } from "../src/features/finance/v2-types";
+import imported from "./fixtures/finance/imported-companies.json";
+import history from "../src/data/generated/finance-history.json";
 
 // A serialized, persistent storage contract. Parsing tests use separate fixtures;
 // queue tests never contact SEC or alter the production snapshots.
@@ -82,6 +84,43 @@ afterEach(() => {
 });
 
 describe("persistent public finance queue", () => {
+  it("does not resurrect unreviewed gross profit when filling a short stored history from the bundle", async () => {
+    const { store, storage } = await create();
+    const original = history.companies.find((company) => company.ticker === "GOOGL")! as CompanyV2;
+    const prior = structuredClone({ ...original, annual: original.annual.slice(0, -1) });
+    const unreviewed = prior.annual.find(
+      (period) => period.metricSources.grossProfit?.tag === "revenue - costOfRevenue"
+    )!;
+    expect(unreviewed.metrics.grossProfit).toBeTypeOf("number");
+    await storage.put(`company:${original.cik}`, prior);
+    const fetcher = vi.fn();
+    vi.stubGlobal("fetch", fetcher);
+    const response = (await read(store, "/companies/GOOGL")) as { company: CompanyV2 };
+    expect(response.company.annual).toHaveLength(original.annual.length);
+    const fixed = response.company.annual.find((period) => period.id === unreviewed.id)!;
+    expect(fixed.metrics.grossProfit).toBeUndefined();
+    expect(fixed.metrics.operatingExpenses).toBeUndefined();
+    expect(fixed.coverage.sankey).toBe(false);
+    expect(fixed.metrics.revenue).toBe(unreviewed.metrics.revenue);
+    for (const kind of ["annual", "quarterly"] as const)
+      for (const period of original[kind].filter((p) => p.coverage.segments))
+        expect(response.company[kind].find((p) => p.id === period.id)).toEqual(period);
+    expect(await storage.get(`company:${original.cik}`)).toEqual(prior);
+    expect(fetcher).not.toHaveBeenCalled();
+  });
+  it("withholds old inferred gross profit on reads without crawling or rewriting the saved source", async () => {
+    const { store, storage } = await create();
+    const original = imported.companies.find((company) => company.ticker === "MCD")!;
+    await storage.put(`company:${original.cik}`, original);
+    const fetcher = vi.fn();
+    vi.stubGlobal("fetch", fetcher);
+    const response = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+    expect(response.company.quarterly.at(-1)!.metrics.grossProfit).toBeUndefined();
+    expect(response.company.quarterly.at(-1)!.metrics.netIncome).toBe(2362000000);
+    expect(response.company.version).toMatch(/-scope2$/);
+    expect(await storage.get(`company:${original.cik}`)).toEqual(original);
+    expect(fetcher).not.toHaveBeenCalled();
+  });
   it("restores a verified business breakdown hidden by a complete older basic-only history", async () => {
     const { store, storage } = await create();
     const identity = catalogIdentity("AMZN")!;

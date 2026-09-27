@@ -291,6 +291,8 @@
   outline-offset: 2px;
 }
 .history-chart,
+.basic-history-chart,
+.metrics-chart,
 .flow-chart {
   display: block;
   min-width: 1060px;

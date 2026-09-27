@@ -1,7 +1,7 @@
 import type { CatalogCompany, CompanyV2, PeriodV2 } from "../../src/features/finance/v2-types";
 import type { FinancialMetrics } from "../../src/features/finance/types";
 import type { SecFiling } from "./sec-shared";
-import { statementPeriod, validateV2 } from "./v2-model";
+import { normalizeBasicPeriod, statementPeriod, validateV2 } from "./v2-model";
 import { buildStatementFlow } from "../../src/features/finance/chart-model";
 import { roundingTolerance } from "./validate";
 
@@ -97,7 +97,8 @@ export function extractFactsV2(
   doc: FactsDocument,
   identity: CatalogCompany,
   filings: SecFiling[],
-  nativeCurrency?: string
+  nativeCurrency?: string,
+  industrySic?: string
 ): CompanyV2 {
   if (String(doc.cik).padStart(10, "0") !== identity.cik)
     throw new Error("Company Facts CIK does not match the catalog.");
@@ -111,14 +112,26 @@ export function extractFactsV2(
     sources: PeriodV2["metricSources"];
     year?: number;
     quarter?: number;
+    conflict?: string;
   };
   const groups = new Map<string, Group>();
   const calendar = new Map<string, { year: number; quarter?: number }>();
   const today = new Date().toISOString().slice(0, 10);
+  // Catalog sectors put payment and information services beside banks. SEC SIC
+  // 73xx identifies business services; their contract revenue can be total revenue.
+  // Unknown classifications and traditional financial firms stay conservative.
+  const financialServices = identity.sector === "Financials" && /^73\d{2}$/.test(industrySic ?? "");
   for (const [metric, names] of Object.entries(tags) as [keyof FinancialMetrics, string[]][]) {
     const orderedNames =
       metric === "revenue" && identity.sector === "Financials"
-        ? ["RevenuesNetOfInterestExpense", "Revenues", "Revenue"]
+        ? [
+            ...new Set([
+              "RevenuesNetOfInterestExpense",
+              "Revenues",
+              "Revenue",
+              ...(financialServices ? names : [])
+            ])
+          ]
         : names;
     for (const namespace of ["us-gaap", "ifrs-full"])
       for (const name of orderedNames) {
@@ -153,7 +166,7 @@ export function extractFactsV2(
                 group.sources[metric]?.tag === `${namespace}:${name}` &&
                 group.values[metric] !== f.val
               )
-                throw new Error(`Conflicting ${name} facts in ${filing.accession}.`);
+                group.conflict = `Conflicting ${name} facts in ${filing.accession}.`;
               continue;
             }
             group.values[metric] = f.val;
@@ -187,7 +200,23 @@ export function extractFactsV2(
   }
   const periods: PeriodV2[] = [];
   const warnings = new Set<string>();
+  if (
+    identity.sector === "Financials" &&
+    !financialServices &&
+    [...groups.values()].some(
+      (g) => g.values.netIncome !== undefined && g.values.revenue === undefined
+    )
+  )
+    warnings.add(
+      "Some financial-company periods lack a supported total-revenue concept. Fee or contract revenue is not substituted for total revenue without confirmed reporting scope."
+    );
   for (const group of groups.values()) {
+    if (group.conflict) {
+      warnings.add(
+        `${group.conflict} This candidate was excluded; other filings remain available.`
+      );
+      continue;
+    }
     const days = (Date.parse(group.end) - Date.parse(group.start)) / 86400000;
     const kind = days >= 330 ? "annual" : days >= 70 && days <= 105 ? "quarterly" : undefined;
     let fiscal = calendar.get(group.end);
@@ -212,7 +241,7 @@ export function extractFactsV2(
     // make those an annual fiscal statement (Amazon reports such TTM series).
     if (kind === "annual" && fiscal.quarter !== 4) continue;
     if (group.values.revenue === undefined && group.values.netIncome === undefined) continue;
-    const period: PeriodV2 = {
+    let period: PeriodV2 = {
       id: kind === "annual" ? `FY${fiscal.year}` : `${fiscal.year}-Q${fiscal.quarter}`,
       label: kind === "annual" ? `FY ${fiscal.year}` : `Q${fiscal.quarter} FY${fiscal.year}`,
       kind,
@@ -254,6 +283,12 @@ export function extractFactsV2(
     calc("grossProfit", "revenue", "costOfRevenue");
     calc("costOfRevenue", "revenue", "grossProfit");
     calc("operatingExpenses", "grossProfit", "operatingIncome");
+    const scoped = normalizeBasicPeriod(period);
+    if (scoped !== period)
+      warnings.add(
+        "Unreviewed cost tags do not establish consolidated gross profit. Unsupported inferred gross profit and operating expenses are withheld."
+      );
+    period = scoped;
     const statement = statementPeriod(period);
     period.coverage.sankey =
       identity.sector !== "Financials" && !!statement && buildStatementFlow(statement).ok;
@@ -264,6 +299,7 @@ export function extractFactsV2(
   for (const annual of periods.filter((p) => p.kind === "annual")) {
     const nine = [...groups.values()].find(
       (g) =>
+        !g.conflict &&
         g.filing.accession === annual.accession &&
         g.start === annual.startDate &&
         g.currency === annual.reportingCurrency &&
@@ -315,12 +351,17 @@ export function extractFactsV2(
         m.operatingIncome !== undefined &&
         Math.abs(m.grossProfit - m.operatingExpenses - m.operatingIncome) > tolerance)
     ) {
-      // Some filings include separate realization/reclassification adjustments.
-      // Do not erase them by forcing a balance or let one old period block others.
+      // Keep independently sourced results when generic cost concepts have
+      // incompatible scopes. Do not balance them or discard the whole report.
+      for (const key of ["costOfRevenue", "grossProfit", "operatingExpenses"] as const) {
+        delete p.metrics[key];
+        delete p.metricSources[key];
+      }
+      p.coverage.sankey = false;
+      p.derived = Object.values(p.metricSources).some((source) => source.method === "calculated");
       warnings.add(
-        `${p.label}: basic facts require additional accounting adjustments; this candidate period was excluded and any prior validated version is retained.`
+        `${p.label}: cost, gross-profit and operating-expense concepts have incompatible scopes or require additional accounting adjustments and are withheld. Independently reported revenue and income remain available.`
       );
-      continue;
     }
     const old = selected.get(p.id);
     if (
@@ -333,10 +374,20 @@ export function extractFactsV2(
   const history = [...selected.values()].sort((a, b) => a.endDate.localeCompare(b.endDate));
   if (!history.length)
     throw new Error(
-      "No supported, source-linked monetary periods were found. Saved data is unchanged."
+      "No supported, source-linked monetary periods were found. Saved data is unchanged." +
+        (warnings.size ? " " + [...warnings].slice(0, 3).join(" ") : "")
     );
   const annual = history.filter((p) => p.kind === "annual").slice(-10);
   const quarterly = history.filter((p) => p.kind === "quarterly").slice(-20);
+  const latestFiledReport = filings
+    .filter((f) => /^(10-K|10-Q|20-F)(\/A)?$/.test(f.form))
+    .map((f) => f.reportDate)
+    .sort()
+    .at(-1);
+  if (latestFiledReport && latestFiledReport > history.at(-1)!.endDate)
+    warnings.add(
+      `SEC lists a report ending ${latestFiledReport}, but supported standard facts currently reach only ${history.at(-1)!.endDate}. Later figures are not yet available in this view.`
+    );
   if (annual.length < 10 || quarterly.length < 20)
     warnings.add(
       "History is source-available, not necessarily continuous; missing quarters and shorter reporting histories are not estimated."

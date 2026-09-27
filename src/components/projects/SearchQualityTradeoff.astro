@@ -1,0 +1,88 @@
+---
+import { searchQualityTradeoffs } from "@/content/projects/search-quality";
+---
+
+<div class="project-two-column tradeoffs">
+  {
+    searchQualityTradeoffs.map((metric) => (
+      <figure class="project-figure">
+        <h3>{metric.title}</h3>
+        <p class="tradeoff-unit">{metric.unit}</p>
+        <div class="tradeoff-bars">
+          {[
+            { title: "Majority baseline", value: metric.baseline, selected: false },
+            { title: "Weighted logistic model", value: metric.model, selected: true }
+          ].map((method) => (
+            <div class="tradeoff-row">
+              <div class="tradeoff-label">
+                <span>{method.title}</span>
+                <strong>
+                  {metric.percent ? `${(method.value * 100).toFixed(2)}%` : method.value.toFixed(4)}
+                </strong>
+              </div>
+              <div class="tradeoff-track" aria-hidden="true">
+                <span
+                  class:list={["tradeoff-bar", { selected: method.selected }]}
+                  style={`width: ${method.value * 100}%`}
+                />
+              </div>
+            </div>
+          ))}
+          <div class="tradeoff-axis" aria-hidden="true">
+            {metric.ticks.map((tick) => (
+              <span>{tick}</span>
+            ))}
+          </div>
+        </div>
+        <figcaption class="project-caption">{metric.explanation}</figcaption>
+      </figure>
+    ))
+  }
+</div>
+
+<style>
+  .tradeoff-unit {
+    min-height: 2.8rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .tradeoff-row + .tradeoff-row {
+    margin-top: 1.25rem;
+  }
+  .tradeoff-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.83rem;
+  }
+  .tradeoff-label strong {
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .tradeoff-track {
+    height: 1.1rem;
+    background: var(--sky-soft);
+    border-right: 1px solid var(--border);
+  }
+  .tradeoff-bar {
+    display: block;
+    height: 100%;
+    background: var(--muted);
+  }
+  .tradeoff-bar.selected {
+    background: var(--accent);
+  }
+  .tradeoff-axis {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+</style>

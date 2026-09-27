@@ -1,0 +1,2120 @@
+{
+  "source": "https://shengwan.org/api/finance/v2/companies/:ticker",
+  "capturedAt": "2026-09-27",
+  "note": "Public production responses retained only as regression fixtures. Not published as site data. Field-level SEC filing URLs remain attached.",
+  "companies": [
+    {
+      "schemaVersion": 2,
+      "ticker": "ADBE",
+      "name": "Adobe Inc.",
+      "cik": "0000796343",
+      "accent": "#337d9f",
+      "reportingCurrency": "USD",
+      "latestPeriod": "Q2 FY2026",
+      "dataStatus": "verified",
+      "version": "7a7e7be31dd554a0cb3b",
+      "updatedAt": "2026-09-11T21:58:08.205Z",
+      "annual": [
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2023-12-02",
+          "endDate": "2024-11-29",
+          "filedAt": "2026-01-15",
+          "accession": "0000796343-26-000003",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 21505000000,
+            "costOfRevenue": 2358000000,
+            "grossProfit": 19147000000,
+            "operatingExpenses": 12406000000,
+            "operatingIncome": 6741000000,
+            "pretaxIncome": 6931000000,
+            "incomeTax": 1371000000,
+            "netIncome": 5560000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues",
+              "tag": "us-gaap:Revenues",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Revenue",
+              "tag": "us-gaap:CostOfRevenue",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "Gross Profit",
+              "tag": "us-gaap:GrossProfit",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "operatingExpenses": {
+              "label": "Operating Expenses",
+              "tag": "us-gaap:OperatingExpenses",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": true
+          }
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2024-11-30",
+          "endDate": "2025-11-28",
+          "filedAt": "2026-01-15",
+          "accession": "0000796343-26-000003",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 23769000000,
+            "costOfRevenue": 2551000000,
+            "grossProfit": 21218000000,
+            "operatingExpenses": 12512000000,
+            "operatingIncome": 8706000000,
+            "pretaxIncome": 8734000000,
+            "incomeTax": 1604000000,
+            "netIncome": 7130000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues",
+              "tag": "us-gaap:Revenues",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Revenue",
+              "tag": "us-gaap:CostOfRevenue",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "Gross Profit",
+              "tag": "us-gaap:GrossProfit",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "operatingExpenses": {
+              "label": "Operating Expenses",
+              "tag": "us-gaap:OperatingExpenses",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000796343-26-000003",
+              "filedAt": "2026-01-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": true
+          }
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2025-11-29",
+          "endDate": "2026-02-27",
+          "filedAt": "2026-03-25",
+          "accession": "0000796343-26-000056",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000056/adbe-20260227.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 6398000000,
+            "costOfRevenue": 664000000,
+            "grossProfit": 5734000000,
+            "operatingExpenses": 3316000000,
+            "operatingIncome": 2418000000,
+            "pretaxIncome": 2422000000,
+            "incomeTax": 533000000,
+            "netIncome": 1889000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues",
+              "tag": "us-gaap:Revenues",
+              "accession": "0000796343-26-000056",
+              "filedAt": "2026-03-25",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000056/adbe-20260227.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Revenue",
+              "tag": "us-gaap:CostOfRevenue",
+              "accession": "0000796343-26-000056",
+              "filedAt": "2026-03-25",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000056/adbe-20260227.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "Gross Profit",
+              "tag": "us-gaap:GrossProfit",
+              "accession": "0000796343-26-000056",
+              "filedAt": "2026-03-25",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000056/adbe-20260227.htm",
+              "method": "reported"
+            },
+            "operatingExpenses": {
+              "label": "Operating Expenses",
+              "tag": "us-gaap:OperatingExpenses",
+              "accession": "0000796343-26-000056",
+              "filedAt": "2026-03-25",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000056/adbe-20260227.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000796343-26-000056",
+              "filedAt": "2026-03-25",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000056/adbe-20260227.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0000796343-26-000056",
+              "filedAt": "2026-03-25",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000056/adbe-20260227.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000796343-26-000056",
+              "filedAt": "2026-03-25",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000056/adbe-20260227.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000796343-26-000056",
+              "filedAt": "2026-03-25",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000056/adbe-20260227.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": true
+          }
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2026-02-28",
+          "endDate": "2026-05-29",
+          "filedAt": "2026-06-15",
+          "accession": "0000796343-26-000112",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000112/adbe-20260529.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 6618000000,
+            "costOfRevenue": 715000000,
+            "grossProfit": 5903000000,
+            "operatingExpenses": 3665000000,
+            "operatingIncome": 2238000000,
+            "pretaxIncome": 2238000000,
+            "incomeTax": 526000000,
+            "netIncome": 1712000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues",
+              "tag": "us-gaap:Revenues",
+              "accession": "0000796343-26-000112",
+              "filedAt": "2026-06-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000112/adbe-20260529.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Revenue",
+              "tag": "us-gaap:CostOfRevenue",
+              "accession": "0000796343-26-000112",
+              "filedAt": "2026-06-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000112/adbe-20260529.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "Gross Profit",
+              "tag": "us-gaap:GrossProfit",
+              "accession": "0000796343-26-000112",
+              "filedAt": "2026-06-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000112/adbe-20260529.htm",
+              "method": "reported"
+            },
+            "operatingExpenses": {
+              "label": "Operating Expenses",
+              "tag": "us-gaap:OperatingExpenses",
+              "accession": "0000796343-26-000112",
+              "filedAt": "2026-06-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000112/adbe-20260529.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000796343-26-000112",
+              "filedAt": "2026-06-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000112/adbe-20260529.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0000796343-26-000112",
+              "filedAt": "2026-06-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000112/adbe-20260529.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000796343-26-000112",
+              "filedAt": "2026-06-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000112/adbe-20260529.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000796343-26-000112",
+              "filedAt": "2026-06-15",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000112/adbe-20260529.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": true
+          }
+        }
+      ],
+      "warnings": [],
+      "checkedAt": "2026-09-11T21:58:09.582Z"
+    },
+    {
+      "schemaVersion": 2,
+      "ticker": "COST",
+      "name": "Costco",
+      "cik": "0000909832",
+      "accent": "#337d9f",
+      "reportingCurrency": "USD",
+      "latestPeriod": "Q3 FY2026",
+      "dataStatus": "verified",
+      "version": "f4217fa0c334b4d6e2e9",
+      "updatedAt": "2026-09-06T00:00:29.192Z",
+      "annual": [
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2023-09-04",
+          "endDate": "2024-09-01",
+          "filedAt": "2025-10-08",
+          "accession": "0000909832-25-000101",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 254453000000,
+            "costOfRevenue": 222358000000,
+            "operatingIncome": 9285000000,
+            "pretaxIncome": 9740000000,
+            "incomeTax": 2373000000,
+            "netIncome": 7367000000,
+            "sellingGeneralAndAdministrative": 22810000000,
+            "grossProfit": 32095000000,
+            "operatingExpenses": 22810000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Goods and Services Sold",
+              "tag": "us-gaap:CostOfGoodsAndServicesSold",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "sellingGeneralAndAdministrative": {
+              "label": "Selling, General and Administrative Expense",
+              "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "grossProfit",
+              "tag": "revenue - costOfRevenue",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm"
+              ]
+            },
+            "operatingExpenses": {
+              "label": "operatingExpenses",
+              "tag": "grossProfit - operatingIncome",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm"
+              ]
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": true
+          }
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2024-09-02",
+          "endDate": "2025-08-31",
+          "filedAt": "2025-10-08",
+          "accession": "0000909832-25-000101",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 275235000000,
+            "costOfRevenue": 239886000000,
+            "operatingIncome": 10383000000,
+            "pretaxIncome": 10818000000,
+            "incomeTax": 2719000000,
+            "netIncome": 8099000000,
+            "sellingGeneralAndAdministrative": 24966000000,
+            "grossProfit": 35349000000,
+            "operatingExpenses": 24966000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Goods and Services Sold",
+              "tag": "us-gaap:CostOfGoodsAndServicesSold",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "sellingGeneralAndAdministrative": {
+              "label": "Selling, General and Administrative Expense",
+              "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "grossProfit",
+              "tag": "revenue - costOfRevenue",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm"
+              ]
+            },
+            "operatingExpenses": {
+              "label": "operatingExpenses",
+              "tag": "grossProfit - operatingIncome",
+              "accession": "0000909832-25-000101",
+              "filedAt": "2025-10-08",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm",
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm"
+              ]
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": true
+          }
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2025-11-24",
+          "endDate": "2026-02-15",
+          "filedAt": "2026-03-11",
+          "accession": "0000909832-26-000029",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 69597000000,
+            "costOfRevenue": 60719000000,
+            "operatingIncome": 2606000000,
+            "incomeTax": 686000000,
+            "netIncome": 2035000000,
+            "sellingGeneralAndAdministrative": 6272000000,
+            "grossProfit": 8878000000,
+            "operatingExpenses": 6272000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "accession": "0000909832-26-000029",
+              "filedAt": "2026-03-11",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Goods and Services Sold",
+              "tag": "us-gaap:CostOfGoodsAndServicesSold",
+              "accession": "0000909832-26-000029",
+              "filedAt": "2026-03-11",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000909832-26-000029",
+              "filedAt": "2026-03-11",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000909832-26-000029",
+              "filedAt": "2026-03-11",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000909832-26-000029",
+              "filedAt": "2026-03-11",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+              "method": "reported"
+            },
+            "sellingGeneralAndAdministrative": {
+              "label": "Selling, General and Administrative Expense",
+              "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+              "accession": "0000909832-26-000029",
+              "filedAt": "2026-03-11",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "grossProfit",
+              "tag": "revenue - costOfRevenue",
+              "accession": "0000909832-26-000029",
+              "filedAt": "2026-03-11",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm"
+              ]
+            },
+            "operatingExpenses": {
+              "label": "operatingExpenses",
+              "tag": "grossProfit - operatingIncome",
+              "accession": "0000909832-26-000029",
+              "filedAt": "2026-03-11",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm",
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983226000029/cost-20260215.htm"
+              ]
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        },
+        {
+          "id": "2026-Q3",
+          "label": "Q3 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 3,
+          "startDate": "2026-02-16",
+          "endDate": "2026-05-10",
+          "filedAt": "2026-06-03",
+          "accession": "0000909832-26-000051",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 70527000000,
+            "costOfRevenue": 61519000000,
+            "operatingIncome": 2815000000,
+            "incomeTax": 746000000,
+            "netIncome": 2192000000,
+            "sellingGeneralAndAdministrative": 6193000000,
+            "grossProfit": 9008000000,
+            "operatingExpenses": 6193000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "accession": "0000909832-26-000051",
+              "filedAt": "2026-06-03",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Goods and Services Sold",
+              "tag": "us-gaap:CostOfGoodsAndServicesSold",
+              "accession": "0000909832-26-000051",
+              "filedAt": "2026-06-03",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000909832-26-000051",
+              "filedAt": "2026-06-03",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000909832-26-000051",
+              "filedAt": "2026-06-03",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000909832-26-000051",
+              "filedAt": "2026-06-03",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+              "method": "reported"
+            },
+            "sellingGeneralAndAdministrative": {
+              "label": "Selling, General and Administrative Expense",
+              "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+              "accession": "0000909832-26-000051",
+              "filedAt": "2026-06-03",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "grossProfit",
+              "tag": "revenue - costOfRevenue",
+              "accession": "0000909832-26-000051",
+              "filedAt": "2026-06-03",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm"
+              ]
+            },
+            "operatingExpenses": {
+              "label": "operatingExpenses",
+              "tag": "grossProfit - operatingIncome",
+              "accession": "0000909832-26-000051",
+              "filedAt": "2026-06-03",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm",
+                "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm"
+              ]
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        }
+      ],
+      "warnings": [],
+      "checkedAt": "2026-09-06T00:00:34.436Z"
+    },
+    {
+      "schemaVersion": 2,
+      "ticker": "JPM",
+      "name": "JPMorgan Chase",
+      "cik": "0000019617",
+      "accent": "#337d9f",
+      "reportingCurrency": "USD",
+      "latestPeriod": "Q2 FY2026",
+      "dataStatus": "verified",
+      "version": "e660bf9533102004df03",
+      "updatedAt": "2026-09-06T00:02:07.055Z",
+      "annual": [
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2024-01-01",
+          "endDate": "2024-12-31",
+          "filedAt": "2026-02-13",
+          "accession": "0001628280-26-008131",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 177556000000,
+            "pretaxIncome": 75081000000,
+            "incomeTax": 16610000000,
+            "netIncome": 58471000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues, Net of Interest Expense",
+              "tag": "us-gaap:RevenuesNetOfInterestExpense",
+              "accession": "0001628280-26-008131",
+              "filedAt": "2026-02-13",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0001628280-26-008131",
+              "filedAt": "2026-02-13",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0001628280-26-008131",
+              "filedAt": "2026-02-13",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0001628280-26-008131",
+              "filedAt": "2026-02-13",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "filedAt": "2026-02-13",
+          "accession": "0001628280-26-008131",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 182447000000,
+            "pretaxIncome": 72595000000,
+            "incomeTax": 15547000000,
+            "netIncome": 57048000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues, Net of Interest Expense",
+              "tag": "us-gaap:RevenuesNetOfInterestExpense",
+              "accession": "0001628280-26-008131",
+              "filedAt": "2026-02-13",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0001628280-26-008131",
+              "filedAt": "2026-02-13",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0001628280-26-008131",
+              "filedAt": "2026-02-13",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0001628280-26-008131",
+              "filedAt": "2026-02-13",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2026-01-01",
+          "endDate": "2026-03-31",
+          "filedAt": "2026-05-01",
+          "accession": "0001628280-26-029344",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 49836000000,
+            "pretaxIncome": 20479000000,
+            "incomeTax": 3985000000,
+            "netIncome": 16494000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues, Net of Interest Expense",
+              "tag": "us-gaap:RevenuesNetOfInterestExpense",
+              "accession": "0001628280-26-029344",
+              "filedAt": "2026-05-01",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0001628280-26-029344",
+              "filedAt": "2026-05-01",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0001628280-26-029344",
+              "filedAt": "2026-05-01",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0001628280-26-029344",
+              "filedAt": "2026-05-01",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-30",
+          "filedAt": "2026-08-06",
+          "accession": "0001628280-26-054343",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 57347000000,
+            "pretaxIncome": 27516000000,
+            "incomeTax": 6361000000,
+            "netIncome": 21155000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues, Net of Interest Expense",
+              "tag": "us-gaap:RevenuesNetOfInterestExpense",
+              "accession": "0001628280-26-054343",
+              "filedAt": "2026-08-06",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0001628280-26-054343",
+              "filedAt": "2026-08-06",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0001628280-26-054343",
+              "filedAt": "2026-08-06",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0001628280-26-054343",
+              "filedAt": "2026-08-06",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        }
+      ],
+      "warnings": [],
+      "checkedAt": "2026-09-06T00:02:07.055Z"
+    },
+    {
+      "schemaVersion": 2,
+      "ticker": "MCD",
+      "name": "McDonald's",
+      "cik": "0000063908",
+      "accent": "#337d9f",
+      "reportingCurrency": "USD",
+      "latestPeriod": "Q2 FY2026",
+      "dataStatus": "verified",
+      "version": "020ebc54bc0a2dd98976",
+      "updatedAt": "2026-09-24T19:38:05.400Z",
+      "annual": [
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2024-01-01",
+          "endDate": "2024-12-31",
+          "filedAt": "2026-02-24",
+          "accession": "0000063908-26-000035",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 25920000000,
+            "operatingIncome": 11712000000,
+            "incomeTax": 2121000000,
+            "netIncome": 8223000000,
+            "sellingGeneralAndAdministrative": 2858000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues",
+              "tag": "us-gaap:Revenues",
+              "accession": "0000063908-26-000035",
+              "filedAt": "2026-02-24",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000063908-26-000035",
+              "filedAt": "2026-02-24",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000063908-26-000035",
+              "filedAt": "2026-02-24",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000063908-26-000035",
+              "filedAt": "2026-02-24",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+              "method": "reported"
+            },
+            "sellingGeneralAndAdministrative": {
+              "label": "Selling, General and Administrative Expense",
+              "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+              "accession": "0000063908-26-000035",
+              "filedAt": "2026-02-24",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "filedAt": "2026-02-24",
+          "accession": "0000063908-26-000035",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 26885000000,
+            "operatingIncome": 12393000000,
+            "incomeTax": 2334000000,
+            "netIncome": 8563000000,
+            "sellingGeneralAndAdministrative": 3039000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues",
+              "tag": "us-gaap:Revenues",
+              "accession": "0000063908-26-000035",
+              "filedAt": "2026-02-24",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000063908-26-000035",
+              "filedAt": "2026-02-24",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000063908-26-000035",
+              "filedAt": "2026-02-24",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000063908-26-000035",
+              "filedAt": "2026-02-24",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+              "method": "reported"
+            },
+            "sellingGeneralAndAdministrative": {
+              "label": "Selling, General and Administrative Expense",
+              "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+              "accession": "0000063908-26-000035",
+              "filedAt": "2026-02-24",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2026-01-01",
+          "endDate": "2026-03-31",
+          "filedAt": "2026-05-07",
+          "accession": "0000063908-26-000051",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 6517000000,
+            "costOfRevenue": 676000000,
+            "operatingIncome": 2953000000,
+            "incomeTax": 559000000,
+            "netIncome": 1983000000,
+            "sellingGeneralAndAdministrative": 759000000,
+            "grossProfit": 5841000000,
+            "operatingExpenses": 2888000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues",
+              "tag": "us-gaap:Revenues",
+              "accession": "0000063908-26-000051",
+              "filedAt": "2026-05-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Goods and Services Sold",
+              "tag": "us-gaap:CostOfGoodsAndServicesSold",
+              "accession": "0000063908-26-000051",
+              "filedAt": "2026-05-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000063908-26-000051",
+              "filedAt": "2026-05-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000063908-26-000051",
+              "filedAt": "2026-05-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000063908-26-000051",
+              "filedAt": "2026-05-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+              "method": "reported"
+            },
+            "sellingGeneralAndAdministrative": {
+              "label": "Selling, General and Administrative Expense",
+              "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+              "accession": "0000063908-26-000051",
+              "filedAt": "2026-05-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "grossProfit",
+              "tag": "revenue - costOfRevenue",
+              "accession": "0000063908-26-000051",
+              "filedAt": "2026-05-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+                "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm"
+              ]
+            },
+            "operatingExpenses": {
+              "label": "operatingExpenses",
+              "tag": "grossProfit - operatingIncome",
+              "accession": "0000063908-26-000051",
+              "filedAt": "2026-05-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm",
+                "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm"
+              ]
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-30",
+          "filedAt": "2026-08-07",
+          "accession": "0000063908-26-000073",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": true,
+          "metrics": {
+            "revenue": 7099000000,
+            "costOfRevenue": 680000000,
+            "operatingIncome": 3338000000,
+            "incomeTax": 574000000,
+            "netIncome": 2362000000,
+            "sellingGeneralAndAdministrative": 817000000,
+            "grossProfit": 6419000000,
+            "operatingExpenses": 3081000000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenues",
+              "tag": "us-gaap:Revenues",
+              "accession": "0000063908-26-000073",
+              "filedAt": "2026-08-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Goods and Services Sold",
+              "tag": "us-gaap:CostOfGoodsAndServicesSold",
+              "accession": "0000063908-26-000073",
+              "filedAt": "2026-08-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0000063908-26-000073",
+              "filedAt": "2026-08-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0000063908-26-000073",
+              "filedAt": "2026-08-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0000063908-26-000073",
+              "filedAt": "2026-08-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+              "method": "reported"
+            },
+            "sellingGeneralAndAdministrative": {
+              "label": "Selling, General and Administrative Expense",
+              "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+              "accession": "0000063908-26-000073",
+              "filedAt": "2026-08-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "grossProfit",
+              "tag": "revenue - costOfRevenue",
+              "accession": "0000063908-26-000073",
+              "filedAt": "2026-08-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+                "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm"
+              ]
+            },
+            "operatingExpenses": {
+              "label": "operatingExpenses",
+              "tag": "grossProfit - operatingIncome",
+              "accession": "0000063908-26-000073",
+              "filedAt": "2026-08-07",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+              "method": "calculated",
+              "inputs": [
+                "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm",
+                "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm"
+              ]
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        }
+      ],
+      "warnings": [],
+      "checkedAt": "2026-09-24T19:38:06.802Z"
+    },
+    {
+      "schemaVersion": 2,
+      "ticker": "PLTR",
+      "name": "Palantir Technologies",
+      "cik": "0001321655",
+      "accent": "#337d9f",
+      "reportingCurrency": "USD",
+      "latestPeriod": "Q2 FY2026",
+      "dataStatus": "verified",
+      "version": "191038916ce16d4b70ed",
+      "updatedAt": "2026-09-06T00:00:31.702Z",
+      "annual": [
+        {
+          "id": "FY2018",
+          "label": "FY 2018",
+          "kind": "annual",
+          "fiscalYear": 2018,
+          "startDate": "2018-01-01",
+          "endDate": "2018-12-31",
+          "filedAt": "2021-02-26",
+          "accession": "0001193125-21-060650",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521060650/d65934d10k.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 595409000,
+            "costOfRevenue": 165401000,
+            "grossProfit": 430008000,
+            "operatingExpenses": 1053448000,
+            "operatingIncome": -623440000,
+            "pretaxIncome": -570925000,
+            "incomeTax": 9102000,
+            "netIncome": -580027000,
+            "researchAndDevelopment": 285451000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "accession": "0001193125-21-060650",
+              "filedAt": "2021-02-26",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521060650/d65934d10k.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Revenue",
+              "tag": "us-gaap:CostOfRevenue",
+              "accession": "0001193125-21-060650",
+              "filedAt": "2021-02-26",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521060650/d65934d10k.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "Gross Profit",
+              "tag": "us-gaap:GrossProfit",
+              "accession": "0001193125-21-060650",
+              "filedAt": "2021-02-26",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521060650/d65934d10k.htm",
+              "method": "reported"
+            },
+            "operatingExpenses": {
+              "label": "Operating Expenses",
+              "tag": "us-gaap:OperatingExpenses",
+              "accession": "0001193125-21-060650",
+              "filedAt": "2021-02-26",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521060650/d65934d10k.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0001193125-21-060650",
+              "filedAt": "2021-02-26",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521060650/d65934d10k.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0001193125-21-060650",
+              "filedAt": "2021-02-26",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521060650/d65934d10k.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0001193125-21-060650",
+              "filedAt": "2021-02-26",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521060650/d65934d10k.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0001193125-21-060650",
+              "filedAt": "2021-02-26",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521060650/d65934d10k.htm",
+              "method": "reported"
+            },
+            "researchAndDevelopment": {
+              "label": "Research and Development Expense",
+              "tag": "us-gaap:ResearchAndDevelopmentExpense",
+              "accession": "0001193125-21-060650",
+              "filedAt": "2021-02-26",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521060650/d65934d10k.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        },
+        {
+          "id": "FY2024",
+          "label": "FY 2024",
+          "kind": "annual",
+          "fiscalYear": 2024,
+          "startDate": "2024-01-01",
+          "endDate": "2024-12-31",
+          "filedAt": "2026-02-17",
+          "accession": "0001321655-26-000011",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 2865507000,
+            "costOfRevenue": 565990000,
+            "grossProfit": 2299517000,
+            "operatingExpenses": 1989114000,
+            "operatingIncome": 310403000,
+            "pretaxIncome": 489173000,
+            "incomeTax": 21255000,
+            "netIncome": 462190000,
+            "researchAndDevelopment": 507878000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Revenue",
+              "tag": "us-gaap:CostOfRevenue",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "Gross Profit",
+              "tag": "us-gaap:GrossProfit",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "operatingExpenses": {
+              "label": "Operating Expenses",
+              "tag": "us-gaap:OperatingExpenses",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "researchAndDevelopment": {
+              "label": "Research and Development Expense",
+              "tag": "us-gaap:ResearchAndDevelopmentExpense",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        },
+        {
+          "id": "FY2025",
+          "label": "FY 2025",
+          "kind": "annual",
+          "fiscalYear": 2025,
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "filedAt": "2026-02-17",
+          "accession": "0001321655-26-000011",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 4475446000,
+            "costOfRevenue": 789177000,
+            "grossProfit": 3686269000,
+            "operatingExpenses": 2272254000,
+            "operatingIncome": 1414015000,
+            "pretaxIncome": 1657368000,
+            "incomeTax": 22724000,
+            "netIncome": 1625033000,
+            "researchAndDevelopment": 557677000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Revenue",
+              "tag": "us-gaap:CostOfRevenue",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "Gross Profit",
+              "tag": "us-gaap:GrossProfit",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "operatingExpenses": {
+              "label": "Operating Expenses",
+              "tag": "us-gaap:OperatingExpenses",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            },
+            "researchAndDevelopment": {
+              "label": "Research and Development Expense",
+              "tag": "us-gaap:ResearchAndDevelopmentExpense",
+              "accession": "0001321655-26-000011",
+              "filedAt": "2026-02-17",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        }
+      ],
+      "quarterly": [
+        {
+          "id": "2020-Q1",
+          "label": "Q1 FY2020",
+          "kind": "quarterly",
+          "fiscalYear": 2020,
+          "fiscalQuarter": 1,
+          "startDate": "2020-01-01",
+          "endDate": "2020-03-31",
+          "filedAt": "2021-05-12",
+          "accession": "0001193125-21-159222",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521159222/d158374d10q.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 229327000,
+            "costOfRevenue": 64294000,
+            "grossProfit": 165033000,
+            "operatingExpenses": 235218000,
+            "operatingIncome": -70185000,
+            "pretaxIncome": -51717000,
+            "incomeTax": 2557000,
+            "netIncome": -54274000,
+            "researchAndDevelopment": 65800000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "accession": "0001193125-21-159222",
+              "filedAt": "2021-05-12",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521159222/d158374d10q.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Revenue",
+              "tag": "us-gaap:CostOfRevenue",
+              "accession": "0001193125-21-159222",
+              "filedAt": "2021-05-12",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521159222/d158374d10q.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "Gross Profit",
+              "tag": "us-gaap:GrossProfit",
+              "accession": "0001193125-21-159222",
+              "filedAt": "2021-05-12",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521159222/d158374d10q.htm",
+              "method": "reported"
+            },
+            "operatingExpenses": {
+              "label": "Operating Expenses",
+              "tag": "us-gaap:OperatingExpenses",
+              "accession": "0001193125-21-159222",
+              "filedAt": "2021-05-12",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521159222/d158374d10q.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0001193125-21-159222",
+              "filedAt": "2021-05-12",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521159222/d158374d10q.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0001193125-21-159222",
+              "filedAt": "2021-05-12",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521159222/d158374d10q.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0001193125-21-159222",
+              "filedAt": "2021-05-12",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521159222/d158374d10q.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0001193125-21-159222",
+              "filedAt": "2021-05-12",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521159222/d158374d10q.htm",
+              "method": "reported"
+            },
+            "researchAndDevelopment": {
+              "label": "Research and Development Expense",
+              "tag": "us-gaap:ResearchAndDevelopmentExpense",
+              "accession": "0001193125-21-159222",
+              "filedAt": "2021-05-12",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000119312521159222/d158374d10q.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        },
+        {
+          "id": "2026-Q1",
+          "label": "Q1 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 1,
+          "startDate": "2026-01-01",
+          "endDate": "2026-03-31",
+          "filedAt": "2026-05-05",
+          "accession": "0001321655-26-000028",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000028/pltr-20260331.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 1632583000,
+            "costOfRevenue": 215798000,
+            "grossProfit": 1416785000,
+            "operatingExpenses": 662787000,
+            "operatingIncome": 753998000,
+            "pretaxIncome": 888601000,
+            "incomeTax": 12199000,
+            "netIncome": 870527000,
+            "researchAndDevelopment": 160981000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "accession": "0001321655-26-000028",
+              "filedAt": "2026-05-05",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000028/pltr-20260331.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Revenue",
+              "tag": "us-gaap:CostOfRevenue",
+              "accession": "0001321655-26-000028",
+              "filedAt": "2026-05-05",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000028/pltr-20260331.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "Gross Profit",
+              "tag": "us-gaap:GrossProfit",
+              "accession": "0001321655-26-000028",
+              "filedAt": "2026-05-05",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000028/pltr-20260331.htm",
+              "method": "reported"
+            },
+            "operatingExpenses": {
+              "label": "Operating Expenses",
+              "tag": "us-gaap:OperatingExpenses",
+              "accession": "0001321655-26-000028",
+              "filedAt": "2026-05-05",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000028/pltr-20260331.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0001321655-26-000028",
+              "filedAt": "2026-05-05",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000028/pltr-20260331.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0001321655-26-000028",
+              "filedAt": "2026-05-05",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000028/pltr-20260331.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0001321655-26-000028",
+              "filedAt": "2026-05-05",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000028/pltr-20260331.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0001321655-26-000028",
+              "filedAt": "2026-05-05",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000028/pltr-20260331.htm",
+              "method": "reported"
+            },
+            "researchAndDevelopment": {
+              "label": "Research and Development Expense",
+              "tag": "us-gaap:ResearchAndDevelopmentExpense",
+              "accession": "0001321655-26-000028",
+              "filedAt": "2026-05-05",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000028/pltr-20260331.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        },
+        {
+          "id": "2026-Q2",
+          "label": "Q2 FY2026",
+          "kind": "quarterly",
+          "fiscalYear": 2026,
+          "fiscalQuarter": 2,
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-30",
+          "filedAt": "2026-08-04",
+          "accession": "0001321655-26-000041",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+          "reportingCurrency": "USD",
+          "displayCurrency": "USD",
+          "derived": false,
+          "metrics": {
+            "revenue": 1935464000,
+            "costOfRevenue": 296870000,
+            "grossProfit": 1638594000,
+            "operatingExpenses": 726590000,
+            "operatingIncome": 912004000,
+            "pretaxIncome": 1081345000,
+            "incomeTax": 15383000,
+            "netIncome": 1061890000,
+            "researchAndDevelopment": 192513000
+          },
+          "metricSources": {
+            "revenue": {
+              "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "accession": "0001321655-26-000041",
+              "filedAt": "2026-08-04",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+              "method": "reported"
+            },
+            "costOfRevenue": {
+              "label": "Cost of Revenue",
+              "tag": "us-gaap:CostOfRevenue",
+              "accession": "0001321655-26-000041",
+              "filedAt": "2026-08-04",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+              "method": "reported"
+            },
+            "grossProfit": {
+              "label": "Gross Profit",
+              "tag": "us-gaap:GrossProfit",
+              "accession": "0001321655-26-000041",
+              "filedAt": "2026-08-04",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+              "method": "reported"
+            },
+            "operatingExpenses": {
+              "label": "Operating Expenses",
+              "tag": "us-gaap:OperatingExpenses",
+              "accession": "0001321655-26-000041",
+              "filedAt": "2026-08-04",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+              "method": "reported"
+            },
+            "operatingIncome": {
+              "label": "Operating Income (Loss)",
+              "tag": "us-gaap:OperatingIncomeLoss",
+              "accession": "0001321655-26-000041",
+              "filedAt": "2026-08-04",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+              "method": "reported"
+            },
+            "pretaxIncome": {
+              "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+              "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+              "accession": "0001321655-26-000041",
+              "filedAt": "2026-08-04",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+              "method": "reported"
+            },
+            "incomeTax": {
+              "label": "Income Tax Expense (Benefit)",
+              "tag": "us-gaap:IncomeTaxExpenseBenefit",
+              "accession": "0001321655-26-000041",
+              "filedAt": "2026-08-04",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+              "method": "reported"
+            },
+            "netIncome": {
+              "label": "Net Income (Loss) Attributable to Parent",
+              "tag": "us-gaap:NetIncomeLoss",
+              "accession": "0001321655-26-000041",
+              "filedAt": "2026-08-04",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+              "method": "reported"
+            },
+            "researchAndDevelopment": {
+              "label": "Research and Development Expense",
+              "tag": "us-gaap:ResearchAndDevelopmentExpense",
+              "accession": "0001321655-26-000041",
+              "filedAt": "2026-08-04",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+              "method": "reported"
+            }
+          },
+          "coverage": {
+            "basics": true,
+            "segments": false,
+            "sankey": false
+          }
+        }
+      ],
+      "warnings": [],
+      "checkedAt": "2026-09-06T00:00:31.702Z"
+    }
+  ]
+}

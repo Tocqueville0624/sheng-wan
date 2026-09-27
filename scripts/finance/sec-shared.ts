@@ -32,6 +32,7 @@ export type Submissions = {
   cik: string;
   name: string;
   tickers?: string[];
+  sic?: string;
   fiscalYearEnd: string;
   filings: {
     recent: RecentFilings;

@@ -1,0 +1,244 @@
+---
+import { ameliaBenchmarks } from "@/content/projects/amelia";
+---
+
+<div class="amelia-benchmarks" data-amelia-benchmarks>
+  <div class="benchmark-selector" hidden>
+    <label for="amelia-benchmark">Compare a workflow</label>
+    <select id="amelia-benchmark" aria-controls="native-cuda hybrid-cuda native-mps">
+      {ameliaBenchmarks.map((benchmark) => <option value={benchmark.id}>{benchmark.label}</option>)}
+    </select>
+  </div>
+  {
+    ameliaBenchmarks.map((benchmark) => (
+      <div id={benchmark.id} class="benchmark-panel" data-benchmark-panel>
+        <h3>{benchmark.title}</h3>
+        <p class="benchmark-description">{benchmark.description}</p>
+        <figure class="project-figure">
+          <p class="chart-unit">Median seconds per call · lower is faster</p>
+          <div class="benchmark-charts">
+            {benchmark.datasets.map((dataset) => (
+              <div class="dataset-chart">
+                <div class="dataset-heading">
+                  <h4>{dataset.name}</h4>
+                  <span>{dataset.variables} variables</span>
+                </div>
+                <div class="bar-rows">
+                  {benchmark.methods.map((method, index) => (
+                    <div class="bar-row">
+                      <span class="bar-label">{method}</span>
+                      <div class="bar-track" aria-hidden="true">
+                        <span
+                          class:list={[
+                            "bar",
+                            { "bar-device": index === benchmark.methods.length - 1 }
+                          ]}
+                          style={`width: ${(dataset.seconds[index]! / Math.max(...dataset.seconds)) * 100}%`}
+                        />
+                      </div>
+                      <span class="bar-value">
+                        {dataset.seconds[index]!.toFixed(3)}
+                        <span class="sr-only"> seconds</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <p class="dataset-finding">{dataset.finding}</p>
+              </div>
+            ))}
+          </div>
+          <figcaption class="project-caption">
+            {benchmark.caption} Bar lengths share a scale within each dataset. Compare the labeled
+            seconds across datasets. File loading, process startup, initial imports and post-run
+            scoring are outside the timed calls.
+          </figcaption>
+        </figure>
+        <p class="project-note benchmark-limit">
+          {benchmark.limitation} <a href={benchmark.source}>Read the measurement record</a>.
+        </p>
+        <details class="benchmark-data">
+          <summary>View the timing table</summary>
+          <div
+            class="project-table-wrap"
+            tabindex="0"
+            role="region"
+            aria-label={`${benchmark.label} timing table`}
+          >
+            <table class="project-table">
+              <caption>{benchmark.label} · median seconds</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Dataset</th>
+                  {benchmark.methods.map((method) => (
+                    <th scope="col">{method}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {benchmark.datasets.map((dataset) => (
+                  <tr>
+                    <th scope="row">{dataset.name}</th>
+                    {dataset.seconds.map((seconds) => (
+                      <td>{seconds.toFixed(3)}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-amelia-benchmarks]");
+  const selector = root?.querySelector<HTMLElement>(".benchmark-selector");
+  const select = root?.querySelector("select");
+  if (root && selector && select) {
+    const panels = root.querySelectorAll<HTMLElement>("[data-benchmark-panel]");
+    const update = () => {
+      panels.forEach((panel) => {
+        panel.hidden = panel.id !== select.value;
+      });
+    };
+    selector.hidden = false;
+    select.addEventListener("change", update);
+    update();
+  }
+</script>
+
+<style>
+  .benchmark-selector {
+    margin: 1.5rem 0;
+  }
+  .benchmark-selector label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .benchmark-selector select {
+    width: min(100%, 32rem);
+    min-height: 3rem;
+    padding: 0.6rem 2rem 0.6rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.9rem;
+  }
+  .benchmark-panel[hidden],
+  .benchmark-selector[hidden] {
+    display: none;
+  }
+  .benchmark-panel + .benchmark-panel {
+    margin-top: 2rem;
+  }
+  .benchmark-panel h3 {
+    margin: 1.75rem 0 0.5rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+  }
+  .benchmark-description {
+    max-width: 75ch;
+  }
+  .chart-unit {
+    margin: 0 0 1.4rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .benchmark-charts {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .dataset-chart + .dataset-chart {
+    padding-top: 1.35rem;
+    border-top: 1px solid var(--border);
+  }
+  .dataset-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 0.75rem;
+    margin-bottom: 0.8rem;
+  }
+  .dataset-heading h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 650;
+    overflow-wrap: anywhere;
+  }
+  .dataset-heading > span {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .bar-rows {
+    display: grid;
+    gap: 0.55rem;
+  }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr) 4.7rem;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.83rem;
+  }
+  .bar-track {
+    height: 0.85rem;
+    background: var(--sky-soft);
+  }
+  .bar {
+    display: block;
+    height: 100%;
+    background: var(--muted);
+  }
+  .bar-device {
+    background: var(--accent);
+  }
+  .bar-value {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .dataset-finding {
+    margin: 0.6rem 0 0;
+    color: var(--accent-strong);
+    font-size: 0.83rem;
+  }
+  .benchmark-limit {
+    margin-block: 1.15rem;
+  }
+  .benchmark-data summary {
+    width: fit-content;
+    min-height: 2.75rem;
+    padding-block: 0.5rem;
+    cursor: pointer;
+    color: var(--accent-strong);
+  }
+  .benchmark-data caption {
+    text-align: left;
+    padding-block: 0.8rem;
+    font-size: 0.85rem;
+  }
+  @media (max-width: 480px) {
+    .bar-row {
+      grid-template-columns: minmax(0, 1fr) 4.7rem;
+      gap: 0.3rem 0.6rem;
+    }
+    .bar-label {
+      grid-column: 1;
+    }
+    .bar-track {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .bar-value {
+      grid-column: 2;
+      grid-row: 2;
+    }
+  }
+</style>

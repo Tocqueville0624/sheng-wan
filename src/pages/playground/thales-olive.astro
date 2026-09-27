@@ -5,6 +5,7 @@ import ThalesOlive from "@/features/finance/ThalesOlive";
 import snapshot from "@/data/generated/finance-history.json";
 import catalog from "@/data/generated/finance-catalog.json";
 import type { CatalogCompany, FinanceHistory } from "@/features/finance/v2-types";
+import { normalizeBasicCompany } from "../../../scripts/finance/v2-model";
 const saved = snapshot as FinanceHistory;
 ---
 
@@ -25,7 +26,7 @@ const saved = snapshot as FinanceHistory;
   </header>
   <section class="section-block shell" aria-label="Financial statement explorer">
     <ThalesOlive
-      initialCompany={saved.companies[0]}
+      initialCompany={normalizeBasicCompany(saved.companies[0])}
       featured={saved.companies.map((s) => ({
         ...catalog.companies.find((c) => c.ticker === s.ticker)!,
         name: s.name

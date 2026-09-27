@@ -7,6 +7,65 @@ import type {
 import type { CompanyV2, PeriodV2, MetricSource } from "../../src/features/finance/v2-types";
 import { validatePeriod, validateSegmentGrossProfits, roundingTolerance } from "./validate";
 
+/** Standard cost tags can describe only one activity (for example franchise rent).
+ * A generic revenue-minus-cost residual is not a reported consolidated gross profit.
+ * Require an independent reported operating-expense subtotal to corroborate it.
+ * This also repairs previously stored basic imports without another SEC crawl.
+ */
+export function normalizeBasicPeriod(period: PeriodV2): PeriodV2 {
+  if (
+    period.coverage.segments ||
+    period.metricSources.grossProfit?.tag !== "revenue - costOfRevenue"
+  )
+    return period;
+  const m = period.metrics;
+  if (
+    period.metricSources.operatingExpenses?.method === "reported" &&
+    m.operatingExpenses !== undefined &&
+    m.operatingIncome !== undefined &&
+    m.grossProfit !== undefined &&
+    Math.abs(m.grossProfit - m.operatingExpenses - m.operatingIncome) <=
+      roundingTolerance(m.revenue ?? 1)
+  )
+    return period;
+  const next: PeriodV2 = {
+    ...period,
+    metrics: { ...period.metrics },
+    metricSources: { ...period.metricSources },
+    coverage: { ...period.coverage, sankey: false }
+  };
+  delete next.metrics.grossProfit;
+  delete next.metricSources.grossProfit;
+  if (next.metricSources.operatingExpenses?.tag === "grossProfit - operatingIncome") {
+    delete next.metrics.operatingExpenses;
+    delete next.metricSources.operatingExpenses;
+  }
+  next.derived = Object.values(next.metricSources).some((source) => source.method === "calculated");
+  return next;
+}
+
+export function normalizeBasicCompany(company: CompanyV2): CompanyV2 {
+  const annual = company.annual.map(normalizeBasicPeriod);
+  const quarterly = company.quarterly.map(normalizeBasicPeriod);
+  if (
+    annual.every((p, i) => p === company.annual[i]) &&
+    quarterly.every((p, i) => p === company.quarterly[i])
+  )
+    return company;
+  return {
+    ...company,
+    annual,
+    quarterly,
+    version: `${company.version}-scope2`,
+    warnings: [
+      ...new Set([
+        ...company.warnings,
+        "Gross profit inferred from an unreviewed cost tag is withheld unless independent reported subtotals confirm its scope. Reported revenue and income remain available."
+      ])
+    ]
+  };
+}
+
 export function statementPeriod(period: PeriodV2): FinancialPeriod | undefined {
   if (period.displayCurrency !== "USD") return;
   const required = [

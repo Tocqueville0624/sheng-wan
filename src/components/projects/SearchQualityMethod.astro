@@ -1,0 +1,126 @@
+<figure class="project-figure review-method">
+  <div class="method-flow">
+    <div class="method-step">
+      <span class="method-number">1</span>
+      <h3>Predict relevance</h3>
+      <p>
+        A frozen model reads the query, product title, brand and color through 17 lexical features.
+      </p>
+      <p class="method-result">
+        425,762 held-out pairs<br /><span aria-hidden="true">↓</span><br />199,989 predicted Exact
+      </p>
+    </div>
+    <div class="method-step">
+      <span class="method-number">2</span>
+      <h3>Choose what to inspect</h3>
+      <div class="queue-branches">
+        <p><strong>Priority queue</strong><span>Lowest Exact scores first</span></p>
+        <p><strong>Random policy</strong><span>Every pool item equally likely</span></p>
+      </div>
+      <p>Both use the same pool and item budget. Test labels play no role in selection.</p>
+    </div>
+    <div class="method-step method-scoring">
+      <span class="method-number">3</span>
+      <h3>Measure the errors</h3>
+      <div class="label-input">
+        <span>Published test labels enter here</span><span aria-hidden="true">↓</span>
+      </div>
+      <p class="score-rule">
+        Predicted Exact<br /><span aria-hidden="true">≠</span><br />Published S, C or I
+      </p>
+      <p>
+        Count label disagreements in the priority queue; calculate the random policy’s expected
+        count.
+      </p>
+    </div>
+  </div>
+  <figcaption class="project-caption">
+    Training labels fit the classifier; validation selects the model. This diagram shows the later,
+    frozen test evaluation. Published test labels score the review policy only after its selection
+    rule is fixed. A disagreement is a model error under the benchmark, not proof that the original
+    label is wrong.
+  </figcaption>
+</figure>
+
+<style>
+  .method-flow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+  .method-step {
+    min-width: 0;
+  }
+  .method-number {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    color: var(--accent-strong);
+  }
+  .method-step h3 {
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-weight: 500;
+  }
+  .method-step p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+  .method-result {
+    margin: 1.25rem 0 0;
+    padding: 0.9rem 0;
+    border-block: 1px solid var(--border);
+    color: var(--accent-strong);
+    font-variant-numeric: tabular-nums;
+  }
+  .method-result span {
+    display: inline-block;
+    margin-block: 0.15rem;
+  }
+  .queue-branches {
+    margin: 1rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent);
+  }
+  .queue-branches p {
+    margin: 0;
+  }
+  .queue-branches p + p {
+    margin-top: 0.9rem;
+  }
+  .queue-branches strong,
+  .queue-branches span {
+    display: block;
+  }
+  .queue-branches span {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .label-input {
+    display: grid;
+    gap: 0.3rem;
+    padding-top: 0.75rem;
+    border-top: 2px dashed var(--accent);
+    color: var(--accent-strong);
+    font-size: 0.82rem;
+  }
+  .score-rule {
+    margin: 0 0 1rem;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .score-rule span {
+    font-size: 1.35rem;
+  }
+  @media (max-width: 760px) {
+    .method-flow {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .method-step + .method-step {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+  }
+</style>

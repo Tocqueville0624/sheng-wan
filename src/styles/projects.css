@@ -1,0 +1,264 @@
+.project-page {
+  padding-block: clamp(2.75rem, 6vw, 5.5rem) 5rem;
+}
+
+.project-hero {
+  max-width: 56rem;
+  margin-bottom: 2.75rem;
+}
+
+.project-kicker {
+  margin: 0 0 1rem;
+  color: var(--accent-strong);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+}
+
+.project-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 6.2vw, 5.5rem);
+  font-weight: 480;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.project-lede {
+  max-width: 47rem;
+  margin-block: 1.4rem;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.65;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.75rem;
+  margin-top: 1.5rem;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-weight: 600;
+}
+
+.project-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 0 3.5rem;
+  border-block: 1px solid var(--border);
+}
+
+.project-metric {
+  padding: 1.5rem 1.75rem 1.5rem 0;
+}
+
+.project-metric + .project-metric {
+  padding-left: 1.75rem;
+  border-left: 1px solid var(--border);
+}
+
+.project-metric dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.project-metric dd {
+  margin: 0.25rem 0 0;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height: 1.25;
+}
+
+.project-metric small {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.project-section {
+  margin-top: 3.5rem;
+}
+
+.project-section + .project-section {
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-section-heading {
+  max-width: 49rem;
+  margin-bottom: 1.6rem;
+}
+
+.project-page h2 {
+  margin: 0 0 0.85rem;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+  font-weight: 480;
+  line-height: 1.2;
+}
+
+.project-page h3 {
+  margin: 0 0 0.7rem;
+  color: var(--ink);
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.project-page p {
+  margin-top: 0;
+}
+
+.project-two-column {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.project-figure {
+  min-width: 0;
+  margin: 0;
+  padding: clamp(1.1rem, 3vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+}
+
+.project-caption {
+  margin-top: 1.25rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.project-note {
+  margin-block: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--sky-soft);
+  font-size: 0.94rem;
+}
+
+.project-note p:last-child {
+  margin-bottom: 0;
+}
+
+.project-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+.project-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.project-table caption {
+  margin-bottom: 0.65rem;
+  text-align: left;
+  color: var(--muted);
+}
+
+.project-table th,
+.project-table td {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.project-table th {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.project-table thead {
+  background: var(--sky-soft);
+}
+
+.project-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: project-step;
+}
+
+.project-step {
+  padding: 1.25rem;
+  border-top: 2px solid var(--accent);
+  background: var(--sky-soft);
+  counter-increment: project-step;
+}
+
+.project-step::before {
+  content: "0" counter(project-step);
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--accent-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.project-step p:last-child {
+  margin-bottom: 0;
+}
+
+.project-page details {
+  margin-top: 1.25rem;
+}
+
+.project-page summary {
+  min-height: 2.75rem;
+  padding-block: 0.5rem;
+  color: var(--accent-strong);
+  cursor: pointer;
+}
+
+.project-page li + li {
+  margin-top: 0.4rem;
+}
+
+.project-steps > li + li {
+  margin-top: 0;
+}
+
+@media (max-width: 700px) {
+  .project-two-column,
+  .project-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .project-metrics {
+    grid-template-columns: 1fr;
+    margin-bottom: 2.5rem;
+  }
+
+  .project-metric,
+  .project-metric + .project-metric {
+    padding: 1rem 0;
+    border-left: 0;
+  }
+
+  .project-metric + .project-metric {
+    border-top: 1px solid var(--border);
+  }
+
+  .project-section {
+    margin-top: 2.5rem;
+  }
+}

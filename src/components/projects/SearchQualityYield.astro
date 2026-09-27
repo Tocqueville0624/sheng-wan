@@ -1,0 +1,243 @@
+---
+import {
+  searchQualityProject as project,
+  searchQualityBudgets
+} from "@/content/projects/search-quality";
+const count = (value: number, digits = 0) =>
+  value.toLocaleString("en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits });
+const percent = (value: number) => `${(value * 100).toFixed(2)}%`;
+---
+
+<div data-search-quality-yield>
+  <div class="budget-selector" hidden>
+    <label for="search-quality-budget">Review budget within the predicted-Exact pool</label>
+    <select id="search-quality-budget" aria-controls="review-budget-10 review-budget-5">
+      {
+        searchQualityBudgets.map((budget) => (
+          <option value={budget.percent}>
+            {budget.percent}% · {count(budget.inspected)} pairs
+          </option>
+        ))
+      }
+    </select>
+  </div>
+  {
+    searchQualityBudgets.map((budget) => (
+      <figure
+        id={`review-budget-${budget.percent}`}
+        class="project-figure yield-panel"
+        data-yield-panel
+        data-budget={budget.percent}
+      >
+        <h3>
+          {budget.percent}% budget · {count(budget.inspected)} pairs inspected
+        </h3>
+        <p class="yield-unit">Model errors per 100 inspected pairs · fixed 0–40% scale</p>
+        <div class="yield-chart">
+          {[
+            {
+              title: "Uniform random",
+              note: "Analytical expectation",
+              yield: project.randomYield,
+              errors: budget.randomExpectedErrors,
+              priority: false
+            },
+            {
+              title: "Low-confidence Exact first",
+              note: "Selected by the model’s Exact score",
+              yield: budget.priorityYield,
+              errors: budget.priorityErrors,
+              priority: true
+            }
+          ].map((policy) => (
+            <div class="yield-row">
+              <div class="yield-label">
+                <span>{policy.title}</span>
+                <strong>{percent(policy.yield)}</strong>
+              </div>
+              <div class="yield-track" aria-hidden="true">
+                <span
+                  class:list={["yield-bar", { priority: policy.priority }]}
+                  style={`width: ${(policy.yield / 0.4) * 100}%`}
+                />
+              </div>
+              <p class="yield-detail">
+                {count(policy.errors, policy.priority ? 0 : 1)} errors{" "}
+                {policy.priority ? "found" : "expected"} · {policy.note}
+              </p>
+            </div>
+          ))}
+          <div class="yield-axis" aria-hidden="true">
+            {[0, 10, 20, 30, 40].map((tick) => (
+              <span>{tick}%</span>
+            ))}
+          </div>
+        </div>
+        <figcaption class="project-caption">
+          Both policies inspect the same number of pairs from the same {count(project.poolSize)}
+          -pair pool. An error means that a model’s Exact prediction has a published Substitute,
+          Complement or Irrelevant label. Random counts are expected values, not observed integer
+          counts from one random sample.
+        </figcaption>
+        <p class="yield-finding">
+          <strong>
+            +{((budget.priorityYield - project.randomYield) * 100).toFixed(2)} percentage points
+          </strong>
+          <span> in error yield versus random expectation.</span>
+        </p>
+        {budget.percent === 10 ? (
+          <p class="yield-uncertainty">
+            95% query-cluster bootstrap interval for this difference:{" "}
+            <strong>+12.11 to +14.01 points</strong> ({project.bootstrapReplicates} replicates,
+            fitted model held fixed). This interval does not cover retraining, label validity or
+            future traffic.
+          </p>
+        ) : (
+          <p class="yield-uncertainty">
+            The saved 5% result is a point estimate. The study’s query-cluster bootstrap interval
+            was calculated for the 10% budget.
+          </p>
+        )}
+      </figure>
+    ))
+  }
+  <details>
+    <summary>Compare both budgets in a table</summary>
+    <div class="project-table-wrap" tabindex="0" role="region" aria-label="Review budget results">
+      <table class="project-table">
+        <caption>Same predicted-Exact pool · offline results against published labels</caption>
+        <thead
+          ><tr
+            ><th scope="col">Budget</th><th scope="col">Pairs inspected</th><th scope="col"
+              >Priority errors</th
+            ><th scope="col">Random expected errors</th><th scope="col">Priority yield</th><th
+              scope="col">Pool errors found</th
+            ></tr
+          ></thead
+        >
+        <tbody
+          >{
+            [...searchQualityBudgets].reverse().map((budget) => (
+              <tr>
+                <>
+                  <th scope="row">{budget.percent}%</th>
+                  <td>{count(budget.inspected)}</td>
+                  <td>{count(budget.priorityErrors)}</td>
+                  <td>{count(budget.randomExpectedErrors, 1)}</td>
+                  <td>{percent(budget.priorityYield)}</td>
+                  <td>{percent(budget.errorRecall)}</td>
+                </>
+              </tr>
+            ))
+          }</tbody
+        >
+      </table>
+    </div>
+  </details>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-search-quality-yield]");
+  const selector = root?.querySelector<HTMLElement>(".budget-selector");
+  const select = root?.querySelector("select");
+  if (root && selector && select) {
+    const panels = root.querySelectorAll<HTMLElement>("[data-yield-panel]");
+    const update = () =>
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.budget !== select.value;
+      });
+    selector.hidden = false;
+    select.addEventListener("change", update);
+    update();
+  }
+</script>
+
+<style>
+  .budget-selector {
+    margin: 1.5rem 0;
+  }
+  .budget-selector label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .budget-selector select {
+    width: min(100%, 29rem);
+    min-height: 3rem;
+    padding: 0.6rem 2rem 0.6rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: var(--control-radius);
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.94rem;
+  }
+  .budget-selector[hidden],
+  .yield-panel[hidden] {
+    display: none;
+  }
+  .yield-panel + .yield-panel {
+    margin-top: 1.5rem;
+  }
+  .yield-unit {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .yield-chart {
+    margin-top: 1.75rem;
+  }
+  .yield-row + .yield-row {
+    margin-top: 1.5rem;
+  }
+  .yield-label {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.55rem;
+    font-size: 0.95rem;
+  }
+  .yield-label strong {
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+  .yield-track {
+    height: 1.4rem;
+    background: var(--sky-soft);
+    border-right: 1px solid var(--border);
+  }
+  .yield-bar {
+    display: block;
+    height: 100%;
+    background: var(--muted);
+  }
+  .yield-bar.priority {
+    background: var(--accent);
+  }
+  .yield-detail {
+    margin: 0.55rem 0 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .yield-axis {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .yield-finding {
+    margin: 1.5rem 0 0.6rem;
+    color: var(--accent-strong);
+    font-size: 1.12rem;
+  }
+  .yield-uncertainty {
+    margin-bottom: 0;
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+</style>

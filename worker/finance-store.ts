@@ -17,7 +17,12 @@ import {
   convertBasicTwd,
   type FactsDocument
 } from "../scripts/finance/facts-v2";
-import { mergeV2, upgradePeriod, validateV2 } from "../scripts/finance/v2-model";
+import {
+  mergeV2,
+  normalizeBasicCompany,
+  upgradePeriod,
+  validateV2
+} from "../scripts/finance/v2-model";
 import {
   SEC_USER_AGENT,
   assertSecUrl,
@@ -42,7 +47,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.9";
+const ENGINE_VERSION = "finance-v2.10";
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -51,7 +56,9 @@ export const catalogIdentity = (ticker: string) =>
   catalog.companies.find((c) => c.ticker === ticker.toUpperCase().replace("-", "."));
 export const bundledCompany = (identity: CatalogCompany) => {
   const original = bundled.companies.find((c) => c.cik === identity.cik);
-  return original ? { ...original, ticker: identity.ticker } : undefined;
+  // Apply the same scope policy to immutable fallback data before it can be
+  // returned directly or merged with a normalized stored company.
+  return original ? normalizeBasicCompany({ ...original, ticker: identity.ticker }) : undefined;
 };
 type Task = {
   engineVersion?: string;
@@ -67,6 +74,7 @@ type Task = {
   fx?: FxObservation[];
   exhibit?: string;
   exhibitReportDate?: string;
+  industrySic?: string;
 };
 type IndexEntry = { cik: string; ticker: string; updatedAt: string };
 
@@ -93,7 +101,8 @@ export class FinanceStore {
     });
   }
   private async company(identity: CatalogCompany): Promise<CompanyV2 | undefined> {
-    const saved = await this.ctx.storage.get<CompanyV2>(`company:${identity.cik}`);
+    const stored = await this.ctx.storage.get<CompanyV2>(`company:${identity.cik}`);
+    const saved = stored ? normalizeBasicCompany(stored) : undefined;
     const baseline = bundledCompany(identity);
     if (!saved) return baseline;
     if (
@@ -331,6 +340,7 @@ export class FinanceStore {
         throw new Error(
           "The SEC ticker/CIK mapping no longer matches this dated catalog entry. A catalog review is required."
         );
+      task.industrySic = /^\d{4}$/.test(submissions.sic ?? "") ? submissions.sic : undefined;
       const cutoff = `${new Date().getUTCFullYear() - 11}-01-01`;
       task.filings = parseFilings(identity.cik, submissions.filings.recent).filter((f) =>
         /^(10-K|10-Q|20-F|6-K)(\/A)?$/.test(f.form)
@@ -385,7 +395,8 @@ export class FinanceStore {
             facts,
             identity,
             task.filings,
-            mappedTicker === "TSM" ? "TWD" : undefined
+            mappedTicker === "TSM" ? "TWD" : undefined,
+            task.industrySic
           );
           if (mappedTicker === "TSM") {
             basic.annual = basic.annual.map((p) =>

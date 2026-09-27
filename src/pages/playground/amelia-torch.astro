@@ -1,0 +1,234 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AmeliaMechanism from "@/components/projects/AmeliaMechanism.astro";
+import AmeliaBenchmarks from "@/components/projects/AmeliaBenchmarks.astro";
+import { ameliaProject as project } from "@/content/projects/amelia";
+import "@/styles/projects.css";
+---
+
+<BaseLayout
+  title="amelia-torch — Multiple imputation"
+  description={project.description}
+  pageClass="playground-page"
+>
+  <article class="project-page shell">
+    <header class="project-hero">
+      <p class="project-kicker">Playground / Statistical computing</p>
+      <h1 class="project-title">{project.title}</h1>
+      <p class="amelia-subtitle">{project.subtitle}</p>
+      <p class="project-lede">{project.lede}</p>
+      <div class="project-links">
+        <a class="button" href={project.repository}
+          >View on GitHub <span aria-hidden="true">↗</span></a
+        >
+        <a href="#performance">Explore the results <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="project-note">
+        An unofficial, experimental implementation by Sheng Wan. Evidence snapshot: September 2026.
+        Full statistical acceptance is still pending.
+      </p>
+    </header>
+
+    <dl class="project-metrics" aria-label="Project findings and scope">
+      {
+        project.metrics.map((metric) => (
+          <div class="project-metric">
+            <dt>{metric.label}</dt>
+            <dd>
+              {metric.value}
+              <small>{metric.detail}</small>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="project-note amelia-result-boundary">
+      The native CUDA result is a measured gain within a continuous-data workflow. The complete R
+      compatibility route did not outperform parallel original Amelia, and the tested Apple GPU
+      route was slower than CPU.
+    </p>
+
+    <section class="project-section" aria-labelledby="research-value">
+      <div class="project-section-heading">
+        <p class="project-kicker">The research problem</p>
+        <h2 id="research-value">More than filling empty cells</h2>
+      </div>
+      <div class="project-two-column">
+        <p>
+          Replacing a missing observation with a single best guess can hide uncertainty. Amelia’s
+          bootstrap–EM method produces several plausible completed datasets. Researchers analyze
+          each one and combine the estimates, accounting for variation within and between
+          imputations.
+        </p>
+        <p>
+          That repeated work can become expensive in simulations and sensitivity analyses. My
+          contribution is a Python/R implementation and evaluation framework: preserve the reference
+          workflow, test different compute devices, and measure both useful speed and downstream
+          inference.
+        </p>
+      </div>
+    </section>
+
+    <section class="project-section" aria-labelledby="gpu-mechanism">
+      <div class="project-section-heading">
+        <p class="project-kicker">Inside the computation</p>
+        <h2 id="gpu-mechanism">Where a GPU can help</h2>
+      </div>
+      <p>
+        EM repeatedly estimates missing values’ conditional moments and updates a joint mean and
+        covariance. Grouping rows with the same missingness pattern turns much of this work into
+        matrix operations—the part that a GPU can execute in parallel.
+      </p>
+      <AmeliaMechanism />
+    </section>
+
+    <section id="performance" class="project-section" aria-labelledby="performance-heading">
+      <div class="project-section-heading">
+        <p class="project-kicker">Measured performance</p>
+        <h2 id="performance-heading">The answer depends on the workflow</h2>
+      </div>
+      <p>
+        Compare CPU and GPU on the same machine, at the same precision, within the same execution
+        path. The native and compatibility interfaces do different amounts of work; their times
+        answer different questions.
+      </p>
+      <AmeliaBenchmarks />
+    </section>
+
+    <section class="project-section" aria-labelledby="interfaces-heading">
+      <div class="project-section-heading">
+        <p class="project-kicker">Compatibility engineering</p>
+        <h2 id="interfaces-heading">Three explicit execution paths</h2>
+      </div>
+      <div class="project-steps">
+        {
+          project.routes.map((route) => (
+            <div class="project-step">
+              <>
+                <h3>{route.title}</h3>
+                <p>{route.body}</p>
+              </>
+            </div>
+          ))
+        }
+      </div>
+      <p>
+        The compatibility work preserves more than a formula: random-number state across R and
+        Python, variable transformations, original result objects and documented upstream edge
+        cases. CPU float64 remains the default. Device and precision choices are explicit;
+        unsupported accelerators fail clearly.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="quality-heading">
+      <div class="project-section-heading">
+        <p class="project-kicker">Statistical validation</p>
+        <h2 id="quality-heading">Faster is useful only if inference holds up</h2>
+      </div>
+      <div class="project-two-column">
+        <div>
+          <h3>What the evidence establishes</h3>
+          <p>
+            The complete T4 native/reference benchmark retained all 126 calls and 630 imputations.
+            Recorded convergence, observed-value preservation and held-out completeness checks
+            passed.
+          </p>
+          <p>
+            A separate Mac study completed 10,500 fits across five execution paths. It assessed
+            pooled regression estimates and interval coverage, going beyond reconstruction error
+            alone.
+          </p>
+        </div>
+        <div>
+          <h3>What remains unresolved</h3>
+          <p>
+            The Mac study passed its missing-at-random checks, but not every prespecified
+            missing-completely-at-random coverage criterion. CPU and MPS reached the same
+            conclusions; successful fitting did not make the study an overall pass.
+          </p>
+          <p>
+            Full CUDA inference validation remains incomplete. Broader missingness patterns,
+            end-to-end profiling and complete compatibility acceptance remain future work. The
+            project is a development snapshot, not a fully validated replacement for Amelia.
+          </p>
+        </div>
+      </div>
+      <p class="project-note">
+        The reports retain the original thresholds, uncertainty intervals and unsuccessful outcomes.
+        No inference claim rests on timing results or fixed numerical examples alone.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="sources-heading">
+      <div class="project-section-heading">
+        <p class="project-kicker">Reproducibility</p>
+        <h2 id="sources-heading">Follow the evidence</h2>
+      </div>
+      <p>
+        The benchmarks use public UCI datasets: Covertype, Individual Household Electric Power
+        Consumption and YearPredictionMSD. The repository records attribution, preparation rules,
+        hashes and repeat-level results. Complete raw dataset archives remain outside Git.
+      </p>
+      <ul class="amelia-source-list">
+        {
+          project.sources.map((source) => (
+            <li>
+              <>
+                <a href={source.href}>
+                  {source.title} <span aria-hidden="true">↗</span>
+                </a>
+                <p>{source.detail}</p>
+              </>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="project-note">
+        Amelia’s method and original implementation are the work of James Honaker, Gary King and
+        Matthew Blackwell. See <a href="https://doi.org/10.18637/jss.v045.i07"
+          >Amelia II: A Program for Missing Data</a
+        >. amelia-torch is not affiliated with or endorsed by the original authors. Software
+        license: GPL-3.0-only.
+      </p>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .amelia-subtitle {
+    margin: 0.65rem 0 1.5rem;
+    max-width: 35ch;
+    color: var(--accent-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 3vw, 2.25rem);
+    line-height: 1.25;
+  }
+  .amelia-result-boundary {
+    margin-top: 1.15rem;
+  }
+  .amelia-source-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 2rem;
+    padding: 0;
+    margin: 1.75rem 0;
+    list-style: none;
+  }
+  .amelia-source-list li {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .amelia-source-list a {
+    font-weight: 600;
+  }
+  .amelia-source-list p {
+    margin: 0.35rem 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  @media (max-width: 640px) {
+    .amelia-source-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

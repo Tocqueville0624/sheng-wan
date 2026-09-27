@@ -1,0 +1,256 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SearchQualityYield from "@/components/projects/SearchQualityYield.astro";
+import SearchQualityTradeoff from "@/components/projects/SearchQualityTradeoff.astro";
+import SearchQualityMethod from "@/components/projects/SearchQualityMethod.astro";
+import { searchQualityProject as project } from "@/content/projects/search-quality";
+import "@/styles/projects.css";
+---
+
+<BaseLayout title={project.title} description={project.description} pageClass="playground-page">
+  <article class="project-page shell">
+    <header class="project-hero">
+      <p class="project-kicker">Playground / Machine learning &amp; product analysis</p>
+      <h1 class="project-title">{project.title}</h1>
+      <p class="search-subtitle">Which search results should a quality team inspect first?</p>
+      <p class="project-lede">
+        A team can review only a fraction of its search results. I built a local PySpark study to
+        test whether an interpretable relevance model can direct that limited attention toward more
+        errors.
+      </p>
+      <div class="project-links">
+        <a class="button" href={project.repository}
+          >View on GitHub <span aria-hidden="true">↗</span></a
+        >
+        <a href="#audit-results">Explore the results <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="project-note">
+        An independent project using public Amazon ESCI data, with Codex assistance. The results
+        below are an offline simulation against published labels; no human-review pilot or online
+        experiment has run.
+      </p>
+    </header>
+
+    <dl class="project-metrics" aria-label="Study scope and principal finding">
+      <div class="project-metric">
+        <dt>Public query–product judgments</dt><dd>
+          1.82 million<small>US English · audited product joins</small>
+        </dd>
+      </div>
+      <div class="project-metric">
+        <dt>Identical review budget</dt><dd>
+          19,998 pairs<small>10% of the model’s predicted-Exact pool</small>
+        </dd>
+      </div>
+      <div class="project-metric">
+        <dt>Priority yield minus random expectation</dt><dd>
+          +13.01 pp<small>95% query-cluster interval: +12.11–14.01 pp</small>
+        </dd>
+      </div>
+    </dl>
+
+    <section id="audit-results" class="project-section" aria-labelledby="audit-heading">
+      <div class="project-section-heading">
+        <p class="project-kicker">The operational result</p>
+        <h2 id="audit-heading">More errors found at the same review budget</h2>
+        <p>
+          The model classifies each query–product pair as Exact, Substitute, Complement or
+          Irrelevant. Among the pairs it calls Exact, low-confidence predictions are a useful
+          starting point for inspection.
+        </p>
+      </div>
+      <SearchQualityYield />
+      <p class="project-note">
+        The 10% priority queue finds 6,575 of the pool’s 39,729 errors. That is 16.55% of its
+        errors; <strong>83.45% remain uninspected</strong>. The pool itself covers 46.97% of test
+        pairs, so this result does not describe every search result.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="method-heading">
+      <div class="project-section-heading">
+        <p class="project-kicker">How the comparison works</p>
+        <h2 id="method-heading">Choose first. Score afterward.</h2>
+        <p>
+          The model’s score orders the queue. Published test labels are kept out of the selection
+          step, so the policy cannot pick items simply because their errors are already known.
+        </p>
+      </div>
+      <SearchQualityMethod />
+      <div class="project-two-column method-context">
+        <div>
+          <h3>Simple features, explicit choices</h3><p>
+            Token overlap, query coverage, brand and color matches, numeric mismatch and
+            missing-field flags become 17 features. Spark ML fits multinomial logistic regression
+            with training-only standardization. Class weighting is selected using validation
+            macro-F1.
+          </p>
+        </div>
+        <div>
+          <h3>One local, reproducible pipeline</h3><p>
+            PySpark and Spark SQL handle the joins, quality checks, query-group splits and
+            partitioned Parquet. The study runs on one 16 GB Apple Silicon computer with four local
+            Spark threads. It does not establish a speed advantage over pandas or demonstrate
+            cloud-cluster operation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-section" aria-labelledby="tradeoff-heading">
+      <div class="project-section-heading">
+        <p class="project-kicker">Model performance</p>
+        <h2 id="tradeoff-heading">The useful signal comes with a tradeoff</h2>
+        <p>
+          On the 425,762-pair official test set, the selected model improves balanced class
+          recognition while making fewer correct predictions overall.
+        </p>
+      </div>
+      <SearchQualityTradeoff />
+      <p class="project-note">
+        <strong>Complement precision is only 4.17%.</strong> Lexical overlap often fails to distinguish
+        an accessory from the requested item. Class-weighted scores also are not calibrated probabilities
+        of correctness. These results support a review pilot, not automatic relevance decisions.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="decision-heading">
+      <div class="project-section-heading">
+        <p class="project-kicker">From evidence to a decision</p>
+        <h2 id="decision-heading">Prioritize review; keep measuring independently</h2>
+      </div>
+      <div class="project-two-column">
+        <div>
+          <h3>What a pilot would test</h3><p>
+            Give reviewers separate, equal-size random and priority samples from the same frozen
+            pool. Measure confirmed errors, reviewer disagreement and inspection time. Keep a random
+            audit alongside the priority queue to estimate overall quality: an error-enriched queue
+            cannot supply that estimate.
+          </p>
+        </div>
+        <div>
+          <h3>What this study does not measure</h3><p>
+            The benchmark supplies selected candidate pairs, not a full product catalog or live
+            search traffic. No new human labels, inspection-time savings, conversion gains or
+            revenue effects were measured. Substitute, Complement and Irrelevant errors receive
+            equal weight here, although their customer costs can differ.
+          </p>
+        </div>
+      </div>
+      <p>
+        Low-confidence selection is an established idea. This project’s contribution is the
+        implementation, reproducible evaluation and operational interpretation. Any improvement
+        informed by these test results needs a new untouched holdout for a confirmatory claim.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="evidence-heading">
+      <div class="project-section-heading">
+        <p class="project-kicker">Data and reproducibility</p>
+        <h2 id="evidence-heading">Follow the evidence</h2>
+        <p>
+          The US source contains 1,818,825 pairs and 1,215,854 products. Product joins preserve
+          every pair. One query overlaps the official train and test sets; its three training pairs
+          are removed while official test membership stays intact.
+        </p>
+      </div>
+      <div class="project-table-wrap" tabindex="0" role="region" aria-label="Dataset partitions">
+        <table class="project-table">
+          <caption>Final partitions · no query IDs or normalized query texts overlap</caption>
+          <thead
+            ><tr
+              ><th scope="col">Partition</th><th scope="col">Query–product pairs</th><th scope="col"
+                >Queries</th
+              ></tr
+            ></thead
+          >
+          <tbody
+            >{
+              project.partitions.map((partition) => (
+                <tr>
+                  <>
+                    <th scope="row">{partition.name}</th>
+                    <td>{partition.pairs.toLocaleString("en-US")}</td>
+                    <td>{partition.queries.toLocaleString("en-US")}</td>
+                  </>
+                </tr>
+              ))
+            }</tbody
+          >
+        </table>
+      </div>
+      <p class="evidence-detail">
+        Source files, splits, code and model artifacts are recorded with hashes. The model and
+        evaluation design were frozen before test exposure. A separate technical reproduction
+        matched the classification, review and bootstrap results; it does not create a new test set.
+      </p>
+      <ul class="search-source-list">
+        {
+          project.sources.map((source) => (
+            <li>
+              <>
+                <a href={source.href}>
+                  {source.title} <span aria-hidden="true">↗</span>
+                </a>
+                <p>{source.detail}</p>
+              </>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="project-caption">
+        Evidence snapshot: September 2026. Result and method links point to a fixed repository
+        revision.
+      </p>
+      <p class="project-note">
+        Data: <a href={project.datasetSource}>Amazon ESCI</a>, introduced by <a
+          href="https://arxiv.org/abs/2206.06588">Reddy et al. (2022)</a
+        >. Independent work with no Amazon affiliation or endorsement. Project code: MIT; source
+        dataset: Apache-2.0. Codex assisted with code, analysis and documentation; reported claims
+        were checked against saved outputs.
+      </p>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .search-subtitle {
+    margin: 0.75rem 0 1.5rem;
+    max-width: 36ch;
+    color: var(--accent-strong);
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 3vw, 2.25rem);
+    line-height: 1.3;
+  }
+  .method-context {
+    margin-top: 2rem;
+  }
+  .evidence-detail {
+    margin-top: 1.5rem;
+  }
+  .search-source-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 2rem;
+    margin: 1.75rem 0;
+    padding: 0;
+    list-style: none;
+  }
+  .search-source-list li {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .search-source-list a {
+    font-weight: 600;
+  }
+  .search-source-list p {
+    margin: 0.4rem 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  @media (max-width: 640px) {
+    .search-source-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

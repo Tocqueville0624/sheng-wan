@@ -17,6 +17,8 @@ for (const path of [
   "/research/",
   "/teaching/",
   "/playground/thales-olive/",
+  "/playground/product-search-quality/",
+  "/playground/amelia-torch/",
   "/playground/hugo-le-chatssius/",
   "/playground/photo-gallery/"
 ]) {

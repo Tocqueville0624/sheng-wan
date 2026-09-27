@@ -65,6 +65,8 @@ const routes = [
   "/playground",
   "/playground/hugo-le-chatssius",
   "/playground/photo-gallery",
+  "/playground/amelia-torch",
+  "/playground/product-search-quality",
   "/playground/thales-olive"
 ];
 
@@ -130,9 +132,11 @@ test("Playground dropdown works with keyboard, pointer and touch-sized navigatio
   await trigger.press("Enter");
   await expect(menu).toBeVisible();
   await expect(trigger).toHaveAttribute("aria-expanded", "true");
-  await expect(menu.getByRole("link")).toHaveCount(3);
+  await expect(menu.getByRole("link")).toHaveCount(5);
   await page.keyboard.press("Tab");
-  await expect(menu.getByRole("link", { name: "Thales’ Olive" })).toBeFocused();
+  await expect(
+    menu.getByRole("link", { name: "Thales' Olive - Earnings Report Reader", exact: true })
+  ).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(menu).toBeHidden();
   await expect(trigger).toBeFocused();

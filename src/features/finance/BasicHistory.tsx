@@ -24,8 +24,17 @@ export function BasicHistory({
   selected: string;
 }) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const currency = periods.at(-1)?.displayCurrency ?? "USD";
+  const currency =
+    periods.find((p) => p.id === selected)?.displayCurrency ??
+    periods.at(-1)?.displayCurrency ??
+    "USD";
   const comparable = periods.filter((p) => p.displayCurrency === currency);
+  const revenuePeriods = comparable.filter((p) => p.metrics.revenue !== undefined);
+  const netRevenue =
+    revenuePeriods.length > 0 &&
+    revenuePeriods.every((p) =>
+      p.metricSources.revenue?.tag.endsWith("RevenuesNetOfInterestExpense")
+    );
   const slots = historySlots(periods).map((slot) => ({
     ...slot,
     period: slot.period?.displayCurrency === currency ? slot.period : undefined
@@ -71,7 +80,7 @@ export function BasicHistory({
       >
         <svg
           ref={svgRef}
-          className="history-chart finance-artboard"
+          className="basic-history-chart finance-artboard"
           viewBox={`0 0 ${width} ${height}`}
           role="img"
           aria-label={`${company.name} consolidated revenue and net income, ${currency}. Missing values have no bar; exact values and sources follow in the table.`}
@@ -82,7 +91,12 @@ export function BasicHistory({
               ticker: company.ticker,
               version: company.version,
               currency,
-              periods: periods.map((p) => ({ id: p.id, sources: p.metricSources }))
+              periods: periods.map((p) => ({
+                id: p.id,
+                currency: p.displayCurrency,
+                metrics: p.metrics,
+                sources: p.metricSources
+              }))
             })}
           </metadata>
           <rect width={width} height={height} fill={colors.paper} />
@@ -101,12 +115,12 @@ export function BasicHistory({
           </text>
           <CompanyLogo ticker={company.ticker} x={width - 225} />
           <text x={36} y={126} fontSize={15} fill={colors.revenue}>
-            Revenue
+            {netRevenue ? "Revenue, net of interest" : "Revenue"}
           </text>
-          <text x={140} y={126} fontSize={15} fill={colors.profit}>
+          <text x={285} y={126} fontSize={15} fill={colors.profit}>
             Net income
           </text>
-          <text x={270} y={126} fontSize={15} fill={colors.expense}>
+          <text x={420} y={126} fontSize={15} fill={colors.expense}>
             Net loss below zero
           </text>
           {ticks.map((v) => {
@@ -170,9 +184,7 @@ export function BasicHistory({
                       key === "revenue" ? colors.revenue : v < 0 ? colors.expense : colors.profit
                     }
                   >
-                    <title>
-                      {p!.label} {key}: {amount(v, currency)}
-                    </title>
+                    <title>{`${p!.label} ${key}: ${amount(v, currency)}`}</title>
                   </rect>
                 );
               })}

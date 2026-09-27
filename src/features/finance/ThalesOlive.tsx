@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { RevenueChart } from "./RevenueChart";
 import { StatementFlow } from "./StatementFlow";
-import { amount } from "./BasicHistory";
+import { BasicHistory, amount } from "./BasicHistory";
+import { StatementMetrics } from "./StatementMetrics";
 import { downloadFile } from "./ChartExports";
 import { percent } from "./chart-model";
 import { statementPeriod, validateV2 } from "../../../scripts/finance/v2-model";
@@ -551,6 +552,9 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
                   <RevenueChart periods={segmentPeriods} company={chartCompany!} />
                 </>
               )}
+              {periods.some((p) => !p.coverage.segments) && (
+                <BasicHistory company={company} periods={periods} selected={current.id} />
+              )}
               {selectedStatement ? (
                 <StatementFlow
                   periods={[selectedStatement]}
@@ -559,17 +563,7 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
                   showPeriodSelect={false}
                 />
               ) : (
-                <section className="finance-panel chart-empty">
-                  <h2>Statement detail · {current.label}</h2>
-                  <p>
-                    A proportional profit-flow chart is not available for this reporting structure
-                    or coverage. The reported figures below remain available; missing costs or
-                    business splits are not invented.
-                  </p>
-                  <a href={current.sourceUrl} target="_blank" rel="noreferrer">
-                    Read the original statement
-                  </a>
-                </section>
+                <StatementMetrics company={company} period={current} />
               )}
               <section className="finance-panel table-panel">
                 <div className="panel-heading">
