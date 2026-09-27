@@ -1,9 +1,10 @@
-import { buildStatementFlow } from "../../src/features/finance/chart-model";
+import { buildStatementFlow, segmentProblem } from "../../src/features/finance/chart-model";
 import type {
   CompanyDataset,
   FinancialMetrics,
   FinancialPeriod,
-  FlowStatementPeriod
+  FlowStatementPeriod,
+  BusinessPeriod
 } from "../../src/features/finance/types";
 import type { CompanyV2, PeriodV2, MetricSource } from "../../src/features/finance/v2-types";
 import { validatePeriod, validateSegmentGrossProfits, roundingTolerance } from "./validate";
@@ -90,8 +91,102 @@ export function statementPeriod(period: PeriodV2): FinancialPeriod | undefined {
 }
 
 /** Financial flows need a reconciled statement, but not necessarily a gross-profit subtotal. */
+export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
+  if (period.displayCurrency !== "USD" || !Number.isFinite(period.metrics.revenue)) return;
+  const business = period as BusinessPeriod;
+  if (
+    segmentProblem(business) ||
+    !period.segmentBasis ||
+    period.segmentSourceUrl !== period.sourceUrl
+  )
+    return;
+  const proof = period.businessBreakdownSource;
+  if (!proof) {
+    // Existing reviewed adapters retain their contract and reported adjustments.
+    if (period.revenueAdjustments?.some((item) => item.id === "source-rounding")) return;
+    return business;
+  }
+  const qname = /^[A-Za-z_][\w.-]*:[A-Za-z_][\w.-]*$/;
+  const halfUnit = (decimals: number) =>
+    Number.isInteger(decimals) && decimals >= -18 && decimals <= 18 ? 0.5 * 10 ** -decimals : NaN;
+  if (
+    proof.method !== "statement-revenue-rows" ||
+    !Number.isInteger(proof.tableIndex) ||
+    proof.tableIndex < 0 ||
+    proof.sourceUrl !== period.sourceUrl ||
+    proof.accession !== period.accession ||
+    proof.revenue !== period.metrics.revenue ||
+    proof.revenueTag !== period.metricSources.revenue?.tag ||
+    !proof.totalLabel ||
+    !Number.isFinite(halfUnit(proof.revenueDecimals)) ||
+    (proof.axis &&
+      ![
+        "srt:ProductOrServiceAxis",
+        "us-gaap:ProductOrServiceAxis",
+        "us-gaap:StatementBusinessSegmentsAxis"
+      ].includes(proof.axis))
+  )
+    return;
+  const keys = new Set<string>();
+  for (const segment of period.segments!) {
+    const source = segment.revenueSource;
+    if (
+      !source ||
+      source.sourceUrl !== period.sourceUrl ||
+      source.accession !== period.accession ||
+      source.filedAt !== period.filedAt ||
+      source.startDate !== period.startDate ||
+      source.endDate !== period.endDate ||
+      source.currency !== period.displayCurrency ||
+      source.currency !== period.reportingCurrency ||
+      source.value !== segment.revenue ||
+      source.tableLabel !== segment.label ||
+      !source.tableLabel ||
+      !qname.test(source.tag) ||
+      !Number.isFinite(halfUnit(source.decimals)) ||
+      !source.dimensions ||
+      Object.keys(source.dimensions).length !== (proof.axis ? 1 : 0) ||
+      Object.entries(source.dimensions).some(
+        ([axis, member]) => axis !== proof.axis || !qname.test(member)
+      )
+    )
+      return;
+    const key = `${source.tag}|${JSON.stringify(source.dimensions)}`;
+    if (keys.has(key)) return;
+    keys.add(key);
+    const grossSource = segment.grossProfitSource;
+    if (
+      grossSource &&
+      (!grossSource.dimensions ||
+        grossSource.revenueTag !== source.tag ||
+        JSON.stringify(Object.entries(grossSource.dimensions).sort()) !==
+          JSON.stringify(Object.entries(source.dimensions).sort()))
+    )
+      return;
+  }
+  const adjustments = period.revenueAdjustments ?? [];
+  if (
+    adjustments.length > 1 ||
+    adjustments.some((a) => a.id !== "source-rounding" || a.label !== "Source rounding")
+  )
+    return;
+  const amount = adjustments[0]?.revenue ?? 0;
+  const bound = period.segments!.reduce(
+    (sum, s) => sum + halfUnit(s.revenueSource!.decimals),
+    halfUnit(proof.revenueDecimals)
+  );
+  if (Math.abs(amount) > bound || Math.abs(amount) > proof.revenue * 0.001) return;
+  try {
+    validateSegmentGrossProfits(period);
+  } catch {
+    return;
+  }
+  return business;
+}
+
 export function flowPeriod(period: PeriodV2): FlowStatementPeriod | undefined {
   if (period.displayCurrency !== "USD") return;
+  if (period.businessBreakdownSource && !businessPeriod(period)) return;
   const required = [
     "revenue",
     "operatingIncome",
@@ -272,9 +367,10 @@ export function validateV2(company: CompanyV2) {
       // NetIncomeLoss and ProfitLoss can differ in noncontrolling/equity scope.
       // Only claim a full statement when the reviewed accounting contract passes.
       if (p.coverage.segments) {
-        const statement = statementPeriod(p);
-        if (!statement || !p.segments?.length) throw new Error("Unsupported chart capability.");
+        if (!businessPeriod(p)) throw new Error("Unsupported business chart capability.");
       }
+      if (p.businessBreakdownSource && !p.coverage.segments)
+        throw new Error("Business provenance requires validated coverage.");
       if ((p.coverage.sankey || p.operatingReconciliation) && !flowPeriod(p))
         throw new Error("Unsupported chart capability or unverified rounding precision.");
     }

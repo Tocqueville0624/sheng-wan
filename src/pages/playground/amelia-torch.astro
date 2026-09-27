@@ -13,7 +13,7 @@ import "@/styles/projects.css";
 >
   <article class="project-page shell">
     <header class="project-hero">
-      <p class="project-kicker">Playground / Statistical computing</p>
+      <p class="project-kicker">Projects / Statistical computing</p>
       <h1 class="project-title">{project.title}</h1>
       <p class="amelia-subtitle">{project.subtitle}</p>
       <p class="project-lede">{project.lede}</p>
@@ -24,8 +24,8 @@ import "@/styles/projects.css";
         <a href="#performance">Explore the results <span aria-hidden="true">↓</span></a>
       </div>
       <p class="project-note">
-        An unofficial, experimental implementation by Sheng Wan. Evidence snapshot: September 2026.
-        Full statistical acceptance is still pending.
+        An unofficial, experimental implementation by Sheng Wan. Updated September 27, 2026, with a
+        complete Windows RTX 3080 benchmark. Full statistical acceptance is still pending.
       </p>
     </header>
 
@@ -43,9 +43,9 @@ import "@/styles/projects.css";
       }
     </dl>
     <p class="project-note amelia-result-boundary">
-      The native CUDA result is a measured gain within a continuous-data workflow. The complete R
-      compatibility route did not outperform parallel original Amelia, and the tested Apple GPU
-      route was slower than CPU.
+      On the RTX 3080, the 90-variable input gained 1.49× in native Python and 1.09× through the
+      full R compatibility route. Narrower tasks showed little benefit or a slowdown. T4 and Apple
+      GPU results remain available below; comparisons stay within the same host and workflow.
     </p>
 
     <section class="project-section" aria-labelledby="research-value">
@@ -129,9 +129,10 @@ import "@/styles/projects.css";
         <div>
           <h3>What the evidence establishes</h3>
           <p>
-            The complete T4 native/reference benchmark retained all 126 calls and 630 imputations.
-            Recorded convergence, observed-value preservation and held-out completeness checks
-            passed.
+            The new Windows benchmark retained all 30 configurations: 210 calls and 1,050
+            imputations, including 60 warmup calls. Independent convergence, observed-value
+            preservation and complete held-out scoring checks passed. The earlier complete T4
+            native/reference study retained 126 calls and 630 imputations.
           </p>
           <p>
             A separate Mac study completed 10,500 fits across five execution paths. It assessed
@@ -145,6 +146,12 @@ import "@/styles/projects.css";
             The Mac study passed its missing-at-random checks, but not every prespecified
             missing-completely-at-random coverage criterion. CPU and MPS reached the same
             conclusions; successful fitting did not make the study an overall pass.
+          </p>
+          <p>
+            The Windows paired-output study found small but nonzero differences between the R
+            reference and hybrid routes: up to 0.059% in normalized held-out RMSE, 0.95% in
+            covariance and 3.05% in Rubin’s between-imputation variance. No equivalence threshold
+            was imposed; matching inputs and seeds did not establish identical output.
           </p>
           <p>
             Full CUDA inference validation remains incomplete. Broader missingness patterns,

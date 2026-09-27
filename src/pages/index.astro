@@ -2,6 +2,7 @@
 import DoveMark from "@components/DoveMark.astro";
 import Picture from "@components/Picture.astro";
 import ContactLinks from "@components/ContactLinks.astro";
+import PersonalProjects from "@components/projects/PersonalProjects.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import manifestData from "@/data/generated/media.json";
 import type { MediaManifest } from "@/types/media";
@@ -21,6 +22,7 @@ const manifest = manifestData as MediaManifest;
       </p>
       <div class="hero-actions">
         <a class="button button--primary" href="/cv">View CV</a>
+        <a class="button" href="#personal-projects">Personal Projects</a>
       </div>
       <div class="contact-row">
         <span class="contact-label">Contact Me:</span>
@@ -38,4 +40,5 @@ const manifest = manifestData as MediaManifest;
       />
     </div>
   </section>
+  <PersonalProjects />
 </BaseLayout>

@@ -7,3 +7,6 @@ public/media/
 test-results/
 # Preserve exact SEC inline-XBRL source fragments and their original attributes.
 tests/fixtures/finance/mcd-2026-q2-inline.html
+tests/fixtures/finance/mcd-2026-q2-business.html
+tests/fixtures/finance/tsla-2026-q2-business.html
+tests/fixtures/finance/ibm-2026-q2-business.html

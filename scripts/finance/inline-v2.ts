@@ -1,7 +1,7 @@
 import type { FinancialMetrics } from "../../src/features/finance/types";
 import type { CatalogCompany, PeriodV2 } from "../../src/features/finance/v2-types";
 import { buildStatementFlow } from "../../src/features/finance/chart-model";
-import { parseInlineXbrl, type XbrlFact } from "./ixbrl";
+import { parseInlineXbrl, type ParsedFiling, type XbrlFact } from "./ixbrl";
 import type { SecFiling } from "./sec-shared";
 import { flowPeriod } from "./v2-model";
 
@@ -60,7 +60,8 @@ export function enrichInlinePeriods(
   html: string,
   identity: CatalogCompany,
   filing: SecFiling,
-  existing: PeriodV2[]
+  existing: PeriodV2[],
+  parsedInput?: ParsedFiling
 ): PeriodV2[] {
   const url = new URL(filing.sourceUrl);
   const prefix = `/Archives/edgar/data/${Number(identity.cik)}/${filing.accession.replaceAll("-", "")}/`;
@@ -73,7 +74,7 @@ export function enrichInlinePeriods(
     !url.pathname.startsWith(prefix)
   )
     throw new Error("Inline filing URL does not match the SEC issuer and accession.");
-  const parsed = parseInlineXbrl(html);
+  const parsed = parsedInput ?? parseInlineXbrl(html);
   if (
     parsed.facts.some(
       (fact) => !/^\d+$/.test(fact.context.cik) || Number(fact.context.cik) !== Number(identity.cik)
@@ -84,7 +85,7 @@ export function enrichInlinePeriods(
   const result: PeriodV2[] = [];
   for (const period of existing) {
     if (
-      period.coverage.segments ||
+      (period.coverage.segments && !period.businessBreakdownSource) ||
       (period.coverage.sankey && flowPeriod(period)) ||
       period.accession !== filing.accession ||
       period.filedAt !== filing.filedAt ||

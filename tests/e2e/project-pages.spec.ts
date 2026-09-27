@@ -37,7 +37,9 @@ test("Amelia comparisons keep each workflow and its limits together", async ({ p
   const selector = page.getByRole("combobox", { name: "Compare a workflow" });
   await expect(selector).toBeVisible();
   await expect(page.locator("[data-benchmark-panel]:visible")).toHaveCount(1);
-  for (const id of ["native-cuda", "hybrid-cuda", "native-mps"]) {
+  await expect(selector).toHaveValue("rtx-native");
+  await expect(page.locator("#rtx-native")).toContainText("32.979 to 22.115 seconds");
+  for (const id of ["rtx-native", "rtx-hybrid", "native-cuda", "hybrid-cuda", "native-mps"]) {
     await selector.selectOption(id);
     const panel = page.locator(`#${id}`);
     await expect(panel).toBeVisible();
@@ -51,6 +53,16 @@ test("Amelia comparisons keep each workflow and its limits together", async ({ p
     await expect(panel.getByRole("table")).toBeVisible();
     await expect(panel.getByRole("table").locator("tbody tr")).toHaveCount(3);
   }
+  await selector.selectOption("rtx-native");
+  await expect(page.locator("#rtx-native table th")).toContainText(["R serial", "CUDA32"]);
+  await expect(page.locator("#rtx-native table")).toContainText("20.160");
+  await expect(page.locator("#rtx-native table .timing-iqr")).toHaveCount(18);
+  await expect(page.locator("#rtx-native .benchmark-data")).toContainText(
+    "not confidence intervals"
+  );
+  await selector.selectOption("rtx-hybrid");
+  await expect(page.locator("#rtx-hybrid")).toContainText("110.620 to 101.640 seconds");
+  await expect(page.locator("#rtx-hybrid table .timing-iqr")).toHaveCount(12);
   await expect(page.locator("#native-mps")).toContainText(/slower/);
   await selector.selectOption("hybrid-cuda");
   await expect(page.locator("#hybrid-cuda")).toContainText(
@@ -105,7 +117,7 @@ test("both project pages retain all evidence without JavaScript", async ({ brows
   const page = await context.newPage();
   await page.goto(`${test.info().project.use.baseURL}/playground/amelia-torch/`);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("amelia-torch");
-  await expect(page.locator("[data-benchmark-panel]:visible")).toHaveCount(3);
+  await expect(page.locator("[data-benchmark-panel]:visible")).toHaveCount(5);
   await expect(page.getByRole("combobox", { name: "Compare a workflow" })).toBeHidden();
   await page.goto(`${test.info().project.use.baseURL}/playground/product-search-quality/`);
   await expect(page.locator("[data-yield-panel]:visible")).toHaveCount(2);

@@ -39,6 +39,20 @@ export type RevenueSegment = {
   revenue: number;
   grossProfit?: number;
   grossProfitSource?: SegmentGrossProfitSource;
+  revenueSource?: {
+    sourceUrl: string;
+    accession: string;
+    filedAt: string;
+    startDate: string;
+    endDate: string;
+    currency: string;
+    tag: string;
+    dimensions: Record<string, string>;
+    value: number;
+    decimals: number;
+    /** Visible row label from the cited statement table, not a guessed taxonomy name. */
+    tableLabel: string;
+  };
 };
 
 export type FinancialPeriod = {
@@ -71,6 +85,29 @@ export type FinancialPeriod = {
   operatingExpenseDetails?: { id: string; label: string; amount: number }[];
   segmentSourceUrl?: string;
   segmentBasis?: string;
+  businessBreakdownSource?: {
+    method: "statement-revenue-rows";
+    tableIndex: number;
+    sourceUrl: string;
+    accession: string;
+    revenueTag: string;
+    revenue: number;
+    revenueDecimals: number;
+    axis?: string;
+    totalLabel: string;
+    /** Explicit table subtotals omitted so their child rows are counted only once. */
+    omittedSubtotals: {
+      label: string;
+      tag: string;
+      dimensions: Record<string, string>;
+      value: number;
+    }[];
+  };
+};
+
+/** Revenue history does not require every cost and profit subtotal to be available. */
+export type BusinessPeriod = Omit<FinancialPeriod, "metrics"> & {
+  metrics: Pick<FinancialMetrics, "revenue"> & Partial<FinancialMetrics>;
 };
 
 /** A reconciled flow can omit the gross-profit stage when the filing does. */

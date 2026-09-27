@@ -237,6 +237,11 @@ export function StatementFlow({
               sourceUrl,
               metricSources: period.metricSources ?? {},
               metrics: period.metrics,
+              segments: period.segments,
+              segmentBasis: period.segmentBasis,
+              segmentSourceUrl: period.segmentSourceUrl,
+              revenueAdjustments: period.revenueAdjustments,
+              businessBreakdownSource: period.businessBreakdownSource,
               netIncomeAttribution: parentNet ? "parent" : undefined,
               operatingReconciliation: rounding,
               flow: directOperatingFlow ? "direct-operating" : "gross-profit",
@@ -281,6 +286,7 @@ export function StatementFlow({
           {graph.nodes.map((node) => (
             <rect
               key={node.id}
+              data-flow-bar={node.id}
               x={node.x}
               y={node.y}
               width={graph.nodeWidth}
@@ -446,51 +452,52 @@ export function StatementFlow({
               </tr>
             </thead>
             <tbody>
-              {graph.nodes.map((node) => (
-                <tr key={node.id}>
-                  <th scope="row">
-                    {node.label}
-                    {node.id === "other-opex" && <small> · derived remainder</small>}
-                    {node.id === "noncontrolling" && <small> · profit attribution</small>}
-                    {node.id === "operating-rounding" && (
-                      <small>
-                        {rounding!.amount < 0
-                          ? " · reported-precision decrease"
-                          : " · reported-precision increase"}
-                      </small>
-                    )}
-                  </th>
-                  <td>
-                    {(node.id === "operating-rounding" && rounding!.amount < 0) ||
-                    (node.id === "noncontrolling" &&
-                      period.metrics.noncontrollingInterestIncome! < 0)
-                      ? "−"
-                      : ""}
-                    ${node.amount.toLocaleString("en-US", { maximumFractionDigits: 2 })}
-                  </td>
-                  <td>
-                    {percent(
-                      (node.id === "operating-rounding"
-                        ? rounding!.amount
-                        : node.id === "noncontrolling"
-                          ? period.metrics.noncontrollingInterestIncome!
-                          : node.amount) / period.metrics.revenue
-                    )}
-                  </td>
-                  {hasBusinesses && (
+              {graph.nodes.map((node) => {
+                const revenueAdjustment = period.revenueAdjustments?.find(
+                  (item) => node.id === `adjustment-${item.id}`
+                );
+                const signedAmount =
+                  node.id === "operating-rounding"
+                    ? rounding!.amount
+                    : node.id === "noncontrolling"
+                      ? period.metrics.noncontrollingInterestIncome!
+                      : (revenueAdjustment?.revenue ?? node.amount);
+                return (
+                  <tr key={node.id}>
+                    <th scope="row">
+                      {node.label}
+                      {node.id === "other-opex" && <small> · derived remainder</small>}
+                      {node.id === "noncontrolling" && <small> · profit attribution</small>}
+                      {node.id === "operating-rounding" && (
+                        <small>
+                          {rounding!.amount < 0
+                            ? " · reported-precision decrease"
+                            : " · reported-precision increase"}
+                        </small>
+                      )}
+                    </th>
                     <td>
-                      {node.business?.grossProfit !== undefined
-                        ? `$${node.business.grossProfit.toLocaleString("en-US", { maximumFractionDigits: 2 })}`
-                        : node.business
-                          ? "Unavailable"
-                          : "Not applicable"}
+                      {signedAmount < 0 ? "−" : ""}$
+                      {Math.abs(signedAmount).toLocaleString("en-US", { maximumFractionDigits: 2 })}
                     </td>
-                  )}
-                  {hasBusinesses && (
-                    <td>{node.business ? businessGrossMargin(node.business) : "Not applicable"}</td>
-                  )}
-                </tr>
-              ))}
+                    <td>{percent(signedAmount / period.metrics.revenue)}</td>
+                    {hasBusinesses && (
+                      <td>
+                        {node.business?.grossProfit !== undefined
+                          ? `$${node.business.grossProfit.toLocaleString("en-US", { maximumFractionDigits: 2 })}`
+                          : node.business
+                            ? "Unavailable"
+                            : "Not applicable"}
+                      </td>
+                    )}
+                    {hasBusinesses && (
+                      <td>
+                        {node.business ? businessGrossMargin(node.business) : "Not applicable"}
+                      </td>
+                    )}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -529,7 +536,8 @@ export function StatementFlow({
           {parentNet
             ? " minus signed income attributable to noncontrolling interests equals net profit to the parent. "
             : " equals net profit. "}
-          Business revenue plus separately reported revenue adjustments equals consolidated revenue.{" "}
+          Business revenue plus disclosed adjustments and any labeled source rounding equals
+          consolidated revenue.{" "}
           {hasBusinesses &&
             "Business gross margin divides the category’s reported gross profit, or revenue minus its reported cost of revenue, by that category’s revenue. — means unavailable for this category and period; no allocation is estimated. "}
           <a href={sourceUrl} target="_blank" rel="noreferrer">

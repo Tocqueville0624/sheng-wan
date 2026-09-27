@@ -6,6 +6,7 @@ import { bundledCompany } from "../worker/finance-store";
 import type { CompanyV2 } from "../src/features/finance/v2-types";
 import imported from "./fixtures/finance/imported-companies.json";
 import history from "../src/data/generated/finance-history.json";
+import { businessFixture } from "./fixtures/finance/business-fixtures";
 
 // A serialized, persistent storage contract. Parsing tests use separate fixtures;
 // queue tests never contact SEC or alter the production snapshots.
@@ -84,7 +85,7 @@ const mcdAccession = "0000063908-26-000073";
 const mcdSource =
   "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm";
 const mcdInline = readFileSync(
-  new URL("./fixtures/finance/mcd-2026-q2-inline.html", import.meta.url),
+  new URL("./fixtures/finance/mcd-2026-q2-business.html", import.meta.url),
   "utf8"
 );
 // A single actual Company Facts period from the same filing as the inline fixture.
@@ -170,7 +171,7 @@ describe("persistent public finance queue", () => {
     vi.stubGlobal("fetch", fetcher);
     const first = await jobOf(await request(store, "MCD"));
     expect(await storage.get(`task:${first.id}`)).toMatchObject({
-      engineVersion: "finance-v2.12"
+      engineVersion: "finance-v2.13"
     });
     await nextQueueStep(store);
     await nextQueueStep(store);
@@ -187,7 +188,15 @@ describe("persistent public finance queue", () => {
     await nextQueueStep(store);
     const enriched = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
     const period = enriched.company.quarterly[0];
-    expect(period.coverage).toMatchObject({ basics: true, sankey: true, segments: false });
+    expect(period.coverage).toMatchObject({ basics: true, sankey: true, segments: true });
+    expect(period.segments?.map((segment) => segment.revenue)).toEqual([4393e6, 2525e6, 182e6]);
+    expect(period.revenueAdjustments).toEqual([
+      { id: "source-rounding", label: "Source rounding", revenue: -1e6 }
+    ]);
+    expect(await storage.get(`generic:v2:0000063908:${mcdAccession}`)).toMatchObject([
+      { coverage: { segments: true, sankey: true } }
+    ]);
+    expect(await storage.get(`basic-periods:${first.id}`)).toBeUndefined();
     expect(period.metrics).toMatchObject({
       ...basic.company.quarterly[0].metrics,
       revenue: 7099000000,
@@ -234,6 +243,42 @@ describe("persistent public finance queue", () => {
     expect(await read(store, `/jobs/${second.id}`)).toMatchObject({ state: "partial" });
     expect(fetcher.mock.calls.filter(([url]) => url === mcdSource)).toHaveLength(1);
     expect(fetcher).toHaveBeenCalledTimes(5);
+  });
+  it("keeps a prior business breakdown available while enriching newer source candidates", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-09-26T12:00:00Z"));
+    const { store, storage } = await create();
+    // A synthetic earlier filing timestamp isolates the merge rule. Financial
+    // amounts and branches remain the real source-derived fixture values.
+    const prior = JSON.parse(
+      JSON.stringify(businessFixture("MCD").company).replaceAll("2026-08-07", "2026-08-06")
+    ) as CompanyV2;
+    await storage.put("company:0000063908", prior);
+    const fetcher = mcdFetcher();
+    vi.stubGlobal("fetch", fetcher);
+    const job = await jobOf(await request(store, "MCD"));
+    await nextQueueStep(store);
+    await nextQueueStep(store);
+    const basic = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+    expect(basic.company.quarterly[0].filedAt).toBe("2026-08-06");
+    expect(basic.company.quarterly[0].coverage.segments).toBe(true);
+    expect(await storage.get(`task:${job.id}`)).toMatchObject({
+      stage: "filings",
+      todo: [{ accession: mcdAccession }]
+    });
+    await nextQueueStep(store);
+    const after = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+    expect(after.company.quarterly[0].filedAt).toBe("2026-08-07");
+    expect(after.company.quarterly[0].coverage).toEqual({
+      basics: true,
+      segments: true,
+      sankey: true
+    });
+    expect(after.company.quarterly[0].segments?.map((segment) => segment.revenue)).toEqual([
+      4393e6, 2525e6, 182e6
+    ]);
+    expect(fetcher.mock.calls.filter(([url]) => url === mcdSource)).toHaveLength(1);
+    expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
   });
   it("retains newly imported MCD basic history when the inline filing is unavailable", async () => {
     vi.useFakeTimers();

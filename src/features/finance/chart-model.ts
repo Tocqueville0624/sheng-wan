@@ -1,9 +1,9 @@
-import type { FinancialPeriod, FlowStatementPeriod, RevenueSegment } from "./types";
+import type { BusinessPeriod, FlowStatementPeriod, RevenueSegment } from "./types";
 
 export type RevenueSeries = { id: string; label: string };
 export type RevenueHistory = {
   series: RevenueSeries[];
-  periods: { period: FinancialPeriod; available: boolean; reason?: string }[];
+  periods: { period: BusinessPeriod; available: boolean; reason?: string }[];
 };
 
 // A single scale is used for every node and ribbon. Never inflate thin branches.
@@ -39,7 +39,7 @@ export function accountingTolerance(revenue: number) {
   return Math.max(0.000001, Math.abs(revenue) * 1e-9);
 }
 
-export function segmentProblem(period: FlowStatementPeriod): string | undefined {
+export function segmentProblem(period: BusinessPeriod): string | undefined {
   if (!Number.isFinite(period.metrics.revenue) || period.metrics.revenue <= 0) {
     return "Positive reported revenue is required for this business-category chart.";
   }
@@ -62,7 +62,7 @@ export function segmentProblem(period: FlowStatementPeriod): string | undefined 
   return undefined;
 }
 
-export function buildRevenueHistory(periods: FinancialPeriod[]): RevenueHistory {
+export function buildRevenueHistory(periods: BusinessPeriod[]): RevenueHistory {
   const series = new Map<string, RevenueSeries>();
   const entries = periods.map((period) => {
     const reason = segmentProblem(period);

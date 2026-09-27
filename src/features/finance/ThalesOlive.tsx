@@ -5,7 +5,7 @@ import { BasicHistory, amount } from "./BasicHistory";
 import { StatementMetrics } from "./StatementMetrics";
 import { downloadFile } from "./ChartExports";
 import { percent } from "./chart-model";
-import { flowPeriod, statementPeriod, validateV2 } from "../../../scripts/finance/v2-model";
+import { businessPeriod, flowPeriod, validateV2 } from "../../../scripts/finance/v2-model";
 import type { CompanyDataset, PeriodKind } from "./types";
 import {
   pendingJob,
@@ -270,7 +270,11 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         "pretax_income",
         "income_tax",
         "operating_reconciliation",
-        "noncontrolling_interest_income"
+        "noncontrolling_interest_income",
+        "business_revenue",
+        "business_basis",
+        "business_provenance",
+        "revenue_adjustments"
       ],
       ...periods.map((p) => [
         selection.ticker,
@@ -290,7 +294,11 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         p.metrics.pretaxIncome ?? "",
         p.metrics.incomeTax ?? "",
         JSON.stringify(p.operatingReconciliation ?? null),
-        p.metrics.noncontrollingInterestIncome ?? ""
+        p.metrics.noncontrollingInterestIncome ?? "",
+        JSON.stringify(p.segments ?? []),
+        p.segmentBasis ?? "",
+        JSON.stringify(p.businessBreakdownSource ?? null),
+        JSON.stringify(p.revenueAdjustments ?? [])
       ])
     ];
     downloadFile(
@@ -305,11 +313,10 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
       )
     );
   };
-  const statements = periods.flatMap((p) => {
-    const statement = statementPeriod(p);
-    return statement ? [statement] : [];
+  const segmentPeriods = periods.flatMap((p) => {
+    const business = businessPeriod(p);
+    return business ? [business] : [];
   });
-  const segmentPeriods = statements.filter((p) => p.segments?.length);
   const chartCompany = company
     ? ({ ...company, schemaVersion: 1, annual: [], quarterly: [] } as CompanyDataset)
     : undefined;
@@ -554,9 +561,9 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
               {!!segmentPeriods.length && (
                 <>
                   <p className="chart-note">
-                    Reviewed business-category detail is available for {segmentPeriods.length} of
-                    these {periods.length} periods. Each chart uses the classifications in its cited
-                    filing.
+                    Source-verified business-category detail is available for{" "}
+                    {segmentPeriods.length} of these {periods.length} periods. Each chart uses the
+                    classifications in its cited filing.
                   </p>
                   <RevenueChart periods={segmentPeriods} company={chartCompany!} />
                 </>

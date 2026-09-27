@@ -1,0 +1,166 @@
+{
+  "evidenceRevision": "458d28d0e8f6b8dde65f3f004ac53ec64f2e69d8",
+  "measuredRevision": "810591e6a77956a49dfef5de1d4a2274fefe9e07",
+  "equivalentMeasuredRevision": "6476292d998185e6433e62dd2dff9a4c35afd837",
+  "date": "2026-09-27",
+  "sourceDirectory": "docs/validation/2026-09-27-windows-rtx3080",
+  "archiveSha256": "6e7c8c82c04315be26f175c95ec9dabcc872e78942bd4c4f38b1aec6855a798f",
+  "summarySha256": {
+    "benchmark-summary.json": "b18e38e46a7283374cee88be793b614c848adc6422da50f469763dc59e23da1f",
+    "hybrid-summary.json": "8a5ce1ba0d049632faa11a8764a678d4c9714e3919232d79651b58ba0c1e5924"
+  },
+  "rows": 100000,
+  "imputationsPerCall": 5,
+  "warmupsPerConfiguration": 2,
+  "measuredCallsPerConfiguration": 5,
+  "threads": 4,
+  "datasets": [
+    {
+      "id": "covertype",
+      "name": "Covertype",
+      "variables": 10,
+      "native": {
+        "r_serial": {
+          "medianSeconds": 15.28,
+          "iqrSeconds": [14.75, 15.3]
+        },
+        "r_snow4": {
+          "medianSeconds": 8.34,
+          "iqrSeconds": [8.29, 8.5]
+        },
+        "cpu64": {
+          "medianSeconds": 5.4841597000004185,
+          "iqrSeconds": [5.420924699999887, 5.585104100000535]
+        },
+        "cuda64": {
+          "medianSeconds": 4.95488160000059,
+          "iqrSeconds": [4.7656152999998085, 4.962600400000156]
+        },
+        "cpu32": {
+          "medianSeconds": 4.7147211000001334,
+          "iqrSeconds": [4.661436700000195, 4.819879600000604]
+        },
+        "cuda32": {
+          "medianSeconds": 4.900186699999722,
+          "iqrSeconds": [4.844617099999596, 5.561456500000531]
+        }
+      },
+      "hybrid": {
+        "cpu64": {
+          "medianSeconds": 16.67,
+          "iqrSeconds": [16.64, 16.94]
+        },
+        "cuda64": {
+          "medianSeconds": 17.79,
+          "iqrSeconds": [17.14, 17.84]
+        },
+        "cpu32": {
+          "medianSeconds": 17.17,
+          "iqrSeconds": [17.03, 17.25]
+        },
+        "cuda32": {
+          "medianSeconds": 17.86,
+          "iqrSeconds": [17.53, 18.03]
+        }
+      }
+    },
+    {
+      "id": "household_power",
+      "name": "Household power",
+      "variables": 7,
+      "native": {
+        "r_serial": {
+          "medianSeconds": 10.2,
+          "iqrSeconds": [10.14, 10.59]
+        },
+        "r_snow4": {
+          "medianSeconds": 5.54,
+          "iqrSeconds": [5.37, 5.64]
+        },
+        "cpu64": {
+          "medianSeconds": 3.4516765999997006,
+          "iqrSeconds": [3.4450575999999273, 3.532159600000341]
+        },
+        "cuda64": {
+          "medianSeconds": 3.5920673000000534,
+          "iqrSeconds": [3.5789669999994658, 3.7291457999999693]
+        },
+        "cpu32": {
+          "medianSeconds": 3.3399466000000757,
+          "iqrSeconds": [3.277717400000256, 3.3903387999998813]
+        },
+        "cuda32": {
+          "medianSeconds": 3.87143130000004,
+          "iqrSeconds": [3.8051841999995304, 3.8803074000006745]
+        }
+      },
+      "hybrid": {
+        "cpu64": {
+          "medianSeconds": 11.68,
+          "iqrSeconds": [11.29, 11.97]
+        },
+        "cuda64": {
+          "medianSeconds": 12.42,
+          "iqrSeconds": [12.23, 12.79]
+        },
+        "cpu32": {
+          "medianSeconds": 11.39,
+          "iqrSeconds": [11.32, 12.14]
+        },
+        "cuda32": {
+          "medianSeconds": 11.95,
+          "iqrSeconds": [11.5, 12.71]
+        }
+      }
+    },
+    {
+      "id": "year_prediction_msd",
+      "name": "YearPredictionMSD",
+      "variables": 90,
+      "native": {
+        "r_serial": {
+          "medianSeconds": 230.56,
+          "iqrSeconds": [229.27, 232.47]
+        },
+        "r_snow4": {
+          "medianSeconds": 121.73,
+          "iqrSeconds": [120.64, 123.84]
+        },
+        "cpu64": {
+          "medianSeconds": 32.97921089999909,
+          "iqrSeconds": [32.75202730000092, 33.05511540000043]
+        },
+        "cuda64": {
+          "medianSeconds": 22.11528670000007,
+          "iqrSeconds": [21.995354399999997, 22.17308849999972]
+        },
+        "cpu32": {
+          "medianSeconds": 26.477898400000413,
+          "iqrSeconds": [26.437621400000353, 26.639044400000785]
+        },
+        "cuda32": {
+          "medianSeconds": 20.159910800000944,
+          "iqrSeconds": [20.133949199998824, 20.25510469999972]
+        }
+      },
+      "hybrid": {
+        "cpu64": {
+          "medianSeconds": 110.62,
+          "iqrSeconds": [110.39, 112.28]
+        },
+        "cuda64": {
+          "medianSeconds": 101.64,
+          "iqrSeconds": [101.64, 103.39]
+        },
+        "cpu32": {
+          "medianSeconds": 104.92,
+          "iqrSeconds": [103.98, 104.99]
+        },
+        "cuda32": {
+          "medianSeconds": 100.34,
+          "iqrSeconds": [99.61, 101.92]
+        }
+      }
+    }
+  ]
+}

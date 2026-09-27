@@ -1,6 +1,9 @@
+import rtx3080 from "@/data/generated/amelia-rtx3080.json";
+
 const repository = "https://github.com/Tocqueville0624/amelia-torch";
-const revision = "810591e6a77956a49dfef5de1d4a2274fefe9e07";
+const revision = rtx3080.evidenceRevision;
 const evidence = `${repository}/blob/${revision}/docs/validation`;
+const rtxEvidence = `${evidence}/2026-09-27-windows-rtx3080`;
 
 export const ameliaProject = {
   repository,
@@ -12,9 +15,9 @@ export const ameliaProject = {
   lede: "Missing data makes research harder. This project asks whether modern tensor libraries can make multiple imputation faster to repeat, while preserving the statistical workflow that researchers already use.",
   metrics: [
     {
-      value: "1.21–1.91×",
-      label: "Native CUDA64 speedup",
-      detail: "Against native CPU64 on the same T4 host"
+      value: "1.49×",
+      label: "RTX 3080 · Native CUDA64 gain",
+      detail: "90-variable task, against native CPU64 on the same host"
     },
     {
       value: "100,000",
@@ -22,9 +25,9 @@ export const ameliaProject = {
       detail: "Three public datasets, 7–90 numeric variables"
     },
     {
-      value: "Python + R",
-      label: "Connected research workflows",
-      detail: "Reference, compatibility and native interfaces"
+      value: "30",
+      label: "RTX 3080 configurations audited",
+      detail: "210 calls and 1,050 imputations, including warmups"
     }
   ],
   routes: [
@@ -42,6 +45,12 @@ export const ameliaProject = {
     }
   ],
   sources: [
+    {
+      title: "Complete RTX 3080 benchmark",
+      href: `${rtxEvidence}/README.md`,
+      detail:
+        "September 27: all 30 Windows configurations, both precisions, timing dispersion and audit records."
+    },
     {
       title: "Source code and setup",
       href: repository,
@@ -69,6 +78,12 @@ export const ameliaProject = {
       detail: "Prespecified criteria, Monte Carlo uncertainty and retained failures."
     },
     {
+      title: "RTX 3080 paired-output comparison",
+      href: `${rtxEvidence}/paired-reference.json`,
+      detail:
+        "Matched hybrid/reference inputs and seeds; output differences, not a claim of equivalence."
+    },
+    {
       title: "Compatibility and algorithm contract",
       href: `${repository}/blob/${revision}/docs/algorithm-contract.md`,
       detail: "The mathematical steps, upstream semantics and boundaries of the implementation."
@@ -86,12 +101,87 @@ export type AmeliaBenchmark = {
   caption: string;
   limitation: string;
   source: string;
+  timingTable?: {
+    caption: string;
+    methods: string[];
+    datasets: { name: string; seconds: number[]; iqrs: number[][] }[];
+    note: string;
+  };
 };
+
+const nativeMethods = ["r_serial", "r_snow4", "cpu64", "cuda64", "cpu32", "cuda32"] as const;
+const hybridMethods = ["cpu64", "cuda64", "cpu32", "cuda32"] as const;
+const rtxConditions =
+  "Windows 11 / Ryzen 5 5600X / RTX 3080 (10 GiB); four Torch/BLAS threads. Inputs contain 100,000 rows. Medians of five measured calls after two warmups; five imputations per call. Python 3.12.14, PyTorch 2.14.0 / CUDA 13.2, R 4.5.3, Amelia 1.8.3; TF32 disabled.";
 
 // Published medians only. Routes, hosts and precision remain separate.
 // T4 native values: native-timings-plotted-data.csv, rows 8–10 and 14–16.
 // Hybrid and MPS values: their linked, archived benchmark tables.
 export const ameliaBenchmarks: AmeliaBenchmark[] = [
+  {
+    id: "rtx-native",
+    label: "RTX 3080 · Native Python · float64",
+    title: "The latest run: a gain on the 90-variable task",
+    description:
+      "On the RTX 3080 host, native CUDA64 reduced YearPredictionMSD from 32.979 to 22.115 seconds per call. The smaller inputs showed a modest gain or a slowdown; these three different datasets do not establish a scaling law.",
+    methods: ["CPU64", "CUDA64"],
+    datasets: rtx3080.datasets.map((dataset, index) => ({
+      name: dataset.name,
+      variables: dataset.variables,
+      seconds: [dataset.native.cpu64.medianSeconds, dataset.native.cuda64.medianSeconds],
+      finding: ["1.11× faster with CUDA", "CUDA takes 4% longer", "1.49× faster with CUDA"][index]!
+    })),
+    caption: `${rtxConditions} Native timing includes preparation, bootstrap, EM, draws, transfers and synchronization, ending with completed NumPy arrays on CPU.`,
+    limitation:
+      "September 27, 2026. Complete native/reference suite: 18 configurations. Block-MCAR inputs have 7–8 missingness patterns and 28.57–30% artificial missingness. Native supports fewer statistical options than full Amelia. Host, software and thread differences prevent attributing a T4/RTX timing gap to the GPU alone.",
+    source: `${rtxEvidence}/README.md`,
+    timingTable: {
+      caption: "RTX 3080 · All 18 native/reference configurations · median seconds [Q1–Q3]",
+      methods: ["R serial", "Original R ×4", "CPU64", "CUDA64", "CPU32", "CUDA32"],
+      datasets: rtx3080.datasets.map((dataset) => ({
+        name: dataset.name,
+        seconds: nativeMethods.map((method) => dataset.native[method].medianSeconds),
+        iqrs: nativeMethods.map((method) => dataset.native[method].iqrSeconds)
+      })),
+      note: "Original R ×4 uses four workers with one BLAS thread each. On the 90-variable input, serial R took 10.43× as long as native CUDA64, but that difference includes implementation, library and workflow differences; the same-route GPU gain is 1.49×. CPU32/CUDA32 gives 1.31× on that input. Bracketed ranges describe the middle half of five timings, not confidence intervals."
+    }
+  },
+  {
+    id: "rtx-hybrid",
+    label: "RTX 3080 · R compatibility · float64",
+    title: "A smaller gain through the complete R interface",
+    description:
+      "For the 90-variable task, hybrid CUDA64 reduced the complete R call from 110.620 to 101.640 seconds. Four-worker original Amelia took 121.730 seconds. CUDA made the two narrower compatibility tasks slower than their CPU equivalents.",
+    methods: ["Original R ×4", "Hybrid CPU64", "Hybrid CUDA64"],
+    datasets: rtx3080.datasets.map((dataset, index) => ({
+      name: dataset.name,
+      variables: dataset.variables,
+      seconds: [
+        dataset.native.r_snow4.medianSeconds,
+        dataset.hybrid.cpu64.medianSeconds,
+        dataset.hybrid.cuda64.medianSeconds
+      ],
+      finding: [
+        "CUDA takes 7% longer than hybrid CPU",
+        "CUDA takes 6% longer than hybrid CPU",
+        "1.09× faster than hybrid CPU"
+      ][index]!
+    })),
+    caption: `${rtxConditions} Compatibility timing includes R preparation, bootstrap, draws, postprocessing, bridging and transfers. Hybrid imputations run serially; original R uses four workers with one BLAS thread each.`,
+    limitation:
+      "Complete compatibility suite: 12 configurations. Native/reference and hybrid batches ran at different times; system load and temperature were not fully isolated. Subtracting native time from hybrid time does not measure communication overhead. Stage-level profiling and full CUDA inference validation remain unfinished.",
+    source: `${rtxEvidence}/README.md`,
+    timingTable: {
+      caption: "RTX 3080 · All 12 R compatibility configurations · median seconds [Q1–Q3]",
+      methods: ["Hybrid CPU64", "Hybrid CUDA64", "Hybrid CPU32", "Hybrid CUDA32"],
+      datasets: rtx3080.datasets.map((dataset) => ({
+        name: dataset.name,
+        seconds: hybridMethods.map((method) => dataset.hybrid[method].medianSeconds),
+        iqrs: hybridMethods.map((method) => dataset.hybrid[method].iqrSeconds)
+      })),
+      note: "Both precisions retain R stages outside EM. On the 90-variable task, CPU32/CUDA32 gave a 1.05× gain. Bracketed ranges are interquartile ranges over five measured calls, not confidence intervals or evidence of statistically significant timing differences."
+    }
+  },
   {
     id: "native-cuda",
     label: "NVIDIA T4 · Native Python · float64",

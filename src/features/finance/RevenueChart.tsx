@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import type { CompanyDataset, FinancialPeriod } from "./types";
+import type { BusinessPeriod, CompanyDataset } from "./types";
 import { buildRevenueHistory, revenueAdjustmentLabel, shortMoney, wrapLabel } from "./chart-model";
 import { ChartExports, chartColors as colors, chartFont } from "./ChartExports";
 import { CompanyLogo } from "./CompanyLogo";
@@ -19,7 +19,7 @@ export function RevenueChart({
   periods,
   company
 }: {
-  periods: FinancialPeriod[];
+  periods: BusinessPeriod[];
   company: CompanyDataset;
 }) {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -179,6 +179,22 @@ export function RevenueChart({
           fill={colors.ink}
           style={{ fontVariantNumeric: "tabular-nums" }}
         >
+          <metadata>
+            {JSON.stringify({
+              ticker: company.ticker,
+              periods: periods.map((period) => ({
+                id: period.id,
+                startDate: period.startDate,
+                endDate: period.endDate,
+                revenue: period.metrics.revenue,
+                sourceUrl: period.segmentSourceUrl ?? period.sourceUrl,
+                segmentBasis: period.segmentBasis,
+                segments: period.segments,
+                revenueAdjustments: period.revenueAdjustments,
+                businessBreakdownSource: period.businessBreakdownSource
+              }))
+            })}
+          </metadata>
           <rect data-chart-paper="" width={width} height={height} fill={colors.paper} />
           <text x={left} y={54} fontSize={34} fontWeight={700}>
             {company.name}
@@ -451,7 +467,7 @@ export function RevenueChart({
       <p className="chart-note">
         Business categories, not profit metrics.{" "}
         {hasAdjustments
-          ? "Bars show the business subtotal; separately reported adjustments reconcile it to net revenue below each bar."
+          ? "Bars show the business subtotal; explicit adjustments, including any labeled source rounding, reconcile it to net revenue below each bar."
           : "Each stack reconciles with reported revenue."}{" "}
         {latest.segmentBasis} Scroll horizontally on smaller screens.
         {basisChanged &&

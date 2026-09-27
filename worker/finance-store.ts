@@ -4,6 +4,7 @@ import { companies } from "../scripts/finance/companies";
 import { filingAdapters } from "../scripts/finance/adapters";
 import { extractInlinePeriods, parseInlineXbrl } from "../scripts/finance/ixbrl";
 import { enrichInlinePeriods } from "../scripts/finance/inline-v2";
+import { enrichBusinessPeriods } from "../scripts/finance/business-v2";
 import {
   extractTsmHtml,
   extractTsmAnnualHtml,
@@ -49,7 +50,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.12";
+const ENGINE_VERSION = "finance-v2.13";
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -79,6 +80,18 @@ type Task = {
   industrySic?: string;
 };
 type IndexEntry = { cik: string; ticker: string; updatedAt: string };
+
+function genericCandidates(base: CompanyV2, fresh: PeriodV2[] = []) {
+  const periods = new Map(
+    [...base.annual, ...base.quarterly].map((p) => [`${p.kind}:${p.startDate}:${p.endDate}`, p])
+  );
+  for (const p of fresh) {
+    const key = `${p.kind}:${p.startDate}:${p.endDate}`;
+    const old = periods.get(key);
+    if (!old || p.filedAt > old.filedAt) periods.set(key, p);
+  }
+  return [...periods.values()];
+}
 
 async function periodVersion(company: CompanyV2) {
   const hash = new Uint8Array(
@@ -408,6 +421,11 @@ export class FinanceStore {
               convertBasicTwd(p, averageRate(task.fx!, p.startDate, p.endDate), FED)
             );
           }
+          if (!config) {
+            const candidates = [...basic.annual, ...basic.quarterly];
+            if (JSON.stringify(candidates).length < 1000000)
+              await this.ctx.storage.put(`basic-periods:${task.job.id}`, candidates);
+          }
           await this.publish(task, basic);
         } catch (error) {
           if (!config && !task.archives.length) throw error;
@@ -435,14 +453,19 @@ export class FinanceStore {
         task.job.total += task.todo.length;
       } else {
         const base = await this.company(identity);
+        const candidates = base
+          ? genericCandidates(
+              base,
+              await this.ctx.storage.get<PeriodV2[]>(`basic-periods:${task.job.id}`)
+            )
+          : [];
         const missing = new Set(
-          [...(base?.annual ?? []), ...(base?.quarterly ?? [])]
+          candidates
             .filter(
               (p) =>
-                !p.coverage.sankey &&
+                (!p.coverage.sankey || !p.coverage.segments) &&
                 p.displayCurrency === "USD" &&
-                (p.metrics.revenue ?? 0) > 0 &&
-                (p.metrics.operatingIncome ?? 0) > 0
+                (p.metrics.revenue ?? 0) > 0
             )
             .map((p) => p.accession)
         );
@@ -456,17 +479,33 @@ export class FinanceStore {
     } else if (task.cursor < task.todo.length && !config) {
       task.job.state = "backfilling";
       const filing = task.todo[task.cursor];
-      task.job.message = `Reading consolidated statement: ${filing.reportDate} (${task.cursor + 1}/${task.todo.length}).`;
+      task.job.message = `Reading statement and revenue sources: ${filing.reportDate} (${task.cursor + 1}/${task.todo.length}).`;
       try {
         const base = await this.company(identity);
         if (!base) throw new Error("No validated company baseline.");
-        const cacheKey = `consolidated:v1:${identity.cik}:${filing.accession}`;
-        const periods =
-          (await this.ctx.storage.get<PeriodV2[]>(cacheKey)) ??
-          enrichInlinePeriods(await this.fetchSource(filing.sourceUrl), identity, filing, [
-            ...base.annual,
-            ...base.quarterly
-          ]);
+        const cacheKey = `generic:v2:${identity.cik}:${filing.accession}`;
+        let periods = await this.ctx.storage.get<PeriodV2[]>(cacheKey);
+        if (!periods) {
+          const candidates = genericCandidates(
+            base,
+            await this.ctx.storage.get<PeriodV2[]>(`basic-periods:${task.job.id}`)
+          );
+          const html = await this.fetchSource(filing.sourceUrl);
+          const parsed = parseInlineXbrl(html);
+          const consolidated = enrichInlinePeriods(html, identity, filing, candidates, parsed);
+          const updated = new Map(candidates.map((p) => [p.id, p]));
+          consolidated.forEach((p) => updated.set(p.id, p));
+          const business = enrichBusinessPeriods(
+            html,
+            identity,
+            filing,
+            [...updated.values()],
+            parsed
+          );
+          const changes = new Map(consolidated.map((p) => [p.id, p]));
+          business.forEach((p) => changes.set(p.id, p));
+          periods = [...changes.values()];
+        }
         if (periods.length) {
           await this.publish(task, {
             ...base,
@@ -611,6 +650,7 @@ export class FinanceStore {
     task.job.updatedAt = new Date().toISOString();
     if (!pendingJob(task.job)) {
       await this.ctx.storage.delete(`facts:${task.job.id}`);
+      await this.ctx.storage.delete(`basic-periods:${task.job.id}`);
       task.filings = [];
       task.todo = [];
       task.archives = [];

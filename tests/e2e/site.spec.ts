@@ -131,10 +131,10 @@ test("Playground dropdown works with keyboard, pointer and touch-sized navigatio
   await trigger.press("Enter");
   await expect(menu).toBeVisible();
   await expect(trigger).toHaveAttribute("aria-expanded", "true");
-  await expect(menu.getByRole("link")).toHaveCount(4);
+  await expect(menu.getByRole("link")).toHaveCount(2);
   await expect(
     menu.getByRole("link", { name: "Product Search Quality Analysis", exact: true })
-  ).toBeVisible();
+  ).toHaveCount(0);
   await page.keyboard.press("Tab");
   await expect(
     menu.getByRole("link", { name: "Thales' Olive - Earnings Report Reader", exact: true })

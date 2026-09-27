@@ -1,0 +1,186 @@
+---
+import { ameliaProject } from "@/content/projects/amelia";
+import { searchQualityProject } from "@/content/projects/search-quality";
+
+const projects = [
+  {
+    id: "amelia",
+    title: "Amelia — GPU Multiple Imputation",
+    technology: "PyTorch · Python + R",
+    href: "/playground/amelia-torch/",
+    repository: ameliaProject.repository,
+    description:
+      "A PyTorch implementation of Amelia’s bootstrap–EM workflow, connecting Python and R with reproducible CPU and GPU benchmarks.",
+    result: ameliaProject.metrics[0].value,
+    resultLabel: ameliaProject.metrics[0].label,
+    scope: ameliaProject.metrics[0].detail,
+    skills: "Statistical computing · GPU benchmarking · Numerical validation"
+  },
+  {
+    id: "search-quality",
+    title: searchQualityProject.title,
+    technology: "PySpark · Spark ML",
+    href: "/playground/product-search-quality/",
+    repository: searchQualityProject.repository,
+    description:
+      "A reproducible study of product relevance and review prioritization, from 1.82 million public query–product judgments to an evaluation of a fixed review budget.",
+    result: `+${(searchQualityProject.yieldDifference * 100).toFixed(2)} pp`,
+    resultLabel: "Error-finding yield vs expected random review",
+    scope: "Offline public-label evaluation · 10% of the predicted-Exact pool",
+    skills: "Data pipelines · Classification · Evaluation design"
+  }
+];
+---
+
+<section class="personal-projects shell" id="personal-projects" aria-labelledby="projects-heading">
+  <div class="projects-intro">
+    <h2 id="projects-heading">Personal Projects</h2>
+    <p>
+      Selected work in statistical computing and machine-learning evaluation, with source code,
+      reproducible results and clear limits.
+    </p>
+  </div>
+  <div class="personal-project-grid">
+    {
+      projects.map((project) => (
+        <article class="personal-project-card" aria-labelledby={`${project.id}-card-title`}>
+          <p class="project-technology">{project.technology}</p>
+          <h3 id={`${project.id}-card-title`}>{project.title}</h3>
+          <p class="project-summary">{project.description}</p>
+          <div class="project-result">
+            <strong>{project.result}</strong>
+            <span>{project.resultLabel}</span>
+            <small>{project.scope}</small>
+          </div>
+          <p class="project-skills">{project.skills}</p>
+          <div class="project-links">
+            <a href={project.href} aria-label={`Read project: ${project.title}`}>
+              Read project
+              <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                <path d="M4 10h12m-5-5 5 5-5 5" />
+              </svg>
+            </a>
+            <a href={project.repository} aria-label={`${project.title} on GitHub`}>
+              GitHub
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .personal-projects {
+    scroll-margin-top: 6.5rem;
+    margin-top: clamp(2rem, 5vw, 4.5rem);
+    padding-block: clamp(2rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
+    border-top: 1px solid var(--border);
+  }
+  .projects-intro {
+    max-width: 48rem;
+    margin-bottom: 1.75rem;
+  }
+  .projects-intro h2 {
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 500;
+    line-height: 1.15;
+  }
+  .projects-intro p {
+    margin: 0;
+    color: var(--muted);
+  }
+  .personal-project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .personal-project-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    border: 1px solid var(--border);
+    border-radius: var(--control-radius);
+    background: var(--surface);
+  }
+  .project-technology {
+    margin: 0 0 0.85rem;
+    color: var(--accent-strong);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .personal-project-card h3 {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 2.5vw, 2.15rem);
+    font-weight: 500;
+    line-height: 1.15;
+  }
+  .project-summary {
+    margin: 1rem 0 1.5rem;
+    font-size: 0.95rem;
+  }
+  .project-result {
+    display: grid;
+    gap: 0.2rem;
+    margin-top: auto;
+    padding-block: 1rem;
+    border-block: 1px solid var(--border);
+  }
+  .project-result strong {
+    color: var(--ink);
+    font-size: 1.8rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.25;
+  }
+  .project-result span {
+    font-size: 0.88rem;
+  }
+  .project-result small {
+    color: var(--muted);
+    font-size: 0.79rem;
+    line-height: 1.55;
+  }
+  .project-skills {
+    margin: 1rem 0 1.4rem;
+    color: var(--muted);
+    font-size: 0.79rem;
+    line-height: 1.65;
+  }
+  .project-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  .project-links a {
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .project-links a:first-child {
+    font-weight: 600;
+  }
+  .project-links svg {
+    width: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+  @media (max-width: 680px) {
+    .personal-project-grid {
+      grid-template-columns: 1fr;
+    }
+    .personal-projects {
+      scroll-margin-top: 5.5rem;
+    }
+  }
+</style>

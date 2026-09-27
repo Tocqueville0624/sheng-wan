@@ -6,7 +6,7 @@ import { ameliaBenchmarks } from "@/content/projects/amelia";
   <div class="benchmark-selector" hidden>
     <label for="amelia-benchmark">Compare a workflow</label>
     <div class="project-select" style="--project-select-width: 32rem">
-      <select id="amelia-benchmark" aria-controls="native-cuda hybrid-cuda native-mps">
+      <select id="amelia-benchmark" aria-controls={ameliaBenchmarks.map(({ id }) => id).join(" ")}>
         {
           ameliaBenchmarks.map((benchmark) => (
             <option value={benchmark.id}>{benchmark.label}</option>
@@ -67,6 +67,12 @@ import { ameliaBenchmarks } from "@/content/projects/amelia";
         </p>
         <details class="benchmark-data">
           <summary>View the timing table</summary>
+          {benchmark.timingTable && (
+            <p class="project-note">
+              Both precisions are retained below. Scroll horizontally on narrow screens to see every
+              configuration.
+            </p>
+          )}
           <div
             class="project-table-wrap"
             tabindex="0"
@@ -74,27 +80,37 @@ import { ameliaBenchmarks } from "@/content/projects/amelia";
             aria-label={`${benchmark.label} timing table`}
           >
             <table class="project-table">
-              <caption>{benchmark.label} · median seconds</caption>
+              <caption>
+                {benchmark.timingTable?.caption ?? `${benchmark.label} · median seconds`}
+              </caption>
               <thead>
                 <tr>
                   <th scope="col">Dataset</th>
-                  {benchmark.methods.map((method) => (
+                  {(benchmark.timingTable?.methods ?? benchmark.methods).map((method) => (
                     <th scope="col">{method}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {benchmark.datasets.map((dataset) => (
+                {(benchmark.timingTable?.datasets ?? benchmark.datasets).map((dataset) => (
                   <tr>
                     <th scope="row">{dataset.name}</th>
-                    {dataset.seconds.map((seconds) => (
-                      <td>{seconds.toFixed(3)}</td>
+                    {dataset.seconds.map((seconds, index) => (
+                      <td>
+                        {seconds.toFixed(3)}
+                        {"iqrs" in dataset && (
+                          <small class="timing-iqr">
+                            [{dataset.iqrs[index]!.map((value) => value.toFixed(3)).join("–")}]
+                          </small>
+                        )}
+                      </td>
                     ))}
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+          {benchmark.timingTable && <p class="project-note">{benchmark.timingTable.note}</p>}
         </details>
       </div>
     ))
@@ -224,6 +240,13 @@ import { ameliaBenchmarks } from "@/content/projects/amelia";
     text-align: left;
     padding-block: 0.8rem;
     font-size: 0.85rem;
+  }
+  .timing-iqr {
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+    white-space: nowrap;
   }
   @media (max-width: 480px) {
     .bar-row {

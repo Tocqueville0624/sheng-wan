@@ -1,10 +1,14 @@
 ---
-import { navigation, playgroundNavigation, site } from "@/config/site";
+import { navigation, playgroundNavigation, projectNavigation, site } from "@/config/site";
 import ThemeToggle from "./ThemeToggle.astro";
 
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) =>
   href === "/" ? currentPath === href : currentPath.startsWith(href);
+const dropdowns = [
+  { id: "projects", label: "Projects", items: projectNavigation },
+  { id: "playground", label: "Playground", items: playgroundNavigation }
+];
 ---
 
 <header class="site-header">
@@ -33,30 +37,40 @@ const isActive = (href: string) =>
             </li>
           ))
         }
-        <li class="playground-nav">
-          <button
-            class="playground-trigger"
-            type="button"
-            popovertarget="playground-links"
-            aria-controls="playground-links"
-            aria-expanded="false"
-            data-active={currentPath.startsWith("/playground") || undefined}
-          >
-            Playground
-            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"
-              ><path d="m3 4.5 3 3 3-3"></path></svg
-            >
-          </button>
-          <div id="playground-links" class="playground-menu" popover="auto">
-            {
-              playgroundNavigation.map((item) => (
-                <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
-                  {item.label}
-                </a>
-              ))
-            }
-          </div>
-        </li>
+        {
+          dropdowns.map((group) => (
+            <li class={`${group.id}-nav`}>
+              <button
+                class={`nav-dropdown-trigger ${group.id}-trigger`}
+                type="button"
+                popovertarget={`${group.id}-links`}
+                aria-controls={`${group.id}-links`}
+                aria-expanded="false"
+                data-nav-dropdown
+                data-active={group.items.some((item) => isActive(item.href)) || undefined}
+              >
+                {group.label}
+                <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+                  <path d="m3 4.5 3 3 3-3" />
+                </svg>
+              </button>
+              <div
+                id={`${group.id}-links`}
+                class={`nav-dropdown-menu ${group.id}-menu`}
+                popover="auto"
+              >
+                {group.items.map((item) => (
+                  <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+                    {item.label}
+                    {"technology" in item && (
+                      <span class="nav-project-tech">{item.technology}</span>
+                    )}
+                  </a>
+                ))}
+              </div>
+            </li>
+          ))
+        }
       </ul>
       <ThemeToggle />
     </nav>
@@ -70,41 +84,161 @@ const isActive = (href: string) =>
     const open = toggle.getAttribute("aria-expanded") === "true";
     toggle.setAttribute("aria-expanded", String(!open));
     navigation?.toggleAttribute("data-open", !open);
+    if (open)
+      document
+        .querySelectorAll<HTMLElement>(".nav-dropdown-menu:popover-open")
+        .forEach((menu) => menu.hidePopover());
   });
 
   // Native Popover supplies keyboard activation, Escape and outside-click dismissal.
-  const playground = document.querySelector<HTMLButtonElement>(".playground-trigger");
-  const menu = document.querySelector<HTMLElement>(".playground-menu");
   const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
-  const setActivation = () =>
-    playground?.setAttribute("popovertargetaction", hover.matches ? "show" : "toggle");
-  setActivation();
-  hover.addEventListener("change", setActivation);
-  let closeTimer: ReturnType<typeof setTimeout> | undefined;
-  const cancelClose = () => clearTimeout(closeTimer);
-  const positionMenu = () => {
-    if (!playground || !menu?.matches(":popover-open")) return;
-    const rect = playground.getBoundingClientRect();
-    menu.style.top = `${rect.bottom + 10}px`;
-    menu.style.left = `${Math.max(16, Math.min(rect.left, window.innerWidth - menu.offsetWidth - 16))}px`;
-  };
-  const deferClose = () => {
-    if (!hover.matches || menu?.matches(":focus-within")) return;
-    closeTimer = setTimeout(() => menu?.hidePopover(), 140);
-  };
-  playground?.addEventListener("pointerenter", () => {
-    cancelClose();
-    if (hover.matches) {
-      menu?.showPopover();
+  for (const trigger of document.querySelectorAll<HTMLButtonElement>("[data-nav-dropdown]")) {
+    const menu = document.getElementById(trigger.getAttribute("aria-controls")!);
+    if (!menu) continue;
+    const setActivation = () =>
+      trigger.setAttribute("popovertargetaction", hover.matches ? "show" : "toggle");
+    setActivation();
+    hover.addEventListener("change", setActivation);
+    let closeTimer: ReturnType<typeof setTimeout> | undefined;
+    const cancelClose = () => clearTimeout(closeTimer);
+    const positionMenu = () => {
+      if (!menu.matches(":popover-open")) return;
+      const rect = trigger.getBoundingClientRect();
+      menu.style.top = `${Math.max(16, Math.min(rect.bottom + 10, window.innerHeight - menu.offsetHeight - 16))}px`;
+      menu.style.left = `${Math.max(16, Math.min(rect.left, window.innerWidth - menu.offsetWidth - 16))}px`;
+    };
+    const deferClose = () => {
+      if (!hover.matches || menu.matches(":focus-within")) return;
+      closeTimer = setTimeout(() => menu.hidePopover(), 140);
+    };
+    trigger.addEventListener("pointerenter", () => {
+      cancelClose();
+      if (hover.matches) {
+        menu.showPopover();
+        positionMenu();
+      }
+    });
+    trigger.addEventListener("pointerleave", deferClose);
+    menu.addEventListener("pointerenter", cancelClose);
+    menu.addEventListener("pointerleave", deferClose);
+    menu.addEventListener("toggle", () => {
+      trigger.setAttribute("aria-expanded", String(menu.matches(":popover-open")));
       positionMenu();
-    }
-  });
-  playground?.addEventListener("pointerleave", deferClose);
-  menu?.addEventListener("pointerenter", cancelClose);
-  menu?.addEventListener("pointerleave", deferClose);
-  menu?.addEventListener("toggle", () => {
-    playground?.setAttribute("aria-expanded", String(menu.matches(":popover-open")));
-    positionMenu();
-  });
-  window.addEventListener("resize", positionMenu);
+    });
+    window.addEventListener("resize", positionMenu);
+  }
 </script>
+
+<style>
+  .nav-dropdown-trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 2.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--control-radius);
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .nav-dropdown-trigger:hover,
+  .nav-dropdown-trigger[data-active] {
+    color: var(--ink);
+  }
+  .nav-dropdown-trigger[data-active]::after {
+    position: absolute;
+    right: 0;
+    bottom: -0.55rem;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    content: "";
+  }
+  .nav-dropdown-trigger svg {
+    width: 0.8rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.3;
+  }
+  .nav-dropdown-menu {
+    position: fixed;
+    inset: auto;
+    width: 24rem;
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100dvh - 2rem);
+    margin: 0;
+    overflow-y: auto;
+    padding: 0.45rem;
+    border: 1px solid var(--border);
+    border-radius: var(--control-radius);
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 8px 24px rgb(23 50 74 / 0.12);
+  }
+  .nav-dropdown-menu:popover-open {
+    display: grid;
+  }
+  .nav-dropdown-menu a {
+    display: block;
+    padding: 0.75rem 0.8rem;
+    border-radius: 3px;
+  }
+  .nav-dropdown-menu a:hover,
+  .nav-dropdown-menu a:focus-visible,
+  .nav-dropdown-menu a[aria-current="page"] {
+    background: var(--sky-soft);
+  }
+  .nav-dropdown-menu a[aria-current="page"]::after {
+    display: none;
+  }
+  .nav-project-tech {
+    display: block;
+    margin-top: 0.1rem;
+    color: var(--muted);
+    font-size: 0.76rem;
+  }
+  @media (max-width: 1040px) {
+    .nav-toggle {
+      display: grid;
+    }
+    .primary-navigation {
+      position: absolute;
+      top: calc(100% + 1px);
+      right: 1rem;
+      left: 1rem;
+      display: none;
+      align-items: stretch;
+      border: 1px solid var(--border);
+      border-radius: var(--control-radius);
+      background: var(--surface-raised);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+    }
+    .primary-navigation[data-open] {
+      display: flex;
+    }
+    .primary-navigation ul {
+      flex: 1;
+      align-items: stretch;
+      flex-direction: column;
+      gap: 0;
+    }
+    .primary-navigation a,
+    .nav-dropdown-trigger {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+    }
+    .nav-dropdown-trigger {
+      display: flex;
+    }
+    .nav-dropdown-trigger[data-active]::after,
+    .primary-navigation a[aria-current="page"]::after {
+      display: none;
+    }
+  }
+</style>

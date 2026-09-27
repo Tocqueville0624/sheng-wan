@@ -22,9 +22,20 @@ export const navigation = [
   { href: "/teaching", label: "Teaching" }
 ] as const;
 
+export const projectNavigation = [
+  {
+    href: "/playground/amelia-torch",
+    label: "Amelia — GPU Multiple Imputation",
+    technology: "PyTorch"
+  },
+  {
+    href: "/playground/product-search-quality",
+    label: "Product Search Quality Analysis",
+    technology: "PySpark"
+  }
+] as const;
+
 export const playgroundNavigation = [
   { href: "/playground/thales-olive", label: "Thales' Olive - Earnings Report Reader" },
-  { href: "/playground/product-search-quality", label: "Product Search Quality Analysis" },
-  { href: "/playground/amelia-torch", label: "Amelia - GPU Multiple Imputation" },
   { href: "/playground/hugo-le-chatssius", label: "Hugo, Le Chatssius" }
 ] as const;
