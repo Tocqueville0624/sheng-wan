@@ -19,8 +19,7 @@ for (const path of [
   "/playground/thales-olive/",
   "/playground/product-search-quality/",
   "/playground/amelia-torch/",
-  "/playground/hugo-le-chatssius/",
-  "/playground/photo-gallery/"
+  "/playground/hugo-le-chatssius/"
 ]) {
   const response = await read(path);
   const html = await response.text();
@@ -40,6 +39,10 @@ if (production)
   assert(robots.includes(`Sitemap: ${origin}/sitemap.xml`) && !robots.includes("Disallow: /"));
 else assert(robots.includes("Disallow: /"));
 const sitemap = await (await read("/sitemap.xml")).text();
+assert(
+  !sitemap.includes("/playground/photo-gallery"),
+  "Offline gallery must not appear in sitemap"
+);
 for (const match of sitemap.matchAll(/<loc>(.*?)<\/loc>/g))
   assert(match[1]?.startsWith(`${origin}/`));
 const pdf = new Uint8Array(await (await read("/downloads/sheng-wan-cv.pdf")).arrayBuffer());
@@ -54,6 +57,21 @@ const missing = await fetch(new URL("/deployment-check-missing-page", origin), {
   signal: AbortSignal.timeout(30_000)
 });
 assert.equal(missing.status, 404, "Missing page must return HTTP 404");
+for (const path of [
+  "/playground/photo-gallery",
+  "/playground/photo-gallery/",
+  "/playground/photo-gallery/?view=contact"
+]) {
+  const response = await fetch(new URL(path, origin), {
+    redirect: "manual",
+    signal: AbortSignal.timeout(30_000)
+  });
+  assert.equal(
+    response.status,
+    404,
+    `${path}: offline gallery must return HTTP 404 without redirect`
+  );
+}
 
 if (production) {
   for (const from of [

@@ -1,5 +1,10 @@
 import { expect, test, type Page } from "@playwright/test";
 
+test.skip(
+  true,
+  "Photo Gallery is intentionally offline; focus-view regression cases are retained for restoration."
+);
+
 async function photographFit(page: Page) {
   return page.locator(".focus-stage img").evaluate(async (element) => {
     const image = element as HTMLImageElement;

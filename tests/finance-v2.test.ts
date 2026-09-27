@@ -5,7 +5,8 @@ import {
   upgradeCompany,
   validateV2,
   mergeV2,
-  normalizeBasicCompany
+  normalizeBasicCompany,
+  flowPeriod
 } from "../scripts/finance/v2-model";
 import imported from "./fixtures/finance/imported-companies.json";
 import type { CompanyV2 } from "../src/features/finance/v2-types";
@@ -62,6 +63,40 @@ function fixture(): FactsDocument {
   };
 }
 describe("finance v2 provenance and coverage", () => {
+  it("supports a reported total-cost flow without inventing gross profit", () => {
+    const doc = fixture();
+    const fact = doc.facts["us-gaap"].Revenues.units.USD[0];
+    for (const [tag, val] of Object.entries({
+      CostsAndExpenses: 60,
+      OperatingIncomeLoss: 40,
+      IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest: 35,
+      IncomeTaxExpenseBenefit: 5,
+      NetIncomeLoss: 30
+    }))
+      doc.facts["us-gaap"][tag] = { label: tag, units: { USD: [{ ...fact, val }] } };
+    const company = extractFactsV2(doc, identity, [filing]);
+    const period = company.annual[0];
+    expect(period.metrics.grossProfit).toBeUndefined();
+    expect(period.metrics.totalOperatingCosts).toBe(60);
+    expect(period.coverage.sankey).toBe(true);
+    expect(flowPeriod(period)).toBeDefined();
+    expect(() => validateV2(company)).not.toThrow();
+    const basic = structuredClone(company);
+    delete basic.annual[0].metrics.totalOperatingCosts;
+    delete basic.annual[0].metricSources.totalOperatingCosts;
+    basic.annual[0].coverage.sankey = false;
+    expect(flowPeriod(basic.annual[0])).toBeUndefined();
+    expect(mergeV2(company, basic).annual[0].coverage.sankey).toBe(true);
+    const rounded = structuredClone(period);
+    rounded.operatingReconciliation = {
+      label: "Source rounding",
+      amount: -1,
+      sourceUrl: period.sourceUrl
+    };
+    rounded.metrics.operatingIncome = 39;
+    // An arbitrary residual without inline precision cannot authorize a chart.
+    expect(flowPeriod(rounded)).toBeUndefined();
+  });
   it("does not turn a narrow reported cost into invented consolidated gross profit", () => {
     const doc = fixture();
     const fact = doc.facts["us-gaap"].Revenues.units.USD[0];
@@ -254,6 +289,20 @@ describe("finance v2 provenance and coverage", () => {
   });
   it("does not manufacture a fourth quarter from a year alone", () => {
     expect(extractFactsV2(fixture(), identity, [filing]).quarterly).toEqual([]);
+  });
+  it("does not subtract noncontrolling income twice from a consolidated ProfitLoss fact", () => {
+    const doc = fixture();
+    const fact = doc.facts["us-gaap"].NetIncomeLoss.units.USD[0];
+    delete doc.facts["us-gaap"].NetIncomeLoss;
+    doc.facts["us-gaap"].ProfitLoss = { label: "Consolidated profit", units: { USD: [fact] } };
+    doc.facts["us-gaap"].NetIncomeLossAttributableToNoncontrollingInterest = {
+      label: "Noncontrolling income",
+      units: { USD: [{ ...fact, val: 1 }] }
+    };
+    const period = extractFactsV2(doc, identity, [filing]).annual[0];
+    expect(period.metrics.netIncome).toBe(-5);
+    expect(period.metrics.noncontrollingInterestIncome).toBeUndefined();
+    expect(period.metricSources.noncontrollingInterestIncome).toBeUndefined();
   });
   it("recovers a comparative fiscal year from the same filing without using the filing year as its label", () => {
     const doc = fixture();

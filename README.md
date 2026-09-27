@@ -41,6 +41,7 @@ FINANCE_LIVE_CHECK=1 pnpm test:e2e # additionally inspect already-imported local
 - `public/downloads/sheng-wan-cv.pdf` is the unchanged user-provided PDF download.
 - `src/content/research/` and `src/content/hugo/` contain authored content.
 - `src/content/projects/` contains source-linked project summaries and aggregate benchmark results. Project pages redraw these results as responsive, accessible figures; raw project datasets remain outside this repository.
+- Photo Gallery is temporarily offline: its former URL returns 404 and is absent from navigation and the sitemap. The page is preserved in `src/features/gallery/GalleryPage.astro`, with gallery components, photographs and restoration tests retained. Hugo's page remains public.
 - `src/data/generated/media.json` is a generated image manifest; `public/media/` contains sanitized derivatives only.
 - `src/data/generated/finance.json` is the bundled snapshot used for local preview and safe fallback.
 

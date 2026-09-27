@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
-import type { CompanyDataset, FinancialPeriod } from "./types";
+import type { CompanyDataset, FinancialMetrics, FlowStatementPeriod } from "./types";
+import type { MetricSource } from "./v2-types";
 import {
   buildStatementFlow,
   businessGrossMargin,
@@ -18,15 +19,24 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
   const detail =
     node.group === "detail" ||
     node.group === "tax" ||
-    (node.group === "equity" && node.tone === "expense");
+    ((node.group === "equity" || node.group === "noncontrolling") && node.tone === "expense");
   const nonoperating = node.group === "nonoperating";
+  const operatingAdjustment = node.group === "operating-adjustment";
   const taxBenefit = node.group === "tax-benefit";
   const positiveEquity = node.group === "equity" && node.tone === "profit";
-  const upperInput = positiveEquity || taxBenefit || (nonoperating && node.tone === "profit");
+  const minorityLoss = node.group === "noncontrolling" && node.tone === "profit";
+  const upperInput =
+    positiveEquity ||
+    minorityLoss ||
+    taxBenefit ||
+    ((nonoperating || operatingAdjustment) && node.tone === "profit");
   const revenueLabel = node.id === "revenue" || node.group === "revenue-base";
   const labelLeft = source;
   const labelRight =
-    revenueLabel || detail || node.group === "opex" || (nonoperating && node.tone === "expense");
+    revenueLabel ||
+    detail ||
+    node.group === "opex" ||
+    ((nonoperating || operatingAdjustment) && node.tone === "expense");
   const x = labelLeft ? node.x - 18 : labelRight ? node.x + (revenueLabel ? 8 : 29) : node.x + 8;
   const textAnchor = labelLeft ? "end" : labelRight ? "start" : "middle";
   const lines = wrapLabel(
@@ -47,7 +57,7 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
               ? node.y + node.height + 28
               : node.group === "opex"
                 ? node.y - 66
-                : nonoperating || node.group === "equity" || taxBenefit
+                : nonoperating || operatingAdjustment || node.group === "equity" || taxBenefit
                   ? node.y - 8
                   : node.y - 43 - (lines.length - 1) * lineHeight;
   // Leave room for the taller Arial fallback metrics used by Linux/Android.
@@ -107,7 +117,9 @@ export function StatementFlow({
   onSelectionChange,
   showPeriodSelect = true
 }: {
-  periods: FinancialPeriod[];
+  periods: (FlowStatementPeriod & {
+    metricSources?: Partial<Record<keyof FinancialMetrics, MetricSource>>;
+  })[];
   company: CompanyDataset;
   selection?: string;
   onSelectionChange?: (id: string) => void;
@@ -152,10 +164,31 @@ export function StatementFlow({
     );
   }
   const layout = layoutStatementFlow(result.graph);
+  const directOperatingFlow = layout.nodes.some((node) => node.id === "operating-costs");
+  const parentNet = period.metrics.noncontrollingInterestIncome !== undefined;
+  const allocationNoteHeight = parentNet ? 24 : 0;
   const hasBusinesses = layout.nodes.some((node) => node.business);
   const businessNoteHeight = hasBusinesses ? 24 : 0;
-  const graph = { ...layout, height: layout.height + (period.fx ? 48 : 0) + businessNoteHeight };
-  const footerTop = graph.height - (period.fx ? 126 : 78) - businessNoteHeight;
+  const directFlowNoteHeight = directOperatingFlow ? 24 : 0;
+  const rounding = directOperatingFlow ? period.operatingReconciliation : undefined;
+  const roundingNoteHeight = rounding?.amount ? 24 : 0;
+  const graph = {
+    ...layout,
+    height:
+      layout.height +
+      (period.fx ? 48 : 0) +
+      businessNoteHeight +
+      directFlowNoteHeight +
+      roundingNoteHeight +
+      allocationNoteHeight
+  };
+  const footerTop =
+    graph.height -
+    (period.fx ? 126 : 78) -
+    businessNoteHeight -
+    directFlowNoteHeight -
+    roundingNoteHeight -
+    allocationNoteHeight;
   const hasSegments = graph.nodes.some((node) => node.group === "segment");
   const hasExpenseDetail = graph.nodes.some((node) => node.group === "detail");
   const sourceUrl = period.sourceUrl;
@@ -188,12 +221,29 @@ export function StatementFlow({
           viewBox={`0 0 ${graph.width} ${graph.height}`}
           xmlns="http://www.w3.org/2000/svg"
           role="img"
-          aria-label={`${company.name} ${period.label} income statement. Proportional flows connect revenue of ${shortMoney(period.metrics.revenue)} to net profit of ${shortMoney(period.metrics.netIncome)}. Every line item and exact amount is listed below.`}
+          aria-label={`${company.name} ${period.label} income statement. Proportional flows connect revenue of ${shortMoney(period.metrics.revenue)} to ${parentNet ? "net profit attributable to the parent" : "net profit"} of ${shortMoney(period.metrics.netIncome)}. Every line item and exact amount is listed below.`}
           fill={colors.ink}
           fontFamily={chartFont}
           fontSize={16}
           style={{ fontVariantNumeric: "tabular-nums" }}
         >
+          <metadata>
+            {JSON.stringify({
+              ticker: company.ticker,
+              period: period.id,
+              startDate: period.startDate,
+              endDate: period.endDate,
+              displayCurrency: period.displayCurrency,
+              sourceUrl,
+              metricSources: period.metricSources ?? {},
+              metrics: period.metrics,
+              netIncomeAttribution: parentNet ? "parent" : undefined,
+              operatingReconciliation: rounding,
+              flow: directOperatingFlow ? "direct-operating" : "gross-profit",
+              nodes: result.graph.nodes,
+              links: result.graph.links
+            })}
+          </metadata>
           <rect width={graph.width} height={graph.height} fill={colors.paper} />
           <text x={50} y={54} fontSize={35} fontWeight={700}>
             {company.name}
@@ -282,19 +332,72 @@ export function StatementFlow({
           <text x={50} y={footerTop + 50} fill={colors.muted} fontSize={12}>
             {sourceUrl}
           </text>
+          {directOperatingFlow && (
+            <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
+              Reported total operating costs connect revenue to operating profit. No gross profit is
+              estimated.
+            </text>
+          )}
           {hasBusinesses && (
-            <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={14}>
+            <text
+              x={50}
+              y={footerTop + 74 + directFlowNoteHeight}
+              fill={colors.muted}
+              fontSize={14}
+            >
               Business gross margin = gross profit ÷ business revenue. — = unavailable for this
               category and period; never estimated.
             </text>
           )}
+          {rounding?.amount ? (
+            <text
+              x={50}
+              y={footerTop + 74 + directFlowNoteHeight + businessNoteHeight}
+              fill={colors.muted}
+              fontSize={13}
+            >
+              Source rounding: {rounding.amount > 0 ? "+" : ""}
+              {shortMoney(rounding.amount)}. Original reported totals are unchanged.
+            </text>
+          ) : null}
+          {parentNet && (
+            <text
+              x={50}
+              y={footerTop + 74 + directFlowNoteHeight + businessNoteHeight + roundingNoteHeight}
+              fill={colors.muted}
+              fontSize={13}
+            >
+              Net profit is attributable to the parent. Noncontrolling interests are a profit
+              allocation, not an operating expense.
+            </text>
+          )}
           {period.fx && (
             <g fill={colors.muted} fontSize={12}>
-              <text x={50} y={footerTop + 74 + businessNoteHeight}>
+              <text
+                x={50}
+                y={
+                  footerTop +
+                  74 +
+                  businessNoteHeight +
+                  directFlowNoteHeight +
+                  roundingNoteHeight +
+                  allocationNoteHeight
+                }
+              >
                 Original currency: TWD. Converted at {period.fx.rate.toFixed(4)} TWD/USD, Federal
                 Reserve H.10 period average ({period.fx.startDate}–{period.fx.endDate}).
               </text>
-              <text x={50} y={footerTop + 96 + businessNoteHeight}>
+              <text
+                x={50}
+                y={
+                  footerTop +
+                  96 +
+                  businessNoteHeight +
+                  directFlowNoteHeight +
+                  roundingNoteHeight +
+                  allocationNoteHeight
+                }
+              >
                 {period.fx.sourceUrl}
               </text>
             </g>
@@ -302,11 +405,27 @@ export function StatementFlow({
         </svg>
       </div>
       <p className="chart-note">
+        {directOperatingFlow &&
+          "This statement does not provide a complete, separate gross-profit breakdown. The flow uses reported total operating costs to connect revenue directly to operating profit; no gross profit is estimated. "}
+        {rounding?.amount ? (
+          <>
+            A separate source-rounding flow of {rounding.amount > 0 ? "+" : ""}
+            {shortMoney(rounding.amount)} reconciles the reported precision; the reported totals
+            remain unchanged.{" "}
+            <a href={rounding.sourceUrl} target="_blank" rel="noreferrer">
+              Source filing
+            </a>
+            .{" "}
+          </>
+        ) : null}
         {graph.links.some((link) => link.width < 0.75) &&
           "Dotted lines identify subpixel flows; they are annotations, not wider ribbons. "}
-        Profit flows are green; expenses are coral. Non-operating items bridge operating and pretax
-        profit; taxes are deducted and separately reported tax benefits flow into net profit.{" "}
-        {period.segmentBasis} Scroll horizontally on smaller screens.
+        {parentNet
+          ? "Profit flows and incoming adjustments are green; costs, taxes and profit allocated to noncontrolling interests are coral. Noncontrolling interests are shown separately from net profit attributable to the parent. "
+          : "Profit flows are green; expenses are coral. "}
+        Non-operating items bridge operating and pretax profit; taxes are deducted and separately
+        reported tax benefits flow into net profit. {period.segmentBasis} Scroll horizontally on
+        smaller screens.
       </p>
       <details className="chart-data-detail">
         <summary>View exact amounts and reconciliation</summary>
@@ -332,9 +451,32 @@ export function StatementFlow({
                   <th scope="row">
                     {node.label}
                     {node.id === "other-opex" && <small> · derived remainder</small>}
+                    {node.id === "noncontrolling" && <small> · profit attribution</small>}
+                    {node.id === "operating-rounding" && (
+                      <small>
+                        {rounding!.amount < 0
+                          ? " · reported-precision decrease"
+                          : " · reported-precision increase"}
+                      </small>
+                    )}
                   </th>
-                  <td>${node.amount.toLocaleString("en-US", { maximumFractionDigits: 2 })}</td>
-                  <td>{percent(node.amount / period.metrics.revenue)}</td>
+                  <td>
+                    {(node.id === "operating-rounding" && rounding!.amount < 0) ||
+                    (node.id === "noncontrolling" &&
+                      period.metrics.noncontrollingInterestIncome! < 0)
+                      ? "−"
+                      : ""}
+                    ${node.amount.toLocaleString("en-US", { maximumFractionDigits: 2 })}
+                  </td>
+                  <td>
+                    {percent(
+                      (node.id === "operating-rounding"
+                        ? rounding!.amount
+                        : node.id === "noncontrolling"
+                          ? period.metrics.noncontrollingInterestIncome!
+                          : node.amount) / period.metrics.revenue
+                    )}
+                  </td>
                   {hasBusinesses && (
                     <td>
                       {node.business?.grossProfit !== undefined
@@ -377,9 +519,16 @@ export function StatementFlow({
           </div>
         )}
         <p className="chart-note">
-          Revenue = cost of revenue + gross profit. Gross profit = operating expenses + operating
-          profit. Pretax profit = operating profit + net non-operating items. Pretax profit minus
-          income tax plus separately reported after-tax equity-method income equals net profit.
+          {directOperatingFlow
+            ? rounding?.amount
+              ? "Revenue minus total operating costs plus signed source rounding equals operating profit. "
+              : "Revenue = total operating costs + operating profit. "
+            : "Revenue = cost of revenue + gross profit. Gross profit = operating expenses + operating profit. "}
+          Pretax profit = operating profit + net non-operating items. Pretax profit minus income tax
+          plus separately reported after-tax equity-method income
+          {parentNet
+            ? " minus signed income attributable to noncontrolling interests equals net profit to the parent. "
+            : " equals net profit. "}
           Business revenue plus separately reported revenue adjustments equals consolidated revenue.{" "}
           {hasBusinesses &&
             "Business gross margin divides the category’s reported gross profit, or revenue minus its reported cost of revenue, by that category’s revenue. — means unavailable for this category and period; no allocation is estimated. "}

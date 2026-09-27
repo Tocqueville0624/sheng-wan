@@ -1,8 +1,7 @@
 import type { CatalogCompany, CompanyV2, PeriodV2 } from "../../src/features/finance/v2-types";
 import type { FinancialMetrics } from "../../src/features/finance/types";
 import type { SecFiling } from "./sec-shared";
-import { normalizeBasicPeriod, statementPeriod, validateV2 } from "./v2-model";
-import { buildStatementFlow } from "../../src/features/finance/chart-model";
+import { normalizeBasicPeriod, flowPeriod, validateV2 } from "./v2-model";
 import { roundingTolerance } from "./validate";
 
 export type Fact = {
@@ -32,6 +31,7 @@ const tags: Partial<Record<keyof FinancialMetrics, string[]>> = {
   costOfRevenue: ["CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfSales"],
   grossProfit: ["GrossProfit"],
   operatingExpenses: ["OperatingExpenses", "OperatingExpense"],
+  totalOperatingCosts: ["CostsAndExpenses"],
   operatingIncome: ["OperatingIncomeLoss", "ProfitLossFromOperatingActivities"],
   pretaxIncome: [
     "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
@@ -44,6 +44,7 @@ const tags: Partial<Record<keyof FinancialMetrics, string[]>> = {
     "IncomeTaxExpense"
   ],
   netIncome: ["NetIncomeLoss", "ProfitLoss"],
+  noncontrollingInterestIncome: ["NetIncomeLossAttributableToNoncontrollingInterest"],
   researchAndDevelopment: ["ResearchAndDevelopmentExpense"],
   sellingGeneralAndAdministrative: ["SellingGeneralAndAdministrativeExpense"]
 };
@@ -283,15 +284,19 @@ export function extractFactsV2(
     calc("grossProfit", "revenue", "costOfRevenue");
     calc("costOfRevenue", "revenue", "grossProfit");
     calc("operatingExpenses", "grossProfit", "operatingIncome");
+    // ProfitLoss already includes noncontrolling interests. Only the US-GAAP
+    // parent-attributable net-income concept needs the separate attribution step.
+    if (period.metricSources.netIncome?.tag !== "us-gaap:NetIncomeLoss") {
+      delete period.metrics.noncontrollingInterestIncome;
+      delete period.metricSources.noncontrollingInterestIncome;
+    }
     const scoped = normalizeBasicPeriod(period);
     if (scoped !== period)
       warnings.add(
         "Unreviewed cost tags do not establish consolidated gross profit. Unsupported inferred gross profit and operating expenses are withheld."
       );
     period = scoped;
-    const statement = statementPeriod(period);
-    period.coverage.sankey =
-      identity.sector !== "Financials" && !!statement && buildStatementFlow(statement).ok;
+    period.coverage.sankey = !!flowPeriod(period);
     periods.push(period);
   }
   // Q4 is calculable only when the same accession reports both FY and 9M
@@ -363,6 +368,7 @@ export function extractFactsV2(
         `${p.label}: cost, gross-profit and operating-expense concepts have incompatible scopes or require additional accounting adjustments and are withheld. Independently reported revenue and income remain available.`
       );
     }
+    p.coverage.sankey = !!flowPeriod(p);
     const old = selected.get(p.id);
     if (
       !old ||
@@ -446,7 +452,6 @@ export function convertBasicTwd(period: PeriodV2, rate: number, sourceUrl: strin
       ]
     };
   }
-  const statement = statementPeriod(next);
-  next.coverage.sankey = !!statement && buildStatementFlow(statement).ok;
+  next.coverage.sankey = !!flowPeriod(next);
   return next;
 }

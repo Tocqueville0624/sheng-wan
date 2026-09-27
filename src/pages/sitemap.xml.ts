@@ -8,8 +8,7 @@ const routes = [
   "/playground/thales-olive",
   "/playground/product-search-quality",
   "/playground/amelia-torch",
-  "/playground/hugo-le-chatssius",
-  "/playground/photo-gallery"
+  "/playground/hugo-le-chatssius"
 ];
 export const GET: APIRoute = ({ site }) =>
   new Response(

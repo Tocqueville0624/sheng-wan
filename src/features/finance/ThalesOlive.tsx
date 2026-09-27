@@ -5,7 +5,7 @@ import { BasicHistory, amount } from "./BasicHistory";
 import { StatementMetrics } from "./StatementMetrics";
 import { downloadFile } from "./ChartExports";
 import { percent } from "./chart-model";
-import { statementPeriod, validateV2 } from "../../../scripts/finance/v2-model";
+import { flowPeriod, statementPeriod, validateV2 } from "../../../scripts/finance/v2-model";
 import type { CompanyDataset, PeriodKind } from "./types";
 import {
   pendingJob,
@@ -265,7 +265,12 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         "filed_at",
         "snapshot",
         "metric_provenance",
-        "gross_profit_adjustments"
+        "gross_profit_adjustments",
+        "total_operating_costs",
+        "pretax_income",
+        "income_tax",
+        "operating_reconciliation",
+        "noncontrolling_interest_income"
       ],
       ...periods.map((p) => [
         selection.ticker,
@@ -280,7 +285,12 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         p.filedAt,
         company?.version,
         JSON.stringify(p.metricSources),
-        JSON.stringify(p.grossProfitAdjustments ?? [])
+        JSON.stringify(p.grossProfitAdjustments ?? []),
+        p.metrics.totalOperatingCosts ?? "",
+        p.metrics.pretaxIncome ?? "",
+        p.metrics.incomeTax ?? "",
+        JSON.stringify(p.operatingReconciliation ?? null),
+        p.metrics.noncontrollingInterestIncome ?? ""
       ])
     ];
     downloadFile(
@@ -303,8 +313,7 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
   const chartCompany = company
     ? ({ ...company, schemaVersion: 1, annual: [], quarterly: [] } as CompanyDataset)
     : undefined;
-  const selectedStatement =
-    current && current.coverage.sankey ? statementPeriod(current) : undefined;
+  const selectedStatement = current && current.coverage.sankey ? flowPeriod(current) : undefined;
   const prior = current
     ? periods.find(
         (p) =>

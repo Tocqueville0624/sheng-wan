@@ -11,15 +11,20 @@ const percent = (value: number) => `${(value * 100).toFixed(2)}%`;
 <div data-search-quality-yield>
   <div class="budget-selector" hidden>
     <label for="search-quality-budget">Review budget within the predicted-Exact pool</label>
-    <select id="search-quality-budget" aria-controls="review-budget-10 review-budget-5">
-      {
-        searchQualityBudgets.map((budget) => (
-          <option value={budget.percent}>
-            {budget.percent}% · {count(budget.inspected)} pairs
-          </option>
-        ))
-      }
-    </select>
+    <div class="project-select" style="--project-select-width: 29rem">
+      <select id="search-quality-budget" aria-controls="review-budget-10 review-budget-5">
+        {
+          searchQualityBudgets.map((budget) => (
+            <option value={budget.percent}>
+              {budget.percent}% · {count(budget.inspected)} pairs
+            </option>
+          ))
+        }
+      </select>
+      <svg class="project-select-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+    </div>
   </div>
   {
     searchQualityBudgets.map((budget) => (
@@ -163,14 +168,6 @@ const percent = (value: number) => `${(value * 100).toFixed(2)}%`;
     font-weight: 600;
   }
   .budget-selector select {
-    width: min(100%, 29rem);
-    min-height: 3rem;
-    padding: 0.6rem 2rem 0.6rem 0.8rem;
-    border: 1px solid var(--border);
-    border-radius: var(--control-radius);
-    background: var(--surface);
-    color: var(--text);
-    font: inherit;
     font-size: 0.94rem;
   }
   .budget-selector[hidden],

@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import snapshot from "../src/data/generated/finance.json";
-import type { FinanceManifest, FinancialPeriod } from "../src/features/finance/types";
+import type {
+  FinanceManifest,
+  FinancialPeriod,
+  FlowStatementPeriod
+} from "../src/features/finance/types";
 import {
   buildRevenueHistory,
   buildStatementFlow,
@@ -31,6 +35,24 @@ const fixture = (changes: Partial<FinancialPeriod["metrics"]> = {}): FinancialPe
     netIncome: 22,
     researchAndDevelopment: 8,
     sellingGeneralAndAdministrative: 7,
+    ...changes
+  }
+});
+
+const operatingFixture = (
+  changes: Partial<FlowStatementPeriod["metrics"]> = {}
+): FlowStatementPeriod => ({
+  ...base,
+  segments: undefined,
+  segmentBasis: undefined,
+  segmentSourceUrl: undefined,
+  metrics: {
+    revenue: 100,
+    totalOperatingCosts: 75,
+    operatingIncome: 25,
+    pretaxIncome: 28,
+    incomeTax: 6,
+    netIncome: 22,
     ...changes
   }
 });
@@ -202,6 +224,281 @@ describe("business-revenue chart", () => {
 });
 
 describe("income statement Sankey", () => {
+  it("preserves Tesla's reported parent income and allocates minority profit separately", () => {
+    const period: FinancialPeriod = {
+      ...base,
+      segments: undefined,
+      metrics: {
+        revenue: 28236e6,
+        costOfRevenue: 23485e6,
+        grossProfit: 4751e6,
+        operatingExpenses: 4353e6,
+        operatingIncome: 398e6,
+        pretaxIncome: 1329e6,
+        incomeTax: 201e6,
+        netIncome: 1114e6,
+        researchAndDevelopment: 2371e6,
+        sellingGeneralAndAdministrative: 1982e6,
+        noncontrollingInterestIncome: 14e6
+      }
+    };
+    const original = structuredClone(period.metrics);
+    const result = buildStatementFlow(period);
+    if (!result.ok) throw new Error(result.reason);
+    expect(result.graph.nodes.find((node) => node.id === "net")).toMatchObject({
+      label: "Net profit to parent",
+      amount: 1114e6
+    });
+    expect(result.graph.nodes.find((node) => node.id === "noncontrolling")).toMatchObject({
+      label: "Profit to noncontrolling interests",
+      amount: 14e6,
+      group: "noncontrolling",
+      tone: "expense"
+    });
+    expect(result.graph.links.find((link) => link.target === "noncontrolling")).toEqual({
+      source: "pretax",
+      target: "noncontrolling",
+      value: 14e6,
+      tone: "expense"
+    });
+    expect(period.metrics).toEqual(original);
+    expectConserved(result.graph, period.metrics.revenue);
+    const layout = layoutStatementFlow(result.graph);
+    expectOrderedExactPorts(layout);
+    expectNoUnrelatedNodeInterception(layout);
+    const minority = layout.nodes.find((node) => node.id === "noncontrolling")!;
+    const tax = layout.nodes.find((node) => node.id === "tax")!;
+    expect(minority.y).toBeGreaterThan(tax.y + tax.height + 100);
+    for (const node of layout.nodes.filter((entry) => entry.group === "detail")) {
+      expect(node.y).toBeGreaterThan(minority.y + minority.height + 100);
+    }
+    expect(
+      buildStatementFlow({
+        ...period,
+        metrics: { ...period.metrics, noncontrollingInterestIncome: undefined }
+      }).ok
+    ).toBe(false);
+  });
+
+  it("conserves signed minority allocations with tax benefits and after-tax equity gains or losses", () => {
+    const cases = [
+      { noncontrollingInterestIncome: 0.5, netIncome: 21.5 },
+      { noncontrollingInterestIncome: -0.5, netIncome: 22.5 },
+      { noncontrollingInterestIncome: 0, netIncome: 22 },
+      { noncontrollingInterestIncome: 2, incomeTax: -6, equityMethodIncome: -31, netIncome: 1 },
+      { noncontrollingInterestIncome: -10, incomeTax: -6, equityMethodIncome: -40, netIncome: 4 },
+      { noncontrollingInterestIncome: 80, equityMethodIncome: 100, netIncome: 42 },
+      {
+        noncontrollingInterestIncome: -300,
+        incomeTax: -100,
+        equityMethodIncome: 200,
+        netIncome: 628
+      }
+    ];
+    for (const create of [fixture, operatingFixture]) {
+      for (const metrics of cases) {
+        const period = create(metrics);
+        const result = buildStatementFlow(period);
+        if (!result.ok) throw new Error(result.reason);
+        expectConserved(result.graph, period.metrics.revenue);
+        const minority = result.graph.nodes.find((node) => node.id === "noncontrolling");
+        if (metrics.noncontrollingInterestIncome !== 0) {
+          expect(minority).toMatchObject({
+            amount: Math.abs(metrics.noncontrollingInterestIncome),
+            tone: metrics.noncontrollingInterestIncome > 0 ? "expense" : "profit"
+          });
+        } else expect(minority).toBeUndefined();
+        expect(result.graph.nodes.find((node) => node.id === "net")?.label).toBe(
+          "Net profit to parent"
+        );
+        const layout = layoutStatementFlow(result.graph);
+        expectOrderedExactPorts(layout);
+        expectNoUnrelatedNodeInterception(layout);
+        for (const link of layout.links)
+          expect(link.width / link.value).toBeCloseTo(layout.scale, 12);
+      }
+    }
+    expect(buildStatementFlow(fixture({ noncontrollingInterestIncome: NaN })).ok).toBe(false);
+    expect(buildStatementFlow(fixture({ noncontrollingInterestIncome: 0.5 })).ok).toBe(false);
+    expect(
+      buildStatementFlow(fixture({ noncontrollingInterestIncome: 23, netIncome: -1 })).ok
+    ).toBe(false);
+  });
+
+  it("uses disclosed total operating costs without creating a gross-profit stage", () => {
+    const period = operatingFixture();
+    const original = structuredClone(period);
+    const result = buildStatementFlow(period);
+    if (!result.ok) throw new Error(result.reason);
+    expect(result.graph.nodes.some((node) => ["gross", "cost", "opex"].includes(node.id))).toBe(
+      false
+    );
+    expect(result.graph.nodes.find((node) => node.id === "operating-costs")).toMatchObject({
+      amount: 75,
+      label: "Total operating costs"
+    });
+    expect(result.graph.links).toEqual(
+      expect.arrayContaining([
+        { source: "revenue", target: "operating", value: 25, tone: "profit" },
+        { source: "revenue", target: "operating-costs", value: 75, tone: "expense" }
+      ])
+    );
+    expectConserved(result.graph, 100);
+    expect(period).toEqual(original);
+
+    const grossResult = buildStatementFlow(fixture({ totalOperatingCosts: 75 }));
+    if (!grossResult.ok) throw new Error(grossResult.reason);
+    expect(grossResult.graph.nodes.some((node) => node.id === "gross")).toBe(true);
+    expect(grossResult.graph.nodes.some((node) => node.id === "operating-costs")).toBe(false);
+    expect(buildStatementFlow(fixture({ grossProfit: 44, totalOperatingCosts: 75 })).ok).toBe(
+      false
+    );
+  });
+
+  it("keeps direct-flow columns compact, proportional and clear for signed downstream items", () => {
+    const cases = [
+      operatingFixture(),
+      { ...operatingFixture(), segments: fixture().segments },
+      {
+        ...operatingFixture({ revenue: 99.5, totalOperatingCosts: 74.5 }),
+        segments: fixture().segments,
+        revenueAdjustments: [{ id: "hedging", label: "Hedging loss", revenue: -0.5 }]
+      },
+      operatingFixture({ pretaxIncome: 22, incomeTax: 4, netIncome: 18 }),
+      operatingFixture({
+        pretaxIncome: 125,
+        incomeTax: -6,
+        equityMethodIncome: 0.5,
+        netIncome: 131.5
+      }),
+      operatingFixture({ incomeTax: -6, equityMethodIncome: -31, netIncome: 3 })
+    ];
+    for (const period of cases) {
+      const result = buildStatementFlow(period);
+      if (!result.ok) throw new Error(result.reason);
+      const layout = layoutStatementFlow(result.graph);
+      const stages = layout.nodes.filter((node) => node.group === "main");
+      expect(stages.map((node) => node.id)).toEqual(["revenue", "operating", "pretax", "net"]);
+      expect(stages.map((node) => node.x)).toEqual(
+        stages.map((node) => node.x).sort((a, b) => a - b)
+      );
+      expect(stages[1].x - stages[0].x).toBeLessThan(300);
+      expect(layout.width).toBeLessThan(1480);
+      expectConserved(result.graph, period.metrics.revenue);
+      expectOrderedExactPorts(layout);
+      expectNoUnrelatedNodeInterception(layout);
+      for (const link of layout.links)
+        expect(link.width / link.value).toBeCloseTo(layout.scale, 12);
+      for (const node of layout.nodes)
+        expect(node.height).toBeCloseTo(node.amount * layout.scale, 12);
+    }
+  });
+
+  it("preserves exact MCD reported totals and shows positive or negative source rounding explicitly", () => {
+    const annual = operatingFixture({
+      revenue: 26885e6,
+      totalOperatingCosts: 14492e6,
+      operatingIncome: 12393e6,
+      pretaxIncome: 10897e6,
+      incomeTax: 2334e6,
+      netIncome: 8563e6
+    });
+    const quarter = operatingFixture({
+      revenue: 7099e6,
+      totalOperatingCosts: 3760e6,
+      operatingIncome: 3338e6,
+      pretaxIncome: 2936e6,
+      incomeTax: 574e6,
+      netIncome: 2362e6
+    });
+    expect(buildStatementFlow(quarter).ok).toBe(false);
+    quarter.operatingReconciliation = {
+      label: "Source rounding",
+      amount: -1e6,
+      sourceUrl: "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/R4.htm"
+    };
+    const positive = operatingFixture({ operatingIncome: 25.01 });
+    positive.operatingReconciliation = {
+      label: "Source rounding",
+      amount: 0.01,
+      sourceUrl: base.sourceUrl
+    };
+    for (const period of [annual, quarter, positive]) {
+      const metrics = structuredClone(period.metrics);
+      const result = buildStatementFlow(period);
+      if (!result.ok) throw new Error(result.reason);
+      expectConserved(result.graph, period.metrics.revenue);
+      const layout = layoutStatementFlow(result.graph);
+      expectOrderedExactPorts(layout);
+      expectNoUnrelatedNodeInterception(layout);
+      expect(period.metrics).toEqual(metrics);
+      const adjustment = period.operatingReconciliation?.amount;
+      if (adjustment) {
+        expect(result.graph.nodes.find((node) => node.id === "operating-rounding")).toMatchObject({
+          label: "Source rounding",
+          amount: Math.abs(adjustment)
+        });
+        expect(
+          result.graph.links.find((link) =>
+            adjustment < 0
+              ? link.target === "operating-rounding"
+              : link.source === "operating-rounding"
+          )
+        ).toMatchObject({
+          source: adjustment < 0 ? "revenue" : "operating-rounding",
+          target: adjustment < 0 ? "operating-rounding" : "operating",
+          value: Math.abs(adjustment)
+        });
+      } else
+        expect(result.graph.nodes.some((node) => node.id === "operating-rounding")).toBe(false);
+    }
+  });
+
+  it("does not relabel post-gross expenses as total costs or hide missing, invalid and loss statements", () => {
+    const period = operatingFixture({
+      researchAndDevelopment: 8,
+      sellingGeneralAndAdministrative: 7
+    });
+    period.operatingExpenseDetails = [{ id: "sga", label: "SG&A", amount: 20 }];
+    const result = buildStatementFlow(period);
+    if (!result.ok) throw new Error(result.reason);
+    expect(result.graph.nodes.some((node) => node.group === "detail")).toBe(false);
+    for (const metrics of [
+      { totalOperatingCosts: undefined },
+      { totalOperatingCosts: NaN },
+      { totalOperatingCosts: 74 },
+      { totalOperatingCosts: -1 },
+      { operatingIncome: -1, totalOperatingCosts: 101 },
+      { pretaxIncome: -1, incomeTax: -30, netIncome: 29 },
+      { netIncome: -1 },
+      { pretaxIncome: undefined }
+    ])
+      expect(buildStatementFlow(operatingFixture(metrics)).ok).toBe(false);
+    const zeroCosts = operatingFixture({
+      totalOperatingCosts: 0,
+      operatingIncome: 100,
+      pretaxIncome: 100,
+      incomeTax: 20,
+      netIncome: 80
+    });
+    const zeroResult = buildStatementFlow(zeroCosts);
+    if (!zeroResult.ok) throw new Error(zeroResult.reason);
+    expect(zeroResult.graph.nodes.find((node) => node.id === "operating-costs")?.amount).toBe(0);
+    expectConserved(zeroResult.graph, 100);
+    for (const reconciliation of [
+      { amount: Number.NaN, sourceUrl: base.sourceUrl },
+      { amount: 0.01, sourceUrl: "" },
+      { amount: 0.01, sourceUrl: base.sourceUrl }
+    ]) {
+      expect(
+        buildStatementFlow({
+          ...operatingFixture(),
+          operatingReconciliation: { label: "Source rounding", ...reconciliation }
+        }).ok
+      ).toBe(false);
+    }
+  });
+
   it("draws a reported tax benefit as a green incoming flow and conserves signed equity items", () => {
     for (const equity of [-31, -0.5, 0, 0.5, 200]) {
       const period = fixture({ incomeTax: -6, equityMethodIncome: equity, netIncome: 34 + equity });

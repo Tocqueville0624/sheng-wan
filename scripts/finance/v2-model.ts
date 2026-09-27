@@ -2,7 +2,8 @@ import { buildStatementFlow } from "../../src/features/finance/chart-model";
 import type {
   CompanyDataset,
   FinancialMetrics,
-  FinancialPeriod
+  FinancialPeriod,
+  FlowStatementPeriod
 } from "../../src/features/finance/types";
 import type { CompanyV2, PeriodV2, MetricSource } from "../../src/features/finance/v2-types";
 import { validatePeriod, validateSegmentGrossProfits, roundingTolerance } from "./validate";
@@ -86,6 +87,56 @@ export function statementPeriod(period: PeriodV2): FinancialPeriod | undefined {
   } catch {
     return;
   }
+}
+
+/** Financial flows need a reconciled statement, but not necessarily a gross-profit subtotal. */
+export function flowPeriod(period: PeriodV2): FlowStatementPeriod | undefined {
+  if (period.displayCurrency !== "USD") return;
+  const required = [
+    "revenue",
+    "operatingIncome",
+    "pretaxIncome",
+    "incomeTax",
+    "netIncome"
+  ] as const;
+  if (required.some((key) => !Number.isFinite(period.metrics[key]))) return;
+  if (!Number.isFinite(period.metrics.grossProfit) && !period.metricSources.totalOperatingCosts)
+    return;
+  if (period.operatingReconciliation) {
+    const item = period.operatingReconciliation;
+    const keys = ["revenue", "totalOperatingCosts", "operatingIncome"] as const;
+    if (
+      item.label !== "Source rounding" ||
+      item.sourceUrl !== period.sourceUrl ||
+      !Number.isFinite(item.amount)
+    )
+      return;
+    if (
+      keys.some((key) => {
+        const source = period.metricSources[key];
+        return (
+          !source ||
+          source.method !== "reported" ||
+          !Number.isFinite(source.decimals) ||
+          source.accession !== period.accession ||
+          source.sourceUrl !== period.sourceUrl ||
+          source.filedAt !== period.filedAt
+        );
+      })
+    )
+      return;
+    const bound = keys.reduce(
+      (sum, key) => sum + 0.5 * 10 ** -period.metricSources[key]!.decimals!,
+      0
+    );
+    if (
+      Math.abs(item.amount) > bound ||
+      Math.abs(item.amount) > Math.abs(period.metrics.revenue!) * 0.001
+    )
+      return;
+  }
+  const statement = period as FlowStatementPeriod;
+  return buildStatementFlow(statement).ok ? statement : undefined;
 }
 
 export function upgradePeriod(period: FinancialPeriod): PeriodV2 {
@@ -220,15 +271,12 @@ export function validateV2(company: CompanyV2) {
         throw new Error("Operating profit does not reconcile.");
       // NetIncomeLoss and ProfitLoss can differ in noncontrolling/equity scope.
       // Only claim a full statement when the reviewed accounting contract passes.
-      if (p.coverage.segments || p.coverage.sankey) {
+      if (p.coverage.segments) {
         const statement = statementPeriod(p);
-        if (
-          !statement ||
-          (p.coverage.segments && !p.segments?.length) ||
-          (p.coverage.sankey && !buildStatementFlow(statement).ok)
-        )
-          throw new Error("Unsupported chart capability.");
+        if (!statement || !p.segments?.length) throw new Error("Unsupported chart capability.");
       }
+      if ((p.coverage.sankey || p.operatingReconciliation) && !flowPeriod(p))
+        throw new Error("Unsupported chart capability or unverified rounding precision.");
     }
   }
 }
@@ -255,6 +303,15 @@ export function mergeV2(previous: CompanyV2 | undefined, incoming: CompanyV2): C
       if (
         old &&
         p.filedAt === old.filedAt &&
+        old.accession === p.accession &&
+        old.coverage.sankey &&
+        !p.coverage.sankey
+      )
+        continue;
+      if (
+        old &&
+        p.filedAt === old.filedAt &&
+        !(p.coverage.sankey && !old.coverage.sankey) &&
         Object.keys(old.metrics).length > Object.keys(p.metrics).length
       )
         continue;

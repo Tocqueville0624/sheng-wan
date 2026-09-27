@@ -5,9 +5,18 @@ import { ameliaBenchmarks } from "@/content/projects/amelia";
 <div class="amelia-benchmarks" data-amelia-benchmarks>
   <div class="benchmark-selector" hidden>
     <label for="amelia-benchmark">Compare a workflow</label>
-    <select id="amelia-benchmark" aria-controls="native-cuda hybrid-cuda native-mps">
-      {ameliaBenchmarks.map((benchmark) => <option value={benchmark.id}>{benchmark.label}</option>)}
-    </select>
+    <div class="project-select" style="--project-select-width: 32rem">
+      <select id="amelia-benchmark" aria-controls="native-cuda hybrid-cuda native-mps">
+        {
+          ameliaBenchmarks.map((benchmark) => (
+            <option value={benchmark.id}>{benchmark.label}</option>
+          ))
+        }
+      </select>
+      <svg class="project-select-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+    </div>
   </div>
   {
     ameliaBenchmarks.map((benchmark) => (
@@ -120,14 +129,6 @@ import { ameliaBenchmarks } from "@/content/projects/amelia";
     font-weight: 600;
   }
   .benchmark-selector select {
-    width: min(100%, 32rem);
-    min-height: 3rem;
-    padding: 0.6rem 2rem 0.6rem 0.8rem;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: var(--surface);
-    color: var(--text);
-    font: inherit;
     font-size: 0.9rem;
   }
   .benchmark-panel[hidden],

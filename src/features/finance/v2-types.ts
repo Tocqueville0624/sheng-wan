@@ -8,6 +8,8 @@ export type MetricSource = {
   sourceUrl: string;
   method: "reported" | "calculated";
   inputs?: string[];
+  /** Declared inline XBRL decimal precision; absent when Company Facts omits it. */
+  decimals?: number;
 };
 export type PeriodV2 = Omit<FinancialPeriod, "metrics" | "displayCurrency"> & {
   displayCurrency: string;

@@ -80,7 +80,6 @@ test("all routes preserve native document range, document-end footers and stable
     "/cv/",
     "/research/",
     "/teaching/",
-    "/playground/photo-gallery/",
     "/playground/hugo-le-chatssius/",
     "/playground/thales-olive/",
     "/404.html",
@@ -220,9 +219,7 @@ test("reduced motion, zoom and modified or horizontal wheel input never stretch 
   await expectSettled(page);
 });
 
-test("Olive horizontal charts, Gallery dialogs and Playground popovers keep ownership", async ({
-  page
-}) => {
+test("Olive horizontal charts and Playground popovers keep ownership", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await ready(page, "/playground/thales-olive/");
   await expect(page.locator("astro-island[ssr]")).toHaveCount(0);
@@ -235,21 +232,6 @@ test("Olive horizontal charts, Gallery dialogs and Playground popovers keep owne
   await expect.poll(() => chart.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
   expect(await page.evaluate(() => scrollY)).toBe(pageY);
   await expectSettled(page);
-
-  await ready(page, "/playground/photo-gallery/");
-  await expect(page.locator("astro-island[ssr]")).toHaveCount(0);
-  const firstPhoto = page.getByRole("button", { name: /^Open photograph/ }).first();
-  await firstPhoto.click();
-  await expect(page.getByRole("dialog")).toBeVisible();
-  const modalY = await page.evaluate(() => scrollY);
-  await page.mouse.move(30, 500);
-  const modalWheel = await wheelEvent(page, 0, -250);
-  expect(modalWheel.prevented).toBe(false);
-  expect(await page.evaluate(() => scrollY)).toBe(modalY);
-  await expectSettled(page);
-  await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog")).toHaveCount(0);
-  await expect(firstPhoto).toBeFocused();
 
   await page.setViewportSize({ width: 1440, height: 900 });
   await ready(page);
@@ -264,6 +246,28 @@ test("Olive horizontal charts, Gallery dialogs and Playground popovers keep owne
   await expectSettled(page);
   await page.keyboard.press("Escape");
   await expect(page.locator(".playground-menu")).not.toBeVisible();
+});
+
+test("Photo Gallery dialogs keep native scroll ownership", async ({ page }) => {
+  test.skip(
+    true,
+    "Photo Gallery is intentionally offline; dialog ownership coverage is retained for restoration."
+  );
+  await page.setViewportSize({ width: 390, height: 844 });
+  await ready(page, "/playground/photo-gallery/");
+  await expect(page.locator("astro-island[ssr]")).toHaveCount(0);
+  const firstPhoto = page.getByRole("button", { name: /^Open photograph/ }).first();
+  await firstPhoto.click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  const modalY = await page.evaluate(() => scrollY);
+  await page.mouse.move(30, 500);
+  const modalWheel = await wheelEvent(page, 0, -250);
+  expect(modalWheel.prevented).toBe(false);
+  expect(await page.evaluate(() => scrollY)).toBe(modalY);
+  await expectSettled(page);
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect(firstPhoto).toBeFocused();
 });
 
 test("nested vertical scroll regions and text controls remain native at a page boundary", async ({

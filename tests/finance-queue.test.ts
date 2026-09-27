@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { readFileSync } from "node:fs";
 import { FinanceStore, catalog, catalogIdentity } from "../worker/finance-store";
 import type { FinanceJob } from "../src/features/finance/v2-types";
 import { bundledCompany } from "../worker/finance-store";
@@ -78,12 +79,187 @@ const request = (store: FinanceStore, ticker: string, client = "192.0.2.1") =>
 const jobOf = async (response: Response) => ((await response.json()) as { job: FinanceJob }).job;
 const read = async (store: FinanceStore, path: string) =>
   (await store.fetch(new Request(`https://internal${path}`))).json();
+
+const mcdAccession = "0000063908-26-000073";
+const mcdSource =
+  "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm";
+const mcdInline = readFileSync(
+  new URL("./fixtures/finance/mcd-2026-q2-inline.html", import.meta.url),
+  "utf8"
+);
+// A single actual Company Facts period from the same filing as the inline fixture.
+// Its custom pretax concept is absent from Company Facts; no value is inferred.
+const mcdFacts = {
+  cik: 63908,
+  entityName: "MCDONALDS CORP",
+  facts: {
+    "us-gaap": Object.fromEntries(
+      Object.entries({
+        Revenues: 7099000000,
+        CostOfGoodsAndServicesSold: 680000000,
+        CostsAndExpenses: 3760000000,
+        OperatingIncomeLoss: 3338000000,
+        IncomeTaxExpenseBenefit: 574000000,
+        NetIncomeLoss: 2362000000
+      }).map(([tag, val]) => [
+        tag,
+        {
+          label: tag,
+          units: {
+            USD: [
+              {
+                start: "2026-04-01",
+                end: "2026-06-30",
+                val,
+                accn: mcdAccession,
+                fy: 2026,
+                fp: "Q2",
+                form: "10-Q",
+                filed: "2026-08-07"
+              }
+            ]
+          }
+        }
+      ])
+    )
+  }
+};
+function mcdFetcher(inlineStatus = 200) {
+  return vi.fn(async (url: string) => {
+    if (url === "https://data.sec.gov/submissions/CIK0000063908.json")
+      return Response.json({
+        cik: "0000063908",
+        tickers: ["MCD"],
+        sic: "5812",
+        filings: {
+          recent: {
+            accessionNumber: [mcdAccession],
+            filingDate: ["2026-08-07"],
+            reportDate: ["2026-06-30"],
+            form: ["10-Q"],
+            primaryDocument: ["mcd-20260630.htm"]
+          },
+          files: []
+        }
+      });
+    if (url === "https://data.sec.gov/api/xbrl/companyfacts/CIK0000063908.json")
+      return Response.json(mcdFacts);
+    if (url === mcdSource)
+      return new Response(inlineStatus === 200 ? mcdInline : "Forbidden", {
+        status: inlineStatus
+      });
+    throw new Error(`Unexpected fixture request: ${url}`);
+  });
+}
+async function nextQueueStep(store: FinanceStore) {
+  vi.setSystemTime(Date.now() + 600);
+  await store.alarm();
+}
 afterEach(() => {
   vi.unstubAllGlobals();
   vi.useRealTimers();
 });
 
 describe("persistent public finance queue", () => {
+  it("enriches an unbundled MCD filing and retains its reported flow through an engine-upgrade refresh", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-09-26T12:00:00Z"));
+    const { store, storage } = await create();
+    expect(await read(store, "/companies/MCD")).toMatchObject({ company: null });
+    const fetcher = mcdFetcher();
+    vi.stubGlobal("fetch", fetcher);
+    const first = await jobOf(await request(store, "MCD"));
+    expect(await storage.get(`task:${first.id}`)).toMatchObject({
+      engineVersion: "finance-v2.12"
+    });
+    await nextQueueStep(store);
+    await nextQueueStep(store);
+    const basic = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+    expect(basic.company.quarterly).toHaveLength(1);
+    expect(basic.company.quarterly[0].coverage.sankey).toBe(false);
+    expect(basic.company.quarterly[0].metrics.pretaxIncome).toBeUndefined();
+    expect(basic.company.quarterly[0].metrics.grossProfit).toBeUndefined();
+    expect(await storage.get(`task:${first.id}`)).toMatchObject({
+      stage: "filings",
+      todo: [{ accession: mcdAccession, sourceUrl: mcdSource }],
+      cursor: 0
+    });
+    await nextQueueStep(store);
+    const enriched = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+    const period = enriched.company.quarterly[0];
+    expect(period.coverage).toMatchObject({ basics: true, sankey: true, segments: false });
+    expect(period.metrics).toMatchObject({
+      ...basic.company.quarterly[0].metrics,
+      revenue: 7099000000,
+      totalOperatingCosts: 3760000000,
+      operatingIncome: 3338000000,
+      pretaxIncome: 2936000000,
+      incomeTax: 574000000,
+      netIncome: 2362000000
+    });
+    expect(period.metrics.grossProfit).toBeUndefined();
+    expect(period.metricSources.pretaxIncome).toMatchObject({
+      tag: "mcd:IncomeLossFromContinuingOperationsBeforeIncomeTaxes",
+      method: "reported",
+      accession: mcdAccession,
+      sourceUrl: mcdSource,
+      decimals: -6
+    });
+    expect(period.metricSources.totalOperatingCosts).toMatchObject({
+      tag: "us-gaap:CostsAndExpenses",
+      method: "reported",
+      decimals: -6
+    });
+    expect(period.metricSources.operatingIncome?.decimals).toBe(-5);
+    expect(period.operatingReconciliation).toEqual({
+      label: "Source rounding",
+      amount: -1000000,
+      sourceUrl: mcdSource
+    });
+    expect(await read(store, `/jobs/${first.id}`)).toMatchObject({ state: "partial" });
+    expect(await storage.get(`company:0000063908`)).toMatchObject({ quarterly: [period] });
+
+    // The completed v2.10 job must not suppress a refresh after deployment.
+    const priorTask = (await storage.get(`task:${first.id}`)) as Record<string, unknown>;
+    await storage.put(`task:${first.id}`, { ...priorTask, engineVersion: "finance-v2.10" });
+    const refreshed = await request(store, "MCD");
+    expect(refreshed.status).toBe(202);
+    const second = await jobOf(refreshed);
+    expect(second.id).not.toBe(first.id);
+    await nextQueueStep(store);
+    await nextQueueStep(store);
+    const after = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+    expect(after.company.quarterly).toEqual(enriched.company.quarterly);
+    expect(after.company.version).toBe(enriched.company.version);
+    expect(await read(store, `/jobs/${second.id}`)).toMatchObject({ state: "partial" });
+    expect(fetcher.mock.calls.filter(([url]) => url === mcdSource)).toHaveLength(1);
+    expect(fetcher).toHaveBeenCalledTimes(5);
+  });
+  it("retains newly imported MCD basic history when the inline filing is unavailable", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-09-26T12:00:00Z"));
+    const { store, storage } = await create();
+    const fetcher = mcdFetcher(403);
+    vi.stubGlobal("fetch", fetcher);
+    const job = await jobOf(await request(store, "MCD"));
+    await nextQueueStep(store);
+    await nextQueueStep(store);
+    const before = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+    expect(before.company.quarterly[0].metrics.netIncome).toBe(2362000000);
+    await nextQueueStep(store);
+    const after = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+    expect(after.company.quarterly).toEqual(before.company.quarterly);
+    expect(after.company.quarterly[0].coverage.sankey).toBe(false);
+    expect(after.company.quarterly[0].metrics.pretaxIncome).toBeUndefined();
+    expect(after.company.warnings).toContain("2026-06-30: Source HTTP 403");
+    expect(await read(store, `/jobs/${job.id}`)).toMatchObject({ state: "partial" });
+    expect(storage.data.get("queue")).toEqual([]);
+    expect(fetcher.mock.calls.map(([url]) => url)).toEqual([
+      "https://data.sec.gov/submissions/CIK0000063908.json",
+      "https://data.sec.gov/api/xbrl/companyfacts/CIK0000063908.json",
+      mcdSource
+    ]);
+  });
   it("does not resurrect unreviewed gross profit when filling a short stored history from the bundle", async () => {
     const { store, storage } = await create();
     const original = history.companies.find((company) => company.ticker === "GOOGL")! as CompanyV2;

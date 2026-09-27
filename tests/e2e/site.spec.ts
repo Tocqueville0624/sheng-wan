@@ -64,7 +64,6 @@ const routes = [
   "/teaching",
   "/playground",
   "/playground/hugo-le-chatssius",
-  "/playground/photo-gallery",
   "/playground/amelia-torch",
   "/playground/product-search-quality",
   "/playground/thales-olive"
@@ -132,7 +131,10 @@ test("Playground dropdown works with keyboard, pointer and touch-sized navigatio
   await trigger.press("Enter");
   await expect(menu).toBeVisible();
   await expect(trigger).toHaveAttribute("aria-expanded", "true");
-  await expect(menu.getByRole("link")).toHaveCount(5);
+  await expect(menu.getByRole("link")).toHaveCount(4);
+  await expect(
+    menu.getByRole("link", { name: "Product Search Quality Analysis", exact: true })
+  ).toBeVisible();
   await page.keyboard.press("Tab");
   await expect(
     menu.getByRole("link", { name: "Thales' Olive - Earnings Report Reader", exact: true })
@@ -147,6 +149,23 @@ test("Playground dropdown works with keyboard, pointer and touch-sized navigatio
   await expect(page).toHaveURL(/hugo-le-chatssius/);
   await page.goto("/playground/");
   await expect(page).toHaveURL(/playground\/thales-olive\//);
+});
+
+test("Photo Gallery is offline with no navigation entry or sitemap URL", async ({ page }) => {
+  for (const path of [
+    "/playground/photo-gallery",
+    "/playground/photo-gallery/",
+    "/playground/photo-gallery/?view=contact"
+  ]) {
+    const response = await page.request.get(path, { maxRedirects: 0 });
+    expect(response.status(), path).toBe(404);
+  }
+  const response = await page.goto("/playground/photo-gallery/");
+  expect(response?.status()).toBe(404);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("This page flew away.");
+  await expect(page.locator('#playground-links a[href*="photo-gallery"]')).toHaveCount(0);
+  const sitemap = await page.request.get("/sitemap.xml");
+  expect(await sitemap.text()).not.toContain("/playground/photo-gallery");
 });
 
 test("requested typography, contact icons and simple controls are preserved", async ({ page }) => {

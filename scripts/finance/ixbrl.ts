@@ -219,6 +219,7 @@ const metricTags: Record<keyof FinancialMetrics, string[]> = {
   ],
   grossProfit: ["us-gaap:GrossProfit", "ifrs-full:GrossProfit"],
   operatingExpenses: ["us-gaap:OperatingExpenses", "ifrs-full:OperatingExpense"],
+  totalOperatingCosts: ["us-gaap:CostsAndExpenses"],
   operatingIncome: ["us-gaap:OperatingIncomeLoss", "ifrs-full:ProfitLossFromOperatingActivities"],
   pretaxIncome: [
     "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
@@ -237,7 +238,8 @@ const metricTags: Record<keyof FinancialMetrics, string[]> = {
     "ifrs-full:ResearchAndDevelopmentExpense"
   ],
   sellingGeneralAndAdministrative: ["us-gaap:SellingGeneralAndAdministrativeExpense"],
-  equityMethodIncome: ["us-gaap:IncomeLossFromEquityMethodInvestments"]
+  equityMethodIncome: ["us-gaap:IncomeLossFromEquityMethodInvestments"],
+  noncontrollingInterestIncome: ["us-gaap:NetIncomeLossAttributableToNoncontrollingInterest"]
 };
 
 function exactValue(facts: XbrlFact[], tags: string[], dimensions: Record<string, string> = {}) {

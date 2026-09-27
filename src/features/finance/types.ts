@@ -6,6 +6,7 @@ export type FinancialMetrics = {
   costOfRevenue: number;
   grossProfit: number;
   operatingExpenses: number;
+  totalOperatingCosts?: number;
   operatingIncome: number;
   pretaxIncome: number;
   incomeTax: number;
@@ -13,6 +14,8 @@ export type FinancialMetrics = {
   researchAndDevelopment?: number;
   sellingGeneralAndAdministrative?: number;
   equityMethodIncome?: number;
+  /** Signed income attributable to noncontrolling interests, deducted from consolidated income. */
+  noncontrollingInterestIncome?: number;
 };
 
 export type SegmentGrossProfitSource = {
@@ -61,11 +64,22 @@ export type FinancialPeriod = {
   derived: boolean;
   metrics: FinancialMetrics;
   grossProfitAdjustments?: { label: string; amount: number; sourceUrl: string }[];
+  /** Source-supported rounding: revenue - total operating costs + amount = operating income. */
+  operatingReconciliation?: { label: string; amount: number; sourceUrl: string };
   segments?: RevenueSegment[];
   revenueAdjustments?: RevenueSegment[];
   operatingExpenseDetails?: { id: string; label: string; amount: number }[];
   segmentSourceUrl?: string;
   segmentBasis?: string;
+};
+
+/** A reconciled flow can omit the gross-profit stage when the filing does. */
+export type FlowStatementPeriod = Omit<FinancialPeriod, "metrics"> & {
+  metrics: Pick<
+    FinancialMetrics,
+    "revenue" | "operatingIncome" | "pretaxIncome" | "incomeTax" | "netIncome"
+  > &
+    Partial<FinancialMetrics>;
 };
 
 export type CompanySummary = {

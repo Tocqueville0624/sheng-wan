@@ -5,6 +5,14 @@ test("search-quality budgets preserve equal comparisons and distinguish uncertai
   page
 }) => {
   await page.goto("/playground/product-search-quality/");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Product Search Quality Analysis"
+  );
+  await expect(page).toHaveTitle("Product Search Quality Analysis — Sheng Wan");
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+    "content",
+    "Product Search Quality Analysis — Sheng Wan"
+  );
   const selector = page.getByRole("combobox", {
     name: "Review budget within the predicted-Exact pool"
   });
@@ -57,7 +65,22 @@ test("project figures remain readable at narrow widths and in both themes", asyn
       await page.setViewportSize({ width, height: 900 });
       for (const path of ["amelia-torch", "product-search-quality"]) {
         await page.goto(`/playground/${path}/`);
-        await expect(page.getByRole("combobox")).toBeVisible();
+        const selector = page.getByRole("combobox");
+        await expect(selector).toBeVisible();
+        const arrow = page.locator(".project-select-arrow");
+        await expect(arrow).toHaveCount(1);
+        const selectBox = await selector.boundingBox();
+        const arrowBox = await arrow.boundingBox();
+        expect(selectBox).not.toBeNull();
+        expect(arrowBox).not.toBeNull();
+        expect(
+          selectBox!.x + selectBox!.width - arrowBox!.x - arrowBox!.width
+        ).toBeGreaterThanOrEqual(12);
+        expect(arrowBox!.y).toBeGreaterThan(selectBox!.y);
+        expect(arrowBox!.y + arrowBox!.height).toBeLessThan(selectBox!.y + selectBox!.height);
+        expect(await selector.evaluate((element) => getComputedStyle(element).appearance)).toBe(
+          "none"
+        );
         expect(
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)
         ).toBe(true);

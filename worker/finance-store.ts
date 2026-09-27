@@ -3,6 +3,7 @@ import bundledData from "../src/data/generated/finance-history.json";
 import { companies } from "../scripts/finance/companies";
 import { filingAdapters } from "../scripts/finance/adapters";
 import { extractInlinePeriods, parseInlineXbrl } from "../scripts/finance/ixbrl";
+import { enrichInlinePeriods } from "../scripts/finance/inline-v2";
 import {
   extractTsmHtml,
   extractTsmAnnualHtml,
@@ -41,13 +42,14 @@ import {
   type FinanceHistory,
   type FinanceJob
 } from "../src/features/finance/v2-types";
+import type { PeriodV2 } from "../src/features/finance/v2-types";
 import type { FinancialPeriod } from "../src/features/finance/types";
 
 export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.10";
+const ENGINE_VERSION = "finance-v2.12";
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -431,8 +433,55 @@ export class FinanceStore {
           b.reportDate.localeCompare(a.reportDate)
         );
         task.job.total += task.todo.length;
+      } else {
+        const base = await this.company(identity);
+        const missing = new Set(
+          [...(base?.annual ?? []), ...(base?.quarterly ?? [])]
+            .filter(
+              (p) =>
+                !p.coverage.sankey &&
+                p.displayCurrency === "USD" &&
+                (p.metrics.revenue ?? 0) > 0 &&
+                (p.metrics.operatingIncome ?? 0) > 0
+            )
+            .map((p) => p.accession)
+        );
+        task.todo = task.filings
+          .filter((f) => /^(10-K|10-Q)(\/A)?$/.test(f.form) && missing.has(f.accession))
+          .sort((a, b) => b.reportDate.localeCompare(a.reportDate))
+          .slice(0, 30);
+        task.job.total += task.todo.length;
       }
       task.stage = "filings";
+    } else if (task.cursor < task.todo.length && !config) {
+      task.job.state = "backfilling";
+      const filing = task.todo[task.cursor];
+      task.job.message = `Reading consolidated statement: ${filing.reportDate} (${task.cursor + 1}/${task.todo.length}).`;
+      try {
+        const base = await this.company(identity);
+        if (!base) throw new Error("No validated company baseline.");
+        const cacheKey = `consolidated:v1:${identity.cik}:${filing.accession}`;
+        const periods =
+          (await this.ctx.storage.get<PeriodV2[]>(cacheKey)) ??
+          enrichInlinePeriods(await this.fetchSource(filing.sourceUrl), identity, filing, [
+            ...base.annual,
+            ...base.quarterly
+          ]);
+        if (periods.length) {
+          await this.publish(task, {
+            ...base,
+            annual: periods.filter((p) => p.kind === "annual"),
+            quarterly: periods.filter((p) => p.kind === "quarterly")
+          });
+          if (JSON.stringify(periods).length < 1000000)
+            await this.ctx.storage.put(cacheKey, periods);
+        }
+      } catch (error) {
+        task.warnings.push(
+          `${filing.reportDate}: ${error instanceof Error ? error.message : "Consolidated statement unavailable"}`
+        );
+      }
+      task.cursor++;
     } else if (task.cursor < task.todo.length && config) {
       task.job.state = "backfilling";
       const filing = task.todo[task.cursor];

@@ -1,4 +1,4 @@
-import type { FinancialPeriod, RevenueSegment } from "./types";
+import type { FinancialPeriod, FlowStatementPeriod, RevenueSegment } from "./types";
 
 export type RevenueSeries = { id: string; label: string };
 export type RevenueHistory = {
@@ -24,6 +24,8 @@ export type FlowNode = {
     | "tax"
     | "tax-benefit"
     | "equity"
+    | "noncontrolling"
+    | "operating-adjustment"
     | "revenue-base"
     | "adjustment";
 };
@@ -37,7 +39,7 @@ export function accountingTolerance(revenue: number) {
   return Math.max(0.000001, Math.abs(revenue) * 1e-9);
 }
 
-export function segmentProblem(period: FinancialPeriod): string | undefined {
+export function segmentProblem(period: FlowStatementPeriod): string | undefined {
   if (!Number.isFinite(period.metrics.revenue) || period.metrics.revenue <= 0) {
     return "Positive reported revenue is required for this business-category chart.";
   }
@@ -84,7 +86,7 @@ export function revenueAdjustmentLabel(adjustment: RevenueSegment) {
   return `${adjustment.label} · ${adjustment.revenue < 0 ? "decrease" : "increase"}`;
 }
 
-export function buildStatementFlow(period: FinancialPeriod): FlowResult {
+export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
   const m = period.metrics;
   if (period.grossProfitAdjustments?.some((item) => item.amount !== 0))
     return {
@@ -92,7 +94,19 @@ export function buildStatementFlow(period: FinancialPeriod): FlowResult {
       reason:
         "This filing reports separate gross-profit adjustments. Use the statement table and source filing; this flow chart does not model those adjustments."
     };
-  const { equityMethodIncome = 0, incomeTax, ...positiveMetrics } = m;
+  const {
+    equityMethodIncome = 0,
+    noncontrollingInterestIncome = 0,
+    incomeTax,
+    ...positiveMetrics
+  } = m;
+  if (
+    [m.revenue, m.operatingIncome, m.pretaxIncome, incomeTax, m.netIncome].some(
+      (value) => value === undefined
+    )
+  ) {
+    return { ok: false, reason: "This statement is missing a required reported profit line." };
+  }
   if (Object.values(m).some((value) => value !== undefined && !Number.isFinite(value))) {
     return { ok: false, reason: "This statement contains non-finite financial values." };
   }
@@ -108,13 +122,54 @@ export function buildStatementFlow(period: FinancialPeriod): FlowResult {
     };
   }
   const tolerance = accountingTolerance(m.revenue);
+  const hasGrossStage =
+    m.costOfRevenue !== undefined &&
+    m.grossProfit !== undefined &&
+    m.operatingExpenses !== undefined;
+  if (!hasGrossStage && m.totalOperatingCosts === undefined) {
+    return {
+      ok: false,
+      reason:
+        "A reconciled gross-profit breakdown or reported total operating costs is required. No missing cost or gross-profit figures are estimated."
+    };
+  }
+  const operatingReconciliation = hasGrossStage ? undefined : period.operatingReconciliation;
+  const operatingAdjustment = operatingReconciliation?.amount ?? 0;
+  if (
+    !Number.isFinite(operatingAdjustment) ||
+    (operatingReconciliation && !operatingReconciliation.sourceUrl) ||
+    m.operatingIncome - Math.max(0, operatingAdjustment) < 0
+  ) {
+    return {
+      ok: false,
+      reason: "The source rounding adjustment cannot form a valid positive flow."
+    };
+  }
   const identities = [
-    [m.revenue, m.costOfRevenue + m.grossProfit, "Revenue, cost of revenue, and gross profit"],
-    [m.grossProfit, m.operatingExpenses + m.operatingIncome, "Gross profit and operating items"],
+    ...(hasGrossStage
+      ? ([
+          [
+            m.revenue,
+            m.costOfRevenue! + m.grossProfit!,
+            "Revenue, cost of revenue, and gross profit"
+          ],
+          [
+            m.grossProfit!,
+            m.operatingExpenses! + m.operatingIncome,
+            "Gross profit and operating items"
+          ]
+        ] as const)
+      : ([
+          [
+            m.revenue + operatingAdjustment,
+            m.totalOperatingCosts! + m.operatingIncome,
+            "Revenue, total operating costs, operating profit, and source rounding"
+          ]
+        ] as const)),
     [
       m.pretaxIncome + equityMethodIncome,
-      m.incomeTax + m.netIncome,
-      "Pretax profit, income tax, after-tax equity income, and net profit"
+      m.incomeTax + noncontrollingInterestIncome + m.netIncome,
+      "Pretax profit, income tax, after-tax equity income, noncontrolling interests, and net profit"
     ]
   ] as const;
   for (const [total, parts, label] of identities) {
@@ -122,16 +177,18 @@ export function buildStatementFlow(period: FinancialPeriod): FlowResult {
       return { ok: false, reason: `${label} do not reconcile. No balancing figures are invented.` };
     }
   }
-  const rd = m.researchAndDevelopment;
-  const sga = m.sellingGeneralAndAdministrative;
-  const other = m.operatingExpenses - (rd ?? 0) - (sga ?? 0);
-  const disclosedExpenses = period.operatingExpenseDetails;
+  // These details describe expenses below gross profit. They must not be
+  // relabelled as a breakdown of total operating costs on the direct route.
+  const rd = hasGrossStage ? m.researchAndDevelopment : undefined;
+  const sga = hasGrossStage ? m.sellingGeneralAndAdministrative : undefined;
+  const other = hasGrossStage ? m.operatingExpenses! - (rd ?? 0) - (sga ?? 0) : 0;
+  const disclosedExpenses = hasGrossStage ? period.operatingExpenseDetails : undefined;
   if (
     disclosedExpenses &&
     (!disclosedExpenses.length ||
       disclosedExpenses.some((item) => !Number.isFinite(item.amount) || item.amount < 0) ||
       Math.abs(
-        disclosedExpenses.reduce((sum, item) => sum + item.amount, 0) - m.operatingExpenses
+        disclosedExpenses.reduce((sum, item) => sum + item.amount, 0) - m.operatingExpenses!
       ) > tolerance)
   )
     return { ok: false, reason: "Disclosed operating expense components do not reconcile." };
@@ -194,20 +251,47 @@ export function buildStatementFlow(period: FinancialPeriod): FlowResult {
     }
   }
   node("revenue", "Revenue", m.revenue, "revenue", "main");
-  node("gross", "Gross profit", m.grossProfit, "profit", "main");
+  if (hasGrossStage) node("gross", "Gross profit", m.grossProfit!, "profit", "main");
   node("operating", "Operating profit", m.operatingIncome, "profit", "main");
   node("pretax", "Pretax profit", m.pretaxIncome, "profit", "main");
-  node("net", "Net profit", m.netIncome, "profit", "main");
-  node("cost", "Cost of revenue", m.costOfRevenue, "expense", "cost");
-  node("opex", "Operating expenses", m.operatingExpenses, "expense", "opex");
+  node(
+    "net",
+    m.noncontrollingInterestIncome !== undefined ? "Net profit to parent" : "Net profit",
+    m.netIncome,
+    "profit",
+    "main"
+  );
+  if (hasGrossStage) {
+    node("cost", "Cost of revenue", m.costOfRevenue!, "expense", "cost");
+    node("opex", "Operating expenses", m.operatingExpenses!, "expense", "opex");
+  } else {
+    node("operating-costs", "Total operating costs", m.totalOperatingCosts!, "expense", "opex");
+  }
   const taxExpense = incomeTax > 0 ? incomeTax : 0;
   const taxBenefit = incomeTax < 0 ? -incomeTax : 0;
   if (taxBenefit > 0) node("tax-benefit", "Tax benefit", taxBenefit, "profit", "tax-benefit");
   else node("tax", "Income tax", taxExpense, "expense", "tax");
-  link("revenue", "gross", m.grossProfit, "profit");
-  link("revenue", "cost", m.costOfRevenue, "expense");
-  link("gross", "operating", m.operatingIncome, "profit");
-  link("gross", "opex", m.operatingExpenses, "expense");
+  if (hasGrossStage) {
+    link("revenue", "gross", m.grossProfit!, "profit");
+    link("revenue", "cost", m.costOfRevenue!, "expense");
+    link("gross", "operating", m.operatingIncome, "profit");
+    link("gross", "opex", m.operatingExpenses!, "expense");
+  } else {
+    link("revenue", "operating", m.operatingIncome - Math.max(0, operatingAdjustment), "profit");
+    link("revenue", "operating-costs", m.totalOperatingCosts!, "expense");
+    if (operatingAdjustment !== 0) {
+      node(
+        "operating-rounding",
+        operatingReconciliation!.label,
+        Math.abs(operatingAdjustment),
+        operatingAdjustment > 0 ? "profit" : "expense",
+        "operating-adjustment"
+      );
+      if (operatingAdjustment > 0)
+        link("operating-rounding", "operating", operatingAdjustment, "profit");
+      else link("revenue", "operating-rounding", -operatingAdjustment, "expense");
+    }
+  }
 
   const nonoperating = m.pretaxIncome - m.operatingIncome;
   if (nonoperating > 0) {
@@ -221,18 +305,6 @@ export function buildStatementFlow(period: FinancialPeriod): FlowResult {
   } else {
     link("operating", "pretax", m.operatingIncome, "profit");
   }
-  // A tax benefit is an incoming reported value, not a negative-width expense.
-  // When an after-tax equity loss exceeds pretax profit, the excess is met by
-  // part of the tax benefit. This splits reported flows without altering them.
-  const afterTaxPretax = m.pretaxIncome - taxExpense;
-  const equityLoss = equityMethodIncome < 0 ? -equityMethodIncome : 0;
-  const pretaxToEquity = Math.min(afterTaxPretax, equityLoss);
-  const benefitToEquity = equityLoss - pretaxToEquity;
-  link("pretax", "net", afterTaxPretax - pretaxToEquity, "profit");
-  link("pretax", "tax", taxExpense, "expense");
-  if (taxBenefit > 0) {
-    link("tax-benefit", "net", taxBenefit - benefitToEquity, "profit");
-  }
   if (equityMethodIncome !== 0) {
     node(
       "equity",
@@ -243,12 +315,41 @@ export function buildStatementFlow(period: FinancialPeriod): FlowResult {
       equityMethodIncome > 0 ? "profit" : "expense",
       "equity"
     );
-    if (equityMethodIncome > 0) link("equity", "net", equityMethodIncome, "profit");
-    else {
-      link("pretax", "equity", pretaxToEquity, "expense");
-      link("tax-benefit", "equity", benefitToEquity, "expense");
+  }
+  if (noncontrollingInterestIncome !== 0) {
+    node(
+      "noncontrolling",
+      noncontrollingInterestIncome > 0
+        ? "Profit to noncontrolling interests"
+        : "Loss of noncontrolling interests",
+      Math.abs(noncontrollingInterestIncome),
+      noncontrollingInterestIncome > 0 ? "expense" : "profit",
+      "noncontrolling"
+    );
+  }
+  // Allocate only reported after-tax amounts. Tax benefits and minority losses
+  // are incoming flows; minority income is a profit allocation, not a tax or an
+  // operating expense. Sources may also cover reported after-tax equity losses.
+  const afterTaxSources = [
+    { id: "pretax", remaining: m.pretaxIncome - taxExpense },
+    { id: "tax-benefit", remaining: taxBenefit },
+    { id: "equity", remaining: Math.max(0, equityMethodIncome) },
+    { id: "noncontrolling", remaining: Math.max(0, -noncontrollingInterestIncome) }
+  ];
+  for (const [target, amount] of [
+    ["equity", Math.max(0, -equityMethodIncome)],
+    ["noncontrolling", Math.max(0, noncontrollingInterestIncome)]
+  ] as const) {
+    let remaining = amount;
+    for (const source of afterTaxSources) {
+      const allocated = Math.min(source.remaining, remaining);
+      link(source.id, target, allocated, "expense");
+      source.remaining -= allocated;
+      remaining -= allocated;
     }
   }
+  for (const source of afterTaxSources) link(source.id, "net", source.remaining, "profit");
+  link("pretax", "tax", taxExpense, "expense");
   if (disclosedExpenses) {
     for (const expense of disclosedExpenses) {
       node(`detail-${expense.id}`, expense.label, expense.amount, "expense", "detail");
@@ -276,19 +377,29 @@ export function layoutStatementFlow(graph: StatementFlow) {
   const scale = 350 / Math.max(...graph.nodes.map((node) => node.amount));
   const nodeWidth = 16;
   const hasSegments = graph.nodes.some((node) => node.group === "segment");
-  const mainX: Record<string, number> = {
-    revenue: revenueBase ? 535 : hasSegments ? 400 : 180,
-    gross: revenueBase ? 735 : 625,
-    operating: revenueBase ? 920 : 850,
-    pretax: revenueBase ? 1100 : 1060,
-    net: 1280
-  };
+  const hasGrossStage = graph.nodes.some((node) => node.id === "gross");
+  const mainX: Record<string, number> = hasGrossStage
+    ? {
+        revenue: revenueBase ? 535 : hasSegments ? 400 : 180,
+        gross: revenueBase ? 735 : 625,
+        operating: revenueBase ? 920 : 850,
+        pretax: revenueBase ? 1100 : 1060,
+        net: 1280
+      }
+    : {
+        revenue: revenueBase ? 535 : hasSegments ? 400 : 180,
+        operating: revenueBase ? 760 : hasSegments ? 645 : 475,
+        pretax: revenueBase ? 985 : hasSegments ? 870 : 750,
+        net: revenueBase ? 1210 : hasSegments ? 1095 : 1025
+      };
   const amountHeight = (id: string) =>
     (graph.nodes.find((node) => node.id === id)?.amount ?? 0) * scale;
   const nonoperating = graph.nodes.find((node) => node.group === "nonoperating");
   const tax = graph.nodes.find((node) => node.group === "tax");
   const taxBenefit = graph.nodes.find((node) => node.group === "tax-benefit");
   const equity = graph.nodes.find((node) => node.id === "equity");
+  const noncontrolling = graph.nodes.find((node) => node.id === "noncontrolling");
+  const operatingRounding = graph.nodes.find((node) => node.id === "operating-rounding");
   const positiveNonoperatingHeight =
     nonoperating?.tone === "profit" ? amountHeight("nonoperating") : 0;
 
@@ -300,22 +411,36 @@ export function layoutStatementFlow(graph: StatementFlow) {
   let nextNetSourceY = upperSourceY;
   const netSourceYs = new Map<string, number>();
   let netSourceBottom = 0;
-  for (const source of [taxBenefit, equity?.tone === "profit" ? equity : undefined]) {
+  for (const source of [
+    taxBenefit,
+    equity?.tone === "profit" ? equity : undefined,
+    noncontrolling?.tone === "profit" ? noncontrolling : undefined
+  ]) {
     if (!source) continue;
     netSourceYs.set(source.id, nextNetSourceY);
     netSourceBottom = nextNetSourceY + source.amount * scale;
     nextNetSourceY = netSourceBottom + 115;
   }
   const netGainHeight =
-    (taxBenefit?.amount ?? 0) * scale + (equity?.tone === "profit" ? equity.amount * scale : 0);
+    (taxBenefit?.amount ?? 0) * scale +
+    (equity?.tone === "profit" ? equity.amount * scale : 0) +
+    (noncontrolling?.tone === "profit" ? noncontrolling.amount * scale : 0);
   const operatingY = Math.max(
     480,
+    operatingRounding?.tone === "profit"
+      ? upperSourceY +
+          operatingRounding.amount * scale +
+          115 +
+          amountHeight("revenue") / 2 -
+          amountHeight("operating") / 2 -
+          45
+      : 0,
     nonoperating?.tone === "profit" ? upperSourceY + positiveNonoperatingHeight + 115 : 0,
     Math.max(360, netSourceBottom + 115) + positiveNonoperatingHeight + 40
   );
   const operatingCenter = operatingY + amountHeight("operating") / 2;
   const grossCenter = operatingCenter + 70;
-  const revenueCenter = grossCenter + 20;
+  const revenueCenter = hasGrossStage ? grossCenter + 20 : operatingCenter + 45;
   const mainY: Record<string, number> = {
     revenue: revenueCenter - amountHeight("revenue") / 2,
     gross: grossCenter - amountHeight("gross") / 2,
@@ -330,19 +455,30 @@ export function layoutStatementFlow(graph: StatementFlow) {
       : Math.max(mainBottom("operating"), mainBottom("pretax")) + 105;
   const taxY = Math.max(mainBottom("net") + 100, mainBottom("pretax") + 80);
   const operatingExpenseY = Math.max(
-    mainBottom("gross") + 100,
+    hasGrossStage ? mainBottom("gross") + 100 : mainBottom("revenue") + 100,
     mainBottom("operating") + 130,
     nonoperating?.tone === "expense" ? nonoperatingY + amountHeight("nonoperating") + 115 : 0
   );
   const costY = Math.max(mainBottom("revenue") + 90, mainBottom("gross") + 105);
+  const operatingRoundingY =
+    operatingRounding?.tone === "profit"
+      ? upperSourceY
+      : operatingExpenseY + amountHeight("operating-costs") + 115;
   const equityY =
     equity?.tone === "profit"
       ? netSourceYs.get("equity")!
       : taxY + (tax?.amount ?? 0) * scale + 110;
+  const noncontrollingY =
+    noncontrolling?.tone === "profit"
+      ? netSourceYs.get("noncontrolling")!
+      : (equity?.tone === "expense"
+          ? equityY + equity.amount * scale
+          : taxY + (tax?.amount ?? 0) * scale) + 110;
   let detailY = Math.max(
     operatingExpenseY + 5,
     tax ? taxY + tax.amount * scale + 115 : 0,
-    equity?.tone === "expense" ? equityY + equity.amount * scale + 115 : 0
+    equity?.tone === "expense" ? equityY + equity.amount * scale + 115 : 0,
+    noncontrolling?.tone === "expense" ? noncontrollingY + noncontrolling.amount * scale + 115 : 0
   );
   let adjustmentY = Math.max(
     costY + 50,
@@ -373,9 +509,15 @@ export function layoutStatementFlow(graph: StatementFlow) {
     } else if (node.group === "equity") {
       x = node.tone === "profit" ? mainX.pretax : mainX.net;
       y = equityY;
+    } else if (node.group === "noncontrolling") {
+      x = node.tone === "profit" ? mainX.pretax : mainX.net;
+      y = noncontrollingY;
     } else if (node.group === "nonoperating") {
       x = node.tone === "profit" ? mainX.operating : mainX.pretax;
       y = nonoperatingY;
+    } else if (node.group === "operating-adjustment") {
+      x = node.tone === "profit" ? mainX.revenue : mainX.operating;
+      y = operatingRoundingY;
     } else if (node.group === "revenue-base") {
       x = 350;
       y = revenueCenter - 20 - height / 2;
@@ -399,7 +541,12 @@ export function layoutStatementFlow(graph: StatementFlow) {
   const detailBottom = Math.max(0, ...details.map((node) => node.y + Math.max(node.height, 80)));
   const sourceTop = 240;
   const sourceBottom = Math.max(
-    costY + amountHeight("cost"),
+    hasGrossStage
+      ? costY + amountHeight("cost")
+      : operatingExpenseY + amountHeight("operating-costs"),
+    operatingRounding?.tone === "expense"
+      ? operatingRoundingY + operatingRounding.amount * scale
+      : 0,
     detailBottom - Math.max(0, details.length - 3) * 40,
     sourceTop + naturalSourceHeight + Math.max(0, sources.length - 1) * 18
   );
@@ -460,7 +607,7 @@ export function layoutStatementFlow(graph: StatementFlow) {
           : node.y + Math.max(node.height, 80)
       )
     ) + 110;
-  return { nodes, links, scale, nodeWidth, width: 1480, height };
+  return { nodes, links, scale, nodeWidth, width: hasGrossStage ? 1480 : mainX.net + 210, height };
 }
 
 export function shortMoney(value: number) {

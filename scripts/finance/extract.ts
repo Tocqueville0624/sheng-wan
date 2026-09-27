@@ -33,6 +33,7 @@ const TAGS = {
   ],
   costOfRevenue: ["CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfSales"],
   grossProfit: ["GrossProfit"],
+  totalOperatingCosts: ["CostsAndExpenses"],
   operatingIncome: ["OperatingIncomeLoss", "ProfitLossFromOperatingActivities"],
   pretaxIncome: [
     "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
@@ -50,7 +51,8 @@ const TAGS = {
     "ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"
   ],
   sellingGeneralAndAdministrative: ["SellingGeneralAndAdministrativeExpense"],
-  equityMethodIncome: ["IncomeLossFromEquityMethodInvestments"]
+  equityMethodIncome: ["IncomeLossFromEquityMethodInvestments"],
+  noncontrollingInterestIncome: ["NetIncomeLossAttributableToNoncontrollingInterest"]
 } satisfies Record<keyof Omit<FinancialMetrics, "operatingExpenses">, string[]>;
 
 const forms = new Set(["10-K", "10-K/A", "10-Q", "10-Q/A", "20-F", "20-F/A", "6-K"]);

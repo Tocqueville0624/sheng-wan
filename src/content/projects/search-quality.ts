@@ -9,7 +9,7 @@ export const searchQualityProject = {
   revision,
   datasetSource:
     "https://github.com/amazon-science/esci-data/tree/7916cdf6ab75a462e77f20ab40428a10923998d5",
-  title: "Product Search Quality",
+  title: "Product Search Quality Analysis",
   description:
     "A reproducible PySpark study of product relevance and review prioritization: 1.82 million public query–product judgments, fixed-budget evaluation and explicit model limitations.",
   sourcePairs: 1818825,
