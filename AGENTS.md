@@ -49,4 +49,4 @@
 
 ## Commit Attribution
 
-AI commits MUST include `Co-Authored-By: OpenAI Codex <codex@openai.com>`.
+Authorized project commits use repository-local `Sheng Wan <swan0624@uw.edu>`. Do not automatically add AI `Co-Authored-By` trailers or change global Git settings. Preserve third-party authorship and licenses. See [history mapping](docs/history/README.md).

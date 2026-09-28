@@ -1,0 +1,165 @@
+{
+  "original_main": "c7810254f428f4aff451253be1a6b2cc7923b07a",
+  "rewritten_main": "32c4c8029c078ca57bfb7ff3fcc3a2c3c5c8d3f2",
+  "commits": [
+    {
+      "old_commit": "5299d790cdc20b0867dc18647c1a91fa3d28b5b5",
+      "new_commit": "766e1607f6fe7b575710d506dfed903653c0f840",
+      "tree": "38719e711f76bade0e2af3e0303e7d822dbeac9b",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "a0baab17d79a74669f795f51252a78bbddcf74ae",
+      "new_commit": "55fe2b118eebda0a641f0d8e3fd34c6b08d27fee",
+      "tree": "2c07aa6793c1888afaea354ce9adb76565ccfdcf",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "af4cdc4126424c96ce357b85c6c11448c3efdf3f",
+      "new_commit": "f799b3e3f3dfd16573b62dea00d65bb479da1426",
+      "tree": "38bf7fd6588553ad84ce28542d3269e1ae18a66c",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "cbd13e015ff90680be7dad4d6fed9eea66a48ad0",
+      "new_commit": "a10b456af4844e7a1af5d3e910cfad407d6a09fc",
+      "tree": "29b311f4c34c5a1daafe01545fae4919cfe8d6df",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "f54e6338677d45f1fc7b5362bdd32ae7943a33bd",
+      "new_commit": "7ee230e8e32ee5340eada88bef7d7869c075d59e",
+      "tree": "b7665b69cff490f04c13c9a35b4de75b414c5fbe",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "8d3aa9dc40571c4daf12dad8ead1ad1e25c13311",
+      "new_commit": "bac7b4a87272c5a3d33eb98dcadacdd8516f6858",
+      "tree": "e451b497b83b9847866ffdf299a1c1a11669a20d",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "96532f6f3e1ee99599af89bb5c7f764708dea3c9",
+      "new_commit": "cbfb976e312b6f65e50674e6457210c7ec774b1b",
+      "tree": "9ec2a61a93a0145eeb402ff2f51445d44757553e",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "cb187b402e2103cb970e7f32cd5f5d0af88dda7f",
+      "new_commit": "bc4378281b2713ab10fd3f105502c2d70bef14e0",
+      "tree": "4d641535fc24b4db9cec928a8d8297e6b609fdb9",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [
+        "author",
+        "committer"
+      ],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "a9d8cc098aad27b2208f4ff644197b1bf039066f",
+      "new_commit": "2ba421d7fb359bd5da9674ec46a3bed770f60dc9",
+      "tree": "af739a37e42385128426419bd5fe2d92226a97db",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "399bdf46e9bb888f306513fdf52ee91e89e56b35",
+      "new_commit": "2a73069c8d04a9816fe236f4411e9704765bd16e",
+      "tree": "faf614b9beeb38724c02075882b24daf0bbdc950",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "b5082048177fe5afaf872a211a4a3e6f68f2ad45",
+      "new_commit": "4c35f2fea3e9bcb0ac8e05234f1985e44ec6bc58",
+      "tree": "6f2908ba547da23c90b3366df116ea4f92e476e1",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [
+        "author",
+        "committer"
+      ],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "875c5f9c078cc5133fd0728d1ed7a293f6a1c1c5",
+      "new_commit": "0dfb5c4094da06599d543b9790a82a256a1151f2",
+      "tree": "5345b49678347a3c9ce81f1b8d4f9065e03be43f",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [
+        "author",
+        "committer"
+      ],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    },
+    {
+      "old_commit": "c7810254f428f4aff451253be1a6b2cc7923b07a",
+      "new_commit": "32c4c8029c078ca57bfb7ff3fcc3a2c3c5c8d3f2",
+      "tree": "0f70cb2af8f7841fcbabcc62d9d57f87ec23d0ab",
+      "file_tree_identical": true,
+      "ai_trailers_removed": 1,
+      "identity_fields_corrected": [
+        "author",
+        "committer"
+      ],
+      "other_message_bytes_preserved": true,
+      "dates_preserved": true
+    }
+  ],
+  "commits_rewritten": 13,
+  "commit_ai_trailers_removed": 13,
+  "incorrect_author_and_committer_pairs_corrected": 4,
+  "unchanged_sheng_wan_identity_pairs": 9,
+  "tag": {
+    "ref": "refs/tags/launch-2026-09-05",
+    "old_object": "0c941444c75064d608e17127c7436f2db98cf6c8",
+    "new_object": "93b473395ac1837c29228b0de5510edf930c35be",
+    "old_target": "f54e6338677d45f1fc7b5362bdd32ae7943a33bd",
+    "new_target": "7ee230e8e32ee5340eada88bef7d7869c075d59e",
+    "coauthor_trailers_removed": 1,
+    "tagger_and_date_preserved": true,
+    "was_signed": false
+  },
+  "main_signed_commits": 0,
+  "all_historical_file_trees_identical": true,
+  "runtime_tests_started": false
+}
