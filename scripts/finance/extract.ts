@@ -52,7 +52,10 @@ const TAGS = {
   ],
   sellingGeneralAndAdministrative: ["SellingGeneralAndAdministrativeExpense"],
   equityMethodIncome: ["IncomeLossFromEquityMethodInvestments"],
-  noncontrollingInterestIncome: ["NetIncomeLossAttributableToNoncontrollingInterest"]
+  noncontrollingInterestIncome: ["NetIncomeLossAttributableToNoncontrollingInterest"],
+  // Reviewed legacy snapshots model neither line; generic imports read them from statements.
+  discontinuedOperationsIncome: [],
+  expensesAndOtherItems: []
 } satisfies Record<keyof Omit<FinancialMetrics, "operatingExpenses">, string[]>;
 
 const forms = new Set(["10-K", "10-K/A", "10-Q", "10-Q/A", "20-F", "20-F/A", "6-K"]);

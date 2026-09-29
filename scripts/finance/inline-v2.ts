@@ -11,6 +11,7 @@ const concepts = {
     "us-gaap:RevenuesNetOfInterestExpense",
     "us-gaap:Revenues",
     "us-gaap:SalesRevenueNet",
+    "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax",
     "ifrs-full:Revenue"
   ],
   operatingIncome: ["us-gaap:OperatingIncomeLoss", "ifrs-full:ProfitLossFromOperatingActivities"],

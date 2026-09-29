@@ -17,15 +17,15 @@ const businessAxes = new Set([
   "us-gaap:ProductOrServiceAxis",
   "us-gaap:StatementBusinessSegmentsAxis"
 ]);
-const dimensionsKey = (f: XbrlFact) =>
+export const dimensionsKey = (f: XbrlFact) =>
   JSON.stringify(Object.entries(f.context.dimensions).sort(([a], [b]) => a.localeCompare(b)));
-const factKey = (f: XbrlFact) => `${f.tag}|${dimensionsKey(f)}`;
-function halfUnit(f: XbrlFact) {
+export const factKey = (f: XbrlFact) => `${f.tag}|${dimensionsKey(f)}`;
+export function halfUnit(f: XbrlFact) {
   return Number.isInteger(f.decimals) && f.decimals >= -18 && f.decimals <= 18
     ? 0.5 * 10 ** -f.decimals
     : undefined;
 }
-function precise(copies: XbrlFact[]): XbrlFact | undefined {
+export function precise(copies: XbrlFact[]): XbrlFact | undefined {
   const ordered = [...copies].sort((a, b) => b.decimals - a.decimals);
   const first = ordered[0];
   if (!first || halfUnit(first) === undefined) return;
@@ -40,9 +40,9 @@ function precise(copies: XbrlFact[]): XbrlFact | undefined {
   }
   return first;
 }
-const attribute = (source: string, key: string) =>
+export const attribute = (source: string, key: string) =>
   source.match(new RegExp(`\\b${key}=["']([^"']+)["']`))?.[1];
-function visibleText(html: string) {
+export function visibleText(html: string) {
   return html
     .replace(/<[^>]*>/g, " ")
     .replace(/&#x([\da-f]+);/gi, (_, value: string) => String.fromCodePoint(parseInt(value, 16)))

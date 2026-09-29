@@ -3,8 +3,7 @@ import bundledData from "../src/data/generated/finance-history.json";
 import { companies } from "../scripts/finance/companies";
 import { filingAdapters } from "../scripts/finance/adapters";
 import { extractInlinePeriods, parseInlineXbrl } from "../scripts/finance/ixbrl";
-import { enrichInlinePeriods } from "../scripts/finance/inline-v2";
-import { enrichBusinessPeriods } from "../scripts/finance/business-v2";
+import { genericFilingTodo, readGenericFiling } from "../scripts/finance/generic-import";
 import {
   extractTsmHtml,
   extractTsmAnnualHtml,
@@ -50,7 +49,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.13";
+const ENGINE_VERSION = "finance-v2.14";
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -80,18 +79,6 @@ type Task = {
   industrySic?: string;
 };
 type IndexEntry = { cik: string; ticker: string; updatedAt: string };
-
-function genericCandidates(base: CompanyV2, fresh: PeriodV2[] = []) {
-  const periods = new Map(
-    [...base.annual, ...base.quarterly].map((p) => [`${p.kind}:${p.startDate}:${p.endDate}`, p])
-  );
-  for (const p of fresh) {
-    const key = `${p.kind}:${p.startDate}:${p.endDate}`;
-    const old = periods.get(key);
-    if (!old || p.filedAt > old.filedAt) periods.set(key, p);
-  }
-  return [...periods.values()];
-}
 
 async function periodVersion(company: CompanyV2) {
   const hash = new Uint8Array(
@@ -452,27 +439,11 @@ export class FinanceStore {
         );
         task.job.total += task.todo.length;
       } else {
-        const base = await this.company(identity);
-        const candidates = base
-          ? genericCandidates(
-              base,
-              await this.ctx.storage.get<PeriodV2[]>(`basic-periods:${task.job.id}`)
-            )
-          : [];
-        const missing = new Set(
-          candidates
-            .filter(
-              (p) =>
-                (!p.coverage.sankey || !p.coverage.segments) &&
-                p.displayCurrency === "USD" &&
-                (p.metrics.revenue ?? 0) > 0
-            )
-            .map((p) => p.accession)
+        task.todo = genericFilingTodo(
+          await this.company(identity),
+          await this.ctx.storage.get<PeriodV2[]>(`basic-periods:${task.job.id}`),
+          task.filings
         );
-        task.todo = task.filings
-          .filter((f) => /^(10-K|10-Q)(\/A)?$/.test(f.form) && missing.has(f.accession))
-          .sort((a, b) => b.reportDate.localeCompare(a.reportDate))
-          .slice(0, 30);
         task.job.total += task.todo.length;
       }
       task.stage = "filings";
@@ -483,29 +454,16 @@ export class FinanceStore {
       try {
         const base = await this.company(identity);
         if (!base) throw new Error("No validated company baseline.");
-        const cacheKey = `generic:v2:${identity.cik}:${filing.accession}`;
+        const cacheKey = `generic:v3:${identity.cik}:${filing.accession}`;
         let periods = await this.ctx.storage.get<PeriodV2[]>(cacheKey);
-        if (!periods) {
-          const candidates = genericCandidates(
+        if (!periods)
+          periods = readGenericFiling(
+            await this.fetchSource(filing.sourceUrl),
+            identity,
+            filing,
             base,
             await this.ctx.storage.get<PeriodV2[]>(`basic-periods:${task.job.id}`)
           );
-          const html = await this.fetchSource(filing.sourceUrl);
-          const parsed = parseInlineXbrl(html);
-          const consolidated = enrichInlinePeriods(html, identity, filing, candidates, parsed);
-          const updated = new Map(candidates.map((p) => [p.id, p]));
-          consolidated.forEach((p) => updated.set(p.id, p));
-          const business = enrichBusinessPeriods(
-            html,
-            identity,
-            filing,
-            [...updated.values()],
-            parsed
-          );
-          const changes = new Map(consolidated.map((p) => [p.id, p]));
-          business.forEach((p) => changes.set(p.id, p));
-          periods = [...changes.values()];
-        }
         if (periods.length) {
           await this.publish(task, {
             ...base,

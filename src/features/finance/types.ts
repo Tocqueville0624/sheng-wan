@@ -16,6 +16,22 @@ export type FinancialMetrics = {
   equityMethodIncome?: number;
   /** Signed income attributable to noncontrolling interests, deducted from consolidated income. */
   noncontrollingInterestIncome?: number;
+  /** Signed after-tax income (loss) from discontinued operations, as reported. */
+  discontinuedOperationsIncome?: number;
+  /**
+   * Statements without an operating-profit line: every item between revenue (or gross
+   * profit) and pretax profit, net. Used only when operating income is not reported.
+   */
+  expensesAndOtherItems?: number;
+};
+
+/** A named, nonnegative statement line. Generic imports keep the reported concept and precision. */
+export type StatementLine = {
+  id: string;
+  label: string;
+  amount: number;
+  tag?: string;
+  decimals?: number;
 };
 
 export type SegmentGrossProfitSource = {
@@ -82,7 +98,12 @@ export type FinancialPeriod = {
   operatingReconciliation?: { label: string; amount: number; sourceUrl: string };
   segments?: RevenueSegment[];
   revenueAdjustments?: RevenueSegment[];
-  operatingExpenseDetails?: { id: string; label: string; amount: number }[];
+  operatingExpenseDetails?: StatementLine[];
+  /**
+   * Reported rows that exactly partition the direct route's cost node: total operating
+   * costs, or expenses and other items when no operating-profit line is reported.
+   */
+  operatingCostDetails?: StatementLine[];
   segmentSourceUrl?: string;
   segmentBasis?: string;
   businessBreakdownSource?: {
@@ -110,12 +131,9 @@ export type BusinessPeriod = Omit<FinancialPeriod, "metrics"> & {
   metrics: Pick<FinancialMetrics, "revenue"> & Partial<FinancialMetrics>;
 };
 
-/** A reconciled flow can omit the gross-profit stage when the filing does. */
+/** A reconciled flow can omit the gross-profit or operating-profit stage when the filing does. */
 export type FlowStatementPeriod = Omit<FinancialPeriod, "metrics"> & {
-  metrics: Pick<
-    FinancialMetrics,
-    "revenue" | "operatingIncome" | "pretaxIncome" | "incomeTax" | "netIncome"
-  > &
+  metrics: Pick<FinancialMetrics, "revenue" | "pretaxIncome" | "incomeTax" | "netIncome"> &
     Partial<FinancialMetrics>;
 };
 

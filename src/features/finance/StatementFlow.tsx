@@ -19,11 +19,15 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
   const detail =
     node.group === "detail" ||
     node.group === "tax" ||
-    ((node.group === "equity" || node.group === "noncontrolling") && node.tone === "expense");
+    ((node.group === "equity" ||
+      node.group === "discontinued" ||
+      node.group === "noncontrolling") &&
+      node.tone === "expense");
   const nonoperating = node.group === "nonoperating";
   const operatingAdjustment = node.group === "operating-adjustment";
   const taxBenefit = node.group === "tax-benefit";
-  const positiveEquity = node.group === "equity" && node.tone === "profit";
+  const positiveEquity =
+    (node.group === "equity" || node.group === "discontinued") && node.tone === "profit";
   const minorityLoss = node.group === "noncontrolling" && node.tone === "profit";
   const upperInput =
     positiveEquity ||
@@ -57,7 +61,11 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
               ? node.y + node.height + 28
               : node.group === "opex"
                 ? node.y - 66
-                : nonoperating || operatingAdjustment || node.group === "equity" || taxBenefit
+                : nonoperating ||
+                    operatingAdjustment ||
+                    node.group === "equity" ||
+                    node.group === "discontinued" ||
+                    taxBenefit
                   ? node.y - 8
                   : node.y - 43 - (lines.length - 1) * lineHeight;
   // Leave room for the taller Arial fallback metrics used by Linux/Android.
@@ -165,11 +173,15 @@ export function StatementFlow({
   }
   const layout = layoutStatementFlow(result.graph);
   const directOperatingFlow = layout.nodes.some((node) => node.id === "operating-costs");
+  // The filing reports no operating-profit line; items run straight to pretax profit.
+  const pretaxFlow = layout.nodes.some((node) => node.id === "other-items");
   const parentNet = period.metrics.noncontrollingInterestIncome !== undefined;
   const allocationNoteHeight = parentNet ? 24 : 0;
   const hasBusinesses = layout.nodes.some((node) => node.business);
   const businessNoteHeight = hasBusinesses ? 24 : 0;
-  const directFlowNoteHeight = directOperatingFlow ? 24 : 0;
+  const directFlowNoteHeight = directOperatingFlow || pretaxFlow ? 24 : 0;
+  const summedCosts =
+    directOperatingFlow && period.metricSources?.totalOperatingCosts?.method === "calculated";
   const rounding = directOperatingFlow ? period.operatingReconciliation : undefined;
   const roundingNoteHeight = rounding?.amount ? 24 : 0;
   const graph = {
@@ -244,7 +256,11 @@ export function StatementFlow({
               businessBreakdownSource: period.businessBreakdownSource,
               netIncomeAttribution: parentNet ? "parent" : undefined,
               operatingReconciliation: rounding,
-              flow: directOperatingFlow ? "direct-operating" : "gross-profit",
+              flow: pretaxFlow
+                ? "pretax"
+                : directOperatingFlow
+                  ? "direct-operating"
+                  : "gross-profit",
               nodes: result.graph.nodes,
               links: result.graph.links
             })}
@@ -316,7 +332,9 @@ export function StatementFlow({
           )}
           {!hasExpenseDetail && (
             <text x={50} y={footerTop - 22} fill={colors.muted} fontSize={13}>
-              Operating expense detail is not separately available in this snapshot.
+              {pretaxFlow
+                ? "Expense line detail is not separately available in this snapshot."
+                : "Operating expense detail is not separately available in this snapshot."}
             </text>
           )}
           <line x1={50} x2={graph.width - 50} y1={footerTop} y2={footerTop} stroke={colors.grid} />
@@ -338,10 +356,17 @@ export function StatementFlow({
           <text x={50} y={footerTop + 50} fill={colors.muted} fontSize={12}>
             {sourceUrl}
           </text>
+          {pretaxFlow && (
+            <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
+              No operating-profit line is reported; expenses and other items (net) lead to pretax
+              profit. Nothing is estimated.
+            </text>
+          )}
           {directOperatingFlow && (
             <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
-              Reported total operating costs connect revenue to operating profit. No gross profit is
-              estimated.
+              {summedCosts
+                ? "Total operating costs are the sum of the listed statement lines. No gross profit is estimated."
+                : "Reported total operating costs connect revenue to operating profit. No gross profit is estimated."}
             </text>
           )}
           {hasBusinesses && (
@@ -411,8 +436,12 @@ export function StatementFlow({
         </svg>
       </div>
       <p className="chart-note">
+        {pretaxFlow &&
+          "This statement reports no operating-profit subtotal. Every item between revenue (or gross profit) and pretax profit, including interest and other non-operating items, is shown as one reported net amount; listed lines appear only when they exactly add up to it. "}
         {directOperatingFlow &&
-          "This statement does not provide a complete, separate gross-profit breakdown. The flow uses reported total operating costs to connect revenue directly to operating profit; no gross profit is estimated. "}
+          (summedCosts
+            ? "This statement lists its operating costs without a gross-profit subtotal or a reported total. Total operating costs are the exact sum of those reported lines, which together with operating profit equal revenue; no gross profit is estimated. "
+            : "This statement does not provide a complete, separate gross-profit breakdown. The flow uses reported total operating costs to connect revenue directly to operating profit; no gross profit is estimated. ")}
         {rounding?.amount ? (
           <>
             A separate source-rounding flow of {rounding.amount > 0 ? "+" : ""}
@@ -461,12 +490,17 @@ export function StatementFlow({
                     ? rounding!.amount
                     : node.id === "noncontrolling"
                       ? period.metrics.noncontrollingInterestIncome!
-                      : (revenueAdjustment?.revenue ?? node.amount);
+                      : node.id === "discontinued"
+                        ? period.metrics.discontinuedOperationsIncome!
+                        : (revenueAdjustment?.revenue ?? node.amount);
                 return (
                   <tr key={node.id}>
                     <th scope="row">
                       {node.label}
                       {node.id === "other-opex" && <small> · derived remainder</small>}
+                      {node.id === "operating-costs" && summedCosts && (
+                        <small> · sum of the listed reported lines</small>
+                      )}
                       {node.id === "noncontrolling" && <small> · profit attribution</small>}
                       {node.id === "operating-rounding" && (
                         <small>
@@ -526,13 +560,18 @@ export function StatementFlow({
           </div>
         )}
         <p className="chart-note">
-          {directOperatingFlow
-            ? rounding?.amount
-              ? "Revenue minus total operating costs plus signed source rounding equals operating profit. "
-              : "Revenue = total operating costs + operating profit. "
-            : "Revenue = cost of revenue + gross profit. Gross profit = operating expenses + operating profit. "}
-          Pretax profit = operating profit + net non-operating items. Pretax profit minus income tax
-          plus separately reported after-tax equity-method income
+          {pretaxFlow
+            ? period.metrics.grossProfit !== undefined
+              ? "Revenue = cost of revenue + gross profit. Gross profit = expenses and other items (net) + pretax profit. "
+              : "Revenue = costs and other items (net) + pretax profit. "
+            : directOperatingFlow
+              ? rounding?.amount
+                ? "Revenue minus total operating costs plus signed source rounding equals operating profit. "
+                : "Revenue = total operating costs + operating profit. "
+              : "Revenue = cost of revenue + gross profit. Gross profit = operating expenses + operating profit. "}
+          {!pretaxFlow && "Pretax profit = operating profit + net non-operating items. "}Pretax
+          profit minus income tax plus separately reported after-tax equity-method income and
+          discontinued operations
           {parentNet
             ? " minus signed income attributable to noncontrolling interests equals net profit to the parent. "
             : " equals net profit. "}

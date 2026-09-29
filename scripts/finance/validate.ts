@@ -20,7 +20,8 @@ export function isReconciled(metrics: FinancialMetrics, grossAdjustment = 0) {
     Math.abs(
       metrics.pretaxIncome -
         metrics.incomeTax +
-        (metrics.equityMethodIncome ?? 0) -
+        (metrics.equityMethodIncome ?? 0) +
+        (metrics.discontinuedOperationsIncome ?? 0) -
         (metrics.noncontrollingInterestIncome ?? 0) -
         metrics.netIncome
     ) <= tolerance

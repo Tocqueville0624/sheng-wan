@@ -26,6 +26,7 @@ const tags: Partial<Record<keyof FinancialMetrics, string[]>> = {
     "RevenuesNetOfInterestExpense",
     "Revenues",
     "SalesRevenueNet",
+    "RevenueFromContractWithCustomerIncludingAssessedTax",
     "Revenue"
   ],
   costOfRevenue: ["CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfSales"],

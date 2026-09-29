@@ -187,15 +187,17 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
 export function flowPeriod(period: PeriodV2): FlowStatementPeriod | undefined {
   if (period.displayCurrency !== "USD") return;
   if (period.businessBreakdownSource && !businessPeriod(period)) return;
-  const required = [
-    "revenue",
-    "operatingIncome",
-    "pretaxIncome",
-    "incomeTax",
-    "netIncome"
-  ] as const;
+  const required = ["revenue", "pretaxIncome", "incomeTax", "netIncome"] as const;
   if (required.some((key) => !Number.isFinite(period.metrics[key]))) return;
-  if (!Number.isFinite(period.metrics.grossProfit) && !period.metricSources.totalOperatingCosts)
+  if (Number.isFinite(period.metrics.operatingIncome)) {
+    if (!Number.isFinite(period.metrics.grossProfit) && !period.metricSources.totalOperatingCosts)
+      return;
+  } else if (
+    // Only a statement without an operating line may use one net amount before pretax.
+    !Number.isFinite(period.metrics.expensesAndOtherItems) ||
+    !period.metricSources.expensesAndOtherItems ||
+    period.metricSources.expensesAndOtherItems.accession !== period.accession
+  )
     return;
   if (period.operatingReconciliation) {
     const item = period.operatingReconciliation;

@@ -239,7 +239,10 @@ const metricTags: Record<keyof FinancialMetrics, string[]> = {
   ],
   sellingGeneralAndAdministrative: ["us-gaap:SellingGeneralAndAdministrativeExpense"],
   equityMethodIncome: ["us-gaap:IncomeLossFromEquityMethodInvestments"],
-  noncontrollingInterestIncome: ["us-gaap:NetIncomeLossAttributableToNoncontrollingInterest"]
+  noncontrollingInterestIncome: ["us-gaap:NetIncomeLossAttributableToNoncontrollingInterest"],
+  // Reviewed adapters do not model these generic statement lines.
+  discontinuedOperationsIncome: [],
+  expensesAndOtherItems: []
 };
 
 function exactValue(facts: XbrlFact[], tags: string[], dimensions: Record<string, string> = {}) {

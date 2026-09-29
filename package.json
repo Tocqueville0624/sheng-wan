@@ -35,6 +35,7 @@
     "data:update": "node --import tsx scripts/finance/update.ts",
     "data:save-history": "node --import tsx scripts/finance/save-history.ts",
     "data:catalog": "node --import tsx scripts/finance/catalog.ts",
+    "data:coverage": "node --import tsx scripts/finance/coverage.ts",
     "verify": "pnpm format:check && pnpm lint && pnpm check && pnpm test && pnpm media:check && pnpm build"
   },
   "dependencies": {
