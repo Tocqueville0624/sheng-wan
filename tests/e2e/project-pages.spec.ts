@@ -53,6 +53,43 @@ test("Amelia comparisons keep each workflow and its limits together", async ({ p
     await expect(panel.getByRole("table")).toBeVisible();
     await expect(panel.getByRole("table").locator("tbody tr")).toHaveCount(3);
   }
+  for (const [id, workers, baseline] of [
+    ["rtx-native", 4, [230.56, 121.73]],
+    ["native-cuda", 2, [206.58, 175.359]],
+    ["native-mps", 4, [194.947, 121.373]]
+  ] as const) {
+    await selector.selectOption(id);
+    const panel = page.locator(`#${id}`);
+    for (const chart of await panel.locator(".dataset-chart").all()) {
+      await expect(chart.locator(".bar-label")).toHaveText([
+        "Original R serial",
+        `Original R ×${workers}`,
+        id === "native-mps" ? "CPU32" : "CPU64",
+        id === "native-mps" ? "MPS32" : "CUDA64"
+      ]);
+      const values = (await chart.locator(".bar-value").allTextContents()).map(parseFloat);
+      const widths = await chart
+        .locator(".bar")
+        .evaluateAll((bars) => bars.map((bar) => parseFloat((bar as HTMLElement).style.width)));
+      for (let i = 0; i < values.length; i++)
+        expect(widths[i]! / widths[0]!).toBeCloseTo(values[i]! / values[0]!, 3);
+      await expect(chart.locator(".reference-comparisons strong")).toHaveCount(2);
+      await expect(chart.locator(".reference-comparisons")).toContainText(`vs R ×${workers}`);
+      await expect(chart.locator(".dataset-finding")).toContainText("Within native Python:");
+    }
+    const year = panel.locator(".dataset-chart").filter({ hasText: "YearPredictionMSD" });
+    const values = (await year.locator(".bar-value").allTextContents()).map(parseFloat);
+    expect(values.slice(0, 2)).toEqual(baseline);
+    await expect(year.locator(".reference-comparisons b")).toHaveText([
+      `${(baseline[0] / values[2]!).toFixed(2)}×`,
+      `${(baseline[1] / values[2]!).toFixed(2)}×`,
+      `${(baseline[0] / values[3]!).toFixed(2)}×`,
+      `${(baseline[1] / values[3]!).toFixed(2)}×`
+    ]);
+  }
+  await expect(page.locator("#native-mps figcaption")).toContainText(
+    "original R uses double precision"
+  );
   await selector.selectOption("rtx-native");
   await expect(page.locator("#rtx-native table th")).toContainText(["R serial", "CUDA32"]);
   await expect(page.locator("#rtx-native table")).toContainText("20.160");

@@ -52,14 +52,37 @@ import { ameliaBenchmarks } from "@/content/projects/amelia";
                     </div>
                   ))}
                 </div>
-                <p class="dataset-finding">{dataset.finding}</p>
+                {benchmark.originalRWorkers && (
+                  <div class="reference-comparisons">
+                    <p class="comparison-heading">Speedup vs Original R</p>
+                    {[2, 3].map((index) => (
+                      <p>
+                        <strong>Native {benchmark.methods[index]}</strong>
+                        <span>
+                          <b>{(dataset.seconds[0]! / dataset.seconds[index]!).toFixed(2)}×</b> vs R
+                          serial
+                          {" · "}
+                          <b>{(dataset.seconds[1]! / dataset.seconds[index]!).toFixed(2)}×</b> vs R
+                          ×{benchmark.originalRWorkers}
+                        </span>
+                      </p>
+                    ))}
+                  </div>
+                )}
+                <p class="dataset-finding">
+                  {benchmark.originalRWorkers && "Within native Python: "}
+                  {dataset.finding}
+                </p>
               </div>
             ))}
           </div>
           <figcaption class="project-caption">
-            {benchmark.caption} Bar lengths share a scale within each dataset. Compare the labeled
-            seconds across datasets. File loading, process startup, initial imports and post-run
-            scoring are outside the timed calls.
+            {benchmark.caption}{" "}
+            {benchmark.originalRWorkers &&
+              "R-to-native speedups compare complete calls on the same prepared inputs and host. They include implementation, numerical-library, random-number-generator and workflow-scope differences, not GPU acceleration alone; they do not establish statistical equivalence. "}
+            Bar lengths share a scale within each dataset. Compare the labeled seconds across
+            datasets. File loading, process startup, initial imports and post-run scoring are
+            outside the timed calls.
           </figcaption>
         </figure>
         <p class="project-note benchmark-limit">
@@ -200,7 +223,7 @@ import { ameliaBenchmarks } from "@/content/projects/amelia";
   }
   .bar-row {
     display: grid;
-    grid-template-columns: 8rem minmax(0, 1fr) 4.7rem;
+    grid-template-columns: 9rem minmax(0, 1fr) 4.7rem;
     gap: 0.75rem;
     align-items: center;
     font-size: 0.83rem;
@@ -220,6 +243,30 @@ import { ameliaBenchmarks } from "@/content/projects/amelia";
   .bar-value {
     text-align: right;
     font-variant-numeric: tabular-nums;
+  }
+  .reference-comparisons {
+    margin-top: 0.9rem;
+    font-size: 0.83rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .reference-comparisons p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.75rem;
+    margin: 0.25rem 0;
+  }
+  .reference-comparisons strong {
+    min-width: 7rem;
+    font-weight: 600;
+  }
+  .reference-comparisons b {
+    color: var(--accent-strong);
+    font-weight: 650;
+  }
+  .reference-comparisons .comparison-heading {
+    margin-bottom: 0.45rem;
+    color: var(--muted);
+    font-size: 0.78rem;
   }
   .dataset-finding {
     margin: 0.6rem 0 0;

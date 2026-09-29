@@ -97,6 +97,7 @@ export type AmeliaBenchmark = {
   title: string;
   description: string;
   methods: string[];
+  originalRWorkers?: number;
   datasets: { name: string; variables: number; seconds: number[]; finding: string }[];
   caption: string;
   limitation: string;
@@ -115,23 +116,29 @@ const rtxConditions =
   "Windows 11 / Ryzen 5 5600X / RTX 3080 (10 GiB); four Torch/BLAS threads. Inputs contain 100,000 rows. Medians of five measured calls after two warmups; five imputations per call. Python 3.12.14, PyTorch 2.14.0 / CUDA 13.2, R 4.5.3, Amelia 1.8.3; TF32 disabled.";
 
 // Published medians only. Routes, hosts and precision remain separate.
-// T4 native values: native-timings-plotted-data.csv, rows 8–10 and 14–16.
+// T4 native/reference: native-timings-plotted-data.csv; M4: benchmark-summary-audit-v2.json.
 // Hybrid and MPS values: their linked, archived benchmark tables.
 export const ameliaBenchmarks: AmeliaBenchmark[] = [
   {
     id: "rtx-native",
     label: "RTX 3080 · Native Python · float64",
-    title: "The latest run: a gain on the 90-variable task",
+    title: "The latest run: native Python against original R",
     description:
-      "On the RTX 3080 host, native CUDA64 reduced YearPredictionMSD from 32.979 to 22.115 seconds per call. The smaller inputs showed a modest gain or a slowdown; these three different datasets do not establish a scaling law.",
-    methods: ["CPU64", "CUDA64"],
+      "On the RTX 3080 host, YearPredictionMSD took 230.560 seconds in serial R, 121.730 with four R workers and 22.115 in native CUDA64: 10.43× and 5.50× speedups against those R baselines. Within native Python, switching from CPU to CUDA reduced time from 32.979 to 22.115 seconds—a separate 1.49× GPU gain.",
+    methods: ["Original R serial", "Original R ×4", "CPU64", "CUDA64"],
+    originalRWorkers: 4,
     datasets: rtx3080.datasets.map((dataset, index) => ({
       name: dataset.name,
       variables: dataset.variables,
-      seconds: [dataset.native.cpu64.medianSeconds, dataset.native.cuda64.medianSeconds],
+      seconds: [
+        dataset.native.r_serial.medianSeconds,
+        dataset.native.r_snow4.medianSeconds,
+        dataset.native.cpu64.medianSeconds,
+        dataset.native.cuda64.medianSeconds
+      ],
       finding: ["1.11× faster with CUDA", "CUDA takes 4% longer", "1.49× faster with CUDA"][index]!
     })),
-    caption: `${rtxConditions} Native timing includes preparation, bootstrap, EM, draws, transfers and synchronization, ending with completed NumPy arrays on CPU.`,
+    caption: `${rtxConditions} Native timing includes preparation, bootstrap, EM, draws, transfers and synchronization, ending with completed NumPy arrays on CPU. Original R uses double precision; the parallel R baseline uses four workers with one BLAS thread each.`,
     limitation:
       "September 27, 2026. Complete native/reference suite: 18 configurations. Block-MCAR inputs have 7–8 missingness patterns and 28.57–30% artificial missingness. Native supports fewer statistical options than full Amelia. Host, software and thread differences prevent attributing a T4/RTX timing gap to the GPU alone.",
     source: `${rtxEvidence}/README.md`,
@@ -185,32 +192,33 @@ export const ameliaBenchmarks: AmeliaBenchmark[] = [
   {
     id: "native-cuda",
     label: "NVIDIA T4 · Native Python · float64",
-    title: "A measurable gain in the native workflow",
+    title: "Native Python outpaces both original R baselines",
     description:
-      "CUDA reduced the median time on all three inputs compared with the same native implementation on the same host’s CPU.",
-    methods: ["CPU64", "CUDA64"],
+      "On the T4 host, native CPU64 and CUDA64 were faster than both serial R and two-worker R on all three inputs. For YearPredictionMSD, CUDA64 took 42.049 seconds versus 206.580 in serial R and 175.359 with two workers: 4.91× and 4.17× speedups. The same-route CPU-to-CUDA gain was 1.91×.",
+    methods: ["Original R serial", "Original R ×2", "CPU64", "CUDA64"],
+    originalRWorkers: 2,
     datasets: [
       {
         name: "Covertype",
         variables: 10,
-        seconds: [9.87033728400002, 6.17157829600001],
+        seconds: [23.016, 20.827, 9.87033728400002, 6.17157829600001],
         finding: "1.60× faster with CUDA"
       },
       {
         name: "Household power",
         variables: 7,
-        seconds: [5.59240659499983, 4.61570725499996],
+        seconds: [16.239, 14.649, 5.59240659499983, 4.61570725499996],
         finding: "1.21× faster with CUDA"
       },
       {
         name: "YearPredictionMSD",
         variables: 90,
-        seconds: [80.3259469570003, 42.049474376],
+        seconds: [206.58, 175.359, 80.3259469570003, 42.049474376],
         finding: "1.91× faster with CUDA"
       }
     ],
     caption:
-      "Colab Linux / Tesla T4; two CPU threads. Each input has 100,000 rows. Medians of five measured calls after two warmups; five imputations per call. Timing includes preprocessing, bootstrap, imputation and device transfers, ending with completed NumPy arrays.",
+      "Colab Linux / Tesla T4; two CPU threads. Each input has 100,000 rows. Medians of five measured calls after two warmups; five imputations per call. Timing includes preprocessing, bootstrap, imputation and device transfers, ending with completed NumPy arrays. Original R uses double precision; the parallel R baseline uses two workers with one BLAS thread each, including worker setup and teardown.",
     limitation:
       "These inputs use 7–8 block-missingness patterns with approximately 29–30% artificial missingness. This continuous-data route has a narrower scope than full Amelia. Speed ratios compare medians; they are not confidence intervals or a guarantee for other workloads.",
     source: `${evidence}/2026-09-26-colab-native/README.md`
@@ -251,32 +259,33 @@ export const ameliaBenchmarks: AmeliaBenchmark[] = [
   {
     id: "native-mps",
     label: "Apple M4 · Native Python · float32",
-    title: "Apple GPU acceleration did not pay off here",
+    title: "Faster than original R, but faster still on native CPU",
     description:
-      "On the tested M4 Mac, native MPS took approximately 51–70% longer than native CPU at the same precision. Slower results remain part of the project’s evidence.",
-    methods: ["CPU32", "MPS32"],
+      "On the M4 Mac, both native routes were faster than serial and four-worker R. For YearPredictionMSD, MPS32 took 20.267 seconds versus 194.947 in serial R and 121.373 with four workers: 9.62× and 5.99× speedups. These R comparisons also change numerical precision. Within float32 native Python, MPS was 51–70% slower than CPU.",
+    methods: ["Original R serial", "Original R ×4", "CPU32", "MPS32"],
+    originalRWorkers: 4,
     datasets: [
       {
         name: "Covertype",
         variables: 10,
-        seconds: [1.895, 3.225],
+        seconds: [8.489, 4.357, 1.895289958047215, 3.2252723749843426],
         finding: "MPS takes 70% longer"
       },
       {
         name: "Household power",
         variables: 7,
-        seconds: [1.478, 2.232],
+        seconds: [5.49, 2.885, 1.4779880000278354, 2.232101833971683],
         finding: "MPS takes 51% longer"
       },
       {
         name: "YearPredictionMSD",
         variables: 90,
-        seconds: [12.089, 20.267],
+        seconds: [194.947, 121.373, 12.08927512500668, 20.266665250004735],
         finding: "MPS takes 68% longer"
       }
     ],
     caption:
-      "Apple M4 / 16 GB Mac, native continuous-data route; four CPU threads configured. Each input has 100,000 rows. Medians of five calls after two warmups; five imputations per call. CPU and MPS both use float32. These times are not compared with the separate T4 host to calculate a speedup.",
+      "Apple M4 / 16 GB Mac, native continuous-data route; four CPU threads configured. Each input has 100,000 rows. Medians of five calls after two warmups; five imputations per call. CPU and MPS both use float32; original R uses double precision. Parallel R uses four workers with one BLAS thread each, including worker setup and teardown. These times are not compared with the separate T4 host to calculate a speedup.",
     limitation:
       "MPS requires explicit float32; CPU64 remains the default. Eigenvalue diagnostics still run on CPU. The R compatibility route was also slower on MPS than on its same-precision CPU route. These results do not establish the cause of the slowdown or predict every Apple GPU workload.",
     source: `${evidence}/2026-09-23-development/README.md`
