@@ -45,8 +45,12 @@ assert(
 );
 for (const match of sitemap.matchAll(/<loc>(.*?)<\/loc>/g))
   assert(match[1]?.startsWith(`${origin}/`));
-const pdf = new Uint8Array(await (await read("/downloads/sheng-wan-cv.pdf")).arrayBuffer());
-assert.equal(new TextDecoder().decode(pdf.slice(0, 5)), "%PDF-");
+for (const path of ["/downloads/sheng-wan-cv.pdf", "/downloads/sheng-wan-resume-summer-2027.pdf"]) {
+  const response = await read(path);
+  assert.match(response.headers.get("content-type") ?? "", /application\/pdf/);
+  const pdf = new Uint8Array(await response.arrayBuffer());
+  assert.equal(new TextDecoder().decode(pdf.slice(0, 5)), "%PDF-", `${path}: invalid PDF`);
+}
 const finance = (await (await read("/api/finance/snapshot")).json()) as {
   dataStatus?: string;
   companies?: unknown[];
