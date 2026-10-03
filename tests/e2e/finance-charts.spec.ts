@@ -60,6 +60,14 @@ test("both charts export self-contained SVG and high-resolution PNG", async ({
     [".history-panel", "revenue"],
     [".flow-panel", "income-statement"]
   ]) {
+    const dimensions = await page.locator(`${panel} svg.finance-artboard`).evaluate((element) => {
+      const svg = element as SVGSVGElement;
+      const extraHeight = Number(svg.getAttribute("data-export-height"));
+      return {
+        width: svg.viewBox.baseVal.width,
+        height: Math.max(svg.viewBox.baseVal.height, Number.isFinite(extraHeight) ? extraHeight : 0)
+      };
+    });
     for (const format of ["SVG", "PNG"]) {
       const pending = page.waitForEvent("download");
       await page.locator(panel).getByRole("button", { name: format, exact: true }).click();
@@ -86,7 +94,11 @@ test("both charts export self-contained SVG and high-resolution PNG", async ({
       } else {
         const info = await sharp(path).metadata();
         expect(info.format).toBe("png");
-        expect(info.width).toBe(4440);
+        // PNG preserves the current SVG bounds at three times the resolution.
+        // Generic statement labels may require a wider canvas than Apple's old layout.
+        expect(info.width).toBe(Math.floor(dimensions.width * 3));
+        expect(info.height).toBe(Math.floor(dimensions.height * 3));
+        expect(info.width).toBeGreaterThan(3000);
         expect(info.height).toBeGreaterThan(2000);
       }
     }
