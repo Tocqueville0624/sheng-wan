@@ -11,6 +11,7 @@ import { validatePeriod, validateSegmentGrossProfits, roundingTolerance } from "
 import {
   businessRules,
   isBusinessCategory,
+  isZeroRevenueReconciliation,
   sameDimensions,
   validBusinessQualifiers
 } from "../../src/features/finance/business-rules";
@@ -314,13 +315,10 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
   if (columns) {
     for (const zero of proof.omittedZeroColumns ?? []) {
       if (
-        !/^corporate\b/i.test(zero.label) ||
+        !isZeroRevenueReconciliation(zero.label, zero.dimensions) ||
         zero.tag !== proof.revenueTag ||
         zero.value !== 0 ||
         !Number.isFinite(halfUnit(zero.decimals)) ||
-        !sameDimensions(zero.dimensions, {
-          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
-        }) ||
         !Number.isInteger(zero.columnIndex) ||
         zero.columnIndex < 0 ||
         zero.columnIndex >= proof.columnIndex! ||

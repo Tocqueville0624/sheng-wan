@@ -2,6 +2,7 @@ import {
   businessAxes,
   businessRules,
   isBusinessCategory,
+  isZeroRevenueReconciliation,
   sameDimensions,
   sourceLabel
 } from "../../src/features/finance/business-rules";
@@ -80,6 +81,7 @@ function readBusinessColumns(
   best: Map<string, XbrlFact | undefined>,
   consolidated: { fact: XbrlFact; tableIndex: number } | undefined
 ): PeriodV2 | undefined {
+  const currentContexts = new Set([...refs.values()].map((fact) => fact.context.id));
   const headers: { cells: Cell[]; rowIndex: number }[] = [];
   for (const [rowIndex, [row]] of rows.entries()) {
     const cells = tableCells(row);
@@ -93,7 +95,13 @@ function readBusinessColumns(
     let invalid = false;
     for (const cell of cells) {
       const current = [...cell.html.matchAll(/<ix:nonFraction\b[^>]*>/gi)].flatMap(([opening]) => {
-        const f = refs.get(`${attribute(opening, "name")}|${attribute(opening, "contextRef")}`);
+        const tag = attribute(opening, "name");
+        const context = attribute(opening, "contextRef");
+        const f = refs.get(`${tag}|${context}`);
+        // A malformed fact in a known current-period context cannot silently
+        // disappear from this revenue row (for example an unknown zero transform).
+        if (tag === period.metricSources.revenue!.tag && currentContexts.has(context!) && !f)
+          invalid = true;
         return f?.tag === period.metricSources.revenue!.tag ? [f] : [];
       });
       if (current.length > 1) invalid = true;
@@ -165,10 +173,7 @@ function readBusinessColumns(
               });
             } else if (
               fact.value === 0 &&
-              /^corporate\b/i.test(label) &&
-              sameDimensions(fact.context.dimensions, {
-                "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
-              })
+              isZeroRevenueReconciliation(label, fact.context.dimensions)
             ) {
               zeros.push({
                 label,

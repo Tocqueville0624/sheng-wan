@@ -107,6 +107,17 @@ export const sameDimensions = (a: Record<string, string>, b: Record<string, stri
   JSON.stringify(Object.entries(a).sort(([x], [y]) => x.localeCompare(y))) ===
   JSON.stringify(Object.entries(b).sort(([x], [y]) => x.localeCompare(y)));
 
+/** Only an explicitly reported zero with this standard reconciliation scope
+ * may be omitted from a revenue partition. The caller must check the zero fact,
+ * precision and source coordinates; a visible dash by itself is not a fact.
+ */
+export const isZeroRevenueReconciliation = (label: string, dimensions: Record<string, string>) =>
+  /^\s*(?:less:\s*)?corporate\b/i.test(label) &&
+  !!dimensions &&
+  sameDimensions(dimensions, {
+    "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+  });
+
 export const businessAxes = [
   "srt:ProductOrServiceAxis",
   "us-gaap:ProductOrServiceAxis",

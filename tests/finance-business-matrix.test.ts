@@ -22,6 +22,55 @@ const enrich = (html = fixture.html, period = fixture.basic) =>
   );
 
 describe("business revenue matrix source totals", () => {
+  it("reads AOS annual external sales and records its reported zero corporate column", () => {
+    const f = reviewedFixture("AOSAnnual");
+    expect(f.period.segments?.map((s) => [s.label, s.revenue])).toEqual([
+      ["North America", 2964.4e6],
+      ["Rest of World", 865.8e6]
+    ]);
+    expect(f.period.businessBreakdownSource).toMatchObject({
+      layout: "columns",
+      tableIndex: 1,
+      totalTableIndex: 0,
+      rowIndex: 3,
+      omittedSubtotals: [{ label: "Total Segments", value: 3830.2e6, columnIndex: 22 }],
+      omittedZeroColumns: [{ label: "Less: Corporate Expenses", value: 0, columnIndex: 28 }]
+    });
+    // The intersegment dash has no inline fact; it is not manufactured as a zero.
+    expect(f.period.businessBreakdownSource!.omittedZeroColumns).toHaveLength(1);
+    expect(businessPeriod(f.period)).toBeDefined();
+    expect(flowPeriod(f.period)).toBeUndefined();
+    expect(() => validateV2(f.company)).not.toThrow();
+  });
+
+  it("withholds AOS annual partitions when the corporate fact or subtotal cannot be verified", () => {
+    const f = reviewedFixture("AOSAnnual");
+    const read = (html: string) =>
+      enrichMatrixBusinessPeriods(html, f.identity, f.filing, [f.basic], parseInlineXbrl(html));
+    for (const html of [
+      f.html.replaceAll("Less: Corporate", "Less: Unexplained"),
+      f.html.replaceAll("us-gaap:CorporateNonSegmentMember", "us-gaap:ParentCompanyMember"),
+      f.html.replaceAll(">2,964.4<", ">2,974.4<"),
+      f.html.replaceAll('format="ixt:fixed-zero"', 'format="ixt:unknown-format"')
+    ])
+      expect(read(html)).toEqual([]);
+    for (const change of [
+      (p: PeriodV2) => {
+        Object.assign(p.businessBreakdownSource!.omittedZeroColumns![0], { value: 1 });
+      },
+      (p: PeriodV2) => {
+        p.businessBreakdownSource!.omittedZeroColumns![0].label = "Some item";
+      },
+      (p: PeriodV2) => {
+        p.businessBreakdownSource!.omittedZeroColumns![0].dimensions = {};
+      }
+    ]) {
+      const next = structuredClone(f.period);
+      change(next);
+      expect(businessPeriod(next)).toBeUndefined();
+    }
+  });
+
   it("reads AOS external sales once and corroborates its dimensioned subtotal with the primary statement", () => {
     const f = reviewedFixture("AOS");
     expect(f.period.segments?.map((s) => [s.label, s.revenue])).toEqual([

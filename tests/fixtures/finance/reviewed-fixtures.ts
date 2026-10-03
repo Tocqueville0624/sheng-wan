@@ -6,6 +6,20 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  AOSAnnual: {
+    ticker: "AOS",
+    kind: "annual",
+    fixture: "aos-2025-business-statement.html",
+    name: "A. O. Smith",
+    cik: "0000091142",
+    accession: "0000091142-26-000008",
+    filedAt: "2026-02-10",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    sector: "Industrials",
+    document: "aos-20251231.htm"
+  },
   DOV: {
     name: "Dover",
     cik: "0000029905",

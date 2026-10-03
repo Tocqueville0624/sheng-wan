@@ -15,6 +15,7 @@ const reported = {
   AMAT: [7040e6, 1781e6, 294e6],
   DHR: [1920e6, 1879e6, 2466e6],
   AOS: [816.3e6, 188e6],
+  AOSAnnual: [2964.4e6, 865.8e6],
   DOV: [283481000, 594959000, 305101000, 552709000, 455097000]
 };
 
@@ -28,6 +29,7 @@ for (const ticker of [
   "AMAT",
   "DHR",
   "AOS",
+  "AOSAnnual",
   "DOV"
 ] as const) {
   test(`${ticker}: imported business sources retain their amounts, proportions and export provenance`, async ({
@@ -40,22 +42,24 @@ for (const ticker of [
       ticker === "AMAT" ||
       ticker === "DHR" ||
       ticker === "AOS" ||
+      ticker === "AOSAnnual" ||
       ticker === "DOV"
         ? reviewedFixture(ticker)
         : businessFixture(ticker);
     expect(period.segments!.map((segment) => segment.revenue)).toEqual(reported[ticker]);
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
-    await mockFinance(page, { [ticker]: company });
+    await mockFinance(page, { [company.ticker]: company });
     await page.goto(
-      `/playground/thales-olive/?ticker=${ticker}&period=quarterly&statement=${period.id}`
+      `/playground/thales-olive/?ticker=${company.ticker}&period=${period.kind}&statement=${period.id}`
     );
     await expect(page.locator("astro-island[ssr]")).toHaveCount(0);
     await expect(page.locator(".company-summary")).toContainText(company.name);
     const history = page.locator(".history-chart");
     await expect(history).toBeVisible();
     const chart = page.locator(".flow-chart");
-    if (ticker !== "IBM" && ticker !== "APD") expect(period.coverage.sankey).toBe(true);
+    if (ticker !== "IBM" && ticker !== "APD" && ticker !== "AOSAnnual")
+      expect(period.coverage.sankey).toBe(true);
     if (period.coverage.sankey) {
       await expect(chart).toBeVisible();
       await expect(chart.locator('[data-flow-bar^="segment-"]')).toHaveCount(
@@ -112,6 +116,21 @@ for (const ticker of [
           chart.locator("[data-flow-node]").filter({ hasText: "Total automotive revenues" })
         ).toHaveCount(0);
       }
+    } else {
+      const label =
+        period.kind === "annual"
+          ? `FY ${period.fiscalYear}`
+          : `Q${period.fiscalQuarter} FY${String(period.fiscalYear).slice(-2)}`;
+      const bars = history.getByText(label, { exact: true }).first().locator("..").locator("rect");
+      const heights = await bars.evaluateAll((nodes) =>
+        nodes.map((node) => Number(node.getAttribute("height")))
+      );
+      expect(heights).toHaveLength(period.segments!.length);
+      const height = heights.reduce((sum, value) => sum + value, 0);
+      const revenue = period.segments!.reduce((sum, segment) => sum + segment.revenue, 0);
+      heights.forEach((value, index) =>
+        expect(value / height).toBeCloseTo(period.segments![index].revenue / revenue, 9)
+      );
     }
     for (const colorScheme of ["light", "dark"] as const) {
       await page.emulateMedia({ colorScheme, reducedMotion: "reduce" });
