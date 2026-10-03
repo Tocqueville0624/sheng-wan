@@ -12,15 +12,35 @@ const reported = {
   WMT: [125939e6, 35624e6, 26367e6, 7e6],
   JNJ: [16384e6, 8926e6],
   APD: [1670.9e6, 1387e6, 103.1e6],
-  AMAT: [7040e6, 1781e6, 294e6]
+  AMAT: [7040e6, 1781e6, 294e6],
+  DHR: [1920e6, 1879e6, 2466e6],
+  AOS: [816.3e6, 188e6],
+  DOV: [283481000, 594959000, 305101000, 552709000, 455097000]
 };
 
-for (const ticker of ["MCD", "TSLA", "IBM", "WMT", "JNJ", "APD", "AMAT"] as const) {
+for (const ticker of [
+  "MCD",
+  "TSLA",
+  "IBM",
+  "WMT",
+  "JNJ",
+  "APD",
+  "AMAT",
+  "DHR",
+  "AOS",
+  "DOV"
+] as const) {
   test(`${ticker}: imported business sources retain their amounts, proportions and export provenance`, async ({
     page
   }, info) => {
     const { company, period } =
-      ticker === "WMT" || ticker === "JNJ" || ticker === "APD" || ticker === "AMAT"
+      ticker === "WMT" ||
+      ticker === "JNJ" ||
+      ticker === "APD" ||
+      ticker === "AMAT" ||
+      ticker === "DHR" ||
+      ticker === "AOS" ||
+      ticker === "DOV"
         ? reviewedFixture(ticker)
         : businessFixture(ticker);
     expect(period.segments!.map((segment) => segment.revenue)).toEqual(reported[ticker]);
@@ -67,6 +87,24 @@ for (const ticker of ["MCD", "TSLA", "IBM", "WMT", "JNJ", "APD", "AMAT"] as cons
             .getByRole("row")
             .filter({ hasText: "Source rounding · decrease" })
         ).toContainText("−$1,000,000");
+      }
+      if (ticker === "DOV") {
+        await expect(chart.locator('[data-flow-node="revenue-base"]')).toContainText(
+          /Pre-adjustment\s*revenue/
+        );
+        await expect(
+          chart.locator('[data-flow-node="adjustment-reported-intersegment-eliminations"]')
+        ).toContainText(/Intersegment\s*eliminations/);
+        await page
+          .locator(".flow-panel")
+          .getByText("View exact amounts and reconciliation", { exact: true })
+          .click();
+        await expect(
+          page
+            .locator(".flow-panel")
+            .getByRole("row")
+            .filter({ hasText: "Intersegment eliminations · decrease" })
+        ).toContainText("−$1,326,000");
       }
       if (ticker === "TSLA") {
         await expect(chart.locator('[data-flow-node="noncontrolling"]')).toContainText("$14M");

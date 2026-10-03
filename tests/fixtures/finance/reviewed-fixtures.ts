@@ -6,6 +6,39 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  DOV: {
+    name: "Dover",
+    cik: "0000029905",
+    accession: "0000029905-26-000027",
+    filedAt: "2026-07-23",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Industrials",
+    document: "dov-20260630.htm"
+  },
+  AOS: {
+    name: "A. O. Smith",
+    cik: "0000091142",
+    accession: "0000091142-26-000098",
+    filedAt: "2026-07-30",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Industrials",
+    document: "aos-20260630.htm"
+  },
+  DHR: {
+    name: "Danaher",
+    cik: "0000313616",
+    accession: "0000313616-26-000161",
+    filedAt: "2026-07-21",
+    startDate: "2026-03-28",
+    endDate: "2026-06-26",
+    fiscalYear: 2026,
+    sector: "Health Care",
+    document: "dhr-20260626.htm"
+  },
   AMATAnnual: {
     ticker: "AMAT",
     kind: "annual",

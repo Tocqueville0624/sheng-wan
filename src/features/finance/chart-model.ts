@@ -709,12 +709,30 @@ export function layoutStatementFlow(graph: StatementFlow) {
           : node.y + Math.max(node.height, 80)
       )
     ) + 110;
+  // Generic cost captions can be longer than the featured-company labels.
+  // Reserve a conservative 17 px per character at the actual detail font size,
+  // keeping labels and exports inside the canvas without changing flow scale.
+  const rightLabelExtent = Math.max(
+    0,
+    ...nodes
+      .filter(
+        (node) =>
+          node.group === "detail" ||
+          node.group === "tax" ||
+          (["equity", "discontinued", "noncontrolling"].includes(node.group) &&
+            node.tone === "expense")
+      )
+      .map(
+        (node) =>
+          node.x + 29 + Math.max(...wrapLabel(node.label, 20).map((line) => line.length)) * 17 + 24
+      )
+  );
   return {
     nodes,
     links,
     scale,
     nodeWidth,
-    width: hasGrossStage && hasOperating ? 1480 : mainX.net + 210,
+    width: Math.max(hasGrossStage && hasOperating ? 1480 : mainX.net + 210, rightLabelExtent),
     height
   };
 }

@@ -70,6 +70,10 @@ export type RevenueSegment = {
     tableLabel: string;
     /** For reviewed vertical tables, the metric row below the named business section. */
     rowLabel?: string;
+    /** Logical column in a source table whose business labels are column headers. */
+    columnIndex?: number;
+    /** Source row used to verify an explicitly reported segment reconciliation. */
+    rowIndex?: number;
   };
 };
 
@@ -120,17 +124,35 @@ export type FinancialPeriod = {
     revenue: number;
     revenueDecimals: number;
     axis?: string;
-    /** Fixed scope shared by the matrix total and every business row. */
+    /** Fixed business-row scope; a nondimensional consolidated total may reconcile it. */
     qualifiers?: Record<string, string>;
     /** Logical table column, counting colspans; cross-axis interior cells are excluded. */
     columnIndex?: number;
+    layout?: "columns";
+    headerRowIndex?: number;
+    rowIndex?: number;
+    /** Source-table total can be an explicitly labelled segment aggregate;
+     * its amount is independently corroborated by the primary consolidated row. */
+    totalDimensions?: Record<string, string>;
     totalLabel: string;
+    /** Explicit corporate columns reported as zero; never guessed from a dash. */
+    omittedZeroColumns?: {
+      label: string;
+      tag: string;
+      dimensions: Record<string, string>;
+      value: 0;
+      decimals: number;
+      columnIndex: number;
+    }[];
     /** Explicit table subtotals omitted so their child rows are counted only once. */
     omittedSubtotals: {
       label: string;
       tag: string;
       dimensions: Record<string, string>;
       value: number;
+      decimals?: number;
+      columnIndex?: number;
+      rowIndex?: number;
     }[];
   };
 };

@@ -3,6 +3,7 @@ import type { CatalogCompany, PeriodV2 } from "../../src/features/finance/v2-typ
 import { parseInlineXbrl, type ParsedFiling, type XbrlFact } from "./ixbrl";
 import type { SecFiling } from "./sec-shared";
 import { businessPeriod, flowPeriod } from "./v2-model";
+import { isBusinessCategory } from "../../src/features/finance/business-rules";
 
 const revenueTags = new Set([
   "us-gaap:Revenues",
@@ -54,9 +55,11 @@ export function visibleText(html: string) {
     .replace(/\s+/g, " ")
     .trim();
 }
-function revenueFact(f: XbrlFact) {
+function revenueFact(f: XbrlFact, label: string) {
   const axes = Object.keys(f.context.dimensions);
   if (f.context.typed || axes.length > 1 || axes.some((axis) => !businessAxes.has(axis)))
+    return false;
+  if (axes.some((axis) => !isBusinessCategory(axis, f.context.dimensions[axis], label)))
     return false;
   if (revenueTags.has(f.tag)) return true;
   // An issuer's revenue line is accepted only inside the source table's revenue
@@ -149,7 +152,7 @@ export function enrichBusinessPeriods(
           continue;
         }
         const f = [...seen.values()][0]!;
-        if (!revenueFact(f) || f.value < 0) {
+        if (!revenueFact(f, label) || f.value < 0) {
           candidates = [];
           omitted = [];
           continue;

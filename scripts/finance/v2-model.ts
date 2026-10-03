@@ -10,6 +10,7 @@ import type { CompanyV2, PeriodV2, MetricSource } from "../../src/features/finan
 import { validatePeriod, validateSegmentGrossProfits, roundingTolerance } from "./validate";
 import {
   businessRules,
+  isBusinessCategory,
   sameDimensions,
   validBusinessQualifiers
 } from "../../src/features/finance/business-rules";
@@ -20,6 +21,26 @@ import {
  * This also repairs previously stored basic imports without another SEC crawl.
  */
 export function normalizeBasicPeriod(period: PeriodV2): PeriodV2 {
+  const axis = period.businessBreakdownSource?.axis;
+  if (
+    axis &&
+    period.segments?.some(
+      (s) => !isBusinessCategory(axis, s.revenueSource?.dimensions[axis] ?? "", s.label)
+    )
+  ) {
+    const next: PeriodV2 = {
+      ...period,
+      coverage: { ...period.coverage, segments: false, sankey: false }
+    };
+    delete next.segments;
+    delete next.segmentBasis;
+    delete next.segmentSourceUrl;
+    delete next.businessBreakdownSource;
+    delete next.revenueAdjustments;
+    const normalized = normalizeBasicPeriod(next);
+    normalized.coverage.sankey = !!flowPeriod(normalized);
+    return normalized;
+  }
   if (
     period.coverage.segments ||
     period.metricSources.grossProfit?.tag !== "revenue - costOfRevenue"
@@ -67,7 +88,7 @@ export function normalizeBasicCompany(company: CompanyV2): CompanyV2 {
     warnings: [
       ...new Set([
         ...company.warnings,
-        "Gross profit inferred from an unreviewed cost tag is withheld unless independent reported subtotals confirm its scope. Reported revenue and income remain available."
+        "Unreviewed cost-derived gross profit and revenue-recognition timing partitions are withheld. Reported revenue and income remain available."
       ])
     ]
   };
@@ -162,14 +183,58 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
       !Number.isInteger(proof.columnIndex) ||
       proof.columnIndex! < 0 ||
       proof.columnIndex! > 1000 ||
-      proof.totalTableIndex !== undefined ||
+      (proof.layout !== undefined && proof.layout !== "columns") ||
+      (proof.layout !== "columns" &&
+        (proof.totalTableIndex !== undefined ||
+          proof.totalDimensions ||
+          proof.omittedZeroColumns?.length)) ||
       proof.ruleId ||
-      proof.omittedSubtotals.length ||
       period.segments!.length < 2 ||
       period.segments!.length > 20)
   )
     return;
+  const columns = matrix && proof.layout === "columns";
+  if (
+    columns &&
+    (!Number.isInteger(proof.headerRowIndex) ||
+      !Number.isInteger(proof.rowIndex) ||
+      proof.headerRowIndex! < 0 ||
+      proof.rowIndex! > 500 ||
+      proof.headerRowIndex! >= proof.rowIndex!)
+  )
+    return;
+  if (columns) {
+    const dimensions = proof.totalDimensions ?? {};
+    const parent = dimensions[proof.axis!];
+    if (!Object.keys(dimensions).length || sameDimensions(dimensions, proof.qualifiers!)) {
+      if (proof.totalTableIndex !== undefined) return;
+    } else if (
+      !qname.test(parent ?? "") ||
+      !sameDimensions(dimensions, { ...proof.qualifiers, [proof.axis!]: parent }) ||
+      !Number.isInteger(proof.totalTableIndex) ||
+      proof.totalTableIndex! < 0 ||
+      proof.totalTableIndex === proof.tableIndex ||
+      period.segments!.some((s) => s.revenueSource?.dimensions[proof.axis!] === parent)
+    )
+      return;
+  }
+  const adjustments = period.revenueAdjustments ?? [];
+  const reported = adjustments.filter((a) => a.id !== "source-rounding");
+  const reconciledRows =
+    matrix && !columns && (proof.omittedSubtotals.length > 0 || reported.length > 0);
+  const rowKeys = new Set<number>();
+  if (
+    reconciledRows &&
+    (!Number.isInteger(proof.rowIndex) ||
+      proof.rowIndex! < 0 ||
+      proof.rowIndex! > 500 ||
+      !sameDimensions(proof.qualifiers!, {
+        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+      }))
+  )
+    return;
   const keys = new Set<string>();
+  const columnKeys = new Set<number>();
   for (const segment of period.segments!) {
     const source = segment.revenueSource;
     const reviewed = rule?.branches.find((b) => b.label === segment.label);
@@ -207,9 +272,32 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
       !qname.test(source.tag) ||
       !Number.isFinite(halfUnit(source.decimals)) ||
       !source.dimensions ||
+      (proof.axis &&
+        !isBusinessCategory(proof.axis, source.dimensions[proof.axis], source.tableLabel)) ||
       !dimensionsValid
     )
       return;
+    if (columns) {
+      if (
+        !Number.isInteger(source.columnIndex) ||
+        source.columnIndex! < 0 ||
+        source.columnIndex! >= proof.columnIndex! ||
+        columnKeys.has(source.columnIndex!)
+      )
+        return;
+      columnKeys.add(source.columnIndex!);
+    }
+    if (reconciledRows) {
+      if (
+        !Number.isInteger(source.rowIndex) ||
+        source.rowIndex! < 0 ||
+        source.rowIndex! >= proof.rowIndex! ||
+        rowKeys.has(source.rowIndex!) ||
+        source.columnIndex !== proof.columnIndex
+      )
+        return;
+      rowKeys.add(source.rowIndex!);
+    }
     const key = `${source.tag}|${JSON.stringify(source.dimensions)}`;
     if (keys.has(key)) return;
     keys.add(key);
@@ -223,16 +311,121 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     )
       return;
   }
-  const adjustments = period.revenueAdjustments ?? [];
-  if (
-    adjustments.length > 1 ||
-    adjustments.some((a) => a.id !== "source-rounding" || a.label !== "Source rounding")
-  )
-    return;
-  const amount = adjustments[0]?.revenue ?? 0;
+  if (columns) {
+    for (const zero of proof.omittedZeroColumns ?? []) {
+      if (
+        !/^corporate\b/i.test(zero.label) ||
+        zero.tag !== proof.revenueTag ||
+        zero.value !== 0 ||
+        !Number.isFinite(halfUnit(zero.decimals)) ||
+        !sameDimensions(zero.dimensions, {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        }) ||
+        !Number.isInteger(zero.columnIndex) ||
+        zero.columnIndex < 0 ||
+        zero.columnIndex >= proof.columnIndex! ||
+        columnKeys.has(zero.columnIndex)
+      )
+        return;
+      columnKeys.add(zero.columnIndex);
+    }
+    for (const subtotal of proof.omittedSubtotals) {
+      const dimensions = subtotal.dimensions;
+      const member = dimensions[proof.axis!];
+      if (
+        !/^(?:total|subtotal)\b/i.test(subtotal.label) ||
+        subtotal.tag !== proof.revenueTag ||
+        !Number.isFinite(subtotal.value) ||
+        subtotal.value < 0 ||
+        !Number.isFinite(halfUnit(subtotal.decimals!)) ||
+        !Number.isInteger(subtotal.columnIndex) ||
+        subtotal.columnIndex! < 0 ||
+        subtotal.columnIndex! >= proof.columnIndex! ||
+        columnKeys.has(subtotal.columnIndex!) ||
+        (Object.keys(dimensions).length &&
+          !sameDimensions(dimensions, proof.qualifiers!) &&
+          (!qname.test(member ?? "") ||
+            !sameDimensions(dimensions, { ...proof.qualifiers, [proof.axis!]: member })))
+      )
+        return;
+      columnKeys.add(subtotal.columnIndex!);
+      const preceding = period.segments!.filter(
+        (s) => s.revenueSource!.columnIndex! < subtotal.columnIndex!
+      );
+      const sum = preceding.reduce((sum, s) => sum + s.revenue, 0);
+      const bound = preceding.reduce(
+        (sum, s) => sum + halfUnit(s.revenueSource!.decimals),
+        halfUnit(subtotal.decimals!)
+      );
+      if (
+        preceding.length < 2 ||
+        Math.abs(sum - subtotal.value) > bound ||
+        Math.abs(sum - subtotal.value) > proof.revenue * 0.001
+      )
+        return;
+    }
+  }
+  let reportedPrecision = 0;
+  if (reconciledRows) {
+    if (reported.length !== 1 || proof.omittedSubtotals.length !== 1) return;
+    const adjustment = reported[0],
+      source = adjustment.revenueSource;
+    const subtotal = proof.omittedSubtotals[0];
+    if (
+      !source ||
+      adjustment.id !== "reported-intersegment-eliminations" ||
+      !/^(?:inter[ -]?segment (?:revenue |sales )?eliminations?|eliminations? of inter[ -]?segment(?: (?:revenues?|sales))?)$/i.test(
+        adjustment.label
+      ) ||
+      adjustment.revenue > 0 ||
+      source.value !== adjustment.revenue ||
+      source.tableLabel !== adjustment.label ||
+      source.sourceUrl !== period.sourceUrl ||
+      source.accession !== period.accession ||
+      source.filedAt !== period.filedAt ||
+      source.startDate !== period.startDate ||
+      source.endDate !== period.endDate ||
+      source.currency !== period.displayCurrency ||
+      source.currency !== period.reportingCurrency ||
+      source.tag !== proof.revenueTag ||
+      !Number.isFinite(halfUnit(source.decimals)) ||
+      !sameDimensions(source.dimensions, {
+        "srt:ConsolidationItemsAxis": "us-gaap:IntersegmentEliminationMember"
+      }) ||
+      source.columnIndex !== proof.columnIndex ||
+      !Number.isInteger(source.rowIndex) ||
+      source.rowIndex! >= proof.rowIndex! ||
+      !/^total segment (?:revenues?|sales)$/i.test(subtotal.label) ||
+      subtotal.tag !== proof.revenueTag ||
+      !sameDimensions(subtotal.dimensions, proof.qualifiers!) ||
+      !Number.isFinite(subtotal.value) ||
+      subtotal.value <= 0 ||
+      !Number.isFinite(halfUnit(subtotal.decimals!)) ||
+      subtotal.columnIndex !== proof.columnIndex ||
+      !Number.isInteger(subtotal.rowIndex) ||
+      subtotal.rowIndex! < 0 ||
+      subtotal.rowIndex! >= source.rowIndex! ||
+      period.segments!.some((s) => s.revenueSource!.rowIndex! >= subtotal.rowIndex!)
+    )
+      return;
+    const sum = period.segments!.reduce((sum, s) => sum + s.revenue, 0);
+    const bound = period.segments!.reduce(
+      (sum, s) => sum + halfUnit(s.revenueSource!.decimals),
+      halfUnit(subtotal.decimals!)
+    );
+    if (
+      Math.abs(subtotal.value - sum) > bound ||
+      Math.abs(subtotal.value - sum) > proof.revenue * 0.001
+    )
+      return;
+    reportedPrecision = halfUnit(source.decimals);
+  } else if (reported.length) return;
+  const rounding = adjustments.filter((a) => a.id === "source-rounding");
+  if (rounding.length > 1 || rounding.some((a) => a.label !== "Source rounding")) return;
+  const amount = rounding[0]?.revenue ?? 0;
   const bound = period.segments!.reduce(
     (sum, s) => sum + halfUnit(s.revenueSource!.decimals),
-    halfUnit(proof.revenueDecimals)
+    halfUnit(proof.revenueDecimals) + reportedPrecision
   );
   if (Math.abs(amount) > bound || Math.abs(amount) > proof.revenue * 0.001) return;
   try {

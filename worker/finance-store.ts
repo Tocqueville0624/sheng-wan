@@ -49,7 +49,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.16";
+const ENGINE_VERSION = "finance-v2.17";
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -454,7 +454,7 @@ export class FinanceStore {
       try {
         const base = await this.company(identity);
         if (!base) throw new Error("No validated company baseline.");
-        const cacheKey = `generic:v5:${identity.cik}:${filing.accession}`;
+        const cacheKey = `generic:v6:${identity.cik}:${filing.accession}`;
         let periods = await this.ctx.storage.get<PeriodV2[]>(cacheKey);
         if (!periods)
           periods = readGenericFiling(
@@ -585,10 +585,12 @@ export class FinanceStore {
             task.warnings.length > 0 ||
             company.annual.length < 10 ||
             company.quarterly.length < 20 ||
-            [...company.annual, ...company.quarterly].some((p) => !p.coverage.segments);
+            [...company.annual, ...company.quarterly].some(
+              (p) => !p.coverage.segments || !p.coverage.sankey
+            );
           task.job.state = limited ? "partial" : task.changed ? "ready" : "unchanged";
           task.job.total = task.job.completed;
-          task.job.message = `${task.changed ? "Validated data saved." : "SEC check finished; saved statement values are unchanged."} ${company.annual.length} annual and ${company.quarterly.length} quarterly periods available.${limited ? " Some history or business-category detail is unavailable; no missing figures were estimated." : ""}`;
+          task.job.message = `${task.changed ? "Validated data saved." : "SEC check finished; saved statement values are unchanged."} ${company.annual.length} annual and ${company.quarterly.length} quarterly periods available.${limited ? " Some history, business-category detail or accounting flows are unavailable; no missing figures were estimated." : ""}`;
           company.checkedAt = new Date().toISOString();
           company.warnings = [...new Set([...company.warnings, ...task.warnings])].slice(0, 40);
           await this.ctx.storage.put(`company:${task.job.cik}`, company);

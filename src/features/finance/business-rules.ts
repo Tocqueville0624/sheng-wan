@@ -113,6 +113,17 @@ export const businessAxes = [
   "us-gaap:StatementBusinessSegmentsAxis"
 ] as const;
 
+/** Contract timing is a revenue disclosure, not a business/product category.
+ * Some filings put these members on ProductOrServiceAxis; do not label them as
+ * the businesses supplying revenue. A reported operating-segment axis is kept.
+ */
+export const isBusinessCategory = (axis: string, member: string, label: string) =>
+  axis === "us-gaap:StatementBusinessSegmentsAxis" ||
+  (!/^(?:recurring|non[ -]?recurring|over time|(?:at a )?point in time)$/i.test(label.trim()) &&
+    !/Revenue(?:fromContractwithCustomerMeasurement(?:Recurring|Nonrecurring)|Recognized(?:OverTime|AtPointInTime))Member$/i.test(
+      member
+    ));
+
 /** A scope qualifier is not another partition. Only this standard, explicitly
  * consolidated operating-segment scope may accompany a generic business axis.
  */
