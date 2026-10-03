@@ -6,6 +6,31 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  MMM: {
+    name: "3M",
+    cik: "0000066740",
+    accession: "0000066740-26-000246",
+    filedAt: "2026-07-21",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Industrials",
+    document: "mmm-20260630.htm"
+  },
+  MMMAnnual: {
+    ticker: "MMM",
+    kind: "annual",
+    fixture: "mmm-2025-business-statement.html",
+    name: "3M",
+    cik: "0000066740",
+    accession: "0000066740-26-000014",
+    filedAt: "2026-02-03",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    sector: "Industrials",
+    document: "mmm-20251231.htm"
+  },
   AOSAnnual: {
     ticker: "AOS",
     kind: "annual",

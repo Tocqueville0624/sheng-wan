@@ -127,7 +127,7 @@ export function enrichReviewedBusinessPeriods(
             }
             const branch = rule.branches.find(
               (b) =>
-                (rule.layout === "columns" || b.label === section) &&
+                (rule.layout === "columns" || rule.layout === "rows" || b.label === section) &&
                 b.rowLabel === label &&
                 b.tag === f.tag &&
                 sameDimensions(b.dimensions, f.context.dimensions)

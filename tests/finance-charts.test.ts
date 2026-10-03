@@ -561,6 +561,32 @@ describe("income statement Sankey", () => {
     }
   });
 
+  it("keeps signed subsidiary income distinct from equity-method income and conserves every flow", () => {
+    for (const subsidiary of [-0.5, 0.5]) {
+      const period = fixture({
+        afterTaxSubsidiaryIncome: subsidiary,
+        equityMethodIncome: 0.25,
+        netIncome: 22 + subsidiary + 0.25
+      });
+      const result = buildStatementFlow(period);
+      if (!result.ok) throw new Error(result.reason);
+      expectConserved(result.graph, period.metrics.revenue);
+      expect(result.graph.nodes.find((node) => node.id === "subsidiary")).toMatchObject({
+        amount: 0.5,
+        tone: subsidiary > 0 ? "profit" : "expense"
+      });
+      const layout = layoutStatementFlow(result.graph);
+      expect(layout.nodes.every((node) => Number.isFinite(node.x) && Number.isFinite(node.y))).toBe(
+        true
+      );
+      const subsidiaryNode = layout.nodes.find((node) => node.id === "subsidiary")!;
+      const equityNode = layout.nodes.find((node) => node.id === "equity")!;
+      expect(Math.abs(subsidiaryNode.y - equityNode.y)).toBeGreaterThan(100);
+      const without = fixture({ afterTaxSubsidiaryIncome: subsidiary, netIncome: 22 });
+      expect(buildStatementFlow(without).ok).toBe(false);
+    }
+  });
+
   it("accounts for separately disclosed revenue losses without inventing positive business splits", () => {
     const period = fixture({ revenue: 99.5, costOfRevenue: 54.5 });
     period.revenueAdjustments = [{ id: "hedging", label: "Hedging loss", revenue: -0.5 }];

@@ -6,7 +6,7 @@ export type BusinessRule = {
   cik: string;
   totalTag: string;
   totalLabel: string;
-  layout?: "columns";
+  layout?: "columns" | "rows";
   separateTotal?: boolean;
   basis: string;
   branches: {
@@ -19,6 +19,36 @@ export type BusinessRule = {
 };
 
 export const businessRules: BusinessRule[] = [
+  ...["Corporate", "Corporate and Other"].map<BusinessRule>((corporate) => ({
+    id: `mmm-three-businesses-${corporate === "Corporate" ? "corporate" : "corporate-other"}-v1`,
+    cik: "0000066740",
+    totalTag: "us-gaap:Revenues",
+    totalLabel: "Total Company",
+    layout: "rows",
+    basis:
+      "Reported net sales by Safety and Industrial, Transportation and Electronics, and Consumer, plus the filing's separately reported corporate revenue. Corporate revenue is not an allocation to the operating businesses.",
+    branches: [
+      ...[
+        ["Safety and Industrial", "mmm:SafetyAndIndustrialSegmentMember"],
+        ["Transportation and Electronics", "mmm:TransportationAndElectronicsSegmentMember"],
+        ["Consumer", "mmm:ConsumerSegmentMember"]
+      ].map(([label, member]) => ({
+        label,
+        rowLabel: label,
+        tag: "us-gaap:Revenues",
+        dimensions: {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": member
+        }
+      })),
+      {
+        label: corporate,
+        rowLabel: corporate,
+        tag: "us-gaap:Revenues",
+        dimensions: { "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember" }
+      }
+    ]
+  })),
   ...["Revenue", "Net revenue"].map<BusinessRule>((totalLabel) => ({
     id: `amat-semiconductor-services-${totalLabel === "Revenue" ? "other" : "corporate"}-v1`,
     cik: "0000006951",

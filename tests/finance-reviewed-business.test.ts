@@ -53,6 +53,125 @@ const enrich = (source = html, period = basic) =>
   enrichReviewedBusinessPeriods(source, identity, filing, [period], parseInlineXbrl(source));
 
 describe("reviewed vertical business tables", () => {
+  it.each(["MMM", "MMMAnnual"] as const)(
+    "preserves %s corporate revenue and after-tax subsidiary income",
+    (ticker) => {
+      const f = reviewedFixture(ticker);
+      const annual = ticker === "MMMAnnual";
+      expect(f.period.segments?.map((s) => [s.label, s.revenue])).toEqual(
+        annual
+          ? [
+              ["Safety and Industrial", 11384e6],
+              ["Transportation and Electronics", 8272e6],
+              ["Consumer", 4920e6],
+              ["Corporate and Other", 372e6]
+            ]
+          : [
+              ["Safety and Industrial", 3091e6],
+              ["Transportation and Electronics", 2066e6],
+              ["Consumer", 1247e6],
+              ["Corporate", 96e6]
+            ]
+      );
+      expect(f.period.metrics.afterTaxSubsidiaryIncome).toBe(annual ? 52e6 : 1e6);
+      expect(f.period.metricSources.afterTaxSubsidiaryIncome?.tag).toBe(
+        "us-gaap:IncomeLossFromSubsidiariesNetOfTax"
+      );
+      expect(f.period.metrics.equityMethodIncome).toBeUndefined();
+      expect(f.period.revenueAdjustments).toBeUndefined();
+      expect(businessPeriod(f.period)).toBeDefined();
+      expect(flowPeriod(f.period)).toBeDefined();
+      expect(() => validateV2(f.company)).not.toThrow();
+      const renamed = f.html.replaceAll(
+        annual ? "Corporate and Other" : "Corporate",
+        "Unreviewed corporate caption"
+      );
+      expect(
+        enrichReviewedBusinessPeriods(
+          renamed,
+          f.identity,
+          f.filing,
+          [f.basic],
+          parseInlineXbrl(renamed)
+        )
+      ).toEqual([]);
+      const wrongScope = f.html.replaceAll(
+        "us-gaap:CorporateNonSegmentMember",
+        "us-gaap:OperatingSegmentsMember"
+      );
+      expect(
+        enrichReviewedBusinessPeriods(
+          wrongScope,
+          f.identity,
+          f.filing,
+          [f.basic],
+          parseInlineXbrl(wrongScope)
+        )
+      ).toEqual([]);
+      const saved = structuredClone(f.period);
+      saved.segments!.at(-1)!.revenueSource!.dimensions = {
+        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+      };
+      expect(businessPeriod(saved)).toBeUndefined();
+    }
+  );
+  it("uses the reported parent discontinued-operation line after minority attribution without counting it twice", () => {
+    const f = reviewedFixture("MMMAnnual");
+    const basic = structuredClone(f.basic);
+    basic.id = "FY2024";
+    basic.fiscalYear = 2024;
+    basic.startDate = "2024-01-01";
+    basic.endDate = "2024-12-31";
+    const revenue = parseInlineXbrl(f.html).facts.find(
+      (fact) =>
+        fact.tag === "us-gaap:Revenues" &&
+        fact.context.start === basic.startDate &&
+        fact.context.end === basic.endDate &&
+        !Object.keys(fact.context.dimensions).length
+    )!;
+    basic.metrics = { revenue: revenue.value };
+    basic.metricSources = { revenue: f.period.metricSources.revenue };
+    const company = { ...f.company, annual: [basic] };
+    const [parsed] = readGenericFiling(f.html, f.identity, f.filing, company);
+    expect(parsed.metrics).toMatchObject({
+      afterTaxSubsidiaryIncome: 9e6,
+      noncontrollingInterestIncome: 15e6,
+      discontinuedOperationsIncome: 164e6,
+      netIncome: 4173e6
+    });
+    expect(parsed.coverage.sankey).toBe(true);
+    const ambiguous = f.html.replaceAll(
+      "us-gaap:IncomeLossFromDiscontinuedOperationsNetOfTaxAttributableToReportingEntity",
+      "us-gaap:IncomeLossFromDiscontinuedOperationsNetOfTax"
+    );
+    expect(
+      readGenericFiling(ambiguous, f.identity, f.filing, company).some((p) => p.coverage.sankey)
+    ).toBe(false);
+  });
+  it("corroborates an alternate standard revenue concept only through a complete exact source statement", () => {
+    const f = reviewedFixture("MMM");
+    const basic = structuredClone(f.basic);
+    basic.metricSources.revenue!.tag =
+      "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax";
+    const company = { ...f.company, quarterly: [basic] };
+    const [parsed] = readGenericFiling(f.html, f.identity, f.filing, company);
+    expect(parsed.metrics.revenue).toBe(basic.metrics.revenue);
+    expect(parsed.metricSources.revenue!.tag).toBe("us-gaap:Revenues");
+    expect(parsed.metricSources.revenue!.label).toBe("Net sales");
+    expect(parsed.coverage).toEqual({ basics: true, segments: true, sankey: true });
+    const mismatched = structuredClone(basic);
+    mismatched.metrics.revenue! += 1e6;
+    expect(
+      readGenericFiling(f.html, f.identity, f.filing, { ...company, quarterly: [mismatched] })
+    ).toEqual([]);
+    const unsupported = f.html.replaceAll(
+      "us-gaap:IncomeLossFromSubsidiariesNetOfTax",
+      "mmm:UnreviewedAfterTaxIncome"
+    );
+    expect(
+      readGenericFiling(unsupported, f.identity, f.filing, company).some((p) => p.coverage.sankey)
+    ).toBe(false);
+  });
   it("includes AMAT's reported Other revenue alongside the two operating segments", () => {
     const f = reviewedFixture("AMAT");
     expect(f.period.segments?.map((s) => [s.label, s.revenue])).toEqual([

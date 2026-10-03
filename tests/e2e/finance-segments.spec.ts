@@ -7,6 +7,8 @@ import { mockFinance } from "./finance-fixtures";
 
 const reported = {
   MCD: [4393e6, 2525e6, 182e6],
+  MMM: [3091e6, 2066e6, 1247e6, 96e6],
+  MMMAnnual: [11384e6, 8272e6, 4920e6, 372e6],
   TSLA: [20006e6, 146e6, 364e6, 3139e6, 4581e6],
   IBM: [7927e6, 9049e6, 186e6],
   WMT: [125939e6, 35624e6, 26367e6, 7e6],
@@ -21,6 +23,8 @@ const reported = {
 
 for (const ticker of [
   "MCD",
+  "MMM",
+  "MMMAnnual",
   "TSLA",
   "IBM",
   "WMT",
@@ -37,6 +41,8 @@ for (const ticker of [
   }, info) => {
     const { company, period } =
       ticker === "WMT" ||
+      ticker === "MMM" ||
+      ticker === "MMMAnnual" ||
       ticker === "JNJ" ||
       ticker === "APD" ||
       ticker === "AMAT" ||
@@ -91,6 +97,22 @@ for (const ticker of [
             .getByRole("row")
             .filter({ hasText: "Source rounding · decrease" })
         ).toContainText("−$1,000,000");
+      }
+      if (ticker === "MMM" || ticker === "MMMAnnual") {
+        await expect(chart.locator('[data-flow-node="subsidiary"]')).toContainText(
+          /Unconsolidated\s*subsidiary/
+        );
+        await expect(chart.locator('[data-flow-node="equity"]')).toHaveCount(0);
+        const revenueHeight = Number(
+          await chart.locator('[data-flow-bar="revenue"]').getAttribute("height")
+        );
+        const subsidiaryHeight = Number(
+          await chart.locator('[data-flow-bar="subsidiary"]').getAttribute("height")
+        );
+        expect(subsidiaryHeight / revenueHeight).toBeCloseTo(
+          period.metrics.afterTaxSubsidiaryIncome! / period.metrics.revenue!,
+          9
+        );
       }
       if (ticker === "DOV") {
         await expect(chart.locator('[data-flow-node="revenue-base"]')).toContainText(

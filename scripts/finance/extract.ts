@@ -52,6 +52,7 @@ const TAGS = {
   ],
   sellingGeneralAndAdministrative: ["SellingGeneralAndAdministrativeExpense"],
   equityMethodIncome: ["IncomeLossFromEquityMethodInvestments"],
+  afterTaxSubsidiaryIncome: [],
   noncontrollingInterestIncome: ["NetIncomeLossAttributableToNoncontrollingInterest"],
   // Reviewed legacy snapshots model neither line; generic imports read them from statements.
   discontinuedOperationsIncome: [],

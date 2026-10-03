@@ -14,6 +14,8 @@ export type FinancialMetrics = {
   researchAndDevelopment?: number;
   sellingGeneralAndAdministrative?: number;
   equityMethodIncome?: number;
+  /** Signed after-tax income (loss) from unconsolidated subsidiaries, as reported. */
+  afterTaxSubsidiaryIncome?: number;
   /** Signed income attributable to noncontrolling interests, deducted from consolidated income. */
   noncontrollingInterestIncome?: number;
   /** Signed after-tax income (loss) from discontinued operations, as reported. */

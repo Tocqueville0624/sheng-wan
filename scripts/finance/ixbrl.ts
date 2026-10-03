@@ -239,6 +239,7 @@ const metricTags: Record<keyof FinancialMetrics, string[]> = {
   ],
   sellingGeneralAndAdministrative: ["us-gaap:SellingGeneralAndAdministrativeExpense"],
   equityMethodIncome: ["us-gaap:IncomeLossFromEquityMethodInvestments"],
+  afterTaxSubsidiaryIncome: [],
   noncontrollingInterestIncome: ["us-gaap:NetIncomeLossAttributableToNoncontrollingInterest"],
   // Reviewed adapters do not model these generic statement lines.
   discontinuedOperationsIncome: [],

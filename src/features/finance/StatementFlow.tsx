@@ -20,6 +20,7 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
     node.group === "detail" ||
     node.group === "tax" ||
     ((node.group === "equity" ||
+      node.group === "subsidiary" ||
       node.group === "discontinued" ||
       node.group === "noncontrolling") &&
       node.tone === "expense");
@@ -27,7 +28,8 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
   const operatingAdjustment = node.group === "operating-adjustment";
   const taxBenefit = node.group === "tax-benefit";
   const positiveEquity =
-    (node.group === "equity" || node.group === "discontinued") && node.tone === "profit";
+    (node.group === "equity" || node.group === "subsidiary" || node.group === "discontinued") &&
+    node.tone === "profit";
   const minorityLoss = node.group === "noncontrolling" && node.tone === "profit";
   const upperInput =
     positiveEquity ||
@@ -64,6 +66,7 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
                 : nonoperating ||
                     operatingAdjustment ||
                     node.group === "equity" ||
+                    node.group === "subsidiary" ||
                     node.group === "discontinued" ||
                     taxBenefit
                   ? node.y - 8
@@ -492,7 +495,9 @@ export function StatementFlow({
                       ? period.metrics.noncontrollingInterestIncome!
                       : node.id === "discontinued"
                         ? period.metrics.discontinuedOperationsIncome!
-                        : (revenueAdjustment?.revenue ?? node.amount);
+                        : node.id === "subsidiary"
+                          ? period.metrics.afterTaxSubsidiaryIncome!
+                          : (revenueAdjustment?.revenue ?? node.amount);
                 return (
                   <tr key={node.id}>
                     <th scope="row">
@@ -570,8 +575,8 @@ export function StatementFlow({
                 : "Revenue = total operating costs + operating profit. "
               : "Revenue = cost of revenue + gross profit. Gross profit = operating expenses + operating profit. "}
           {!pretaxFlow && "Pretax profit = operating profit + net non-operating items. "}Pretax
-          profit minus income tax plus separately reported after-tax equity-method income and
-          discontinued operations
+          profit minus income tax plus separately reported after-tax equity-method income,
+          unconsolidated subsidiary income and discontinued operations
           {parentNet
             ? " minus signed income attributable to noncontrolling interests equals net profit to the parent. "
             : " equals net profit. "}

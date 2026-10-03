@@ -24,6 +24,7 @@ export type FlowNode = {
     | "tax"
     | "tax-benefit"
     | "equity"
+    | "subsidiary"
     | "noncontrolling"
     | "discontinued"
     | "operating-adjustment"
@@ -97,6 +98,7 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
     };
   const {
     equityMethodIncome = 0,
+    afterTaxSubsidiaryIncome = 0,
     noncontrollingInterestIncome = 0,
     discontinuedOperationsIncome = 0,
     incomeTax,
@@ -187,9 +189,9 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
             ]
           ] as [number, number, string][])),
     [
-      m.pretaxIncome + equityMethodIncome + discontinuedOperationsIncome,
+      m.pretaxIncome + equityMethodIncome + afterTaxSubsidiaryIncome + discontinuedOperationsIncome,
       m.incomeTax + noncontrollingInterestIncome + m.netIncome,
-      "Pretax profit, income tax, after-tax equity income, discontinued operations, noncontrolling interests, and net profit"
+      "Pretax profit, income tax, after-tax equity and subsidiary income, discontinued operations, noncontrolling interests, and net profit"
     ]
   ];
   for (const [total, parts, label] of identities) {
@@ -378,6 +380,17 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
       "discontinued"
     );
   }
+  if (afterTaxSubsidiaryIncome !== 0) {
+    node(
+      "subsidiary",
+      afterTaxSubsidiaryIncome > 0
+        ? "Unconsolidated subsidiary income (after tax)"
+        : "Unconsolidated subsidiary loss (after tax)",
+      Math.abs(afterTaxSubsidiaryIncome),
+      afterTaxSubsidiaryIncome > 0 ? "profit" : "expense",
+      "subsidiary"
+    );
+  }
   if (noncontrollingInterestIncome !== 0) {
     node(
       "noncontrolling",
@@ -396,11 +409,13 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
     { id: "pretax", remaining: m.pretaxIncome - taxExpense },
     { id: "tax-benefit", remaining: taxBenefit },
     { id: "equity", remaining: Math.max(0, equityMethodIncome) },
+    { id: "subsidiary", remaining: Math.max(0, afterTaxSubsidiaryIncome) },
     { id: "discontinued", remaining: Math.max(0, discontinuedOperationsIncome) },
     { id: "noncontrolling", remaining: Math.max(0, -noncontrollingInterestIncome) }
   ];
   for (const [target, amount] of [
     ["equity", Math.max(0, -equityMethodIncome)],
+    ["subsidiary", Math.max(0, -afterTaxSubsidiaryIncome)],
     ["discontinued", Math.max(0, -discontinuedOperationsIncome)],
     ["noncontrolling", Math.max(0, noncontrollingInterestIncome)]
   ] as const) {
@@ -482,6 +497,7 @@ export function layoutStatementFlow(graph: StatementFlow) {
   const tax = graph.nodes.find((node) => node.group === "tax");
   const taxBenefit = graph.nodes.find((node) => node.group === "tax-benefit");
   const equity = graph.nodes.find((node) => node.id === "equity");
+  const subsidiary = graph.nodes.find((node) => node.id === "subsidiary");
   const noncontrolling = graph.nodes.find((node) => node.id === "noncontrolling");
   const discontinued = graph.nodes.find((node) => node.id === "discontinued");
   const costParent = graph.nodes.find((node) => node.group === "opex");
@@ -500,6 +516,7 @@ export function layoutStatementFlow(graph: StatementFlow) {
   for (const source of [
     taxBenefit,
     equity?.tone === "profit" ? equity : undefined,
+    subsidiary?.tone === "profit" ? subsidiary : undefined,
     discontinued?.tone === "profit" ? discontinued : undefined,
     noncontrolling?.tone === "profit" ? noncontrolling : undefined
   ]) {
@@ -511,6 +528,7 @@ export function layoutStatementFlow(graph: StatementFlow) {
   const netGainHeight =
     (taxBenefit?.amount ?? 0) * scale +
     (equity?.tone === "profit" ? equity.amount * scale : 0) +
+    (subsidiary?.tone === "profit" ? subsidiary.amount * scale : 0) +
     (discontinued?.tone === "profit" ? discontinued.amount * scale : 0) +
     (noncontrolling?.tone === "profit" ? noncontrolling.amount * scale : 0);
   const operatingY = Math.max(
@@ -558,24 +576,35 @@ export function layoutStatementFlow(graph: StatementFlow) {
     equity?.tone === "profit"
       ? netSourceYs.get("equity")!
       : taxY + (tax?.amount ?? 0) * scale + 110;
-  const discontinuedY =
-    discontinued?.tone === "profit"
-      ? netSourceYs.get("discontinued")!
+  const subsidiaryY =
+    subsidiary?.tone === "profit"
+      ? netSourceYs.get("subsidiary")!
       : (equity?.tone === "expense"
           ? equityY + equity.amount * scale
           : taxY + (tax?.amount ?? 0) * scale) + 110;
+  const discontinuedY =
+    discontinued?.tone === "profit"
+      ? netSourceYs.get("discontinued")!
+      : (subsidiary?.tone === "expense"
+          ? subsidiaryY + subsidiary.amount * scale
+          : equity?.tone === "expense"
+            ? equityY + equity.amount * scale
+            : taxY + (tax?.amount ?? 0) * scale) + 110;
   const noncontrollingY =
     noncontrolling?.tone === "profit"
       ? netSourceYs.get("noncontrolling")!
       : (discontinued?.tone === "expense"
           ? discontinuedY + discontinued.amount * scale
-          : equity?.tone === "expense"
-            ? equityY + equity.amount * scale
-            : taxY + (tax?.amount ?? 0) * scale) + 110;
+          : subsidiary?.tone === "expense"
+            ? subsidiaryY + subsidiary.amount * scale
+            : equity?.tone === "expense"
+              ? equityY + equity.amount * scale
+              : taxY + (tax?.amount ?? 0) * scale) + 110;
   let detailY = Math.max(
     operatingExpenseY + 5,
     tax ? taxY + tax.amount * scale + 115 : 0,
     equity?.tone === "expense" ? equityY + equity.amount * scale + 115 : 0,
+    subsidiary?.tone === "expense" ? subsidiaryY + subsidiary.amount * scale + 115 : 0,
     discontinued?.tone === "expense" ? discontinuedY + discontinued.amount * scale + 115 : 0,
     noncontrolling?.tone === "expense" ? noncontrollingY + noncontrolling.amount * scale + 115 : 0
   );
@@ -608,6 +637,9 @@ export function layoutStatementFlow(graph: StatementFlow) {
     } else if (node.group === "equity") {
       x = node.tone === "profit" ? mainX.pretax : mainX.net;
       y = equityY;
+    } else if (node.group === "subsidiary") {
+      x = node.tone === "profit" ? mainX.pretax : mainX.net;
+      y = subsidiaryY;
     } else if (node.group === "discontinued") {
       x = node.tone === "profit" ? mainX.pretax : mainX.net;
       y = discontinuedY;
@@ -719,7 +751,7 @@ export function layoutStatementFlow(graph: StatementFlow) {
         (node) =>
           node.group === "detail" ||
           node.group === "tax" ||
-          (["equity", "discontinued", "noncontrolling"].includes(node.group) &&
+          (["equity", "subsidiary", "discontinued", "noncontrolling"].includes(node.group) &&
             node.tone === "expense")
       )
       .map(

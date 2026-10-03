@@ -172,6 +172,27 @@ export function readStatementRows(
       }
     }
   }
+  if (
+    anchor < 0 &&
+    m.revenue !== undefined &&
+    revenueSource?.sourceUrl === filing.sourceUrl &&
+    revenueSource.filedAt === filing.filedAt &&
+    REVENUE_TOTALS.includes(revenueSource.tag) &&
+    !period.coverage.segments
+  ) {
+    // Some filings use a different standard revenue concept in the primary
+    // statement than Company Facts. Require one exact same-amount source row;
+    // its entire accounting chain must still pass before its provenance changes.
+    const matches = lines.flatMap((l, i) =>
+      l &&
+      REVENUE_TOTALS.includes(l.fact.tag) &&
+      l.fact.value === m.revenue &&
+      /^(?:total\s+)?(?:net\s+)?(?:revenues?|sales)$/i.test(l.label)
+        ? [i]
+        : []
+    );
+    if (matches.length === 1) anchor = matches[0];
+  }
   if (anchor < 0) return;
   const tolerance = accountingTolerance(lines[anchor]!.fact.value);
   const same = (a: number, b: number) => Math.abs(a - b) <= tolerance;
@@ -209,6 +230,7 @@ export function readStatementRows(
   let parent: Line | undefined;
   let consolidated: Line | undefined;
   const equity: Line[] = [];
+  const subsidiaries: Line[] = [];
   const discontinued: Line[] = [];
   const minority: Line[] = [];
   for (let i = iT + 1; i < lines.length && !parent; i++) {
@@ -220,7 +242,14 @@ export function readStatementRows(
     } else if (item && EQUITY_AFTER_TAX.has(tag) && !minority.length) {
       equity.push(item);
       running += item.fact.value;
-    } else if (item && DISCONTINUED.test(tag) && !minority.length) {
+    } else if (item && tag === "us-gaap:IncomeLossFromSubsidiariesNetOfTax" && !minority.length) {
+      subsidiaries.push(item);
+      running += item.fact.value;
+    } else if (
+      item &&
+      DISCONTINUED.test(tag) &&
+      (!minority.length || tag.endsWith("AttributableToReportingEntity"))
+    ) {
       discontinued.push(item);
       running += item.fact.value;
     } else if (item && MINORITY.test(tag)) {
@@ -228,9 +257,9 @@ export function readStatementRows(
       running -= item.fact.value;
     } else if (
       item &&
-      !minority.length &&
       same(item.fact.value, running) &&
-      (CONSOLIDATED_NET.has(tag) || CONTINUING.has(tag) || !/^(us-gaap|ifrs-full):/.test(tag))
+      (CONTINUING.has(tag) ||
+        (!minority.length && (CONSOLIDATED_NET.has(tag) || !/^(us-gaap|ifrs-full):/.test(tag))))
     ) {
       // A reported subtotal (issuer extensions only when their amount is exact).
       if (CONSOLIDATED_NET.has(tag)) consolidated = item;
@@ -282,7 +311,7 @@ export function readStatementRows(
     };
     return true;
   };
-  if (iR !== anchor || m.revenue === undefined) {
+  if (iR !== anchor || m.revenue === undefined || revenue.fact.tag !== revenueSource?.tag) {
     metrics.revenue = revenueValue;
     sources.revenue = reported(revenue);
   }
@@ -291,6 +320,11 @@ export function readStatementRows(
   if (
     !assignAll("noncontrollingInterestIncome", minority, "Noncontrolling interests") ||
     !assignAll("equityMethodIncome", equity, "After-tax equity-method income") ||
+    !assignAll(
+      "afterTaxSubsidiaryIncome",
+      subsidiaries,
+      "After-tax income from unconsolidated subsidiaries"
+    ) ||
     !assignAll("discontinuedOperationsIncome", discontinued, "Discontinued operations")
   )
     return;
@@ -460,7 +494,12 @@ export function applyStatementReading(period: PeriodV2, reading: StatementReadin
     metricSources: { ...period.metricSources, ...reading.sources },
     coverage: { ...period.coverage }
   };
-  if (reading.metrics.revenue !== undefined && reading.metrics.revenue !== period.metrics.revenue) {
+  const revenueAmountChanged =
+    reading.metrics.revenue !== undefined && reading.metrics.revenue !== period.metrics.revenue;
+  const revenueConceptChanged =
+    reading.sources.revenue !== undefined &&
+    reading.sources.revenue.tag !== period.metricSources.revenue?.tag;
+  if (revenueAmountChanged || revenueConceptChanged) {
     // A source-proven consolidated revenue total supersedes a generic partition
     // of a sub-line (for example net sales). Re-read all business branches against
     // the new top line; never carry the old split or its derived margin across.
@@ -472,10 +511,12 @@ export function applyStatementReading(period: PeriodV2, reading: StatementReadin
       delete next.revenueAdjustments;
       next.coverage.segments = false;
     }
-    for (const [metric, tag] of [
-      ["grossProfit", "revenue - costOfRevenue"],
-      ["operatingExpenses", "grossProfit - operatingIncome"]
-    ] as const) {
+    for (const [metric, tag] of revenueAmountChanged
+      ? ([
+          ["grossProfit", "revenue - costOfRevenue"],
+          ["operatingExpenses", "grossProfit - operatingIncome"]
+        ] as const)
+      : []) {
       if (period.metricSources[metric]?.tag === tag && reading.metrics[metric] === undefined) {
         delete next.metrics[metric];
         delete next.metricSources[metric];
