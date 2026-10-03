@@ -49,7 +49,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.15";
+const ENGINE_VERSION = "finance-v2.16";
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -454,7 +454,7 @@ export class FinanceStore {
       try {
         const base = await this.company(identity);
         if (!base) throw new Error("No validated company baseline.");
-        const cacheKey = `generic:v4:${identity.cik}:${filing.accession}`;
+        const cacheKey = `generic:v5:${identity.cik}:${filing.accession}`;
         let periods = await this.ctx.storage.get<PeriodV2[]>(cacheKey);
         if (!periods)
           periods = readGenericFiling(

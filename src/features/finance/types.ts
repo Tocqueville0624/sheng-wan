@@ -109,7 +109,7 @@ export type FinancialPeriod = {
   segmentSourceUrl?: string;
   segmentBasis?: string;
   businessBreakdownSource?: {
-    method: "statement-revenue-rows" | "reviewed-segment-table";
+    method: "statement-revenue-rows" | "statement-revenue-matrix" | "reviewed-segment-table";
     ruleId?: string;
     tableIndex: number;
     /** When the segment table omits a total, the primary consolidated table supplies it. */
@@ -120,6 +120,10 @@ export type FinancialPeriod = {
     revenue: number;
     revenueDecimals: number;
     axis?: string;
+    /** Fixed scope shared by the matrix total and every business row. */
+    qualifiers?: Record<string, string>;
+    /** Logical table column, counting colspans; cross-axis interior cells are excluded. */
+    columnIndex?: number;
     totalLabel: string;
     /** Explicit table subtotals omitted so their child rows are counted only once. */
     omittedSubtotals: {

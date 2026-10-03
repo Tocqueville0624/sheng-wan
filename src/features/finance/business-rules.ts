@@ -19,6 +19,35 @@ export type BusinessRule = {
 };
 
 export const businessRules: BusinessRule[] = [
+  ...["Revenue", "Net revenue"].map<BusinessRule>((totalLabel) => ({
+    id: `amat-semiconductor-services-${totalLabel === "Revenue" ? "other" : "corporate"}-v1`,
+    cik: "0000006951",
+    totalTag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    totalLabel,
+    layout: "columns",
+    basis:
+      "Reported revenue from Semiconductor Systems, Applied Global Services and the separately reported Other column. Other is a source value, not a residual.",
+    branches: [
+      ...[
+        ["Semiconductor Systems", "amat:SemiconductorSystemsSegmentMember"],
+        ["Applied Global Services", "amat:AppliedGlobalServicesSegmentMember"]
+      ].map(([label, member]) => ({
+        label,
+        rowLabel: totalLabel,
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": member
+        }
+      })),
+      {
+        label: totalLabel === "Revenue" ? "Other" : "Corporate and Other",
+        rowLabel: totalLabel,
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: { "srt:ConsolidationItemsAxis": "amat:CorporateAndReconcilingItemsMember" }
+      }
+    ]
+  })),
   {
     id: "wmt-operating-segments-v1",
     cik: "0000104169",
@@ -77,6 +106,21 @@ export const businessRules: BusinessRule[] = [
 export const sameDimensions = (a: Record<string, string>, b: Record<string, string>) =>
   JSON.stringify(Object.entries(a).sort(([x], [y]) => x.localeCompare(y))) ===
   JSON.stringify(Object.entries(b).sort(([x], [y]) => x.localeCompare(y)));
+
+export const businessAxes = [
+  "srt:ProductOrServiceAxis",
+  "us-gaap:ProductOrServiceAxis",
+  "us-gaap:StatementBusinessSegmentsAxis"
+] as const;
+
+/** A scope qualifier is not another partition. Only this standard, explicitly
+ * consolidated operating-segment scope may accompany a generic business axis.
+ */
+export const validBusinessQualifiers = (dimensions: Record<string, string>) =>
+  !Object.keys(dimensions).length ||
+  sameDimensions(dimensions, {
+    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+  });
 
 export const sourceLabel = (text: string) =>
   text

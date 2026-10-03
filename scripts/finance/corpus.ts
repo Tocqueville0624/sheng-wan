@@ -109,6 +109,7 @@ if (selected)
 const parserFiles = [
   "generic-import",
   "business-v2",
+  "business-matrix",
   "statement-v2",
   "facts-v2",
   "inline-v2",

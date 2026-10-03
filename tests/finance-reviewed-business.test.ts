@@ -53,6 +53,41 @@ const enrich = (source = html, period = basic) =>
   enrichReviewedBusinessPeriods(source, identity, filing, [period], parseInlineXbrl(source));
 
 describe("reviewed vertical business tables", () => {
+  it("includes AMAT's reported Other revenue alongside the two operating segments", () => {
+    const f = reviewedFixture("AMAT");
+    expect(f.period.segments?.map((s) => [s.label, s.revenue])).toEqual([
+      ["Semiconductor Systems", 7040e6],
+      ["Applied Global Services", 1781e6],
+      ["Other", 294e6]
+    ]);
+    expect(f.period.metrics.revenue).toBe(9115e6);
+    expect(flowPeriod(f.period)).toBeDefined();
+    expect(() => validateV2(f.company)).not.toThrow();
+    const absent = f.html.replaceAll('contextRef="c-275"', 'contextRef="missing"');
+    expect(
+      enrichReviewedBusinessPeriods(
+        absent,
+        f.identity,
+        f.filing,
+        [f.basic],
+        parseInlineXbrl(absent)
+      )
+    ).toEqual([]);
+  });
+  it("retains the annual AMAT Corporate and Other classification from its own source", () => {
+    const f = reviewedFixture("AMATAnnual");
+    expect(f.period.segments?.map((s) => [s.label, s.revenue])).toEqual([
+      ["Semiconductor Systems", 20798e6],
+      ["Applied Global Services", 6385e6],
+      ["Corporate and Other", 1185e6]
+    ]);
+    expect(f.period.metrics.revenue).toBe(28368e6);
+    expect(f.period.businessBreakdownSource?.ruleId).toBe(
+      "amat-semiconductor-services-corporate-v1"
+    );
+    expect(flowPeriod(f.period)).toBeDefined();
+    expect(() => validateV2(f.company)).not.toThrow();
+  });
   it("reconciles JNJ's two source columns to its separately reported consolidated revenue", () => {
     const f = reviewedFixture("JNJ");
     expect(f.period.segments?.map((s) => [s.label, s.revenue, s.grossProfit])).toEqual([

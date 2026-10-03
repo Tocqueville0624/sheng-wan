@@ -6,6 +6,31 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  AMATAnnual: {
+    ticker: "AMAT",
+    kind: "annual",
+    fixture: "amat-2025-business-statement.html",
+    name: "Applied Materials",
+    cik: "0000006951",
+    accession: "0001628280-25-056742",
+    filedAt: "2025-12-12",
+    startDate: "2024-10-28",
+    endDate: "2025-10-26",
+    fiscalYear: 2025,
+    sector: "Information Technology",
+    document: "amat-20251026.htm"
+  },
+  AMAT: {
+    name: "Applied Materials",
+    cik: "0000006951",
+    accession: "0001628280-26-058235",
+    filedAt: "2026-08-20",
+    startDate: "2026-04-27",
+    endDate: "2026-07-26",
+    fiscalYear: 2026,
+    sector: "Information Technology",
+    document: "amat-20260726.htm"
+  },
   WMT: {
     name: "Walmart",
     cik: "0000104169",
@@ -27,6 +52,17 @@ const sources = {
     fiscalYear: 2026,
     sector: "Health Care",
     document: "jnj-20260628.htm"
+  },
+  APD: {
+    name: "Air Products and Chemicals",
+    cik: "0000002969",
+    accession: "0000002969-26-000036",
+    filedAt: "2026-07-30",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Materials",
+    document: "apd-20260630.htm"
   }
 } as const;
 
@@ -36,8 +72,10 @@ const sources = {
  */
 export function reviewedFixture(ticker: keyof typeof sources) {
   const source = sources[ticker];
+  const kind = "kind" in source ? source.kind : "quarterly";
+  const form = kind === "annual" ? "10-K" : "10-Q";
   const identity: CatalogCompany = {
-    ticker,
+    ticker: "ticker" in source ? source.ticker : ticker,
     name: source.name,
     cik: source.cik,
     sector: source.sector,
@@ -51,10 +89,13 @@ export function reviewedFixture(ticker: keyof typeof sources) {
     primaryDocument: source.document,
     sourceUrl: directoryUrl + source.document,
     directoryUrl,
-    form: "10-Q"
+    form
   };
   const html = readFileSync(
-    new URL(`./${ticker.toLowerCase()}-2026-business-statement.html`, import.meta.url),
+    new URL(
+      `./${"fixture" in source ? source.fixture : `${ticker.toLowerCase()}-2026-business-statement.html`}`,
+      import.meta.url
+    ),
     "utf8"
   );
   const parsed = parseInlineXbrl(html);
@@ -82,22 +123,22 @@ export function reviewedFixture(ticker: keyof typeof sources) {
             end: source.endDate,
             val: f.value,
             accn: source.accession,
-            form: "10-Q",
+            form,
             filed: source.filedAt,
             fy: source.fiscalYear,
-            fp: "Q2"
+            fp: kind === "annual" ? "FY" : ticker === "APD" || ticker === "AMAT" ? "Q3" : "Q2"
           }
         ]
       }
     };
   }
   const company = extractFactsV2(facts, identity, [filing]);
-  const basic = company.quarterly.find(
+  const basic = company[kind].find(
     (p) => p.startDate === source.startDate && p.endDate === source.endDate
   );
   if (!basic) throw new Error(`No source-derived ${ticker} fixture period.`);
   const period =
     readGenericFiling(html, identity, filing, company).find((p) => p.id === basic.id) ?? basic;
-  company.quarterly = [period];
+  company[kind] = [period];
   return { identity, filing, html, basic, period, company };
 }

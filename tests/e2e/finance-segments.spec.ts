@@ -10,15 +10,19 @@ const reported = {
   TSLA: [20006e6, 146e6, 364e6, 3139e6, 4581e6],
   IBM: [7927e6, 9049e6, 186e6],
   WMT: [125939e6, 35624e6, 26367e6, 7e6],
-  JNJ: [16384e6, 8926e6]
+  JNJ: [16384e6, 8926e6],
+  APD: [1670.9e6, 1387e6, 103.1e6],
+  AMAT: [7040e6, 1781e6, 294e6]
 };
 
-for (const ticker of ["MCD", "TSLA", "IBM", "WMT", "JNJ"] as const) {
+for (const ticker of ["MCD", "TSLA", "IBM", "WMT", "JNJ", "APD", "AMAT"] as const) {
   test(`${ticker}: imported business sources retain their amounts, proportions and export provenance`, async ({
     page
   }, info) => {
     const { company, period } =
-      ticker === "WMT" || ticker === "JNJ" ? reviewedFixture(ticker) : businessFixture(ticker);
+      ticker === "WMT" || ticker === "JNJ" || ticker === "APD" || ticker === "AMAT"
+        ? reviewedFixture(ticker)
+        : businessFixture(ticker);
     expect(period.segments!.map((segment) => segment.revenue)).toEqual(reported[ticker]);
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
@@ -31,7 +35,7 @@ for (const ticker of ["MCD", "TSLA", "IBM", "WMT", "JNJ"] as const) {
     const history = page.locator(".history-chart");
     await expect(history).toBeVisible();
     const chart = page.locator(".flow-chart");
-    if (ticker !== "IBM") expect(period.coverage.sankey).toBe(true);
+    if (ticker !== "IBM" && ticker !== "APD") expect(period.coverage.sankey).toBe(true);
     if (period.coverage.sankey) {
       await expect(chart).toBeVisible();
       await expect(chart.locator('[data-flow-bar^="segment-"]')).toHaveCount(

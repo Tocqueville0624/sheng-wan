@@ -8,7 +8,11 @@ import type {
 } from "../../src/features/finance/types";
 import type { CompanyV2, PeriodV2, MetricSource } from "../../src/features/finance/v2-types";
 import { validatePeriod, validateSegmentGrossProfits, roundingTolerance } from "./validate";
-import { businessRules, sameDimensions } from "../../src/features/finance/business-rules";
+import {
+  businessRules,
+  sameDimensions,
+  validBusinessQualifiers
+} from "../../src/features/finance/business-rules";
 
 /** Standard cost tags can describe only one activity (for example franchise rent).
  * A generic revenue-minus-cost residual is not a reported consolidated gross profit.
@@ -130,7 +134,9 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
   const halfUnit = (decimals: number) =>
     Number.isInteger(decimals) && decimals >= -18 && decimals <= 18 ? 0.5 * 10 ** -decimals : NaN;
   if (
-    !["statement-revenue-rows", "reviewed-segment-table"].includes(proof.method) ||
+    !["statement-revenue-rows", "statement-revenue-matrix", "reviewed-segment-table"].includes(
+      proof.method
+    ) ||
     !Number.isInteger(proof.tableIndex) ||
     proof.tableIndex < 0 ||
     proof.sourceUrl !== period.sourceUrl ||
@@ -147,6 +153,22 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
       ].includes(proof.axis))
   )
     return;
+  const matrix = proof.method === "statement-revenue-matrix";
+  if (
+    matrix &&
+    (!proof.axis ||
+      !proof.qualifiers ||
+      !validBusinessQualifiers(proof.qualifiers) ||
+      !Number.isInteger(proof.columnIndex) ||
+      proof.columnIndex! < 0 ||
+      proof.columnIndex! > 1000 ||
+      proof.totalTableIndex !== undefined ||
+      proof.ruleId ||
+      proof.omittedSubtotals.length ||
+      period.segments!.length < 2 ||
+      period.segments!.length > 20)
+  )
+    return;
   const keys = new Set<string>();
   for (const segment of period.segments!) {
     const source = segment.revenueSource;
@@ -157,11 +179,19 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
         source.tag === reviewed.tag &&
         source.rowLabel === reviewed.rowLabel &&
         sameDimensions(source.dimensions, reviewed.dimensions)
-      : !!source?.dimensions &&
-        Object.keys(source.dimensions).length === (proof.axis ? 1 : 0) &&
-        Object.entries(source.dimensions).every(
-          ([axis, member]) => axis === proof.axis && qname.test(member)
-        );
+      : matrix
+        ? !!source?.dimensions &&
+          source.tag === proof.revenueTag &&
+          qname.test(source.dimensions[proof.axis!] ?? "") &&
+          sameDimensions(source.dimensions, {
+            ...proof.qualifiers,
+            [proof.axis!]: source.dimensions[proof.axis!]
+          })
+        : !!source?.dimensions &&
+          Object.keys(source.dimensions).length === (proof.axis ? 1 : 0) &&
+          Object.entries(source.dimensions).every(
+            ([axis, member]) => axis === proof.axis && qname.test(member)
+          );
     if (
       !source ||
       source.sourceUrl !== period.sourceUrl ||
