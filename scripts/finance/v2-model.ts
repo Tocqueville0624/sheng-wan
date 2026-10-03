@@ -691,6 +691,16 @@ export function mergeV2(previous: CompanyV2 | undefined, incoming: CompanyV2): C
   merged.latestPeriod = [...merged.annual, ...merged.quarterly]
     .sort((a, b) => a.endDate.localeCompare(b.endDate))
     .at(-1)!.label;
+  const latestEnd = [...merged.annual, ...merged.quarterly]
+    .map((p) => p.endDate)
+    .sort()
+    .at(-1)!;
+  merged.warnings = merged.warnings.filter((warning) => {
+    const lag = warning.match(
+      /^SEC lists a report ending (\d{4}-\d{2}-\d{2}), but supported standard facts currently reach only/
+    );
+    return !lag || lag[1] > latestEnd;
+  });
   validateV2(merged);
   return merged;
 }

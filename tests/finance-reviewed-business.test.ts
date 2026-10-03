@@ -53,6 +53,56 @@ const enrich = (source = html, period = basic) =>
   enrichReviewedBusinessPeriods(source, identity, filing, [period], parseInlineXbrl(source));
 
 describe("reviewed vertical business tables", () => {
+  it.each(["ABT", "ABTAnnual"] as const)(
+    "reads only %s revenue from mixed revenue/cost/profit rows",
+    (ticker) => {
+      const f = reviewedFixture(ticker);
+      const annual = ticker === "ABTAnnual";
+      expect(f.period.segments?.map((s) => [s.label, s.revenue])).toEqual(
+        annual
+          ? [
+              ["Established Pharmaceuticals", 5536e6],
+              ["Nutritionals", 8451e6],
+              ["Diagnostics", 8937e6],
+              ["Medical Devices", 21387e6],
+              ["Other", 17e6]
+            ]
+          : [
+              ["Established Pharmaceuticals", 1499e6],
+              ["Nutritional Products", 2144e6],
+              ["Diagnostic Products", 3092e6],
+              ["Medical Devices", 5853e6],
+              ["Other", 5e6]
+            ]
+      );
+      expect(f.period.segments?.reduce((sum, s) => sum + s.revenue, 0)).toBe(
+        f.period.metrics.revenue
+      );
+      expect(f.period.businessBreakdownSource?.ruleId).toBe(
+        `abt-four-businesses-${annual ? "annual" : "quarterly"}-v1`
+      );
+      expect(f.period.businessBreakdownSource?.tableIndex).toBe(1);
+      expect(f.period.revenueAdjustments).toBeUndefined();
+      expect(f.period.segments?.every((s) => s.grossProfit === undefined)).toBe(true);
+      for (const source of [
+        f.html.replaceAll("Established Pharmaceuticals", "Renamed business"),
+        f.html.replaceAll("us-gaap:CorporateNonSegmentMember", "us-gaap:OperatingSegmentsMember"),
+        f.html.replaceAll("abt:MedicalDevicesMember", "abt:UnknownBusinessMember")
+      ])
+        expect(
+          enrichReviewedBusinessPeriods(
+            source,
+            f.identity,
+            f.filing,
+            [f.basic],
+            parseInlineXbrl(source)
+          )
+        ).toEqual([]);
+      const changed = structuredClone(f.period);
+      changed.segments![4].revenueSource!.dimensions = {};
+      expect(businessPeriod(changed)).toBeUndefined();
+    }
+  );
   it.each(["MMM", "MMMAnnual"] as const)(
     "preserves %s corporate revenue and after-tax subsidiary income",
     (ticker) => {

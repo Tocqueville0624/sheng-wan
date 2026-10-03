@@ -108,6 +108,15 @@ export function enrichReviewedBusinessPeriods(
             section = sourceLabel(nonempty[0]);
           const seen = new Map<string, XbrlFact | undefined>();
           for (const [opening] of row.matchAll(/<ix:nonFraction\b[^>]*>/gi)) {
+            // A horizontal segment row may also contain costs and income.
+            // Only the reviewed revenue QName participates in its partition.
+            const tag = attribute(opening, "name");
+            if (
+              rule.layout === "rows" &&
+              tag !== rule.totalTag &&
+              !rule.branches.some((b) => b.tag === tag)
+            )
+              continue;
             const ref = `${attribute(opening, "name")}|${attribute(opening, "contextRef")}`;
             if (refs.has(ref)) seen.set(ref, refs.get(ref));
           }

@@ -7,6 +7,8 @@ import type { CompanyV2 } from "../src/features/finance/v2-types";
 import imported from "./fixtures/finance/imported-companies.json";
 import history from "../src/data/generated/finance-history.json";
 import { businessFixture } from "./fixtures/finance/business-fixtures";
+import { reviewedFixture } from "./fixtures/finance/reviewed-fixtures";
+import { parseInlineXbrl } from "../scripts/finance/ixbrl";
 
 // A serialized, persistent storage contract. Parsing tests use separate fixtures;
 // queue tests never contact SEC or alter the production snapshots.
@@ -162,6 +164,103 @@ afterEach(() => {
 });
 
 describe("persistent public finance queue", () => {
+  it.each([false, true])(
+    "imports source-current Abbott business revenue when Company Facts is lagging (empty: %s)",
+    async (empty) => {
+      vi.useFakeTimers();
+      vi.setSystemTime(new Date("2026-10-03T12:00:00Z"));
+      const { store, storage } = await create();
+      const annual = reviewedFixture("ABTAnnual");
+      const quarter = reviewedFixture("ABT");
+      const standards = Object.fromEntries(
+        parseInlineXbrl(annual.html)
+          .facts.filter(
+            (f) =>
+              f.tag.startsWith("us-gaap:") &&
+              f.context.start === "2025-01-01" &&
+              f.context.end === "2025-12-31" &&
+              !Object.keys(f.context.dimensions).length
+          )
+          .map((f) => [
+            f.tag.slice(8),
+            {
+              label: f.tag,
+              units: {
+                USD: [
+                  {
+                    start: "2025-01-01",
+                    end: "2025-12-31",
+                    val: f.value,
+                    accn: annual.filing.accession,
+                    fy: 2025,
+                    fp: "FY",
+                    form: "10-K",
+                    filed: annual.filing.filedAt
+                  }
+                ]
+              }
+            }
+          ])
+      );
+      const sources = [quarter, annual];
+      const fetcher = vi.fn(async (url: string) => {
+        if (url === "https://data.sec.gov/submissions/CIK0000001800.json")
+          return Response.json({
+            cik: "0000001800",
+            tickers: ["ABT"],
+            sic: "2834",
+            filings: {
+              recent: {
+                accessionNumber: sources.map((s) => s.filing.accession),
+                filingDate: sources.map((s) => s.filing.filedAt),
+                reportDate: sources.map((s) => s.filing.reportDate),
+                form: sources.map((s) => s.filing.form),
+                primaryDocument: sources.map((s) => s.filing.primaryDocument)
+              },
+              files: []
+            }
+          });
+        if (url === "https://data.sec.gov/api/xbrl/companyfacts/CIK0000001800.json")
+          return Response.json({
+            cik: 1800,
+            entityName: "Abbott",
+            facts: { "us-gaap": empty ? {} : standards }
+          });
+        const source = sources.find((s) => s.filing.sourceUrl === url);
+        if (source) return new Response(source.html);
+        throw new Error(`Unexpected Abbott fixture request: ${url}`);
+      });
+      vi.stubGlobal("fetch", fetcher);
+      const job = await jobOf(await request(store, "ABT"));
+      await nextQueueStep(store);
+      await nextQueueStep(store);
+      const before = (await read(store, "/companies/ABT")) as { company: CompanyV2 | null };
+      if (empty) expect(before.company).toBeNull();
+      else expect(before.company?.quarterly).toEqual([]);
+      for (let i = 0; i < 5; i++) await nextQueueStep(store);
+      const result = (await read(store, "/companies/ABT")) as { company: CompanyV2 };
+      const q = result.company.quarterly[0];
+      expect(q.id).toBe("2026-Q2");
+      expect(q.coverage).toEqual({ basics: true, sankey: true, segments: true });
+      expect(q.metrics.revenue).toBe(12593e6);
+      expect(q.segments?.map((s) => s.revenue)).toEqual([1499e6, 2144e6, 3092e6, 5853e6, 5e6]);
+      expect(result.company.annual[0].coverage).toEqual({
+        basics: true,
+        sankey: true,
+        segments: true
+      });
+      expect(result.company.warnings.some((w) => w.startsWith("SEC lists a report ending"))).toBe(
+        false
+      );
+      expect(await storage.get(`generic:v9:0000001800:${quarter.filing.accession}`)).toMatchObject([
+        { id: "2026-Q2", coverage: { segments: true } }
+      ]);
+      expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
+      expect((await read(store, `/jobs/${job.id}`)) as FinanceJob).toMatchObject({
+        state: "partial"
+      });
+    }
+  );
   it("enriches an unbundled MCD filing and retains its reported flow through an engine-upgrade refresh", async () => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-09-26T12:00:00Z"));
@@ -171,7 +270,7 @@ describe("persistent public finance queue", () => {
     vi.stubGlobal("fetch", fetcher);
     const first = await jobOf(await request(store, "MCD"));
     expect(await storage.get(`task:${first.id}`)).toMatchObject({
-      engineVersion: "finance-v2.19"
+      engineVersion: "finance-v2.20"
     });
     await nextQueueStep(store);
     await nextQueueStep(store);
@@ -193,7 +292,7 @@ describe("persistent public finance queue", () => {
     expect(period.revenueAdjustments).toEqual([
       { id: "source-rounding", label: "Source rounding", revenue: -1e6 }
     ]);
-    expect(await storage.get(`generic:v8:0000063908:${mcdAccession}`)).toMatchObject([
+    expect(await storage.get(`generic:v9:0000063908:${mcdAccession}`)).toMatchObject([
       { coverage: { segments: true, sankey: true } }
     ]);
     expect(await storage.get(`basic-periods:${first.id}`)).toBeUndefined();

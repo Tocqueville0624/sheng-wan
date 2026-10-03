@@ -6,6 +6,7 @@ import type { SecFiling } from "./sec-shared";
 import { enrichStatementPeriods } from "./statement-v2";
 import { enrichReviewedBusinessPeriods } from "./reviewed-business";
 import { enrichMatrixBusinessPeriods } from "./business-matrix";
+import { currentFilingCandidates } from "./current-filing";
 
 /** Generic (unreviewed-issuer) imports share these steps between the Worker and CLI audits. */
 export const GENERIC_FILING_LIMIT = 30;
@@ -23,7 +24,9 @@ export function genericCandidates(base: CompanyV2, fresh: PeriodV2[] = []) {
   return [...periods.values()];
 }
 
-/** Newest filings whose periods still lack a profit flow or business breakdown. */
+/** Missing capabilities plus the newest annual/quarterly sources, even when
+ * Company Facts has not indexed their current periods or amendments yet.
+ */
 export function genericFilingTodo(
   base: CompanyV2 | undefined,
   fresh: PeriodV2[] | undefined,
@@ -36,9 +39,29 @@ export function genericFilingTodo(
       .filter((p) => (!p.coverage.sankey || !p.coverage.segments) && p.displayCurrency === "USD")
       .map((p) => p.accession)
   );
+  const eligible = filings.filter((f) => /^(10-K|10-Q)(\/A)?$/.test(f.form));
+  for (const form of ["10-K", "10-Q"]) {
+    const latest = eligible
+      .filter((f) => f.form.startsWith(form))
+      .sort(
+        (a, b) => b.reportDate.localeCompare(a.reportDate) || b.filedAt.localeCompare(a.filedAt)
+      )[0];
+    if (
+      latest &&
+      !candidates.some(
+        (p) =>
+          p.endDate === latest.reportDate &&
+          p.accession === latest.accession &&
+          p.filedAt === latest.filedAt &&
+          p.coverage.sankey &&
+          p.coverage.segments
+      )
+    )
+      missing.add(latest.accession);
+  }
   return filings
     .filter((f) => /^(10-K|10-Q)(\/A)?$/.test(f.form) && missing.has(f.accession))
-    .sort((a, b) => b.reportDate.localeCompare(a.reportDate))
+    .sort((a, b) => b.reportDate.localeCompare(a.reportDate) || b.filedAt.localeCompare(a.filedAt))
     .slice(0, limit);
 }
 
@@ -51,11 +74,13 @@ export function readGenericFiling(
   html: string,
   identity: CatalogCompany,
   filing: SecFiling,
-  base: CompanyV2,
-  fresh?: PeriodV2[]
+  base: CompanyV2 | undefined,
+  fresh?: PeriodV2[],
+  industrySic?: string
 ): PeriodV2[] {
-  const candidates = genericCandidates(base, fresh);
+  const candidates = base ? genericCandidates(base, fresh) : [...(fresh ?? [])];
   const parsed = parseInlineXbrl(html);
+  candidates.push(...currentFilingCandidates(identity, filing, parsed, candidates, industrySic));
   const updated = new Map(candidates.map((p) => [p.id, p]));
   const changes = new Map<string, PeriodV2>();
   const apply = (periods: PeriodV2[]) =>

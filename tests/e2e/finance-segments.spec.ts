@@ -6,6 +6,8 @@ import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
 const reported = {
+  ABT: [1499e6, 2144e6, 3092e6, 5853e6, 5e6],
+  ABTAnnual: [5536e6, 8451e6, 8937e6, 21387e6, 17e6],
   MCD: [4393e6, 2525e6, 182e6],
   MMM: [3091e6, 2066e6, 1247e6, 96e6],
   MMMAnnual: [11384e6, 8272e6, 4920e6, 372e6],
@@ -22,6 +24,8 @@ const reported = {
 };
 
 for (const ticker of [
+  "ABT",
+  "ABTAnnual",
   "MCD",
   "MMM",
   "MMMAnnual",
@@ -40,6 +44,8 @@ for (const ticker of [
     page
   }, info) => {
     const { company, period } =
+      ticker === "ABT" ||
+      ticker === "ABTAnnual" ||
       ticker === "WMT" ||
       ticker === "MMM" ||
       ticker === "MMMAnnual" ||

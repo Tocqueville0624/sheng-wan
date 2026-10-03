@@ -107,6 +107,7 @@ if (selected)
     if (!corpus.issuers.some((c) => c.tickers.includes(ticker)))
       throw new Error(`Unknown corpus ticker: ${ticker}`);
 const parserFiles = [
+  "current-filing",
   "generic-import",
   "business-v2",
   "business-matrix",

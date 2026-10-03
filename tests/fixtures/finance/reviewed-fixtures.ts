@@ -6,6 +6,31 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  ABT: {
+    name: "Abbott",
+    cik: "0000001800",
+    accession: "0001628280-26-050134",
+    filedAt: "2026-07-28",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Health Care",
+    document: "abt-20260630.htm"
+  },
+  ABTAnnual: {
+    ticker: "ABT",
+    kind: "annual",
+    fixture: "abt-2025-business-statement.html",
+    name: "Abbott",
+    cik: "0000001800",
+    accession: "0001628280-26-010185",
+    filedAt: "2026-02-20",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    sector: "Health Care",
+    document: "abt-20251231.htm"
+  },
   MMM: {
     name: "3M",
     cik: "0000066740",

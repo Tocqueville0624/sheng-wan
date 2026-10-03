@@ -19,6 +19,40 @@ export type BusinessRule = {
 };
 
 export const businessRules: BusinessRule[] = [
+  ...["quarterly", "annual"].map<BusinessRule>((kind) => ({
+    id: `abt-four-businesses-${kind}-v1`,
+    cik: "0000001800",
+    totalTag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    totalLabel: "Net sales",
+    layout: "rows",
+    basis:
+      "Reported net sales to external customers by four operating businesses, plus separately reported Other revenue. Other is the filing's corporate scope, not a balancing residual.",
+    branches: [
+      ...[
+        ["Established Pharmaceuticals", "abt:EstablishedPharmaceuticalProductsMember"],
+        [
+          kind === "annual" ? "Nutritionals" : "Nutritional Products",
+          "abt:NutritionalProductsMember"
+        ],
+        [kind === "annual" ? "Diagnostics" : "Diagnostic Products", "abt:DiagnosticProductsMember"],
+        ["Medical Devices", "abt:MedicalDevicesMember"]
+      ].map(([label, member]) => ({
+        label,
+        rowLabel: label,
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": member
+        }
+      })),
+      {
+        label: "Other",
+        rowLabel: "Other",
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: { "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember" }
+      }
+    ]
+  })),
   ...["Corporate", "Corporate and Other"].map<BusinessRule>((corporate) => ({
     id: `mmm-three-businesses-${corporate === "Corporate" ? "corporate" : "corporate-other"}-v1`,
     cik: "0000066740",

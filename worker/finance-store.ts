@@ -5,6 +5,10 @@ import { filingAdapters } from "../scripts/finance/adapters";
 import { extractInlinePeriods, parseInlineXbrl } from "../scripts/finance/ixbrl";
 import { genericFilingTodo, readGenericFiling } from "../scripts/finance/generic-import";
 import {
+  companyFromFilingPeriods,
+  missingStandardHistory
+} from "../scripts/finance/current-filing";
+import {
   extractTsmHtml,
   extractTsmAnnualHtml,
   tsmQuarterlyCandidates,
@@ -49,7 +53,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.19";
+const ENGINE_VERSION = "finance-v2.20";
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -415,7 +419,12 @@ export class FinanceStore {
           }
           await this.publish(task, basic);
         } catch (error) {
-          if (!config && !task.archives.length) throw error;
+          if (
+            error instanceof Error &&
+            error.message === "Company Facts CIK does not match the catalog."
+          )
+            throw error;
+          if (!config && !task.archives.length && !missingStandardHistory(error)) throw error;
           task.warnings.push(
             `Basic history: ${error instanceof Error ? error.message : "source unavailable"}`
           );
@@ -453,8 +462,7 @@ export class FinanceStore {
       task.job.message = `Reading statement and revenue sources: ${filing.reportDate} (${task.cursor + 1}/${task.todo.length}).`;
       try {
         const base = await this.company(identity);
-        if (!base) throw new Error("No validated company baseline.");
-        const cacheKey = `generic:v8:${identity.cik}:${filing.accession}`;
+        const cacheKey = `generic:v9:${identity.cik}:${filing.accession}`;
         let periods = await this.ctx.storage.get<PeriodV2[]>(cacheKey);
         if (!periods)
           periods = readGenericFiling(
@@ -462,11 +470,12 @@ export class FinanceStore {
             identity,
             filing,
             base,
-            await this.ctx.storage.get<PeriodV2[]>(`basic-periods:${task.job.id}`)
+            await this.ctx.storage.get<PeriodV2[]>(`basic-periods:${task.job.id}`),
+            task.industrySic
           );
         if (periods.length) {
           await this.publish(task, {
-            ...base,
+            ...(base ?? companyFromFilingPeriods(identity, periods)),
             annual: periods.filter((p) => p.kind === "annual"),
             quarterly: periods.filter((p) => p.kind === "quarterly")
           });

@@ -8,6 +8,7 @@ import { enrichInlinePeriods } from "./inline-v2";
 import { parseInlineXbrl } from "./ixbrl";
 import { issuerSources, type SecSource } from "./issuer-sources";
 import { flowPeriod, mergeV2, normalizeBasicCompany } from "./v2-model";
+import { companyFromFilingPeriods, missingStandardHistory } from "./current-filing";
 
 /** Returns an SEC response body; the CLI caches, tests may supply fixtures. */
 export type AuditSource = SecSource;
@@ -74,18 +75,23 @@ export async function auditCompanyDataset(
   const { submissions, filings, factsSource } = await issuerSources(identity, source);
   const industrySic = /^\d{4}$/.test(submissions.sic ?? "") ? submissions.sic : undefined;
   const facts = parseFactsDocument(factsSource);
-  const basic = extractFactsV2(facts, identity, filings, undefined, industrySic);
-  let company: CompanyV2 = normalizeBasicCompany(
-    mergeV2(reviewedSeed, { ...basic, version: "audit" })
-  );
+  let basic: CompanyV2 | undefined;
+  try {
+    basic = extractFactsV2(facts, identity, filings, undefined, industrySic);
+  } catch (error) {
+    if (!missingStandardHistory(error)) throw error;
+  }
+  let company: CompanyV2 | undefined = basic
+    ? normalizeBasicCompany(mergeV2(reviewedSeed, { ...basic, version: "audit" }))
+    : reviewedSeed;
   let previous = company;
-  const basicPeriods = [...basic.annual, ...basic.quarterly];
+  const basicPeriods = [...(basic?.annual ?? []), ...(basic?.quarterly ?? [])];
   const todo = genericFilingTodo(company, basicPeriods, filings, maxFilings);
-  const warnings = [...company.warnings];
-  const publish = (base: CompanyV2, periods: PeriodV2[]) =>
+  const warnings = [...(company?.warnings ?? [])];
+  const publish = (base: CompanyV2 | undefined, periods: PeriodV2[]) =>
     periods.length
       ? mergeV2(base, {
-          ...base,
+          ...(base ?? companyFromFilingPeriods(identity, periods)),
           annual: periods.filter((p) => p.kind === "annual"),
           quarterly: periods.filter((p) => p.kind === "quarterly")
         })
@@ -93,10 +99,15 @@ export async function auditCompanyDataset(
   for (const filing of todo) {
     try {
       const html = await source(filing.sourceUrl);
-      company = publish(company, readGenericFiling(html, identity, filing, company, basicPeriods));
+      company = publish(
+        company,
+        readGenericFiling(html, identity, filing, company, basicPeriods, industrySic)
+      );
       // Previous engine: standard inline concepts, then business rows.
       const parsed = parseInlineXbrl(html);
-      const updated = new Map(genericCandidates(previous, basicPeriods).map((p) => [p.id, p]));
+      const updated = new Map(
+        (previous ? genericCandidates(previous, basicPeriods) : []).map((p) => [p.id, p])
+      );
       const changes = new Map<string, PeriodV2>();
       for (const p of enrichInlinePeriods(html, identity, filing, [...updated.values()], parsed)) {
         updated.set(p.id, p);
@@ -109,6 +120,8 @@ export async function auditCompanyDataset(
       warnings.push(`${filing.reportDate}: ${error instanceof Error ? error.message : error}`);
     }
   }
+  if (!company)
+    throw new Error("No supported, source-linked financial periods after source review.");
   const annual = company.annual.map(summarize);
   const quarterly = company.quarterly.map(summarize);
   const all = [...annual, ...quarterly];
@@ -122,8 +135,8 @@ export async function auditCompanyDataset(
     segments: `${all.filter((p) => p.segments).length}/${all.length}`,
     latestAnnualSankey: annual.at(-1)?.sankey ?? false,
     latestQuarterSankey: quarterly.at(-1)?.sankey ?? false,
-    previousLatestAnnualSankey: previous.annual.at(-1)?.coverage.sankey ?? false,
-    previousSankey: `${[...previous.annual, ...previous.quarterly].filter((p) => p.coverage.sankey).length}/${previous.annual.length + previous.quarterly.length}`,
+    previousLatestAnnualSankey: previous?.annual.at(-1)?.coverage.sankey ?? false,
+    previousSankey: `${[...(previous?.annual ?? []), ...(previous?.quarterly ?? [])].filter((p) => p.coverage.sankey).length}/${(previous?.annual.length ?? 0) + (previous?.quarterly.length ?? 0)}`,
     filingsRead: todo.length,
     warnings: [...new Set(warnings)]
   };
