@@ -14,13 +14,12 @@
  * report also shows the previous engine's result (standard concepts and business
  * rows only, without statement-row reading) from the same downloaded sources.
  */
-import { createHash } from "node:crypto";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import catalogData from "../../src/data/generated/finance-catalog.json" with { type: "json" };
 import type { FinanceCatalog } from "../../src/features/finance/v2-types";
 import { auditCompany, type CompanyReport } from "./coverage-audit";
-import { fetchSec } from "./sec-client";
+import { fetchSec, readSecCache } from "./sec-client";
 
 const catalog = catalogData as FinanceCatalog;
 const args = process.argv.slice(2);
@@ -30,7 +29,6 @@ const option = (name: string) => {
 };
 const offline = args.includes("--offline");
 const maxFilings = Number(option("--max-filings") ?? 30);
-const cacheDirectory = path.join(process.cwd(), ".cache", "finance", "sec");
 
 /** A fixed, reviewable cross-sector sample of widely followed S&P 500 issuers. */
 export const coverageSample = [
@@ -50,15 +48,9 @@ export const coverageSample = [
 
 async function source(url: string, maxAgeMs = Infinity) {
   if (!offline) return fetchSec(url, maxAgeMs);
-  const cachePath = path.join(
-    cacheDirectory,
-    `${createHash("sha256").update(url).digest("hex")}.json`
-  );
-  try {
-    return (JSON.parse(await readFile(cachePath, "utf8")) as { body: string }).body;
-  } catch {
-    throw new Error(`Offline source is not cached: ${url}`);
-  }
+  const cached = await readSecCache(url);
+  if (cached === undefined) throw new Error(`Offline source is not cached: ${url}`);
+  return cached;
 }
 
 async function main() {

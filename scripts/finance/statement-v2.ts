@@ -37,6 +37,14 @@ const PARENT_NET = new Set([
 ]);
 const CONSOLIDATED_NET = new Set(["us-gaap:ProfitLoss", "ifrs-full:ProfitLoss"]);
 const GROSS_PROFIT = new Set(["us-gaap:GrossProfit", "ifrs-full:GrossProfit"]);
+const REVENUE_TOTALS = [
+  "us-gaap:RevenuesNetOfInterestExpense",
+  "us-gaap:Revenues",
+  "ifrs-full:Revenue",
+  "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+  "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax",
+  "us-gaap:SalesRevenueNet"
+];
 // After-tax statement lines with reviewed meaning and sign.
 const CONTINUING = new Set([
   "us-gaap:IncomeLossFromContinuingOperations",
@@ -125,32 +133,54 @@ export function readStatementRows(
   const m = period.metrics;
   const revenueSource = period.metricSources.revenue;
   if (
-    m.revenue === undefined ||
-    !(m.revenue > 0) ||
-    revenueSource?.method !== "reported" ||
-    revenueSource.accession !== filing.accession
+    m.revenue !== undefined &&
+    (!(m.revenue > 0) ||
+      revenueSource?.method !== "reported" ||
+      revenueSource.accession !== filing.accession)
   )
     return;
-  const tolerance = accountingTolerance(m.revenue);
-  const same = (a: number, b: number) => Math.abs(a - b) <= tolerance;
   const lines = rows.map(line);
   const find = (from: number, to: number, test: (item: Line) => boolean) => {
     for (let i = Math.max(0, from); i < Math.min(to, lines.length); i++)
       if (lines[i] && test(lines[i]!)) return i;
     return -1;
   };
-  const anchor = find(
-    0,
-    lines.length,
-    (l) => l.fact.tag === revenueSource.tag && l.fact.value === m.revenue
-  );
+  let anchor =
+    m.revenue !== undefined
+      ? find(
+          0,
+          lines.length,
+          (l) => l.fact.tag === revenueSource!.tag && l.fact.value === m.revenue
+        )
+      : -1;
+  if (m.revenue === undefined) {
+    // A missing Company Facts line can be recovered from an explicit standard
+    // revenue total in this primary statement. The entire subsequent accounting
+    // chain still has to reconcile; a label alone never defines revenue.
+    for (const tag of REVENUE_TOTALS) {
+      const matches = lines.flatMap((l, i) =>
+        l &&
+        l.fact.tag === tag &&
+        l.fact.value > 0 &&
+        /^(?:total\s+)?(?:net\s+)?(?:revenues?|sales)$/i.test(l.label)
+          ? [i]
+          : []
+      );
+      if (matches.length) {
+        if (matches.length === 1) anchor = matches[0];
+        break;
+      }
+    }
+  }
   if (anchor < 0) return;
+  const tolerance = accountingTolerance(lines[anchor]!.fact.value);
+  const same = (a: number, b: number) => Math.abs(a - b) <= tolerance;
   // Company Facts can select a revenue sub-line (Walmart's net sales before membership
   // income). When the following nonnegative rows add up exactly to a reported
   // us-gaap:Revenues total before any cost row, that statement total is the top line.
   // Periods whose business breakdown cites the original concept keep it.
   let iR = anchor;
-  if (!period.coverage.segments && !period.businessBreakdownSource) {
+  if (!period.coverage.segments || period.businessBreakdownSource) {
     let sum = lines[anchor]!.fact.value;
     for (let i = anchor + 1; i < Math.min(lines.length, anchor + 6); i++) {
       const item = lines[i];
@@ -252,7 +282,7 @@ export function readStatementRows(
     };
     return true;
   };
-  if (iR !== anchor) {
+  if (iR !== anchor || m.revenue === undefined) {
     metrics.revenue = revenueValue;
     sources.revenue = reported(revenue);
   }
@@ -430,6 +460,28 @@ export function applyStatementReading(period: PeriodV2, reading: StatementReadin
     metricSources: { ...period.metricSources, ...reading.sources },
     coverage: { ...period.coverage }
   };
+  if (reading.metrics.revenue !== undefined && reading.metrics.revenue !== period.metrics.revenue) {
+    // A source-proven consolidated revenue total supersedes a generic partition
+    // of a sub-line (for example net sales). Re-read all business branches against
+    // the new top line; never carry the old split or its derived margin across.
+    if (period.businessBreakdownSource) {
+      delete next.segments;
+      delete next.segmentBasis;
+      delete next.segmentSourceUrl;
+      delete next.businessBreakdownSource;
+      delete next.revenueAdjustments;
+      next.coverage.segments = false;
+    }
+    for (const [metric, tag] of [
+      ["grossProfit", "revenue - costOfRevenue"],
+      ["operatingExpenses", "grossProfit - operatingIncome"]
+    ] as const) {
+      if (period.metricSources[metric]?.tag === tag && reading.metrics[metric] === undefined) {
+        delete next.metrics[metric];
+        delete next.metricSources[metric];
+      }
+    }
+  }
   if (reading.operatingReconciliation)
     next.operatingReconciliation = reading.operatingReconciliation;
   if (reading.operatingCostDetails) next.operatingCostDetails = reading.operatingCostDetails;

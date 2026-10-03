@@ -4,6 +4,7 @@ import { parseInlineXbrl } from "./ixbrl";
 import { enrichInlinePeriods } from "./inline-v2";
 import type { SecFiling } from "./sec-shared";
 import { enrichStatementPeriods } from "./statement-v2";
+import { enrichReviewedBusinessPeriods } from "./reviewed-business";
 
 /** Generic (unreviewed-issuer) imports share these steps between the Worker and CLI audits. */
 export const GENERIC_FILING_LIMIT = 30;
@@ -31,12 +32,7 @@ export function genericFilingTodo(
   const candidates = base ? genericCandidates(base, fresh) : [];
   const missing = new Set(
     candidates
-      .filter(
-        (p) =>
-          (!p.coverage.sankey || !p.coverage.segments) &&
-          p.displayCurrency === "USD" &&
-          (p.metrics.revenue ?? 0) > 0
-      )
+      .filter((p) => (!p.coverage.sankey || !p.coverage.segments) && p.displayCurrency === "USD")
       .map((p) => p.accession)
   );
   return filings
@@ -69,5 +65,6 @@ export function readGenericFiling(
   apply(enrichInlinePeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichStatementPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
+  apply(enrichReviewedBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   return [...changes.values()];
 }

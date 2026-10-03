@@ -354,6 +354,13 @@ describe("finance v2 provenance and coverage", () => {
       doc.facts["us-gaap"].Revenues
     );
   });
+  it("accepts SEC numeric and quoted CIK identities without accepting malformed identifiers", () => {
+    const doc = fixture();
+    for (const cik of [104169, "104169", "0000104169"])
+      expect(parseFactsDocument(JSON.stringify({ ...doc, cik }))).toEqual(doc);
+    for (const cik of ["", "104169junk", "104169.0", -104169, "1e5", "12345678901"])
+      expect(() => parseFactsDocument(JSON.stringify({ ...doc, cik }))).toThrow(/identity/);
+  });
   it("never downgrades a detailed period to newer partial basic metrics", () => {
     const original = upgradeCompany(bundled.companies[0] as CompanyDataset);
     const partial = structuredClone(original);

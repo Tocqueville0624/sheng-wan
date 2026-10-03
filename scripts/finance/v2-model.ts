@@ -8,6 +8,7 @@ import type {
 } from "../../src/features/finance/types";
 import type { CompanyV2, PeriodV2, MetricSource } from "../../src/features/finance/v2-types";
 import { validatePeriod, validateSegmentGrossProfits, roundingTolerance } from "./validate";
+import { businessRules, sameDimensions } from "../../src/features/finance/business-rules";
 
 /** Standard cost tags can describe only one activity (for example franchise rent).
  * A generic revenue-minus-cost residual is not a reported consolidated gross profit.
@@ -107,10 +108,29 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     return business;
   }
   const qname = /^[A-Za-z_][\w.-]*:[A-Za-z_][\w.-]*$/;
+  const rule =
+    proof.method === "reviewed-segment-table"
+      ? businessRules.find((r) => r.id === proof.ruleId)
+      : undefined;
+  if (
+    proof.method === "reviewed-segment-table" &&
+    (!rule ||
+      !period.sourceUrl.startsWith(
+        `https://www.sec.gov/Archives/edgar/data/${Number(rule.cik)}/`
+      ) ||
+      proof.revenueTag !== rule.totalTag ||
+      proof.totalLabel !== rule.totalLabel ||
+      proof.axis ||
+      !!rule.separateTotal !== (proof.totalTableIndex !== undefined) ||
+      (proof.totalTableIndex !== undefined &&
+        (!Number.isInteger(proof.totalTableIndex) || proof.totalTableIndex < 0)) ||
+      period.segments!.length !== rule.branches.length)
+  )
+    return;
   const halfUnit = (decimals: number) =>
     Number.isInteger(decimals) && decimals >= -18 && decimals <= 18 ? 0.5 * 10 ** -decimals : NaN;
   if (
-    proof.method !== "statement-revenue-rows" ||
+    !["statement-revenue-rows", "reviewed-segment-table"].includes(proof.method) ||
     !Number.isInteger(proof.tableIndex) ||
     proof.tableIndex < 0 ||
     proof.sourceUrl !== period.sourceUrl ||
@@ -130,6 +150,18 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
   const keys = new Set<string>();
   for (const segment of period.segments!) {
     const source = segment.revenueSource;
+    const reviewed = rule?.branches.find((b) => b.label === segment.label);
+    const dimensionsValid = rule
+      ? !!reviewed &&
+        !!source?.dimensions &&
+        source.tag === reviewed.tag &&
+        source.rowLabel === reviewed.rowLabel &&
+        sameDimensions(source.dimensions, reviewed.dimensions)
+      : !!source?.dimensions &&
+        Object.keys(source.dimensions).length === (proof.axis ? 1 : 0) &&
+        Object.entries(source.dimensions).every(
+          ([axis, member]) => axis === proof.axis && qname.test(member)
+        );
     if (
       !source ||
       source.sourceUrl !== period.sourceUrl ||
@@ -145,10 +177,7 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
       !qname.test(source.tag) ||
       !Number.isFinite(halfUnit(source.decimals)) ||
       !source.dimensions ||
-      Object.keys(source.dimensions).length !== (proof.axis ? 1 : 0) ||
-      Object.entries(source.dimensions).some(
-        ([axis, member]) => axis !== proof.axis || !qname.test(member)
-      )
+      !dimensionsValid
     )
       return;
     const key = `${source.tag}|${JSON.stringify(source.dimensions)}`;

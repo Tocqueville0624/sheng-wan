@@ -68,7 +68,8 @@ export function parseFactsDocument(source: string): FactsDocument {
     }
     throw new Error("Truncated Company Facts JSON.");
   };
-  const cik = Number(source.match(/"cik"\s*:\s*(\d+)/)?.[1]);
+  const identifier = source.match(/"cik"\s*:\s*(?:"(\d{1,10})"|(\d{1,10}))(?=\s*[,}])/);
+  const cik = Number(identifier?.[1] ?? identifier?.[2]);
   const name = source.match(/"entityName"\s*:\s*("(?:\\.|[^"\\])*")/)?.[1];
   const doc: FactsDocument = { cik, entityName: name ? JSON.parse(name) : "", facts: {} };
   for (const namespace of ["us-gaap", "ifrs-full"]) {

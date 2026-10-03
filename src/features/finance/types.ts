@@ -68,6 +68,8 @@ export type RevenueSegment = {
     decimals: number;
     /** Visible row label from the cited statement table, not a guessed taxonomy name. */
     tableLabel: string;
+    /** For reviewed vertical tables, the metric row below the named business section. */
+    rowLabel?: string;
   };
 };
 
@@ -107,8 +109,11 @@ export type FinancialPeriod = {
   segmentSourceUrl?: string;
   segmentBasis?: string;
   businessBreakdownSource?: {
-    method: "statement-revenue-rows";
+    method: "statement-revenue-rows" | "reviewed-segment-table";
+    ruleId?: string;
     tableIndex: number;
+    /** When the segment table omits a total, the primary consolidated table supplies it. */
+    totalTableIndex?: number;
     sourceUrl: string;
     accession: string;
     revenueTag: string;

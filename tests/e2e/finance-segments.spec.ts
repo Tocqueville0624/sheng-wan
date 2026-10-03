@@ -2,25 +2,29 @@ import { expect, test } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import sharp from "sharp";
 import { businessFixture } from "../fixtures/finance/business-fixtures";
+import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
 const reported = {
   MCD: [4393e6, 2525e6, 182e6],
   TSLA: [20006e6, 146e6, 364e6, 3139e6, 4581e6],
-  IBM: [7927e6, 9049e6, 186e6]
+  IBM: [7927e6, 9049e6, 186e6],
+  WMT: [125939e6, 35624e6, 26367e6, 7e6],
+  JNJ: [16384e6, 8926e6]
 };
 
-for (const ticker of ["MCD", "TSLA", "IBM"] as const) {
+for (const ticker of ["MCD", "TSLA", "IBM", "WMT", "JNJ"] as const) {
   test(`${ticker}: imported business sources retain their amounts, proportions and export provenance`, async ({
     page
   }, info) => {
-    const { company, period } = await businessFixture(ticker);
+    const { company, period } =
+      ticker === "WMT" || ticker === "JNJ" ? reviewedFixture(ticker) : businessFixture(ticker);
     expect(period.segments!.map((segment) => segment.revenue)).toEqual(reported[ticker]);
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
     await mockFinance(page, { [ticker]: company });
     await page.goto(
-      `/playground/thales-olive/?ticker=${ticker}&period=quarterly&statement=2026-Q2`
+      `/playground/thales-olive/?ticker=${ticker}&period=quarterly&statement=${period.id}`
     );
     await expect(page.locator("astro-island[ssr]")).toHaveCount(0);
     await expect(page.locator(".company-summary")).toContainText(company.name);
@@ -140,5 +144,11 @@ for (const ticker of ["MCD", "TSLA", "IBM"] as const) {
       expect(csv).toContain("statement-revenue-rows");
     }
     expect(errors).toEqual([]);
+    const screenshot = info.outputPath(`${ticker.toLowerCase()}-business-page.png`);
+    await page.screenshot({ path: screenshot, fullPage: true });
+    await info.attach(`${ticker} rendered business page`, {
+      path: screenshot,
+      contentType: "image/png"
+    });
   });
 }

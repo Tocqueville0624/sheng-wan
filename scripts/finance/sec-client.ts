@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { gzipSync, gunzipSync } from "node:zlib";
 import {
   SEC_USER_AGENT as CONTACT,
   assertSecUrl,
@@ -18,19 +19,37 @@ let lastRequest = 0;
 
 type CacheEntry = { url: string; fetchedAt: number; body: string };
 
-export async function fetchSec(url: string, maxAgeMs = Infinity): Promise<string> {
+/** New source caches are compressed; legacy files remain readable and untouched. */
+export async function readSecCache(url: string, maxAgeMs = Infinity): Promise<string | undefined> {
   assertSecUrl(url);
   const cachePath = path.join(
     cacheDirectory,
     `${createHash("sha256").update(url).digest("hex")}.json`
   );
-  if (!process.argv.includes("--force")) {
+  for (const compressed of [true, false]) {
     try {
-      const cached = JSON.parse(await readFile(cachePath, "utf8")) as CacheEntry;
+      const bytes = await readFile(compressed ? `${cachePath}.gz` : cachePath);
+      const cached = JSON.parse(
+        new TextDecoder().decode(
+          compressed ? gunzipSync(bytes, { maxOutputLength: 128 * 1024 * 1024 }) : bytes
+        )
+      ) as CacheEntry;
       if (cached.url === url && Date.now() - cached.fetchedAt < maxAgeMs) return cached.body;
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
     }
+  }
+}
+
+export async function fetchSec(
+  url: string,
+  maxAgeMs = Infinity,
+  maxBodyBytes = 24 * 1024 * 1024
+): Promise<string> {
+  assertSecUrl(url);
+  if (!process.argv.includes("--force")) {
+    const cached = await readSecCache(url, maxAgeMs);
+    if (cached !== undefined) return cached;
   }
   // Sequential caller plus this minimum spacing stays well below SEC's 10/s ceiling.
   const wait = Math.max(0, 550 - (Date.now() - lastRequest));
@@ -45,14 +64,18 @@ export async function fetchSec(url: string, maxAgeMs = Infinity): Promise<string
     redirect: "manual"
   });
   if (!response.ok) throw new Error(`SEC HTTP ${response.status}: ${url}`);
-  const body = await readBounded(response);
+  const body = await readBounded(response, maxBodyBytes);
   if (body.includes("Your Request Originates from an Undeclared Automated Tool"))
     throw new Error(`SEC rejected crawler identification: ${url}`);
   await mkdir(cacheDirectory, { recursive: true });
+  const cachePath = path.join(
+    cacheDirectory,
+    `${createHash("sha256").update(url).digest("hex")}.json.gz`
+  );
   const temporary = `${cachePath}.${process.pid}.tmp`;
   await writeFile(
     temporary,
-    JSON.stringify({ url, fetchedAt: Date.now(), body } satisfies CacheEntry)
+    gzipSync(JSON.stringify({ url, fetchedAt: Date.now(), body } satisfies CacheEntry))
   );
   await rename(temporary, cachePath);
   process.stdout.write(`Fetched SEC ${url}\n`);
