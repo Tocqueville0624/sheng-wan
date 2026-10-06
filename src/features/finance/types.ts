@@ -204,6 +204,8 @@ export type RevenueSegment = {
   grossProfit?: number;
   grossProfitSource?: SegmentGrossProfitSource;
   revenueSource?: {
+    /** Explicit arithmetic over original reported product rows, never a reported QName. */
+    calculation?: { method: "sum-of-reported-products"; products: string[] };
     sourceUrl: string;
     accession: string;
     filedAt: string;
@@ -223,6 +225,65 @@ export type RevenueSegment = {
     /** Source row used to verify an explicitly reported segment reconciliation. */
     rowIndex?: number;
   };
+};
+
+export type ProductPortfolioCell = {
+  columnIndex: number;
+  span: number;
+  label: string;
+  facts: {
+    tag: string;
+    value: number;
+    decimals: number;
+    contextId: string;
+    dimensions: Record<string, string>;
+    /** All declarations share this fact's QName/context and the reviewed USD,
+     * million-scale, -6 decimal contract; repeated nested IDs remain explicit. */
+    declarations: {
+      id?: string;
+      format: string;
+    }[];
+  }[];
+};
+export type ProductPortfolioProof = {
+  ruleId: "abbv-original-product-portfolios-v1";
+  startDate: string;
+  endDate: string;
+  reportDate: string;
+  form: string;
+  tables: {
+    tableIndex: number;
+    rowCount: number;
+    headerRows: number[];
+    emptyRows: number[];
+    year: { label: string; rowIndex: number; columnIndex: number; span: number };
+    temporal: {
+      label: string;
+      rowIndex: number;
+      columnIndex: number;
+      span: number;
+      rowSpan: number;
+      method: "original-spanning-header" | "original-single-Q1-table-caption";
+    };
+    quarter1ComparisonYears?: { label: string; columnIndex: number; span: number }[];
+  }[];
+  continuations: { fromTable: number; toTable: number; footerTableIndex: number; label: string }[];
+  headings: { label: string; tableIndex: number; rowIndex: number }[];
+  products: {
+    id: string;
+    label: string;
+    portfolio?: string;
+    rows: {
+      tableIndex: number;
+      rowIndex: number;
+      label: string;
+      scope: string;
+      cells: ProductPortfolioCell[];
+    }[];
+  }[];
+  total: { tableIndex: number; rowIndex: number; cells: ProductPortfolioCell[] };
+  /** Original primary income-statement row, separate from the product section. */
+  primary: { tableIndex: number; rowIndex: number; label: string; cell: ProductPortfolioCell };
 };
 
 export type FinancialPeriod = {
@@ -295,7 +356,12 @@ export type FinancialPeriod = {
   segmentSourceUrl?: string;
   segmentBasis?: string;
   businessBreakdownSource?: {
-    method: "statement-revenue-rows" | "statement-revenue-matrix" | "reviewed-segment-table";
+    method:
+      | "statement-revenue-rows"
+      | "statement-revenue-matrix"
+      | "reviewed-segment-table"
+      | "reported-product-portfolios";
+    productPortfolios?: ProductPortfolioProof;
     ruleId?: string;
     tableIndex: number;
     /** When the segment table omits a total, the primary consolidated table supplies it. */

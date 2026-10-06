@@ -107,6 +107,7 @@ if (selected)
     if (!corpus.issuers.some((c) => c.tickers.includes(ticker)))
       throw new Error(`Unknown corpus ticker: ${ticker}`);
 const parserFiles = [
+  "product-portfolio-v2",
   "external-business",
   "current-filing",
   "generic-import",
@@ -133,6 +134,7 @@ const parserVersion = hash(
     await Promise.all([
       ...parserFiles.map((name) => readFile(`scripts/finance/${name}.ts`, "utf8")),
       readFile("src/features/finance/business-rules.ts", "utf8"),
+      readFile("src/features/finance/product-portfolios.ts", "utf8"),
       readFile("src/features/finance/chart-model.ts", "utf8"),
       readFile("src/features/finance/signed-flow.ts", "utf8"),
       readFile("src/features/finance/shareholder-bridge.ts", "utf8"),
