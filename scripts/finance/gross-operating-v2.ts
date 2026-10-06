@@ -55,8 +55,7 @@ export function enrichGrossOperatingPeriods(
       p.accession === filing.accession &&
       p.filedAt === filing.filedAt &&
       p.displayCurrency === "USD" &&
-      p.reportingCurrency === "USD" &&
-      !p.grossOperatingItems
+      p.reportingCurrency === "USD"
   )) {
     for (const [tableIndex, table] of tables.entries()) {
       if (!/<ix:nonFraction\b[^>]*IncomeTax/i.test(table)) continue;
@@ -154,7 +153,8 @@ export function enrichGrossOperatingPeriods(
       const net = grossOperatingExpenseSum(proof);
       if (
         period.metrics.operatingExpenses !== undefined &&
-        period.metrics.operatingExpenses !== net
+        period.metrics.operatingExpenses !== net &&
+        !(period.grossOperatingItems && !grossOperatingItemsProblem(period))
       )
         continue;
       const next = structuredClone(period);
@@ -179,6 +179,9 @@ export function enrichGrossOperatingPeriods(
         sourceUrl: filing.sourceUrl
       }));
       next.operatingExpensesBasis = "expenses-and-other-items-net";
+      // Re-read a previous calculated ledger from the actual same-filing cells.
+      // A newly exact primary sum must not retain an older rounding difference.
+      delete next.operatingReconciliation;
       const difference = proof.operatingIncome.amount - (proof.grossProfit.amount - net);
       if (Math.abs(difference) > Math.max(1e-6, proof.revenue.amount * 1e-9))
         next.operatingReconciliation = {

@@ -240,4 +240,27 @@ describe("Flex original gross and operating cost ledgers", () => {
     };
     expect(businessPeriod(p)).toBeUndefined();
   });
+
+  it("revalidates an existing calculated ledger from same-filing primary cells on refresh", () => {
+    const { period, html, identity, filing } = fixture("FLEXGrossOperatingFY2020");
+    const prior = structuredClone(period);
+    const proof = prior.grossOperatingItems!;
+    proof.operatingCosts[1]!.amount = 64.1 * 1e6;
+    proof.operatingCosts[1]!.decimals = -5;
+    prior.metrics.operatingExpenses = proof.operatingCosts.reduce((sum, l) => sum + l.amount, 0);
+    prior.operatingReconciliation = {
+      label: "Source rounding",
+      amount:
+        proof.operatingIncome.amount - (proof.grossProfit.amount - prior.metrics.operatingExpenses),
+      sourceUrl: prior.sourceUrl,
+      basis: "gross-profit"
+    };
+    expect(grossOperatingItemsProblem(prior)).toBeUndefined();
+    const actual = readGenericFiling(html, identity, filing, undefined, [prior]).find(
+      (p) => p.id === prior.id
+    )!;
+    expect(actual.grossOperatingItems).toEqual(period.grossOperatingItems);
+    expect(actual.metrics).toEqual(period.metrics);
+    expect(actual.operatingReconciliation).toBeUndefined();
+  });
 });
