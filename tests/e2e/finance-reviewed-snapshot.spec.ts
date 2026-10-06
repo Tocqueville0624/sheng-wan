@@ -19,6 +19,10 @@ test("Albemarle actual saved asset/API path retains complete original businesses
   for (const kind of ["annual", "quarterly"] as const) {
     const period = albemarle[kind].at(-1)!;
     await page.goto(`/playground/thales-olive/?ticker=ALB&period=${kind}&statement=${period.id}`);
+    // The bundled default chart may render before the requested saved company
+    // arrives from the actual API. Wait for that company and period together.
+    await expect(page.locator(".company-summary")).toContainText(albemarle.name);
+    await expect(page.locator(".flow-period-select select")).toHaveValue(period.id);
     const chart = page.locator(".flow-chart");
     await expect(chart).toBeVisible();
     const metadata = JSON.parse((await chart.locator("metadata").textContent())!);
@@ -45,6 +49,8 @@ test("reviewed saved statements render through the actual asset/API path without
   expect(data.savedSourceSnapshot.checkedAt).toBe(snapshot.checkedAt);
   expect(data.company.quarterly.at(-1).id).toBe("2026-Q2");
   await page.goto("/playground/thales-olive/?ticker=MDLZ&period=quarterly&statement=2026-Q2");
+  await expect(page.locator(".company-summary")).toContainText(snapshot.name);
+  await expect(page.locator(".flow-period-select select")).toHaveValue("2026-Q2");
   const chart = page.locator('.flow-chart[data-signed-accounting="true"]');
   await expect(chart).toBeVisible();
   const period = snapshot.quarterly.at(-1)!;
@@ -96,6 +102,8 @@ test("a throttled enabled update preserves the checked diagram", async ({ page, 
   );
   await page.goto("/playground/thales-olive/?ticker=MDLZ&period=annual&statement=FY2025");
   await expect(page.locator("astro-island[ssr]")).toHaveCount(0);
+  await expect(page.locator(".company-summary")).toContainText(snapshot.name);
+  await expect(page.locator(".flow-period-select select")).toHaveValue("FY2025");
   const chart = page.locator('.flow-chart[data-signed-accounting="true"]');
   await expect(chart).toBeVisible();
   const before = await chart.locator("metadata").textContent();
