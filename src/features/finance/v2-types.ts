@@ -71,4 +71,5 @@ export type CompanyResponse = {
   company: CompanyV2 | null;
   job: FinanceJob | null;
   available: boolean;
+  savedSourceSnapshot?: { sha256: string; checkedAt: string };
 };

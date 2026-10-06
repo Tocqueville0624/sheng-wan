@@ -3,6 +3,12 @@ import { companies as supportedCompanies } from "../scripts/finance/companies";
 import { assertPublishableManifest } from "../scripts/finance/validate";
 import type { CompanyDataset, FinanceManifest, PeriodKind } from "../src/features/finance/types";
 import { catalog, catalogIdentity, bundledCompany } from "./finance-store";
+import {
+  reviewedSnapshot,
+  reviewedSnapshotIndex,
+  supplementReviewedHistory
+} from "./reviewed-snapshots";
+import type { CompanyResponse } from "../src/features/finance/v2-types";
 export { FinanceStore } from "./finance-store";
 
 type Env = {
@@ -177,6 +183,9 @@ export async function apiV2(request: Request, env: Env) {
       },
       { status: 503, headers: { "Cache-Control": "no-store", "Retry-After": "300" } }
     );
+  const companyMatch = path.match(/^\/companies\/([A-Z0-9.-]+)$/i);
+  const identity = companyMatch ? catalogIdentity(companyMatch[1]) : undefined;
+  const savedSource = identity ? await reviewedSnapshot(identity, env.ASSETS) : undefined;
   if (env.FINANCE_STORE) {
     try {
       const store = env.FINANCE_STORE.get(env.FINANCE_STORE.idFromName("finance-v2"));
@@ -188,13 +197,33 @@ export async function apiV2(request: Request, env: Env) {
       );
       const headers = new Headers(response.headers);
       headers.set("X-Content-Type-Options", "nosniff");
+      if (savedSource && response.ok) {
+        const body = (await response.json()) as CompanyResponse;
+        return json(
+          {
+            ...body,
+            ...(await supplementReviewedHistory(body.company, savedSource)),
+            available: updatesEnabled && body.available
+          },
+          { status: response.status, headers }
+        );
+      }
       if (
-        !updatesEnabled &&
         response.ok &&
-        (path === "/catalog" || /^\/companies\/[^/]+$/.test(path))
+        (path === "/catalog" || (!updatesEnabled && /^\/companies\/[^/]+$/.test(path)))
       ) {
         const body = (await response.json()) as Record<string, unknown>;
-        return json({ ...body, available: false }, { status: response.status, headers });
+        if (path === "/catalog" && Array.isArray(body.companies))
+          body.companies = body.companies.map((company: { cik: string; status: string }) =>
+            company.status === "available" &&
+            reviewedSnapshotIndex.some((s) => s.cik === company.cik)
+              ? { ...company, status: "partial" }
+              : company
+          );
+        return json(
+          { ...body, available: updatesEnabled && body.available },
+          { status: response.status, headers }
+        );
       }
       return new Response(response.body, { status: response.status, headers });
     } catch {
@@ -208,17 +237,25 @@ export async function apiV2(request: Request, env: Env) {
         available: false,
         companies: catalog.companies.map((c) => ({
           ...c,
-          status: bundledCompany(c) ? "ready" : "available"
+          status: bundledCompany(c)
+            ? "ready"
+            : reviewedSnapshotIndex.some((s) => s.cik === c.cik)
+              ? "partial"
+              : "available"
         }))
       },
       { headers: { "Cache-Control": "no-store" } }
     );
-  const companyMatch = path.match(/^\/companies\/([A-Z0-9.-]+)$/i);
   if (companyMatch) {
-    const identity = catalogIdentity(companyMatch[1]);
     if (!identity) return json({ error: { message: "Company not in catalog." } }, { status: 404 });
     return json(
-      { company: bundledCompany(identity) ?? null, job: null, available: false },
+      {
+        ...(savedSource
+          ? await supplementReviewedHistory(null, savedSource)
+          : { company: bundledCompany(identity) ?? null }),
+        job: null,
+        available: false
+      },
       { headers: { "Cache-Control": "no-store" } }
     );
   }

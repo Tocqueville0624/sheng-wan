@@ -34,6 +34,7 @@
     "media:check": "node --import tsx scripts/media/check.ts",
     "data:update": "node --import tsx scripts/finance/update.ts",
     "data:save-history": "node --import tsx scripts/finance/save-history.ts",
+    "data:save-reviewed": "node --import tsx scripts/finance/save-reviewed-snapshot.ts",
     "data:catalog": "node --import tsx scripts/finance/catalog.ts",
     "data:coverage": "node --import tsx scripts/finance/coverage.ts",
     "data:corpus": "node --import tsx scripts/finance/corpus.ts",
