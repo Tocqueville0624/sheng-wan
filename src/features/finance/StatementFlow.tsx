@@ -22,6 +22,7 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
     node.group === "tax" ||
     ((node.group === "equity" ||
       node.group === "subsidiary" ||
+      node.group === "after-tax-transaction" ||
       node.group === "discontinued" ||
       node.group === "noncontrolling" ||
       node.group === "shareholder" ||
@@ -32,7 +33,10 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
     node.group === "operating-adjustment" || node.group === "after-tax-adjustment";
   const taxBenefit = node.group === "tax-benefit";
   const positiveEquity =
-    (node.group === "equity" || node.group === "subsidiary" || node.group === "discontinued") &&
+    (node.group === "equity" ||
+      node.group === "subsidiary" ||
+      node.group === "after-tax-transaction" ||
+      node.group === "discontinued") &&
     node.tone === "profit";
   const minorityLoss = node.group === "noncontrolling" && node.tone === "profit";
   const upperInput =
@@ -73,6 +77,7 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
                     operatingAdjustment ||
                     node.group === "equity" ||
                     node.group === "subsidiary" ||
+                    node.group === "after-tax-transaction" ||
                     node.group === "discontinued" ||
                     taxBenefit
                   ? node.y - 8

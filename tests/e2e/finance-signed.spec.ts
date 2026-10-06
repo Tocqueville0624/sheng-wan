@@ -145,7 +145,11 @@ for (const key of [
           .map((t) => t.textContent);
       });
       expect(clipped).toEqual([]);
-      if (period.directNetItems || period.operatingItems?.costSubtotal) {
+      if (
+        period.directNetItems ||
+        period.operatingItems?.costSubtotal ||
+        period.afterTaxTransactionItems
+      ) {
         const headerIntrusions = await chart.evaluate((element) =>
           [...element.querySelectorAll("[data-flow-node] text")]
             .filter((t) => (t as SVGTextElement).getBBox().y < 136)
