@@ -117,6 +117,12 @@ for (const key of [
       });
       expect(clipped).toEqual([]);
       if (period.directNetItems) {
+        const headerIntrusions = await chart.evaluate((element) =>
+          [...element.querySelectorAll("[data-flow-node] text")]
+            .filter((t) => (t as SVGTextElement).getBBox().y < 136)
+            .map((t) => t.textContent)
+        );
+        expect(headerIntrusions).toEqual([]);
         const overlaps = await chart.evaluate((element) => {
           const texts = [...element.querySelectorAll("[data-flow-node] text")];
           return texts.flatMap((a, i) =>

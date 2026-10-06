@@ -13,6 +13,7 @@ import type {
   PositionedNode,
   StatementFlow
 } from "./chart-model";
+import { wrapLabel } from "./chart-model";
 
 /**
  * An accounting identity x + gains - expenses = y is represented as
@@ -447,8 +448,21 @@ export function layoutSignedStatementFlow(graph: StatementFlow) {
   let mainY = 400;
   for (const [stage, items] of upper) {
     let y = 260;
+    let previousBottom = 112;
     for (const item of items) {
+      const above =
+        wrapLabel(
+          item.label,
+          item.group === "nonoperating" || item.group === "direct-net-item" ? 17 : 23
+        ).length *
+          20 +
+        49 +
+        18;
+      // Keep the complete wrapped label below the header and above its bar,
+      // including the taller fallback-font ascent used by exported images.
+      y = Math.max(y, previousBottom + 32 + above);
       locations.set(item.id, { x: column(stage), y });
+      previousBottom = y + item.amount * scale;
       y += Math.max(item.amount * scale, 100) + 120;
     }
     mainY = Math.max(mainY, y + 140);
