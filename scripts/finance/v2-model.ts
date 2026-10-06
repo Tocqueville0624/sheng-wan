@@ -25,6 +25,7 @@ import {
   type BusinessRule
 } from "../../src/features/finance/business-rules";
 import { productPortfolioProblem } from "../../src/features/finance/product-portfolios";
+import { serviceRevenueRowsProblem } from "../../src/features/finance/service-revenue-rows";
 
 /** Standard cost tags can describe only one activity (for example franchise rent).
  * A generic revenue-minus-cost residual is not a reported consolidated gross profit.
@@ -246,8 +247,12 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     if (period.revenueAdjustments?.some((item) => item.id === "source-rounding")) return;
     return business;
   }
+  if (proof.serviceRevenueRows && proof.method !== "reviewed-service-revenue-rows") return;
   if (proof.method === "reported-product-portfolios")
     return productPortfolioProblem(period) ? undefined : business;
+  if (proof.method === "reviewed-service-revenue-rows")
+    return serviceRevenueRowsProblem(period) ? undefined : business;
+  if (proof.serviceRevenueRows) return;
   if (proof.productPortfolios || period.segments?.some((s) => s.revenueSource?.calculation)) return;
   const qname = /^[A-Za-z_][\w.-]*:[A-Za-z_][\w.-]*$/;
   const rule =

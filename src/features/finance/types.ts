@@ -245,6 +245,55 @@ export type ProductPortfolioCell = {
     }[];
   }[];
 };
+
+/** Complete original service-revenue rows and their temporal column headers.
+ * Comparative cells remain original facts; only one proved period is charted.
+ */
+export type ServiceRevenueCell = {
+  columnIndex: number;
+  span: number;
+  rowSpan: number;
+  label: string;
+  fact?: {
+    tag: string;
+    value: number;
+    decimals: number;
+    contextId: string;
+    cik: string;
+    currency: "USD";
+    startDate: string;
+    endDate: string;
+    dimensions: Record<string, string>;
+    /** A nested source declaration with the identical QName, amount, dates,
+     * currency and precision, but its own original consolidated/aggregate context. */
+    corroboratingContexts?: { contextId: string; dimensions: Record<string, string> }[];
+    declarations: {
+      tag: string;
+      contextId: string;
+      unitRef: string;
+      scale: number;
+      format: string;
+      sign?: "-";
+      id?: string;
+    }[];
+  };
+};
+export type ServiceRevenueRow = { rowIndex: number; cells: ServiceRevenueCell[] };
+export type ServiceRevenueRowsProof = {
+  ruleId: string;
+  reportDate: string;
+  form: string;
+  units: { id: string; measure: "iso4217:USD" }[];
+  tableIndex: number;
+  rows: ServiceRevenueRow[];
+  primary: {
+    tableIndex: number;
+    title: string;
+    headerRows: ServiceRevenueRow[];
+    revenue: ServiceRevenueRow;
+    tax: ServiceRevenueRow;
+  };
+};
 export type ProductPortfolioProof = {
   ruleId: "abbv-original-product-portfolios-v1";
   startDate: string;
@@ -360,8 +409,10 @@ export type FinancialPeriod = {
       | "statement-revenue-rows"
       | "statement-revenue-matrix"
       | "reviewed-segment-table"
-      | "reported-product-portfolios";
+      | "reported-product-portfolios"
+      | "reviewed-service-revenue-rows";
     productPortfolios?: ProductPortfolioProof;
+    serviceRevenueRows?: ServiceRevenueRowsProof;
     ruleId?: string;
     tableIndex: number;
     /** When the segment table omits a total, the primary consolidated table supplies it. */

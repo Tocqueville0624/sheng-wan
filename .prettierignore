@@ -13,5 +13,6 @@ tests/fixtures/finance/ibm-2026-q2-business.html
 tests/fixtures/finance/FLEX-FY2020-amortization-narrative.html
 tests/fixtures/finance/*-statement.html
 tests/fixtures/finance/*-product-portfolios.html
+tests/fixtures/finance/*-service-revenue.html
 # Preserve the original bytes of the recorded Git metadata migration audit.
 docs/history/rewrite-audit.json
