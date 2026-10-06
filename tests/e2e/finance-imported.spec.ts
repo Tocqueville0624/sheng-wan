@@ -142,7 +142,7 @@ test("MCD's reported quarterly statement renders and exports a direct operating-
       );
       expect(exported.metricSources.totalOperatingCosts.tag).toBe("us-gaap:CostsAndExpenses");
       expect(source).toContain(period.sourceUrl);
-      expect(exported.renderedText).toContain("Source rounding: −$1M");
+      expect(exported.renderedText).toContain("Operating source rounding: −$1M");
       expect(source).not.toMatch(/<image[^>]+href="https?:/);
       expect(source).not.toMatch(/NaN|Infinity/);
     } else {
