@@ -6,6 +6,88 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  SPGISubtotalsQuarter: {
+    ticker: "SPGI",
+    fixture: "SPGI-2026-Q2-statement.html",
+    name: "S&P Global",
+    cik: "0000064040",
+    accession: "0000064040-26-000045",
+    filedAt: "2026-07-28",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Financials",
+    document: "spgi-20260630.htm"
+  },
+  CARRSubtotalsQuarter: {
+    ticker: "CARR",
+    fixture: "CARR-2026-Q2-statement.html",
+    name: "Carrier Global",
+    cik: "0001783180",
+    accession: "0001783180-26-000032",
+    filedAt: "2026-07-28",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Industrials",
+    document: "carr-20260630.htm"
+  },
+  PLDSubtotalsQuarter: {
+    ticker: "PLD",
+    fixture: "PLD-2026-Q2-statement.html",
+    name: "Prologis",
+    cik: "0001045609",
+    accession: "0001193125-26-323746",
+    filedAt: "2026-07-29",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Real Estate",
+    document: "pld-20260630.htm"
+  },
+  SPGISubtotalsAnnual: {
+    ticker: "SPGI",
+    fixture: "SPGI-FY2025-statement.html",
+    name: "S&P Global",
+    cik: "0000064040",
+    accession: "0000064040-26-000013",
+    filedAt: "2026-02-11",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    sector: "Financials",
+    document: "spgi-20251231.htm",
+    kind: "annual"
+  },
+  CARRSubtotalsAnnual: {
+    ticker: "CARR",
+    fixture: "CARR-FY2025-statement.html",
+    name: "Carrier Global",
+    cik: "0001783180",
+    accession: "0001783180-26-000008",
+    filedAt: "2026-02-05",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    sector: "Industrials",
+    document: "carr-20251231.htm",
+    kind: "annual"
+  },
+  PLDSubtotalsAnnual: {
+    ticker: "PLD",
+    fixture: "PLD-FY2025-statement.html",
+    name: "Prologis",
+    cik: "0001045609",
+    accession: "0001193125-26-051453",
+    filedAt: "2026-02-13",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    sector: "Real Estate",
+    document: "pld-20251231.htm",
+    kind: "annual"
+  },
+
   AREDirectNet2017: {
     ticker: "ARE",
     kind: "annual",

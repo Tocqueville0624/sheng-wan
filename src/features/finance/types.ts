@@ -1,3 +1,5 @@
+import type { MetricSource } from "./v2-types";
+
 export type PeriodKind = "annual" | "quarterly";
 export type DataStatus = "verified" | "delayed" | "demo";
 
@@ -53,6 +55,17 @@ export type OperatingItems = {
   tableIndex: number;
   revenue: StatementLine & { rowIndex: number };
   operatingIncome: StatementLine & { rowIndex: number };
+  costSubtotal?: StatementLine & { rowIndex: number };
+  operatingSubtotal?: StatementLine & { rowIndex: number };
+  /** A reported segment-NOI expense subtotal incorrectly indexed as a consolidated
+   * operating-expense metric. Preserve its exact source outside the main ledger. */
+  excludedSegmentExpenses?: {
+    tableIndex: number;
+    revenue: StatementLine & { rowIndex: number };
+    totalExpenses: StatementLine & { rowIndex: number };
+    segmentIncome: StatementLine & { rowIndex: number };
+    originalMetricSource: MetricSource;
+  };
   items: (StatementLine & { effect: "cost" | "gain"; rowIndex: number })[];
 };
 

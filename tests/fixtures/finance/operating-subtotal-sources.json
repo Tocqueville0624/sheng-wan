@@ -1,0 +1,62 @@
+[
+  {
+    "ticker": "SPGI",
+    "id": "2026-Q2",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/64040/000006404026000045/spgi-20260630.htm",
+    "filedAt": "2026-07-28",
+    "accession": "0000064040-26-000045",
+    "startDate": "2026-04-01",
+    "endDate": "2026-06-30",
+    "originalSha256": "ae88694103bbb41e5f1e324e8a4e5008c6c8ca5d2429d5e4e7ebe789affea527"
+  },
+  {
+    "ticker": "CARR",
+    "id": "2026-Q2",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783180/000178318026000032/carr-20260630.htm",
+    "filedAt": "2026-07-28",
+    "accession": "0001783180-26-000032",
+    "startDate": "2026-04-01",
+    "endDate": "2026-06-30",
+    "originalSha256": "d210fbdcc23861239e58a36ffd5611ca042884e28a8d33da35ce494487a8061d"
+  },
+  {
+    "ticker": "PLD",
+    "id": "2026-Q2",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045609/000119312526323746/pld-20260630.htm",
+    "filedAt": "2026-07-29",
+    "accession": "0001193125-26-323746",
+    "startDate": "2026-04-01",
+    "endDate": "2026-06-30",
+    "originalSha256": "83a4039e67172fe7448b38a08d393067941350cf6a194b08c8793eba6c0e77df"
+  },
+  {
+    "ticker": "SPGI",
+    "id": "FY2025",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/64040/000006404026000013/spgi-20251231.htm",
+    "filedAt": "2026-02-11",
+    "accession": "0000064040-26-000013",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "originalSha256": "3e95e568323359502cecad2aa9c7ea06f46bb9df9e1b1c9f1e3ceeda636d0c4d"
+  },
+  {
+    "ticker": "CARR",
+    "id": "FY2025",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783180/000178318026000008/carr-20251231.htm",
+    "filedAt": "2026-02-05",
+    "accession": "0001783180-26-000008",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "originalSha256": "2d2ba36f4cb88ef77859453eb3ab2b3bdd0e692a0f723bf075afce780602d35d"
+  },
+  {
+    "ticker": "PLD",
+    "id": "FY2025",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045609/000119312526051453/pld-20251231.htm",
+    "filedAt": "2026-02-13",
+    "accession": "0001193125-26-051453",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "originalSha256": "e658ccbd09efb30b6212f373d22a2fad79e9f9568c4a7b96b5c0d8c5ad4a228a"
+  }
+]

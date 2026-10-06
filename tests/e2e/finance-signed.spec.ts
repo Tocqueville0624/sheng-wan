@@ -5,6 +5,13 @@ import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
 for (const key of [
+  "SPGISubtotalsQuarter",
+  "CARRSubtotalsQuarter",
+  "PLDSubtotalsQuarter",
+  "SPGISubtotalsAnnual",
+  "CARRSubtotalsAnnual",
+  "PLDSubtotalsAnnual",
+
   "MRNASigned",
   "AXONSigned",
   "FSigned",
@@ -116,7 +123,7 @@ for (const key of [
           .map((t) => t.textContent);
       });
       expect(clipped).toEqual([]);
-      if (period.directNetItems) {
+      if (period.directNetItems || period.operatingItems?.costSubtotal) {
         const headerIntrusions = await chart.evaluate((element) =>
           [...element.querySelectorAll("[data-flow-node] text")]
             .filter((t) => (t as SVGTextElement).getBBox().y < 136)

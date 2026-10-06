@@ -237,7 +237,7 @@ describe("persistent public finance queue", () => {
         expect(p.directNetItems).toEqual(s.period.directNetItems);
         expect(p.shareholderBridge).toEqual(s.period.shareholderBridge);
         expect(p.segments?.map((s) => s.revenue)).toEqual(s.period.segments?.map((s) => s.revenue));
-        expect(await storage.get(`generic:v14:0001035443:${s.filing.accession}`)).toMatchObject([
+        expect(await storage.get(`generic:v15:0001035443:${s.filing.accession}`)).toMatchObject([
           { directNetItems: { ruleId: "are-direct-net-v1" } }
         ]);
       }
@@ -247,6 +247,105 @@ describe("persistent public finance queue", () => {
       });
     }
   );
+  for (const [ticker, annualKey, quarterKey] of [
+    ["SPGI", "SPGISubtotalsAnnual", "SPGISubtotalsQuarter"],
+    ["CARR", "CARRSubtotalsAnnual", "CARRSubtotalsQuarter"],
+    ["PLD", "PLDSubtotalsAnnual", "PLDSubtotalsQuarter"]
+  ] as const)
+    it.each([false, true])(
+      `imports ${ticker} reported operating subtotals (empty Company Facts: %s)`,
+      async (empty) => {
+        vi.useFakeTimers();
+        vi.setSystemTime(new Date("2026-10-06T12:00:00Z"));
+        const { store, storage } = await create();
+        const annual = reviewedFixture(annualKey),
+          quarter = reviewedFixture(quarterKey);
+        const sources = [quarter, annual];
+        const standards: Record<string, { label: string; units: { USD: object[] } }> = {};
+        for (const s of sources)
+          for (const f of parseInlineXbrl(s.html).facts) {
+            if (
+              !f.tag.startsWith("us-gaap:") ||
+              Object.keys(f.context.dimensions).length ||
+              f.currency !== "USD" ||
+              f.context.start !== s.period.startDate ||
+              f.context.end !== s.period.endDate
+            )
+              continue;
+            const key = f.tag.slice(8);
+            const concept = (standards[key] ??= { label: f.tag, units: { USD: [] } });
+            concept.units.USD.push({
+              start: f.context.start,
+              end: f.context.end,
+              val: f.value,
+              accn: s.filing.accession,
+              fy: s.period.fiscalYear,
+              fp: s.period.kind === "annual" ? "FY" : "Q2",
+              form: s.filing.form,
+              filed: s.filing.filedAt
+            });
+          }
+        vi.stubGlobal(
+          "fetch",
+          vi.fn(async (url: string) => {
+            if (url === `https://data.sec.gov/submissions/CIK${annual.identity.cik}.json`)
+              return Response.json({
+                cik: annual.identity.cik,
+                tickers: [ticker],
+                sic: { SPGI: "7320", CARR: "3585", PLD: "6798" }[ticker],
+                filings: {
+                  recent: {
+                    accessionNumber: sources.map((s) => s.filing.accession),
+                    filingDate: sources.map((s) => s.filing.filedAt),
+                    reportDate: sources.map((s) => s.filing.reportDate),
+                    form: sources.map((s) => s.filing.form),
+                    primaryDocument: sources.map((s) => s.filing.primaryDocument)
+                  },
+                  files: []
+                }
+              });
+            if (url === `https://data.sec.gov/api/xbrl/companyfacts/CIK${annual.identity.cik}.json`)
+              return Response.json({
+                cik: Number(annual.identity.cik),
+                entityName: annual.identity.name,
+                facts: { "us-gaap": empty ? {} : standards }
+              });
+            const source = sources.find((s) => s.filing.sourceUrl === url);
+            if (source) return new Response(source.html);
+            throw new Error(`Unexpected operating-subtotal fixture request: ${url}`);
+          })
+        );
+        const job = await jobOf(await request(store, ticker));
+        for (let i = 0; i < 12; i++) await nextQueueStep(store);
+        const result = (await read(store, `/companies/${ticker}`)) as { company: CompanyV2 };
+        for (const s of sources) {
+          const p = result.company[s.period.kind].find((p) => p.id === s.period.id)!;
+          expect(p.coverage).toEqual({ basics: true, segments: true, sankey: true });
+          for (const metric of [
+            "revenue",
+            "totalOperatingCosts",
+            "operatingIncome",
+            "pretaxIncome",
+            "incomeTax",
+            "netIncome"
+          ] as const)
+            expect(p.metrics[metric]).toBe(s.period.metrics[metric]);
+          const expected = structuredClone(s.period.operatingItems!);
+          if (empty) delete expected.excludedSegmentExpenses;
+          expect(p.operatingItems).toEqual(expected);
+          expect(p.segments?.map((s) => s.revenue)).toEqual(
+            s.period.segments?.map((s) => s.revenue)
+          );
+          expect(
+            await storage.get(`generic:v15:${annual.identity.cik}:${s.filing.accession}`)
+          ).toMatchObject([{ operatingItems: { ruleId: s.period.operatingItems!.ruleId } }]);
+        }
+        expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
+        expect((await read(store, `/jobs/${job.id}`)) as FinanceJob).toMatchObject({
+          state: "partial"
+        });
+      }
+    );
   it.each([false, true])(
     "imports source-current Abbott business revenue when Company Facts is lagging (empty: %s)",
     async (empty) => {
@@ -335,7 +434,7 @@ describe("persistent public finance queue", () => {
       expect(result.company.warnings.some((w) => w.startsWith("SEC lists a report ending"))).toBe(
         false
       );
-      expect(await storage.get(`generic:v14:0000001800:${quarter.filing.accession}`)).toMatchObject(
+      expect(await storage.get(`generic:v15:0000001800:${quarter.filing.accession}`)).toMatchObject(
         [{ id: "2026-Q2", coverage: { segments: true } }]
       );
       expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
@@ -353,7 +452,7 @@ describe("persistent public finance queue", () => {
     vi.stubGlobal("fetch", fetcher);
     const first = await jobOf(await request(store, "MCD"));
     expect(await storage.get(`task:${first.id}`)).toMatchObject({
-      engineVersion: "finance-v2.26"
+      engineVersion: "finance-v2.27"
     });
     await nextQueueStep(store);
     await nextQueueStep(store);
@@ -375,7 +474,7 @@ describe("persistent public finance queue", () => {
     expect(period.revenueAdjustments).toEqual([
       { id: "source-rounding", label: "Source rounding", revenue: -1e6 }
     ]);
-    expect(await storage.get(`generic:v14:0000063908:${mcdAccession}`)).toMatchObject([
+    expect(await storage.get(`generic:v15:0000063908:${mcdAccession}`)).toMatchObject([
       { coverage: { segments: true, sankey: true } }
     ]);
     expect(await storage.get(`basic-periods:${first.id}`)).toBeUndefined();

@@ -4,9 +4,10 @@ import {
   operatingCostInput,
   operatingItemMeaning,
   operatingItemRules,
-  operatingItemsProblem
+  operatingItemsProblem,
+  operatingScope
 } from "../../src/features/finance/operating-items";
-import { factKey, precise } from "./business-v2";
+import { attribute, factKey, precise } from "./business-v2";
 import { parseInlineXbrl, type ParsedFiling, type XbrlFact } from "./ixbrl";
 import type { SecFiling } from "./sec-shared";
 import { applyStatementReading, readStatementRows, tableRows } from "./statement-v2";
@@ -48,7 +49,14 @@ export function enrichOperatingPeriods(
       p.displayCurrency === "USD" &&
       !p.operatingItems &&
       p.metrics.grossProfit === undefined &&
-      p.metrics.operatingExpenses === undefined
+      (p.metrics.operatingExpenses === undefined ||
+        (rule.id === "pld-operating-subtotals-v1" &&
+          p.metrics.operatingExpenses < 0 &&
+          p.metricSources.operatingExpenses?.method === "reported" &&
+          p.metricSources.operatingExpenses.tag === "us-gaap:OperatingExpenses" &&
+          p.metricSources.operatingExpenses.sourceUrl === filing.sourceUrl &&
+          p.metricSources.operatingExpenses.accession === filing.accession &&
+          p.metricSources.operatingExpenses.filedAt === filing.filedAt))
   )) {
     const facts = parsed.facts.filter(
       (f) =>
@@ -58,14 +66,24 @@ export function enrichOperatingPeriods(
         f.currency === "USD" &&
         Number.isFinite(f.value)
     );
-    const groups = new Map<string, XbrlFact[]>();
-    for (const f of facts) groups.set(factKey(f), [...(groups.get(factKey(f)) ?? []), f]);
-    const best = new Map([...groups].map(([key, copies]) => [key, precise(copies)]));
-    const refs = new Map(facts.map((f) => [`${f.tag}|${f.context.id}`, best.get(factKey(f))]));
-    for (const [tableIndex, table] of tables.entries()) {
-      if (!/<ix:nonFraction\b[^>]*IncomeTax/i.test(table)) continue;
+    const linesInTable = (table: string) => {
+      // Reviewed primary ledgers use only the table's own fact references. A
+      // different statement can reuse a nondimensional QName with another scope.
+      const references = new Set(
+        [...table.matchAll(/<ix:nonFraction\b[^>]*>/gi)].map(
+          ([opening]) => `${attribute(opening, "name")}|${attribute(opening, "contextRef")}`
+        )
+      );
+      const scoped =
+        "costSubtotalTag" in rule
+          ? facts.filter((f) => references.has(`${f.tag}|${f.context.id}`))
+          : facts;
+      const groups = new Map<string, XbrlFact[]>();
+      for (const f of scoped) groups.set(factKey(f), [...(groups.get(factKey(f)) ?? []), f]);
+      const best = new Map([...groups].map(([key, copies]) => [key, precise(copies)]));
+      const refs = new Map(scoped.map((f) => [`${f.tag}|${f.context.id}`, best.get(factKey(f))]));
       const rows = tableRows(table, refs);
-      if (!rows) continue;
+      if (!rows) return;
       const lines = rows.map((row, rowIndex) => {
         const fact = row.facts.length === 1 ? row.facts[0] : undefined;
         if (!fact || !Number.isInteger(fact.decimals) || !row.label) return;
@@ -81,6 +99,13 @@ export function enrichOperatingPeriods(
             : {})
         };
       });
+      return { rows, lines };
+    };
+    for (const [tableIndex, table] of tables.entries()) {
+      if (!/<ix:nonFraction\b[^>]*IncomeTax/i.test(table)) continue;
+      const readingLines = linesInTable(table);
+      if (!readingLines) continue;
+      const { rows, lines } = readingLines;
       const anchors = (tag: string) =>
         lines.flatMap((l, i) => (l?.tag === tag && !l.dimensions ? [i] : []));
       const revenueRows = anchors(rule.revenueTag),
@@ -92,10 +117,27 @@ export function enrichOperatingPeriods(
       const revenue = lines[rIndex]!,
         operating = lines[oIndex]!;
       if (revenue.dimensions || operating.dimensions) continue;
-      const ledger = lines.slice(rIndex + 1, oIndex).map((l) => {
-        const effect = l && operatingItemMeaning(rule.id, l.tag, l.label, l.dimensions);
-        return l && effect ? { ...l, effect } : undefined;
-      });
+      const checkpoint = (tag: string) => {
+        const indexes = anchors(tag);
+        return indexes.length === 1 && indexes[0]! > rIndex && indexes[0]! < oIndex
+          ? lines[indexes[0]!]
+          : undefined;
+      };
+      const costSubtotal = "costSubtotalTag" in rule ? checkpoint(rule.costSubtotalTag) : undefined;
+      const operatingSubtotal =
+        "operatingSubtotalTag" in rule ? checkpoint(rule.operatingSubtotalTag) : undefined;
+      if (
+        ("costSubtotalTag" in rule && !costSubtotal) ||
+        ("operatingSubtotalTag" in rule && !operatingSubtotal)
+      )
+        continue;
+      const ledger = lines
+        .slice(rIndex + 1, oIndex)
+        .filter((l) => l !== costSubtotal && l !== operatingSubtotal)
+        .map((l) => {
+          const effect = l && operatingItemMeaning(rule.id, l.tag, l.label, l.dimensions);
+          return l && effect ? { ...l, effect } : undefined;
+        });
       if (ledger.some((l) => !l)) continue;
       const proof: OperatingItems = {
         ruleId: rule.id,
@@ -108,8 +150,46 @@ export function enrichOperatingPeriods(
         tableIndex,
         revenue,
         operatingIncome: operating,
+        ...(costSubtotal ? { costSubtotal } : {}),
+        ...(operatingSubtotal ? { operatingSubtotal } : {}),
         items: ledger as OperatingItems["items"]
       };
+      if (period.metrics.operatingExpenses !== undefined) {
+        const candidates: NonNullable<OperatingItems["excludedSegmentExpenses"]>[] = [];
+        for (const [index, other] of tables.entries()) {
+          if (index === tableIndex || other.length > 512000 || /<table\b/i.test(other.slice(6)))
+            continue;
+          const read = linesInTable(other);
+          if (!read) continue;
+          const one = (tag: string, label: RegExp, dimensions: Record<string, string> = {}) => {
+            const selected = read.lines.filter(
+              (l) =>
+                l?.tag === tag &&
+                operatingScope(l.dimensions) === operatingScope(dimensions) &&
+                label.test(l.label)
+            );
+            return selected.length === 1 ? selected[0] : undefined;
+          };
+          const r = one("us-gaap:Revenues", /^Total revenues$/i);
+          const expense = one("us-gaap:OperatingExpenses", /^Total expenses$/i);
+          const segment = one(
+            "us-gaap:OperatingIncomeLoss",
+            /^Total segment net operating income$/i,
+            { "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember" }
+          );
+          if (r && expense && segment && expense.amount === period.metrics.operatingExpenses) {
+            candidates.push({
+              tableIndex: index,
+              revenue: r,
+              totalExpenses: expense,
+              segmentIncome: segment,
+              originalMetricSource: period.metricSources.operatingExpenses!
+            });
+          }
+        }
+        if (candidates.length !== 1) continue;
+        proof.excludedSegmentExpenses = candidates[0];
+      }
       const costs = proof.items.filter((l) => l.effect === "cost");
       const costSum = costs.reduce((s, l) => s + l.amount, 0);
       if (
@@ -151,19 +231,25 @@ export function enrichOperatingPeriods(
           ...period.metricSources,
           revenue: reported(revenue),
           operatingIncome: reported(operating),
-          totalOperatingCosts: {
-            label: "Sum of reported operating cost lines",
-            tag: costs.map((l) => l.tag).join(" + "),
-            sourceUrl: filing.sourceUrl,
-            accession: filing.accession,
-            filedAt: filing.filedAt,
-            method: "calculated",
-            inputs: costs.map((l) => operatingCostInput(l, filing.sourceUrl))
-          }
+          totalOperatingCosts: costSubtotal
+            ? reported(costSubtotal)
+            : {
+                label: "Sum of reported operating cost lines",
+                tag: costs.map((l) => l.tag).join(" + "),
+                sourceUrl: filing.sourceUrl,
+                accession: filing.accession,
+                filedAt: filing.filedAt,
+                method: "calculated",
+                inputs: costs.map((l) => operatingCostInput(l, filing.sourceUrl))
+              }
         },
         operatingItems: proof,
         operatingCostDetails: drawn.length >= 2 ? drawn : undefined
       };
+      if (proof.excludedSegmentExpenses) {
+        delete next.metrics.operatingExpenses;
+        delete next.metricSources.operatingExpenses;
+      }
       if (operatingItemsProblem(next)) continue;
       const reading = readStatementRows(rows, next, filing);
       const complete = reading && applyStatementReading(next, reading);
