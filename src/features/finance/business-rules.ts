@@ -8,9 +8,18 @@ export type BusinessRule = {
   totalLabel: string;
   layout?: "columns" | "rows";
   separateTotal?: boolean;
+  /** A reviewed external-customer row, distinct from gross/intersegment sales.
+   * Every source column is accounted for, including duplicate totals and blanks.
+   */
+  externalCustomerColumns?: {
+    primaryLabel: string;
+    totalLabels: string[];
+    blankLabels: string[];
+  };
   basis: string;
   branches: {
     label: string;
+    columnLabel?: string;
     rowLabel: string;
     tag: string;
     dimensions: Record<string, string>;
@@ -19,6 +28,32 @@ export type BusinessRule = {
 };
 
 export const businessRules: BusinessRule[] = [
+  {
+    id: "iex-external-customers-columns-v1",
+    cik: "0000832101",
+    totalTag: "us-gaap:Revenues",
+    totalLabel: "External customers",
+    layout: "columns",
+    separateTotal: true,
+    externalCustomerColumns: {
+      primaryLabel: "Net sales",
+      totalLabels: ["Total Segments", "IDEX"],
+      blankLabels: ["Eliminations"]
+    },
+    basis:
+      "Reported external-customer sales for Health & Science Technologies (HST), Fluid & Metering Technologies (FMT) and Fire & Safety/Diversified Products (FSDP). Both source totals reconcile to the independent primary net-sales row. Gross and intersegment sales are not counted again; the untagged elimination dash remains blank.",
+    branches: [
+      ["Health & Science Technologies", "HST", "iex:HealthAndScienceTechnologiesMember"],
+      ["Fluid & Metering Technologies", "FMT", "iex:FluidAndMeteringTechnologiesMember"],
+      ["Fire & Safety/Diversified Products", "FSDP", "iex:FireAndSafetyDiversifiedProductsMember"]
+    ].map(([label, columnLabel, member]) => ({
+      label,
+      columnLabel,
+      rowLabel: "External customers",
+      tag: "us-gaap:Revenues",
+      dimensions: { "us-gaap:StatementBusinessSegmentsAxis": member }
+    }))
+  },
   {
     id: "flex-its-rms-cpi-quarterly-v1",
     cik: "0000866374",

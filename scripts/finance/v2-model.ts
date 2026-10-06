@@ -21,7 +21,8 @@ import {
   isBusinessCategory,
   isZeroRevenueReconciliation,
   sameDimensions,
-  validBusinessQualifiers
+  validBusinessQualifiers,
+  type BusinessRule
 } from "../../src/features/finance/business-rules";
 
 /** Standard cost tags can describe only one activity (for example franchise rent).
@@ -125,6 +126,109 @@ export function statementPeriod(period: PeriodV2): FinancialPeriod | undefined {
   }
 }
 
+function externalCustomerColumnsValid(period: PeriodV2, rule: BusinessRule): boolean {
+  const schema = rule.externalCustomerColumns;
+  const proof = period.businessBreakdownSource!;
+  const columns = proof.externalCustomerColumns;
+  if (!schema) return !columns;
+  const revenue = period.metricSources.revenue;
+  if (
+    !columns ||
+    proof.layout !== "columns" ||
+    proof.totalTableIndex === proof.tableIndex ||
+    !Number.isInteger(proof.headerRowIndex) ||
+    !Number.isInteger(proof.rowIndex) ||
+    proof.headerRowIndex! < 0 ||
+    proof.rowIndex! > 500 ||
+    proof.headerRowIndex! >= proof.rowIndex! ||
+    proof.omittedSubtotals.length ||
+    proof.omittedZeroColumns?.length ||
+    proof.qualifiers ||
+    revenue?.method !== "reported" ||
+    revenue.sourceUrl !== period.sourceUrl ||
+    revenue.accession !== period.accession ||
+    revenue.filedAt !== period.filedAt
+  )
+    return false;
+  const labels = [
+    ...rule.branches.map((b) => b.columnLabel ?? b.label),
+    ...schema.totalLabels,
+    ...schema.blankLabels
+  ];
+  if (
+    columns.headers.length !== labels.length ||
+    labels.some((label) => columns.headers.filter((h) => h.label === label).length !== 1) ||
+    columns.totals.length !== schema.totalLabels.length ||
+    columns.blanks.length !== schema.blankLabels.length
+  )
+    return false;
+  const ordered = [...columns.headers].sort((a, b) => a.columnIndex - b.columnIndex);
+  if (
+    ordered.some(
+      (h, i) =>
+        !Number.isInteger(h.columnIndex) ||
+        h.columnIndex < 0 ||
+        !Number.isInteger(h.span) ||
+        h.span < 1 ||
+        h.span > 200 ||
+        h.columnIndex + h.span > 1000 ||
+        (i > 0 && ordered[i - 1].columnIndex + ordered[i - 1].span > h.columnIndex)
+    )
+  )
+    return false;
+  const within = (label: string, column: number | undefined) => {
+    const h = columns.headers.find((h) => h.label === label);
+    return (
+      !!h &&
+      Number.isInteger(column) &&
+      column! >= h.columnIndex &&
+      column! < h.columnIndex + h.span
+    );
+  };
+  const seen = new Set<number>();
+  for (const branch of rule.branches) {
+    const source = period.segments?.find((s) => s.label === branch.label)?.revenueSource;
+    if (
+      !source ||
+      source.rowIndex !== proof.rowIndex ||
+      !within(branch.columnLabel ?? branch.label, source.columnIndex) ||
+      seen.has(source.columnIndex!)
+    )
+      return false;
+    seen.add(source.columnIndex!);
+  }
+  for (const label of schema.totalLabels) {
+    const total = columns.totals.filter((t) => t.label === label);
+    if (total.length !== 1) return false;
+    const t = total[0];
+    if (
+      t.tag !== rule.totalTag ||
+      t.value !== proof.revenue ||
+      !t.dimensions ||
+      Object.keys(t.dimensions).length ||
+      !Number.isInteger(t.decimals) ||
+      t.decimals < -18 ||
+      t.decimals > 18 ||
+      !within(label, t.columnIndex) ||
+      seen.has(t.columnIndex)
+    )
+      return false;
+    seen.add(t.columnIndex);
+  }
+  const final = columns.totals.at(-1)!;
+  if (final.columnIndex !== proof.columnIndex || final.decimals !== proof.revenueDecimals)
+    return false;
+  for (const label of schema.blankLabels) {
+    const blank = columns.blanks.filter((b) => b.label === label);
+    if (
+      blank.length !== 1 ||
+      blank[0].columnIndex !== columns.headers.find((h) => h.label === label)?.columnIndex
+    )
+      return false;
+  }
+  return true;
+}
+
 /** Financial flows need a reconciled statement, but not necessarily a gross-profit subtotal. */
 export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
   if (period.displayCurrency !== "USD" || !Number.isFinite(period.metrics.revenue)) return;
@@ -158,7 +262,8 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
       !!rule.separateTotal !== (proof.totalTableIndex !== undefined) ||
       (proof.totalTableIndex !== undefined &&
         (!Number.isInteger(proof.totalTableIndex) || proof.totalTableIndex < 0)) ||
-      period.segments!.length !== rule.branches.length)
+      period.segments!.length !== rule.branches.length ||
+      !externalCustomerColumnsValid(period, rule))
   )
     return;
   const halfUnit = (decimals: number) =>
@@ -173,6 +278,7 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     proof.accession !== period.accession ||
     proof.revenue !== period.metrics.revenue ||
     proof.revenueTag !== period.metricSources.revenue?.tag ||
+    (proof.externalCustomerColumns && !rule?.externalCustomerColumns) ||
     !proof.totalLabel ||
     !Number.isFinite(halfUnit(proof.revenueDecimals)) ||
     (proof.axis &&

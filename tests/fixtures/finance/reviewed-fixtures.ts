@@ -6,6 +6,66 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  APHExternalAnnual: {
+    ticker: "APH",
+    name: "Amphenol Corporation",
+    cik: "0000820313",
+    sector: "Information Technology",
+    kind: "annual",
+    accession: "0001104659-26-013549",
+    filedAt: "2026-02-11",
+    reportDate: "2025-12-31",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    fixture: "aph-fy2025-external-business-statement.html",
+    document: "aph-20251231x10k.htm"
+  },
+  APHExternalQuarterly: {
+    ticker: "APH",
+    name: "Amphenol Corporation",
+    cik: "0000820313",
+    sector: "Information Technology",
+    kind: "quarterly",
+    accession: "0001104659-26-089194",
+    filedAt: "2026-07-31",
+    reportDate: "2026-06-30",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    fixture: "aph-2026-q2-external-business-statement.html",
+    document: "aph-20260630x10q.htm"
+  },
+  IEXExternalAnnual: {
+    ticker: "IEX",
+    name: "IDEX Corporation",
+    cik: "0000832101",
+    sector: "Industrials",
+    kind: "annual",
+    accession: "0000832101-26-000003",
+    filedAt: "2026-02-19",
+    reportDate: "2025-12-31",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    fixture: "iex-fy2025-external-business-statement.html",
+    document: "iex-20251231.htm"
+  },
+  IEXExternalQuarterly: {
+    ticker: "IEX",
+    name: "IDEX Corporation",
+    cik: "0000832101",
+    sector: "Industrials",
+    kind: "quarterly",
+    accession: "0000832101-26-000022",
+    filedAt: "2026-07-29",
+    reportDate: "2026-06-30",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    fixture: "iex-2026-q2-external-business-statement.html",
+    document: "iex-20260630.htm"
+  },
   HSYPrimaryExpensesAnnual: {
     ticker: "HSY",
     name: "Hershey Company (The)",

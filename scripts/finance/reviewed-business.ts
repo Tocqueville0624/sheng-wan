@@ -9,6 +9,7 @@ import { attribute, factKey, halfUnit, precise, visibleText } from "./business-v
 import type { ParsedFiling, XbrlFact } from "./ixbrl";
 import type { SecFiling } from "./sec-shared";
 import { businessPeriod, flowPeriod } from "./v2-model";
+import { readExternalBusinessColumns } from "./external-business";
 
 /** A reviewed vertical segment table: each source section provides its own revenue
  * subtotal. Corporate revenue must be an actual reported row, never a residual.
@@ -61,6 +62,11 @@ export function enrichReviewedBusinessPeriods(
     let selected: PeriodV2 | undefined;
     for (const rule of rules) {
       if (rule.totalTag !== period.metricSources.revenue.tag) continue;
+      if (rule.externalCustomerColumns) {
+        selected = readExternalBusinessColumns(tables, period, filing, parsed, rule);
+        if (selected) break;
+        continue;
+      }
       let separateTotal: { fact: XbrlFact; tableIndex: number } | undefined;
       if (rule.separateTotal) {
         for (const [index, [table]] of tables.entries()) {

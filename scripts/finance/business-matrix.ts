@@ -34,7 +34,7 @@ function tableCells(row: string): Cell[] | undefined {
 }
 
 const revenueRow =
-  /^(?:total(?:\s+(?:consolidated\s+)?(?:revenues?|sales))?|(?:net\s+)?(?:revenues?|sales)(?:\s+(?:to\s+customers|from\s+external\s+customers))?)$/i;
+  /^(?:total(?:\s+(?:consolidated\s+)?(?:revenues?|sales))?|external\s+(?:net\s+)?(?:revenues?|sales)|(?:net\s+)?(?:revenues?|sales)(?:\s+(?:to\s+customers|from\s+external\s+customers))?)$/i;
 const totalColumn = /^total(?:\s+(?:revenues?|sales))?$/i;
 
 /** A dimensioned segment aggregate is corroborated by an independent primary

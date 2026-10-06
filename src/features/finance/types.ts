@@ -317,6 +317,21 @@ export type FinancialPeriod = {
      * its amount is independently corroborated by the primary consolidated row. */
     totalDimensions?: Record<string, string>;
     totalLabel: string;
+    /** Complete source headers for a reviewed external-customer row. Blank
+     * columns carry no monetary amount; repeated consolidated totals count once.
+     */
+    externalCustomerColumns?: {
+      headers: { label: string; columnIndex: number; span: number }[];
+      totals: {
+        label: string;
+        tag: string;
+        value: number;
+        decimals: number;
+        dimensions: Record<string, string>;
+        columnIndex: number;
+      }[];
+      blanks: { label: string; columnIndex: number }[];
+    };
     /** Explicit corporate columns reported as zero; never guessed from a dash. */
     omittedZeroColumns?: {
       label: string;
