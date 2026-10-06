@@ -1,5 +1,9 @@
 import { buildStatementFlow, segmentProblem } from "../../src/features/finance/chart-model";
 import { shareholderBridgeProblem } from "../../src/features/finance/shareholder-bridge";
+import {
+  grossOperatingItemsProblem,
+  grossOperatingRoundingBound
+} from "../../src/features/finance/gross-operating-items";
 import type {
   CompanyDataset,
   FinancialMetrics,
@@ -439,6 +443,7 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
 
 export function flowPeriod(period: PeriodV2): StatementChartPeriod | undefined {
   if (period.displayCurrency !== "USD") return;
+  if (grossOperatingItemsProblem(period)) return;
   if (shareholderBridgeProblem(period)) return;
   if (period.businessBreakdownSource && !businessPeriod(period)) return;
   if (period.directNetItems) {
@@ -526,7 +531,11 @@ export function flowPeriod(period: PeriodV2): StatementChartPeriod | undefined {
       !Number.isFinite(item.amount)
     )
       return;
-    if (!bounded(item.amount, preciseInputs(keys))) return;
+    const bound =
+      item === period.operatingReconciliation && period.grossOperatingItems
+        ? grossOperatingRoundingBound(period.grossOperatingItems)
+        : preciseInputs(keys);
+    if (!bounded(item.amount, bound)) return;
   }
   if (
     period.operatingReconciliation?.basis !== undefined &&
@@ -535,6 +544,7 @@ export function flowPeriod(period: PeriodV2): StatementChartPeriod | undefined {
     return;
   if (
     period.operatingReconciliation?.basis === "gross-profit" &&
+    !period.grossOperatingItems &&
     !["us-gaap:OperatingExpenses", "ifrs-full:OperatingExpense"].includes(
       period.metricSources.operatingExpenses?.tag ?? ""
     )
@@ -759,6 +769,7 @@ export function validateV2(company: CompanyV2) {
           p.roundedOperatingExpenseComponents ||
           p.shareholderBridge ||
           p.operatingItems ||
+          p.grossOperatingItems ||
           p.directNetItems) &&
         !flowPeriod(p)
       )

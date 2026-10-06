@@ -237,7 +237,7 @@ describe("persistent public finance queue", () => {
         expect(p.directNetItems).toEqual(s.period.directNetItems);
         expect(p.shareholderBridge).toEqual(s.period.shareholderBridge);
         expect(p.segments?.map((s) => s.revenue)).toEqual(s.period.segments?.map((s) => s.revenue));
-        expect(await storage.get(`generic:v16:0001035443:${s.filing.accession}`)).toMatchObject([
+        expect(await storage.get(`generic:v18:0001035443:${s.filing.accession}`)).toMatchObject([
           { directNetItems: { ruleId: "are-direct-net-v1" } }
         ]);
       }
@@ -251,7 +251,8 @@ describe("persistent public finance queue", () => {
     ["SPGI", "SPGISubtotalsAnnual", "SPGISubtotalsQuarter"],
     ["CARR", "CARRSubtotalsAnnual", "CARRSubtotalsQuarter"],
     ["PLD", "PLDSubtotalsAnnual", "PLDSubtotalsQuarter"],
-    ["MDLZ", "MDLZTransactionFY2025", "MDLZTransaction2026Q2"]
+    ["MDLZ", "MDLZTransactionFY2025", "MDLZTransaction2026Q2"],
+    ["FLEX", "FLEXGrossOperatingFY2026", "FLEXGrossOperating2027Q1"]
   ] as const)
     it.each([false, true])(
       `imports ${ticker} reviewed primary statement chain (empty Company Facts: %s)`,
@@ -281,7 +282,7 @@ describe("persistent public finance queue", () => {
               val: f.value,
               accn: s.filing.accession,
               fy: s.period.fiscalYear,
-              fp: s.period.kind === "annual" ? "FY" : "Q2",
+              fp: s.period.kind === "annual" ? "FY" : `Q${s.period.fiscalQuarter}`,
               form: s.filing.form,
               filed: s.filing.filedAt
             });
@@ -293,7 +294,9 @@ describe("persistent public finance queue", () => {
               return Response.json({
                 cik: annual.identity.cik,
                 tickers: [ticker],
-                sic: { SPGI: "7320", CARR: "3585", PLD: "6798", MDLZ: "2000" }[ticker],
+                sic: { SPGI: "7320", CARR: "3585", PLD: "6798", MDLZ: "2000", FLEX: "3672" }[
+                  ticker
+                ],
                 filings: {
                   recent: {
                     accessionNumber: sources.map((s) => s.filing.accession),
@@ -343,15 +346,25 @@ describe("persistent public finance queue", () => {
             );
             expect(p.metrics.equityMethodIncome).toBe(s.period.metrics.equityMethodIncome);
           }
+          if (s.period.grossOperatingItems) {
+            expect(p.grossOperatingItems).toEqual(s.period.grossOperatingItems);
+            expect(p.grossProfitAdjustments).toEqual(s.period.grossProfitAdjustments);
+            expect(p.metrics.costOfRevenue).toBe(s.period.metrics.costOfRevenue);
+            expect(p.metrics.operatingExpenses).toBe(s.period.metrics.operatingExpenses);
+          }
           expect(p.segments?.map((s) => s.revenue)).toEqual(
             s.period.segments?.map((s) => s.revenue)
           );
           expect(
-            await storage.get(`generic:v16:${annual.identity.cik}:${s.filing.accession}`)
+            await storage.get(`generic:v18:${annual.identity.cik}:${s.filing.accession}`)
           ).toMatchObject([
             s.period.operatingItems
               ? { operatingItems: { ruleId: s.period.operatingItems.ruleId } }
-              : { afterTaxTransactionItems: { ruleId: s.period.afterTaxTransactionItems!.ruleId } }
+              : s.period.grossOperatingItems
+                ? { grossOperatingItems: { ruleId: s.period.grossOperatingItems.ruleId } }
+                : {
+                    afterTaxTransactionItems: { ruleId: s.period.afterTaxTransactionItems!.ruleId }
+                  }
           ]);
         }
         expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
@@ -448,7 +461,7 @@ describe("persistent public finance queue", () => {
       expect(result.company.warnings.some((w) => w.startsWith("SEC lists a report ending"))).toBe(
         false
       );
-      expect(await storage.get(`generic:v16:0000001800:${quarter.filing.accession}`)).toMatchObject(
+      expect(await storage.get(`generic:v18:0000001800:${quarter.filing.accession}`)).toMatchObject(
         [{ id: "2026-Q2", coverage: { segments: true } }]
       );
       expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
@@ -466,7 +479,7 @@ describe("persistent public finance queue", () => {
     vi.stubGlobal("fetch", fetcher);
     const first = await jobOf(await request(store, "MCD"));
     expect(await storage.get(`task:${first.id}`)).toMatchObject({
-      engineVersion: "finance-v2.28"
+      engineVersion: "finance-v2.30"
     });
     await nextQueueStep(store);
     await nextQueueStep(store);
@@ -488,7 +501,7 @@ describe("persistent public finance queue", () => {
     expect(period.revenueAdjustments).toEqual([
       { id: "source-rounding", label: "Source rounding", revenue: -1e6 }
     ]);
-    expect(await storage.get(`generic:v16:0000063908:${mcdAccession}`)).toMatchObject([
+    expect(await storage.get(`generic:v18:0000063908:${mcdAccession}`)).toMatchObject([
       { coverage: { segments: true, sankey: true } }
     ]);
     expect(await storage.get(`basic-periods:${first.id}`)).toBeUndefined();

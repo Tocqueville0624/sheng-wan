@@ -19,6 +19,7 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
   const source = node.group === "segment";
   const detail =
     node.group === "detail" ||
+    node.group === "gross-cost-item" ||
     node.group === "tax" ||
     ((node.group === "equity" ||
       node.group === "subsidiary" ||
@@ -44,6 +45,7 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
     positiveEquity ||
     minorityLoss ||
     taxBenefit ||
+    (node.group === "operating-item" && node.tone === "profit") ||
     ((nonoperating || operatingAdjustment) && node.tone === "profit");
   const revenueLabel = node.id === "revenue" || node.group === "revenue-base";
   const labelLeft = source;
@@ -319,6 +321,7 @@ export function StatementFlow({
               netIncomeAttribution: parentNet ? "parent" : undefined,
               shareholderBridge: period.shareholderBridge,
               operatingItems: period.operatingItems,
+              grossOperatingItems: period.grossOperatingItems,
               directNetItems: period.directNetItems,
               afterTaxTransactionItems: period.afterTaxTransactionItems,
               operatingReconciliation: rounding,
@@ -457,8 +460,9 @@ export function StatementFlow({
           )}
           {period.operatingExpensesBasis && (
             <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
-              Operating items (net) = reported gross profit minus operating income. Expense
-              components are not inferred.
+              {period.grossOperatingItems
+                ? "Cost-of-sales restructuring and operating reversals stay separate. Expense branches retain original amounts."
+                : "Operating items (net) = reported gross profit minus operating income. Expense components are not inferred."}
             </text>
           )}
           {hasBusinesses && (
@@ -574,7 +578,10 @@ export function StatementFlow({
           `The intermediate consolidated net-income subtotal is reported as ${shortMoney(period.consolidatedIncomeSubtotal.amount)} and corroborates pretax profit minus tax within declared source precision. The exact running arithmetic and the final parent net-income amount are preserved independently. `}
         {period.afterTaxReconciliation &&
           `A separate after-tax source-rounding flow of ${shortMoney(period.afterTaxReconciliation.amount)} reconciles the final net-income scope within declared precision; reported net income is unchanged. `}
+        {period.grossOperatingItems &&
+          "The primary statement separately reports restructuring costs before gross profit and signed operating expense lines. Positive expense components keep their original values; a reported negative cost is shown separately as a reversal. The net operating expense sum, original source rows and declared precision remain in the exports. "}
         {period.operatingExpensesBasis &&
+          !period.grossOperatingItems &&
           "Operating expenses and other items (net) are the calculated difference between reported gross profit and operating income. Signed gains, equity income or rounded detail can prevent an exact expense partition; no component or balancing expense is invented. "}
         {pretaxFlow &&
           "This statement reports no operating-profit subtotal. Every item between revenue (or gross profit) and pretax profit, including interest and other non-operating items, is shown as one reported net amount; listed lines appear only when they exactly add up to it. "}
@@ -652,7 +659,11 @@ export function StatementFlow({
                       {node.label}
                       {node.id === "other-opex" && <small> · derived remainder</small>}
                       {node.id === "opex" && period.operatingExpensesBasis && (
-                        <small> · calculated from reported gross profit and operating income</small>
+                        <small>
+                          {period.grossOperatingItems
+                            ? " · sum of positive reported expense lines; reversals separate"
+                            : " · calculated from reported gross profit and operating income"}
+                        </small>
                       )}
                       {node.id === "operating-costs" && summedCosts && (
                         <small> · sum of the listed reported lines</small>

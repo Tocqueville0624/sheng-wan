@@ -5,6 +5,22 @@ import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
 for (const key of [
+  "FLEXGrossOperatingFY2020",
+  "FLEXGrossOperatingFY2021",
+  "FLEXGrossOperatingFY2022",
+  "FLEXGrossOperatingFY2023",
+  "FLEXGrossOperatingFY2024",
+  "FLEXGrossOperatingFY2025",
+  "FLEXGrossOperatingFY2026",
+  "FLEXGrossOperating2022Q2",
+  "FLEXGrossOperating2022Q3",
+  "FLEXGrossOperating2025Q1",
+  "FLEXGrossOperating2025Q2",
+  "FLEXGrossOperating2025Q3",
+  "FLEXGrossOperating2026Q1",
+  "FLEXGrossOperating2026Q2",
+  "FLEXGrossOperating2026Q3",
+  "FLEXGrossOperating2027Q1",
   "MDLZTransaction2026Q2",
   "MDLZTransactionFY2025",
   "MDLZTransactionFY2024",
@@ -78,6 +94,22 @@ for (const key of [
     const metadata = JSON.parse((await chart.locator("metadata").textContent()) ?? "null");
     expect(metadata.metrics).toEqual(period.metrics);
     expect(metadata.flow).toBe("signed-accounting");
+    if (period.grossOperatingItems) {
+      expect(metadata.grossOperatingItems).toEqual(period.grossOperatingItems);
+      for (const item of period.grossOperatingItems.grossCosts.filter((l) => l.amount > 0))
+        await expect(chart.locator(`[data-flow-node="gross-cost-${item.id}"]`)).toContainText(
+          "cost of sales"
+        );
+      for (const item of period.grossOperatingItems.operatingCosts.filter((l) => l.amount < 0)) {
+        await expect(
+          chart.locator(`[data-flow-node="operating-reversal-${item.id}"]`)
+        ).toContainText("reversal");
+        expect(
+          metadata.nodes.find((n: { id: string }) => n.id === `operating-reversal-${item.id}`)
+            .amount
+        ).toBe(-item.amount);
+      }
+    }
     if (period.afterTaxTransactionItems) {
       expect(metadata.afterTaxTransactionItems).toEqual(period.afterTaxTransactionItems);
       const amount = period.metrics.afterTaxTransactionIncome!;
@@ -148,7 +180,8 @@ for (const key of [
       if (
         period.directNetItems ||
         period.operatingItems?.costSubtotal ||
-        period.afterTaxTransactionItems
+        period.afterTaxTransactionItems ||
+        period.grossOperatingItems
       ) {
         const headerIntrusions = await chart.evaluate((element) =>
           [...element.querySelectorAll("[data-flow-node] text")]
@@ -211,7 +244,8 @@ for (const key of [
       period.shareholderBridge ||
       period.operatingItems ||
       period.directNetItems ||
-      period.afterTaxTransactionItems
+      period.afterTaxTransactionItems ||
+      period.grossOperatingItems
     ) {
       const downloaded = page.waitForEvent("download");
       await page.getByRole("button", { name: "Download CSV", exact: true }).click();
@@ -239,6 +273,11 @@ for (const key of [
         expect(csv).toContain(
           JSON.stringify(period.afterTaxTransactionItems).replaceAll('"', '""')
         );
+      }
+      if (period.grossOperatingItems) {
+        expect(csv).toContain('"gross_operating_items"');
+        expect(csv).toContain(JSON.stringify(period.grossOperatingItems).replaceAll('"', '""'));
+        expect(csv).toContain(`"${period.metrics.operatingExpenses}"`);
       }
     }
     expect(errors).toEqual([]);

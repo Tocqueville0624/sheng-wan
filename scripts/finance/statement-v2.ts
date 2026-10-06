@@ -6,6 +6,7 @@ import { parseInlineXbrl, type ParsedFiling, type XbrlFact } from "./ixbrl";
 import type { SecFiling } from "./sec-shared";
 import { flowPeriod } from "./v2-model";
 import { operatingItemsProblem } from "../../src/features/finance/operating-items";
+import { grossOperatingItemsProblem } from "../../src/features/finance/gross-operating-items";
 import {
   afterTaxTransactionItemsProblem,
   afterTaxTransactionRule,
@@ -555,6 +556,10 @@ export function readStatementRows(
   // and gain. This reader still supplies the primary statement's after-tax chain.
   if (period.operatingItems) {
     if (operatingItemsProblem(period)) return;
+    return result;
+  }
+  if (period.grossOperatingItems) {
+    if (grossOperatingItemsProblem(period)) return;
     return result;
   }
   const iG = block.findIndex((item) => item && GROSS_PROFIT.has(item.fact.tag));

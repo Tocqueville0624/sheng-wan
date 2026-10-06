@@ -10,6 +10,7 @@ tests/fixtures/finance/mcd-2026-q2-inline.html
 tests/fixtures/finance/mcd-2026-q2-business.html
 tests/fixtures/finance/tsla-2026-q2-business.html
 tests/fixtures/finance/ibm-2026-q2-business.html
+tests/fixtures/finance/FLEX-FY2020-amortization-narrative.html
 tests/fixtures/finance/*-statement.html
 # Preserve the original bytes of the recorded Git metadata migration audit.
 docs/history/rewrite-audit.json

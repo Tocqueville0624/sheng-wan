@@ -71,6 +71,25 @@ export type OperatingItems = {
   items: (StatementLine & { effect: "cost" | "gain"; rowIndex: number })[];
 };
 
+/** Reviewed primary gross and operating ledgers. Original costs stay separate;
+ * a negative operating cost is a reported reversal, not a rescaled expense. */
+export type GrossOperatingItems = {
+  ruleId: string;
+  sourceUrl: string;
+  accession: string;
+  filedAt: string;
+  startDate: string;
+  endDate: string;
+  currency: "USD";
+  tableIndex: number;
+  revenue: StatementLine & { rowIndex: number };
+  cost: StatementLine & { rowIndex: number };
+  grossCosts: (StatementLine & { rowIndex: number })[];
+  grossProfit: StatementLine & { rowIndex: number };
+  operatingCosts: (StatementLine & { rowIndex: number })[];
+  operatingIncome: StatementLine & { rowIndex: number };
+};
+
 /** A reviewed primary statement that goes directly from revenue and reported
  * expenses/gains to consolidated net income, without pretax or tax subtotals.
  */
@@ -208,6 +227,7 @@ export type FinancialPeriod = {
   afterTaxReconciliation?: { label: string; amount: number; sourceUrl: string };
   shareholderBridge?: ShareholderIncomeBridge;
   operatingItems?: OperatingItems;
+  grossOperatingItems?: GrossOperatingItems;
   directNetItems?: DirectNetItems;
   afterTaxTransactionItems?: AfterTaxTransactionItems;
   /** A rounded intermediate subtotal is corroboration, not a replacement for the

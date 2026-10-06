@@ -19,6 +19,105 @@ export type BusinessRule = {
 };
 
 export const businessRules: BusinessRule[] = [
+  {
+    id: "flex-its-rms-cpi-quarterly-v1",
+    cik: "0000866374",
+    totalTag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    totalLabel: "Net Sales",
+    layout: "columns",
+    basis:
+      "Reported net sales under the quarterly source table's ITS, RMS and CPI headings. Each original business context is retained without mixing the annual corporate classification.",
+    branches: [
+      ["ITS", "flex:IntegratedTechnologySolutionsMember"],
+      ["RMS", "flex:RegulatedManufacturingSolutionsMember"],
+      ["CPI", "flex:CloudAndPowerInfrastructureMember"]
+    ].map(([label, member]) => ({
+      label,
+      rowLabel: "Net Sales",
+      tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      dimensions: { "us-gaap:StatementBusinessSegmentsAxis": member }
+    }))
+  },
+  {
+    id: "flex-fas-frs-columns-v1",
+    cik: "0000866374",
+    totalTag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    totalLabel: "Net Sales",
+    layout: "columns",
+    basis:
+      "Reported net sales under the original FAS and FRS headings, plus the separately tagged Corporate & Other amount. A zero requires an actual reported numeric fact; a blank cell is never filled.",
+    branches: [
+      ...[
+        ["FAS", "flex:FlexAgilitySolutionsFASMember"],
+        ["FRS", "flex:FlexReliabilitySolutionsFRSMember"]
+      ].map(([label, member]) => ({
+        label,
+        rowLabel: "Net Sales",
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": member
+        }
+      })),
+      {
+        label: "Corporate & Other",
+        rowLabel: "Net Sales",
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: { "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember" }
+      }
+    ]
+  },
+  {
+    id: "flex-fas-frs-rows-v1",
+    cik: "0000866374",
+    totalTag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    totalLabel: "Net sales",
+    layout: "rows",
+    separateTotal: true,
+    basis:
+      "Reported Flex Agility Solutions and Flex Reliability Solutions sales reconcile to the independent primary consolidated sales row in the same filing. Historical classifications stay separate.",
+    branches: [
+      ["Flex Agility Solutions", "flex:FlexAgilitySolutionsFASMember"],
+      ["Flex Reliability Solutions", "flex:FlexReliabilitySolutionsFRSMember"]
+    ].map(([label, member]) => ({
+      label,
+      rowLabel: label,
+      tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      dimensions: {
+        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+        "us-gaap:StatementBusinessSegmentsAxis": member
+      }
+    }))
+  },
+  {
+    id: "flex-its-rms-cpi-annual-v1",
+    cik: "0000866374",
+    totalTag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    totalLabel: "Net Sales",
+    layout: "columns",
+    basis:
+      "Reported annual net sales under the source table's ITS, RMS and CPI headings. CPI retains its actual reported corporate context; no revenue is assigned from a residual.",
+    branches: [
+      ...[
+        ["ITS", "flex:IntegratedTechnologySolutionsITSMember"],
+        ["RMS", "flex:RegulatedManufacturingSolutionsRMSMember"]
+      ].map(([label, member]) => ({
+        label,
+        rowLabel: "Net Sales",
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": member
+        }
+      })),
+      {
+        label: "CPI",
+        rowLabel: "Net Sales",
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: { "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember" }
+      }
+    ]
+  },
   ...["quarterly", "annual"].map<BusinessRule>((kind) => ({
     id: `abt-four-businesses-${kind}-v1`,
     cik: "0000001800",

@@ -221,7 +221,20 @@ export function buildSignedStatementFlow(
     if (options.hasGrossStage) {
       const gross = income("gross", "Gross profit", "Gross loss", m.grossProfit!, ++stage);
       const cost = node("cost", "Cost of revenue", m.costOfRevenue!, "expense", "cost", stage);
-      if (!transition(gross, [], [cost]))
+      const grossCosts =
+        period.grossOperatingItems?.grossCosts
+          .filter((item) => item.amount > 0)
+          .map((item) =>
+            node(
+              `gross-cost-${item.id}`,
+              `${item.label} (cost of sales)`,
+              item.amount,
+              "expense",
+              "gross-cost-item",
+              stage
+            )
+          ) ?? [];
+      if (!transition(gross, [], [cost, ...grossCosts]))
         return { ok: false, reason: "The signed gross-profit stage does not reconcile." };
     }
     if (options.hasOperating) {
@@ -235,11 +248,22 @@ export function buildSignedStatementFlow(
       const cost = node(
         options.hasGrossStage ? "opex" : "operating-costs",
         options.hasGrossStage
-          ? period.operatingExpensesBasis
-            ? "Operating expenses and other items (net)"
-            : "Operating expenses"
+          ? period.grossOperatingItems
+            ? period.grossOperatingItems.operatingCosts.some((item) => item.amount < 0)
+              ? "Operating expenses (before reversals)"
+              : "Operating expenses"
+            : period.operatingExpensesBasis
+              ? "Operating expenses and other items (net)"
+              : "Operating expenses"
           : "Total operating costs",
-        options.hasGrossStage ? m.operatingExpenses! : m.totalOperatingCosts!,
+        options.hasGrossStage
+          ? period.grossOperatingItems
+            ? period.grossOperatingItems.operatingCosts.reduce(
+                (sum, item) => sum + Math.max(0, item.amount),
+                0
+              )
+            : m.operatingExpenses!
+          : m.totalOperatingCosts!,
         "expense",
         "opex",
         stage
@@ -263,15 +287,35 @@ export function buildSignedStatementFlow(
               stage - 0.5
             )
           ) ?? [];
+      const reversals =
+        period.grossOperatingItems?.operatingCosts
+          .filter((item) => item.amount < 0)
+          .map((item) =>
+            stageEffects(
+              -item.amount,
+              `operating-reversal-${item.id}`,
+              item.label,
+              "operating-item",
+              stage - 0.5
+            )
+          ) ?? [];
       if (
         !transition(
           operating,
-          [...rounding.gains, ...operatingItems.flatMap((item) => item.gains)],
+          [
+            ...rounding.gains,
+            ...operatingItems.flatMap((item) => item.gains),
+            ...reversals.flatMap((item) => item.gains)
+          ],
           [cost, ...rounding.expenses, ...operatingItems.flatMap((item) => item.expenses)]
         )
       )
         return { ok: false, reason: "The signed operating stage does not reconcile." };
-      const details = options.hasGrossStage ? options.expenses : options.costDetails;
+      const details = options.hasGrossStage
+        ? period.grossOperatingItems
+          ? period.grossOperatingItems.operatingCosts.filter((item) => item.amount > 0)
+          : options.expenses
+        : options.costDetails;
       if (details)
         for (const detail of details) {
           const id = `expense-${detail.id}`;

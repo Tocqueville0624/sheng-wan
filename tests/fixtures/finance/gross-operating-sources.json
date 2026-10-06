@@ -1,0 +1,2696 @@
+[
+  {
+    "ticker": "FLEX",
+    "id": "FY2020",
+    "key": "FLEXGrossOperatingFY2020",
+    "fixture": "FLEX-FY2020-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637422000035/flex-20220331.htm",
+    "accession": "0000866374-22-000035",
+    "filedAt": "2022-05-20",
+    "startDate": "2019-04-01",
+    "endDate": "2020-03-31",
+    "originalSha256": "dae566f7bb6df326db20cbdad57b6b7417d8954349776495d23c1f27a8e90ad2",
+    "indexes": [24],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 24210000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 22681000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 190000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 1339000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 834000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 64000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 5
+      },
+      {
+        "tag": "flex:RestructuringChargesIndirectCost",
+        "value": 26000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 415000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "flex:OtherOperatingandNonoperatingIncomeExpense",
+        "value": -174000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest, net",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": -82000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 159000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 71000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for income taxes",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 88000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to redeemable noncontrolling interest",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 88000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to Flex Ltd.",
+        "rowIndex": 14
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "FY2021",
+    "key": "FLEXGrossOperatingFY2021",
+    "fixture": "FLEX-FY2021-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637423000028/flex-20230331.htm",
+    "accession": "0000866374-23-000028",
+    "filedAt": "2023-05-19",
+    "startDate": "2020-04-01",
+    "endDate": "2021-03-31",
+    "originalSha256": "d6f00a6a41783abf99874223c70367e80019c56c0b04ba87a91b61fd1cbc76c9",
+    "indexes": [23],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 24124000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 22349000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 88000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 1687000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 817000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 62000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 5
+      },
+      {
+        "tag": "flex:RestructuringChargesIndirectCost",
+        "value": 13000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 795000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestIncomeExpenseNet",
+        "value": -148000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest, net",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": -16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 83000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 714000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 101000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for (benefit from) income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 613000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to noncontrolling interest and redeemable noncontrolling interest",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 613000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to Flex Ltd.",
+        "rowIndex": 15
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "FY2022",
+    "key": "FLEXGrossOperatingFY2022",
+    "fixture": "FLEX-FY2022-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637424000021/flex-20240331.htm",
+    "accession": "0000866374-24-000021",
+    "filedAt": "2024-05-17",
+    "startDate": "2021-04-01",
+    "endDate": "2022-03-31",
+    "originalSha256": "bcc27402c29f46604332f420b797faf2a7417ec6d45f939dc00c41dc315bba2e",
+    "indexes": [23, 67],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 24633000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 22838000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 15000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 1780000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 830000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 60000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 5
+      },
+      {
+        "tag": "flex:RestructuringChargesIndirectCost",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 890000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpense",
+        "value": 166000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 14000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": 165000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 61000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 964000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income from continuing operations before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 92000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "(Benefit from) provision for income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
+        "value": 872000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income from continuing operations",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromDiscontinuedOperationsNetOfTax",
+        "value": 68000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income from discontinued operations, net of tax",
+        "rowIndex": 15
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 940000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 16
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 4000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to noncontrolling interest and redeemable noncontrolling interest",
+        "rowIndex": 17
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 936000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to Flex Ltd.",
+        "rowIndex": 18
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 14027000000,
+        "dimensions": {
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexAgilitySolutionsFASMember",
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 10606000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexReliabilitySolutionsFRSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 24633000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "FY2023",
+    "key": "FLEXGrossOperatingFY2023",
+    "fixture": "FLEX-FY2023-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637425000027/flex-20250331.htm",
+    "accession": "0000866374-25-000027",
+    "filedAt": "2025-05-21",
+    "startDate": "2022-04-01",
+    "endDate": "2023-03-31",
+    "originalSha256": "9c9306c0c750e7599ed339df058fecb2ba5f3f38d16de5d4ac006c81655d4778",
+    "indexes": [23, 71],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 28502000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 26503000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 23000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 1976000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 874000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 81000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 5
+      },
+      {
+        "tag": "flex:RestructuringChargesIndirectCost",
+        "value": 4000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 1017000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 230000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 30000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": -6000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": -4000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 807000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income from continuing operations before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 124000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for (benefit from) income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
+        "value": 683000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income from continuing operations",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromDiscontinuedOperationsNetOfTax",
+        "value": 350000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income from discontinued operations, net of tax",
+        "rowIndex": 15
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 1033000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 16
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 240000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to noncontrolling interest and redeemable noncontrolling interest",
+        "rowIndex": 17
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 793000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to Flex Ltd.",
+        "rowIndex": 18
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 15769000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexAgilitySolutionsFASMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 12733000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexReliabilitySolutionsFRSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 0,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 28502000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "FY2024",
+    "key": "FLEXGrossOperatingFY2024",
+    "fixture": "FLEX-FY2024-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637426000012/flex-20260331.htm",
+    "accession": "0000866374-26-000012",
+    "filedAt": "2026-05-20",
+    "startDate": "2023-04-01",
+    "endDate": "2024-03-31",
+    "originalSha256": "0de2e3112558da358124ecd8b488ca75f31fc779bd8b3b11b8899e25ad6aafd7",
+    "indexes": [23, 73],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 26415000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 24395000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 155000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 1865000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 922000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:RestructuringSettlementAndImpairmentProvisions",
+        "value": 20000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring and impairment charges",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 70000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 853000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 207000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 56000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": -44000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 8000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 666000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income from continuing operations before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": -206000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for (benefit from) income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
+        "value": 872000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income from continuing operations",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromDiscontinuedOperationsNetOfTax",
+        "value": 373000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income from discontinued operations, net of tax",
+        "rowIndex": 15
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 1245000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 16
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 239000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to noncontrolling interest",
+        "rowIndex": 17
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 1006000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to Flex Ltd.",
+        "rowIndex": 18
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 12636000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:IntegratedTechnologySolutionsITSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 10535000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:RegulatedManufacturingSolutionsRMSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 3244000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 26415000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "FY2025",
+    "key": "FLEXGrossOperatingFY2025",
+    "fixture": "FLEX-FY2025-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637426000012/flex-20260331.htm",
+    "accession": "0000866374-26-000012",
+    "filedAt": "2026-05-20",
+    "startDate": "2024-04-01",
+    "endDate": "2025-03-31",
+    "originalSha256": "0de2e3112558da358124ecd8b488ca75f31fc779bd8b3b11b8899e25ad6aafd7",
+    "indexes": [23, 72],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 25813000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 23584000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 70000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 2159000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 904000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:RestructuringSettlementAndImpairmentProvisions",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring and impairment charges",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 70000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 1169000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 218000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 61000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": 14000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": -3000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 1023000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income from continuing operations before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 185000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for (benefit from) income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
+        "value": 838000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income from continuing operations",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromDiscontinuedOperationsNetOfTax",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income from discontinued operations, net of tax",
+        "rowIndex": 15
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 838000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 16
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to noncontrolling interest",
+        "rowIndex": 17
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 838000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to Flex Ltd.",
+        "rowIndex": 18
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 11336000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:IntegratedTechnologySolutionsITSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 9678000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:RegulatedManufacturingSolutionsRMSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 4799000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 25813000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "FY2026",
+    "key": "FLEXGrossOperatingFY2026",
+    "fixture": "FLEX-FY2026-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637426000012/flex-20260331.htm",
+    "accession": "0000866374-26-000012",
+    "filedAt": "2026-05-20",
+    "startDate": "2025-04-01",
+    "endDate": "2026-03-31",
+    "originalSha256": "0de2e3112558da358124ecd8b488ca75f31fc779bd8b3b11b8899e25ad6aafd7",
+    "indexes": [23, 71],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 27914000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 25288000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 59000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 2567000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 1052000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:RestructuringSettlementAndImpairmentProvisions",
+        "value": 79000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring and impairment charges",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 68000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 1368000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 215000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 51000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": -30000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": -31000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 1143000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income from continuing operations before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 263000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for (benefit from) income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest",
+        "value": 880000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income from continuing operations",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromDiscontinuedOperationsNetOfTax",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income from discontinued operations, net of tax",
+        "rowIndex": 15
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 880000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 16
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to noncontrolling interest",
+        "rowIndex": 17
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 880000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to Flex Ltd.",
+        "rowIndex": 18
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 11109000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:IntegratedTechnologySolutionsITSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 10191000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:RegulatedManufacturingSolutionsRMSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6614000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 27914000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "2022-Q2",
+    "key": "FLEXGrossOperating2022Q2",
+    "fixture": "FLEX-2022-Q2-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637422000074/flex-20220930.htm",
+    "accession": "0000866374-22-000074",
+    "filedAt": "2022-10-31",
+    "startDate": "2021-07-03",
+    "endDate": "2021-10-01",
+    "originalSha256": "0291b4ab24e549a1d2973c954755a510c251c3382e1698af972ff4ce25151647",
+    "indexes": [9],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6229000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 5755000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 9000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 465000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 213000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 15000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 237000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": 134000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest and other, net",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 371000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 35000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for income taxes",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 336000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to redeemable noncontrolling interest",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 336000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to Flex Ltd.",
+        "rowIndex": 12
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "2022-Q3",
+    "key": "FLEXGrossOperating2022Q3",
+    "fixture": "FLEX-2022-Q3-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637423000007/flex-20221231.htm",
+    "accession": "0000866374-23-000007",
+    "filedAt": "2023-01-27",
+    "startDate": "2021-10-02",
+    "endDate": "2021-12-31",
+    "originalSha256": "8e0537da7c8438e729088048f1f4c652e2ae7ac7070953955f414baeab0d9208",
+    "indexes": [9],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6619000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 6126000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 2000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 491000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 225000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 15000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 251000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 6
+      },
+      {
+        "tag": "flex:InterestAndOtherNet",
+        "value": 8000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest and other, net",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 243000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for income taxes",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 227000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to redeemable noncontrolling interest",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 227000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income attributable to Flex Ltd.",
+        "rowIndex": 12
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "2025-Q1",
+    "key": "FLEXGrossOperating2025Q1",
+    "fixture": "FLEX-2025-Q1-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637425000043/flex-20250627.htm",
+    "accession": "0000866374-25-000043",
+    "filedAt": "2025-07-25",
+    "startDate": "2024-04-01",
+    "endDate": "2024-06-28",
+    "originalSha256": "4ae7cb57e6bb9615bc31c43c110164be63fbeba38ab3cfe421cec4a754493c9d",
+    "indexes": [9, 30],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6314000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 5827000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 471000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 213000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "flex:RestructuringChargesIndirectCost",
+        "value": 9000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 233000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 56000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": -2000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 1000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 192000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 53000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for (benefit from) income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 139000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 14
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 3365000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexAgilitySolutionsFASMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 2949000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexReliabilitySolutionsFRSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 0,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6314000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "2025-Q2",
+    "key": "FLEXGrossOperating2025Q2",
+    "fixture": "FLEX-2025-Q2-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637425000051/flex-20250926.htm",
+    "accession": "0000866374-25-000051",
+    "filedAt": "2025-10-31",
+    "startDate": "2024-06-29",
+    "endDate": "2024-09-27",
+    "originalSha256": "efcfa30292f2d1c23c98c725a7112250191572be0f9873fd5a694af1bcf8b73d",
+    "indexes": [9, 35],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6545000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 5998000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 531000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 216000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:RestructuringSettlementAndImpairmentProvisions",
+        "value": 2000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring and impairment charges",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 297000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 53000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": 8000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": -4000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 264000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 50000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for (benefit from) income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 214000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 14
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 3606000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexAgilitySolutionsFASMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 2939000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexReliabilitySolutionsFRSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 0,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6545000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "2025-Q3",
+    "key": "FLEXGrossOperating2025Q3",
+    "fixture": "FLEX-2025-Q3-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637426000005/flex-20251231.htm",
+    "accession": "0000866374-26-000005",
+    "filedAt": "2026-02-06",
+    "startDate": "2024-09-28",
+    "endDate": "2024-12-31",
+    "originalSha256": "ce2530ddacdccae2fa0a8aee59f4a1e9e22aa9cf100a549c8f866522b1a722ad",
+    "indexes": [9, 35],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6556000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 5952000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 10000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 594000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 241000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:RestructuringSettlementAndImpairmentProvisions",
+        "value": 2000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring and impairment charges",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 17000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 334000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 57000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": -5000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossAttributableToParent",
+        "value": 288000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 25000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for (benefit from) income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 263000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 14
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 3599000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexAgilitySolutionsFASMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 2957000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexReliabilitySolutionsFRSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 0,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6556000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "2026-Q1",
+    "key": "FLEXGrossOperating2026Q1",
+    "fixture": "FLEX-2026-Q1-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637426000030/flex-20260626.htm",
+    "accession": "0000866374-26-000030",
+    "filedAt": "2026-07-31",
+    "startDate": "2025-04-01",
+    "endDate": "2025-06-27",
+    "originalSha256": "dc446502bbde415803ce03dd81583ed4726543a48fd1a27c769d0d80debd5584",
+    "indexes": [9, 32],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6575000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 5987000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 572000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 233000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:RestructuringSettlementAndImpairmentProvisions",
+        "value": 7000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring and impairment charges (reversal)",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 21000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 311000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 51000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 13000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": -7000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": -20000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossAttributableToParent",
+        "value": 246000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 54000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 192000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 14
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 2558000000,
+        "dimensions": {
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:IntegratedTechnologySolutionsMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 2391000000,
+        "dimensions": {
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:RegulatedManufacturingSolutionsMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 1626000000,
+        "dimensions": {
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:CloudAndPowerInfrastructureMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6575000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "2026-Q2",
+    "key": "FLEXGrossOperating2026Q2",
+    "fixture": "FLEX-2026-Q2-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637425000051/flex-20250926.htm",
+    "accession": "0000866374-25-000051",
+    "filedAt": "2025-10-31",
+    "startDate": "2025-06-28",
+    "endDate": "2025-09-26",
+    "originalSha256": "efcfa30292f2d1c23c98c725a7112250191572be0f9873fd5a694af1bcf8b73d",
+    "indexes": [9, 33],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6804000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 6181000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 9000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 614000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 260000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:RestructuringSettlementAndImpairmentProvisions",
+        "value": 42000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring and impairment charges",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 296000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 52000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 10000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": 13000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": -5000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "value": 262000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 63000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for (benefit from) income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 199000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 14
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 3766000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexAgilitySolutionsFASMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 3038000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexReliabilitySolutionsFRSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 0,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 6804000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "2026-Q3",
+    "key": "FLEXGrossOperating2026Q3",
+    "fixture": "FLEX-2026-Q3-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637426000005/flex-20251231.htm",
+    "accession": "0000866374-26-000005",
+    "filedAt": "2026-02-06",
+    "startDate": "2025-09-27",
+    "endDate": "2025-12-31",
+    "originalSha256": "ce2530ddacdccae2fa0a8aee59f4a1e9e22aa9cf100a549c8f866522b1a722ad",
+    "indexes": [9, 33],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 7058000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 6373000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 6000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 679000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 270000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:RestructuringSettlementAndImpairmentProvisions",
+        "value": 5000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring and impairment charges",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 15000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 389000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 58000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 15000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": -25000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": -1000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossAttributableToParent",
+        "value": 320000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 81000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for (benefit from) income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 239000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 14
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 3818000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexAgilitySolutionsFASMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 3240000000,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:FlexReliabilitySolutionsFRSMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 0,
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 7058000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "FLEX",
+    "id": "2027-Q1",
+    "key": "FLEXGrossOperating2027Q1",
+    "fixture": "FLEX-2027-Q1-gross-operating-statement.html",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/866374/000086637426000030/flex-20260626.htm",
+    "accession": "0000866374-26-000030",
+    "filedAt": "2026-07-31",
+    "startDate": "2026-04-01",
+    "endDate": "2026-06-26",
+    "originalSha256": "dc446502bbde415803ce03dd81583ed4726543a48fd1a27c769d0d80debd5584",
+    "indexes": [9, 31],
+    "expected": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 7928000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net sales",
+        "rowIndex": 0
+      },
+      {
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "value": 7177000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Cost of sales",
+        "rowIndex": 1
+      },
+      {
+        "tag": "flex:RestructuringChargesCostOfSales",
+        "value": 4000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring charges",
+        "rowIndex": 2
+      },
+      {
+        "tag": "us-gaap:GrossProfit",
+        "value": 747000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gross profit",
+        "rowIndex": 3
+      },
+      {
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "value": 334000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Selling, general and administrative expenses",
+        "rowIndex": 4
+      },
+      {
+        "tag": "us-gaap:RestructuringSettlementAndImpairmentProvisions",
+        "value": -2000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Restructuring and impairment charges (reversal)",
+        "rowIndex": 5
+      },
+      {
+        "tag": "us-gaap:AmortizationOfIntangibleAssets",
+        "value": 23000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Intangible amortization",
+        "rowIndex": 6
+      },
+      {
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "value": 392000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Operating income",
+        "rowIndex": 7
+      },
+      {
+        "tag": "us-gaap:InterestExpenseNonoperating",
+        "value": 60000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest expense",
+        "rowIndex": 8
+      },
+      {
+        "tag": "us-gaap:InterestAndOtherIncome",
+        "value": 13000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Interest income",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:OtherNonoperatingIncomeExpense",
+        "value": 37000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Other charges (income), net",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": -5000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity in earnings (losses) of unconsolidated affiliates",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossAttributableToParent",
+        "value": 377000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income before income taxes",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 92000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Provision for income taxes",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 285000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net income",
+        "rowIndex": 14
+      }
+    ],
+    "expectedBusiness": [
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 3056000000,
+        "dimensions": {
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:IntegratedTechnologySolutionsMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 2670000000,
+        "dimensions": {
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:RegulatedManufacturingSolutionsMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 2202000000,
+        "dimensions": {
+          "us-gaap:StatementBusinessSegmentsAxis": "flex:CloudAndPowerInfrastructureMember"
+        },
+        "decimals": -6
+      },
+      {
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "value": 7928000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  }
+]

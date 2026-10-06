@@ -9,6 +9,7 @@ import { shareholderBridgeProblem } from "./shareholder-bridge";
 import { operatingItemsProblem } from "./operating-items";
 import { directNetItemsProblem } from "./direct-net-items";
 import { afterTaxTransactionItemsProblem } from "./after-tax-transaction";
+import { grossOperatingItemsProblem } from "./gross-operating-items";
 
 export type RevenueSeries = { id: string; label: string };
 export type RevenueHistory = {
@@ -45,6 +46,7 @@ export type FlowNode = {
     | "discontinued"
     | "operating-adjustment"
     | "operating-item"
+    | "gross-cost-item"
     | "direct-net-item"
     | "after-tax-adjustment"
     | "revenue-base"
@@ -130,7 +132,12 @@ export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
   if (transactionProblem) return { ok: false, reason: transactionProblem };
   const operatingProblem = operatingItemsProblem(period);
   if (operatingProblem) return { ok: false, reason: operatingProblem };
-  if (period.grossProfitAdjustments?.some((item) => item.amount !== 0))
+  const grossOperatingProblem = grossOperatingItemsProblem(period);
+  if (grossOperatingProblem) return { ok: false, reason: grossOperatingProblem };
+  if (
+    period.grossProfitAdjustments?.some((item) => item.amount !== 0) &&
+    !period.grossOperatingItems
+  )
     return {
       ok: false,
       reason:
@@ -164,7 +171,8 @@ export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
     m.pretaxIncome < incomeTax ||
     !!period.shareholderBridge ||
     !!period.operatingItems ||
-    !!period.afterTaxTransactionItems;
+    !!period.afterTaxTransactionItems ||
+    !!period.grossOperatingItems;
   if (
     m.revenue <= 0 ||
     Object.entries(positiveMetrics).some(
@@ -217,7 +225,8 @@ export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
     ...(hasGrossStage
       ? ([
           [
-            m.revenue,
+            m.revenue +
+              (period.grossProfitAdjustments?.reduce((sum, item) => sum + item.amount, 0) ?? 0),
             m.costOfRevenue! + m.grossProfit!,
             "Revenue, cost of revenue, and gross profit"
           ],
