@@ -1,4 +1,6 @@
 import type { BusinessPeriod, FlowStatementPeriod, RevenueSegment } from "./types";
+import { buildSignedStatementFlow, layoutSignedStatementFlow } from "./signed-flow";
+import { shareholderBridgeProblem } from "./shareholder-bridge";
 
 export type RevenueSeries = { id: string; label: string };
 export type RevenueHistory = {
@@ -12,6 +14,10 @@ export type FlowNode = {
   id: string;
   label: string;
   amount: number;
+  /** Original signed income subtotal; the geometric amount remains its magnitude. */
+  signedAmount?: number;
+  /** Chronological accounting stage used by a signed statement's layout. */
+  stage?: number;
   business?: RevenueSegment;
   tone: FlowTone;
   group:
@@ -26,6 +32,7 @@ export type FlowNode = {
     | "equity"
     | "subsidiary"
     | "noncontrolling"
+    | "shareholder"
     | "discontinued"
     | "operating-adjustment"
     | "after-tax-adjustment"
@@ -33,7 +40,11 @@ export type FlowNode = {
     | "adjustment";
 };
 export type FlowLink = { source: string; target: string; value: number; tone: FlowTone };
-export type StatementFlow = { nodes: FlowNode[]; links: FlowLink[] };
+export type StatementFlow = {
+  nodes: FlowNode[];
+  links: FlowLink[];
+  signedAccounting?: true;
+};
 export type FlowResult = { ok: true; graph: StatementFlow } | { ok: false; reason: string };
 export type PositionedNode = FlowNode & { x: number; y: number; height: number };
 export type PositionedLink = FlowLink & { path: string; width: number; annotationPath: string };
@@ -91,6 +102,8 @@ export function revenueAdjustmentLabel(adjustment: RevenueSegment) {
 
 export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
   const m = period.metrics;
+  const shareholderProblem = shareholderBridgeProblem(period);
+  if (shareholderProblem) return { ok: false, reason: shareholderProblem };
   if (period.grossProfitAdjustments?.some((item) => item.amount !== 0))
     return {
       ok: false,
@@ -117,15 +130,25 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
   if (Object.values(m).some((value) => value !== undefined && !Number.isFinite(value))) {
     return { ok: false, reason: "This statement contains non-finite financial values." };
   }
+  const signedAccounting =
+    [m.grossProfit, m.operatingIncome, m.pretaxIncome, m.netIncome].some(
+      (value) => value !== undefined && value < 0
+    ) ||
+    m.pretaxIncome < incomeTax ||
+    !!period.shareholderBridge;
   if (
     m.revenue <= 0 ||
-    Object.values(positiveMetrics).some((value) => value !== undefined && value < 0) ||
-    m.pretaxIncome < incomeTax
+    Object.entries(positiveMetrics).some(
+      ([key, value]) =>
+        !["grossProfit", "operatingIncome", "pretaxIncome", "netIncome"].includes(key) &&
+        value !== undefined &&
+        value < 0
+    )
   ) {
     return {
       ok: false,
       reason:
-        "This statement includes a negative profit, a post-tax loss before equity income, or another unsupported negative line item. A positive-flow Sankey would misrepresent it; use the statement table and original filing."
+        "This statement includes a nonpositive revenue or an unsupported negative cost. Use the statement table and original filing."
     };
   }
   const tolerance = accountingTolerance(m.revenue);
@@ -150,7 +173,7 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
     (operatingReconciliation && !operatingReconciliation.sourceUrl) ||
     (operatingReconciliation &&
       hasGrossStage !== (operatingReconciliation.basis === "gross-profit")) ||
-    operatingIncome - Math.max(0, operatingAdjustment) < 0
+    (!signedAccounting && operatingIncome - Math.max(0, operatingAdjustment) < 0)
   ) {
     return {
       ok: false,
@@ -246,6 +269,17 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
       reason: "Reported operating expense categories exceed total operating expenses."
     };
   }
+
+  if (signedAccounting)
+    return buildSignedStatementFlow(period, {
+      tolerance,
+      hasGrossStage,
+      hasOperating,
+      expenses: disclosedExpenses,
+      costDetails,
+      businessAvailable: !segmentProblem(period),
+      adjustmentLabel: revenueAdjustmentLabel
+    });
 
   const nodes: FlowNode[] = [];
   const links: FlowLink[] = [];
@@ -491,6 +525,7 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
 }
 
 export function layoutStatementFlow(graph: StatementFlow) {
+  if (graph.signedAccounting) return layoutSignedStatementFlow(graph);
   const revenueBase = graph.nodes.find((node) => node.id === "revenue-base");
   const scale = 350 / Math.max(...graph.nodes.map((node) => node.amount));
   const nodeWidth = 16;

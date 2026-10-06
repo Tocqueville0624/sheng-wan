@@ -1,5 +1,19 @@
 # Business revenue source fixtures
 
+## Signed statements and shareholder allocations
+
+- MRNA: [FY2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/1682852/000168285226000033/mrna-20251231.htm), filed 2026-02-20. Reported operating costs exceed revenue; positive tax expense increases the net loss.
+- AXON: [FY2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/1069183/000162828026011360/axon-20251231.htm), filed 2026-02-25. Operating loss becomes positive pretax income after nonoperating items; the reported tax benefit increases net income.
+- F: [2026 Q2 Form 10-Q](https://www.sec.gov/Archives/edgar/data/37996/000003799626000156/f-20260630.htm), filed 2026-07-29. Consolidated net loss and common-shareholder loss remain separate, with explicitly reported noncontrolling income between them. Dimensioned Ford Credit expenses are not treated as nondimensional cost components.
+- HPE: [FY2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/1645590/000164559025000130/hpe-20251031.htm), filed 2025-12-18. The excerpt also preserves an original independent nondimensional `NetIncomeLoss` fact corroborating the primary statement's same-amount diluted subtotal. That subtotal is never equated with parent income merely from its diluted tag. The reported preferred dividend leads from positive parent income to negative common-shareholder income.
+
+These `*-signed-statement.html` files keep entire original primary income and
+business-revenue tables, relevant contexts/units, balanced DEI metadata, and any
+required independent source corroboration. Their headers record the original
+document hash and table indexes. No numeric amount or financial label is edited.
+The generic reader supplies actual business amounts, losses and allocations;
+tests assert exact conservation and exported signed values.
+
 The HTML files preserve the original primary income-statement table, its referenced
 XBRL contexts and units, and additional original current-quarter consolidated facts
 from the same filing. Numeric values, labels, dimensions, precision attributes,
@@ -44,3 +58,12 @@ profit, explicit minority attribution and both row/column revenue matrices.
 LII includes signed operating gains and pre-operating equity income; MAS's SG&A
 line does not exactly equal gross profit less operating income. Their calculated
 net totals are labeled as such without manufacturing expense branches.
+
+The INTC and BDX signed excerpts preserve full original primary tables and referenced
+contexts/units. Their original-document hashes and table indexes are in the headers.
+INTC's large non-operating loss must not intersect operating-expense detail ribbons;
+BDX's negative source rounding must not intersect the revenue-to-cost ribbon.
+Neither source excerpt supplies a missing business partition.
+
+- INTC: [Q2 FY2026 Form 10-Q](https://www.sec.gov/Archives/edgar/data/50863/000005086326000157/intc-20260627.htm), filed 2026-07-24.
+- BDX: [Q2 FY2026 Form 10-Q](https://www.sec.gov/Archives/edgar/data/10795/000001079526000026/bdx-20260331.htm), filed 2026-05-07.

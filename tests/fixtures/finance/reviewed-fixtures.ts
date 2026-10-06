@@ -6,6 +6,87 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  INTCSigned: {
+    ticker: "INTC",
+    fixture: "intc-2026-q2-signed-statement.html",
+    name: "Intel",
+    cik: "0000050863",
+    accession: "0000050863-26-000157",
+    filedAt: "2026-07-24",
+    startDate: "2026-03-29",
+    endDate: "2026-06-27",
+    fiscalYear: 2026,
+    sector: "Information Technology",
+    document: "intc-20260627.htm"
+  },
+  BDXSigned: {
+    ticker: "BDX",
+    fixture: "bdx-2026-q2-signed-statement.html",
+    name: "Becton Dickinson",
+    cik: "0000010795",
+    accession: "0000010795-26-000026",
+    filedAt: "2026-05-07",
+    startDate: "2026-01-01",
+    endDate: "2026-03-31",
+    fiscalYear: 2026,
+    sector: "Health Care",
+    document: "bdx-20260331.htm"
+  },
+  FSigned: {
+    ticker: "F",
+    fixture: "f-2026-q2-signed-statement.html",
+    name: "Ford Motor",
+    cik: "0000037996",
+    accession: "0000037996-26-000156",
+    filedAt: "2026-07-29",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Consumer Discretionary",
+    document: "f-20260630.htm"
+  },
+  HPESigned: {
+    ticker: "HPE",
+    kind: "annual",
+    fixture: "hpe-2025-signed-statement.html",
+    name: "Hewlett Packard Enterprise",
+    cik: "0001645590",
+    accession: "0001645590-25-000130",
+    filedAt: "2025-12-18",
+    startDate: "2024-11-01",
+    endDate: "2025-10-31",
+    fiscalYear: 2025,
+    sector: "Information Technology",
+    document: "hpe-20251031.htm"
+  },
+  MRNASigned: {
+    ticker: "MRNA",
+    kind: "annual",
+    fixture: "mrna-2025-signed-statement.html",
+    name: "Moderna",
+    cik: "0001682852",
+    accession: "0001682852-26-000033",
+    filedAt: "2026-02-20",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    sector: "Health Care",
+    document: "mrna-20251231.htm"
+  },
+  AXONSigned: {
+    ticker: "AXON",
+    kind: "annual",
+    fixture: "axon-2025-signed-statement.html",
+    name: "Axon Enterprise",
+    cik: "0001069183",
+    accession: "0001628280-26-011360",
+    filedAt: "2026-02-25",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    sector: "Industrials",
+    document: "axon-20251231.htm"
+  },
   CMCSAPrecision: {
     ticker: "CMCSA",
     fixture: "cmcsa-2026-q2-precision-statement.html",

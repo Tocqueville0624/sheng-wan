@@ -9,6 +9,7 @@ export default defineConfig(
     ignores: [
       ".astro/**",
       ".wrangler/**",
+      ".cache/finance/**",
       "dist/**",
       "node_modules/**",
       "public/media/**",

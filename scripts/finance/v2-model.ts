@@ -1,4 +1,5 @@
 import { buildStatementFlow, segmentProblem } from "../../src/features/finance/chart-model";
+import { shareholderBridgeProblem } from "../../src/features/finance/shareholder-bridge";
 import type {
   CompanyDataset,
   FinancialMetrics,
@@ -436,6 +437,7 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
 
 export function flowPeriod(period: PeriodV2): FlowStatementPeriod | undefined {
   if (period.displayCurrency !== "USD") return;
+  if (shareholderBridgeProblem(period)) return;
   if (period.businessBreakdownSource && !businessPeriod(period)) return;
   const required = ["revenue", "pretaxIncome", "incomeTax", "netIncome"] as const;
   if (required.some((key) => !Number.isFinite(period.metrics[key]))) return;
@@ -747,7 +749,8 @@ export function validateV2(company: CompanyV2) {
           p.operatingExpensesBasis ||
           p.afterTaxReconciliation ||
           p.consolidatedIncomeSubtotal ||
-          p.roundedOperatingExpenseComponents) &&
+          p.roundedOperatingExpenseComponents ||
+          p.shareholderBridge) &&
         !flowPeriod(p)
       )
         throw new Error("Unsupported chart capability or unverified rounding precision.");

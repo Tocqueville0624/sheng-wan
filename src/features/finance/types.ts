@@ -36,6 +36,26 @@ export type StatementLine = {
   decimals?: number;
 };
 
+/** Reported allocations after the selected net-income scope, never an expense
+ * partition. Signed amounts are deducted from the unchanged base subtotal.
+ */
+export type ShareholderIncomeBridge = {
+  sourceUrl: string;
+  accession: string;
+  filedAt: string;
+  base: {
+    label: string;
+    tag: string;
+    amount: number;
+    scope: "parent" | "consolidated";
+    decimals?: number;
+    /** Independent nondimensional standard fact corroborating this same amount. */
+    corroboratingTag?: string;
+  };
+  common: { label: string; tag: string; amount: number; decimals?: number };
+  allocations: { id: string; label: string; tag: string; amount: number; decimals?: number }[];
+};
+
 export type SegmentGrossProfitSource = {
   sourceUrl: string;
   accession?: string;
@@ -110,6 +130,7 @@ export type FinancialPeriod = {
     basis?: "gross-profit";
   };
   afterTaxReconciliation?: { label: string; amount: number; sourceUrl: string };
+  shareholderBridge?: ShareholderIncomeBridge;
   /** A rounded intermediate subtotal is corroboration, not a replacement for the
    * exact arithmetic leading to the selected final net-income scope.
    */

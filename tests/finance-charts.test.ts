@@ -320,9 +320,16 @@ describe("income statement Sankey", () => {
     }
     expect(buildStatementFlow(fixture({ noncontrollingInterestIncome: NaN })).ok).toBe(false);
     expect(buildStatementFlow(fixture({ noncontrollingInterestIncome: 0.5 })).ok).toBe(false);
-    expect(
-      buildStatementFlow(fixture({ noncontrollingInterestIncome: 23, netIncome: -1 })).ok
-    ).toBe(false);
+    const parentLoss = buildStatementFlow(
+      fixture({ noncontrollingInterestIncome: 23, netIncome: -1 })
+    );
+    if (!parentLoss.ok) throw new Error(parentLoss.reason);
+    expectConserved(parentLoss.graph, 100);
+    expect(parentLoss.graph.nodes.find((n) => n.id === "net")).toMatchObject({
+      label: "Net loss to parent",
+      signedAmount: -1,
+      amount: 1
+    });
   });
 
   it("uses disclosed total operating costs without creating a gross-profit stage", () => {
@@ -454,7 +461,7 @@ describe("income statement Sankey", () => {
     }
   });
 
-  it("does not relabel post-gross expenses as total costs or hide missing, invalid and loss statements", () => {
+  it("does not relabel post-gross expenses as total costs or accept missing and invalid statements", () => {
     const period = operatingFixture({
       researchAndDevelopment: 8,
       sellingGeneralAndAdministrative: 7
@@ -468,12 +475,19 @@ describe("income statement Sankey", () => {
       { totalOperatingCosts: NaN },
       { totalOperatingCosts: 74 },
       { totalOperatingCosts: -1 },
-      { operatingIncome: -1, totalOperatingCosts: 101 },
-      { pretaxIncome: -1, incomeTax: -30, netIncome: 29 },
       { netIncome: -1 },
       { pretaxIncome: undefined }
     ])
       expect(buildStatementFlow(operatingFixture(metrics)).ok).toBe(false);
+    for (const metrics of [
+      { operatingIncome: -1, totalOperatingCosts: 101 },
+      { pretaxIncome: -1, incomeTax: -30, netIncome: 29 }
+    ]) {
+      const loss = buildStatementFlow(operatingFixture(metrics));
+      if (!loss.ok) throw new Error(loss.reason);
+      expect(loss.graph.signedAccounting).toBe(true);
+      expectConserved(loss.graph, 100);
+    }
     const zeroCosts = operatingFixture({
       totalOperatingCosts: 0,
       operatingIncome: 100,
@@ -744,11 +758,17 @@ describe("income statement Sankey", () => {
     expect(largest.width / tiny.width).toBeCloseTo(largest.value / tiny.value, 8);
   });
 
-  it("withholds negative profits and discrepancies rather than clamping or inventing flows", () => {
-    expect(buildStatementFlow(fixture({ netIncome: -3, incomeTax: 31 })).ok).toBe(false);
-    expect(
-      buildStatementFlow(fixture({ pretaxIncome: -1, incomeTax: -30, netIncome: 29 })).ok
-    ).toBe(false);
+  it("preserves balanced signed income while withholding discrepancies and invalid expenses", () => {
+    for (const metrics of [
+      { netIncome: -3, incomeTax: 31 },
+      { pretaxIncome: -1, incomeTax: -30, netIncome: 29 }
+    ]) {
+      const loss = buildStatementFlow(fixture(metrics));
+      if (!loss.ok) throw new Error(loss.reason);
+      expect(loss.graph.signedAccounting).toBe(true);
+      expectConserved(loss.graph, 100);
+      expect(loss.graph.nodes.find((n) => n.id === "net")?.signedAmount).toBe(metrics.netIncome);
+    }
     expect(buildStatementFlow(fixture({ incomeTax: -1, netIncome: 29 })).ok).toBe(true);
     expect(buildStatementFlow(fixture({ netIncome: 21.9 })).ok).toBe(false);
     expect(buildStatementFlow(fixture({ researchAndDevelopment: 30 })).ok).toBe(false);

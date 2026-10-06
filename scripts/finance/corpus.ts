@@ -112,6 +112,7 @@ const parserFiles = [
   "business-v2",
   "business-matrix",
   "statement-v2",
+  "shareholder-v2",
   "facts-v2",
   "inline-v2",
   "ixbrl",
@@ -128,6 +129,8 @@ const parserVersion = hash(
       ...parserFiles.map((name) => readFile(`scripts/finance/${name}.ts`, "utf8")),
       readFile("src/features/finance/business-rules.ts", "utf8"),
       readFile("src/features/finance/chart-model.ts", "utf8"),
+      readFile("src/features/finance/signed-flow.ts", "utf8"),
+      readFile("src/features/finance/shareholder-bridge.ts", "utf8"),
       readFile("src/data/generated/finance-history.json", "utf8")
     ])
   ).join("\n")
