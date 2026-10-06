@@ -1,5 +1,6 @@
-import type { DirectNetItems, ShareholderIncomeBridge } from "./types";
+import type { DirectNetItems, OperatingNetItems, ShareholderIncomeBridge } from "./types";
 import { directNetAllocationTags, directNetRule } from "./direct-net-items";
+import { operatingNetAllocationMeaning, operatingNetRule } from "./operating-net-items";
 import type { MetricSource } from "./v2-types";
 
 export const commonIncomeTag = "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic";
@@ -19,6 +20,7 @@ export const minorityIncomeTag =
 export function shareholderBridgeProblem(period: {
   shareholderBridge?: ShareholderIncomeBridge;
   directNetItems?: DirectNetItems;
+  operatingNetItems?: OperatingNetItems;
   metrics: { revenue?: number; netIncome?: number };
   metricSources?: { netIncome?: MetricSource };
   sourceUrl: string;
@@ -31,6 +33,7 @@ export function shareholderBridgeProblem(period: {
   if (!bridge) return;
   const source = period.metricSources?.netIncome;
   const reviewedDirectNet = period.directNetItems?.ruleId === directNetRule.id;
+  const reviewedOperatingNet = period.operatingNetItems?.ruleId === operatingNetRule.id;
   const scope = parentIncomeTags.has(source?.tag ?? "")
     ? "parent"
     : consolidatedIncomeTags.has(source?.tag ?? "")
@@ -69,9 +72,17 @@ export function shareholderBridgeProblem(period: {
         !a.id ||
         !a.label ||
         !Number.isFinite(a.amount) ||
+        (a.effect !== undefined &&
+          !(
+            a.effect === "gain" &&
+            reviewedOperatingNet &&
+            operatingNetAllocationMeaning(a.tag, a.label) === "gain"
+          )) ||
         !(
           shareholderAllocationTags.has(a.tag) ||
           (reviewedDirectNet && directNetAllocationTags.has(a.tag)) ||
+          (reviewedOperatingNet &&
+            operatingNetAllocationMeaning(a.tag, a.label) === (a.effect ?? "cost")) ||
           (scope === "consolidated" && minorityIncomeTag.test(a.tag))
         )
     ) ||
@@ -80,7 +91,10 @@ export function shareholderBridgeProblem(period: {
     ) ||
     Math.abs(
       bridge.base.amount -
-        bridge.allocations.reduce((sum, a) => sum + a.amount, 0) -
+        bridge.allocations.reduce(
+          (sum, a) => sum + (a.effect === "gain" ? -a.amount : a.amount),
+          0
+        ) -
         bridge.common.amount
     ) > Math.max(1e-6, Math.abs(period.metrics.revenue ?? 0) * 1e-9)
   )

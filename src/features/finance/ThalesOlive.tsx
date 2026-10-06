@@ -290,7 +290,8 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         "direct_net_items",
         "after_tax_transaction_income",
         "after_tax_transaction_items",
-        "gross_operating_items"
+        "gross_operating_items",
+        "operating_net_items"
       ],
       ...periods.map((p) => [
         selection.ticker,
@@ -330,7 +331,8 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         JSON.stringify(p.directNetItems ?? null),
         p.metrics.afterTaxTransactionIncome ?? "",
         JSON.stringify(p.afterTaxTransactionItems ?? null),
-        JSON.stringify(p.grossOperatingItems ?? null)
+        JSON.stringify(p.grossOperatingItems ?? null),
+        JSON.stringify(p.operatingNetItems ?? null)
       ])
     ];
     downloadFile(

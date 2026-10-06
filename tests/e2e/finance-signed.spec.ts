@@ -5,6 +5,11 @@ import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
 for (const key of [
+  "DLROperatingNetFY2017",
+  "DLROperatingNetFY2025",
+  "DLROperatingNet2020Q3",
+  "DLROperatingNet2024Q2",
+  "DLROperatingNet2026Q2",
   "FLEXGrossOperatingFY2020",
   "FLEXGrossOperatingFY2021",
   "FLEXGrossOperatingFY2022",
@@ -94,6 +99,22 @@ for (const key of [
     const metadata = JSON.parse((await chart.locator("metadata").textContent()) ?? "null");
     expect(metadata.metrics).toEqual(period.metrics);
     expect(metadata.flow).toBe("signed-accounting");
+    if (period.operatingNetItems) {
+      expect(metadata.operatingNetItems).toEqual(period.operatingNetItems);
+      await expect(chart.locator('[data-flow-node="pretax"]')).toHaveCount(0);
+      expect(
+        metadata.nodes.find((n: { id: string }) => n.id === "consolidated-net").signedAmount
+      ).toBe(period.operatingNetItems.consolidated.amount);
+      if (period.operatingNetItems.operatingSubtotal)
+        expect(
+          metadata.nodes.find((n: { id: string }) => n.id === "operating-before-gains").signedAmount
+        ).toBe(period.operatingNetItems.operatingSubtotal.amount);
+      for (const item of period.operatingNetItems.netItems.filter((l) => l.amount !== 0))
+        expect(
+          metadata.nodes.find((n: { id: string }) => n.id === `operating-net-item-${item.id}`)
+            .signedAmount
+        ).toBe(item.amount);
+    }
     if (period.grossOperatingItems) {
       expect(metadata.grossOperatingItems).toEqual(period.grossOperatingItems);
       for (const item of period.grossOperatingItems.grossCosts.filter((l) => l.amount > 0))
@@ -181,6 +202,7 @@ for (const key of [
         period.directNetItems ||
         period.operatingItems?.costSubtotal ||
         period.afterTaxTransactionItems ||
+        period.operatingNetItems ||
         period.grossOperatingItems
       ) {
         const headerIntrusions = await chart.evaluate((element) =>
@@ -245,6 +267,7 @@ for (const key of [
       period.operatingItems ||
       period.directNetItems ||
       period.afterTaxTransactionItems ||
+      period.operatingNetItems ||
       period.grossOperatingItems
     ) {
       const downloaded = page.waitForEvent("download");
@@ -266,6 +289,10 @@ for (const key of [
         expect(csv).toContain('"total_expenses"');
         expect(csv).toContain('"direct_net_items"');
         expect(csv).toContain(JSON.stringify(period.directNetItems).replaceAll('"', '""'));
+      }
+      if (period.operatingNetItems) {
+        expect(csv).toContain('"operating_net_items"');
+        expect(csv).toContain(JSON.stringify(period.operatingNetItems).replaceAll('"', '""'));
       }
       if (period.afterTaxTransactionItems) {
         expect(csv).toContain('"after_tax_transaction_income"');

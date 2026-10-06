@@ -116,6 +116,7 @@ const parserFiles = [
   "operating-v2",
   "gross-operating-v2",
   "direct-net-v2",
+  "operating-net-v2",
   "facts-v2",
   "inline-v2",
   "ixbrl",
@@ -137,6 +138,7 @@ const parserVersion = hash(
       readFile("src/features/finance/operating-items.ts", "utf8"),
       readFile("src/features/finance/gross-operating-items.ts", "utf8"),
       readFile("src/features/finance/direct-net-items.ts", "utf8"),
+      readFile("src/features/finance/operating-net-items.ts", "utf8"),
       readFile("src/features/finance/after-tax-transaction.ts", "utf8"),
       readFile("src/data/generated/finance-history.json", "utf8")
     ])

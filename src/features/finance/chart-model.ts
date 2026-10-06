@@ -8,6 +8,7 @@ import { buildSignedStatementFlow, layoutSignedStatementFlow } from "./signed-fl
 import { shareholderBridgeProblem } from "./shareholder-bridge";
 import { operatingItemsProblem } from "./operating-items";
 import { directNetItemsProblem } from "./direct-net-items";
+import { operatingNetItemsProblem } from "./operating-net-items";
 import { afterTaxTransactionItemsProblem } from "./after-tax-transaction";
 import { grossOperatingItemsProblem } from "./gross-operating-items";
 
@@ -116,6 +117,17 @@ export function revenueAdjustmentLabel(adjustment: RevenueSegment) {
 export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
   const shareholderProblem = shareholderBridgeProblem(period);
   if (shareholderProblem) return { ok: false, reason: shareholderProblem };
+  if (period.operatingNetItems) {
+    const problem = operatingNetItemsProblem(period);
+    if (problem) return { ok: false, reason: problem };
+    return buildSignedStatementFlow(period, {
+      tolerance: accountingTolerance(period.metrics.revenue),
+      hasGrossStage: false,
+      hasOperating: true,
+      businessAvailable: !segmentProblem(period),
+      adjustmentLabel: revenueAdjustmentLabel
+    });
+  }
   if (period.directNetItems) {
     const problem = directNetItemsProblem(period);
     if (problem) return { ok: false, reason: problem };

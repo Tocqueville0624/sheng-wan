@@ -11,6 +11,7 @@ import type {
   FlowStatementPeriod,
   StatementChartPeriod,
   DirectNetStatementPeriod,
+  OperatingNetStatementPeriod,
   BusinessPeriod
 } from "../../src/features/finance/types";
 import type { CompanyV2, PeriodV2, MetricSource } from "../../src/features/finance/v2-types";
@@ -446,6 +447,10 @@ export function flowPeriod(period: PeriodV2): StatementChartPeriod | undefined {
   if (grossOperatingItemsProblem(period)) return;
   if (shareholderBridgeProblem(period)) return;
   if (period.businessBreakdownSource && !businessPeriod(period)) return;
+  if (period.operatingNetItems) {
+    const statement = period as OperatingNetStatementPeriod;
+    return buildStatementFlow(statement).ok ? statement : undefined;
+  }
   if (period.directNetItems) {
     const statement = period as DirectNetStatementPeriod;
     return buildStatementFlow(statement).ok ? statement : undefined;
@@ -770,7 +775,8 @@ export function validateV2(company: CompanyV2) {
           p.shareholderBridge ||
           p.operatingItems ||
           p.grossOperatingItems ||
-          p.directNetItems) &&
+          p.directNetItems ||
+          p.operatingNetItems) &&
         !flowPeriod(p)
       )
         throw new Error("Unsupported chart capability or unverified rounding precision.");

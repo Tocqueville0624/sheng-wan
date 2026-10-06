@@ -161,7 +161,136 @@ export function buildSignedStatementFlow(
     const item = effect(id, label, amount, group, column);
     return { gains: amount > 0 ? [item] : [], expenses: amount < 0 ? [item] : [] };
   };
-  if (period.directNetItems) {
+  if (period.operatingNetItems) {
+    const proof = period.operatingNetItems;
+    const operating = proof.operatingSubtotal
+      ? income(
+          "operating-before-gains",
+          "Operating profit before property gains",
+          "Operating loss before property gains",
+          proof.operatingSubtotal.amount,
+          ++stage
+        )
+      : income(
+          "operating",
+          "Operating profit",
+          "Operating loss",
+          proof.operatingIncome.amount,
+          ++stage
+        );
+    const positiveCosts = proof.costs.filter((l) => l.amount > 0);
+    const reversals = proof.costs
+      .filter((l) => l.amount < 0)
+      .map((l) =>
+        stageEffects(
+          -l.amount,
+          `operating-reversal-${l.id}`,
+          `${l.label} (operating cost reversal)`,
+          "operating-item",
+          stage - 0.5
+        )
+      );
+    const cost = node(
+      "operating-costs",
+      reversals.length ? "Operating costs (before reversals)" : "Total operating costs",
+      positiveCosts.reduce((sum, l) => sum + l.amount, 0),
+      "expense",
+      "opex",
+      stage
+    );
+    if (
+      !transition(
+        operating,
+        reversals.flatMap((l) => l.gains),
+        [cost]
+      )
+    )
+      return {
+        ok: false,
+        reason: "The original operating-to-net operating stage does not reconcile."
+      };
+    for (const l of positiveCosts) {
+      const part = node(
+        `operating-net-cost-${l.id}`,
+        l.label,
+        l.amount,
+        "expense",
+        "detail",
+        stage + 1
+      );
+      link(cost.id, part.id, l.amount, "expense");
+    }
+    if (proof.operatingSubtotal) {
+      const finalOperating = income(
+        "operating",
+        "Operating profit",
+        "Operating loss",
+        proof.operatingIncome.amount,
+        ++stage
+      );
+      const operatingGains = proof.operatingGains.map((l) =>
+        stageEffects(l.amount, `operating-net-gain-${l.id}`, l.label, "operating-item", stage - 0.5)
+      );
+      if (
+        !transition(
+          finalOperating,
+          operatingGains.flatMap((l) => l.gains),
+          operatingGains.flatMap((l) => l.expenses)
+        )
+      )
+        return {
+          ok: false,
+          reason: "The reported property-gain operating subtotal does not reconcile."
+        };
+    }
+    const consolidated = income(
+      "consolidated-net",
+      "Consolidated net profit",
+      "Consolidated net loss",
+      proof.consolidated.amount,
+      ++stage
+    );
+    const netParts = proof.netItems.map((l) => {
+      const part = stageEffects(
+        l.effect === "gain" ? l.amount : -l.amount,
+        `operating-net-item-${l.id}`,
+        l.label,
+        "direct-net-item",
+        l.effect === "gain" && l.amount > 0 ? stage - 0.5 : stage
+      );
+      for (const item of [...part.gains, ...part.expenses]) item.signedAmount = l.amount;
+      return part;
+    });
+    if (
+      !transition(
+        consolidated,
+        netParts.flatMap((l) => l.gains),
+        netParts.flatMap((l) => l.expenses)
+      )
+    )
+      return {
+        ok: false,
+        reason: "The original operating-to-net income stage does not reconcile."
+      };
+    const parent = income(
+      "net",
+      "Net profit to parent",
+      "Net loss to parent",
+      proof.parent.amount,
+      ++stage
+    );
+    const attribution = stageEffects(
+      -proof.noncontrolling.amount,
+      "noncontrolling",
+      proof.noncontrolling.label,
+      "noncontrolling",
+      proof.noncontrolling.amount < 0 ? stage - 0.5 : stage
+    );
+    for (const item of [...attribution.gains, ...attribution.expenses])
+      item.signedAmount = proof.noncontrolling.amount;
+    if (!transition(parent, attribution.gains, attribution.expenses))
+      return { ok: false, reason: "The original operating-to-net attribution does not reconcile." };
+  } else if (period.directNetItems) {
     const proof = period.directNetItems;
     const consolidated = income(
       "consolidated-net",
@@ -453,15 +582,16 @@ export function buildSignedStatementFlow(
     const gains: FlowNode[] = [],
       expenses: FlowNode[] = [];
     for (const allocation of bridge.allocations) {
+      const amount = allocation.effect === "gain" ? allocation.amount : -allocation.amount;
       const item = effect(
         allocation.id,
         allocation.label,
-        -allocation.amount,
+        amount,
         "shareholder",
-        allocation.amount < 0 ? stage - 0.5 : stage
+        amount > 0 ? stage - 0.5 : stage
       );
       item.signedAmount = allocation.amount;
-      (allocation.amount < 0 ? gains : expenses).push(item);
+      (amount > 0 ? gains : expenses).push(item);
     }
     if (!transition(common, gains, expenses))
       return { ok: false, reason: "The reported common-shareholder income does not reconcile." };

@@ -111,6 +111,29 @@ export type DirectNetItems = {
   parent: StatementLine & { rowIndex: number };
 };
 
+/** Reviewed operating-to-net ledger with no pretax subtotal in the primary
+ * statement. Each subsequent gain, expense and tax retains its original scope. */
+export type OperatingNetItems = {
+  ruleId: string;
+  sourceUrl: string;
+  accession: string;
+  filedAt: string;
+  startDate: string;
+  endDate: string;
+  currency: "USD";
+  tableIndex: number;
+  revenue: StatementLine & { rowIndex: number };
+  costs: (StatementLine & { rowIndex: number })[];
+  expenses: StatementLine & { rowIndex: number };
+  operatingSubtotal?: StatementLine & { rowIndex: number };
+  operatingGains: (StatementLine & { rowIndex: number })[];
+  operatingIncome: StatementLine & { rowIndex: number };
+  netItems: (StatementLine & { effect: "gain" | "cost"; rowIndex: number })[];
+  consolidated: StatementLine & { rowIndex: number };
+  noncontrolling: StatementLine & { rowIndex: number };
+  parent: StatementLine & { rowIndex: number };
+};
+
 /** A reviewed after-tax transaction chain, separate from ordinary equity income.
  * Original rows and signs corroborate both consolidated and parent subtotals. */
 export type AfterTaxTransactionItems = {
@@ -148,7 +171,15 @@ export type ShareholderIncomeBridge = {
     corroboratingTag?: string;
   };
   common: { label: string; tag: string; amount: number; decimals?: number };
-  allocations: { id: string; label: string; tag: string; amount: number; decimals?: number }[];
+  allocations: {
+    id: string;
+    label: string;
+    tag: string;
+    amount: number;
+    decimals?: number;
+    /** Only a reviewed redemption gain may be added with its original sign. */
+    effect?: "gain";
+  }[];
 };
 
 export type SegmentGrossProfitSource = {
@@ -229,6 +260,7 @@ export type FinancialPeriod = {
   operatingItems?: OperatingItems;
   grossOperatingItems?: GrossOperatingItems;
   directNetItems?: DirectNetItems;
+  operatingNetItems?: OperatingNetItems;
   afterTaxTransactionItems?: AfterTaxTransactionItems;
   /** A rounded intermediate subtotal is corroboration, not a replacement for the
    * exact arithmetic leading to the selected final net-income scope.
@@ -323,7 +355,14 @@ export type DirectNetStatementPeriod = Omit<FinancialPeriod, "metrics" | "direct
   metrics: Pick<FinancialMetrics, "revenue" | "netIncome"> & Partial<FinancialMetrics>;
 };
 
-export type StatementChartPeriod = FlowStatementPeriod | DirectNetStatementPeriod;
+export type OperatingNetStatementPeriod = Omit<FinancialPeriod, "metrics" | "operatingNetItems"> & {
+  operatingNetItems: OperatingNetItems;
+  metrics: Pick<FinancialMetrics, "revenue" | "netIncome" | "operatingIncome" | "incomeTax"> &
+    Partial<FinancialMetrics>;
+};
+
+export type StatementChartPeriod =
+  FlowStatementPeriod | DirectNetStatementPeriod | OperatingNetStatementPeriod;
 
 export type CompanySummary = {
   ticker: string;

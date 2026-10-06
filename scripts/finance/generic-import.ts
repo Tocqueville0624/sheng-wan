@@ -11,6 +11,7 @@ import { enrichShareholderPeriods } from "./shareholder-v2";
 import { enrichOperatingPeriods } from "./operating-v2";
 import { enrichDirectNetPeriods } from "./direct-net-v2";
 import { enrichGrossOperatingPeriods } from "./gross-operating-v2";
+import { enrichOperatingNetPeriods } from "./operating-net-v2";
 
 /** Generic (unreviewed-issuer) imports share these steps between the Worker and CLI audits. */
 export const GENERIC_FILING_LIMIT = 30;
@@ -97,6 +98,7 @@ export function readGenericFiling(
   apply(enrichOperatingPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichGrossOperatingPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichDirectNetPeriods(html, identity, filing, [...updated.values()], parsed));
+  apply(enrichOperatingNetPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichShareholderPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichReviewedBusinessPeriods(html, identity, filing, [...updated.values()], parsed));

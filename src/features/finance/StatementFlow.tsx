@@ -200,6 +200,7 @@ export function StatementFlow({
   // The filing reports no operating-profit line; items run straight to pretax profit.
   const pretaxFlow = layout.nodes.some((node) => node.id === "other-items");
   const directNetFlow = !!period.directNetItems;
+  const operatingNetFlow = !!period.operatingNetItems;
   const parentNet =
     period.shareholderBridge?.base.scope === "parent" ||
     period.metrics.noncontrollingInterestIncome !== undefined;
@@ -207,7 +208,13 @@ export function StatementFlow({
   const hasBusinesses = layout.nodes.some((node) => node.business);
   const businessNoteHeight = hasBusinesses ? 24 : 0;
   const directFlowNoteHeight =
-    directOperatingFlow || pretaxFlow || directNetFlow || period.operatingExpensesBasis ? 24 : 0;
+    directOperatingFlow ||
+    pretaxFlow ||
+    directNetFlow ||
+    operatingNetFlow ||
+    period.operatingExpensesBasis
+      ? 24
+      : 0;
   const summedCosts =
     directOperatingFlow && period.metricSources?.totalOperatingCosts?.method === "calculated";
   const rounding = period.operatingReconciliation;
@@ -323,6 +330,7 @@ export function StatementFlow({
               operatingItems: period.operatingItems,
               grossOperatingItems: period.grossOperatingItems,
               directNetItems: period.directNetItems,
+              operatingNetItems: period.operatingNetItems,
               afterTaxTransactionItems: period.afterTaxTransactionItems,
               operatingReconciliation: rounding,
               operatingExpensesBasis: period.operatingExpensesBasis,
@@ -447,7 +455,13 @@ export function StatementFlow({
               pretax and tax stages are omitted.
             </text>
           )}
-          {directOperatingFlow && (
+          {operatingNetFlow && (
+            <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
+              Original operating and net-income rows reconcile directly; no primary pretax subtotal
+              is reported or inferred.
+            </text>
+          )}
+          {directOperatingFlow && !operatingNetFlow && (
             <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
               {period.operatingItems
                 ? "Revenue plus reported operating gains equals total operating costs plus operating income. Original signs are preserved."
@@ -566,6 +580,8 @@ export function StatementFlow({
         </svg>
       </div>
       <p className="chart-note">
+        {operatingNetFlow &&
+          "The primary statement reports operating income followed by signed gains, interest, income tax and consolidated net income. Every original row and ownership allocation is preserved; no pretax subtotal is inferred. Independently disclosed metrics remain in the statement table and exports. "}
         {directNetFlow &&
           "This statement reports total expenses, including interest, and signed gains directly above consolidated net income. The flow preserves those reported values and the subsequent ownership allocations; no gross-profit, operating-profit, pretax or tax subtotal is inferred. "}
         {hasLoss &&
