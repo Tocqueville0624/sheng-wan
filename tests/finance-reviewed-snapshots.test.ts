@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import snapshotData from "../src/data/generated/finance-reviewed/0001103982.json";
 import akamaiData from "../src/data/generated/finance-reviewed/0001086222.json";
+import albemarleData from "../src/data/generated/finance-reviewed/0000915913.json";
 import { catalogIdentity } from "../worker/finance-store";
 import { apiV2 } from "../worker/index";
 import { reviewedSnapshot, supplementReviewedHistory } from "../worker/reviewed-snapshots";
@@ -17,6 +18,34 @@ function assetResponse(body = JSON.stringify(original), status = 200, type = "ap
 const companyRequest = new Request("https://shengwan.org/api/finance/v2/companies/MDLZ");
 
 describe("reviewed SEC snapshot delivery", () => {
+  it("delivers the actual Albemarle SEC snapshot with distinct 2021/2022 history and explicit remaining gaps", async () => {
+    const company = albemarleData as CompanyV2;
+    const body = JSON.stringify(company);
+    expect(new TextEncoder().encode(body).length).toBeLessThan(1024 * 1024);
+    const response = await apiV2(new Request("https://shengwan.org/api/finance/v2/companies/ALB"), {
+      ASSETS: assetResponse(body),
+      FINANCE_PUBLIC_UPDATES: "disabled"
+    });
+    const result = (await response.json()) as CompanyResponse;
+    expect(result.savedSourceSnapshot!.checkedAt).toBe(company.checkedAt);
+    expect(result.job).toBeNull();
+    const periods = [...result.company!.annual, ...result.company!.quarterly];
+    expect(periods.filter((p) => p.coverage.segments)).toHaveLength(29);
+    expect(periods.filter((p) => p.coverage.sankey)).toHaveLength(28);
+    expect(periods.filter((p) => !p.coverage.sankey).map((p) => p.id)).toEqual([
+      "FY2016",
+      "2021-Q2"
+    ]);
+    expect(result.company!.annual.find((p) => p.id === "FY2021")!.endDate).toBe("2021-12-31");
+    expect(result.company!.annual.find((p) => p.id === "FY2022")!.endDate).toBe("2022-12-31");
+    for (const kind of ["annual", "quarterly"] as const) {
+      const p = result.company![kind].at(-1)!;
+      expect(p.coverage).toEqual({ basics: true, segments: true, sankey: true });
+      expect(p.businessBreakdownSource!.method).toBe("reviewed-albemarle-revenue");
+      expect(p.segments).toEqual(company[kind].at(-1)!.segments);
+    }
+    expect(() => validateV2(result.company!)).not.toThrow();
+  });
   it("delivers the actual Akamai SEC snapshot while retaining the public update quota", async () => {
     const company = akamaiData as CompanyV2;
     const body = JSON.stringify(company);

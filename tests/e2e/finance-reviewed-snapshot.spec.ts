@@ -1,5 +1,39 @@
 import { test, expect } from "@playwright/test";
 import snapshot from "../../src/data/generated/finance-reviewed/0001103982.json" with { type: "json" };
+import albemarle from "../../src/data/generated/finance-reviewed/0000915913.json" with { type: "json" };
+
+test("Albemarle actual saved asset/API path retains complete original businesses and corrected historical years", async ({
+  page,
+  request
+}) => {
+  const response = await request.get("/api/finance/v2/companies/ALB");
+  expect(response.ok()).toBe(true);
+  const data = await response.json();
+  expect(data.savedSourceSnapshot.checkedAt).toBe(albemarle.checkedAt);
+  expect(data.company.annual.find((p: { id: string }) => p.id === "FY2021").endDate).toBe(
+    "2021-12-31"
+  );
+  expect(data.company.annual.find((p: { id: string }) => p.id === "FY2022").endDate).toBe(
+    "2022-12-31"
+  );
+  for (const kind of ["annual", "quarterly"] as const) {
+    const period = albemarle[kind].at(-1)!;
+    await page.goto(`/playground/thales-olive/?ticker=ALB&period=${kind}&statement=${period.id}`);
+    const chart = page.locator(".flow-chart");
+    await expect(chart).toBeVisible();
+    const metadata = JSON.parse((await chart.locator("metadata").textContent())!);
+    expect(metadata.metrics).toEqual(period.metrics);
+    expect(metadata.segments).toEqual(period.segments);
+    expect(metadata.businessBreakdownSource).toEqual(period.businessBreakdownSource);
+    const total = Number(await chart.locator('[data-flow-bar="revenue"]').getAttribute("height"));
+    for (const segment of period.segments!) {
+      const height = Number(
+        await chart.locator(`[data-flow-bar="segment-${segment.id}"]`).getAttribute("height")
+      );
+      expect(height / total).toBeCloseTo(segment.revenue / period.metrics.revenue, 9);
+    }
+  }
+});
 
 test("reviewed saved statements render through the actual asset/API path without a SEC task", async ({
   page,
