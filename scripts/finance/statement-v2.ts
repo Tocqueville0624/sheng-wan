@@ -476,7 +476,11 @@ export function readStatementRows(
   const block = lines.slice(iR + 1, iEnd);
   // Every row in the range must be one precise non-dimensional fact; zero rows are
   // part of the exact sum but are not drawn.
-  const detail = (items: (Line | undefined)[], total: number): StatementLine[] | undefined => {
+  const detail = (
+    items: (Line | undefined)[],
+    total: number,
+    minimum = 2
+  ): StatementLine[] | undefined => {
     if (
       items.some((item) => !item || item.fact.value < 0 || !item.label) ||
       !same(
@@ -486,7 +490,7 @@ export function readStatementRows(
     )
       return;
     const drawn = items.filter((item) => item!.fact.value > 0);
-    if (drawn.length < 2) return;
+    if (drawn.length < minimum) return;
     const ids = new Set<string>();
     return drawn.map((item, index) => {
       let id = `line-${item!.fact.tag.split(":").at(-1)!}`.replace(/[^a-zA-Z0-9_-]/g, "-");
@@ -668,7 +672,7 @@ export function readStatementRows(
       sources.operatingExpenses = reported(total);
     }
     const items = hasTotal ? after.slice(0, -1) : after;
-    const details = detail(items, expenses);
+    const details = detail(items, expenses, 1);
     if (details) result.operatingExpenseDetails = details;
     else if (
       hasTotal &&

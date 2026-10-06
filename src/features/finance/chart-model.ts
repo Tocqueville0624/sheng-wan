@@ -288,17 +288,24 @@ export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
   // These details describe expenses below gross profit. They must not be
   // relabelled as a breakdown of total operating costs on the direct route.
   const operatingGross = hasGrossStage && hasOperating;
+  const disclosedExpenses = operatingGross ? period.operatingExpenseDetails : undefined;
+  // The complete primary-statement partition replaces independently collected
+  // expense metrics, which can overlap (for example R&D already inside SG&A).
   const drawExpenseComponents =
-    !period.operatingExpensesBasis && !period.roundedOperatingExpenseComponents;
+    !disclosedExpenses &&
+    !period.operatingExpensesBasis &&
+    !period.roundedOperatingExpenseComponents;
   const rd = operatingGross && drawExpenseComponents ? m.researchAndDevelopment : undefined;
   const sga =
     operatingGross && drawExpenseComponents ? m.sellingGeneralAndAdministrative : undefined;
   const other = operatingGross ? m.operatingExpenses! - (rd ?? 0) - (sga ?? 0) : 0;
-  const disclosedExpenses = operatingGross ? period.operatingExpenseDetails : undefined;
   if (
     disclosedExpenses &&
     (!disclosedExpenses.length ||
-      disclosedExpenses.some((item) => !Number.isFinite(item.amount) || item.amount < 0) ||
+      new Set(disclosedExpenses.map((item) => item.id)).size !== disclosedExpenses.length ||
+      disclosedExpenses.some(
+        (item) => !item.label || !Number.isFinite(item.amount) || item.amount < 0
+      ) ||
       Math.abs(
         disclosedExpenses.reduce((sum, item) => sum + item.amount, 0) - m.operatingExpenses!
       ) > tolerance)

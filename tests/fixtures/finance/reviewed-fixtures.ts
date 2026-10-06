@@ -6,6 +6,66 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  HSYPrimaryExpensesAnnual: {
+    ticker: "HSY",
+    name: "Hershey Company (The)",
+    cik: "0000047111",
+    sector: "Consumer Staples",
+    kind: "annual",
+    accession: "0001628280-26-008586",
+    filedAt: "2026-02-17",
+    reportDate: "2025-12-31",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    fixture: "hsy-fy2025-primary-expenses-statement.html",
+    document: "hsy-20251231.htm"
+  },
+  APHPrimaryExpensesAnnual: {
+    ticker: "APH",
+    name: "Amphenol",
+    cik: "0000820313",
+    sector: "Information Technology",
+    kind: "annual",
+    accession: "0001104659-26-013549",
+    filedAt: "2026-02-11",
+    reportDate: "2025-12-31",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    fixture: "aph-fy2025-primary-expenses-statement.html",
+    document: "aph-20251231x10k.htm"
+  },
+  IEXPrimaryExpensesAnnual: {
+    ticker: "IEX",
+    name: "IDEX Corporation",
+    cik: "0000832101",
+    sector: "Industrials",
+    kind: "annual",
+    accession: "0000832101-26-000003",
+    filedAt: "2026-02-19",
+    reportDate: "2025-12-31",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    fixture: "iex-fy2025-primary-expenses-statement.html",
+    document: "iex-20251231.htm"
+  },
+  HSYPrimaryExpenses2024Q1: {
+    ticker: "HSY",
+    name: "Hershey Company (The)",
+    cik: "0000047111",
+    sector: "Consumer Staples",
+    kind: "quarterly",
+    accession: "0000047111-25-000044",
+    filedAt: "2025-05-01",
+    reportDate: "2025-03-30",
+    startDate: "2024-01-01",
+    endDate: "2024-03-31",
+    fiscalYear: 2024,
+    fixture: "hsy-2024-q1-primary-expenses-statement.html",
+    document: "hsy-20250330.htm"
+  },
   DLROperatingNetFY2017: {
     kind: "annual",
     accession: "0001558370-20-001906",

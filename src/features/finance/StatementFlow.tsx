@@ -334,6 +334,8 @@ export function StatementFlow({
               afterTaxTransactionItems: period.afterTaxTransactionItems,
               operatingReconciliation: rounding,
               operatingExpensesBasis: period.operatingExpensesBasis,
+              operatingExpenseDetails: period.operatingExpenseDetails,
+              operatingCostDetails: period.operatingCostDetails,
               afterTaxReconciliation: period.afterTaxReconciliation,
               consolidatedIncomeSubtotal: period.consolidatedIncomeSubtotal,
               roundedOperatingExpenseComponents: period.roundedOperatingExpenseComponents,
