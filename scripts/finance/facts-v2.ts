@@ -3,6 +3,7 @@ import type { FinancialMetrics } from "../../src/features/finance/types";
 import type { SecFiling } from "./sec-shared";
 import { normalizeBasicPeriod, flowPeriod, validateV2 } from "./v2-model";
 import { roundingTolerance } from "./validate";
+import { reviewedFiscalYear, albemarleFiscalLabelNote } from "./fiscal-label";
 
 export type Fact = {
   start?: string;
@@ -119,6 +120,7 @@ export function extractFactsV2(
   };
   const groups = new Map<string, Group>();
   const calendar = new Map<string, { year: number; quarter?: number }>();
+  const fiscalWarnings = new Set<string>();
   const today = new Date().toISOString().slice(0, 10);
   // Catalog sectors put payment and information services beside banks. SEC SIC
   // 73xx identifies business services; their contract revenue can be total revenue.
@@ -195,14 +197,16 @@ export function extractFactsV2(
                 : f.fp === "FY"
                   ? 4
                   : undefined;
-              calendar.set(f.end, { year: f.fy!, quarter });
+              const year = reviewedFiscalYear(identity, filing, f.fy!);
+              if (year !== f.fy) fiscalWarnings.add(albemarleFiscalLabelNote);
+              calendar.set(f.end, { year, quarter });
             }
           }
         }
       }
   }
   const periods: PeriodV2[] = [];
-  const warnings = new Set<string>();
+  const warnings = new Set<string>(fiscalWarnings);
   if (
     identity.sector === "Financials" &&
     !financialServices &&

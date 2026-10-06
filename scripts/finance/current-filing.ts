@@ -3,6 +3,7 @@ import { precise } from "./business-v2";
 import type { ParsedFiling } from "./ixbrl";
 import type { SecFiling } from "./sec-shared";
 import { validateV2 } from "./v2-model";
+import { reviewedFiscalYear } from "./fiscal-label";
 
 const revenueTags = [
   "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
@@ -46,16 +47,17 @@ export function currentFilingCandidates(
     throw new Error("Current filing source identity mismatch.");
   const today = new Date().toISOString().slice(0, 10);
   const annual = /^10-K/.test(filing.form);
+  const fiscalYear = reviewedFiscalYear(identity, filing, parsed.fiscalYear);
   if (
     !date(filing.reportDate) ||
     !date(filing.filedAt) ||
     filing.reportDate > filing.filedAt ||
     filing.filedAt > today ||
     parsed.periodEnd !== filing.reportDate ||
-    !Number.isInteger(parsed.fiscalYear) ||
-    parsed.fiscalYear <= 1990 ||
-    parsed.fiscalYear > Number(today.slice(0, 4)) + 1 ||
-    Math.abs(parsed.fiscalYear - Number(filing.reportDate.slice(0, 4))) > 1 ||
+    !Number.isInteger(fiscalYear) ||
+    fiscalYear <= 1990 ||
+    fiscalYear > Number(today.slice(0, 4)) + 1 ||
+    Math.abs(fiscalYear - Number(filing.reportDate.slice(0, 4))) > 1 ||
     (annual ? parsed.fiscalPeriod !== "FY" : !/^Q[1-4]$/.test(parsed.fiscalPeriod))
   )
     return [];
@@ -104,7 +106,7 @@ export function currentFilingCandidates(
   const fiscalQuarter = annual
     ? undefined
     : (Number(parsed.fiscalPeriod.slice(1)) as 1 | 2 | 3 | 4);
-  const id = annual ? `FY${parsed.fiscalYear}` : `${parsed.fiscalYear}-Q${fiscalQuarter}`;
+  const id = annual ? `FY${fiscalYear}` : `${fiscalYear}-Q${fiscalQuarter}`;
   // A competing date interpretation for the same fiscal label is ambiguous.
   if (
     existing.some(
@@ -115,9 +117,9 @@ export function currentFilingCandidates(
   return [
     {
       id,
-      label: annual ? `FY ${parsed.fiscalYear}` : `Q${fiscalQuarter} FY${parsed.fiscalYear}`,
+      label: annual ? `FY ${fiscalYear}` : `Q${fiscalQuarter} FY${fiscalYear}`,
       kind,
-      fiscalYear: parsed.fiscalYear,
+      fiscalYear,
       fiscalQuarter,
       startDate,
       endDate: filing.reportDate,

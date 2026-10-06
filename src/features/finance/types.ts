@@ -272,6 +272,9 @@ export type ServiceRevenueCell = {
       contextId: string;
       unitRef: string;
       scale: number;
+      /** Original declaration text in addition to the normalized precision. */
+      decimals?: string;
+      originalScale?: string;
       format: string;
       sign?: "-";
       id?: string;
@@ -293,6 +296,20 @@ export type ServiceRevenueRowsProof = {
     revenue: ServiceRevenueRow;
     tax: ServiceRevenueRow;
   };
+};
+/** Original Albemarle revenue section, including every branch, blank, subtotal,
+ * period header and an independent primary statement anchor. */
+export type AlbemarleBusinessProof = {
+  ruleId: "alb-original-revenue-section-v1";
+  reportDate: string;
+  form: string;
+  originalFiscalYear: number;
+  layout: "rows" | "columns";
+  units: ServiceRevenueRowsProof["units"];
+  tableIndex: number;
+  headerRows: ServiceRevenueRow[];
+  rows: ServiceRevenueRow[];
+  primary: ServiceRevenueRowsProof["primary"];
 };
 export type ProductPortfolioProof = {
   ruleId: "abbv-original-product-portfolios-v1";
@@ -410,7 +427,9 @@ export type FinancialPeriod = {
       | "statement-revenue-matrix"
       | "reviewed-segment-table"
       | "reported-product-portfolios"
-      | "reviewed-service-revenue-rows";
+      | "reviewed-service-revenue-rows"
+      | "reviewed-albemarle-revenue";
+    albemarleRevenue?: AlbemarleBusinessProof;
     productPortfolios?: ProductPortfolioProof;
     serviceRevenueRows?: ServiceRevenueRowsProof;
     ruleId?: string;

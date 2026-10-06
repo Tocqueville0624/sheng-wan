@@ -26,6 +26,8 @@ import {
 } from "../../src/features/finance/business-rules";
 import { productPortfolioProblem } from "../../src/features/finance/product-portfolios";
 import { serviceRevenueRowsProblem } from "../../src/features/finance/service-revenue-rows";
+import { albemarleRevenueProblem } from "../../src/features/finance/albemarle-revenue";
+import { normalizeReviewedFiscalLabel, albemarleFiscalLabelNote } from "./fiscal-label";
 
 /** Standard cost tags can describe only one activity (for example franchise rent).
  * A generic revenue-minus-cost residual is not a reported consolidated gross profit.
@@ -85,7 +87,9 @@ export function normalizeBasicPeriod(period: PeriodV2): PeriodV2 {
 }
 
 export function normalizeBasicCompany(company: CompanyV2): CompanyV2 {
-  const annual = company.annual.map(normalizeBasicPeriod);
+  const labeledAnnual = company.annual.map((p) => normalizeReviewedFiscalLabel(company.cik, p));
+  const fiscalLabelsChanged = labeledAnnual.some((p, i) => p !== company.annual[i]);
+  const annual = labeledAnnual.map(normalizeBasicPeriod);
   const quarterly = company.quarterly.map(normalizeBasicPeriod);
   if (
     annual.every((p, i) => p === company.annual[i]) &&
@@ -96,11 +100,17 @@ export function normalizeBasicCompany(company: CompanyV2): CompanyV2 {
     ...company,
     annual,
     quarterly,
-    version: `${company.version}-scope2`,
+    version: `${company.version}${fiscalLabelsChanged ? "-alb-fy2022" : ""}-scope2`,
     warnings: [
       ...new Set([
         ...company.warnings,
-        "Unreviewed cost-derived gross profit and revenue-recognition timing partitions are withheld. Reported revenue and income remain available."
+        ...(fiscalLabelsChanged ? [albemarleFiscalLabelNote] : []),
+        ...(annual.some((p, i) => p !== labeledAnnual[i]) ||
+        quarterly.some((p, i) => p !== company.quarterly[i])
+          ? [
+              "Unreviewed cost-derived gross profit and revenue-recognition timing partitions are withheld. Reported revenue and income remain available."
+            ]
+          : [])
       ])
     ]
   };
@@ -247,6 +257,10 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     if (period.revenueAdjustments?.some((item) => item.id === "source-rounding")) return;
     return business;
   }
+  if (proof.albemarleRevenue && proof.method !== "reviewed-albemarle-revenue") return;
+  if (proof.method === "reviewed-albemarle-revenue")
+    return albemarleRevenueProblem(period) ? undefined : business;
+  if (proof.albemarleRevenue) return;
   if (proof.serviceRevenueRows && proof.method !== "reviewed-service-revenue-rows") return;
   if (proof.method === "reported-product-portfolios")
     return productPortfolioProblem(period) ? undefined : business;

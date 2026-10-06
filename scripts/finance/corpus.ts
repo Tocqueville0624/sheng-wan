@@ -107,6 +107,9 @@ if (selected)
     if (!corpus.issuers.some((c) => c.tickers.includes(ticker)))
       throw new Error(`Unknown corpus ticker: ${ticker}`);
 const parserFiles = [
+  "albemarle-business-v2",
+  "original-revenue-grid",
+  "fiscal-label",
   "service-revenue-v2",
   "product-portfolio-v2",
   "external-business",
@@ -137,6 +140,7 @@ const parserVersion = hash(
       readFile("src/features/finance/business-rules.ts", "utf8"),
       readFile("src/features/finance/product-portfolios.ts", "utf8"),
       readFile("src/features/finance/service-revenue-rows.ts", "utf8"),
+      readFile("src/features/finance/albemarle-revenue.ts", "utf8"),
       readFile("src/features/finance/chart-model.ts", "utf8"),
       readFile("src/features/finance/signed-flow.ts", "utf8"),
       readFile("src/features/finance/shareholder-bridge.ts", "utf8"),

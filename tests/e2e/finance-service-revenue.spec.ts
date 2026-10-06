@@ -8,9 +8,13 @@ for (const key of [
   "AKAMServicesFY2025",
   "AKAMServices2026Q2",
   "AKAMServicesFY2017",
-  "AKAMServices2021Q3"
+  "AKAMServices2021Q3",
+  "ALBBusinessFY2025",
+  "ALBBusiness2026Q2",
+  "ALBBusinessFY2017",
+  "ALBBusinessFY2021"
 ] as const)
-  test(`${key}: original service revenue partition renders proportionally and exports`, async ({
+  test(`${key}: original business revenue partition renders proportionally and exports`, async ({
     page
   }, info) => {
     const { company, period } = reviewedFixture(key);
@@ -30,8 +34,15 @@ for (const key of [
     expect(metadata.segments).toEqual(period.segments);
     expect(metadata.businessBreakdownSource).toEqual(period.businessBreakdownSource);
     expect(period.segments!.length).toBeGreaterThanOrEqual(2);
-    expect(metadata.businessBreakdownSource.method).toBe("reviewed-service-revenue-rows");
-    expect(metadata.businessBreakdownSource.serviceRevenueRows.primary.tableIndex).toBe(0);
+    if (company.ticker === "ALB") {
+      expect(metadata.businessBreakdownSource.method).toBe("reviewed-albemarle-revenue");
+      expect(metadata.businessBreakdownSource.albemarleRevenue.primary.tableIndex).toBe(
+        period.kind === "annual" ? 1 : 0
+      );
+    } else {
+      expect(metadata.businessBreakdownSource.method).toBe("reviewed-service-revenue-rows");
+      expect(metadata.businessBreakdownSource.serviceRevenueRows.primary.tableIndex).toBe(0);
+    }
     expect(
       metadata.segments.every(
         (s: { revenueSource: { calculation?: unknown } }) => !s.revenueSource.calculation
