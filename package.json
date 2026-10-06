@@ -29,7 +29,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test",
+    "test:e2e": "node --import tsx scripts/testing/browser-tests.ts",
     "media:build": "node --import tsx scripts/media/build.ts",
     "media:check": "node --import tsx scripts/media/check.ts",
     "data:update": "node --import tsx scripts/finance/update.ts",

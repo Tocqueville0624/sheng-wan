@@ -74,7 +74,7 @@ Confirm the account remains on the free plan. `wrangler.jsonc` declares the SQLi
 
 The legacy daily workflow refreshes/tests and saves artifacts. Optional KV publication requires a `FINANCE_KV` namespace, `FINANCE_PUBLISH=true` and Cloudflare secrets. Credentials belong in secret storage, never repository files. SEC contact identification is sent only to `sec.gov`, never to the FX source or another domain. No cloud deployment is implied merely by having configuration files.
 
-CI verifies a production build and runs desktop/mobile browser tests before saving the exact static artifact. After initial domain setup and acceptance, repository variable `DEPLOYMENT_ENABLED=true` enables automatic production deployment from `main`. Pull requests never deploy or receive deployment credentials. The legacy finance workflow saves validated artifacts; it does not automatically update production's bundled data or Durable Object.
+CI verifies a production build and runs desktop/mobile browser tests before saving the exact static artifact. Each browser project starts a fresh local Worker while retaining the single browser worker and every test. Separate test-output directories preserve both projects' evidence and Worker diagnostics after a failure. After initial domain setup and acceptance, repository variable `DEPLOYMENT_ENABLED=true` enables automatic production deployment from `main`. Pull requests never deploy or receive deployment credentials. The legacy finance workflow saves validated artifacts; it does not automatically update production's bundled data or Durable Object.
 
 ## Licensing
 
