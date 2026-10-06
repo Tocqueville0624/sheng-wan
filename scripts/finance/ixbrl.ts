@@ -81,16 +81,41 @@ function findText(node: unknown, name: string): string {
   return found;
 }
 
+function numericText(node: XmlNode): string | undefined {
+  // Inline XBRL 1.1 §10 permits one nested nonFraction with the same
+  // transformation, scale and unit. Its lexical value is shared; each fact
+  // retains its own sign/context. Mixed markup still needs an ordered adapter.
+  for (let depth = 0; depth < 64; depth++) {
+    if (node["@xsi:nil"] === "true") return;
+    const children = Object.keys(node).filter((key) => !key.startsWith("@") && key !== "#text");
+    if (!children.length) return text(node);
+    const key = children[0];
+    const child = node[key];
+    if (
+      children.length !== 1 ||
+      key.split(":").at(-1) !== "nonFraction" ||
+      !child ||
+      typeof child !== "object" ||
+      Array.isArray(child) ||
+      String(node["#text"] ?? "").trim() ||
+      ["@format", "@scale", "@unitRef"].some(
+        (attribute) =>
+          String(node[attribute] ?? (attribute === "@scale" ? "0" : "")) !==
+          String((child as XmlNode)[attribute] ?? (attribute === "@scale" ? "0" : ""))
+      )
+    )
+      return;
+    node = child as XmlNode;
+  }
+}
+
 function numericValue(node: XmlNode): number | undefined {
   if (node["@xsi:nil"] === "true") return undefined;
-  // Mixed child markup needs an order-preserving transformation adapter; never
-  // concatenate grouped XML object keys into a potentially different number.
-  if (Object.keys(node).some((key) => !key.startsWith("@") && key !== "#text")) return undefined;
+  const lexical = numericText(node);
+  if (lexical === undefined) return;
   const format = String(node["@format"] ?? "").toLowerCase();
   if (format && !/(num|zero|fixed-zero)/.test(format)) return undefined;
-  let raw = text(node)
-    .replace(/&(?:nbsp|#160|#xa0);/gi, "")
-    .replace(/[\s$€£]/g, "");
+  let raw = lexical.replace(/&(?:nbsp|#160|#xa0);/gi, "").replace(/[\s$€£]/g, "");
   if (/^(?:—|–|-|&#8212;|&#x2014;)$/.test(raw) || /zero|numdash/.test(format)) raw = "0";
   if (/num-comma-decimal|numcommadecimal/.test(format))
     raw = raw.replaceAll(".", "").replace(",", ".");

@@ -187,7 +187,25 @@ export function buildSignedStatementFlow(
       "operating-adjustment",
       stage - 0.5
     );
-    if (!transition(operating, rounding.gains, [cost, ...rounding.expenses]))
+    const operatingItems =
+      period.operatingItems?.items
+        .filter((item) => item.effect === "gain")
+        .map((item) =>
+          stageEffects(
+            item.amount,
+            `operating-item-${item.id}`,
+            item.label,
+            "operating-item",
+            stage - 0.5
+          )
+        ) ?? [];
+    if (
+      !transition(
+        operating,
+        [...rounding.gains, ...operatingItems.flatMap((item) => item.gains)],
+        [cost, ...rounding.expenses, ...operatingItems.flatMap((item) => item.expenses)]
+      )
+    )
       return { ok: false, reason: "The signed operating stage does not reconcile." };
     const details = options.hasGrossStage ? options.expenses : options.costDetails;
     if (details)
@@ -389,7 +407,10 @@ export function layoutSignedStatementFlow(graph: StatementFlow) {
   for (const n of graph.nodes) {
     const afterDetails =
       n.group === "nonoperating" && graph.nodes.some((item) => item.group === "detail");
-    if (n.tone === "expense" && (afterDetails || n.group === "operating-adjustment")) {
+    if (
+      n.tone === "expense" &&
+      (afterDetails || n.group === "operating-adjustment" || n.group === "operating-item")
+    ) {
       const current = locations.get(n.id)!;
       current.y = Math.max(current.y, expenseBottom + 150);
     }

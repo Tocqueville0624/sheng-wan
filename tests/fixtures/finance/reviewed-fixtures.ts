@@ -6,6 +6,90 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  APDOperating2016: {
+    ticker: "APD",
+    kind: "annual",
+    fixture: "apd-2016-operating-statement.html",
+    name: "Air Products and Chemicals",
+    cik: "0000002969",
+    accession: "0000002969-18-000044",
+    filedAt: "2018-11-20",
+    startDate: "2015-10-01",
+    endDate: "2016-09-30",
+    reportDate: "2018-09-30",
+    fiscalYear: 2016,
+    sector: "Materials",
+    document: "apd-10xkx30sep2018.htm"
+  },
+  APDOperating2021: {
+    ticker: "APD",
+    kind: "annual",
+    fixture: "apd-2021-operating-statement.html",
+    name: "Air Products and Chemicals",
+    cik: "0000002969",
+    accession: "0000002969-23-000047",
+    filedAt: "2023-11-16",
+    startDate: "2020-10-01",
+    endDate: "2021-09-30",
+    reportDate: "2023-09-30",
+    fiscalYear: 2021,
+    sector: "Materials",
+    document: "apd-20230930.htm"
+  },
+  CRLOperatingAnnual: {
+    ticker: "CRL",
+    kind: "annual",
+    fixture: "crl-2025-operating-statement.html",
+    name: "Charles River Laboratories",
+    cik: "0001100682",
+    accession: "0001100682-26-000022",
+    filedAt: "2026-02-18",
+    startDate: "2024-12-29",
+    endDate: "2025-12-27",
+    fiscalYear: 2025,
+    sector: "Health Care",
+    document: "crl-20251227.htm"
+  },
+  CRLOperatingQuarter: {
+    ticker: "CRL",
+    fixture: "crl-2026-q2-operating-statement.html",
+    name: "Charles River Laboratories",
+    cik: "0001100682",
+    accession: "0001100682-26-000118",
+    filedAt: "2026-08-05",
+    startDate: "2026-03-29",
+    endDate: "2026-06-27",
+    fiscalYear: 2026,
+    sector: "Health Care",
+    document: "crl-20260627.htm"
+  },
+  APDOperatingAnnual: {
+    ticker: "APD",
+    kind: "annual",
+    fixture: "apd-2025-operating-statement.html",
+    name: "Air Products and Chemicals",
+    cik: "0000002969",
+    accession: "0000002969-25-000055",
+    filedAt: "2025-11-20",
+    startDate: "2024-10-01",
+    endDate: "2025-09-30",
+    fiscalYear: 2025,
+    sector: "Materials",
+    document: "apd-20250930.htm"
+  },
+  APDOperatingQuarter: {
+    ticker: "APD",
+    fixture: "apd-2026-q3-operating-statement.html",
+    name: "Air Products and Chemicals",
+    cik: "0000002969",
+    accession: "0000002969-26-000036",
+    filedAt: "2026-07-30",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Materials",
+    document: "apd-20260630.htm"
+  },
   INTCSigned: {
     ticker: "INTC",
     fixture: "intc-2026-q2-signed-statement.html",
@@ -430,7 +514,7 @@ export function reviewedFixture(ticker: keyof typeof sources) {
           ? parsed.fiscalPeriod
           : kind === "annual"
             ? "FY"
-            : ticker === "APD" || ticker === "AMAT"
+            : identity.ticker === "APD" || identity.ticker === "AMAT"
               ? "Q3"
               : "Q2"
     };

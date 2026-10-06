@@ -13,7 +13,7 @@ export const shareholderAllocationTags = new Set([
   "us-gaap:ParticipatingSecuritiesDistributedAndUndistributedEarningsLossDiluted"
 ]);
 export const minorityIncomeTag =
-  /^(?:us-gaap:(?:NetIncomeLossAttributableTo(?:Nonredeemable|Redeemable)?NoncontrollingInterest|NoncontrollingInterestInNetIncomeLoss\w*|IncomeLossFromContinuingOperationsAttributableToNoncontrollingEntity|MinorityInterestInNetIncomeLossOfConsolidatedEntities)|ifrs-full:ProfitLossAttributableToNoncontrollingInterests)$/;
+  /^(?:us-gaap:(?:NetIncomeLossAttributableTo(?:Nonredeemable|Redeemable)?NoncontrollingInterest|NoncontrollingInterestInNetIncomeLoss\w*|IncomeLossFromContinuingOperationsAttributableToNoncontrollingEntity|IncomeLossFromDiscontinuedOperationsNetOfTaxAttributableToNoncontrollingInterest|MinorityInterestInNetIncomeLossOfConsolidatedEntities)|ifrs-full:ProfitLossAttributableToNoncontrollingInterests)$/;
 
 export function shareholderBridgeProblem(period: {
   shareholderBridge?: ShareholderIncomeBridge;

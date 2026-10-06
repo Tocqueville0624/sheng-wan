@@ -93,6 +93,7 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
         {lines.map((line, index) => (
           <tspan x={x} dy={index === 0 ? 0 : lineHeight} key={line}>
             {line}
+            {index < lines.length - 1 ? " " : ""}
           </tspan>
         ))}
       </text>
@@ -311,6 +312,7 @@ export function StatementFlow({
               businessBreakdownSource: period.businessBreakdownSource,
               netIncomeAttribution: parentNet ? "parent" : undefined,
               shareholderBridge: period.shareholderBridge,
+              operatingItems: period.operatingItems,
               operatingReconciliation: rounding,
               operatingExpensesBasis: period.operatingExpensesBasis,
               afterTaxReconciliation: period.afterTaxReconciliation,
@@ -428,11 +430,13 @@ export function StatementFlow({
           )}
           {directOperatingFlow && (
             <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
-              {summedCosts
-                ? "Total operating costs are the sum of the listed statement lines. No gross profit is estimated."
-                : signedAccounting
-                  ? "Reported total operating costs connect revenue to operating income or loss. No gross profit is estimated."
-                  : "Reported total operating costs connect revenue to operating profit. No gross profit is estimated."}
+              {period.operatingItems
+                ? "Revenue plus reported operating gains equals total operating costs plus operating income. Original signs are preserved."
+                : summedCosts
+                  ? "Total operating costs are the sum of the listed statement lines. No gross profit is estimated."
+                  : signedAccounting
+                    ? "Reported total operating costs connect revenue to operating income or loss. No gross profit is estimated."
+                    : "Reported total operating costs connect revenue to operating profit. No gross profit is estimated."}
             </text>
           )}
           {period.operatingExpensesBasis && (
@@ -557,11 +561,13 @@ export function StatementFlow({
         {pretaxFlow &&
           "This statement reports no operating-profit subtotal. Every item between revenue (or gross profit) and pretax profit, including interest and other non-operating items, is shown as one reported net amount; listed lines appear only when they exactly add up to it. "}
         {directOperatingFlow &&
-          (summedCosts
-            ? "This statement lists its operating costs without a gross-profit subtotal or a reported total. Total operating costs are the exact sum of those reported lines, which together with operating profit equal revenue; no gross profit is estimated. "
-            : signedAccounting
-              ? "The flow uses reported total operating costs to connect revenue to operating income or loss; no gross profit is estimated. "
-              : "This statement does not provide a complete, separate gross-profit breakdown. The flow uses reported total operating costs to connect revenue directly to operating profit; no gross profit is estimated. ")}
+          (period.operatingItems
+            ? "Total operating costs are the exact sum of the reported cost lines. Separately reported operating gains or losses connect revenue, those costs and operating income; every original amount and sign is preserved. "
+            : summedCosts
+              ? "This statement lists its operating costs without a gross-profit subtotal or a reported total. Total operating costs are the exact sum of those reported lines, which together with operating profit equal revenue; no gross profit is estimated. "
+              : signedAccounting
+                ? "The flow uses reported total operating costs to connect revenue to operating income or loss; no gross profit is estimated. "
+                : "This statement does not provide a complete, separate gross-profit breakdown. The flow uses reported total operating costs to connect revenue directly to operating profit; no gross profit is estimated. ")}
         {rounding?.amount ? (
           <>
             A separate source-rounding flow of {rounding.amount > 0 ? "+" : ""}

@@ -357,10 +357,11 @@ describe("business revenue matrix source totals", () => {
     expect(period.businessBreakdownSource?.tableIndex).toBe(1);
     expect(businessPeriod(period)).toBeDefined();
     expect(() => validateV2(fixture.company)).not.toThrow();
-    // Revenue partitioning does not turn the reported operating loss into a profit.
+    // The independent source-reviewed operating ledger preserves the loss.
     expect(period.metrics.operatingIncome).toBe(-2097.1e6);
-    expect(period.coverage.sankey).toBe(false);
-    expect(flowPeriod(period)).toBeUndefined();
+    expect(period.coverage.sankey).toBe(true);
+    expect(period.operatingItems?.ruleId).toBe("apd-operating-items-v1");
+    expect(flowPeriod(period)?.metrics.operatingIncome).toBe(-2097.1e6);
     expect(enrich(fixture.html, period)).toEqual([]);
   });
 

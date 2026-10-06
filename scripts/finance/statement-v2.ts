@@ -5,6 +5,7 @@ import { attribute, factKey, halfUnit, precise, visibleText } from "./business-v
 import { parseInlineXbrl, type ParsedFiling, type XbrlFact } from "./ixbrl";
 import type { SecFiling } from "./sec-shared";
 import { flowPeriod } from "./v2-model";
+import { operatingItemsProblem } from "../../src/features/finance/operating-items";
 
 /*
  * Generic issuers do not share one taxonomy. Oracle reports pretax income with an
@@ -67,7 +68,7 @@ const EQUITY_AFTER_TAX = new Set([
 const DISCONTINUED =
   /^us-gaap:(?:IncomeLossFromDiscontinuedOperationsNetOfTax|DiscontinuedOperationIncomeLossFromDiscontinuedOperationNetOfTax)\w*$/;
 const MINORITY =
-  /^(?:us-gaap:(?:NetIncomeLossAttributableTo(?:Nonredeemable|Redeemable)?NoncontrollingInterest|NoncontrollingInterestInNetIncomeLoss\w*|IncomeLossFromContinuingOperationsAttributableToNoncontrollingEntity|MinorityInterestInNetIncomeLossOfConsolidatedEntities)|ifrs-full:ProfitLossAttributableToNoncontrollingInterests)$/;
+  /^(?:us-gaap:(?:NetIncomeLossAttributableTo(?:Nonredeemable|Redeemable)?NoncontrollingInterest|NoncontrollingInterestInNetIncomeLoss\w*|IncomeLossFromContinuingOperationsAttributableToNoncontrollingEntity|IncomeLossFromDiscontinuedOperationsNetOfTaxAttributableToNoncontrollingInterest|MinorityInterestInNetIncomeLossOfConsolidatedEntities)|ifrs-full:ProfitLossAttributableToNoncontrollingInterests)$/;
 const QNAME = /^[A-Za-z_][\w.-]*:[A-Za-z_][\w.-]*$/;
 
 type Row = { label: string; facts: (XbrlFact | undefined)[] };
@@ -299,6 +300,7 @@ export function readStatementRows(
     } else if (
       item &&
       DISCONTINUED.test(tag) &&
+      !MINORITY.test(tag) &&
       (!minority.length || tag.endsWith("AttributableToReportingEntity"))
     ) {
       discontinued.push(item);
@@ -382,7 +384,29 @@ export function readStatementRows(
     if (!items.length || (m[key] === undefined && same(value, 0)))
       return m[key] === undefined || same(m[key]!, value);
     if (items.length === 1) return assign(key, items[0]);
-    if (m[key] !== undefined) return same(m[key]!, value);
+    if (m[key] !== undefined) {
+      if (same(m[key]!, value)) return true;
+      const prior = period.metricSources[key];
+      const components = new Set([
+        "us-gaap:IncomeLossFromContinuingOperationsAttributableToNoncontrollingEntity",
+        "us-gaap:IncomeLossFromDiscontinuedOperationsNetOfTaxAttributableToNoncontrollingInterest"
+      ]);
+      // Company Facts may expose only continuing NCI under this metric. A source
+      // with both explicit, distinct scopes proves their consolidated sum.
+      if (
+        key !== "noncontrollingInterestIncome" ||
+        prior?.method !== "reported" ||
+        prior.sourceUrl !== filing.sourceUrl ||
+        prior.accession !== filing.accession ||
+        prior.filedAt !== filing.filedAt ||
+        !components.has(prior.tag) ||
+        items.length !== 2 ||
+        new Set(items.map((item) => item.fact.tag)).size !== 2 ||
+        !items.every((item) => components.has(item.fact.tag)) ||
+        !items.some((item) => item.fact.tag === prior.tag && same(item.fact.value, m[key]!))
+      )
+        return false;
+    }
     metrics[key] = value;
     sources[key] = {
       label,
@@ -459,6 +483,12 @@ export function readStatementRows(
       decimals: roundedSubtotal.fact.decimals!,
       sourceUrl: filing.sourceUrl
     };
+  // A separately reviewed source ledger has already proved every operating cost
+  // and gain. This reader still supplies the primary statement's after-tax chain.
+  if (period.operatingItems) {
+    if (operatingItemsProblem(period)) return;
+    return result;
+  }
   const iG = block.findIndex((item) => item && GROSS_PROFIT.has(item.fact.tag));
   if (!operating) {
     // No operating-profit line: revenue (or reported gross profit) less one net

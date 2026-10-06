@@ -71,6 +71,28 @@ describe("SEC inline-XBRL parsing", () => {
     );
   });
 
+  it("preserves both facts of a valid nested numeric value without applying sign or scale twice", () => {
+    const inner = fact("example:Inner", "23.2", "business", 'sign="-"');
+    const outer = fact("example:Outer", inner, "total", 'sign="-"');
+    const parsed = parseInlineXbrl(fixture(outer));
+    expect(parsed.facts.filter((f) => f.tag.startsWith("example:"))).toMatchObject([
+      { tag: "example:Outer", value: -23_200_000, context: { id: "total" } },
+      { tag: "example:Inner", value: -23_200_000, context: { id: "business" } }
+    ]);
+    for (const changed of [
+      inner.replace('scale="6"', 'scale="3"'),
+      inner.replace('unitRef="usd"', 'unitRef="other"'),
+      inner.replace('decimals="-6"', 'decimals="-6" format="ixt:num-dot-decimal"'),
+      `1${inner}`,
+      inner + inner
+    ])
+      expect(
+        parseInlineXbrl(fixture(fact("example:Outer", changed))).facts.some(
+          (f) => f.tag === "example:Outer"
+        )
+      ).toBe(false);
+  });
+
   it("reads real dimensions, scale, dates, currency and derived gross profit", () => {
     const period = extract(fixture())[0];
     expect(period.id).toBe("FY2025");

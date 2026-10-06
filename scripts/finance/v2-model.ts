@@ -750,7 +750,8 @@ export function validateV2(company: CompanyV2) {
           p.afterTaxReconciliation ||
           p.consolidatedIncomeSubtotal ||
           p.roundedOperatingExpenseComponents ||
-          p.shareholderBridge) &&
+          p.shareholderBridge ||
+          p.operatingItems) &&
         !flowPeriod(p)
       )
         throw new Error("Unsupported chart capability or unverified rounding precision.");

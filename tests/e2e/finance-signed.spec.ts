@@ -4,7 +4,18 @@ import sharp from "sharp";
 import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
-for (const key of ["MRNASigned", "AXONSigned", "FSigned", "HPESigned"] as const)
+for (const key of [
+  "MRNASigned",
+  "AXONSigned",
+  "FSigned",
+  "HPESigned",
+  "APDOperatingAnnual",
+  "APDOperatingQuarter",
+  "APDOperating2021",
+  "APDOperating2016",
+  "CRLOperatingAnnual",
+  "CRLOperatingQuarter"
+] as const)
   test(`${key}: original business revenue and signed stages render and export`, async ({
     page
   }, info) => {
@@ -26,7 +37,7 @@ for (const key of ["MRNASigned", "AXONSigned", "FSigned", "HPESigned"] as const)
     const revenueHeight = Number(
       await chart.locator('[data-flow-bar="revenue"]').getAttribute("height")
     );
-    for (const segment of period.segments!) {
+    for (const segment of period.segments ?? []) {
       const height = Number(
         await chart.locator(`[data-flow-bar="segment-${segment.id}"]`).getAttribute("height")
       );
@@ -35,6 +46,20 @@ for (const key of ["MRNASigned", "AXONSigned", "FSigned", "HPESigned"] as const)
     const metadata = JSON.parse((await chart.locator("metadata").textContent()) ?? "null");
     expect(metadata.metrics).toEqual(period.metrics);
     expect(metadata.flow).toBe("signed-accounting");
+    if (period.operatingItems) {
+      expect(metadata.operatingItems).toEqual(period.operatingItems);
+      for (const item of period.operatingItems.items.filter(
+        (r) => r.effect === "gain" && r.amount !== 0
+      )) {
+        expect(
+          metadata.nodes.find((n: { id: string }) => n.id === `operating-item-${item.id}`)
+            .signedAmount
+        ).toBe(item.amount);
+        await expect(chart.locator(`[data-flow-node="operating-item-${item.id}"]`)).toContainText(
+          item.label
+        );
+      }
+    }
     if (period.shareholderBridge) {
       expect(metadata.shareholderBridge).toEqual(period.shareholderBridge);
       expect(metadata.nodes.find((n: { id: string }) => n.id === "common-net").signedAmount).toBe(
@@ -94,7 +119,7 @@ for (const key of ["MRNASigned", "AXONSigned", "FSigned", "HPESigned"] as const)
         contentType: format === "SVG" ? "image/svg+xml" : "image/png"
       });
     }
-    if (period.shareholderBridge) {
+    if (period.shareholderBridge || period.operatingItems) {
       const downloaded = page.waitForEvent("download");
       await page.getByRole("button", { name: "Download CSV", exact: true }).click();
       const download = await downloaded;
@@ -102,8 +127,14 @@ for (const key of ["MRNASigned", "AXONSigned", "FSigned", "HPESigned"] as const)
       await download.saveAs(path);
       const csv = await readFile(path, "utf8");
       expect(csv).toContain('"common_shareholder_income"');
-      expect(csv).toContain(`"${period.shareholderBridge.common.amount}"`);
-      expect(csv).toContain(JSON.stringify(period.shareholderBridge).replaceAll('"', '""'));
+      if (period.shareholderBridge) {
+        expect(csv).toContain(`"${period.shareholderBridge.common.amount}"`);
+        expect(csv).toContain(JSON.stringify(period.shareholderBridge).replaceAll('"', '""'));
+      }
+      if (period.operatingItems) {
+        expect(csv).toContain('"operating_items"');
+        expect(csv).toContain(JSON.stringify(period.operatingItems).replaceAll('"', '""'));
+      }
     }
     expect(errors).toEqual([]);
   });

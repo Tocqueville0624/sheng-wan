@@ -1,6 +1,7 @@
 import type { BusinessPeriod, FlowStatementPeriod, RevenueSegment } from "./types";
 import { buildSignedStatementFlow, layoutSignedStatementFlow } from "./signed-flow";
 import { shareholderBridgeProblem } from "./shareholder-bridge";
+import { operatingItemsProblem } from "./operating-items";
 
 export type RevenueSeries = { id: string; label: string };
 export type RevenueHistory = {
@@ -35,6 +36,7 @@ export type FlowNode = {
     | "shareholder"
     | "discontinued"
     | "operating-adjustment"
+    | "operating-item"
     | "after-tax-adjustment"
     | "revenue-base"
     | "adjustment";
@@ -104,6 +106,8 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
   const m = period.metrics;
   const shareholderProblem = shareholderBridgeProblem(period);
   if (shareholderProblem) return { ok: false, reason: shareholderProblem };
+  const operatingProblem = operatingItemsProblem(period);
+  if (operatingProblem) return { ok: false, reason: operatingProblem };
   if (period.grossProfitAdjustments?.some((item) => item.amount !== 0))
     return {
       ok: false,
@@ -135,7 +139,8 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
       (value) => value !== undefined && value < 0
     ) ||
     m.pretaxIncome < incomeTax ||
-    !!period.shareholderBridge;
+    !!period.shareholderBridge ||
+    !!period.operatingItems;
   if (
     m.revenue <= 0 ||
     Object.entries(positiveMetrics).some(
@@ -167,6 +172,10 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
   const operatingAdjustment = operatingReconciliation?.amount ?? 0;
   const afterTaxAdjustment = period.afterTaxReconciliation?.amount ?? 0;
   const operatingIncome = m.operatingIncome ?? 0;
+  const operatingGains =
+    period.operatingItems?.items
+      .filter((item) => item.effect === "gain")
+      .reduce((sum, item) => sum + item.amount, 0) ?? 0;
   if (
     !Number.isFinite(operatingAdjustment) ||
     !Number.isFinite(afterTaxAdjustment) ||
@@ -203,9 +212,9 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
       : hasOperating
         ? ([
             [
-              m.revenue + operatingAdjustment,
+              m.revenue + operatingAdjustment + operatingGains,
               m.totalOperatingCosts! + operatingIncome,
-              "Revenue, total operating costs, operating profit, and source rounding"
+              "Revenue, reported operating gains, total operating costs, operating profit, and source rounding"
             ]
           ] as [number, number, string][])
         : ([

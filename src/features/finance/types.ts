@@ -34,6 +34,24 @@ export type StatementLine = {
   amount: number;
   tag?: string;
   decimals?: number;
+  dimensions?: Record<string, string>;
+};
+
+/** Complete, source-ordered operating ledger with separately reported gains.
+ * Costs are nonnegative; gains retain their original signed income/expense value.
+ */
+export type OperatingItems = {
+  ruleId: string;
+  sourceUrl: string;
+  accession: string;
+  filedAt: string;
+  startDate: string;
+  endDate: string;
+  currency: "USD";
+  tableIndex: number;
+  revenue: StatementLine & { rowIndex: number };
+  operatingIncome: StatementLine & { rowIndex: number };
+  items: (StatementLine & { effect: "cost" | "gain"; rowIndex: number })[];
 };
 
 /** Reported allocations after the selected net-income scope, never an expense
@@ -131,6 +149,7 @@ export type FinancialPeriod = {
   };
   afterTaxReconciliation?: { label: string; amount: number; sourceUrl: string };
   shareholderBridge?: ShareholderIncomeBridge;
+  operatingItems?: OperatingItems;
   /** A rounded intermediate subtotal is corroboration, not a replacement for the
    * exact arithmetic leading to the selected final net-income scope.
    */

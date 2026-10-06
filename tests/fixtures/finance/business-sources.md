@@ -1,5 +1,16 @@
 # Business revenue source fixtures
 
+## Operating costs and separately reported gains
+
+- APD: [FY2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/2969/000000296925000055/apd-20250930.htm), filed 2025-11-20. The preserved primary table contains five cost lines and two separately reported operating gains. Equity-affiliate income follows operating income and precedes tax; discontinued operations and minority income follow tax.
+- APD: [2026 Q3 Form 10-Q](https://www.sec.gov/Archives/edgar/data/2969/000000296926000036/apd-20260630.htm), filed 2026-07-30. The excerpt preserves explicitly tagged zero activism costs and zero sale-of-business gain as well as the other operating gain. Each business revenue branch remains proportional to reported revenue.
+
+The `apd-*-operating-statement.html` excerpts preserve the complete original
+primary and business-revenue tables, referenced contexts/units and DEI metadata.
+Headers record the whole-document hashes and original table indexes. No source
+value, label, scale or sign is edited. The new source ledger records each cost
+and gain separately; a gain never enters the cost-component partition.
+
 ## Signed statements and shareholder allocations
 
 - MRNA: [FY2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/1682852/000168285226000033/mrna-20251231.htm), filed 2026-02-20. Reported operating costs exceed revenue; positive tax expense increases the net loss.
@@ -67,3 +78,10 @@ Neither source excerpt supplies a missing business partition.
 
 - INTC: [Q2 FY2026 Form 10-Q](https://www.sec.gov/Archives/edgar/data/50863/000005086326000157/intc-20260627.htm), filed 2026-07-24.
 - BDX: [Q2 FY2026 Form 10-Q](https://www.sec.gov/Archives/edgar/data/10795/000001079526000026/bdx-20260331.htm), filed 2026-05-07.
+
+The APD operating excerpts preserve original FY2016, FY2021 and FY2025 comparative/current primary tables and Q3 FY2026, referenced contexts/units and fiscal metadata. FY2021 retains nested numeric facts for the annual and quarter facility-closure loss. FY2016 retains continuing and discontinued NCI as distinct original lines and has no asserted business partition. The CRL FY2025/Q2 FY2026 excerpts preserve the primary tables, including service/product revenue and costs under their original exclusive contexts. Each header records the original whole-document SHA-256, table indexes and filing date. No financial cell, sign or scope was altered.
+
+- APD-2016: [original source statement](https://www.sec.gov/Archives/edgar/data/2969/000000296918000044/apd-10xkx30sep2018.htm), filed 2018-11-20.
+- APD-2021: [original source statement](https://www.sec.gov/Archives/edgar/data/2969/000000296923000047/apd-20230930.htm), filed 2023-11-16.
+- CRL-2025: [original source statement](https://www.sec.gov/Archives/edgar/data/1100682/000110068226000022/crl-20251227.htm), filed 2026-02-18.
+- CRL-2026-Q2: [original source statement](https://www.sec.gov/Archives/edgar/data/1100682/000110068226000118/crl-20260627.htm), filed 2026-08-05.
