@@ -31,7 +31,15 @@ test("reviewed saved statements render through the actual asset/API path without
   );
 });
 
-test("a throttled update preserves the checked diagram", async ({ page }) => {
+test("a throttled enabled update preserves the checked diagram", async ({ page, request }) => {
+  // CI's Worker correctly disables mutations. Load its actual checked data,
+  // then model the enabled-update response without making a real SEC request.
+  const source = await request.get("/api/finance/v2/companies/MDLZ");
+  expect(source.ok()).toBe(true);
+  const data = await source.json();
+  await page.route("**/api/finance/v2/companies/MDLZ", (route) =>
+    route.fulfill({ json: { ...data, available: true, job: null } })
+  );
   await page.route("**/api/finance/v2/companies/MDLZ/refresh", (route) =>
     route.fulfill({
       status: 429,
