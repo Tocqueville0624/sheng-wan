@@ -32,11 +32,19 @@ test("reviewed saved statements render through the actual asset/API path without
 });
 
 test("a throttled enabled update preserves the checked diagram", async ({ page, request }) => {
-  // CI's Worker correctly disables mutations. Load its actual checked data,
-  // then model the enabled-update response without making a real SEC request.
-  const source = await request.get("/api/finance/v2/companies/MDLZ");
+  // CI's Worker correctly disables mutations. Keep its actual checked data
+  // and identities, but model one consistently enabled service for both reads.
+  const [source, catalog] = await Promise.all([
+    request.get("/api/finance/v2/companies/MDLZ"),
+    request.get("/api/finance/v2/catalog")
+  ]);
   expect(source.ok()).toBe(true);
+  expect(catalog.ok()).toBe(true);
   const data = await source.json();
+  const catalogData = await catalog.json();
+  await page.route("**/api/finance/v2/catalog", (route) =>
+    route.fulfill({ json: { ...catalogData, available: true } })
+  );
   await page.route("**/api/finance/v2/companies/MDLZ", (route) =>
     route.fulfill({ json: { ...data, available: true, job: null } })
   );
@@ -53,10 +61,13 @@ test("a throttled enabled update preserves the checked diagram", async ({ page, 
     })
   );
   await page.goto("/playground/thales-olive/?ticker=MDLZ&period=annual&statement=FY2025");
+  await expect(page.locator("astro-island[ssr]")).toHaveCount(0);
   const chart = page.locator('.flow-chart[data-signed-accounting="true"]');
   await expect(chart).toBeVisible();
   const before = await chart.locator("metadata").textContent();
-  await page.getByRole("button", { name: "Check latest SEC filings", exact: true }).click();
+  const update = page.getByRole("button", { name: "Check latest SEC filings", exact: true });
+  await expect(update).toBeEnabled();
+  await update.click();
   await expect(
     page.getByText("SEC update is temporarily limited. Saved data remains available.", {
       exact: true
