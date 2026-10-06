@@ -6,6 +6,11 @@ import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
 const reported = {
+  KO: [8146e6, 5234e6],
+  GRMN: [756823e3, 482740e3, 268749e3, 341369e3, 172411e3],
+  LII: [935.6e6, 609.7e6],
+  MAS: [1337e6, 655e6],
+  VLTO: [908e6, 566e6],
   ABT: [1499e6, 2144e6, 3092e6, 5853e6, 5e6],
   ABTAnnual: [5536e6, 8451e6, 8937e6, 21387e6, 17e6],
   MCD: [4393e6, 2525e6, 182e6],
@@ -24,6 +29,11 @@ const reported = {
 };
 
 for (const ticker of [
+  "KO",
+  "GRMN",
+  "LII",
+  "MAS",
+  "VLTO",
   "ABT",
   "ABTAnnual",
   "MCD",
@@ -53,6 +63,11 @@ for (const ticker of [
       ticker === "APD" ||
       ticker === "AMAT" ||
       ticker === "DHR" ||
+      ticker === "KO" ||
+      ticker === "GRMN" ||
+      ticker === "LII" ||
+      ticker === "MAS" ||
+      ticker === "VLTO" ||
       ticker === "AOS" ||
       ticker === "AOSAnnual" ||
       ticker === "DOV"
@@ -87,6 +102,16 @@ for (const ticker of [
           await chart.locator(`[data-flow-bar="segment-${segment.id}"]`).getAttribute("height")
         );
         expect(height / revenueHeight).toBeCloseTo(segment.revenue / period.metrics.revenue!, 9);
+      }
+      if (ticker === "LII" || ticker === "MAS") {
+        await expect(chart.locator('[data-flow-node="opex"]')).toContainText(
+          /Operating expenses\s*and\s*other items\s*\(net\)/
+        );
+        await expect(
+          chart.locator(
+            '[data-flow-node="other-opex"], [data-flow-node="sga"], [data-flow-node="rd"]'
+          )
+        ).toHaveCount(0);
       }
       if (ticker === "MCD") {
         await expect(chart.locator('[data-flow-node="gross"]')).toHaveCount(0);
@@ -205,6 +230,10 @@ for (const ticker of [
         expect(proof.segments).toEqual(period.segments);
         expect(proof.businessBreakdownSource).toEqual(period.businessBreakdownSource);
         expect(proof.revenueAdjustments ?? []).toEqual(period.revenueAdjustments ?? []);
+        if (period.coverage.sankey) {
+          expect(proof.metrics).toEqual(period.metrics);
+          expect(proof.operatingExpensesBasis).toEqual(period.operatingExpensesBasis);
+        }
         expect(source).not.toMatch(/NaN|Infinity|<image[^>]+href="https?:/);
         expect(source).toContain(period.sourceUrl);
       } else {
@@ -219,6 +248,15 @@ for (const ticker of [
         path,
         contentType: format === "SVG" ? "image/svg+xml" : "image/png"
       });
+    }
+    if (ticker === "LII" || ticker === "MAS") {
+      const downloaded = page.waitForEvent("download");
+      await page.getByRole("button", { name: "Download CSV", exact: true }).click();
+      const path = info.outputPath(`${ticker.toLowerCase()}-net-operating-items.csv`);
+      await (await downloaded).saveAs(path);
+      const csv = await readFile(path, "utf8");
+      expect(csv).toContain('"operating_expenses_basis","operating_expenses"');
+      expect(csv).toContain(`"expenses-and-other-items-net","${period.metrics.operatingExpenses}"`);
     }
     if (ticker === "MCD") {
       const downloaded = page.waitForEvent("download");

@@ -6,6 +6,61 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  KO: {
+    name: "Coca-Cola",
+    cik: "0000021344",
+    accession: "0001628280-26-050503",
+    filedAt: "2026-07-29",
+    startDate: "2026-04-04",
+    endDate: "2026-07-03",
+    fiscalYear: 2026,
+    sector: "Consumer Staples",
+    document: "ko-20260703.htm"
+  },
+  GRMN: {
+    name: "Garmin",
+    cik: "0001121788",
+    accession: "0001193125-26-322114",
+    filedAt: "2026-07-29",
+    startDate: "2026-03-29",
+    endDate: "2026-06-27",
+    fiscalYear: 2026,
+    sector: "Consumer Discretionary",
+    document: "grmn-20260627.htm"
+  },
+  LII: {
+    name: "Lennox International",
+    cik: "0001069202",
+    accession: "0001069202-26-000087",
+    filedAt: "2026-07-29",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Industrials",
+    document: "lii-20260630.htm"
+  },
+  MAS: {
+    name: "Masco",
+    cik: "0000062996",
+    accession: "0000062996-26-000027",
+    filedAt: "2026-07-29",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Industrials",
+    document: "mas-20260630.htm"
+  },
+  VLTO: {
+    name: "Veralto",
+    cik: "0001967680",
+    accession: "0001967680-26-000044",
+    filedAt: "2026-07-29",
+    startDate: "2026-04-04",
+    endDate: "2026-07-03",
+    fiscalYear: 2026,
+    sector: "Industrials",
+    document: "vlto-20260703.htm"
+  },
   ABT: {
     name: "Abbott",
     cik: "0000001800",

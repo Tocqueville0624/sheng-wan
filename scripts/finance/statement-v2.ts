@@ -37,6 +37,13 @@ const PARENT_NET = new Set([
 ]);
 const CONSOLIDATED_NET = new Set(["us-gaap:ProfitLoss", "ifrs-full:ProfitLoss"]);
 const GROSS_PROFIT = new Set(["us-gaap:GrossProfit", "ifrs-full:GrossProfit"]);
+const COST_OF_REVENUE = new Set([
+  "us-gaap:CostOfRevenue",
+  "us-gaap:CostOfGoodsAndServicesSold",
+  "us-gaap:CostOfSales",
+  "ifrs-full:CostOfSales"
+]);
+const OPERATING_EXPENSES = new Set(["us-gaap:OperatingExpenses", "ifrs-full:OperatingExpense"]);
 const REVENUE_TOTALS = [
   "us-gaap:RevenuesNetOfInterestExpense",
   "us-gaap:Revenues",
@@ -122,6 +129,7 @@ export type StatementReading = {
   operatingReconciliation?: PeriodV2["operatingReconciliation"];
   operatingCostDetails?: StatementLine[];
   operatingExpenseDetails?: StatementLine[];
+  operatingExpensesBasis?: PeriodV2["operatingExpensesBasis"];
 };
 
 /** Interpret one table for one period, or return undefined when any rule is not met. */
@@ -291,6 +299,22 @@ export function readStatementRows(
     sources[key] = reported(item);
     return true;
   };
+  const difference = (key: keyof FinancialMetrics, from: Line, to: Line, label: string) => {
+    const value = from.fact.value - to.fact.value;
+    if (value < 0) return false;
+    if (m[key] !== undefined) return same(m[key]!, value);
+    metrics[key] = value;
+    sources[key] = {
+      label,
+      tag: `${from.fact.tag} - ${to.fact.tag}`,
+      accession: filing.accession,
+      filedAt: filing.filedAt,
+      sourceUrl: filing.sourceUrl,
+      method: "calculated",
+      inputs: [from, to].map((item) => `${item.label} (${item.fact.tag}): ${filing.sourceUrl}`)
+    };
+    return true;
+  };
   // Several lines of one kind are reported separately; their exact sum is used.
   const assignAll = (key: keyof FinancialMetrics, items: Line[], label: string) => {
     const value = signed(items);
@@ -408,17 +432,58 @@ export function readStatementRows(
     m.grossProfit !== undefined &&
     m.operatingExpenses !== undefined;
   if (iG >= 0 || grossStage) {
-    // Gross-profit statements: only add an exact operating-expense breakdown.
+    // A current-filing candidate can contain only revenue. Read the reported
+    // consolidated gross subtotal before calculating its two intervening totals;
+    // never manufacture gross profit from an unreviewed cost concept.
     if (iG < 0) return result;
     const gross = block[iG]!;
-    if (m.grossProfit === undefined || !same(m.grossProfit, gross.fact.value)) return result;
-    const expenses = m.operatingExpenses ?? m.grossProfit - operating.fact.value;
-    if (!same(expenses, m.grossProfit - operating.fact.value)) return result;
+    if (!assign("grossProfit", gross)) return;
+    if (m.grossProfit !== undefined && period.metricSources.grossProfit?.method === "calculated") {
+      // The same amount now has direct primary-statement evidence. Preserve the
+      // reported fact rather than the earlier generic revenue-minus-cost inference.
+      metrics.grossProfit = gross.fact.value;
+      sources.grossProfit = reported(gross);
+    }
+    const costs = block.slice(0, iG).filter((item) => item && COST_OF_REVENUE.has(item.fact.tag));
+    const cost = costs.length === 1 ? costs[0] : undefined;
+    const costAmount = revenueValue - gross.fact.value;
+    if (cost && !same(cost.fact.value, costAmount)) return;
+    if (
+      cost
+        ? !assign("costOfRevenue", cost)
+        : !difference("costOfRevenue", revenue, gross, "Revenue less reported gross profit")
+    )
+      return;
+    const expenses = gross.fact.value - operating.fact.value;
     const after = block.slice(iG + 1);
     const total = after.at(-1);
-    const items = total && same(total.fact.value, expenses) ? after.slice(0, -1) : after;
+    const hasTotal =
+      !!total && OPERATING_EXPENSES.has(total.fact.tag) && same(total.fact.value, expenses);
+    if (total && OPERATING_EXPENSES.has(total.fact.tag) && !hasTotal) return;
+    if (
+      hasTotal
+        ? !assign("operatingExpenses", total)
+        : !difference(
+            "operatingExpenses",
+            gross,
+            operating,
+            "Reported gross profit less operating income (net)"
+          )
+    )
+      return;
+    if (hasTotal && period.metricSources.operatingExpenses?.method === "calculated") {
+      metrics.operatingExpenses = total.fact.value;
+      sources.operatingExpenses = reported(total);
+    }
+    const items = hasTotal ? after.slice(0, -1) : after;
     const details = detail(items, expenses);
     if (details) result.operatingExpenseDetails = details;
+    else if (
+      !hasTotal &&
+      expenses > 0 &&
+      (sources.operatingExpenses ?? period.metricSources.operatingExpenses)?.method === "calculated"
+    )
+      result.operatingExpensesBasis = "expenses-and-other-items-net";
     return result;
   }
   // Direct route: revenue = total operating costs + operating income.
@@ -528,6 +593,12 @@ export function applyStatementReading(period: PeriodV2, reading: StatementReadin
   if (reading.operatingCostDetails) next.operatingCostDetails = reading.operatingCostDetails;
   if (reading.operatingExpenseDetails && !period.operatingExpenseDetails)
     next.operatingExpenseDetails = reading.operatingExpenseDetails;
+  if (reading.operatingExpensesBasis) next.operatingExpensesBasis = reading.operatingExpensesBasis;
+  else if (
+    reading.operatingExpenseDetails ||
+    reading.sources.operatingExpenses?.method === "reported"
+  )
+    delete next.operatingExpensesBasis;
   next.derived = Object.values(next.metricSources).some(
     (source) => source?.method === "calculated"
   );
@@ -605,7 +676,8 @@ export function enrichStatementPeriods(
         !period.coverage.sankey ||
         Object.keys(reading.metrics).length > 0 ||
         !!next.operatingCostDetails !== !!period.operatingCostDetails ||
-        !!next.operatingExpenseDetails !== !!period.operatingExpenseDetails;
+        !!next.operatingExpenseDetails !== !!period.operatingExpenseDetails ||
+        next.operatingExpensesBasis !== period.operatingExpensesBasis;
       if (changed) output.push(next);
       break;
     }

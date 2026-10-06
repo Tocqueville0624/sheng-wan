@@ -107,6 +107,10 @@ export type FinancialPeriod = {
   segments?: RevenueSegment[];
   revenueAdjustments?: RevenueSegment[];
   operatingExpenseDetails?: StatementLine[];
+  /** A calculated net difference of reported gross profit and operating income;
+   * cost/gain/equity components are not claimed to be an expense partition.
+   */
+  operatingExpensesBasis?: "expenses-and-other-items-net";
   /**
    * Reported rows that exactly partition the direct route's cost node: total operating
    * costs, or expenses and other items when no operating-profit line is reported.

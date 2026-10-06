@@ -202,8 +202,12 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
   // These details describe expenses below gross profit. They must not be
   // relabelled as a breakdown of total operating costs on the direct route.
   const operatingGross = hasGrossStage && hasOperating;
-  const rd = operatingGross ? m.researchAndDevelopment : undefined;
-  const sga = operatingGross ? m.sellingGeneralAndAdministrative : undefined;
+  const rd =
+    operatingGross && !period.operatingExpensesBasis ? m.researchAndDevelopment : undefined;
+  const sga =
+    operatingGross && !period.operatingExpensesBasis
+      ? m.sellingGeneralAndAdministrative
+      : undefined;
   const other = operatingGross ? m.operatingExpenses! - (rd ?? 0) - (sga ?? 0) : 0;
   const disclosedExpenses = operatingGross ? period.operatingExpenseDetails : undefined;
   if (
@@ -308,7 +312,15 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
       "opex"
     );
   else if (hasGrossStage)
-    node("opex", "Operating expenses", m.operatingExpenses!, "expense", "opex");
+    node(
+      "opex",
+      period.operatingExpensesBasis
+        ? "Operating expenses and other items (net)"
+        : "Operating expenses",
+      m.operatingExpenses!,
+      "expense",
+      "opex"
+    );
   else node("operating-costs", "Total operating costs", m.totalOperatingCosts!, "expense", "opex");
   const taxExpense = incomeTax > 0 ? incomeTax : 0;
   const taxBenefit = incomeTax < 0 ? -incomeTax : 0;
@@ -438,7 +450,7 @@ export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
       node(`detail-${expense.id}`, expense.label, expense.amount, "expense", "detail");
       link("opex", `detail-${expense.id}`, expense.amount, "expense");
     }
-  } else if (rd !== undefined || sga !== undefined) {
+  } else if (!period.operatingExpensesBasis && (rd !== undefined || sga !== undefined)) {
     if (rd !== undefined) {
       node("rd", "Research & development", rd, "expense", "detail");
       link("opex", "rd", rd, "expense");

@@ -277,7 +277,9 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         "business_provenance",
         "revenue_adjustments",
         "operating_cost_lines",
-        "operating_expense_lines"
+        "operating_expense_lines",
+        "operating_expenses_basis",
+        "operating_expenses"
       ],
       ...periods.map((p) => [
         selection.ticker,
@@ -304,7 +306,9 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         JSON.stringify(p.businessBreakdownSource ?? null),
         JSON.stringify(p.revenueAdjustments ?? []),
         JSON.stringify(p.operatingCostDetails ?? []),
-        JSON.stringify(p.operatingExpenseDetails ?? [])
+        JSON.stringify(p.operatingExpenseDetails ?? []),
+        p.operatingExpensesBasis ?? "",
+        p.metrics.operatingExpenses ?? ""
       ])
     ];
     downloadFile(

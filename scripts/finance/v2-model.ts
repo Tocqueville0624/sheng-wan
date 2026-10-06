@@ -439,6 +439,16 @@ export function flowPeriod(period: PeriodV2): FlowStatementPeriod | undefined {
   if (period.businessBreakdownSource && !businessPeriod(period)) return;
   const required = ["revenue", "pretaxIncome", "incomeTax", "netIncome"] as const;
   if (required.some((key) => !Number.isFinite(period.metrics[key]))) return;
+  if (
+    period.operatingExpensesBasis &&
+    (period.operatingExpensesBasis !== "expenses-and-other-items-net" ||
+      period.operatingExpenseDetails?.length ||
+      period.metricSources.operatingExpenses?.method !== "calculated" ||
+      !Number.isFinite(period.metrics.grossProfit) ||
+      !Number.isFinite(period.metrics.operatingIncome) ||
+      !Number.isFinite(period.metrics.operatingExpenses))
+  )
+    return;
   if (Number.isFinite(period.metrics.operatingIncome)) {
     if (!Number.isFinite(period.metrics.grossProfit) && !period.metricSources.totalOperatingCosts)
       return;
@@ -623,7 +633,10 @@ export function validateV2(company: CompanyV2) {
       }
       if (p.businessBreakdownSource && !p.coverage.segments)
         throw new Error("Business provenance requires validated coverage.");
-      if ((p.coverage.sankey || p.operatingReconciliation) && !flowPeriod(p))
+      if (
+        (p.coverage.sankey || p.operatingReconciliation || p.operatingExpensesBasis) &&
+        !flowPeriod(p)
+      )
         throw new Error("Unsupported chart capability or unverified rounding precision.");
     }
   }

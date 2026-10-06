@@ -252,9 +252,9 @@ describe("persistent public finance queue", () => {
       expect(result.company.warnings.some((w) => w.startsWith("SEC lists a report ending"))).toBe(
         false
       );
-      expect(await storage.get(`generic:v9:0000001800:${quarter.filing.accession}`)).toMatchObject([
-        { id: "2026-Q2", coverage: { segments: true } }
-      ]);
+      expect(await storage.get(`generic:v10:0000001800:${quarter.filing.accession}`)).toMatchObject(
+        [{ id: "2026-Q2", coverage: { segments: true } }]
+      );
       expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
       expect((await read(store, `/jobs/${job.id}`)) as FinanceJob).toMatchObject({
         state: "partial"
@@ -270,7 +270,7 @@ describe("persistent public finance queue", () => {
     vi.stubGlobal("fetch", fetcher);
     const first = await jobOf(await request(store, "MCD"));
     expect(await storage.get(`task:${first.id}`)).toMatchObject({
-      engineVersion: "finance-v2.20"
+      engineVersion: "finance-v2.21"
     });
     await nextQueueStep(store);
     await nextQueueStep(store);
@@ -292,7 +292,7 @@ describe("persistent public finance queue", () => {
     expect(period.revenueAdjustments).toEqual([
       { id: "source-rounding", label: "Source rounding", revenue: -1e6 }
     ]);
-    expect(await storage.get(`generic:v9:0000063908:${mcdAccession}`)).toMatchObject([
+    expect(await storage.get(`generic:v10:0000063908:${mcdAccession}`)).toMatchObject([
       { coverage: { segments: true, sankey: true } }
     ]);
     expect(await storage.get(`basic-periods:${first.id}`)).toBeUndefined();

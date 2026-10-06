@@ -53,7 +53,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.20";
+const ENGINE_VERSION = "finance-v2.21";
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -462,7 +462,7 @@ export class FinanceStore {
       task.job.message = `Reading statement and revenue sources: ${filing.reportDate} (${task.cursor + 1}/${task.todo.length}).`;
       try {
         const base = await this.company(identity);
-        const cacheKey = `generic:v9:${identity.cik}:${filing.accession}`;
+        const cacheKey = `generic:v10:${identity.cik}:${filing.accession}`;
         let periods = await this.ctx.storage.get<PeriodV2[]>(cacheKey);
         if (!periods)
           periods = readGenericFiling(

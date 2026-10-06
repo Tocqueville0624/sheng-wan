@@ -182,7 +182,8 @@ export function StatementFlow({
   const allocationNoteHeight = parentNet ? 24 : 0;
   const hasBusinesses = layout.nodes.some((node) => node.business);
   const businessNoteHeight = hasBusinesses ? 24 : 0;
-  const directFlowNoteHeight = directOperatingFlow || pretaxFlow ? 24 : 0;
+  const directFlowNoteHeight =
+    directOperatingFlow || pretaxFlow || period.operatingExpensesBasis ? 24 : 0;
   const summedCosts =
     directOperatingFlow && period.metricSources?.totalOperatingCosts?.method === "calculated";
   const rounding = directOperatingFlow ? period.operatingReconciliation : undefined;
@@ -259,6 +260,7 @@ export function StatementFlow({
               businessBreakdownSource: period.businessBreakdownSource,
               netIncomeAttribution: parentNet ? "parent" : undefined,
               operatingReconciliation: rounding,
+              operatingExpensesBasis: period.operatingExpensesBasis,
               flow: pretaxFlow
                 ? "pretax"
                 : directOperatingFlow
@@ -372,6 +374,12 @@ export function StatementFlow({
                 : "Reported total operating costs connect revenue to operating profit. No gross profit is estimated."}
             </text>
           )}
+          {period.operatingExpensesBasis && (
+            <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
+              Operating items (net) = reported gross profit minus operating income. Expense
+              components are not inferred.
+            </text>
+          )}
           {hasBusinesses && (
             <text
               x={50}
@@ -439,6 +447,8 @@ export function StatementFlow({
         </svg>
       </div>
       <p className="chart-note">
+        {period.operatingExpensesBasis &&
+          "Operating expenses and other items (net) are the calculated difference between reported gross profit and operating income. Signed gains, equity income or rounded detail can prevent an exact expense partition; no component or balancing expense is invented. "}
         {pretaxFlow &&
           "This statement reports no operating-profit subtotal. Every item between revenue (or gross profit) and pretax profit, including interest and other non-operating items, is shown as one reported net amount; listed lines appear only when they exactly add up to it. "}
         {directOperatingFlow &&
@@ -503,6 +513,9 @@ export function StatementFlow({
                     <th scope="row">
                       {node.label}
                       {node.id === "other-opex" && <small> · derived remainder</small>}
+                      {node.id === "opex" && period.operatingExpensesBasis && (
+                        <small> · calculated from reported gross profit and operating income</small>
+                      )}
                       {node.id === "operating-costs" && summedCosts && (
                         <small> · sum of the listed reported lines</small>
                       )}

@@ -32,3 +32,15 @@ omitted. They exercise generic statement reading (`statement-v2.ts`):
 - JNJ: [FY2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/200406/000020040626000016/jnj-20251228.htm), filed 2026-02-11 — gross profit to pretax profit without an operating-income line.
 - ACN: [FY2025 Form 10-K](https://www.sec.gov/Archives/edgar/data/1467373/000146737325000217/acn-20250831.htm), filed 2025-10-10 — two noncontrolling-interest lines.
 - WMT: [FY2026 Form 10-K](https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm), filed 2026-03-13 — net sales plus membership income equal the reported total revenues.
+
+## Source-current reported gross-profit fixtures
+
+The KO, GRMN, LII, MAS and VLTO `2026-business-statement.html` excerpts retain
+the complete original primary income and business-revenue tables, referenced
+contexts/units and balanced nested DEI metadata. Their headers record the exact
+source URL, original table indexes, filing date and whole-document SHA-256.
+They exercise first imports without a Company Facts period, exact reported gross
+profit, explicit minority attribution and both row/column revenue matrices.
+LII includes signed operating gains and pre-operating equity income; MAS's SG&A
+line does not exactly equal gross profit less operating income. Their calculated
+net totals are labeled as such without manufacturing expense branches.
