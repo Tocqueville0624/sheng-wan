@@ -22,10 +22,12 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
     ((node.group === "equity" ||
       node.group === "subsidiary" ||
       node.group === "discontinued" ||
-      node.group === "noncontrolling") &&
+      node.group === "noncontrolling" ||
+      node.group === "after-tax-adjustment") &&
       node.tone === "expense");
   const nonoperating = node.group === "nonoperating";
-  const operatingAdjustment = node.group === "operating-adjustment";
+  const operatingAdjustment =
+    node.group === "operating-adjustment" || node.group === "after-tax-adjustment";
   const taxBenefit = node.group === "tax-benefit";
   const positiveEquity =
     (node.group === "equity" || node.group === "subsidiary" || node.group === "discontinued") &&
@@ -186,8 +188,30 @@ export function StatementFlow({
     directOperatingFlow || pretaxFlow || period.operatingExpensesBasis ? 24 : 0;
   const summedCosts =
     directOperatingFlow && period.metricSources?.totalOperatingCosts?.method === "calculated";
-  const rounding = directOperatingFlow ? period.operatingReconciliation : undefined;
-  const roundingNoteHeight = rounding?.amount ? 24 : 0;
+  const rounding = period.operatingReconciliation;
+  const precisionNotes = [
+    ...(rounding?.amount
+      ? [
+          `Operating source rounding: ${rounding.amount > 0 ? "+" : ""}${shortMoney(rounding.amount)}. Original reported totals are unchanged.`
+        ]
+      : []),
+    ...(period.afterTaxReconciliation?.amount
+      ? [
+          `After-tax source rounding: ${period.afterTaxReconciliation.amount > 0 ? "+" : ""}${shortMoney(period.afterTaxReconciliation.amount)}. Reported net income is unchanged.`
+        ]
+      : []),
+    ...(period.consolidatedIncomeSubtotal
+      ? [
+          `Intermediate consolidated net income: ${shortMoney(period.consolidatedIncomeSubtotal.amount)} as reported. Final parent income is reconciled independently.`
+        ]
+      : []),
+    ...(period.roundedOperatingExpenseComponents
+      ? [
+          "Rounded expense components do not exactly partition the reported total; no remainder is invented."
+        ]
+      : [])
+  ];
+  const roundingNoteHeight = precisionNotes.length * 24;
   const graph = {
     ...layout,
     height:
@@ -261,6 +285,9 @@ export function StatementFlow({
               netIncomeAttribution: parentNet ? "parent" : undefined,
               operatingReconciliation: rounding,
               operatingExpensesBasis: period.operatingExpensesBasis,
+              afterTaxReconciliation: period.afterTaxReconciliation,
+              consolidatedIncomeSubtotal: period.consolidatedIncomeSubtotal,
+              roundedOperatingExpenseComponents: period.roundedOperatingExpenseComponents,
               flow: pretaxFlow
                 ? "pretax"
                 : directOperatingFlow
@@ -337,9 +364,11 @@ export function StatementFlow({
           )}
           {!hasExpenseDetail && (
             <text x={50} y={footerTop - 22} fill={colors.muted} fontSize={13}>
-              {pretaxFlow
-                ? "Expense line detail is not separately available in this snapshot."
-                : "Operating expense detail is not separately available in this snapshot."}
+              {period.roundedOperatingExpenseComponents
+                ? "Rounded expense components are preserved as independent metrics, not drawn as an exact partition."
+                : pretaxFlow
+                  ? "Expense line detail is not separately available in this snapshot."
+                  : "Operating expense detail is not separately available in this snapshot."}
             </text>
           )}
           <line x1={50} x2={graph.width - 50} y1={footerTop} y2={footerTop} stroke={colors.grid} />
@@ -391,17 +420,17 @@ export function StatementFlow({
               category and period; never estimated.
             </text>
           )}
-          {rounding?.amount ? (
+          {precisionNotes.map((note, index) => (
             <text
+              key={note}
               x={50}
-              y={footerTop + 74 + directFlowNoteHeight + businessNoteHeight}
+              y={footerTop + 74 + directFlowNoteHeight + businessNoteHeight + index * 24}
               fill={colors.muted}
               fontSize={13}
             >
-              Source rounding: {rounding.amount > 0 ? "+" : ""}
-              {shortMoney(rounding.amount)}. Original reported totals are unchanged.
+              {note}
             </text>
-          ) : null}
+          ))}
           {parentNet && (
             <text
               x={50}
@@ -447,6 +476,12 @@ export function StatementFlow({
         </svg>
       </div>
       <p className="chart-note">
+        {period.roundedOperatingExpenseComponents &&
+          "The reported operating-expense total and its components differ within their declared source precision. The original components remain in the independent metrics and exports; no residual or rescaling is used to make an expense partition. "}
+        {period.consolidatedIncomeSubtotal &&
+          `The intermediate consolidated net-income subtotal is reported as ${shortMoney(period.consolidatedIncomeSubtotal.amount)} and corroborates pretax profit minus tax within declared source precision. The exact running arithmetic and the final parent net-income amount are preserved independently. `}
+        {period.afterTaxReconciliation &&
+          `A separate after-tax source-rounding flow of ${shortMoney(period.afterTaxReconciliation.amount)} reconciles the final net-income scope within declared precision; reported net income is unchanged. `}
         {period.operatingExpensesBasis &&
           "Operating expenses and other items (net) are the calculated difference between reported gross profit and operating income. Signed gains, equity income or rounded detail can prevent an exact expense partition; no component or balancing expense is invented. "}
         {pretaxFlow &&
@@ -501,13 +536,15 @@ export function StatementFlow({
                 const signedAmount =
                   node.id === "operating-rounding"
                     ? rounding!.amount
-                    : node.id === "noncontrolling"
-                      ? period.metrics.noncontrollingInterestIncome!
-                      : node.id === "discontinued"
-                        ? period.metrics.discontinuedOperationsIncome!
-                        : node.id === "subsidiary"
-                          ? period.metrics.afterTaxSubsidiaryIncome!
-                          : (revenueAdjustment?.revenue ?? node.amount);
+                    : node.id === "after-tax-rounding"
+                      ? period.afterTaxReconciliation!.amount
+                      : node.id === "noncontrolling"
+                        ? period.metrics.noncontrollingInterestIncome!
+                        : node.id === "discontinued"
+                          ? period.metrics.discontinuedOperationsIncome!
+                          : node.id === "subsidiary"
+                            ? period.metrics.afterTaxSubsidiaryIncome!
+                            : (revenueAdjustment?.revenue ?? node.amount);
                 return (
                   <tr key={node.id}>
                     <th scope="row">
@@ -520,9 +557,9 @@ export function StatementFlow({
                         <small> · sum of the listed reported lines</small>
                       )}
                       {node.id === "noncontrolling" && <small> · profit attribution</small>}
-                      {node.id === "operating-rounding" && (
+                      {(node.id === "operating-rounding" || node.id === "after-tax-rounding") && (
                         <small>
-                          {rounding!.amount < 0
+                          {signedAmount < 0
                             ? " · reported-precision decrease"
                             : " · reported-precision increase"}
                         </small>
@@ -586,10 +623,13 @@ export function StatementFlow({
               ? rounding?.amount
                 ? "Revenue minus total operating costs plus signed source rounding equals operating profit. "
                 : "Revenue = total operating costs + operating profit. "
-              : "Revenue = cost of revenue + gross profit. Gross profit = operating expenses + operating profit. "}
+              : rounding?.amount
+                ? "Revenue = cost of revenue + gross profit. Gross profit plus signed source rounding = operating expenses + operating profit. "
+                : "Revenue = cost of revenue + gross profit. Gross profit = operating expenses + operating profit. "}
           {!pretaxFlow && "Pretax profit = operating profit + net non-operating items. "}Pretax
           profit minus income tax plus separately reported after-tax equity-method income,
           unconsolidated subsidiary income and discontinued operations
+          {period.afterTaxReconciliation && " plus signed after-tax source rounding"}
           {parentNet
             ? " minus signed income attributable to noncontrolling interests equals net profit to the parent. "
             : " equals net profit. "}

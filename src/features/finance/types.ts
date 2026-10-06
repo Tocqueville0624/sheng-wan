@@ -102,8 +102,32 @@ export type FinancialPeriod = {
   derived: boolean;
   metrics: FinancialMetrics;
   grossProfitAdjustments?: { label: string; amount: number; sourceUrl: string }[];
-  /** Source-supported rounding: revenue - total operating costs + amount = operating income. */
-  operatingReconciliation?: { label: string; amount: number; sourceUrl: string };
+  /** Signed, declared-precision rounding; all reported amounts remain unchanged. */
+  operatingReconciliation?: {
+    label: string;
+    amount: number;
+    sourceUrl: string;
+    basis?: "gross-profit";
+  };
+  afterTaxReconciliation?: { label: string; amount: number; sourceUrl: string };
+  /** A rounded intermediate subtotal is corroboration, not a replacement for the
+   * exact arithmetic leading to the selected final net-income scope.
+   */
+  consolidatedIncomeSubtotal?: {
+    label: string;
+    tag: string;
+    amount: number;
+    decimals: number;
+    sourceUrl: string;
+  };
+  /** Disclosed components whose declared precision prevents an exact expense
+   * partition. Keep the independent metrics; do not draw a manufactured remainder.
+   */
+  roundedOperatingExpenseComponents?: {
+    components: StatementLine[];
+    difference: number;
+    sourceUrl: string;
+  };
   segments?: RevenueSegment[];
   revenueAdjustments?: RevenueSegment[];
   operatingExpenseDetails?: StatementLine[];

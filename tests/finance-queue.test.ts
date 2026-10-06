@@ -252,7 +252,7 @@ describe("persistent public finance queue", () => {
       expect(result.company.warnings.some((w) => w.startsWith("SEC lists a report ending"))).toBe(
         false
       );
-      expect(await storage.get(`generic:v10:0000001800:${quarter.filing.accession}`)).toMatchObject(
+      expect(await storage.get(`generic:v11:0000001800:${quarter.filing.accession}`)).toMatchObject(
         [{ id: "2026-Q2", coverage: { segments: true } }]
       );
       expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
@@ -270,7 +270,7 @@ describe("persistent public finance queue", () => {
     vi.stubGlobal("fetch", fetcher);
     const first = await jobOf(await request(store, "MCD"));
     expect(await storage.get(`task:${first.id}`)).toMatchObject({
-      engineVersion: "finance-v2.21"
+      engineVersion: "finance-v2.23"
     });
     await nextQueueStep(store);
     await nextQueueStep(store);
@@ -292,7 +292,7 @@ describe("persistent public finance queue", () => {
     expect(period.revenueAdjustments).toEqual([
       { id: "source-rounding", label: "Source rounding", revenue: -1e6 }
     ]);
-    expect(await storage.get(`generic:v10:0000063908:${mcdAccession}`)).toMatchObject([
+    expect(await storage.get(`generic:v11:0000063908:${mcdAccession}`)).toMatchObject([
       { coverage: { segments: true, sankey: true } }
     ]);
     expect(await storage.get(`basic-periods:${first.id}`)).toBeUndefined();
@@ -378,6 +378,70 @@ describe("persistent public finance queue", () => {
     ]);
     expect(fetcher.mock.calls.filter(([url]) => url === mcdSource)).toHaveLength(1);
     expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
+  });
+  it.each([429, 503])(
+    "retries a transient inline source HTTP %s without advancing or discarding data",
+    async (status) => {
+      vi.useFakeTimers();
+      vi.setSystemTime(new Date("2026-09-26T12:00:00Z"));
+      const { store, storage } = await create();
+      const successful = mcdFetcher();
+      let sourceCalls = 0;
+      const fetcher = vi.fn(async (url: string) => {
+        if (url === mcdSource && ++sourceCalls === 1) return new Response("Temporary", { status });
+        return successful(url);
+      });
+      vi.stubGlobal("fetch", fetcher);
+      const job = await jobOf(await request(store, "MCD"));
+      await nextQueueStep(store);
+      await nextQueueStep(store);
+      const before = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+      await nextQueueStep(store);
+      const waiting = (await read(store, `/jobs/${job.id}`)) as FinanceJob;
+      expect(waiting.state).toBe("backfilling");
+      expect(waiting.retryAt).toBeDefined();
+      expect(await storage.get(`task:${job.id}`)).toMatchObject({ cursor: 0, attempts: 1 });
+      expect((await read(store, "/companies/MCD")) as { company: CompanyV2 }).toMatchObject({
+        company: { quarterly: before.company.quarterly }
+      });
+      await nextQueueStep(store);
+      expect(sourceCalls).toBe(1);
+      vi.setSystemTime(new Date(waiting.retryAt!));
+      await nextQueueStep(store);
+      const after = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+      expect(after.company.quarterly[0].coverage).toEqual({
+        basics: true,
+        segments: true,
+        sankey: true
+      });
+      expect(after.company.warnings.some((w) => w.includes(`HTTP ${status}`))).toBe(false);
+      expect(sourceCalls).toBe(2);
+      const completed = (await read(store, `/jobs/${job.id}`)) as FinanceJob;
+      expect(completed.state).toBe("partial");
+      expect(completed.retryAt).toBeUndefined();
+    }
+  );
+  it("bounds persistent inline-source retries and retains a truthful gap after exhaustion", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-09-26T12:00:00Z"));
+    const { store, storage } = await create();
+    const fetcher = mcdFetcher(429);
+    vi.stubGlobal("fetch", fetcher);
+    const job = await jobOf(await request(store, "MCD"));
+    await nextQueueStep(store);
+    await nextQueueStep(store);
+    const before = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+    for (let attempt = 0; attempt < 3; attempt++) {
+      await nextQueueStep(store);
+      const current = (await read(store, `/jobs/${job.id}`)) as FinanceJob;
+      if (attempt < 2) vi.setSystemTime(new Date(current.retryAt!));
+      else expect(current.state).toBe("partial");
+    }
+    const after = (await read(store, "/companies/MCD")) as { company: CompanyV2 };
+    expect(after.company.quarterly).toEqual(before.company.quarterly);
+    expect(after.company.warnings).toContain("2026-06-30: Source HTTP 429");
+    expect(fetcher.mock.calls.filter(([url]) => url === mcdSource)).toHaveLength(3);
+    expect(storage.data.get("queue")).toEqual([]);
   });
   it("retains newly imported MCD basic history when the inline filing is unavailable", async () => {
     vi.useFakeTimers();

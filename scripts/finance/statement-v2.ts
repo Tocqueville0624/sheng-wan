@@ -130,6 +130,9 @@ export type StatementReading = {
   operatingCostDetails?: StatementLine[];
   operatingExpenseDetails?: StatementLine[];
   operatingExpensesBasis?: PeriodV2["operatingExpensesBasis"];
+  afterTaxReconciliation?: PeriodV2["afterTaxReconciliation"];
+  consolidatedIncomeSubtotal?: PeriodV2["consolidatedIncomeSubtotal"];
+  roundedOperatingExpenseComponents?: PeriodV2["roundedOperatingExpenseComponents"];
 };
 
 /** Interpret one table for one period, or return undefined when any rule is not met. */
@@ -204,6 +207,14 @@ export function readStatementRows(
   if (anchor < 0) return;
   const tolerance = accountingTolerance(lines[anchor]!.fact.value);
   const same = (a: number, b: number) => Math.abs(a - b) <= tolerance;
+  const rounded = (difference: number, items: Line[]) => {
+    const precisions = items.map((item) => halfUnit(item.fact));
+    return (
+      precisions.every((unit) => unit !== undefined && Number.isFinite(unit)) &&
+      Math.abs(difference) <= precisions.reduce<number>((sum, unit) => sum + unit!, 0) &&
+      Math.abs(difference) <= lines[anchor]!.fact.value * 0.001
+    );
+  };
   // Company Facts can select a revenue sub-line (Walmart's net sales before membership
   // income). When the following nonnegative rows add up exactly to a reported
   // us-gaap:Revenues total before any cost row, that statement total is the top line.
@@ -241,11 +252,28 @@ export function readStatementRows(
   const subsidiaries: Line[] = [];
   const discontinued: Line[] = [];
   const minority: Line[] = [];
+  let afterTaxDifference = 0;
+  let roundedSubtotal: Line | undefined;
   for (let i = iT + 1; i < lines.length && !parent; i++) {
     const item = lines[i];
     const tag = item?.fact.tag ?? "";
     if (item && PARENT_NET.has(tag)) {
-      if (!same(item.fact.value, running)) return;
+      const difference = item.fact.value - running;
+      if (!same(difference, 0)) {
+        if (
+          !rounded(difference, [
+            pretax,
+            tax,
+            ...equity,
+            ...subsidiaries,
+            ...discontinued,
+            ...minority,
+            item
+          ])
+        )
+          return;
+        afterTaxDifference = difference;
+      }
       parent = item;
     } else if (item && EQUITY_AFTER_TAX.has(tag) && !minority.length) {
       equity.push(item);
@@ -253,6 +281,21 @@ export function readStatementRows(
     } else if (item && tag === "us-gaap:IncomeLossFromSubsidiariesNetOfTax" && !minority.length) {
       subsidiaries.push(item);
       running += item.fact.value;
+    } else if (
+      item &&
+      CONSOLIDATED_NET.has(tag) &&
+      !equity.length &&
+      !subsidiaries.length &&
+      !discontinued.length &&
+      !minority.length &&
+      !consolidated &&
+      !same(item.fact.value, running) &&
+      rounded(item.fact.value - running, [pretax, tax, item])
+    ) {
+      // This intermediate subtotal does not change the exact running amount.
+      // A later parent total must reconcile independently, or carry its own proof.
+      consolidated = item;
+      roundedSubtotal = item;
     } else if (
       item &&
       DISCONTINUED.test(tag) &&
@@ -276,6 +319,7 @@ export function readStatementRows(
   }
   parent ??= consolidated && !minority.length ? consolidated : undefined;
   if (!parent) return;
+  if (parent === roundedSubtotal) afterTaxDifference = parent.fact.value - running;
   const signed = (items: Line[]) => items.reduce((sum, item) => sum + item.fact.value, 0);
   const iO = find(iR + 1, iT - 1, (l) => OPERATING_INCOME.has(l.fact.tag));
   const operating = iO >= 0 ? lines[iO]! : undefined;
@@ -294,7 +338,23 @@ export function readStatementRows(
   // Existing values keep their provenance; a different amount is a conflict.
   const assign = (key: keyof FinancialMetrics, item: Line) => {
     const existing = m[key];
-    if (existing !== undefined) return same(existing, item.fact.value);
+    if (existing !== undefined) {
+      if (!same(existing, item.fact.value)) return false;
+      const prior = period.metricSources[key];
+      if (
+        prior?.accession === filing.accession &&
+        prior.sourceUrl === filing.sourceUrl &&
+        (prior.tag === item.fact.tag || prior.method === "calculated")
+      )
+        sources[key] =
+          prior.method === "calculated"
+            ? reported(item)
+            : {
+                ...prior,
+                ...(Number.isInteger(item.fact.decimals) ? { decimals: item.fact.decimals } : {})
+              };
+      return true;
+    }
     metrics[key] = item.fact.value;
     sources[key] = reported(item);
     return true;
@@ -385,6 +445,20 @@ export function readStatementRows(
     });
   };
   const result: StatementReading = { metrics, sources };
+  if (afterTaxDifference)
+    result.afterTaxReconciliation = {
+      label: "Source rounding",
+      amount: afterTaxDifference,
+      sourceUrl: filing.sourceUrl
+    };
+  if (roundedSubtotal)
+    result.consolidatedIncomeSubtotal = {
+      label: roundedSubtotal.label,
+      tag: roundedSubtotal.fact.tag,
+      amount: roundedSubtotal.fact.value,
+      decimals: roundedSubtotal.fact.decimals!,
+      sourceUrl: filing.sourceUrl
+    };
   const iG = block.findIndex((item) => item && GROSS_PROFIT.has(item.fact.tag));
   if (!operating) {
     // No operating-profit line: revenue (or reported gross profit) less one net
@@ -454,15 +528,30 @@ export function readStatementRows(
         : !difference("costOfRevenue", revenue, gross, "Revenue less reported gross profit")
     )
       return;
-    const expenses = gross.fact.value - operating.fact.value;
+    let expenses = gross.fact.value - operating.fact.value;
     const after = block.slice(iG + 1);
     const total = after.at(-1);
-    const hasTotal =
-      !!total && OPERATING_EXPENSES.has(total.fact.tag) && same(total.fact.value, expenses);
-    if (total && OPERATING_EXPENSES.has(total.fact.tag) && !hasTotal) return;
+    const hasTotal = !!total && OPERATING_EXPENSES.has(total.fact.tag);
+    if (hasTotal && !same(total.fact.value, expenses)) {
+      const difference = operating.fact.value - (gross.fact.value - total.fact.value);
+      if (!rounded(difference, [gross, total, operating])) return;
+      result.operatingReconciliation = {
+        label: "Source rounding",
+        amount: difference,
+        sourceUrl: filing.sourceUrl,
+        basis: "gross-profit"
+      };
+    }
+    if (hasTotal) expenses = total.fact.value;
+    const replaceCalculatedExpenses =
+      hasTotal &&
+      m.operatingExpenses !== undefined &&
+      period.metricSources.operatingExpenses?.method === "calculated" &&
+      period.metricSources.operatingExpenses.accession === filing.accession &&
+      same(m.operatingExpenses, gross.fact.value - operating.fact.value);
     if (
       hasTotal
-        ? !assign("operatingExpenses", total)
+        ? !replaceCalculatedExpenses && !assign("operatingExpenses", total)
         : !difference(
             "operatingExpenses",
             gross,
@@ -479,6 +568,42 @@ export function readStatementRows(
     const details = detail(items, expenses);
     if (details) result.operatingExpenseDetails = details;
     else if (
+      hasTotal &&
+      items.length === 2 &&
+      items.every(
+        (item) =>
+          item &&
+          [
+            "us-gaap:ResearchAndDevelopmentExpense",
+            "us-gaap:SellingGeneralAndAdministrativeExpense"
+          ].includes(item.fact.tag) &&
+          item.fact.value >= 0 &&
+          item.label
+      ) &&
+      new Set(items.map((item) => item!.fact.tag)).size === 2
+    ) {
+      const difference = expenses - items.reduce((sum, item) => sum + item!.fact.value, 0);
+      if (!same(difference, 0) && rounded(difference, [total, ...(items as Line[])])) {
+        for (const item of items as Line[]) {
+          const key =
+            item.fact.tag === "us-gaap:ResearchAndDevelopmentExpense"
+              ? "researchAndDevelopment"
+              : "sellingGeneralAndAdministrative";
+          if (!assign(key, item)) return;
+        }
+        result.roundedOperatingExpenseComponents = {
+          sourceUrl: filing.sourceUrl,
+          difference,
+          components: (items as Line[]).map((item) => ({
+            id: item.fact.tag.split(":")[1],
+            label: item.label,
+            tag: item.fact.tag,
+            amount: item.fact.value,
+            decimals: item.fact.decimals
+          }))
+        };
+      }
+    } else if (
       !hasTotal &&
       expenses > 0 &&
       (sources.operatingExpenses ?? period.metricSources.operatingExpenses)?.method === "calculated"
@@ -590,6 +715,11 @@ export function applyStatementReading(period: PeriodV2, reading: StatementReadin
   }
   if (reading.operatingReconciliation)
     next.operatingReconciliation = reading.operatingReconciliation;
+  if (reading.afterTaxReconciliation) next.afterTaxReconciliation = reading.afterTaxReconciliation;
+  if (reading.consolidatedIncomeSubtotal)
+    next.consolidatedIncomeSubtotal = reading.consolidatedIncomeSubtotal;
+  if (reading.roundedOperatingExpenseComponents)
+    next.roundedOperatingExpenseComponents = reading.roundedOperatingExpenseComponents;
   if (reading.operatingCostDetails) next.operatingCostDetails = reading.operatingCostDetails;
   if (reading.operatingExpenseDetails && !period.operatingExpenseDetails)
     next.operatingExpenseDetails = reading.operatingExpenseDetails;

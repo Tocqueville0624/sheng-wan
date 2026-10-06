@@ -53,7 +53,9 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.21";
+const ENGINE_VERSION = "finance-v2.23";
+const temporarySourceFailure = (error: unknown) =>
+  error instanceof Error && /HTTP (429|5\d\d)|timeout/i.test(error.message);
 const MAX_DAILY_STEPS = 4000;
 const FED = "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm";
 const json = (value: unknown, status = 200, headers: HeadersInit = {}) =>
@@ -462,7 +464,7 @@ export class FinanceStore {
       task.job.message = `Reading statement and revenue sources: ${filing.reportDate} (${task.cursor + 1}/${task.todo.length}).`;
       try {
         const base = await this.company(identity);
-        const cacheKey = `generic:v10:${identity.cik}:${filing.accession}`;
+        const cacheKey = `generic:v11:${identity.cik}:${filing.accession}`;
         let periods = await this.ctx.storage.get<PeriodV2[]>(cacheKey);
         if (!periods)
           periods = readGenericFiling(
@@ -483,6 +485,9 @@ export class FinanceStore {
             await this.ctx.storage.put(cacheKey, periods);
         }
       } catch (error) {
+        // Keep the cursor on this source while the shared alarm backoff retries.
+        // Exhaustion records a gap and continues the other available history.
+        if (temporarySourceFailure(error) && task.attempts < 2) throw error;
         task.warnings.push(
           `${filing.reportDate}: ${error instanceof Error ? error.message : "Consolidated statement unavailable"}`
         );
@@ -541,6 +546,7 @@ export class FinanceStore {
           quarterly: periods.filter((p) => p.kind === "quarterly").map(upgradePeriod)
         });
       } catch (error) {
+        if (temporarySourceFailure(error) && task.attempts < 2) throw error;
         task.warnings.push(
           `${filing.reportDate}: ${error instanceof Error ? error.message : "Unsupported source"}`
         );
@@ -607,7 +613,7 @@ export class FinanceStore {
       }
     } catch (error) {
       const message = error instanceof Error ? error.message : "SEC data is currently unavailable.";
-      if (/HTTP (429|5\d\d)|timeout/i.test(message) && task.attempts < 2) {
+      if (temporarySourceFailure(error) && task.attempts < 2) {
         task.attempts++;
         task.job.message = "Source temporarily unavailable; retrying without replacing saved data.";
         task.job.retryAt = new Date(Date.now() + task.attempts * 30000).toISOString();

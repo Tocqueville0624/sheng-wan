@@ -6,6 +6,10 @@ import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
 const reported = {
+  GEHC2024Q2: [3207e6, 1632e6],
+  GEHC2024Q3: [3201e6, 1662e6],
+  GEHC2025Q1: [3117e6, 1660e6],
+  GEHC2026Q2: [3416e6, 1878e6],
   KO: [8146e6, 5234e6],
   GRMN: [756823e3, 482740e3, 268749e3, 341369e3, 172411e3],
   LII: [935.6e6, 609.7e6],
@@ -29,6 +33,10 @@ const reported = {
 };
 
 for (const ticker of [
+  "GEHC2024Q2",
+  "GEHC2024Q3",
+  "GEHC2025Q1",
+  "GEHC2026Q2",
   "KO",
   "GRMN",
   "LII",
@@ -54,6 +62,10 @@ for (const ticker of [
     page
   }, info) => {
     const { company, period } =
+      ticker === "GEHC2024Q2" ||
+      ticker === "GEHC2024Q3" ||
+      ticker === "GEHC2025Q1" ||
+      ticker === "GEHC2026Q2" ||
       ticker === "ABT" ||
       ticker === "ABTAnnual" ||
       ticker === "WMT" ||
@@ -112,6 +124,27 @@ for (const ticker of [
             '[data-flow-node="other-opex"], [data-flow-node="sga"], [data-flow-node="rd"]'
           )
         ).toHaveCount(0);
+      }
+      if (period.roundedOperatingExpenseComponents) {
+        await expect(
+          chart.locator(
+            '[data-flow-node="rd"], [data-flow-node="sga"], [data-flow-node="other-opex"]'
+          )
+        ).toHaveCount(0);
+        await expect(chart).toContainText("Rounded expense components do not exactly partition");
+      }
+      for (const [id, adjustment] of [
+        ["operating-rounding", period.operatingReconciliation],
+        ["after-tax-rounding", period.afterTaxReconciliation]
+      ] as const) {
+        if (!adjustment) continue;
+        const height = Number(
+          await chart.locator(`[data-flow-bar="${id}"]`).getAttribute("height")
+        );
+        expect(height / revenueHeight).toBeCloseTo(
+          Math.abs(adjustment.amount) / period.metrics.revenue!,
+          9
+        );
       }
       if (ticker === "MCD") {
         await expect(chart.locator('[data-flow-node="gross"]')).toHaveCount(0);
@@ -233,6 +266,12 @@ for (const ticker of [
         if (period.coverage.sankey) {
           expect(proof.metrics).toEqual(period.metrics);
           expect(proof.operatingExpensesBasis).toEqual(period.operatingExpensesBasis);
+          expect(proof.operatingReconciliation).toEqual(period.operatingReconciliation);
+          expect(proof.afterTaxReconciliation).toEqual(period.afterTaxReconciliation);
+          expect(proof.consolidatedIncomeSubtotal).toEqual(period.consolidatedIncomeSubtotal);
+          expect(proof.roundedOperatingExpenseComponents).toEqual(
+            period.roundedOperatingExpenseComponents
+          );
         }
         expect(source).not.toMatch(/NaN|Infinity|<image[^>]+href="https?:/);
         expect(source).toContain(period.sourceUrl);
@@ -248,6 +287,21 @@ for (const ticker of [
         path,
         contentType: format === "SVG" ? "image/svg+xml" : "image/png"
       });
+    }
+    if (ticker.startsWith("GEHC")) {
+      const downloaded = page.waitForEvent("download");
+      await page.getByRole("button", { name: "Download CSV", exact: true }).click();
+      const path = info.outputPath(`${ticker.toLowerCase()}-source-precision.csv`);
+      await (await downloaded).saveAs(path);
+      const csv = await readFile(path, "utf8");
+      expect(csv).toContain(
+        '"after_tax_reconciliation","consolidated_income_subtotal","rounded_operating_expense_components"'
+      );
+      expect(csv).toContain(String(period.metrics.netIncome));
+      if (period.roundedOperatingExpenseComponents)
+        expect(csv).toContain(String(period.roundedOperatingExpenseComponents.difference));
+      if (period.consolidatedIncomeSubtotal)
+        expect(csv).toContain(String(period.consolidatedIncomeSubtotal.amount));
     }
     if (ticker === "LII" || ticker === "MAS") {
       const downloaded = page.waitForEvent("download");

@@ -6,6 +6,76 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  CMCSAPrecision: {
+    ticker: "CMCSA",
+    fixture: "cmcsa-2026-q2-precision-statement.html",
+    name: "Comcast",
+    cik: "0001166691",
+    accession: "0001628280-26-049360",
+    filedAt: "2026-07-23",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    reportDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Communication Services",
+    document: "cmcsa-20260630.htm"
+  },
+  GEHC2024Q2: {
+    ticker: "GEHC",
+    fixture: "gehc-2024-q2-business-statement.html",
+    name: "GE HealthCare",
+    cik: "0001932393",
+    accession: "0001932393-25-000049",
+    filedAt: "2025-07-30",
+    startDate: "2024-04-01",
+    endDate: "2024-06-30",
+    reportDate: "2025-06-30",
+    fiscalYear: 2024,
+    sector: "Health Care",
+    document: "gehc-20250630.htm"
+  },
+  GEHC2024Q3: {
+    ticker: "GEHC",
+    fixture: "gehc-2024-q3-business-statement.html",
+    name: "GE HealthCare",
+    cik: "0001932393",
+    accession: "0001932393-25-000053",
+    filedAt: "2025-10-29",
+    startDate: "2024-07-01",
+    endDate: "2024-09-30",
+    reportDate: "2025-09-30",
+    fiscalYear: 2024,
+    sector: "Health Care",
+    document: "gehc-20250930.htm"
+  },
+  GEHC2025Q1: {
+    ticker: "GEHC",
+    fixture: "gehc-2025-q1-business-statement.html",
+    name: "GE HealthCare",
+    cik: "0001932393",
+    accession: "0001932393-26-000031",
+    filedAt: "2026-04-29",
+    startDate: "2025-01-01",
+    endDate: "2025-03-31",
+    reportDate: "2026-03-31",
+    fiscalYear: 2025,
+    sector: "Health Care",
+    document: "gehc-20260331.htm"
+  },
+  GEHC2026Q2: {
+    ticker: "GEHC",
+    fixture: "gehc-2026-q2-business-statement.html",
+    name: "GE HealthCare",
+    cik: "0001932393",
+    accession: "0001932393-26-000046",
+    filedAt: "2026-07-29",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    reportDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Health Care",
+    document: "gehc-20260630.htm"
+  },
   KO: {
     name: "Coca-Cola",
     cik: "0000021344",
@@ -237,7 +307,7 @@ export function reviewedFixture(ticker: keyof typeof sources) {
   const filing: SecFiling = {
     accession: source.accession,
     filedAt: source.filedAt,
-    reportDate: source.endDate,
+    reportDate: "reportDate" in source ? source.reportDate : source.endDate,
     primaryDocument: source.document,
     sourceUrl: directoryUrl + source.document,
     directoryUrl,
@@ -258,29 +328,37 @@ export function reviewedFixture(ticker: keyof typeof sources) {
   };
   for (const f of parsed.facts) {
     if (
-      f.context.start !== source.startDate ||
-      f.context.end !== source.endDate ||
+      ((f.context.start !== source.startDate || f.context.end !== source.endDate) &&
+        !("reportDate" in source && f.context.end === source.reportDate)) ||
       f.context.typed ||
       Object.keys(f.context.dimensions).length ||
       f.currency !== "USD" ||
       !f.tag.startsWith("us-gaap:")
     )
       continue;
+    const entry = {
+      start: f.context.start!,
+      end: f.context.end!,
+      val: f.value,
+      accn: source.accession,
+      form,
+      filed: source.filedAt,
+      fy: "reportDate" in source ? parsed.fiscalYear : source.fiscalYear,
+      fp:
+        "reportDate" in source
+          ? parsed.fiscalPeriod
+          : kind === "annual"
+            ? "FY"
+            : ticker === "APD" || ticker === "AMAT"
+              ? "Q3"
+              : "Q2"
+    };
+    const prior =
+      "reportDate" in source ? (facts.facts["us-gaap"][f.tag.slice(8)]?.units.USD ?? []) : [];
     facts.facts["us-gaap"][f.tag.slice(8)] = {
       label: f.tag,
       units: {
-        USD: [
-          {
-            start: source.startDate,
-            end: source.endDate,
-            val: f.value,
-            accn: source.accession,
-            form,
-            filed: source.filedAt,
-            fy: source.fiscalYear,
-            fp: kind === "annual" ? "FY" : ticker === "APD" || ticker === "AMAT" ? "Q3" : "Q2"
-          }
-        ]
+        USD: [...prior, entry]
       }
     };
   }

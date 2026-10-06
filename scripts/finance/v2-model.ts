@@ -459,22 +459,15 @@ export function flowPeriod(period: PeriodV2): FlowStatementPeriod | undefined {
     period.metricSources.expensesAndOtherItems.accession !== period.accession
   )
     return;
-  if (period.operatingReconciliation) {
-    const item = period.operatingReconciliation;
-    const keys = ["revenue", "totalOperatingCosts", "operatingIncome"] as const;
-    if (
-      item.label !== "Source rounding" ||
-      item.sourceUrl !== period.sourceUrl ||
-      !Number.isFinite(item.amount)
-    )
-      return;
+  const preciseInputs = (keys: (keyof FinancialMetrics)[]) => {
     if (
       keys.some((key) => {
         const source = period.metricSources[key];
         return (
+          !Number.isFinite(period.metrics[key]) ||
           !source ||
           source.method !== "reported" ||
-          !Number.isFinite(source.decimals) ||
+          !Number.isInteger(source.decimals) ||
           source.accession !== period.accession ||
           source.sourceUrl !== period.sourceUrl ||
           source.filedAt !== period.filedAt
@@ -486,9 +479,117 @@ export function flowPeriod(period: PeriodV2): FlowStatementPeriod | undefined {
       (sum, key) => sum + 0.5 * 10 ** -period.metricSources[key]!.decimals!,
       0
     );
+    return Number.isFinite(bound) ? bound : undefined;
+  };
+  const bounded = (amount: number, bound: number | undefined) =>
+    bound !== undefined &&
+    Number.isFinite(amount) &&
+    Math.abs(amount) <= bound &&
+    Math.abs(amount) <= Math.abs(period.metrics.revenue!) * 0.001;
+  for (const [item, keys] of [
+    [
+      period.operatingReconciliation,
+      period.operatingReconciliation?.basis === "gross-profit"
+        ? ["grossProfit", "operatingExpenses", "operatingIncome"]
+        : ["revenue", "totalOperatingCosts", "operatingIncome"]
+    ],
+    [
+      period.afterTaxReconciliation,
+      [
+        "pretaxIncome",
+        "incomeTax",
+        "netIncome",
+        ...(
+          [
+            "equityMethodIncome",
+            "afterTaxSubsidiaryIncome",
+            "discontinuedOperationsIncome",
+            "noncontrollingInterestIncome"
+          ] as const
+        ).filter((key) => period.metrics[key] !== undefined)
+      ]
+    ]
+  ] as [FinancialPeriod["afterTaxReconciliation"], (keyof FinancialMetrics)[]][]) {
+    if (!item) continue;
     if (
-      Math.abs(item.amount) > bound ||
-      Math.abs(item.amount) > Math.abs(period.metrics.revenue!) * 0.001
+      item.label !== "Source rounding" ||
+      item.sourceUrl !== period.sourceUrl ||
+      !Number.isFinite(item.amount)
+    )
+      return;
+    if (!bounded(item.amount, preciseInputs(keys))) return;
+  }
+  if (
+    period.operatingReconciliation?.basis !== undefined &&
+    period.operatingReconciliation.basis !== "gross-profit"
+  )
+    return;
+  if (
+    period.operatingReconciliation?.basis === "gross-profit" &&
+    !["us-gaap:OperatingExpenses", "ifrs-full:OperatingExpense"].includes(
+      period.metricSources.operatingExpenses?.tag ?? ""
+    )
+  )
+    return;
+  if (
+    period.afterTaxReconciliation &&
+    ![
+      "us-gaap:NetIncomeLoss",
+      "us-gaap:ProfitLoss",
+      "ifrs-full:ProfitLoss",
+      "ifrs-full:ProfitLossAttributableToOwnersOfParent"
+    ].includes(period.metricSources.netIncome?.tag ?? "")
+  )
+    return;
+  if (period.consolidatedIncomeSubtotal) {
+    const item = period.consolidatedIncomeSubtotal;
+    const bound = preciseInputs(["pretaxIncome", "incomeTax"]);
+    const difference = item.amount - (period.metrics.pretaxIncome! - period.metrics.incomeTax!);
+    if (
+      !item.label ||
+      item.sourceUrl !== period.sourceUrl ||
+      !["us-gaap:ProfitLoss", "ifrs-full:ProfitLoss"].includes(item.tag) ||
+      !Number.isInteger(item.decimals) ||
+      !bounded(difference, bound === undefined ? undefined : bound + 0.5 * 10 ** -item.decimals)
+    )
+      return;
+  }
+  if (period.roundedOperatingExpenseComponents) {
+    const item = period.roundedOperatingExpenseComponents;
+    const keys = [
+      "operatingExpenses",
+      "researchAndDevelopment",
+      "sellingGeneralAndAdministrative"
+    ] as const;
+    const sum = item.components.reduce((sum, line) => sum + line.amount, 0);
+    if (
+      item.sourceUrl !== period.sourceUrl ||
+      item.components.length !== 2 ||
+      new Set(item.components.map((line) => line.tag)).size !== 2 ||
+      period.operatingExpenseDetails?.length ||
+      period.operatingExpensesBasis ||
+      !["us-gaap:OperatingExpenses", "ifrs-full:OperatingExpense"].includes(
+        period.metricSources.operatingExpenses?.tag ?? ""
+      ) ||
+      item.components.some((line) => {
+        const key =
+          line.tag === "us-gaap:ResearchAndDevelopmentExpense"
+            ? "researchAndDevelopment"
+            : line.tag === "us-gaap:SellingGeneralAndAdministrativeExpense"
+              ? "sellingGeneralAndAdministrative"
+              : undefined;
+        return (
+          !key ||
+          !line.label ||
+          line.amount < 0 ||
+          line.amount !== period.metrics[key] ||
+          line.tag !== period.metricSources[key]?.tag ||
+          line.decimals !== period.metricSources[key]?.decimals
+        );
+      }) ||
+      item.difference === 0 ||
+      item.difference !== period.metrics.operatingExpenses! - sum ||
+      !bounded(item.difference, preciseInputs([...keys]))
     )
       return;
   }
@@ -623,7 +724,14 @@ export function validateV2(company: CompanyV2) {
         m.grossProfit !== undefined &&
         m.operatingExpenses !== undefined &&
         m.operatingIncome !== undefined &&
-        Math.abs(m.grossProfit - m.operatingExpenses - m.operatingIncome) > tol
+        Math.abs(
+          m.grossProfit +
+            (p.operatingReconciliation?.basis === "gross-profit"
+              ? p.operatingReconciliation.amount
+              : 0) -
+            m.operatingExpenses -
+            m.operatingIncome
+        ) > tol
       )
         throw new Error("Operating profit does not reconcile.");
       // NetIncomeLoss and ProfitLoss can differ in noncontrolling/equity scope.
@@ -634,7 +742,12 @@ export function validateV2(company: CompanyV2) {
       if (p.businessBreakdownSource && !p.coverage.segments)
         throw new Error("Business provenance requires validated coverage.");
       if (
-        (p.coverage.sankey || p.operatingReconciliation || p.operatingExpensesBasis) &&
+        (p.coverage.sankey ||
+          p.operatingReconciliation ||
+          p.operatingExpensesBasis ||
+          p.afterTaxReconciliation ||
+          p.consolidatedIncomeSubtotal ||
+          p.roundedOperatingExpenseComponents) &&
         !flowPeriod(p)
       )
         throw new Error("Unsupported chart capability or unverified rounding precision.");
