@@ -18,6 +18,9 @@ for (const key of [
     await page.goto(
       `/playground/thales-olive/?ticker=${company.ticker}&period=${period.kind}&statement=${period.id}`
     );
+    await expect(page.locator("astro-island[ssr]")).toHaveCount(0);
+    await expect(page.locator(".company-summary h2")).toHaveText(company.name);
+    await expect(page.locator(".flow-period-select select")).toHaveValue(period.id);
     const chart = page.locator(".flow-chart");
     await expect(chart).toBeVisible();
     const metadata = JSON.parse((await chart.locator("metadata").textContent())!);
