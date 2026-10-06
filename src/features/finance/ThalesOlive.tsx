@@ -285,7 +285,9 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         "rounded_operating_expense_components",
         "common_shareholder_income",
         "shareholder_income_bridge",
-        "operating_items"
+        "operating_items",
+        "total_expenses",
+        "direct_net_items"
       ],
       ...periods.map((p) => [
         selection.ticker,
@@ -320,7 +322,9 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         JSON.stringify(p.roundedOperatingExpenseComponents ?? null),
         p.shareholderBridge?.common.amount ?? "",
         JSON.stringify(p.shareholderBridge ?? null),
-        JSON.stringify(p.operatingItems ?? null)
+        JSON.stringify(p.operatingItems ?? null),
+        p.metrics.totalExpenses ?? "",
+        JSON.stringify(p.directNetItems ?? null)
       ])
     ];
     downloadFile(

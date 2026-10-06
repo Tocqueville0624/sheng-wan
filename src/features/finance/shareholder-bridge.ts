@@ -1,4 +1,5 @@
-import type { ShareholderIncomeBridge } from "./types";
+import type { DirectNetItems, ShareholderIncomeBridge } from "./types";
+import { directNetAllocationTags, directNetRule } from "./direct-net-items";
 import type { MetricSource } from "./v2-types";
 
 export const commonIncomeTag = "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic";
@@ -17,6 +18,7 @@ export const minorityIncomeTag =
 
 export function shareholderBridgeProblem(period: {
   shareholderBridge?: ShareholderIncomeBridge;
+  directNetItems?: DirectNetItems;
   metrics: { revenue?: number; netIncome?: number };
   metricSources?: { netIncome?: MetricSource };
   sourceUrl: string;
@@ -28,6 +30,7 @@ export function shareholderBridgeProblem(period: {
   const bridge = period.shareholderBridge;
   if (!bridge) return;
   const source = period.metricSources?.netIncome;
+  const reviewedDirectNet = period.directNetItems?.ruleId === directNetRule.id;
   const scope = parentIncomeTags.has(source?.tag ?? "")
     ? "parent"
     : consolidatedIncomeTags.has(source?.tag ?? "")
@@ -47,7 +50,8 @@ export function shareholderBridgeProblem(period: {
     bridge.base.scope !== scope ||
     !bridge.base.label ||
     !bridge.common.label ||
-    bridge.common.tag !== commonIncomeTag ||
+    (bridge.common.tag !== commonIncomeTag &&
+      !(reviewedDirectNet && bridge.common.tag === dilutedIncomeTag)) ||
     !Number.isFinite(bridge.base.amount) ||
     bridge.base.amount !== period.metrics.netIncome ||
     !Number.isFinite(bridge.common.amount) ||
@@ -67,6 +71,7 @@ export function shareholderBridgeProblem(period: {
         !Number.isFinite(a.amount) ||
         !(
           shareholderAllocationTags.has(a.tag) ||
+          (reviewedDirectNet && directNetAllocationTags.has(a.tag)) ||
           (scope === "consolidated" && minorityIncomeTag.test(a.tag))
         )
     ) ||

@@ -7,6 +7,8 @@ export type FinancialMetrics = {
   grossProfit: number;
   operatingExpenses: number;
   totalOperatingCosts?: number;
+  /** Reported statement-wide expenses, including interest; not operating costs. */
+  totalExpenses?: number;
   operatingIncome: number;
   pretaxIncome: number;
   incomeTax: number;
@@ -52,6 +54,27 @@ export type OperatingItems = {
   revenue: StatementLine & { rowIndex: number };
   operatingIncome: StatementLine & { rowIndex: number };
   items: (StatementLine & { effect: "cost" | "gain"; rowIndex: number })[];
+};
+
+/** A reviewed primary statement that goes directly from revenue and reported
+ * expenses/gains to consolidated net income, without pretax or tax subtotals.
+ */
+export type DirectNetItems = {
+  ruleId: string;
+  sourceUrl: string;
+  accession: string;
+  filedAt: string;
+  startDate: string;
+  endDate: string;
+  currency: "USD";
+  tableIndex: number;
+  revenue: StatementLine & { rowIndex: number };
+  expenses: StatementLine & { rowIndex: number };
+  expenseItems: (StatementLine & { effect: "cost" | "gain"; rowIndex: number })[];
+  gains: (StatementLine & { rowIndex: number })[];
+  consolidated: StatementLine & { rowIndex: number };
+  noncontrolling: StatementLine & { rowIndex: number };
+  parent: StatementLine & { rowIndex: number };
 };
 
 /** Reported allocations after the selected net-income scope, never an expense
@@ -150,6 +173,7 @@ export type FinancialPeriod = {
   afterTaxReconciliation?: { label: string; amount: number; sourceUrl: string };
   shareholderBridge?: ShareholderIncomeBridge;
   operatingItems?: OperatingItems;
+  directNetItems?: DirectNetItems;
   /** A rounded intermediate subtotal is corroboration, not a replacement for the
    * exact arithmetic leading to the selected final net-income scope.
    */
@@ -237,6 +261,13 @@ export type FlowStatementPeriod = Omit<FinancialPeriod, "metrics"> & {
   metrics: Pick<FinancialMetrics, "revenue" | "pretaxIncome" | "incomeTax" | "netIncome"> &
     Partial<FinancialMetrics>;
 };
+
+export type DirectNetStatementPeriod = Omit<FinancialPeriod, "metrics" | "directNetItems"> & {
+  directNetItems: DirectNetItems;
+  metrics: Pick<FinancialMetrics, "revenue" | "netIncome"> & Partial<FinancialMetrics>;
+};
+
+export type StatementChartPeriod = FlowStatementPeriod | DirectNetStatementPeriod;
 
 export type CompanySummary = {
   ticker: string;

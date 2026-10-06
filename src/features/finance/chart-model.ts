@@ -1,7 +1,13 @@
-import type { BusinessPeriod, FlowStatementPeriod, RevenueSegment } from "./types";
+import type {
+  BusinessPeriod,
+  FlowStatementPeriod,
+  StatementChartPeriod,
+  RevenueSegment
+} from "./types";
 import { buildSignedStatementFlow, layoutSignedStatementFlow } from "./signed-flow";
 import { shareholderBridgeProblem } from "./shareholder-bridge";
 import { operatingItemsProblem } from "./operating-items";
+import { directNetItemsProblem } from "./direct-net-items";
 
 export type RevenueSeries = { id: string; label: string };
 export type RevenueHistory = {
@@ -37,6 +43,7 @@ export type FlowNode = {
     | "discontinued"
     | "operating-adjustment"
     | "operating-item"
+    | "direct-net-item"
     | "after-tax-adjustment"
     | "revenue-base"
     | "adjustment";
@@ -102,10 +109,21 @@ export function revenueAdjustmentLabel(adjustment: RevenueSegment) {
   return `${adjustment.label} · ${adjustment.revenue < 0 ? "decrease" : "increase"}`;
 }
 
-export function buildStatementFlow(period: FlowStatementPeriod): FlowResult {
-  const m = period.metrics;
+export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
   const shareholderProblem = shareholderBridgeProblem(period);
   if (shareholderProblem) return { ok: false, reason: shareholderProblem };
+  if (period.directNetItems) {
+    const problem = directNetItemsProblem(period);
+    if (problem) return { ok: false, reason: problem };
+    return buildSignedStatementFlow(period, {
+      tolerance: accountingTolerance(period.metrics.revenue),
+      hasGrossStage: false,
+      hasOperating: false,
+      businessAvailable: !segmentProblem(period),
+      adjustmentLabel: revenueAdjustmentLabel
+    });
+  }
+  const m = period.metrics as FlowStatementPeriod["metrics"];
   const operatingProblem = operatingItemsProblem(period);
   if (operatingProblem) return { ok: false, reason: operatingProblem };
   if (period.grossProfitAdjustments?.some((item) => item.amount !== 0))

@@ -14,7 +14,11 @@ for (const key of [
   "APDOperating2021",
   "APDOperating2016",
   "CRLOperatingAnnual",
-  "CRLOperatingQuarter"
+  "CRLOperatingQuarter",
+  "AREDirectNetAnnual",
+  "AREDirectNetQuarter",
+  "AREDirectNet2017",
+  "AREDirectNet2021Q3"
 ] as const)
   test(`${key}: original business revenue and signed stages render and export`, async ({
     page
@@ -28,9 +32,22 @@ for (const key of [
     );
     const chart = page.locator('.flow-chart[data-signed-accounting="true"]');
     await expect(chart).toBeVisible();
-    await expect(chart.locator('[data-flow-node="operating"]')).toContainText(
-      period.metrics.operatingIncome! < 0 ? "Operating loss" : "Operating profit"
-    );
+    if (period.directNetItems) {
+      await expect(chart.locator('[data-flow-node="operating"]')).toHaveCount(0);
+      await expect(chart.locator('[data-flow-node="pretax"]')).toHaveCount(0);
+      await expect(chart.locator('[data-flow-node="tax"]')).toHaveCount(0);
+      await expect(chart.locator('[data-flow-node="total-expenses"]')).toContainText(
+        "including interest"
+      );
+      await expect(chart.locator('[data-flow-node="consolidated-net"]')).toContainText(
+        period.directNetItems.consolidated.amount < 0
+          ? "Consolidated net loss"
+          : "Consolidated net profit"
+      );
+    } else
+      await expect(chart.locator('[data-flow-node="operating"]')).toContainText(
+        period.metrics.operatingIncome! < 0 ? "Operating loss" : "Operating profit"
+      );
     await expect(chart.locator('[data-flow-node="net"]')).toContainText(
       period.metrics.netIncome! < 0 ? /net loss/i : /net profit/i
     );
@@ -66,12 +83,27 @@ for (const key of [
         period.shareholderBridge.common.amount
       );
       await expect(chart.locator('[data-flow-node="common-net"]')).toContainText(
-        "Net loss to common"
+        period.shareholderBridge.common.amount < 0 ? "Net loss to common" : "Net income to common"
       );
     }
-    expect(metadata.nodes.find((n: { id: string }) => n.id === "operating").signedAmount).toBe(
-      period.metrics.operatingIncome
-    );
+    if (period.directNetItems) {
+      expect(metadata.directNetItems).toEqual(period.directNetItems);
+      expect(
+        metadata.nodes.find((n: { id: string }) => n.id === "consolidated-net").signedAmount
+      ).toBe(period.directNetItems.consolidated.amount);
+      for (const item of period.directNetItems.gains.filter((r) => r.amount !== 0)) {
+        expect(
+          metadata.nodes.find((n: { id: string }) => n.id === `direct-net-item-${item.id}`)
+            .signedAmount
+        ).toBe(item.amount);
+        await expect(chart.locator(`[data-flow-node="direct-net-item-${item.id}"]`)).toContainText(
+          item.label
+        );
+      }
+    } else
+      expect(metadata.nodes.find((n: { id: string }) => n.id === "operating").signedAmount).toBe(
+        period.metrics.operatingIncome
+      );
     for (const colorScheme of ["light", "dark"] as const) {
       await page.emulateMedia({ colorScheme, reducedMotion: "reduce" });
       const clipped = await chart.evaluate((element) => {
@@ -84,6 +116,23 @@ for (const key of [
           .map((t) => t.textContent);
       });
       expect(clipped).toEqual([]);
+      if (period.directNetItems) {
+        const overlaps = await chart.evaluate((element) => {
+          const texts = [...element.querySelectorAll("[data-flow-node] text")];
+          return texts.flatMap((a, i) =>
+            texts.slice(i + 1).flatMap((b) => {
+              if (a.parentElement === b.parentElement) return [];
+              const x = (a as SVGTextElement).getBBox(),
+                y = (b as SVGTextElement).getBBox();
+              return Math.min(x.x + x.width, y.x + y.width) - Math.max(x.x, y.x) > 0.5 &&
+                Math.min(x.y + x.height, y.y + y.height) - Math.max(x.y, y.y) > 0.5
+                ? [[a.textContent, b.textContent]]
+                : [];
+            })
+          );
+        });
+        expect(overlaps).toEqual([]);
+      }
       expect(
         await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)
       ).toBe(true);
@@ -119,7 +168,7 @@ for (const key of [
         contentType: format === "SVG" ? "image/svg+xml" : "image/png"
       });
     }
-    if (period.shareholderBridge || period.operatingItems) {
+    if (period.shareholderBridge || period.operatingItems || period.directNetItems) {
       const downloaded = page.waitForEvent("download");
       await page.getByRole("button", { name: "Download CSV", exact: true }).click();
       const download = await downloaded;
@@ -134,6 +183,11 @@ for (const key of [
       if (period.operatingItems) {
         expect(csv).toContain('"operating_items"');
         expect(csv).toContain(JSON.stringify(period.operatingItems).replaceAll('"', '""'));
+      }
+      if (period.directNetItems) {
+        expect(csv).toContain('"total_expenses"');
+        expect(csv).toContain('"direct_net_items"');
+        expect(csv).toContain(JSON.stringify(period.directNetItems).replaceAll('"', '""'));
       }
     }
     expect(errors).toEqual([]);

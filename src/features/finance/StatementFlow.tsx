@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import type { CompanyDataset, FinancialMetrics, FlowStatementPeriod } from "./types";
+import type { CompanyDataset, FinancialMetrics, StatementChartPeriod } from "./types";
 import type { MetricSource } from "./v2-types";
 import {
   buildStatementFlow,
@@ -27,7 +27,7 @@ function NodeLabel({ node, revenue }: { node: PositionedNode; revenue: number })
       node.group === "shareholder" ||
       node.group === "after-tax-adjustment") &&
       node.tone === "expense");
-  const nonoperating = node.group === "nonoperating";
+  const nonoperating = node.group === "nonoperating" || node.group === "direct-net-item";
   const operatingAdjustment =
     node.group === "operating-adjustment" || node.group === "after-tax-adjustment";
   const taxBenefit = node.group === "tax-benefit";
@@ -137,7 +137,7 @@ export function StatementFlow({
   onSelectionChange,
   showPeriodSelect = true
 }: {
-  periods: (FlowStatementPeriod & {
+  periods: (StatementChartPeriod & {
     metricSources?: Partial<Record<keyof FinancialMetrics, MetricSource>>;
   })[];
   company: CompanyDataset;
@@ -192,6 +192,7 @@ export function StatementFlow({
   const directOperatingFlow = layout.nodes.some((node) => node.id === "operating-costs");
   // The filing reports no operating-profit line; items run straight to pretax profit.
   const pretaxFlow = layout.nodes.some((node) => node.id === "other-items");
+  const directNetFlow = !!period.directNetItems;
   const parentNet =
     period.shareholderBridge?.base.scope === "parent" ||
     period.metrics.noncontrollingInterestIncome !== undefined;
@@ -199,7 +200,7 @@ export function StatementFlow({
   const hasBusinesses = layout.nodes.some((node) => node.business);
   const businessNoteHeight = hasBusinesses ? 24 : 0;
   const directFlowNoteHeight =
-    directOperatingFlow || pretaxFlow || period.operatingExpensesBasis ? 24 : 0;
+    directOperatingFlow || pretaxFlow || directNetFlow || period.operatingExpensesBasis ? 24 : 0;
   const summedCosts =
     directOperatingFlow && period.metricSources?.totalOperatingCosts?.method === "calculated";
   const rounding = period.operatingReconciliation;
@@ -313,6 +314,7 @@ export function StatementFlow({
               netIncomeAttribution: parentNet ? "parent" : undefined,
               shareholderBridge: period.shareholderBridge,
               operatingItems: period.operatingItems,
+              directNetItems: period.directNetItems,
               operatingReconciliation: rounding,
               operatingExpensesBasis: period.operatingExpensesBasis,
               afterTaxReconciliation: period.afterTaxReconciliation,
@@ -400,7 +402,9 @@ export function StatementFlow({
                 ? "Rounded expense components are preserved as independent metrics, not drawn as an exact partition."
                 : pretaxFlow
                   ? "Expense line detail is not separately available in this snapshot."
-                  : "Operating expense detail is not separately available in this snapshot."}
+                  : directNetFlow
+                    ? "Original expense components and signed items are preserved in the chart metadata and CSV."
+                    : "Operating expense detail is not separately available in this snapshot."}
             </text>
           )}
           <line x1={50} x2={graph.width - 50} y1={footerTop} y2={footerTop} stroke={colors.grid} />
@@ -426,6 +430,12 @@ export function StatementFlow({
             <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
               No operating-profit line is reported; expenses and other items (net) lead to pretax
               profit. Nothing is estimated.
+            </text>
+          )}
+          {directNetFlow && (
+            <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
+              Reported revenue, total expenses and signed gains lead directly to net income; absent
+              pretax and tax stages are omitted.
             </text>
           )}
           {directOperatingFlow && (
@@ -546,6 +556,8 @@ export function StatementFlow({
         </svg>
       </div>
       <p className="chart-note">
+        {directNetFlow &&
+          "This statement reports total expenses, including interest, and signed gains directly above consolidated net income. The flow preserves those reported values and the subsequent ownership allocations; no gross-profit, operating-profit, pretax or tax subtotal is inferred. "}
         {hasLoss &&
           "Negative income subtotals retain their reported signs. Loss ribbons reconcile expenses exceeding income and may run back toward the costs they cover; they show accounting allocations. Reported tax benefits and other gains offset expenses or losses. "}
         {period.shareholderBridge &&

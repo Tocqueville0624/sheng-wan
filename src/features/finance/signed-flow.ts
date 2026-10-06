@@ -1,4 +1,9 @@
-import type { FlowStatementPeriod, RevenueSegment, StatementLine } from "./types";
+import type {
+  FlowStatementPeriod,
+  StatementChartPeriod,
+  RevenueSegment,
+  StatementLine
+} from "./types";
 import type {
   FlowLink,
   FlowNode,
@@ -17,7 +22,7 @@ import type {
  * uses exact dollars; negative-stage ribbons may run back toward earlier costs.
  */
 export function buildSignedStatementFlow(
-  period: FlowStatementPeriod,
+  period: StatementChartPeriod,
   options: {
     tolerance: number;
     hasGrossStage: boolean;
@@ -154,177 +159,235 @@ export function buildSignedStatementFlow(
     const item = effect(id, label, amount, group, column);
     return { gains: amount > 0 ? [item] : [], expenses: amount < 0 ? [item] : [] };
   };
-  if (options.hasGrossStage) {
-    const gross = income("gross", "Gross profit", "Gross loss", m.grossProfit!, ++stage);
-    const cost = node("cost", "Cost of revenue", m.costOfRevenue!, "expense", "cost", stage);
-    if (!transition(gross, [], [cost]))
-      return { ok: false, reason: "The signed gross-profit stage does not reconcile." };
-  }
-  if (options.hasOperating) {
-    const operating = income(
-      "operating",
-      "Operating profit",
-      "Operating loss",
-      m.operatingIncome!,
+  if (period.directNetItems) {
+    const proof = period.directNetItems;
+    const consolidated = income(
+      "consolidated-net",
+      "Consolidated net profit",
+      "Consolidated net loss",
+      proof.consolidated.amount,
       ++stage
     );
     const cost = node(
-      options.hasGrossStage ? "opex" : "operating-costs",
-      options.hasGrossStage
-        ? period.operatingExpensesBasis
-          ? "Operating expenses and other items (net)"
-          : "Operating expenses"
-        : "Total operating costs",
-      options.hasGrossStage ? m.operatingExpenses! : m.totalOperatingCosts!,
+      "total-expenses",
+      "Total expenses (including interest)",
+      proof.expenses.amount,
       "expense",
       "opex",
       stage
     );
-    const rounding = stageEffects(
-      period.operatingReconciliation?.amount ?? 0,
-      "operating-rounding",
-      "Source rounding",
-      "operating-adjustment",
-      stage - 0.5
+    const parts = proof.gains.map((item) =>
+      stageEffects(
+        item.amount,
+        `direct-net-item-${item.id}`,
+        item.label,
+        "direct-net-item",
+        stage - 0.5
+      )
     );
-    const operatingItems =
-      period.operatingItems?.items
-        .filter((item) => item.effect === "gain")
-        .map((item) =>
-          stageEffects(
-            item.amount,
-            `operating-item-${item.id}`,
-            item.label,
-            "operating-item",
-            stage - 0.5
-          )
-        ) ?? [];
     if (
       !transition(
-        operating,
-        [...rounding.gains, ...operatingItems.flatMap((item) => item.gains)],
-        [cost, ...rounding.expenses, ...operatingItems.flatMap((item) => item.expenses)]
+        consolidated,
+        parts.flatMap((p) => p.gains),
+        [cost, ...parts.flatMap((p) => p.expenses)]
       )
     )
-      return { ok: false, reason: "The signed operating stage does not reconcile." };
-    const details = options.hasGrossStage ? options.expenses : options.costDetails;
-    if (details)
-      for (const detail of details) {
-        const id = `expense-${detail.id}`;
-        node(id, detail.label, detail.amount, "expense", "detail", stage + 1);
-        link(cost.id, id, detail.amount, "expense");
-      }
-  }
-  const pretax = income("pretax", "Pretax profit", "Pretax loss", m.pretaxIncome, ++stage);
-  if (options.hasOperating) {
-    const delta = m.pretaxIncome - m.operatingIncome!;
-    const other = stageEffects(
-      delta,
-      "nonoperating",
-      delta < 0 ? "Non-operating loss (net)" : "Non-operating gain (net)",
-      "nonoperating",
-      stage - 0.5
+      return { ok: false, reason: "The reported direct net-income stage does not reconcile." };
+    const net = income(
+      "net",
+      "Net profit to parent",
+      "Net loss to parent",
+      proof.parent.amount,
+      ++stage
     );
-    if (!transition(pretax, other.gains, other.expenses))
-      return { ok: false, reason: "The signed pretax stage does not reconcile." };
+    const attribution = stageEffects(
+      -proof.noncontrolling.amount,
+      "noncontrolling",
+      proof.noncontrolling.label,
+      "noncontrolling",
+      proof.noncontrolling.amount < 0 ? stage - 0.5 : stage
+    );
+    for (const item of [...attribution.gains, ...attribution.expenses])
+      item.signedAmount = proof.noncontrolling.amount;
+    if (!transition(net, attribution.gains, attribution.expenses))
+      return {
+        ok: false,
+        reason: "The reported direct net-income attribution does not reconcile."
+      };
   } else {
-    const other = node(
-      "other-items",
-      options.hasGrossStage ? "Expenses and other items (net)" : "Costs and other items (net)",
-      m.expensesAndOtherItems!,
-      "expense",
-      "opex",
-      stage
+    const m = period.metrics as FlowStatementPeriod["metrics"];
+    if (options.hasGrossStage) {
+      const gross = income("gross", "Gross profit", "Gross loss", m.grossProfit!, ++stage);
+      const cost = node("cost", "Cost of revenue", m.costOfRevenue!, "expense", "cost", stage);
+      if (!transition(gross, [], [cost]))
+        return { ok: false, reason: "The signed gross-profit stage does not reconcile." };
+    }
+    if (options.hasOperating) {
+      const operating = income(
+        "operating",
+        "Operating profit",
+        "Operating loss",
+        m.operatingIncome!,
+        ++stage
+      );
+      const cost = node(
+        options.hasGrossStage ? "opex" : "operating-costs",
+        options.hasGrossStage
+          ? period.operatingExpensesBasis
+            ? "Operating expenses and other items (net)"
+            : "Operating expenses"
+          : "Total operating costs",
+        options.hasGrossStage ? m.operatingExpenses! : m.totalOperatingCosts!,
+        "expense",
+        "opex",
+        stage
+      );
+      const rounding = stageEffects(
+        period.operatingReconciliation?.amount ?? 0,
+        "operating-rounding",
+        "Source rounding",
+        "operating-adjustment",
+        stage - 0.5
+      );
+      const operatingItems =
+        period.operatingItems?.items
+          .filter((item) => item.effect === "gain")
+          .map((item) =>
+            stageEffects(
+              item.amount,
+              `operating-item-${item.id}`,
+              item.label,
+              "operating-item",
+              stage - 0.5
+            )
+          ) ?? [];
+      if (
+        !transition(
+          operating,
+          [...rounding.gains, ...operatingItems.flatMap((item) => item.gains)],
+          [cost, ...rounding.expenses, ...operatingItems.flatMap((item) => item.expenses)]
+        )
+      )
+        return { ok: false, reason: "The signed operating stage does not reconcile." };
+      const details = options.hasGrossStage ? options.expenses : options.costDetails;
+      if (details)
+        for (const detail of details) {
+          const id = `expense-${detail.id}`;
+          node(id, detail.label, detail.amount, "expense", "detail", stage + 1);
+          link(cost.id, id, detail.amount, "expense");
+        }
+    }
+    const pretax = income("pretax", "Pretax profit", "Pretax loss", m.pretaxIncome, ++stage);
+    if (options.hasOperating) {
+      const delta = m.pretaxIncome - m.operatingIncome!;
+      const other = stageEffects(
+        delta,
+        "nonoperating",
+        delta < 0 ? "Non-operating loss (net)" : "Non-operating gain (net)",
+        "nonoperating",
+        stage - 0.5
+      );
+      if (!transition(pretax, other.gains, other.expenses))
+        return { ok: false, reason: "The signed pretax stage does not reconcile." };
+    } else {
+      const other = node(
+        "other-items",
+        options.hasGrossStage ? "Expenses and other items (net)" : "Costs and other items (net)",
+        m.expensesAndOtherItems!,
+        "expense",
+        "opex",
+        stage
+      );
+      if (!transition(pretax, [], [other]))
+        return { ok: false, reason: "The signed direct pretax stage does not reconcile." };
+      if (options.costDetails)
+        for (const detail of options.costDetails) {
+          const id = `expense-${detail.id}`;
+          node(id, detail.label, detail.amount, "expense", "detail", stage + 1);
+          link(other.id, id, detail.amount, "expense");
+        }
+    }
+    const net = income(
+      "net",
+      period.shareholderBridge?.base.scope === "consolidated"
+        ? "Consolidated net profit"
+        : m.noncontrollingInterestIncome !== undefined ||
+            period.shareholderBridge?.base.scope === "parent"
+          ? "Net profit to parent"
+          : "Net profit",
+      period.shareholderBridge?.base.scope === "consolidated"
+        ? "Consolidated net loss"
+        : m.noncontrollingInterestIncome !== undefined ||
+            period.shareholderBridge?.base.scope === "parent"
+          ? "Net loss to parent"
+          : "Net loss",
+      m.netIncome,
+      ++stage
     );
-    if (!transition(pretax, [], [other]))
-      return { ok: false, reason: "The signed direct pretax stage does not reconcile." };
-    if (options.costDetails)
-      for (const detail of options.costDetails) {
-        const id = `expense-${detail.id}`;
-        node(id, detail.label, detail.amount, "expense", "detail", stage + 1);
-        link(other.id, id, detail.amount, "expense");
-      }
+    const gains: FlowNode[] = [],
+      expenses: FlowNode[] = [];
+    const add = (
+      amount: number,
+      id: string,
+      label: string,
+      group: FlowNode["group"],
+      reportedAmount = amount
+    ) => {
+      const parts = stageEffects(amount, id, label, group, amount > 0 ? stage - 0.5 : stage);
+      for (const item of [...parts.gains, ...parts.expenses]) item.signedAmount = reportedAmount;
+      gains.push(...parts.gains);
+      expenses.push(...parts.expenses);
+    };
+    add(
+      -m.incomeTax,
+      m.incomeTax < 0 ? "tax-benefit" : "tax",
+      m.incomeTax < 0 ? "Income tax (benefit)" : "Tax expense",
+      m.incomeTax < 0 ? "tax-benefit" : "tax",
+      m.incomeTax
+    );
+    if (m.incomeTax === 0) node("tax", "Income tax", 0, "expense", "tax", stage, 0);
+    add(
+      m.equityMethodIncome ?? 0,
+      "equity",
+      (m.equityMethodIncome ?? 0) < 0
+        ? "Equity-method loss (after tax)"
+        : "Equity-method income (after tax)",
+      "equity"
+    );
+    add(
+      m.afterTaxSubsidiaryIncome ?? 0,
+      "subsidiary",
+      (m.afterTaxSubsidiaryIncome ?? 0) < 0
+        ? "Unconsolidated subsidiary loss (after tax)"
+        : "Unconsolidated subsidiary income (after tax)",
+      "subsidiary"
+    );
+    add(
+      m.discontinuedOperationsIncome ?? 0,
+      "discontinued",
+      (m.discontinuedOperationsIncome ?? 0) < 0
+        ? "Discontinued operations loss (after tax)"
+        : "Discontinued operations (after tax)",
+      "discontinued"
+    );
+    add(
+      -(m.noncontrollingInterestIncome ?? 0),
+      "noncontrolling",
+      (m.noncontrollingInterestIncome ?? 0) < 0
+        ? "Loss of noncontrolling interests"
+        : "Profit to noncontrolling interests",
+      "noncontrolling",
+      m.noncontrollingInterestIncome ?? 0
+    );
+    add(
+      period.afterTaxReconciliation?.amount ?? 0,
+      "after-tax-rounding",
+      "Source rounding",
+      "after-tax-adjustment"
+    );
+    if (!transition(net, gains, expenses))
+      return { ok: false, reason: "The signed net-income stage does not reconcile." };
   }
-  const net = income(
-    "net",
-    period.shareholderBridge?.base.scope === "consolidated"
-      ? "Consolidated net profit"
-      : m.noncontrollingInterestIncome !== undefined ||
-          period.shareholderBridge?.base.scope === "parent"
-        ? "Net profit to parent"
-        : "Net profit",
-    period.shareholderBridge?.base.scope === "consolidated"
-      ? "Consolidated net loss"
-      : m.noncontrollingInterestIncome !== undefined ||
-          period.shareholderBridge?.base.scope === "parent"
-        ? "Net loss to parent"
-        : "Net loss",
-    m.netIncome,
-    ++stage
-  );
-  const gains: FlowNode[] = [],
-    expenses: FlowNode[] = [];
-  const add = (
-    amount: number,
-    id: string,
-    label: string,
-    group: FlowNode["group"],
-    reportedAmount = amount
-  ) => {
-    const parts = stageEffects(amount, id, label, group, amount > 0 ? stage - 0.5 : stage);
-    for (const item of [...parts.gains, ...parts.expenses]) item.signedAmount = reportedAmount;
-    gains.push(...parts.gains);
-    expenses.push(...parts.expenses);
-  };
-  add(
-    -m.incomeTax,
-    m.incomeTax < 0 ? "tax-benefit" : "tax",
-    m.incomeTax < 0 ? "Income tax (benefit)" : "Tax expense",
-    m.incomeTax < 0 ? "tax-benefit" : "tax",
-    m.incomeTax
-  );
-  if (m.incomeTax === 0) node("tax", "Income tax", 0, "expense", "tax", stage, 0);
-  add(
-    m.equityMethodIncome ?? 0,
-    "equity",
-    (m.equityMethodIncome ?? 0) < 0
-      ? "Equity-method loss (after tax)"
-      : "Equity-method income (after tax)",
-    "equity"
-  );
-  add(
-    m.afterTaxSubsidiaryIncome ?? 0,
-    "subsidiary",
-    (m.afterTaxSubsidiaryIncome ?? 0) < 0
-      ? "Unconsolidated subsidiary loss (after tax)"
-      : "Unconsolidated subsidiary income (after tax)",
-    "subsidiary"
-  );
-  add(
-    m.discontinuedOperationsIncome ?? 0,
-    "discontinued",
-    (m.discontinuedOperationsIncome ?? 0) < 0
-      ? "Discontinued operations loss (after tax)"
-      : "Discontinued operations (after tax)",
-    "discontinued"
-  );
-  add(
-    -(m.noncontrollingInterestIncome ?? 0),
-    "noncontrolling",
-    (m.noncontrollingInterestIncome ?? 0) < 0
-      ? "Loss of noncontrolling interests"
-      : "Profit to noncontrolling interests",
-    "noncontrolling",
-    m.noncontrollingInterestIncome ?? 0
-  );
-  add(
-    period.afterTaxReconciliation?.amount ?? 0,
-    "after-tax-rounding",
-    "Source rounding",
-    "after-tax-adjustment"
-  );
-  if (!transition(net, gains, expenses))
-    return { ok: false, reason: "The signed net-income stage does not reconcile." };
   if (period.shareholderBridge) {
     const bridge = period.shareholderBridge;
     const common = income(
@@ -404,15 +467,20 @@ export function layoutSignedStatementFlow(graph: StatementFlow) {
     mainY + 360,
     ...expenseNodes.map((n) => locations.get(n.id)!.y + Math.max(n.amount * scale, 100))
   );
+  const routedBottom = new Map<number, number>();
   for (const n of graph.nodes) {
     const afterDetails =
       n.group === "nonoperating" && graph.nodes.some((item) => item.group === "detail");
     if (
       n.tone === "expense" &&
-      (afterDetails || n.group === "operating-adjustment" || n.group === "operating-item")
+      (afterDetails ||
+        n.group === "operating-adjustment" ||
+        n.group === "operating-item" ||
+        n.group === "direct-net-item")
     ) {
       const current = locations.get(n.id)!;
-      current.y = Math.max(current.y, expenseBottom + 150);
+      current.y = Math.max(current.y, routedBottom.get(n.stage!) ?? expenseBottom + 150);
+      routedBottom.set(n.stage!, current.y + Math.max(n.amount * scale, 100) + 150);
     }
   }
   const business = graph.nodes.filter((n) => n.group === "segment");

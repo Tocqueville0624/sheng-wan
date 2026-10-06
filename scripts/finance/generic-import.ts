@@ -9,6 +9,7 @@ import { enrichMatrixBusinessPeriods } from "./business-matrix";
 import { currentFilingCandidates } from "./current-filing";
 import { enrichShareholderPeriods } from "./shareholder-v2";
 import { enrichOperatingPeriods } from "./operating-v2";
+import { enrichDirectNetPeriods } from "./direct-net-v2";
 
 /** Generic (unreviewed-issuer) imports share these steps between the Worker and CLI audits. */
 export const GENERIC_FILING_LIMIT = 30;
@@ -93,6 +94,7 @@ export function readGenericFiling(
   apply(enrichInlinePeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichStatementPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichOperatingPeriods(html, identity, filing, [...updated.values()], parsed));
+  apply(enrichDirectNetPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichShareholderPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichReviewedBusinessPeriods(html, identity, filing, [...updated.values()], parsed));

@@ -6,6 +6,62 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  AREDirectNet2017: {
+    ticker: "ARE",
+    kind: "annual",
+    fixture: "are-2017-direct-net-statement.html",
+    name: "Alexandria Real Estate Equities",
+    cik: "0001035443",
+    accession: "0001035443-20-000042",
+    filedAt: "2020-02-04",
+    startDate: "2017-01-01",
+    endDate: "2017-12-31",
+    reportDate: "2019-12-31",
+    fiscalYear: 2017,
+    sector: "Real Estate",
+    document: "a4q1910-k.htm"
+  },
+  AREDirectNet2021Q3: {
+    ticker: "ARE",
+    fixture: "are-2021-q3-direct-net-statement.html",
+    name: "Alexandria Real Estate Equities",
+    cik: "0001035443",
+    accession: "0001035443-22-000308",
+    filedAt: "2022-10-24",
+    startDate: "2021-07-01",
+    endDate: "2021-09-30",
+    reportDate: "2022-09-30",
+    fiscalYear: 2021,
+    sector: "Real Estate",
+    document: "are-20220930.htm"
+  },
+  AREDirectNetAnnual: {
+    ticker: "ARE",
+    kind: "annual",
+    fixture: "are-2025-direct-net-statement.html",
+    name: "Alexandria Real Estate Equities",
+    cik: "0001035443",
+    accession: "0001035443-26-000013",
+    filedAt: "2026-01-26",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    sector: "Real Estate",
+    document: "are-20251231.htm"
+  },
+  AREDirectNetQuarter: {
+    ticker: "ARE",
+    fixture: "are-2026-q2-direct-net-statement.html",
+    name: "Alexandria Real Estate Equities",
+    cik: "0001035443",
+    accession: "0001035443-26-000066",
+    filedAt: "2026-08-03",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    sector: "Real Estate",
+    document: "are-20260630.htm"
+  },
   APDOperating2016: {
     ticker: "APD",
     kind: "annual",
