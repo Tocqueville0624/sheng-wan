@@ -511,6 +511,7 @@ export function flowPeriod(period: PeriodV2): StatementChartPeriod | undefined {
           [
             "equityMethodIncome",
             "afterTaxSubsidiaryIncome",
+            "afterTaxTransactionIncome",
             "discontinuedOperationsIncome",
             "noncontrollingInterestIncome"
           ] as const

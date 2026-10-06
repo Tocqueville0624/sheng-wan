@@ -26,6 +26,7 @@ export type CompanyFacts = {
 
 const TAGS = {
   totalExpenses: [],
+  afterTaxTransactionIncome: [],
   revenue: [
     "RevenueFromContractWithCustomerExcludingAssessedTax",
     "Revenues",

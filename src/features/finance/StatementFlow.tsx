@@ -315,6 +315,7 @@ export function StatementFlow({
               shareholderBridge: period.shareholderBridge,
               operatingItems: period.operatingItems,
               directNetItems: period.directNetItems,
+              afterTaxTransactionItems: period.afterTaxTransactionItems,
               operatingReconciliation: rounding,
               operatingExpensesBasis: period.operatingExpensesBasis,
               afterTaxReconciliation: period.afterTaxReconciliation,
@@ -637,7 +638,9 @@ export function StatementFlow({
                           ? period.metrics.discontinuedOperationsIncome!
                           : node.id === "subsidiary"
                             ? period.metrics.afterTaxSubsidiaryIncome!
-                            : (revenueAdjustment?.revenue ?? node.amount));
+                            : node.id === "after-tax-transaction"
+                              ? period.metrics.afterTaxTransactionIncome!
+                              : (revenueAdjustment?.revenue ?? node.amount));
                 return (
                   <tr key={node.id}>
                     <th scope="row">

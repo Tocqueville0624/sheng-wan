@@ -20,6 +20,8 @@ export type FinancialMetrics = {
   equityMethodIncome?: number;
   /** Signed after-tax income (loss) from unconsolidated subsidiaries, as reported. */
   afterTaxSubsidiaryIncome?: number;
+  /** Signed, separately reported equity-method transaction gain/loss after tax. */
+  afterTaxTransactionIncome?: number;
   /** Signed income attributable to noncontrolling interests, deducted from consolidated income. */
   noncontrollingInterestIncome?: number;
   /** Signed after-tax income (loss) from discontinued operations, as reported. */
@@ -85,6 +87,26 @@ export type DirectNetItems = {
   expenses: StatementLine & { rowIndex: number };
   expenseItems: (StatementLine & { effect: "cost" | "gain"; rowIndex: number })[];
   gains: (StatementLine & { rowIndex: number })[];
+  consolidated: StatementLine & { rowIndex: number };
+  noncontrolling: StatementLine & { rowIndex: number };
+  parent: StatementLine & { rowIndex: number };
+};
+
+/** A reviewed after-tax transaction chain, separate from ordinary equity income.
+ * Original rows and signs corroborate both consolidated and parent subtotals. */
+export type AfterTaxTransactionItems = {
+  ruleId: string;
+  sourceUrl: string;
+  accession: string;
+  filedAt: string;
+  startDate: string;
+  endDate: string;
+  currency: "USD";
+  tableIndex: number;
+  pretax: StatementLine & { rowIndex: number };
+  tax: StatementLine & { rowIndex: number };
+  transaction: StatementLine & { rowIndex: number };
+  equity: StatementLine & { rowIndex: number };
   consolidated: StatementLine & { rowIndex: number };
   noncontrolling: StatementLine & { rowIndex: number };
   parent: StatementLine & { rowIndex: number };
@@ -187,6 +209,7 @@ export type FinancialPeriod = {
   shareholderBridge?: ShareholderIncomeBridge;
   operatingItems?: OperatingItems;
   directNetItems?: DirectNetItems;
+  afterTaxTransactionItems?: AfterTaxTransactionItems;
   /** A rounded intermediate subtotal is corroboration, not a replacement for the
    * exact arithmetic leading to the selected final net-income scope.
    */

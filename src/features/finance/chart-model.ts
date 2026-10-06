@@ -8,6 +8,7 @@ import { buildSignedStatementFlow, layoutSignedStatementFlow } from "./signed-fl
 import { shareholderBridgeProblem } from "./shareholder-bridge";
 import { operatingItemsProblem } from "./operating-items";
 import { directNetItemsProblem } from "./direct-net-items";
+import { afterTaxTransactionItemsProblem } from "./after-tax-transaction";
 
 export type RevenueSeries = { id: string; label: string };
 export type RevenueHistory = {
@@ -38,6 +39,7 @@ export type FlowNode = {
     | "tax-benefit"
     | "equity"
     | "subsidiary"
+    | "after-tax-transaction"
     | "noncontrolling"
     | "shareholder"
     | "discontinued"
@@ -124,6 +126,8 @@ export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
     });
   }
   const m = period.metrics as FlowStatementPeriod["metrics"];
+  const transactionProblem = afterTaxTransactionItemsProblem(period);
+  if (transactionProblem) return { ok: false, reason: transactionProblem };
   const operatingProblem = operatingItemsProblem(period);
   if (operatingProblem) return { ok: false, reason: operatingProblem };
   if (period.grossProfitAdjustments?.some((item) => item.amount !== 0))
@@ -135,6 +139,7 @@ export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
   const {
     equityMethodIncome = 0,
     afterTaxSubsidiaryIncome = 0,
+    afterTaxTransactionIncome = 0,
     noncontrollingInterestIncome = 0,
     discontinuedOperationsIncome = 0,
     incomeTax,
@@ -158,7 +163,8 @@ export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
     ) ||
     m.pretaxIncome < incomeTax ||
     !!period.shareholderBridge ||
-    !!period.operatingItems;
+    !!period.operatingItems ||
+    !!period.afterTaxTransactionItems;
   if (
     m.revenue <= 0 ||
     Object.entries(positiveMetrics).some(
@@ -246,10 +252,11 @@ export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
       m.pretaxIncome +
         equityMethodIncome +
         afterTaxSubsidiaryIncome +
+        afterTaxTransactionIncome +
         discontinuedOperationsIncome +
         afterTaxAdjustment,
       m.incomeTax + noncontrollingInterestIncome + m.netIncome,
-      "Pretax profit, income tax, after-tax equity and subsidiary income, discontinued operations, noncontrolling interests, and net profit"
+      "Pretax profit, income tax, after-tax equity, transaction and subsidiary income, discontinued operations, noncontrolling interests, and net profit"
     ]
   ];
   for (const [total, parts, label] of identities) {

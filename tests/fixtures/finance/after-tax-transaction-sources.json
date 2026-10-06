@@ -1,0 +1,1514 @@
+[
+  {
+    "ticker": "MDLZ",
+    "id": "2026-Q2",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828026050179/mdlz-20260630.htm",
+    "filedAt": "2026-07-28",
+    "accession": "0001628280-26-050179",
+    "startDate": "2026-04-01",
+    "endDate": "2026-06-30",
+    "originalSha256": "de782fa1ed69c266f80d5764235ce37467a262ad6c27d7bb19a76660b0d29d82",
+    "indexes": [7, 63],
+    "fixture": "MDLZ-2026-Q2-transaction-statement.html",
+    "key": "MDLZTransaction2026Q2",
+    "privateExcerptSha256": "a3a958917d5c3511dedc76ed194a5297ccc5ea55374ad8443212ca98f0f1d2fe",
+    "expected": [
+      {
+        "rowIndex": 10,
+        "label": "Earnings before income taxes",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 1899000000,
+        "dimensions": {},
+        "decimals": -6
+      },
+      {
+        "rowIndex": 11,
+        "label": "Income tax provision",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 364000000,
+        "dimensions": {},
+        "decimals": -6
+      },
+      {
+        "rowIndex": 12,
+        "label": "Loss on equity method investment transactions",
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6
+      },
+      {
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings",
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 17000000,
+        "dimensions": {},
+        "decimals": -6
+      },
+      {
+        "rowIndex": 14,
+        "label": "Net earnings",
+        "tag": "us-gaap:ProfitLoss",
+        "value": 1552000000,
+        "dimensions": {},
+        "decimals": -6
+      },
+      {
+        "rowIndex": 15,
+        "label": "less: Noncontrolling interest earnings",
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 4000000,
+        "dimensions": {},
+        "decimals": -6
+      },
+      {
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International",
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 1548000000,
+        "dimensions": {},
+        "decimals": -6
+      }
+    ]
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "FY2023",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828026005345/mdlz-20251231.htm",
+    "filedAt": "2026-02-04",
+    "accession": "0001628280-26-005345",
+    "startDate": "2023-01-01",
+    "endDate": "2023-12-31",
+    "originalSha256": "455ecd6c3a57c2e534ef61333650c8eb8145d7b04c5e857f452493f340e8bf0c",
+    "indexes": [85, 199],
+    "fixture": "MDLZ-FY2023-transaction-statement.html",
+    "key": "MDLZTransactionFY2023",
+    "privateExcerptSha256": "2374e3ed60bb544bf8c2428ad4c78f15d020f4d30d74e4b139c089ce7d75f32e",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 5880000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Earnings before income taxes",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 1537000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income tax provision",
+        "rowIndex": 12
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 465000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gain/(loss) on equity method investment transactions",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 160000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity method investment net earnings",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 4968000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings",
+        "rowIndex": 15
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 9000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "less: Noncontrolling interest earnings",
+        "rowIndex": 16
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 4959000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings attributable to Mondelēz International",
+        "rowIndex": 17
+      }
+    ]
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "FY2024",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828026005345/mdlz-20251231.htm",
+    "filedAt": "2026-02-04",
+    "accession": "0001628280-26-005345",
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31",
+    "originalSha256": "455ecd6c3a57c2e534ef61333650c8eb8145d7b04c5e857f452493f340e8bf0c",
+    "indexes": [85, 198],
+    "fixture": "MDLZ-FY2024-transaction-statement.html",
+    "key": "MDLZTransactionFY2024",
+    "privateExcerptSha256": "e9f7bac7b5f0bf3c5614ebeb71cb2c96a825166ea260b2f1f37d8d2dad2473fa",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 6261000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Earnings before income taxes",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 1469000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income tax provision",
+        "rowIndex": 12
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": -337000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gain/(loss) on equity method investment transactions",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 168000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity method investment net earnings",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 4623000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings",
+        "rowIndex": 15
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 12000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "less: Noncontrolling interest earnings",
+        "rowIndex": 16
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 4611000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings attributable to Mondelēz International",
+        "rowIndex": 17
+      }
+    ]
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "FY2025",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828026005345/mdlz-20251231.htm",
+    "filedAt": "2026-02-04",
+    "accession": "0001628280-26-005345",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "originalSha256": "455ecd6c3a57c2e534ef61333650c8eb8145d7b04c5e857f452493f340e8bf0c",
+    "indexes": [85, 197],
+    "fixture": "MDLZ-FY2025-transaction-statement.html",
+    "key": "MDLZTransactionFY2025",
+    "privateExcerptSha256": "b702c3fa58504fe9769cf5081867cb0c558227e5208d0897e5d8ef4bc488b203",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 3014000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Earnings before income taxes",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 782000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income tax provision",
+        "rowIndex": 12
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 169000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gain/(loss) on equity method investment transactions",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 65000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity method investment net earnings",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 2466000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings",
+        "rowIndex": 15
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 15000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "less: Noncontrolling interest earnings",
+        "rowIndex": 16
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 2451000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings attributable to Mondelēz International",
+        "rowIndex": 17
+      }
+    ]
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2024-Q3",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828025046773/mdlz-20250930.htm",
+    "filedAt": "2025-10-28",
+    "accession": "0001628280-25-046773",
+    "startDate": "2024-07-01",
+    "endDate": "2024-09-30",
+    "originalSha256": "e6597f3a5d7427aa3dae4a59436dd798b00d381cd0739b6c84980c012f0242f8",
+    "indexes": [7, 64],
+    "fixture": "MDLZ-2024-Q3-transaction-statement.html",
+    "key": "MDLZTransaction2024Q3",
+    "privateExcerptSha256": "86de6353580677ef26ec3d73cad32c7bdf651fe47e55449de3a7ef3e5b57b9c4",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 1132000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Earnings before income taxes",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 326000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income tax provision",
+        "rowIndex": 10
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": -4000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gain/(loss) on equity method investment transactions",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 54000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity method investment net earnings",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 856000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 3000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "less: Noncontrolling interest earnings",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 853000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings attributable to Mondelēz International",
+        "rowIndex": 15
+      }
+    ]
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2025-Q1",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828026027937/mdlz-20260331.htm",
+    "filedAt": "2026-04-28",
+    "accession": "0001628280-26-027937",
+    "startDate": "2025-01-01",
+    "endDate": "2025-03-31",
+    "originalSha256": "5c82c26f7f40aea248f7c0abc4af19a48c496c8026fc64290acdee93ef9f2e49",
+    "indexes": [7, 62],
+    "fixture": "MDLZ-2025-Q1-transaction-statement.html",
+    "key": "MDLZTransaction2025Q1",
+    "privateExcerptSha256": "9fd4b1d799179c0ad8d3f20212825d4f0f7edca9e9809e20b3e5e359a078e912",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 545000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Earnings before income taxes",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 154000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income tax provision",
+        "rowIndex": 11
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Loss on equity method investment transactions",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 16000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity method investment net earnings",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 407000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 5000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "less: Noncontrolling interest earnings",
+        "rowIndex": 15
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 402000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings attributable to Mondelēz International",
+        "rowIndex": 16
+      }
+    ]
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2025-Q2",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398225000188/mdlz-20250630.htm",
+    "filedAt": "2025-07-29",
+    "accession": "0001103982-25-000188",
+    "startDate": "2025-04-01",
+    "endDate": "2025-06-30",
+    "originalSha256": "b1cf873c2356e9aefba9e8e5b973d90c173cefe6fe53864ad526a074ba257498",
+    "indexes": [7, 62],
+    "fixture": "MDLZ-2025-Q2-transaction-statement.html",
+    "key": "MDLZTransaction2025Q2",
+    "privateExcerptSha256": "0d6270efc4b76aa8974d094a9540ec1e1db004196c3023e21cbe84dba6c30a88",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 855000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Earnings before income taxes",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 230000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income tax provision",
+        "rowIndex": 10
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 0,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Loss on equity method investment transactions",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 19000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity method investment net earnings",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 644000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 3000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "less: Noncontrolling interest earnings",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 641000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings attributable to Mondelēz International",
+        "rowIndex": 15
+      }
+    ]
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2025-Q3",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828025046773/mdlz-20250930.htm",
+    "filedAt": "2025-10-28",
+    "accession": "0001628280-25-046773",
+    "startDate": "2025-07-01",
+    "endDate": "2025-09-30",
+    "originalSha256": "e6597f3a5d7427aa3dae4a59436dd798b00d381cd0739b6c84980c012f0242f8",
+    "indexes": [7, 63],
+    "fixture": "MDLZ-2025-Q3-transaction-statement.html",
+    "key": "MDLZTransaction2025Q3",
+    "privateExcerptSha256": "4c107f61cf65b32ef5f53b66ed7fa12074b2cb18d141b3d320eb2cef9e1bd6c9",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 695000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Earnings before income taxes",
+        "rowIndex": 9
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 137000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income tax provision",
+        "rowIndex": 10
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 169000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Gain/(loss) on equity method investment transactions",
+        "rowIndex": 11
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 19000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity method investment net earnings",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 746000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 3000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "less: Noncontrolling interest earnings",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 743000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings attributable to Mondelēz International",
+        "rowIndex": 15
+      }
+    ]
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2026-Q1",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828026027937/mdlz-20260331.htm",
+    "filedAt": "2026-04-28",
+    "accession": "0001628280-26-027937",
+    "startDate": "2026-01-01",
+    "endDate": "2026-03-31",
+    "originalSha256": "5c82c26f7f40aea248f7c0abc4af19a48c496c8026fc64290acdee93ef9f2e49",
+    "indexes": [7, 61],
+    "fixture": "MDLZ-2026-Q1-transaction-statement.html",
+    "key": "MDLZTransaction2026Q1",
+    "privateExcerptSha256": "5cc0d449144a0ea482a28aec1b5bc857e64a382bf07d80a8f58e632ecc86dc24",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 775000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Earnings before income taxes",
+        "rowIndex": 10
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 228000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Income tax provision",
+        "rowIndex": 11
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": -3000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Loss on equity method investment transactions",
+        "rowIndex": 12
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 20000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Equity method investment net earnings",
+        "rowIndex": 13
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 564000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings",
+        "rowIndex": 14
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 4000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "less: Noncontrolling interest earnings",
+        "rowIndex": 15
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 560000000,
+        "dimensions": {},
+        "decimals": -6,
+        "label": "Net earnings attributable to Mondelēz International",
+        "rowIndex": 16
+      }
+    ]
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "FY2016",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398219000005/mdlz10k123118document.htm",
+    "filedAt": "2019-02-08",
+    "accession": "0001103982-19-000005",
+    "startDate": "2016-01-01",
+    "endDate": "2016-12-31",
+    "originalSha256": "4bff09401ea2aa2a512543521287bb671ad18bf4afd6b50f2c2c722e7f5891ef",
+    "indexes": [163, 284],
+    "fixture": "MDLZ-FY2016-transaction-statement.html",
+    "key": "MDLZTransactionFY2016",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 1454000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 114000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Provision for income taxes"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossonTransaction",
+        "value": 43000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "Gain on equity method investment transactions"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 262000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 1645000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 10000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 1635000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "2c37cf477b6c2922f2ede6935e2a6f267966aef16282c484f2fc9c012eb46539"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "FY2017",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398220000003/mdlz10k123119document1.htm",
+    "filedAt": "2020-02-07",
+    "accession": "0001103982-20-000003",
+    "startDate": "2017-01-01",
+    "endDate": "2017-12-31",
+    "originalSha256": "7fa4bce7df1fb7a43f1bed8fda5c95f764525ac33ceceab15af2e3ae1a799e7e",
+    "indexes": [163, 286],
+    "fixture": "MDLZ-FY2017-transaction-statement.html",
+    "key": "MDLZTransactionFY2017",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 3124000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 666000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Provision for income taxes"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossonTransaction",
+        "value": 40000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "Net (loss)/gain on equity method investment transactions"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 344000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 2842000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 14000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 2828000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "f1e63d3958a19bc3c17f81ee6c452b8a182df71a7f0960c9c8b9ecadda4c29e6"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "FY2018",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398221000004/mdlz-20201231.htm",
+    "filedAt": "2021-02-05",
+    "accession": "0001103982-21-000004",
+    "startDate": "2018-01-01",
+    "endDate": "2018-12-31",
+    "originalSha256": "08ed3fc36a8c9f5b7262e30e63e46aed55600e5e0a5bd7715c294ae95e307747",
+    "indexes": [40, 114],
+    "fixture": "MDLZ-FY2018-transaction-statement.html",
+    "key": "MDLZTransactionFY2018",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 2842000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 773000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Income tax provision"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossonTransaction",
+        "value": 778000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "Gain/(loss) on equity method investment transactions"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 484000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 3331000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 14000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 3317000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "aef49e9b85ae8c4cc1719857f8bce39bccf8e6a6a726519ea0d6728202988733"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "FY2022",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398225000030/mdlz-20241231.htm",
+    "filedAt": "2025-02-05",
+    "accession": "0001103982-25-000030",
+    "startDate": "2022-01-01",
+    "endDate": "2022-12-31",
+    "originalSha256": "41b58756331da4b14c776af1f2e615cfbb7b89dd431828b4c42d104bb692b2b3",
+    "indexes": [100, 217],
+    "fixture": "MDLZ-FY2022-transaction-statement.html",
+    "key": "MDLZTransactionFY2022",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 3228000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 865000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "Income tax provision"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": -22000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "(Loss)/gain on equity method investment transactions"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 385000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 2726000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 9000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "less: Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 2717000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 17,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "b1c522caa07f60289949de6abfa105892df54bb82c582eaf08d9a4172d029288"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2020-Q2",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398221000013/mdlz-20210630.htm",
+    "filedAt": "2021-07-27",
+    "accession": "0001103982-21-000013",
+    "startDate": "2020-04-01",
+    "endDate": "2020-06-30",
+    "originalSha256": "4bcda5728a3199493638db7369c64af9fc1c63f8c791d29f10123ccaa741089d",
+    "indexes": [8, 48],
+    "fixture": "MDLZ-2020-Q2-transaction-statement.html",
+    "key": "MDLZTransaction2020Q2",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 659000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 341000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Income tax provision"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 121000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "Gain on equity method investment transactions"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 106000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 545000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 1000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 544000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "c3b93184ed310cd5ef3f584dc2fe138688c9a247e948e774ca6b94ed8b6b51c2"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2020-Q3",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398221000018/mdlz-20210930.htm",
+    "filedAt": "2021-11-02",
+    "accession": "0001103982-21-000018",
+    "startDate": "2020-07-01",
+    "endDate": "2020-09-30",
+    "originalSha256": "623d630a2917cddcaa1bd48438712f8a8739be4fa47395548d7b4899594e2b69",
+    "indexes": [8, 48],
+    "fixture": "MDLZ-2020-Q3-transaction-statement.html",
+    "key": "MDLZTransaction2020Q3",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 1084000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 391000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Income tax provision"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 345000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "Gain on equity method investment transactions"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 84000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 1122000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 3000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 1119000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "48c2701c0352306290ab762b877cbde474c27777d14428ba1837c9b4624ad14b"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2021-Q2",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398222000012/mdlz-20220630.htm",
+    "filedAt": "2022-07-26",
+    "accession": "0001103982-22-000012",
+    "startDate": "2021-04-01",
+    "endDate": "2021-06-30",
+    "originalSha256": "01ea4e77b56fb523e668816467324a8cc2fa7fc99bc441460a6d5ceccf83d3be",
+    "indexes": [8, 48],
+    "fixture": "MDLZ-2021-Q2-transaction-statement.html",
+    "key": "MDLZTransaction2021Q2",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 868000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 398000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Income tax provision"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 502000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "(Loss)/gain on equity method investment transactions"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 107000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 1079000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 1000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 1078000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "1fe7f928cffd0adcc40b20eb8c4af425e5b31b478d83ff1707ae8567589be23d"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2021-Q3",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398222000018/mdlz-20220930.htm",
+    "filedAt": "2022-11-01",
+    "accession": "0001103982-22-000018",
+    "startDate": "2021-07-01",
+    "endDate": "2021-09-30",
+    "originalSha256": "86c818d806ffab7582bdb0104cff21b258a9efa198fa7717500c6b595c625207",
+    "indexes": [8, 53],
+    "fixture": "MDLZ-2021-Q3-transaction-statement.html",
+    "key": "MDLZTransaction2021Q3",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 1249000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 342000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Income tax provision"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 250000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "(Loss)/gain on equity method investment transactions"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 105000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 1262000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 4000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 1258000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "9fa70c377bcd8f25a29a137b7d70260c8b11910f92ebaaa9c5a78105f9da1401"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2022-Q2",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398223000043/mdlz-20230630.htm",
+    "filedAt": "2023-07-27",
+    "accession": "0001103982-23-000043",
+    "startDate": "2022-04-01",
+    "endDate": "2022-06-30",
+    "originalSha256": "a73d05290d8314bbd58b9b57388818c101d3c250394d580b2f0d9f23d27bab94",
+    "indexes": [8, 45],
+    "fixture": "MDLZ-2022-Q2-transaction-statement.html",
+    "key": "MDLZTransaction2022Q2",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 859000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 201000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Income tax provision"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": -8000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "(Loss)/gain on equity method investment transactions"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 98000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 748000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 1000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 747000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "e60f65990ada3cb819cef606416871fe60dd07fdfa725fe78e8da1b41ff97edf"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2023-Q1",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398224000055/mdlz-20240331.htm",
+    "filedAt": "2024-04-30",
+    "accession": "0001103982-24-000055",
+    "startDate": "2023-01-01",
+    "endDate": "2023-03-31",
+    "originalSha256": "4a68e8245a588c73638b6294912ce782fe7865e40df7808ea90be55bfd441dc0",
+    "indexes": [7, 67],
+    "fixture": "MDLZ-2023-Q1-transaction-statement.html",
+    "key": "MDLZTransaction2023Q1",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 2225000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 658000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Income tax provision"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 487000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "(Loss)/gain on equity method investment transactions including impairments"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 35000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 2089000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 8000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "less: Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 2081000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "f3663de0d5c9c09b1a3946c1c16feef45295f3fc703a9bb110d0152d5a0ac526"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2023-Q2",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398224000092/mdlz-20240630.htm",
+    "filedAt": "2024-07-30",
+    "accession": "0001103982-24-000092",
+    "startDate": "2023-04-01",
+    "endDate": "2023-06-30",
+    "originalSha256": "80fcaf040de20ee784c86e43c92327e809cb90d4348069e2acd89406579267c4",
+    "indexes": [7, 69],
+    "fixture": "MDLZ-2023-Q2-transaction-statement.html",
+    "key": "MDLZTransaction2023Q2",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 1161000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 268000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Income tax provision"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": -23000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "(Loss)/gain on equity method investment transactions including impairments"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 71000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 941000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": -3000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "less: Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 944000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "378c57307b242fc97937edeba8d7df4043f8c9c3c9c7986966b4c78b1231b666"
+  },
+  {
+    "ticker": "MDLZ",
+    "id": "2023-Q3",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000110398224000104/mdlz-20240930.htm",
+    "filedAt": "2024-10-29",
+    "accession": "0001103982-24-000104",
+    "startDate": "2023-07-01",
+    "endDate": "2023-09-30",
+    "originalSha256": "b8a0df11ae2b808b63f7fb95eca4d469a020a05f6431ee463b63d2766a80265a",
+    "indexes": [7, 69],
+    "fixture": "MDLZ-2023-Q3-transaction-statement.html",
+    "key": "MDLZTransaction2023Q3",
+    "expected": [
+      {
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "value": 1331000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 10,
+        "label": "Earnings before income taxes"
+      },
+      {
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "value": 354000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 11,
+        "label": "Income tax provision"
+      },
+      {
+        "tag": "mdlz:EquityMethodInvestmentRealizedGainLossOnTransaction",
+        "value": 1000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 12,
+        "label": "(Loss)/gain on equity method investment transactions including impairments"
+      },
+      {
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "value": 10000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 13,
+        "label": "Equity method investment net earnings"
+      },
+      {
+        "tag": "us-gaap:ProfitLoss",
+        "value": 988000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 14,
+        "label": "Net earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "value": 4000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 15,
+        "label": "less: Noncontrolling interest earnings"
+      },
+      {
+        "tag": "us-gaap:NetIncomeLoss",
+        "value": 984000000,
+        "dimensions": {},
+        "decimals": -6,
+        "rowIndex": 16,
+        "label": "Net earnings attributable to Mondelēz International"
+      }
+    ],
+    "excerptSha256": "9180248368da1e8dfe7f310881d3b336d8aa6866c7bcfa45f6b2e399e773ed90"
+  }
+]

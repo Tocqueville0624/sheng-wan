@@ -5,6 +5,14 @@ import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
 for (const key of [
+  "MDLZTransaction2026Q2",
+  "MDLZTransactionFY2025",
+  "MDLZTransactionFY2024",
+  "MDLZTransaction2026Q1",
+  "MDLZTransactionFY2016",
+  "MDLZTransactionFY2022",
+  "MDLZTransaction2023Q1",
+  "MDLZTransaction2023Q2",
   "SPGISubtotalsQuarter",
   "CARRSubtotalsQuarter",
   "PLDSubtotalsQuarter",
@@ -70,6 +78,20 @@ for (const key of [
     const metadata = JSON.parse((await chart.locator("metadata").textContent()) ?? "null");
     expect(metadata.metrics).toEqual(period.metrics);
     expect(metadata.flow).toBe("signed-accounting");
+    if (period.afterTaxTransactionItems) {
+      expect(metadata.afterTaxTransactionItems).toEqual(period.afterTaxTransactionItems);
+      const amount = period.metrics.afterTaxTransactionIncome!;
+      if (amount === 0)
+        await expect(chart.locator('[data-flow-node="after-tax-transaction"]')).toHaveCount(0);
+      else {
+        expect(
+          metadata.nodes.find((n: { id: string }) => n.id === "after-tax-transaction").signedAmount
+        ).toBe(amount);
+        await expect(chart.locator('[data-flow-node="after-tax-transaction"]')).toContainText(
+          amount < 0 ? /transaction loss.*after tax/s : /transaction gain.*after tax/s
+        );
+      }
+    }
     if (period.operatingItems) {
       expect(metadata.operatingItems).toEqual(period.operatingItems);
       for (const item of period.operatingItems.items.filter(
@@ -181,7 +203,12 @@ for (const key of [
         contentType: format === "SVG" ? "image/svg+xml" : "image/png"
       });
     }
-    if (period.shareholderBridge || period.operatingItems || period.directNetItems) {
+    if (
+      period.shareholderBridge ||
+      period.operatingItems ||
+      period.directNetItems ||
+      period.afterTaxTransactionItems
+    ) {
       const downloaded = page.waitForEvent("download");
       await page.getByRole("button", { name: "Download CSV", exact: true }).click();
       const download = await downloaded;
@@ -201,6 +228,13 @@ for (const key of [
         expect(csv).toContain('"total_expenses"');
         expect(csv).toContain('"direct_net_items"');
         expect(csv).toContain(JSON.stringify(period.directNetItems).replaceAll('"', '""'));
+      }
+      if (period.afterTaxTransactionItems) {
+        expect(csv).toContain('"after_tax_transaction_income"');
+        expect(csv).toContain('"after_tax_transaction_items"');
+        expect(csv).toContain(
+          JSON.stringify(period.afterTaxTransactionItems).replaceAll('"', '""')
+        );
       }
     }
     expect(errors).toEqual([]);

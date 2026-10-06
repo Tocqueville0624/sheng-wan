@@ -231,6 +231,7 @@ export function parseInlineXbrl(html: string): ParsedFiling {
 
 const metricTags: Record<keyof FinancialMetrics, string[]> = {
   totalExpenses: [],
+  afterTaxTransactionIncome: [],
   revenue: [
     "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
     "us-gaap:Revenues",

@@ -22,6 +22,7 @@ export function isReconciled(metrics: FinancialMetrics, grossAdjustment = 0) {
         metrics.incomeTax +
         (metrics.equityMethodIncome ?? 0) +
         (metrics.afterTaxSubsidiaryIncome ?? 0) +
+        (metrics.afterTaxTransactionIncome ?? 0) +
         (metrics.discontinuedOperationsIncome ?? 0) -
         (metrics.noncontrollingInterestIncome ?? 0) -
         metrics.netIncome

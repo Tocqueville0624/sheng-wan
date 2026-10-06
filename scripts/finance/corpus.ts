@@ -135,6 +135,7 @@ const parserVersion = hash(
       readFile("src/features/finance/shareholder-bridge.ts", "utf8"),
       readFile("src/features/finance/operating-items.ts", "utf8"),
       readFile("src/features/finance/direct-net-items.ts", "utf8"),
+      readFile("src/features/finance/after-tax-transaction.ts", "utf8"),
       readFile("src/data/generated/finance-history.json", "utf8")
     ])
   ).join("\n")

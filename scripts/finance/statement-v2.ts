@@ -6,6 +6,11 @@ import { parseInlineXbrl, type ParsedFiling, type XbrlFact } from "./ixbrl";
 import type { SecFiling } from "./sec-shared";
 import { flowPeriod } from "./v2-model";
 import { operatingItemsProblem } from "../../src/features/finance/operating-items";
+import {
+  afterTaxTransactionItemsProblem,
+  afterTaxTransactionRule,
+  afterTaxTransactionTags
+} from "../../src/features/finance/after-tax-transaction";
 
 /*
  * Generic issuers do not share one taxonomy. Oracle reports pretax income with an
@@ -134,13 +139,15 @@ export type StatementReading = {
   afterTaxReconciliation?: PeriodV2["afterTaxReconciliation"];
   consolidatedIncomeSubtotal?: PeriodV2["consolidatedIncomeSubtotal"];
   roundedOperatingExpenseComponents?: PeriodV2["roundedOperatingExpenseComponents"];
+  afterTaxTransactionItems?: PeriodV2["afterTaxTransactionItems"];
 };
 
 /** Interpret one table for one period, or return undefined when any rule is not met. */
 export function readStatementRows(
   rows: Row[],
   period: PeriodV2,
-  filing: Pick<SecFiling, "accession" | "filedAt" | "sourceUrl">
+  filing: Pick<SecFiling, "accession" | "filedAt" | "sourceUrl">,
+  tableIndex?: number
 ): StatementReading | undefined {
   const m = period.metrics;
   const revenueSource = period.metricSources.revenue;
@@ -253,6 +260,7 @@ export function readStatementRows(
   const subsidiaries: Line[] = [];
   const discontinued: Line[] = [];
   const minority: Line[] = [];
+  let transaction: Line | undefined;
   let afterTaxDifference = 0;
   let roundedSubtotal: Line | undefined;
   for (let i = iT + 1; i < lines.length && !parent; i++) {
@@ -276,6 +284,21 @@ export function readStatementRows(
         afterTaxDifference = difference;
       }
       parent = item;
+    } else if (
+      item &&
+      afterTaxTransactionTags.has(tag) &&
+      !transaction &&
+      i === iT + 1 &&
+      !equity.length &&
+      !minority.length &&
+      filing.sourceUrl.startsWith(
+        `https://www.sec.gov/Archives/edgar/data/${Number(afterTaxTransactionRule.cik)}/${filing.accession.replaceAll("-", "")}/`
+      )
+    ) {
+      // The reviewed fact is already signed. In particular, a Loss caption does
+      // not negate a negative amount a second time.
+      transaction = item;
+      running += item.fact.value;
     } else if (item && EQUITY_AFTER_TAX.has(tag) && !minority.length) {
       equity.push(item);
       running += item.fact.value;
@@ -425,6 +448,15 @@ export function readStatementRows(
   }
   if (!assign("incomeTax", tax) || !assign("pretaxIncome", pretax)) return;
   if (!assign("netIncome", parent)) return;
+  if (transaction && !assign("afterTaxTransactionIncome", transaction)) return;
+  if (
+    transaction &&
+    (equity.length !== 1 ||
+      minority.length !== 1 ||
+      !assign("equityMethodIncome", equity[0]) ||
+      !assign("noncontrollingInterestIncome", minority[0]))
+  )
+    return;
   if (
     !assignAll("noncontrollingInterestIncome", minority, "Noncontrolling interests") ||
     !assignAll("equityMethodIncome", equity, "After-tax equity-method income") ||
@@ -469,6 +501,42 @@ export function readStatementRows(
     });
   };
   const result: StatementReading = { metrics, sources };
+  if (transaction) {
+    if (tableIndex === undefined || !consolidated || equity.length !== 1 || minority.length !== 1)
+      return;
+    const sourceLine = (item: Line) => ({
+      id: `after-tax-${lines.indexOf(item)}-${item.fact.tag.split(":").at(-1)}`,
+      label: item.label,
+      tag: item.fact.tag,
+      amount: item.fact.value,
+      decimals: item.fact.decimals,
+      rowIndex: lines.indexOf(item)
+    });
+    result.afterTaxTransactionItems = {
+      ruleId: afterTaxTransactionRule.id,
+      sourceUrl: filing.sourceUrl,
+      accession: filing.accession,
+      filedAt: filing.filedAt,
+      startDate: period.startDate,
+      endDate: period.endDate,
+      currency: "USD",
+      tableIndex,
+      pretax: sourceLine(pretax),
+      tax: sourceLine(tax),
+      transaction: sourceLine(transaction),
+      equity: sourceLine(equity[0]),
+      consolidated: sourceLine(consolidated),
+      noncontrolling: sourceLine(minority[0]),
+      parent: sourceLine(parent)
+    };
+    const candidate = {
+      ...period,
+      metrics: { ...period.metrics, ...metrics },
+      metricSources: { ...period.metricSources, ...sources },
+      afterTaxTransactionItems: result.afterTaxTransactionItems
+    };
+    if (afterTaxDifference || afterTaxTransactionItemsProblem(candidate)) return;
+  }
   if (afterTaxDifference)
     result.afterTaxReconciliation = {
       label: "Source rounding",
@@ -748,6 +816,8 @@ export function applyStatementReading(period: PeriodV2, reading: StatementReadin
   if (reading.afterTaxReconciliation) next.afterTaxReconciliation = reading.afterTaxReconciliation;
   if (reading.consolidatedIncomeSubtotal)
     next.consolidatedIncomeSubtotal = reading.consolidatedIncomeSubtotal;
+  if (reading.afterTaxTransactionItems)
+    next.afterTaxTransactionItems = reading.afterTaxTransactionItems;
   if (reading.roundedOperatingExpenseComponents)
     next.roundedOperatingExpenseComponents = reading.roundedOperatingExpenseComponents;
   if (reading.operatingCostDetails) next.operatingCostDetails = reading.operatingCostDetails;
@@ -803,8 +873,8 @@ export function enrichStatementPeriods(
   if (!periods.length) return [];
   // Only tables that tag an income-tax line can be a primary income statement.
   const tables = [...html.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)]
-    .map(([table]) => table)
-    .filter((table) => /<ix:nonFraction\b[^>]*IncomeTax/i.test(table));
+    .map(([table], tableIndex) => ({ table, tableIndex }))
+    .filter(({ table }) => /<ix:nonFraction\b[^>]*IncomeTax/i.test(table));
   if (tables.length > 2000) throw new Error("Statement table count exceeds safe limits.");
   const output: PeriodV2[] = [];
   for (const period of periods) {
@@ -825,10 +895,10 @@ export function enrichStatementPeriods(
         .filter((f): f is XbrlFact => !!f && !Object.keys(f.context.dimensions).length)
         .map((f) => [f.tag, f])
     );
-    for (const table of tables) {
+    for (const { table, tableIndex } of tables) {
       const rows = tableRows(table, refs, consolidated);
       if (!rows || rows.length < 5) continue;
-      const reading = readStatementRows(rows, period, filing);
+      const reading = readStatementRows(rows, period, filing, tableIndex);
       if (!reading) continue;
       const next = applyStatementReading(period, reading);
       if (!next) continue;

@@ -158,10 +158,12 @@ export function directNetItemsProblem(period: SourcePeriod) {
         "expensesAndOtherItems",
         "equityMethodIncome",
         "afterTaxSubsidiaryIncome",
+        "afterTaxTransactionIncome",
         "discontinuedOperationsIncome"
       ] as const
     ).some((key) => period.metrics[key] !== undefined) ||
     period.operatingItems ||
+    period.afterTaxTransactionItems ||
     period.operatingReconciliation ||
     period.afterTaxReconciliation ||
     period.consolidatedIncomeSubtotal ||

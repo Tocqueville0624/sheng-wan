@@ -14,6 +14,7 @@ import type {
   StatementFlow
 } from "./chart-model";
 import { wrapLabel } from "./chart-model";
+import { afterTaxTransactionLabel } from "./after-tax-transaction";
 
 /**
  * An accounting identity x + gains - expenses = y is represented as
@@ -363,6 +364,13 @@ export function buildSignedStatementFlow(
         : "Unconsolidated subsidiary income (after tax)",
       "subsidiary"
     );
+    if (period.afterTaxTransactionItems)
+      add(
+        m.afterTaxTransactionIncome!,
+        "after-tax-transaction",
+        afterTaxTransactionLabel(period.afterTaxTransactionItems),
+        "after-tax-transaction"
+      );
     add(
       m.discontinuedOperationsIncome ?? 0,
       "discontinued",
