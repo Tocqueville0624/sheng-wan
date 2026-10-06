@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import snapshotData from "../src/data/generated/finance-reviewed/0001103982.json";
+import akamaiData from "../src/data/generated/finance-reviewed/0001086222.json";
 import { catalogIdentity } from "../worker/finance-store";
 import { apiV2 } from "../worker/index";
 import { reviewedSnapshot, supplementReviewedHistory } from "../worker/reviewed-snapshots";
@@ -16,6 +17,59 @@ function assetResponse(body = JSON.stringify(original), status = 200, type = "ap
 const companyRequest = new Request("https://shengwan.org/api/finance/v2/companies/MDLZ");
 
 describe("reviewed SEC snapshot delivery", () => {
+  it("delivers the actual Akamai SEC snapshot while retaining the public update quota", async () => {
+    const company = akamaiData as CompanyV2;
+    const body = JSON.stringify(company);
+    expect(new TextEncoder().encode(body).length).toBeLessThan(1024 * 1024);
+    const assets = assetResponse(body);
+    const storeFetch = vi.fn(async (request: Request) =>
+      request.method === "POST"
+        ? Response.json(
+            { error: { code: "RATE_LIMITED" }, retryAt: "2026-10-07T00:00:00.000Z" },
+            { status: 429 }
+          )
+        : Response.json({ company: null, job: null, available: true })
+    );
+    const env = {
+      ASSETS: assets,
+      FINANCE_PUBLIC_UPDATES: "enabled",
+      FINANCE_STORE: {
+        idFromName: () => "finance-v2",
+        get: () => ({ fetch: storeFetch })
+      } as unknown as DurableObjectNamespace
+    };
+    const response = await apiV2(
+      new Request("https://shengwan.org/api/finance/v2/companies/AKAM"),
+      env
+    );
+    const result = (await response.json()) as CompanyResponse;
+    expect(result.company!.checkedAt).toBe(company.checkedAt);
+    expect(result.savedSourceSnapshot!.checkedAt).toBe(company.checkedAt);
+    expect(result.job).toBeNull();
+    expect(result.company!.annual).toHaveLength(10);
+    expect(result.company!.quarterly).toHaveLength(20);
+    expect(
+      [...result.company!.annual, ...result.company!.quarterly].filter((p) => p.coverage.segments)
+    ).toHaveLength(23);
+    for (const kind of ["annual", "quarterly"] as const) {
+      const p = result.company![kind].at(-1)!;
+      expect(p.coverage).toEqual({ basics: true, segments: true, sankey: true });
+      expect(p.segments).toEqual(company[kind].at(-1)!.segments);
+      expect(p.businessBreakdownSource!.method).toBe("reviewed-service-revenue-rows");
+    }
+    expect(() => validateV2(result.company!)).not.toThrow();
+    const update = await apiV2(
+      new Request("https://shengwan.org/api/finance/v2/companies/AKAM/refresh", {
+        method: "POST",
+        headers: { Origin: "https://shengwan.org" }
+      }),
+      env
+    );
+    expect(update.status).toBe(429);
+    expect(await update.json()).toMatchObject({ error: { code: "RATE_LIMITED" } });
+    expect(assets.fetch).toHaveBeenCalledTimes(1);
+    expect(storeFetch).toHaveBeenCalledTimes(2);
+  });
   it("retains the actual 29 reconciled periods and the missing 2020-Q4 source gap", async () => {
     const assets = assetResponse();
     const loaded = await reviewedSnapshot(identity, assets);
