@@ -416,24 +416,35 @@ test("reverse input consumes the stretch before native scrolling resumes", async
   await page.setViewportSize({ width: 1366, height: 900 });
   await prepare(page, "bottom");
   const maximum = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
-  await page.mouse.wheel(0, 180);
-  await page.waitForTimeout(80);
-  const pulled = await page.locator(".site-page").evaluate((element) => {
-    const transform = getComputedStyle(element).transform;
-    return transform === "none" ? 0 : new DOMMatrixReadOnly(transform).m42;
-  });
-  expect(pulled).toBeLessThan(-10);
-
-  await page.mouse.wheel(0, -12);
-  expect(await page.evaluate(() => scrollY)).toBeCloseTo(maximum, 0);
-  await expect
-    .poll(() =>
-      page.locator(".site-page").evaluate((element) => {
-        const transform = getComputedStyle(element).transform;
-        return transform === "none" ? 0 : new DOMMatrixReadOnly(transform).m42;
-      })
-    )
-    .toBeGreaterThan(pulled);
+  const recorder = await startRecorder(page);
+  try {
+    // Reverse within the active gesture. A fixed 80ms host sleep plus browser
+    // dispatch can cross the 110ms idle boundary and exercise release instead.
+    await sendProfile(page, [180, -12], 0);
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+        )
+    );
+    const record = await recorder.evaluate((value) => value.stop());
+    expect(record.wheels).toHaveLength(2);
+    for (const event of record.wheels)
+      expect(event).toMatchObject({ trusted: true, prevented: true, state: "pulling" });
+    const reversed = record.wheels[1]!;
+    expect(reversed.syncOffset).toBeLessThan(-10);
+    expect(
+      record.frames.some(
+        (frame) =>
+          frame.time > reversed.time &&
+          frame.state === "pulling" &&
+          frame.offset > reversed.syncOffset
+      )
+    ).toBe(true);
+    expect(await page.evaluate(() => scrollY)).toBeCloseTo(maximum, 0);
+  } finally {
+    await recorder.dispose();
+  }
 
   await page.mouse.wheel(0, -500);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(maximum - 100);
