@@ -444,5 +444,218 @@
         "sankey": false
       }
     }
-  ]
+  ],
+  "existingBusinessPeriod": {
+    "id": "FY2020",
+    "label": "FY 2020",
+    "kind": "annual",
+    "fiscalYear": 2020,
+    "startDate": "2019-12-29",
+    "endDate": "2020-12-26",
+    "filedAt": "2023-02-27",
+    "accession": "0000002488-23-000047",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 9763000000,
+      "costOfRevenue": 5416000000,
+      "grossProfit": 4347000000,
+      "operatingIncome": 1369000000,
+      "pretaxIncome": 1280000000,
+      "incomeTax": -1210000000,
+      "netIncome": 2490000000,
+      "researchAndDevelopment": 1983000000,
+      "sellingGeneralAndAdministrative": 995000000,
+      "operatingExpenses": 2978000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0000002488-23-000047",
+        "filedAt": "2023-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Goods and Services Sold",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0000002488-23-000047",
+        "filedAt": "2023-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "method": "reported"
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0000002488-23-000047",
+        "filedAt": "2023-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "method": "reported"
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0000002488-23-000047",
+        "filedAt": "2023-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "method": "reported"
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000002488-23-000047",
+        "filedAt": "2023-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "method": "reported"
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000002488-23-000047",
+        "filedAt": "2023-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "method": "reported"
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000002488-23-000047",
+        "filedAt": "2023-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "method": "reported"
+      },
+      "researchAndDevelopment": {
+        "label": "Research and Development Expense",
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "accession": "0000002488-23-000047",
+        "filedAt": "2023-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "method": "reported"
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0000002488-23-000047",
+        "filedAt": "2023-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "operatingExpenses",
+        "tag": "grossProfit - operatingIncome",
+        "accession": "0000002488-23-000047",
+        "filedAt": "2023-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+          "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": true,
+      "sankey": true
+    },
+    "segments": [
+      {
+        "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-amd-DatacenterMember",
+        "label": "Data Center",
+        "revenue": 1685000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+          "accession": "0000002488-23-000047",
+          "filedAt": "2023-02-27",
+          "startDate": "2019-12-29",
+          "endDate": "2020-12-26",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "amd:DatacenterMember"
+          },
+          "value": 1685000000,
+          "decimals": -6,
+          "tableLabel": "Data Center"
+        }
+      },
+      {
+        "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-amd-ClientMember",
+        "label": "Client",
+        "revenue": 5189000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+          "accession": "0000002488-23-000047",
+          "filedAt": "2023-02-27",
+          "startDate": "2019-12-29",
+          "endDate": "2020-12-26",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "amd:ClientMember"
+          },
+          "value": 5189000000,
+          "decimals": -6,
+          "tableLabel": "Client"
+        }
+      },
+      {
+        "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-amd-GamingMember",
+        "label": "Gaming",
+        "revenue": 2746000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+          "accession": "0000002488-23-000047",
+          "filedAt": "2023-02-27",
+          "startDate": "2019-12-29",
+          "endDate": "2020-12-26",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "amd:GamingMember"
+          },
+          "value": 2746000000,
+          "decimals": -6,
+          "tableLabel": "Gaming"
+        }
+      },
+      {
+        "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-amd-EmbeddedMember",
+        "label": "Embedded",
+        "revenue": 143000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+          "accession": "0000002488-23-000047",
+          "filedAt": "2023-02-27",
+          "startDate": "2019-12-29",
+          "endDate": "2020-12-26",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "amd:EmbeddedMember"
+          },
+          "value": 143000000,
+          "decimals": -6,
+          "tableLabel": "Embedded"
+        }
+      }
+    ],
+    "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+    "segmentBasis": "Revenue by reported operating segment, using one classification from the cited statement table.",
+    "businessBreakdownSource": {
+      "method": "statement-revenue-rows",
+      "tableIndex": 22,
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+      "accession": "0000002488-23-000047",
+      "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue": 9763000000,
+      "revenueDecimals": -6,
+      "axis": "us-gaap:StatementBusinessSegmentsAxis",
+      "totalLabel": "Total net revenue",
+      "omittedSubtotals": []
+    }
+  }
 }

@@ -116,6 +116,7 @@ if (selected)
     if (!corpus.issuers.some((c) => c.tickers.includes(ticker)))
       throw new Error(`Unknown corpus ticker: ${ticker}`);
 const parserFiles = [
+  "corpus",
   "standalone-xbrl",
   "standalone-revenue-reader",
   "standalone-business-v2",
@@ -261,7 +262,19 @@ for (const entry of corpus.issuers) {
     try {
       const source = (url: string) =>
         readPinnedCorpusSource(url, entry.sourceRecords, readSecCache);
-      const seed = bundledData.companies.find((c) => c.cik === entry.cik) as CompanyV2 | undefined;
+      let seed = bundledData.companies.find((c) => c.cik === entry.cik) as CompanyV2 | undefined;
+      // Match a real refresh's retained history for the finite AMD reader.
+      // Source-only first imports still run without a seed. Do not reconstruct
+      // already verified business IDs from scratch during an offline refresh.
+      if (entry.cik === "0000002488") {
+        try {
+          seed = JSON.parse(
+            await readFile(path.join(directory, "companies", `${entry.cik}.json`), "utf8")
+          ).company as CompanyV2;
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+        }
+      }
       const result = await auditCompanyDataset(identity, source, 30, seed);
       const capability = (p: PeriodV2 | undefined) =>
         p && { id: p.id, sankey: p.coverage.sankey, segments: p.coverage.segments };

@@ -8,7 +8,8 @@ import {
   originalAmdInlineIncome,
   amdIncomeFlowView
 } from "../src/features/finance/amd-inline-income";
-import { flowPeriod, validateV2 } from "../scripts/finance/v2-model";
+import { flowPeriod, validateV2, mergeV2 } from "../scripts/finance/v2-model";
+import { readGenericFiling } from "../scripts/finance/generic-import";
 import { companyFromFilingPeriods } from "../scripts/finance/current-filing";
 import { buildStatementFlow } from "../src/features/finance/chart-model";
 import {
@@ -30,6 +31,59 @@ function recover(id: string) {
   return { prior, source, p: out[0] };
 }
 describe("AMD complete original income scope while retaining indexed financial facts", () => {
+  it("keeps every saved business identifier and source detail during a fresh same-filing reconstruction", () => {
+    const old = structuredClone(saved.existingBusinessPeriod) as PeriodV2,
+      source = amdFixture("FY2022"),
+      seed = structuredClone(old);
+    delete seed.segments;
+    delete seed.segmentSourceUrl;
+    delete seed.segmentBasis;
+    delete seed.businessBreakdownSource;
+    seed.coverage.segments = false;
+    const fresh = readGenericFiling(
+        source.html,
+        source.identity,
+        source.source.filing,
+        companyFromFilingPeriods(source.identity, [seed]),
+        []
+      ),
+      incoming = companyFromFilingPeriods(source.identity, fresh),
+      before = companyFromFilingPeriods(source.identity, [old]),
+      reconstructed = fresh.find((p) => p.id === old.id)!;
+    expect(reconstructed).toBeDefined();
+    expect(reconstructed.segments?.map((s) => s.id)).not.toEqual(old.segments?.map((s) => s.id));
+    const merged = mergeV2(before, incoming),
+      kept = merged.annual.find((p) => p.id === old.id)!;
+    expect(kept).toEqual(old);
+  });
+  it("adds original income proof to an existing business chart without replacing its history identifiers", () => {
+    const old = structuredClone(saved.periods.find((p) => p.id === "FY2021")) as PeriodV2,
+      source = amdFixture("FY2023"),
+      seed = structuredClone(old);
+    delete seed.segments;
+    delete seed.segmentSourceUrl;
+    delete seed.segmentBasis;
+    delete seed.businessBreakdownSource;
+    seed.coverage.segments = false;
+    const fresh = readGenericFiling(
+        source.html,
+        source.identity,
+        source.source.filing,
+        companyFromFilingPeriods(source.identity, [seed]),
+        []
+      ),
+      reconstructed = fresh.find((p) => p.id === old.id)!;
+    expect(reconstructed.amdInlineIncome).toBeDefined();
+    const merged = mergeV2(
+        companyFromFilingPeriods(source.identity, [old]),
+        companyFromFilingPeriods(source.identity, [reconstructed])
+      ),
+      kept = merged.annual[0];
+    for (const [key, value] of Object.entries(old))
+      if (key !== "coverage") expect(kept[key as keyof PeriodV2]).toEqual(value);
+    expect(kept.amdInlineIncome).toEqual(reconstructed.amdInlineIncome);
+    expect(flowPeriod(kept)).toBeDefined();
+  });
   for (const id of ["FY2017", "FY2021", "FY2025"])
     it(`${id} retains every saved field while recovering a conserved original profit flow`, () => {
       const { prior, source, p } = recover(id);

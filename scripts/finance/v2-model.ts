@@ -993,6 +993,37 @@ export function mergeV2(previous: CompanyV2 | undefined, incoming: CompanyV2): C
     for (const p of incoming[kind]) {
       const key = `${p.startDate}:${p.endDate}`;
       const old = byDates.get(key);
+      if (
+        incoming.cik === "0000002488" &&
+        old &&
+        old.sourceUrl === p.sourceUrl &&
+        old.accession === p.accession &&
+        old.filedAt === p.filedAt &&
+        old.id === p.id &&
+        old.kind === p.kind &&
+        old.fiscalYear === p.fiscalYear &&
+        old.fiscalQuarter === p.fiscalQuarter &&
+        old.reportingCurrency === p.reportingCurrency &&
+        old.displayCurrency === p.displayCurrency &&
+        !old.fx &&
+        !p.fx &&
+        old.coverage.segments &&
+        businessPeriod(old)
+      ) {
+        // A source-only reconstruction has fresh category IDs/coordinates even
+        // when an existing complete business chart is already valid. Preserve
+        // the entire saved record and replay only absent proofs against it.
+        let next = { ...old, coverage: { ...old.coverage } };
+        if (!old.amdInlineIncome && p.amdInlineIncome) {
+          const income = { ...next, amdInlineIncome: p.amdInlineIncome };
+          if (flowPeriod(income)) next = income;
+        }
+        next.coverage.sankey = !!flowPeriod(next);
+        // An old valid flow may depend on details absent from a new reader;
+        // never downgrade it or change any saved field to force a new proof.
+        if (!old.coverage.sankey || next.coverage.sankey) byDates.set(key, next);
+        continue;
+      }
       if (old && old.filedAt > p.filedAt) {
         const proof = corroborateOriginalStatement(incoming.cik, old, p);
         if (proof) {
