@@ -8,8 +8,10 @@ import {
   sourceOnlyBusinessFixture
 } from "../fixtures/finance/standalone-business-fixtures";
 import { mockFinance } from "./finance-fixtures";
+import { albemarleInlineFixture } from "../fixtures/finance/albemarle-inline-income-fixtures";
 
 const reported = {
+  ALBOperatingGain: [320334000, 279748000, 148344000, 25470000],
   AMEStandalone: [2360281000, 1479806000],
   ALBStandalone: [668852000, 792425000, 1031501000, 180988000, 3437000],
   AMESourceOnlyStandalone: [2360281000, 1479806000],
@@ -41,6 +43,7 @@ const reported = {
 };
 
 for (const ticker of [
+  "ALBOperatingGain",
   "AMEStandalone",
   "ALBStandalone",
   "AMESourceOnlyStandalone",
@@ -74,33 +77,35 @@ for (const ticker of [
     page
   }, info) => {
     const { company, period } =
-      ticker === "AMESourceOnlyStandalone" || ticker === "ALBSourceOnlyStandalone"
-        ? await sourceOnlyBusinessFixture(ticker === "AMESourceOnlyStandalone" ? "AME" : "ALB")
-        : ticker === "AMEStandalone" || ticker === "ALBStandalone"
-          ? await standaloneBusinessFixture(ticker === "AMEStandalone" ? "AME" : "ALB")
-          : ticker === "GEHC2024Q2" ||
-              ticker === "GEHC2024Q3" ||
-              ticker === "GEHC2025Q1" ||
-              ticker === "GEHC2026Q2" ||
-              ticker === "ABT" ||
-              ticker === "ABTAnnual" ||
-              ticker === "WMT" ||
-              ticker === "MMM" ||
-              ticker === "MMMAnnual" ||
-              ticker === "JNJ" ||
-              ticker === "APD" ||
-              ticker === "AMAT" ||
-              ticker === "DHR" ||
-              ticker === "KO" ||
-              ticker === "GRMN" ||
-              ticker === "LII" ||
-              ticker === "MAS" ||
-              ticker === "VLTO" ||
-              ticker === "AOS" ||
-              ticker === "AOSAnnual" ||
-              ticker === "DOV"
-            ? reviewedFixture(ticker)
-            : businessFixture(ticker);
+      ticker === "ALBOperatingGain"
+        ? albemarleInlineFixture()
+        : ticker === "AMESourceOnlyStandalone" || ticker === "ALBSourceOnlyStandalone"
+          ? await sourceOnlyBusinessFixture(ticker === "AMESourceOnlyStandalone" ? "AME" : "ALB")
+          : ticker === "AMEStandalone" || ticker === "ALBStandalone"
+            ? await standaloneBusinessFixture(ticker === "AMEStandalone" ? "AME" : "ALB")
+            : ticker === "GEHC2024Q2" ||
+                ticker === "GEHC2024Q3" ||
+                ticker === "GEHC2025Q1" ||
+                ticker === "GEHC2026Q2" ||
+                ticker === "ABT" ||
+                ticker === "ABTAnnual" ||
+                ticker === "WMT" ||
+                ticker === "MMM" ||
+                ticker === "MMMAnnual" ||
+                ticker === "JNJ" ||
+                ticker === "APD" ||
+                ticker === "AMAT" ||
+                ticker === "DHR" ||
+                ticker === "KO" ||
+                ticker === "GRMN" ||
+                ticker === "LII" ||
+                ticker === "MAS" ||
+                ticker === "VLTO" ||
+                ticker === "AOS" ||
+                ticker === "AOSAnnual" ||
+                ticker === "DOV"
+              ? reviewedFixture(ticker)
+              : businessFixture(ticker);
     expect(period.segments!.map((segment) => segment.revenue)).toEqual(reported[ticker]);
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
@@ -116,6 +121,15 @@ for (const ticker of [
     if (!["IBM", "APD", "AOSAnnual"].includes(ticker)) expect(period.coverage.sankey).toBe(true);
     if (period.coverage.sankey) {
       await expect(chart).toBeVisible();
+      if (ticker === "ALBOperatingGain") {
+        const n = (id: string) => chart.locator(`[data-flow-node="${id}"]`);
+        await expect(n("operating-reversal-alb-inline-income-9")).toContainText("$429.41M");
+        await expect(n("equity")).toContainText("$18M");
+        await expect(n("noncontrolling")).toContainText("$21.61M");
+        await expect(n("opex")).toContainText("$135.49M");
+        await expect(n("opex")).toContainText("before business-sale gains");
+        expect(period.metrics.operatingExpenses).toBe(-293916000);
+      }
       if (ticker === "ALBStandalone" || ticker === "ALBSourceOnlyStandalone") {
         const n = (id: string) => chart.locator(`[data-flow-node="${id}"]`);
         await expect(n("operating-reversal-alb-original-income-9")).toContainText("$122.3M");
@@ -288,6 +302,7 @@ for (const ticker of [
         expect(proof.businessBreakdownSource).toEqual(period.businessBreakdownSource);
         expect(proof.revenueAdjustments ?? []).toEqual(period.revenueAdjustments ?? []);
         if (period.coverage.sankey) {
+          expect(proof.grossOperatingItems).toEqual(period.grossOperatingItems);
           expect(proof.metrics).toEqual(period.metrics);
           expect(proof.operatingExpensesBasis).toEqual(period.operatingExpensesBasis);
           expect(proof.operatingReconciliation).toEqual(period.operatingReconciliation);
@@ -335,6 +350,28 @@ for (const ticker of [
       const csv = await readFile(path, "utf8");
       expect(csv).toContain('"operating_expenses_basis","operating_expenses"');
       expect(csv).toContain(`"expenses-and-other-items-net","${period.metrics.operatingExpenses}"`);
+    }
+    if (ticker === "ALBOperatingGain") {
+      const downloaded = page.waitForEvent("download");
+      await page.getByRole("button", { name: "Download CSV", exact: true }).click();
+      const path = info.outputPath("alb-original-signed-operating-gain.csv");
+      await (await downloaded).saveAs(path);
+      const csv = await readFile(path, "utf8");
+      const rows = csv
+        .trim()
+        .split(/\r?\n/)
+        .map((line) => {
+          return [...line.matchAll(/"((?:[^"]|"")*)"(?:,|$)/g)].map(([, value]) =>
+            value.replaceAll('""', '"')
+          );
+        });
+      expect(rows).toHaveLength(2);
+      expect(rows[1]).toHaveLength(rows[0].length);
+      const field = (name: string) => rows[1][rows[0].indexOf(name)];
+      expect(field("operating_expenses")).toBe("-293916000");
+      expect(JSON.parse(field("gross_operating_items"))).toEqual(period.grossOperatingItems);
+      expect(JSON.parse(field("business_provenance"))).toEqual(period.businessBreakdownSource);
+      for (const segment of period.segments!) expect(csv).toContain(String(segment.revenue));
     }
     if (ticker === "MCD") {
       const downloaded = page.waitForEvent("download");

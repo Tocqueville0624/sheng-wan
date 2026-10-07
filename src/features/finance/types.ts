@@ -1,5 +1,6 @@
 import type { MetricSource } from "./v2-types";
 import type { OriginalStandaloneBusinessProof } from "./standalone-business";
+import type { AlbemarleInlineIncomeProof } from "./albemarle-inline-income";
 
 export type PeriodKind = "annual" | "quarterly";
 export type DataStatus = "verified" | "delayed" | "demo";
@@ -73,10 +74,12 @@ export type OperatingItems = {
 };
 
 /** Reviewed primary gross and operating ledgers. Original costs stay separate;
- * a negative operating cost is a reported reversal, not a rescaled expense. */
+ * a negative signed operating cost is a reported reversal or operating gain. */
 export type GrossOperatingItems = {
   /** Original separate XML/HTML proof for reviewed standalone income ledgers. */
   standaloneSource?: OriginalStandaloneBusinessProof;
+  /** Original physical inline primary rows, including comparative and YTD scopes. */
+  inlineSource?: AlbemarleInlineIncomeProof;
   ruleId: string;
   sourceUrl: string;
   accession: string;

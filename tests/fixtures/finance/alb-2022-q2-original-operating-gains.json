@@ -1,0 +1,139 @@
+{
+  "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+  "originalWholeDocumentSha256": "ea04089f841a234f52439817896deb6700ef51329a07a74633227463d53756bf",
+  "originalWholeDocumentBytes": 2809528,
+  "originalTables": [6, 7, 22],
+  "excerptSha256": "4af2a3b02540bc369416204f23e8387ac6c48c276853e8052d2302ca9a19bbb8",
+  "period": {
+    "id": "2021-Q2",
+    "label": "Q2 FY2021",
+    "kind": "quarterly",
+    "fiscalYear": 2021,
+    "fiscalQuarter": 2,
+    "startDate": "2021-04-01",
+    "endDate": "2021-06-30",
+    "filedAt": "2022-08-03",
+    "accession": "0000915913-22-000137",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 773896000,
+      "costOfRevenue": 525479000,
+      "grossProfit": 248417000,
+      "operatingIncome": 542333000,
+      "pretaxIncome": 535195000,
+      "incomeTax": 106985000,
+      "netIncome": 424600000,
+      "noncontrollingInterestIncome": 21608000,
+      "researchAndDevelopment": 13976000,
+      "sellingGeneralAndAdministrative": 121516000,
+      "operatingExpenses": -293916000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenues",
+        "tag": "us-gaap:Revenues",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Revenue",
+        "tag": "us-gaap:CostOfRevenue",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "reported"
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "reported"
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "reported"
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Equity Method Investments, Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "reported"
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "reported"
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "reported"
+      },
+      "noncontrollingInterestIncome": {
+        "label": "Net Income (Loss) Attributable to Noncontrolling Interest",
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "reported"
+      },
+      "researchAndDevelopment": {
+        "label": "Research and Development Expense",
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "reported"
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "operatingExpenses",
+        "tag": "grossProfit - operatingIncome",
+        "accession": "0000915913-22-000137",
+        "filedAt": "2022-08-03",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm",
+          "https://www.sec.gov/Archives/edgar/data/915913/000091591322000137/alb-20220630.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": false
+    }
+  },
+  "originalPrimaryRange": {
+    "start": 198361,
+    "end": 292790
+  },
+  "originalPrimaryHeadingPreserved": true
+}

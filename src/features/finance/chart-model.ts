@@ -190,6 +190,10 @@ export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
     Object.entries(positiveMetrics).some(
       ([key, value]) =>
         !["grossProfit", "operatingIncome", "pretaxIncome", "netIncome"].includes(key) &&
+        !(
+          key === "operatingExpenses" &&
+          period.grossOperatingItems?.ruleId === "alb-original-inline-operating-gains-v1"
+        ) &&
         value !== undefined &&
         value < 0
     )
@@ -298,7 +302,16 @@ export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
   const rd = operatingGross && drawExpenseComponents ? m.researchAndDevelopment : undefined;
   const sga =
     operatingGross && drawExpenseComponents ? m.sellingGeneralAndAdministrative : undefined;
-  const other = operatingGross ? m.operatingExpenses! - (rd ?? 0) - (sga ?? 0) : 0;
+  const other = operatingGross
+    ? (period.grossOperatingItems
+        ? period.grossOperatingItems.operatingCosts.reduce(
+            (sum, item) => sum + Math.max(0, item.amount),
+            0
+          )
+        : m.operatingExpenses!) -
+      (rd ?? 0) -
+      (sga ?? 0)
+    : 0;
   if (
     disclosedExpenses &&
     (!disclosedExpenses.length ||

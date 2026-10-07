@@ -10,6 +10,13 @@ import { businessFixture } from "./fixtures/finance/business-fixtures";
 import { reviewedFixture } from "./fixtures/finance/reviewed-fixtures";
 import { parseInlineXbrl } from "../scripts/finance/ixbrl";
 import { sourceOnlyFixture } from "./fixtures/finance/standalone-business-fixtures";
+import {
+  albemarleInlineBasic,
+  albemarleInlineFiling,
+  albemarleInlineHtml,
+  albemarleInlineIdentity
+} from "./fixtures/finance/albemarle-inline-income-fixtures";
+import { companyFromFilingPeriods } from "../scripts/finance/current-filing";
 
 // A serialized, persistent storage contract. Parsing tests use separate fixtures;
 // queue tests never contact SEC or alter the production snapshots.
@@ -165,6 +172,92 @@ afterEach(() => {
 });
 
 describe("persistent public finance queue", () => {
+  it.each([false, true])(
+    "reads original ALB gain scopes across recreated alarms (no saved company: %s)",
+    async (empty) => {
+      vi.useFakeTimers();
+      vi.setSystemTime(new Date("2026-10-06T12:00:00Z"));
+      const { storage } = await create();
+      if (!empty)
+        await storage.put(
+          "company:0000915913",
+          companyFromFilingPeriods(albemarleInlineIdentity, [structuredClone(albemarleInlineBasic)])
+        );
+      // A prior engine's business-only result must not bypass the new income proof.
+      await storage.put(`generic:v28:0000915913:${albemarleInlineFiling.accession}`, [
+        albemarleInlineBasic
+      ]);
+      let { store } = await create(storage);
+      const fetchedAt: number[] = [];
+      const fetcher = vi.fn(async (url: string) => {
+        fetchedAt.push(Date.now());
+        if (url === "https://data.sec.gov/submissions/CIK0000915913.json")
+          return Response.json({
+            cik: 915913,
+            tickers: ["ALB"],
+            sic: "2819",
+            filings: {
+              recent: {
+                accessionNumber: [albemarleInlineFiling.accession],
+                filingDate: [albemarleInlineFiling.filedAt],
+                reportDate: [albemarleInlineFiling.reportDate],
+                form: [albemarleInlineFiling.form],
+                primaryDocument: [albemarleInlineFiling.primaryDocument]
+              },
+              files: []
+            }
+          });
+        if (url === "https://data.sec.gov/api/xbrl/companyfacts/CIK0000915913.json")
+          return Response.json({
+            cik: 915913,
+            entityName: "ALBEMARLE CORPORATION",
+            facts: { "us-gaap": {} }
+          });
+        if (url === albemarleInlineFiling.sourceUrl) return new Response(albemarleInlineHtml);
+        throw Error(`Unexpected original ALB gain source: ${url}`);
+      });
+      vi.stubGlobal("fetch", fetcher);
+      const job = await jobOf(await request(store, "ALB"));
+      for (let i = 0; i < 12; i++) {
+        const before = fetcher.mock.calls.length;
+        await nextQueueStep(store);
+        expect(fetcher.mock.calls.length - before).toBeLessThanOrEqual(1);
+        ({ store } = await create(storage));
+        if (
+          ["ready", "partial", "unchanged", "failed"].includes(
+            ((await read(store, `/jobs/${job.id}`)) as FinanceJob).state
+          )
+        )
+          break;
+      }
+      expect((await read(store, `/jobs/${job.id}`)) as FinanceJob).toMatchObject({
+        state: "partial"
+      });
+      expect(await storage.get(`task:${job.id}`)).toMatchObject({ engineVersion: "finance-v2.41" });
+      const result = (await read(store, "/companies/ALB")) as { company: CompanyV2 };
+      const p = result.company.quarterly.find((p) => p.id === (empty ? "2022-Q2" : "2021-Q2"))!;
+      expect(p.coverage).toEqual({ basics: true, segments: true, sankey: true });
+      if (!empty) {
+        expect(p.grossOperatingItems?.ruleId).toBe("alb-original-inline-operating-gains-v1");
+        expect(p.metrics.operatingExpenses).toBe(-293916000);
+        expect(p.metrics.equityMethodIncome).toBe(17998000);
+        for (const [key, value] of Object.entries(albemarleInlineBasic.metrics))
+          expect(p.metrics[key as keyof typeof p.metrics]).toBe(value);
+        for (const [key, value] of Object.entries(albemarleInlineBasic.metricSources))
+          expect(p.metricSources[key as keyof typeof p.metricSources]).toEqual(value);
+      } else expect(p.metrics.netIncome).toBe(406773000);
+      expect(
+        await storage.get(`generic:v29:0000915913:${albemarleInlineFiling.accession}`)
+      ).toBeDefined();
+      expect(fetcher.mock.calls.map(([url]) => url)).toEqual([
+        "https://data.sec.gov/submissions/CIK0000915913.json",
+        "https://data.sec.gov/api/xbrl/companyfacts/CIK0000915913.json",
+        albemarleInlineFiling.sourceUrl
+      ]);
+      for (let i = 1; i < fetchedAt.length; i++)
+        expect(fetchedAt[i] - fetchedAt[i - 1]).toBeGreaterThanOrEqual(550);
+    }
+  );
   it.each(["AME", "ALB"] as const)(
     "imports %s's original HTML/index/XML across recreated alarms with no saved data",
     async (ticker) => {
@@ -339,7 +432,7 @@ describe("persistent public finance queue", () => {
         expect(p.directNetItems).toEqual(s.period.directNetItems);
         expect(p.shareholderBridge).toEqual(s.period.shareholderBridge);
         expect(p.segments?.map((s) => s.revenue)).toEqual(s.period.segments?.map((s) => s.revenue));
-        expect(await storage.get(`generic:v28:0001035443:${s.filing.accession}`)).toMatchObject([
+        expect(await storage.get(`generic:v29:0001035443:${s.filing.accession}`)).toMatchObject([
           { directNetItems: { ruleId: "are-direct-net-v1" } }
         ]);
       }
@@ -484,7 +577,7 @@ describe("persistent public finance queue", () => {
             expect(p.businessBreakdownSource).toEqual(s.period.businessBreakdownSource);
           }
           expect(
-            await storage.get(`generic:v28:${annual.identity.cik}:${s.filing.accession}`)
+            await storage.get(`generic:v29:${annual.identity.cik}:${s.filing.accession}`)
           ).toMatchObject([
             s.period.operatingItems
               ? { operatingItems: { ruleId: s.period.operatingItems.ruleId } }
@@ -599,7 +692,7 @@ describe("persistent public finance queue", () => {
       expect(result.company.warnings.some((w) => w.startsWith("SEC lists a report ending"))).toBe(
         false
       );
-      expect(await storage.get(`generic:v28:0000001800:${quarter.filing.accession}`)).toMatchObject(
+      expect(await storage.get(`generic:v29:0000001800:${quarter.filing.accession}`)).toMatchObject(
         [{ id: "2026-Q2", coverage: { segments: true } }]
       );
       expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
@@ -617,7 +710,7 @@ describe("persistent public finance queue", () => {
     vi.stubGlobal("fetch", fetcher);
     const first = await jobOf(await request(store, "MCD"));
     expect(await storage.get(`task:${first.id}`)).toMatchObject({
-      engineVersion: "finance-v2.40"
+      engineVersion: "finance-v2.41"
     });
     await nextQueueStep(store);
     await nextQueueStep(store);
@@ -639,7 +732,7 @@ describe("persistent public finance queue", () => {
     expect(period.revenueAdjustments).toEqual([
       { id: "source-rounding", label: "Source rounding", revenue: -1e6 }
     ]);
-    expect(await storage.get(`generic:v28:0000063908:${mcdAccession}`)).toMatchObject([
+    expect(await storage.get(`generic:v29:0000063908:${mcdAccession}`)).toMatchObject([
       { coverage: { segments: true, sankey: true } }
     ]);
     expect(await storage.get(`basic-periods:${first.id}`)).toBeUndefined();

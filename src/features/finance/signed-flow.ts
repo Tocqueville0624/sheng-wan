@@ -379,7 +379,10 @@ export function buildSignedStatementFlow(
         options.hasGrossStage
           ? period.grossOperatingItems
             ? period.grossOperatingItems.operatingCosts.some((item) => item.amount < 0)
-              ? period.grossOperatingItems.ruleId === "alb-original-separate-income-v1"
+              ? [
+                  "alb-original-separate-income-v1",
+                  "alb-original-inline-operating-gains-v1"
+                ].includes(period.grossOperatingItems.ruleId)
                 ? "Operating expenses (before business-sale gains)"
                 : "Operating expenses (before reversals)"
               : "Operating expenses"
