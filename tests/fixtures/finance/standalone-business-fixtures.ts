@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { parseOriginalStandaloneXbrl } from "../../../scripts/finance/standalone-xbrl";
 import { readOriginalStandaloneBusinessFiling } from "../../../scripts/finance/standalone-business-v2";
+import { companyFromFilingPeriods } from "../../../scripts/finance/current-filing";
 import { extractFactsV2, type FactsDocument } from "../../../scripts/finance/facts-v2";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 import type { SecFiling } from "../../../scripts/finance/sec-shared";
@@ -84,4 +85,54 @@ export async function standaloneBusinessFixture(ticker: "AME" | "ALB") {
   company.annual = [period];
   company.quarterly = [];
   return { company, period };
+}
+
+export async function sourceOnlyFixture(ticker: "AME" | "ALB") {
+  const preserved = await standaloneBusinessFixture(ticker);
+  const p = preserved.period;
+  const identity: CatalogCompany = {
+    ticker,
+    cik: preserved.company.cik,
+    name: preserved.company.name,
+    sector: "",
+    universe: "sp500"
+  };
+  const url = new URL(p.sourceUrl);
+  const filing: SecFiling = {
+    accession: p.accession!,
+    filedAt: p.filedAt,
+    form: "10-K",
+    reportDate: "2018-12-31",
+    sourceUrl: p.sourceUrl,
+    directoryUrl: p.sourceUrl.slice(0, p.sourceUrl.lastIndexOf("/") + 1),
+    primaryDocument: url.pathname.split("/").at(-1)!
+  };
+  const read = (suffix: string) =>
+    readFileSync(
+      new URL(`./${ticker.toLowerCase()}-fy2016-original-separate-${suffix}`, import.meta.url),
+      "utf8"
+    );
+  return {
+    identity,
+    filing,
+    html: read("income-business.html"),
+    xml: read("financial.xml"),
+    instanceUrl: filing.directoryUrl + `${ticker.toLowerCase()}-20181231.xml`,
+    preserved
+  };
+}
+
+export async function sourceOnlyBusinessFixture(ticker: "AME" | "ALB") {
+  const s = await sourceOnlyFixture(ticker);
+  const periods = await readOriginalStandaloneBusinessFiling(
+    s.html,
+    s.xml,
+    s.instanceUrl,
+    s.identity,
+    s.filing,
+    undefined
+  );
+  const period = periods.find((p) => p.id === "FY2016");
+  if (!period) throw Error("Original source-only fixture withheld its annual period.");
+  return { company: companyFromFilingPeriods(s.identity, [period]), period };
 }

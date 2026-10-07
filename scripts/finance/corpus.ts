@@ -119,6 +119,7 @@ const parserFiles = [
   "standalone-xbrl",
   "standalone-revenue-reader",
   "standalone-business-v2",
+  "standalone-business-state",
   "standalone-source-index",
   "corpus-source-records",
   "ametek-business-v2",

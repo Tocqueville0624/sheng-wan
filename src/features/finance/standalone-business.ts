@@ -8,6 +8,8 @@ export type OriginalStandaloneBusinessProof = {
   ruleId: "alb-original-separate-revenue-v1" | "ame-original-separate-closing-sales-v1";
   reportDate: string;
   form: string;
+  /** Only a first-import seed uses the complete reviewed primary metric profile. */
+  primaryProfile?: "income-statement";
   source: OriginalStandaloneSourceProof;
 };
 function demand(value: unknown, reason: string): asserts value {
@@ -81,6 +83,20 @@ const primaryAlbemarle = [
   [22, "Net income attributable to Albemarle Corporation", "us-gaap:NetIncomeLoss", "same"]
 ] as const;
 const albLabels = ["Lithium", "Bromine Specialties", "Catalysts", "All Other", "Corporate"];
+const primaryAmetek = [
+  [3, "Net sales", "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax", "revenue"],
+  [5, "Cost of sales", "us-gaap:CostOfGoodsAndServicesSold", "costOfRevenue"],
+  [8, "Total operating expenses", "us-gaap:CostsAndExpenses", "totalOperatingCosts"],
+  [11, "Operating income", "us-gaap:OperatingIncomeLoss", "operatingIncome"],
+  [
+    15,
+    "Income before income taxes",
+    "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+    "pretaxIncome"
+  ],
+  [16, "Provision for income taxes", "us-gaap:IncomeTaxExpenseBenefit", "incomeTax"],
+  [18, "Net income", "us-gaap:NetIncomeLoss", "netIncome"]
+] as const;
 const albDimensions = (i: number): Record<string, string> => {
   if (i < 3)
     return {
@@ -98,7 +114,8 @@ export function originalStandaloneBusinessSelections(
   reportYear: number,
   year: number,
   primaryIndex: number,
-  businessIndex: number
+  businessIndex: number,
+  primaryProfile?: "income-statement"
 ): OriginalStandaloneTableSelection[] {
   demand(
     ["0000915913", "0001037868"].includes(cik) &&
@@ -169,16 +186,25 @@ export function originalStandaloneBusinessSelections(
           "Consolidated Statement of Income (In thousands, except per share amounts)"
       },
       headers: { rowIndex: 2, labels: years, selectedIndex: reportYear - year },
-      rows: [
-        { rowIndex: 3, label: "Net sales", tag, dimensions: {}, columns },
-        {
-          rowIndex: 16,
-          label: "Provision for income taxes",
-          tag: "us-gaap:IncomeTaxExpenseBenefit",
-          dimensions: {},
-          columns
-        }
-      ]
+      rows:
+        primaryProfile === "income-statement"
+          ? primaryAmetek.map(([rowIndex, label, tag]) => ({
+              rowIndex,
+              label,
+              tag,
+              dimensions: {},
+              columns
+            }))
+          : [
+              { rowIndex: 3, label: "Net sales", tag, dimensions: {}, columns },
+              {
+                rowIndex: 16,
+                label: "Provision for income taxes",
+                tag: "us-gaap:IncomeTaxExpenseBenefit",
+                dimensions: {},
+                columns
+              }
+            ]
     },
     {
       tableIndex: businessIndex,
@@ -270,7 +296,8 @@ export function originalStandaloneBusinessSegments(
     reportYear,
     p.fiscalYear,
     s.tables[0].tableIndex,
-    s.tables[1].tableIndex
+    s.tables[1].tableIndex,
+    proof.primaryProfile
   );
   demand(
     canonical(s.tables.map((t) => t.selection)) === canonical(expected),
@@ -293,6 +320,18 @@ export function originalStandaloneBusinessSegments(
       p.metrics.incomeTax === tax.value,
     "Original independent primary revenue or tax differs from preserved metrics."
   );
+  demand(
+    proof.primaryProfile === undefined || proof.primaryProfile === "income-statement",
+    "Unknown original primary metric profile."
+  );
+  if (proof.primaryProfile === "income-statement") {
+    const reported = originalStandaloneReportedMetrics(p, cik, primary);
+    demand(
+      canonical(p.metrics) === canonical(reported.metrics) &&
+        canonical(p.metricSources) === canonical(reported.metricSources),
+      "Original primary metrics or their provenance were altered."
+    );
+  }
   if (cik === "0000915913")
     demand(
       /Albemarle Corporation and Subsidiaries CONSOLIDATED STATEMENTS OF INCOME$/.test(
@@ -335,6 +374,61 @@ export function originalStandaloneBusinessSegments(
       }
     };
   });
+}
+
+/** Only actual joined primary facts become metrics. The reported total operating
+ * cost line is not a gross-profit estimate; no residual or missing zero is added. */
+export function originalStandaloneReportedMetrics(
+  p: Pick<PeriodV2, "sourceUrl" | "accession" | "filedAt">,
+  cik: string,
+  primary: ReturnType<typeof replayOriginalStandaloneSourceProof>["joins"][number]
+): Pick<PeriodV2, "metrics" | "metricSources"> {
+  const bindings: readonly (readonly [keyof PeriodV2["metrics"], string])[] =
+    cik === "0001037868"
+      ? primaryAmetek.map(([, label, , key]) => [key, label] as const)
+      : [
+          ["revenue", "Net sales"],
+          ["costOfRevenue", "Cost of goods sold"],
+          ["grossProfit", "Gross profit"],
+          ["sellingGeneralAndAdministrative", "Selling, general and administrative expenses"],
+          ["researchAndDevelopment", "Research and development expenses"],
+          ["operatingIncome", "Operating profit"],
+          [
+            "pretaxIncome",
+            "Income from continuing operations before income taxes and equity in net income of unconsolidated investments"
+          ],
+          ["incomeTax", "Income tax expense"],
+          [
+            "afterTaxSubsidiaryIncome",
+            "Equity in net income of unconsolidated investments (net of tax)"
+          ],
+          ["discontinuedOperationsIncome", "Income from discontinued operations (net of tax)"],
+          ["noncontrollingInterestIncome", "Net income attributable to noncontrolling interests"],
+          ["netIncome", "Net income attributable to Albemarle Corporation"]
+        ];
+  demand(["0000915913", "0001037868"].includes(cik), "Unreviewed original primary metrics.");
+  const metrics: PeriodV2["metrics"] = {},
+    metricSources: PeriodV2["metricSources"] = {};
+  for (const [key, label] of bindings) {
+    const rows = primary.monetaryRows.filter((r) => r.label === label);
+    demand(rows.length === 1, "Missing or ambiguous original primary metric.");
+    const f = rows[0].originalFact;
+    demand(
+      !Object.keys(f.context.dimensions).length && f.currency === "USD",
+      "Original primary metric is not consolidated USD."
+    );
+    metrics[key] = f.value;
+    metricSources[key] = {
+      label,
+      tag: f.tag,
+      sourceUrl: p.sourceUrl,
+      accession: p.accession!,
+      filedAt: p.filedAt,
+      method: "reported",
+      decimals: f.decimals
+    };
+  }
+  return { metrics, metricSources };
 }
 
 export function originalStandaloneBusinessProblem(p: PeriodV2): string | undefined {

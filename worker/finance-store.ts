@@ -5,6 +5,16 @@ import { filingAdapters } from "../scripts/finance/adapters";
 import { extractInlinePeriods, parseInlineXbrl } from "../scripts/finance/ixbrl";
 import { genericFilingTodo, readGenericFiling } from "../scripts/finance/generic-import";
 import {
+  prepareOriginalStandaloneBusinessFiling,
+  finishOriginalStandaloneBusinessFiling,
+  assertOriginalStandaloneBusinessState,
+  type PreparedOriginalStandaloneBusiness
+} from "../scripts/finance/standalone-business-state";
+import {
+  originalStandaloneIndexUrl,
+  originalStandaloneXmlUrls
+} from "../scripts/finance/standalone-source-index";
+import {
   companyFromFilingPeriods,
   missingStandardHistory
 } from "../scripts/finance/current-filing";
@@ -53,7 +63,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.38";
+const ENGINE_VERSION = "finance-v2.39";
 const temporarySourceFailure = (error: unknown) =>
   error instanceof Error && /HTTP (429|5\d\d)|timeout/i.test(error.message);
 const MAX_DAILY_STEPS = 4000;
@@ -83,6 +93,10 @@ type Task = {
   exhibit?: string;
   exhibitReportDate?: string;
   industrySic?: string;
+  standalone?: {
+    state: PreparedOriginalStandaloneBusiness;
+    instanceUrl?: string;
+  };
 };
 type IndexEntry = { cik: string; ticker: string; updatedAt: string };
 
@@ -464,17 +478,50 @@ export class FinanceStore {
       task.job.message = `Reading statement and revenue sources: ${filing.reportDate} (${task.cursor + 1}/${task.todo.length}).`;
       try {
         const base = await this.company(identity);
-        const cacheKey = `generic:v26:${identity.cik}:${filing.accession}`;
+        const cacheKey = `generic:v27:${identity.cik}:${filing.accession}`;
         let periods = await this.ctx.storage.get<PeriodV2[]>(cacheKey);
-        if (!periods)
-          periods = readGenericFiling(
-            await this.fetchSource(filing.sourceUrl),
-            identity,
-            filing,
-            base,
-            await this.ctx.storage.get<PeriodV2[]>(`basic-periods:${task.job.id}`),
-            task.industrySic
-          );
+        const fresh = await this.ctx.storage.get<PeriodV2[]>(`basic-periods:${task.job.id}`);
+        if (!periods) {
+          if (task.standalone) {
+            assertOriginalStandaloneBusinessState(task.standalone.state, identity, filing);
+            if (!task.standalone.instanceUrl) {
+              const urls = originalStandaloneXmlUrls(
+                await this.fetchSource(originalStandaloneIndexUrl(identity.cik, filing)),
+                identity.cik,
+                filing
+              );
+              if (urls.length !== 1) throw Error("No unique original standalone XML instance.");
+              task.standalone.instanceUrl = urls[0];
+              return;
+            }
+            const result = await finishOriginalStandaloneBusinessFiling(
+              task.standalone.state,
+              await this.fetchSource(task.standalone.instanceUrl),
+              task.standalone.instanceUrl,
+              identity,
+              filing,
+              base,
+              fresh
+            );
+            periods = result.periods;
+            task.warnings.push(...result.warnings);
+          } else {
+            const html = await this.fetchSource(filing.sourceUrl);
+            const state = await prepareOriginalStandaloneBusinessFiling(
+              html,
+              identity,
+              filing,
+              base,
+              fresh
+            );
+            if (state) {
+              task.standalone = { state };
+              task.job.total += 2;
+              return;
+            }
+            periods = readGenericFiling(html, identity, filing, base, fresh, task.industrySic);
+          }
+        }
         if (periods.length) {
           await this.publish(task, {
             ...(base ?? companyFromFilingPeriods(identity, periods)),
@@ -492,6 +539,7 @@ export class FinanceStore {
           `${filing.reportDate}: ${error instanceof Error ? error.message : "Consolidated statement unavailable"}`
         );
       }
+      task.standalone = undefined;
       task.cursor++;
     } else if (task.cursor < task.todo.length && config) {
       task.job.state = "backfilling";
@@ -630,6 +678,7 @@ export class FinanceStore {
       task.todo = [];
       task.archives = [];
       task.fx = undefined;
+      task.standalone = undefined;
       task.warnings = task.warnings.slice(0, 40);
     }
     await this.ctx.storage.transaction(async (tx) => {

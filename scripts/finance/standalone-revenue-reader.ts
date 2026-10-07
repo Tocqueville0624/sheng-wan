@@ -21,11 +21,18 @@ export type OriginalStandaloneSource = {
   instanceUrl: string;
   instanceXml: string;
 };
+export type OriginalStandalonePhysicalTable = Pick<
+  OriginalStandaloneSourceProof["tables"][number],
+  "tableIndex" | "rows" | "precedingText"
+>;
+export type PreparedOriginalStandaloneSource = Omit<OriginalStandaloneSource, "primaryHtml"> & {
+  primaryTables: OriginalStandalonePhysicalTable[];
+};
 /** Join only original visible physical cells to independently decoded XML facts.
  * No equal-value search across arbitrary scopes, no synthetic inline declarations,
  * no missing-as-zero, no currency conversion and no business/flow inference. */
-export function readOriginalStandaloneRevenueRows(
-  source: OriginalStandaloneSource,
+export function readOriginalStandalonePreparedRevenueRows(
+  source: PreparedOriginalStandaloneSource,
   selections: OriginalStandaloneTableSelection[],
   sourceHashes: { primarySha256: string; instanceSha256: string }
 ) {
@@ -53,25 +60,23 @@ export function readOriginalStandaloneRevenueRows(
     );
   }
   demand(
-    source.instanceUrl.endsWith(".xml") && !/<ix:nonFraction\b/i.test(source.primaryHtml),
+    source.instanceUrl.endsWith(".xml") && source.instanceUrl !== source.primaryUrl,
     "Original separate documents must remain separate."
   );
   demand(
-    new TextEncoder().encode(source.primaryHtml).length <= 24 * 1024 ** 2,
-    "Oversized original primary document."
+    source.primaryTables.length >= 1 &&
+      source.primaryTables.length <= 20 &&
+      new TextEncoder().encode(JSON.stringify(source.primaryTables)).length <= 262144,
+    "Oversized original physical table state."
   );
   const instance = parseOriginalStandaloneXbrl(source.instanceXml, source.cik);
-  const tables = [...source.primaryHtml.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)];
+  const tables = new Map(source.primaryTables.map((t) => [t.tableIndex, t]));
   demand(
-    tables.length <= 5000 && selections.length > 0 && selections.length <= 20,
+    tables.size === source.primaryTables.length &&
+      tables.size === selections.length &&
+      selections.length > 0 &&
+      selections.length <= 20,
     "Invalid original table selection."
-  );
-  // Read unmodified physical HTML cells. An empty inline fact set is intentional:
-  // standalone evidence below has its own type, and is never assigned c.fact.
-  const { grid } = originalRevenueGrid(
-    source.primaryHtml,
-    { facts: [], fiscalYear: 0, fiscalPeriod: "", periodEnd: "" },
-    source.cik
   );
   const joins: ReturnType<typeof replayOriginalStandaloneRevenueTable>[] = [];
   const selectedTables = new Set<number>();
@@ -79,24 +84,15 @@ export function readOriginalStandaloneRevenueRows(
     demand(
       Number.isInteger(selection.tableIndex) &&
         selection.tableIndex >= 0 &&
-        tables[selection.tableIndex] &&
+        tables.has(selection.tableIndex) &&
         !selectedTables.has(selection.tableIndex),
       "Missing or duplicate original selected table."
     );
     selectedTables.add(selection.tableIndex);
-    const t = tables[selection.tableIndex];
-    const rowCount = [...t[0].matchAll(/<tr\b/gi)].length;
-    const rows = grid(t[0], new Set(Array.from({ length: rowCount }, (_, i) => i)));
     joins.push(
       replayOriginalStandaloneRevenueTable(
         { cik: source.cik, instance },
-        {
-          tableIndex: selection.tableIndex,
-          rows,
-          precedingText: visibleText(
-            source.primaryHtml.slice(Math.max(0, t.index! - 8000), t.index!)
-          )
-        },
+        tables.get(selection.tableIndex)!,
         selection
       )
     );
@@ -170,4 +166,44 @@ export function readOriginalStandaloneRevenueRows(
     scope:
       "Original XML/physical HTML joins only; complete business classification, financial flow and runtime acceptance remain separate."
   };
+}
+
+/** The offline facade and the queued importer replay the same physical tables.
+ * Only these bounded normalized rows cross an alarm boundary; full HTML is not
+ * serialized into a task or transformed into synthetic inline-XBRL facts. */
+export function readOriginalStandaloneRevenueRows(
+  source: OriginalStandaloneSource,
+  selections: OriginalStandaloneTableSelection[],
+  sourceHashes: { primarySha256: string; instanceSha256: string }
+) {
+  demand(
+    !/<(?:[\w.-]+:)?nonFraction\b/i.test(source.primaryHtml),
+    "Original separate documents must remain separate."
+  );
+  demand(
+    new TextEncoder().encode(source.primaryHtml).length <= 24 * 1024 ** 2,
+    "Oversized original primary document."
+  );
+  const tables = [...source.primaryHtml.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)];
+  demand(tables.length <= 5000, "Invalid original table selection.");
+  const { grid } = originalRevenueGrid(
+    source.primaryHtml,
+    { facts: [], fiscalYear: 0, fiscalPeriod: "", periodEnd: "" },
+    source.cik
+  );
+  const primaryTables = selections.map((s) => {
+    const t = tables[s.tableIndex];
+    demand(t, "Missing original selected table.");
+    const rowCount = [...t[0].matchAll(/<tr\b/gi)].length;
+    return {
+      tableIndex: s.tableIndex,
+      rows: grid(t[0], new Set(Array.from({ length: rowCount }, (_, i) => i))),
+      precedingText: visibleText(source.primaryHtml.slice(Math.max(0, t.index! - 8000), t.index!))
+    };
+  });
+  return readOriginalStandalonePreparedRevenueRows(
+    { ...source, primaryTables },
+    selections,
+    sourceHashes
+  );
 }
