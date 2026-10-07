@@ -38,6 +38,7 @@
     "data:catalog": "node --import tsx scripts/finance/catalog.ts",
     "data:coverage": "node --import tsx scripts/finance/coverage.ts",
     "data:corpus": "node --import tsx scripts/finance/corpus.ts",
+    "data:prepare-instances": "node --import tsx scripts/finance/prepare-original-instances.ts",
     "verify": "pnpm format:check && pnpm lint && pnpm check && pnpm test && pnpm media:check && pnpm build"
   },
   "dependencies": {
