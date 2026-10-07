@@ -1,0 +1,138 @@
+{
+  "ticker": "UNH",
+  "cik": "0000731766",
+  "filing": {
+    "accession": "0000731766-19-000005",
+    "filedAt": "2019-02-12",
+    "reportDate": "2018-12-31",
+    "form": "10-K",
+    "primaryDocument": "unh2018123110-k.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm"
+  },
+  "sourcePrimary": {
+    "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+    "sha256": "6069ae1c447792215906d9e40afc5a25b775760fcb3242015a267945231cace5",
+    "bytes": 3192010
+  },
+  "sourceInstance": {
+    "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh-20181231.xml",
+    "sha256": "a07b296fe8e934da4fa59063384e9af5cd64b9ef9184b03cc406b826157e77cb",
+    "bytes": 4631393
+  },
+  "excerptSha256": "2a43db28f24c208e7783efb019b0dee1507088ab07d1977a77db509d1d0961e0",
+  "instanceExcerptSha256": "777cfbaee7f1d73de01c326ed6a0afac63a2c28a159c4b2ab62a653cc89852b2",
+  "tableIndexMapping": [
+    {
+      "originalIndex": 87,
+      "fixtureIndex": 0,
+      "primary": true,
+      "business": true
+    }
+  ],
+  "preservedPeriod": {
+    "id": "FY2016",
+    "label": "FY 2016",
+    "kind": "annual",
+    "fiscalYear": 2016,
+    "startDate": "2016-01-01",
+    "endDate": "2016-12-31",
+    "filedAt": "2019-02-12",
+    "accession": "0000731766-19-000005",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": false,
+    "metrics": {
+      "revenue": 184840000000,
+      "costOfRevenue": 24416000000,
+      "totalOperatingCosts": 171910000000,
+      "operatingIncome": 12930000000,
+      "pretaxIncome": 11863000000,
+      "incomeTax": 4790000000,
+      "netIncome": 7017000000,
+      "noncontrollingInterestIncome": 56000000,
+      "sellingGeneralAndAdministrative": 28401000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenues",
+        "tag": "us-gaap:Revenues",
+        "accession": "0000731766-19-000005",
+        "filedAt": "2019-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Goods and Services Sold",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0000731766-19-000005",
+        "filedAt": "2019-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+        "method": "reported"
+      },
+      "totalOperatingCosts": {
+        "label": "Costs and Expenses",
+        "tag": "us-gaap:CostsAndExpenses",
+        "accession": "0000731766-19-000005",
+        "filedAt": "2019-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+        "method": "reported"
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0000731766-19-000005",
+        "filedAt": "2019-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+        "method": "reported"
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Equity Method Investments, Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "accession": "0000731766-19-000005",
+        "filedAt": "2019-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+        "method": "reported"
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000731766-19-000005",
+        "filedAt": "2019-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+        "method": "reported"
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000731766-19-000005",
+        "filedAt": "2019-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+        "method": "reported"
+      },
+      "noncontrollingInterestIncome": {
+        "label": "Net Income (Loss) Attributable to Noncontrolling Interest",
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "accession": "0000731766-19-000005",
+        "filedAt": "2019-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+        "method": "reported"
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0000731766-19-000005",
+        "filedAt": "2019-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176619000005/unh2018123110-k.htm",
+        "method": "reported"
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    }
+  },
+  "scope": "Unchanged original primary table and source title text, with original standalone XML root/resources/declarations selected by exact primary tag and calendar scopes. Whole-source hashes remain separate from excerpt hashes; original table positions map to excerpt positions."
+}

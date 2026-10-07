@@ -164,6 +164,7 @@ const parserVersion = hash(
       readFile("src/features/finance/standalone-revenue-rows.ts", "utf8"),
       readFile("src/features/finance/standalone-source-proof.ts", "utf8"),
       readFile("src/features/finance/standalone-business.ts", "utf8"),
+      readFile("src/features/finance/unitedhealth-standalone.ts", "utf8"),
       readFile("src/features/finance/standalone-income.ts", "utf8"),
       readFile("src/features/finance/albemarle-inline-income.ts", "utf8"),
       readFile("src/features/finance/chart-model.ts", "utf8"),

@@ -190,7 +190,7 @@ describe("persistent public finance queue", () => {
         const { storage } = await create();
         if (!empty)
           await storage.put(`company:${identity.cik}`, companyFromFilingPeriods(identity, [basic]));
-        await storage.put(`generic:v29:${identity.cik}:${filing.accession}`, [basic]);
+        await storage.put(`generic:v30:${identity.cik}:${filing.accession}`, [basic]);
         let { store } = await create(storage);
         const fetchedAt: number[] = [];
         const fetcher = vi.fn(async (url: string) => {
@@ -238,7 +238,7 @@ describe("persistent public finance queue", () => {
           state: "partial"
         });
         expect(await storage.get(`task:${job.id}`)).toMatchObject({
-          engineVersion: "finance-v2.42"
+          engineVersion: "finance-v2.43"
         });
         const result = (await read(store, `/companies/${identity.ticker}`)) as {
           company: CompanyV2;
@@ -254,7 +254,7 @@ describe("persistent public finance queue", () => {
           expect(p.metrics).toEqual(basic.metrics);
           expect(p.metricSources).toEqual(basic.metricSources);
         }
-        expect(await storage.get(`generic:v30:${identity.cik}:${filing.accession}`)).toBeDefined();
+        expect(await storage.get(`generic:v31:${identity.cik}:${filing.accession}`)).toBeDefined();
         expect(fetcher.mock.calls.map(([url]) => url)).toEqual([
           `https://data.sec.gov/submissions/CIK${identity.cik}.json`,
           `https://data.sec.gov/api/xbrl/companyfacts/CIK${identity.cik}.json`,
@@ -326,7 +326,7 @@ describe("persistent public finance queue", () => {
       expect((await read(store, `/jobs/${job.id}`)) as FinanceJob).toMatchObject({
         state: "partial"
       });
-      expect(await storage.get(`task:${job.id}`)).toMatchObject({ engineVersion: "finance-v2.42" });
+      expect(await storage.get(`task:${job.id}`)).toMatchObject({ engineVersion: "finance-v2.43" });
       const result = (await read(store, "/companies/ALB")) as { company: CompanyV2 };
       const p = result.company.quarterly.find((p) => p.id === (empty ? "2022-Q2" : "2021-Q2"))!;
       expect(p.coverage).toEqual({ basics: true, segments: true, sankey: true });
@@ -340,7 +340,7 @@ describe("persistent public finance queue", () => {
           expect(p.metricSources[key as keyof typeof p.metricSources]).toEqual(value);
       } else expect(p.metrics.netIncome).toBe(406773000);
       expect(
-        await storage.get(`generic:v30:0000915913:${albemarleInlineFiling.accession}`)
+        await storage.get(`generic:v31:0000915913:${albemarleInlineFiling.accession}`)
       ).toBeDefined();
       expect(fetcher.mock.calls.map(([url]) => url)).toEqual([
         "https://data.sec.gov/submissions/CIK0000915913.json",
@@ -351,7 +351,7 @@ describe("persistent public finance queue", () => {
         expect(fetchedAt[i] - fetchedAt[i - 1]).toBeGreaterThanOrEqual(550);
     }
   );
-  it.each(["AME", "ALB"] as const)(
+  it.each(["AME", "ALB", "UNH"] as const)(
     "imports %s's original HTML/index/XML across recreated alarms with no saved data",
     async (ticker) => {
       vi.useFakeTimers();
@@ -525,7 +525,7 @@ describe("persistent public finance queue", () => {
         expect(p.directNetItems).toEqual(s.period.directNetItems);
         expect(p.shareholderBridge).toEqual(s.period.shareholderBridge);
         expect(p.segments?.map((s) => s.revenue)).toEqual(s.period.segments?.map((s) => s.revenue));
-        expect(await storage.get(`generic:v30:0001035443:${s.filing.accession}`)).toMatchObject([
+        expect(await storage.get(`generic:v31:0001035443:${s.filing.accession}`)).toMatchObject([
           { directNetItems: { ruleId: "are-direct-net-v1" } }
         ]);
       }
@@ -670,7 +670,7 @@ describe("persistent public finance queue", () => {
             expect(p.businessBreakdownSource).toEqual(s.period.businessBreakdownSource);
           }
           expect(
-            await storage.get(`generic:v30:${annual.identity.cik}:${s.filing.accession}`)
+            await storage.get(`generic:v31:${annual.identity.cik}:${s.filing.accession}`)
           ).toMatchObject([
             s.period.operatingItems
               ? { operatingItems: { ruleId: s.period.operatingItems.ruleId } }
@@ -785,7 +785,7 @@ describe("persistent public finance queue", () => {
       expect(result.company.warnings.some((w) => w.startsWith("SEC lists a report ending"))).toBe(
         false
       );
-      expect(await storage.get(`generic:v30:0000001800:${quarter.filing.accession}`)).toMatchObject(
+      expect(await storage.get(`generic:v31:0000001800:${quarter.filing.accession}`)).toMatchObject(
         [{ id: "2026-Q2", coverage: { segments: true } }]
       );
       expect(await storage.get(`basic-periods:${job.id}`)).toBeUndefined();
@@ -803,7 +803,7 @@ describe("persistent public finance queue", () => {
     vi.stubGlobal("fetch", fetcher);
     const first = await jobOf(await request(store, "MCD"));
     expect(await storage.get(`task:${first.id}`)).toMatchObject({
-      engineVersion: "finance-v2.42"
+      engineVersion: "finance-v2.43"
     });
     await nextQueueStep(store);
     await nextQueueStep(store);
@@ -825,7 +825,7 @@ describe("persistent public finance queue", () => {
     expect(period.revenueAdjustments).toEqual([
       { id: "source-rounding", label: "Source rounding", revenue: -1e6 }
     ]);
-    expect(await storage.get(`generic:v30:0000063908:${mcdAccession}`)).toMatchObject([
+    expect(await storage.get(`generic:v31:0000063908:${mcdAccession}`)).toMatchObject([
       { coverage: { segments: true, sankey: true } }
     ]);
     expect(await storage.get(`basic-periods:${first.id}`)).toBeUndefined();

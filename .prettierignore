@@ -42,3 +42,12 @@ tests/fixtures/finance/robinhood-fy2023-original-primary-business.html
 tests/fixtures/finance/robinhood-fy2021-thousands-original-primary-business.html
 tests/fixtures/finance/lam-2026-q1-original-primary-business.html
 tests/fixtures/finance/robinhood-2026-q1-original-primary-business.html
+
+tests/fixtures/finance/unitedhealth-fy2025-original-primary-business.html
+
+tests/fixtures/finance/unitedhealth-2026-q2-original-primary-business.html
+
+tests/fixtures/finance/unitedhealth-fy2019-original-primary-business.html
+
+tests/fixtures/finance/unitedhealth-fy2016-original-separate-income-business.html
+tests/fixtures/finance/unitedhealth-fy2016-original-separate-financial.xml

@@ -55,8 +55,12 @@ export function originalBusinessRowsProblem(period: PeriodV2, rule: BusinessRule
     const month =
       "(?:January|February|March|April|May|June|July|August|September|October|November|December)";
     const dateHeading = `${month} \\d{1,2},?(?: \\d{4})?`;
+    const annualHeading =
+      rule.originalRows.annualHeading === "for-years-ended"
+        ? `|For the Years Ended ${dateHeading},?`
+        : "";
     const header = new RegExp(
-      `^(?:(?:(?:Three|Six|Nine) Months|Year) Ended(?: ${dateHeading})?,?|${dateHeading}|\\d{4}|\\(in (?:thousands|millions)(?:,[^)]*)?\\)|Revenues:)$`,
+      `^(?:(?:(?:Three|Six|Nine) Months|Year) Ended(?: ${dateHeading})?,?|${dateHeading}|\\d{4}|\\(in (?:thousands|millions)(?:,[^)]*)?\\)|Revenues:${annualHeading})$`,
       "i"
     );
     demand(
@@ -75,7 +79,7 @@ export function originalBusinessRowsProblem(period: PeriodV2, rule: BusinessRule
       /\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),?/g;
     const allMonthDays = [...allHeadings.matchAll(monthPattern)];
     const monthDays = new Set(allMonthDays.map((m) => `${m[1]} ${m[2]}`));
-    const durationPattern = /Three Months|Six Months|Nine Months|Year Ended/gi;
+    const durationPattern = /Three Months|Six Months|Nine Months|Years? Ended/gi;
     const durations = new Set(allHeadings.match(durationPattern));
     const checkHeading = (
       column: number,
@@ -103,7 +107,7 @@ export function originalBusinessRowsProblem(period: PeriodV2, rule: BusinessRule
           ? 6
           : /Nine Months/i.test(text)
             ? 9
-            : /Year Ended/i.test(text)
+            : /Years? Ended/i.test(text)
               ? 12
               : undefined;
       demand(

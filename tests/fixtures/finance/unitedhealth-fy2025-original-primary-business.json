@@ -1,0 +1,391 @@
+{
+  "ticker": "UNH",
+  "cik": "0000731766",
+  "filing": {
+    "accession": "0000731766-26-000062",
+    "filedAt": "2026-03-02",
+    "reportDate": "2025-12-31",
+    "form": "10-K",
+    "primaryDocument": "unh-20251231.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm"
+  },
+  "sourceSha256": "b96fb77eb92838b319957350807ee973a4c7963dfb96d5f2293e3e80b4d86743",
+  "sourceBytes": 2870729,
+  "excerptSha256": "e5ca732d6d5af52cee460b4d4396eeed68371988479fa7f9ea6b7cf57e2ebf6f",
+  "excerptBytes": 340802,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 22,
+      "fixtureIndex": 0,
+      "primary": true,
+      "business": false
+    },
+    {
+      "originalIndex": 69,
+      "fixtureIndex": 1,
+      "primary": true,
+      "business": false
+    }
+  ],
+  "period": {
+    "id": "FY2025",
+    "label": "FY 2025",
+    "kind": "annual",
+    "fiscalYear": 2025,
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "filedAt": "2026-03-02",
+    "accession": "0000731766-26-000062",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": false,
+    "metrics": {
+      "revenue": 447567000000,
+      "incomeTax": 1890000000,
+      "pretaxIncome": 14697000000,
+      "netIncome": 12056000000,
+      "noncontrollingInterestIncome": 751000000,
+      "operatingIncome": 18964000000,
+      "totalOperatingCosts": 428603000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Reported revenue",
+        "tag": "us-gaap:Revenues",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "incomeTax": {
+        "label": "Provision for income taxes",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "pretaxIncome": {
+        "label": "Earnings before income taxes",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "netIncome": {
+        "label": "Net earnings attributable to UnitedHealth Group common shareholders",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "noncontrollingInterestIncome": {
+        "label": "Earnings attributable to noncontrolling interests",
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "operatingIncome": {
+        "label": "Earnings from operations",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "totalOperatingCosts": {
+        "label": "Total operating costs",
+        "tag": "us-gaap:CostsAndExpenses",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": true,
+      "sankey": true
+    },
+    "operatingCostDetails": [
+      {
+        "id": "line-PolicyholderBenefitsAndClaimsIncurredNet",
+        "label": "Medical costs",
+        "amount": 313995000000,
+        "tag": "us-gaap:PolicyholderBenefitsAndClaimsIncurredNet",
+        "decimals": -6
+      },
+      {
+        "id": "line-SellingGeneralAndAdministrativeExpense",
+        "label": "Operating costs",
+        "amount": 59592000000,
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "decimals": -6
+      },
+      {
+        "id": "line-CostOfGoodsAndServicesSold",
+        "label": "Cost of products sold",
+        "amount": 50655000000,
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "decimals": -6
+      },
+      {
+        "id": "line-DepreciationAndAmortization",
+        "label": "Depreciation and amortization",
+        "amount": 4361000000,
+        "tag": "us-gaap:DepreciationAndAmortization",
+        "decimals": -6
+      }
+    ],
+    "segments": [
+      {
+        "id": "reported-Premiums",
+        "label": "Premiums",
+        "revenue": 352229000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+          "accession": "0000731766-26-000062",
+          "filedAt": "2026-03-02",
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:PremiumsEarnedNet",
+          "dimensions": {},
+          "value": 352229000000,
+          "decimals": -6,
+          "tableLabel": "Premiums",
+          "rowLabel": "Premiums"
+        }
+      },
+      {
+        "id": "reported-Products",
+        "label": "Products",
+        "revenue": 53380000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+          "accession": "0000731766-26-000062",
+          "filedAt": "2026-03-02",
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ProductOrServiceAxis": "us-gaap:ProductMember"
+          },
+          "value": 53380000000,
+          "decimals": -6,
+          "tableLabel": "Products",
+          "rowLabel": "Products"
+        }
+      },
+      {
+        "id": "reported-Services",
+        "label": "Services",
+        "revenue": 38038000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+          "accession": "0000731766-26-000062",
+          "filedAt": "2026-03-02",
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+          },
+          "value": 38038000000,
+          "decimals": -6,
+          "tableLabel": "Services",
+          "rowLabel": "Services"
+        }
+      },
+      {
+        "id": "reported-Investment-and-other-income",
+        "label": "Investment and other income",
+        "revenue": 3920000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+          "accession": "0000731766-26-000062",
+          "filedAt": "2026-03-02",
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:InvestmentIncomeInterestAndDividend",
+          "dimensions": {},
+          "value": 3920000000,
+          "decimals": -6,
+          "tableLabel": "Investment and other income",
+          "rowLabel": "Investment and other income"
+        }
+      }
+    ],
+    "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+    "segmentBasis": "Original primary-statement revenue categories: premiums, products, services, and investment and other income. This is a revenue-source classification, not a division allocation; affiliated sales and reportable-segment gross totals are not counted as consolidated external revenue.",
+    "businessBreakdownSource": {
+      "method": "reviewed-segment-table",
+      "ruleId": "unh-original-premiums-products-services-investment-exploratory",
+      "tableIndex": 0,
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+      "accession": "0000731766-26-000062",
+      "revenueTag": "us-gaap:Revenues",
+      "revenue": 447567000000,
+      "revenueDecimals": -6,
+      "totalLabel": "Total revenues",
+      "omittedSubtotals": []
+    }
+  },
+  "sourceScope": "Unmodified original SEC resource declarations and complete primary table with source hashes and original-to-excerpt table indexes. No synthetic financial markup.",
+  "preservedPeriod": {
+    "id": "FY2025",
+    "label": "FY 2025",
+    "kind": "annual",
+    "fiscalYear": 2025,
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "filedAt": "2026-03-02",
+    "accession": "0000731766-26-000062",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": false,
+    "metrics": {
+      "revenue": 447567000000,
+      "costOfRevenue": 50655000000,
+      "totalOperatingCosts": 428603000000,
+      "operatingIncome": 18964000000,
+      "pretaxIncome": 14697000000,
+      "incomeTax": 1890000000,
+      "netIncome": 12056000000,
+      "noncontrollingInterestIncome": 751000000,
+      "sellingGeneralAndAdministrative": 59592000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenues",
+        "tag": "us-gaap:Revenues",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Goods and Services Sold",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported"
+      },
+      "totalOperatingCosts": {
+        "label": "Costs and Expenses",
+        "tag": "us-gaap:CostsAndExpenses",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "noncontrollingInterestIncome": {
+        "label": "Net Income (Loss) Attributable to Noncontrolling Interest",
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0000731766-26-000062",
+        "filedAt": "2026-03-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/731766/000073176626000062/unh-20251231.htm",
+        "method": "reported"
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    },
+    "operatingCostDetails": [
+      {
+        "id": "line-PolicyholderBenefitsAndClaimsIncurredNet",
+        "label": "Medical costs",
+        "amount": 313995000000,
+        "tag": "us-gaap:PolicyholderBenefitsAndClaimsIncurredNet",
+        "decimals": -6
+      },
+      {
+        "id": "line-SellingGeneralAndAdministrativeExpense",
+        "label": "Operating costs",
+        "amount": 59592000000,
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "decimals": -6
+      },
+      {
+        "id": "line-CostOfGoodsAndServicesSold",
+        "label": "Cost of products sold",
+        "amount": 50655000000,
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "decimals": -6
+      },
+      {
+        "id": "line-DepreciationAndAmortization",
+        "label": "Depreciation and amortization",
+        "amount": 4361000000,
+        "tag": "us-gaap:DepreciationAndAmortization",
+        "decimals": -6
+      }
+    ]
+  }
+}

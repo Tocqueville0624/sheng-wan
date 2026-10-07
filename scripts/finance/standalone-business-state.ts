@@ -1,3 +1,8 @@
+import {
+  unitedHealthStandaloneRule,
+  unitedHealthStandaloneSelection,
+  unitedHealthStandaloneCostDetails
+} from "../../src/features/finance/unitedhealth-standalone";
 import type { CatalogCompany, CompanyV2, PeriodV2 } from "../../src/features/finance/v2-types";
 import {
   originalStandaloneBusinessSelections,
@@ -64,7 +69,7 @@ export function originalStandaloneBusinessRequired(
   fresh: PeriodV2[] = []
 ): boolean {
   if (
-    !["0000915913", "0001037868"].includes(identity.cik) ||
+    !["0000915913", "0001037868", "0000731766"].includes(identity.cik) ||
     !/^10-K(?:\/A)?$/.test(filing.form) ||
     filing.reportDate !== "2018-12-31"
   )
@@ -109,7 +114,8 @@ export async function prepareOriginalStandaloneBusinessFiling(
     if (
       !text.includes("Net sales") &&
       !text.includes("Consolidated net sales") &&
-      !text.includes("Total net sales")
+      !text.includes("Total net sales") &&
+      !(identity.cik === "0000731766" && text.includes("Total revenues"))
     )
       return [];
     const n = [...t[0].matchAll(/<tr\b/gi)].length;
@@ -124,17 +130,22 @@ export async function prepareOriginalStandaloneBusinessFiling(
   });
   const label = (t: OriginalStandalonePhysicalTable, i: number) => t.rows[i]?.cells[0]?.label;
   const primary = layouts.filter((t) =>
-    identity.cik === "0000915913"
-      ? label(t, 4) === "Net sales" &&
-        label(t, 15) === "Income tax expense" &&
-        /Albemarle Corporation and Subsidiaries CONSOLIDATED STATEMENTS OF INCOME$/.test(
-          t.precedingText
-        )
-      : label(t, 3) === "Net sales" &&
-        label(t, 16) === "Provision for income taxes" &&
-        t.precedingText.endsWith(
-          "Consolidated Statement of Income (In thousands, except per share amounts)"
-        )
+    identity.cik === "0000731766"
+      ? label(t, 5) === "Premiums" &&
+        label(t, 9) === "Total revenues" &&
+        label(t, 22) === "Net earnings attributable to UnitedHealth Group common shareholders" &&
+        t.precedingText.endsWith("UnitedHealth Group Consolidated Statements of Operations")
+      : identity.cik === "0000915913"
+        ? label(t, 4) === "Net sales" &&
+          label(t, 15) === "Income tax expense" &&
+          /Albemarle Corporation and Subsidiaries CONSOLIDATED STATEMENTS OF INCOME$/.test(
+            t.precedingText
+          )
+        : label(t, 3) === "Net sales" &&
+          label(t, 16) === "Provision for income taxes" &&
+          t.precedingText.endsWith(
+            "Consolidated Statement of Income (In thousands, except per share amounts)"
+          )
   );
   if (primary.length !== 1) return;
   const all = candidates(base, fresh),
@@ -147,25 +158,28 @@ export async function prepareOriginalStandaloneBusinessFiling(
     // absence is the only condition that permits a new source-only candidate.
     if ((prior && !needsOriginalCapability(prior, identity.cik)) || (matching.length && !prior))
       continue;
-    const business = layouts.filter((t) =>
-      identity.cik === "0000915913"
-        ? label(t, 5) === "Net sales:" &&
-          label(t, 6) === "Lithium" &&
-          label(t, 11) === "Total net sales" &&
-          t.rows[3]?.cells
-            .filter((c) => c.label)
-            .map((c) => c.label)
-            .join("|") === "2018|2017|2016" &&
-          t.rows[4]?.cells
-            .filter((c) => c.label)
-            .map((c) => c.label)
-            .join("") === "(In thousands)"
-        : label(t, 22) === "Consolidated net sales" &&
-          t.rows[1]?.cells
-            .filter((c) => c.label)
-            .map((c) => c.label)
-            .join("") === String(year)
-    );
+    const business =
+      identity.cik === "0000731766"
+        ? primary
+        : layouts.filter((t) =>
+            identity.cik === "0000915913"
+              ? label(t, 5) === "Net sales:" &&
+                label(t, 6) === "Lithium" &&
+                label(t, 11) === "Total net sales" &&
+                t.rows[3]?.cells
+                  .filter((c) => c.label)
+                  .map((c) => c.label)
+                  .join("|") === "2018|2017|2016" &&
+                t.rows[4]?.cells
+                  .filter((c) => c.label)
+                  .map((c) => c.label)
+                  .join("") === "(In thousands)"
+              : label(t, 22) === "Consolidated net sales" &&
+                t.rows[1]?.cells
+                  .filter((c) => c.label)
+                  .map((c) => c.label)
+                  .join("") === String(year)
+          );
     if (business.length !== 1) continue;
     selected.set(primary[0].tableIndex, primary[0]);
     selected.set(business[0].tableIndex, business[0]);
@@ -209,7 +223,7 @@ export function assertOriginalStandaloneBusinessState(
     !state.bindings.length ||
     state.bindings.length > 3 ||
     !Array.isArray(state.tables) ||
-    state.tables.length < 2 ||
+    state.tables.length < (identity.cik === "0000731766" ? 1 : 2) ||
     state.tables.length > 4 ||
     new Set(state.tables.map((t) => t.tableIndex)).size !== state.tables.length ||
     new Set(state.bindings.map((b) => b.id)).size !== state.bindings.length ||
@@ -220,7 +234,7 @@ export function assertOriginalStandaloneBusinessState(
         b.fiscalYear < 2016 ||
         b.fiscalYear > 2018 ||
         b.id !== `FY${b.fiscalYear}` ||
-        b.primaryIndex === b.businessIndex ||
+        (b.primaryIndex === b.businessIndex && identity.cik !== "0000731766") ||
         !state.tables.some((t) => t.tableIndex === b.primaryIndex) ||
         !state.tables.some((t) => t.tableIndex === b.businessIndex) ||
         (b.primaryProfile !== undefined && b.primaryProfile !== "income-statement")
@@ -266,7 +280,7 @@ export async function finishOriginalStandaloneBusinessFiling(
     if (prior && binding.primaryProfile)
       throw Error("Source-only metric profile may not replace a preserved financial candidate.");
     try {
-      const selected = [binding.primaryIndex, binding.businessIndex].map((index) =>
+      const selected = [...new Set([binding.primaryIndex, binding.businessIndex])].map((index) =>
         state.tables.find((t) => t.tableIndex === index)!
       );
       const source = readOriginalStandalonePreparedRevenueRows(
@@ -278,14 +292,16 @@ export async function finishOriginalStandaloneBusinessFiling(
           instanceUrl,
           instanceXml: xml
         },
-        originalStandaloneBusinessSelections(
-          identity.cik,
-          2018,
-          binding.fiscalYear,
-          binding.primaryIndex,
-          binding.businessIndex,
-          binding.primaryProfile
-        ),
+        identity.cik === "0000731766"
+          ? [unitedHealthStandaloneSelection(binding.fiscalYear, binding.primaryIndex)]
+          : originalStandaloneBusinessSelections(
+              identity.cik,
+              2018,
+              binding.fiscalYear,
+              binding.primaryIndex,
+              binding.businessIndex,
+              binding.primaryProfile
+            ),
         sourceHashes
       );
       const shell = {
@@ -305,13 +321,18 @@ export async function finishOriginalStandaloneBusinessFiling(
       };
       const p: PeriodV2 = prior ?? {
         ...shell,
-        ...originalStandaloneReportedMetrics(shell, identity.cik, source.joins[0])
+        ...originalStandaloneReportedMetrics(shell, identity.cik, source.joins[0]),
+        ...(identity.cik === "0000731766"
+          ? { operatingCostDetails: unitedHealthStandaloneCostDetails(source.joins[0]) }
+          : {})
       };
       const proof: OriginalStandaloneBusinessProof = {
         ruleId:
-          identity.cik === "0000915913"
-            ? "alb-original-separate-revenue-v1"
-            : "ame-original-separate-closing-sales-v1",
+          identity.cik === "0000731766"
+            ? unitedHealthStandaloneRule
+            : identity.cik === "0000915913"
+              ? "alb-original-separate-revenue-v1"
+              : "ame-original-separate-closing-sales-v1",
         reportDate: filing.reportDate,
         form: filing.form,
         source: source.proof,
@@ -319,6 +340,9 @@ export async function finishOriginalStandaloneBusinessFiling(
       };
       let next: PeriodV2 = {
         ...p,
+        ...(identity.cik === "0000731766" && !p.operatingCostDetails
+          ? { operatingCostDetails: unitedHealthStandaloneCostDetails(source.joins[0]) }
+          : {}),
         segments: originalStandaloneBusinessSegments(p, proof),
         segmentSourceUrl: p.sourceUrl,
         segmentBasis: originalStandaloneBusinessBasis(proof.ruleId),
@@ -332,8 +356,13 @@ export async function finishOriginalStandaloneBusinessFiling(
           accession: p.accession!,
           revenueTag: p.metricSources.revenue!.tag,
           revenue: p.metrics.revenue!,
-          revenueDecimals: -3,
-          totalLabel: identity.cik === "0000915913" ? "Total net sales" : "Consolidated net sales",
+          revenueDecimals: identity.cik === "0000731766" ? -6 : -3,
+          totalLabel:
+            identity.cik === "0000731766"
+              ? "Total revenues"
+              : identity.cik === "0000915913"
+                ? "Total net sales"
+                : "Consolidated net sales",
           omittedSubtotals: []
         },
         coverage: { ...p.coverage, segments: true }

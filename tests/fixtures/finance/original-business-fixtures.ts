@@ -5,6 +5,9 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany, PeriodV2 } from "../../../src/features/finance/v2-types";
 
 export const originalBusinessCases = {
+  UNHAnnual: "unitedhealth-fy2025",
+  UNHQuarter: "unitedhealth-2026-q2",
+  UNHLegacyAnnual: "unitedhealth-fy2019",
   LRCXAnnual: "lam-fy2026",
   LRCXQuarter: "lam-2026-q3",
   LRCXFirstQuarter: "lam-2026-q1",
@@ -29,8 +32,18 @@ export function originalBusinessSource(name: OriginalBusinessCase) {
   const identity: CatalogCompany = {
     ticker: source.ticker,
     cik: source.cik,
-    name: source.ticker === "LRCX" ? "Lam Research Corporation" : "Robinhood Markets, Inc.",
-    sector: source.ticker === "LRCX" ? "Information Technology" : "Financials",
+    name:
+      source.ticker === "UNH"
+        ? "UnitedHealth Group Incorporated"
+        : source.ticker === "LRCX"
+          ? "Lam Research Corporation"
+          : "Robinhood Markets, Inc.",
+    sector:
+      source.ticker === "UNH"
+        ? "Health Care"
+        : source.ticker === "LRCX"
+          ? "Information Technology"
+          : "Financials",
     universe: "sp500"
   };
   return {

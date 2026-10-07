@@ -16,6 +16,11 @@ import { mockFinance } from "./finance-fixtures";
 import { albemarleInlineFixture } from "../fixtures/finance/albemarle-inline-income-fixtures";
 
 const reported = {
+  UNHAnnual: [352229000000, 53380000000, 38038000000, 3920000000],
+  UNHQuarter: [86956000000, 13835000000, 10018000000, 1223000000],
+  UNHLegacyAnnual: [158453000000, 26366000000, 15317000000, 1023000000],
+  UNHStandalone: [144118000000, 26658000000, 13236000000, 828000000],
+  UNHSourceOnlyStandalone: [144118000000, 26658000000, 13236000000, 828000000],
   LRCXAnnual: [14885488000, 8347202000],
   LRCXQuarter: [3730582000, 2110906000],
   LRCXFirstQuarter: [3547565000, 1776608000],
@@ -58,6 +63,11 @@ const reported = {
 };
 
 for (const ticker of [
+  "UNHAnnual",
+  "UNHQuarter",
+  "UNHLegacyAnnual",
+  "UNHStandalone",
+  "UNHSourceOnlyStandalone",
   "LRCXAnnual",
   "LRCXQuarter",
   "LRCXFirstQuarter",
@@ -104,35 +114,41 @@ for (const ticker of [
     const { company, period } =
       ticker in originalBusinessCases
         ? originalBusinessFixture(ticker as OriginalBusinessCase)
-        : ticker === "ALBOperatingGain"
-          ? albemarleInlineFixture()
-          : ticker === "AMESourceOnlyStandalone" || ticker === "ALBSourceOnlyStandalone"
-            ? await sourceOnlyBusinessFixture(ticker === "AMESourceOnlyStandalone" ? "AME" : "ALB")
-            : ticker === "AMEStandalone" || ticker === "ALBStandalone"
-              ? await standaloneBusinessFixture(ticker === "AMEStandalone" ? "AME" : "ALB")
-              : ticker === "GEHC2024Q2" ||
-                  ticker === "GEHC2024Q3" ||
-                  ticker === "GEHC2025Q1" ||
-                  ticker === "GEHC2026Q2" ||
-                  ticker === "ABT" ||
-                  ticker === "ABTAnnual" ||
-                  ticker === "WMT" ||
-                  ticker === "MMM" ||
-                  ticker === "MMMAnnual" ||
-                  ticker === "JNJ" ||
-                  ticker === "APD" ||
-                  ticker === "AMAT" ||
-                  ticker === "DHR" ||
-                  ticker === "KO" ||
-                  ticker === "GRMN" ||
-                  ticker === "LII" ||
-                  ticker === "MAS" ||
-                  ticker === "VLTO" ||
-                  ticker === "AOS" ||
-                  ticker === "AOSAnnual" ||
-                  ticker === "DOV"
-                ? reviewedFixture(ticker)
-                : businessFixture(ticker as "IBM" | "MCD" | "TSLA");
+        : ticker === "UNHStandalone"
+          ? await standaloneBusinessFixture("UNH")
+          : ticker === "UNHSourceOnlyStandalone"
+            ? await sourceOnlyBusinessFixture("UNH")
+            : ticker === "ALBOperatingGain"
+              ? albemarleInlineFixture()
+              : ticker === "AMESourceOnlyStandalone" || ticker === "ALBSourceOnlyStandalone"
+                ? await sourceOnlyBusinessFixture(
+                    ticker === "AMESourceOnlyStandalone" ? "AME" : "ALB"
+                  )
+                : ticker === "AMEStandalone" || ticker === "ALBStandalone"
+                  ? await standaloneBusinessFixture(ticker === "AMEStandalone" ? "AME" : "ALB")
+                  : ticker === "GEHC2024Q2" ||
+                      ticker === "GEHC2024Q3" ||
+                      ticker === "GEHC2025Q1" ||
+                      ticker === "GEHC2026Q2" ||
+                      ticker === "ABT" ||
+                      ticker === "ABTAnnual" ||
+                      ticker === "WMT" ||
+                      ticker === "MMM" ||
+                      ticker === "MMMAnnual" ||
+                      ticker === "JNJ" ||
+                      ticker === "APD" ||
+                      ticker === "AMAT" ||
+                      ticker === "DHR" ||
+                      ticker === "KO" ||
+                      ticker === "GRMN" ||
+                      ticker === "LII" ||
+                      ticker === "MAS" ||
+                      ticker === "VLTO" ||
+                      ticker === "AOS" ||
+                      ticker === "AOSAnnual" ||
+                      ticker === "DOV"
+                    ? reviewedFixture(ticker)
+                    : businessFixture(ticker as "IBM" | "MCD" | "TSLA");
     expect(period.segments!.map((segment) => segment.revenue)).toEqual(reported[ticker]);
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
@@ -353,6 +369,29 @@ for (const ticker of [
         path,
         contentType: format === "SVG" ? "image/svg+xml" : "image/png"
       });
+    }
+    if (ticker.startsWith("UNH")) {
+      const event = page.waitForEvent("download");
+      await page.getByRole("button", { name: "Download CSV", exact: true }).click();
+      const path = info.outputPath(`${ticker.toLowerCase()}-original-revenue.csv`);
+      await (await event).saveAs(path);
+      const csv = await readFile(path, "utf8");
+      const rows = csv
+        .trim()
+        .split(/\r?\n/)
+        .map((line) =>
+          [...line.matchAll(/"((?:[^"]|"")*)"(?:,|$)/g)].map(([, value]) =>
+            value.replaceAll('""', '"')
+          )
+        );
+      const head = rows[0],
+        selected = rows.slice(1).find((row) => row[head.indexOf("period")] === period.label)!;
+      expect(selected).toBeDefined();
+      expect(JSON.parse(selected[head.indexOf("business_provenance")])).toEqual(
+        period.businessBreakdownSource
+      );
+      for (const segment of period.segments!) expect(csv).toContain(String(segment.revenue));
+      await info.attach(`${ticker} original CSV`, { path, contentType: "text/csv" });
     }
     if (ticker.startsWith("GEHC")) {
       const downloaded = page.waitForEvent("download");

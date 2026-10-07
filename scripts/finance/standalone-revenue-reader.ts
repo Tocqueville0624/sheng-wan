@@ -97,13 +97,23 @@ export function readOriginalStandalonePreparedRevenueRows(
       )
     );
   }
+  const neededScope = (
+    s: OriginalStandaloneTableSelection,
+    start: string | undefined,
+    end: string | undefined
+  ) =>
+    (start === s.period.startDate && end === s.period.endDate) ||
+    (source.cik === "0000731766" &&
+      s.scale === 6 &&
+      s.headers.labels.some(
+        (year) => /^[0-9]{4}$/.test(year) && start === `${year}-01-01` && end === `${year}-12-31`
+      ));
   const neededFacts = instance.facts.filter((f) =>
     selections.some((s) =>
       s.rows.some(
         (r) =>
           r.tag === f.tag &&
-          f.context.start === s.period.startDate &&
-          f.context.end === s.period.endDate &&
+          neededScope(s, f.context.start, f.context.end) &&
           JSON.stringify(Object.entries(f.context.dimensions).sort()) ===
             JSON.stringify(Object.entries(r.dimensions).sort())
       )
@@ -114,8 +124,7 @@ export function readOriginalStandalonePreparedRevenueRows(
       s.rows.some(
         (r) =>
           r.tag === f.tag &&
-          f.context.start === s.period.startDate &&
-          f.context.end === s.period.endDate &&
+          neededScope(s, f.context.start, f.context.end) &&
           JSON.stringify(Object.entries(f.context.dimensions).sort()) ===
             JSON.stringify(Object.entries(r.dimensions).sort())
       )

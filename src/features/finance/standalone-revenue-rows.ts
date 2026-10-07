@@ -10,6 +10,8 @@ function demand(value: unknown, reason: string): asserts value {
  * contract does not establish complete business classification or chart coverage. */
 export type OriginalStandaloneTableSelection = {
   tableIndex: number;
+  /** Separately reviewed original USD million display; default remains thousands. */
+  scale?: 6;
   units: { rowIndex: number; label: string } | { precedingTextSuffix: string };
   headers: { rowIndex: number; labels: string[]; selectedIndex: number; prefixLabel?: string };
   calendarYear: number;
@@ -104,20 +106,30 @@ export function replayOriginalStandaloneRevenueTable(
       "Missing original annual year anchor for business columns."
     );
   }
+  const scale = selection.scale ?? 3;
+  demand(
+    scale === 3 || (scale === 6 && source.cik === "0000731766"),
+    "Unreviewed original monetary scale profile."
+  );
+  const unitLabels =
+    scale === 3 ? thousandUnits : new Set(["(in millions, except per share data)"]);
   const originalUnits = selection.units;
   if ("rowIndex" in originalUnits) {
     const unitRow = rows.find((r) => r.rowIndex === originalUnits.rowIndex);
     demand(
-      thousandUnits.has(originalUnits.label) &&
+      unitLabels.has(originalUnits.label) &&
         unitRow &&
-        unitRow.cells.filter((c) => c.label).length === 1 &&
+        (unitRow.cells.filter((c) => c.label).length === 1 ||
+          (scale === 6 &&
+            originalUnits.rowIndex === selection.headers.rowIndex &&
+            selection.headers.prefixLabel === originalUnits.label)) &&
         unitRow.cells.find((c) => c.label)?.label === originalUnits.label,
       "Missing original thousand-dollar table units."
     );
   } else {
     const suffix = originalUnits.precedingTextSuffix;
     demand(
-      [...thousandUnits].some((u) => suffix.endsWith(u)) && table.precedingText.endsWith(suffix),
+      [...unitLabels].some((u) => suffix.endsWith(u)) && table.precedingText.endsWith(suffix),
       "Missing original preceding statement heading and units."
     );
   }
@@ -173,7 +185,7 @@ export function replayOriginalStandaloneRevenueTable(
         "Unreviewed or missing original displayed amount."
       );
       const value =
-        Number(lexical.replace(/[$(),]/g, "")) * 1000 * (lexical.includes("(") ? -1 : 1);
+        Number(lexical.replace(/[$(),]/g, "")) * 10 ** scale * (lexical.includes("(") ? -1 : 1);
       demand(Number.isSafeInteger(value), "Unsafe original displayed monetary amount.");
       return { cells, lexical, value };
     });
@@ -211,7 +223,8 @@ export function replayOriginalStandaloneRevenueTable(
     const fact = matches[0],
       polarity = binding.displayPolarity ?? "same";
     demand(
-      fact.decimals === -3 && fact.value === selected.value * (polarity === "opposite" ? -1 : 1),
+      fact.decimals === -scale &&
+        fact.value === selected.value * (polarity === "opposite" ? -1 : 1),
       "Original visible amount, sign or precision differs from its XML declaration."
     );
     return {

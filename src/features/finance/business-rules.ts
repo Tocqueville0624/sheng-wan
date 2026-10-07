@@ -10,7 +10,7 @@ export type BusinessRule = {
   separateTotal?: boolean;
   /** A complete, consecutive original revenue section, including its closing
    * total and comparative columns. Only the reviewed USD scales participate. */
-  originalRows?: { scale: 3 | 6; closingLabel: string };
+  originalRows?: { scale: 3 | 6; closingLabel: string; annualHeading?: "for-years-ended" };
   /** A reviewed external-customer row, distinct from gross/intersegment sales.
    * Every source column is accounted for, including duplicate totals and blanks.
    */
@@ -31,6 +31,90 @@ export type BusinessRule = {
 };
 
 export const businessRules: BusinessRule[] = [
+  {
+    id: "unh-original-premiums-products-services-investment-rows-v1",
+    cik: "0000731766",
+    totalTag: "us-gaap:Revenues",
+    totalLabel: "Total revenues",
+    layout: "rows",
+    basis:
+      "Original primary-statement revenue categories: premiums, products, services, and investment and other income. This is a revenue-source classification, not a division allocation; affiliated sales and reportable-segment gross totals are not counted as consolidated external revenue.",
+    branches: [
+      {
+        label: "Premiums",
+        rowLabel: "Premiums",
+        tag: "us-gaap:PremiumsEarnedNet",
+        dimensions: {}
+      },
+      {
+        label: "Products",
+        rowLabel: "Products",
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: {
+          "srt:ProductOrServiceAxis": "us-gaap:ProductMember"
+        }
+      },
+      {
+        label: "Services",
+        rowLabel: "Services",
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: {
+          "srt:ProductOrServiceAxis": "us-gaap:ServiceMember"
+        }
+      },
+      {
+        label: "Investment and other income",
+        rowLabel: "Investment and other income",
+        tag: "us-gaap:InvestmentIncomeInterestAndDividend",
+        dimensions: {}
+      }
+    ],
+    originalRows: {
+      scale: 6,
+      closingLabel: "Total revenues",
+      annualHeading: "for-years-ended"
+    }
+  },
+  {
+    id: "unh-original-legacy-products-services-investment-rows-v1",
+    cik: "0000731766",
+    totalTag: "us-gaap:Revenues",
+    totalLabel: "Total revenues",
+    layout: "rows",
+    basis:
+      "Original primary-statement revenue categories: premiums, products, services, and investment and other income. This is a revenue-source classification, not a division allocation; affiliated sales and reportable-segment gross totals are not counted as consolidated external revenue.",
+    branches: [
+      {
+        label: "Premiums",
+        rowLabel: "Premiums",
+        tag: "us-gaap:PremiumsEarnedNet",
+        dimensions: {}
+      },
+      {
+        label: "Products",
+        rowLabel: "Products",
+        tag: "unh:SalesRevenueProductsNet",
+        dimensions: {}
+      },
+      {
+        label: "Services",
+        rowLabel: "Services",
+        tag: "unh:SalesRevenuesServicesNet",
+        dimensions: {}
+      },
+      {
+        label: "Investment and other income",
+        rowLabel: "Investment and other income",
+        tag: "us-gaap:InvestmentIncomeInterestAndDividend",
+        dimensions: {}
+      }
+    ],
+    originalRows: {
+      scale: 6,
+      closingLabel: "Total revenues",
+      annualHeading: "for-years-ended"
+    }
+  },
   ...["Systems Revenue", "Systems revenue", "System revenue"].map<BusinessRule>(
     (rowLabel, index) => ({
       id: `lrcx-original-systems-support-${index}-rows-v1`,
