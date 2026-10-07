@@ -5,6 +5,9 @@ import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
 for (const key of [
+  "CHDBusinessFY2025",
+  "CHDBusiness2026Q2",
+  "CHDBusinessFY2017",
   "AKAMServicesFY2025",
   "AKAMServices2026Q2",
   "AKAMServicesFY2017",
@@ -52,6 +55,15 @@ for (const key of [
       expect(metadata.segments.map((s: { label: string }) => s.label)).toEqual([
         "Electronic Instruments",
         "Electromechanical"
+      ]);
+    } else if (company.ticker === "CHD") {
+      expect(metadata.businessBreakdownSource.method).toBe("reviewed-church-dwight-revenue");
+      expect(metadata.businessBreakdownSource.churchDwightRevenue.rows).toHaveLength(6);
+      expect(metadata.segments.map((s: { label: string }) => s.label)).toEqual([
+        "Household Products",
+        "Personal Care Products",
+        "Total Consumer International",
+        "Total SPD"
       ]);
     } else {
       expect(metadata.businessBreakdownSource.method).toBe("reviewed-service-revenue-rows");

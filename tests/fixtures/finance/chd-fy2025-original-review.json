@@ -1,0 +1,163 @@
+{
+  "ticker": "CHD",
+  "cik": "0000313927",
+  "period": {
+    "id": "FY2025",
+    "label": "FY 2025",
+    "kind": "annual",
+    "fiscalYear": 2025,
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "filedAt": "2026-02-12",
+    "accession": "0001193125-26-048139",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 6203200000,
+      "costOfRevenue": 3428400000,
+      "grossProfit": 2774800000,
+      "operatingIncome": 1077600000,
+      "pretaxIncome": 956900000,
+      "incomeTax": 220100000,
+      "netIncome": 736800000,
+      "researchAndDevelopment": 145600000,
+      "sellingGeneralAndAdministrative": 988300000,
+      "operatingExpenses": 1697200000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0001193125-26-048139",
+        "filedAt": "2026-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Revenue",
+        "tag": "us-gaap:CostOfRevenue",
+        "accession": "0001193125-26-048139",
+        "filedAt": "2026-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0001193125-26-048139",
+        "filedAt": "2026-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001193125-26-048139",
+        "filedAt": "2026-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001193125-26-048139",
+        "filedAt": "2026-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001193125-26-048139",
+        "filedAt": "2026-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001193125-26-048139",
+        "filedAt": "2026-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "researchAndDevelopment": {
+        "label": "Research and Development Expense",
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "accession": "0001193125-26-048139",
+        "filedAt": "2026-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+        "method": "reported"
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0001193125-26-048139",
+        "filedAt": "2026-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "operatingExpenses",
+        "tag": "grossProfit - operatingIncome",
+        "accession": "0001193125-26-048139",
+        "filedAt": "2026-02-12",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+          "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    },
+    "operatingExpensesBasis": "expenses-and-other-items-net"
+  },
+  "filing": {
+    "accession": "0001193125-26-048139",
+    "filedAt": "2026-02-12",
+    "reportDate": "2025-12-31",
+    "form": "10-K",
+    "primaryDocument": "chd-20251231.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm"
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/313927/000119312526048139/chd-20251231.htm",
+    "bytes": 4736974,
+    "sha256": "ceb49d83474ba29c27c370807123debbca4b229e8e3abd07ca3bae265a8d414a"
+  },
+  "excerptSha256": "dd654dabe7a4c4af5d69f252ab7be41a79f109cff980bd640d0d12b1ef3a206b",
+  "excerptBytes": 608087,
+  "originalBusinessIndexes": [58, 60],
+  "originalTableSelections": [
+    {
+      "originalIndex": 20,
+      "offset": 1195650,
+      "tableSha256": "8e092d835da835bac13aa30b07b6458675d43b3a7822fc77267f09e5321268cb"
+    },
+    {
+      "originalIndex": 58,
+      "offset": 3881796,
+      "tableSha256": "e97c10a7b02911e8057e13cdd71b9bced06cc122e7ffe5815df7ff8f5f516da8"
+    },
+    {
+      "originalIndex": 60,
+      "offset": 4153113,
+      "tableSha256": "c6d1637e87f08cc01b933b7f6437aebf9bce03e18d6eae0dd1116d119e8f6a78"
+    }
+  ],
+  "scope": "Original unmodified HTML namespaces, resource declarations, fiscal metadata, raw candidate primary tables and complete raw business tables. Excerpt document wrapper is for a local review fixture. These are review candidates, not new parsed/accepted/public capability. No source facts or XML declarations are synthesized."
+}

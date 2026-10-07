@@ -31,11 +31,40 @@ export function originalMillionDollarRows(
   return originalDollarRows(rows, units, cik, 6);
 }
 
+/** Display scale and declared precision are independent. Only a finite issuer
+ * profile may use this reader; the original declarations and parsed values are
+ * retained, including binary floating-point representations of exact dollars. */
+export function originalReviewedMillionDollarRows(
+  rows: ServiceRevenueRow[],
+  units: ServiceRevenueRowsProof["units"],
+  cik: string
+) {
+  return originalDollarRows(rows, units, cik, 6, [-5, -6]);
+}
+
+/** Independently replay an original decimal display as exact integer dollars.
+ * This value is for reconciliation only, never a replacement for reported facts. */
+export function originalExactMillionDollars(c: ServiceRevenueRow["cells"][number]): bigint {
+  demand(c.fact && c.fact.declarations.length > 0, "Missing original amount");
+  const d = c.fact.declarations[0];
+  const lexical = c.label.replace(/[,\s$]/g, "").replace(/^[(-]|\)$/g, "");
+  if (/^ixt:(?:zerodash|fixed-zero)$/.test(d.format)) {
+    demand(/^[—–-]$/.test(lexical) && c.fact.value === 0, "Invalid original zero");
+    return 0n;
+  }
+  demand(/^\d+(?:\.\d{1,6})?$/.test(lexical), "Invalid original decimal amount");
+  const [whole, fraction = ""] = lexical.split(".");
+  const exact = BigInt(whole) * 1000000n + BigInt(fraction.padEnd(6, "0"));
+  demand(Number.isSafeInteger(Number(exact)), "Unsafe original dollar amount");
+  return d.sign === "-" ? -exact : exact;
+}
+
 function originalDollarRows(
   rows: ServiceRevenueRow[],
   units: ServiceRevenueRowsProof["units"],
   cik: string,
-  scale: 3 | 6
+  scale: 3 | 6,
+  reviewedDecimals: readonly number[] = [-scale]
 ) {
   demand(/^\d{10}$/.test(cik) && Number(cik) > 0, "Invalid original issuer identity");
   const occupied = new Set<string>();
@@ -84,8 +113,10 @@ function originalDollarRows(
           date(f.endDate) &&
           f.startDate < f.endDate &&
           f.dimensions &&
-          Number.isSafeInteger(f.value) &&
-          f.decimals === -scale &&
+          (reviewedDecimals.length === 1
+            ? Number.isSafeInteger(f.value)
+            : Number.isFinite(f.value) && Number.isSafeInteger(Math.round(f.value))) &&
+          reviewedDecimals.includes(f.decimals) &&
           !f.corroboratingContexts?.length &&
           d &&
           Array.isArray(f.declarations) &&
@@ -97,7 +128,7 @@ function originalDollarRows(
               x.contextId === f.contextId &&
               x.unitRef === d.unitRef &&
               x.scale === scale &&
-              x.decimals === String(-scale) &&
+              x.decimals === String(f.decimals) &&
               x.originalScale === String(scale) &&
               x.format === d.format &&
               x.sign === d.sign
@@ -117,6 +148,13 @@ function originalDollarRows(
               (d.sign === "-") === f.value < 0,
         "Displayed revenue differs from the original fact"
       );
+      if (reviewedDecimals.length > 1) {
+        const exact = Number(originalExactMillionDollars(c));
+        demand(
+          Math.abs(exact - f.value) <= Math.max(0.000001, Math.abs(exact) * Number.EPSILON),
+          "Parsed amount differs from exact original dollars"
+        );
+      }
     }
   }
 }

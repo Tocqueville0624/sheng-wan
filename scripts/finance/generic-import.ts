@@ -16,6 +16,7 @@ import { enrichProductPortfolioPeriods } from "./product-portfolio-v2";
 import { enrichServiceRevenuePeriods } from "./service-revenue-v2";
 import { enrichAlbemarleBusinessPeriods } from "./albemarle-business-v2";
 import { enrichAmetekBusinessPeriods } from "./ametek-business-v2";
+import { enrichChurchDwightBusinessPeriods } from "./church-dwight-business-v2";
 import { enrichAlbemarleInlineIncomePeriods } from "./albemarle-inline-income-v2";
 import { enrichAlignInlineIncomePeriods } from "./align-inline-income-v2";
 
@@ -108,9 +109,10 @@ export function readGenericFiling(
   apply(enrichShareholderPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichAlbemarleBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichAmetekBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
+  apply(enrichChurchDwightBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   // This reviewed issuer stays fail-closed when its captions or corporate scope
   // change. A generic subset or another revenue classification is not a fallback.
-  if (!["0000915913", "0001037868"].includes(identity.cik)) {
+  if (!["0000915913", "0001037868", "0000313927"].includes(identity.cik)) {
     apply(enrichBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
     apply(enrichReviewedBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
     apply(enrichMatrixBusinessPeriods(html, identity, filing, [...updated.values()], parsed));

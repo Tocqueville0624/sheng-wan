@@ -160,6 +160,8 @@ const parserVersion = hash(
       readFile("src/features/finance/service-revenue-rows.ts", "utf8"),
       readFile("src/features/finance/albemarle-revenue.ts", "utf8"),
       readFile("src/features/finance/ametek-revenue.ts", "utf8"),
+      readFile("src/features/finance/church-dwight-revenue.ts", "utf8"),
+      readFile("scripts/finance/church-dwight-business-v2.ts", "utf8"),
       readFile("src/features/finance/original-revenue-rows.ts", "utf8"),
       readFile("src/features/finance/standalone-revenue-rows.ts", "utf8"),
       readFile("src/features/finance/standalone-source-proof.ts", "utf8"),

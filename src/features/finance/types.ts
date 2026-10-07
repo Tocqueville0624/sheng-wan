@@ -331,6 +331,19 @@ export type AmetekBusinessProof = {
   revenue: ServiceRevenueRow;
   primary: ServiceRevenueRowsProof["primary"];
 };
+/** Complete Church & Dwight product hierarchy and independent primary columns.
+ * All comparative and cumulative cells keep their original precision and scope. */
+export type ChurchDwightBusinessProof = {
+  ruleId: "chd-original-product-hierarchy-v1";
+  reportDate: string;
+  form: string;
+  originalFiscalYear: number;
+  units: ServiceRevenueRowsProof["units"];
+  tableIndex: number;
+  headerRows: ServiceRevenueRow[];
+  rows: ServiceRevenueRow[];
+  primary: ServiceRevenueRowsProof["primary"];
+};
 export type ProductPortfolioProof = {
   ruleId: "abbv-original-product-portfolios-v1";
   startDate: string;
@@ -451,9 +464,11 @@ export type FinancialPeriod = {
       | "reviewed-service-revenue-rows"
       | "reviewed-albemarle-revenue"
       | "reviewed-ametek-revenue"
+      | "reviewed-church-dwight-revenue"
       | "reviewed-original-standalone-revenue";
     standaloneRevenue?: OriginalStandaloneBusinessProof;
     ametekRevenue?: AmetekBusinessProof;
+    churchDwightRevenue?: ChurchDwightBusinessProof;
     albemarleRevenue?: AlbemarleBusinessProof;
     productPortfolios?: ProductPortfolioProof;
     serviceRevenueRows?: ServiceRevenueRowsProof;

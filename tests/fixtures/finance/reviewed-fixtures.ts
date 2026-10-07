@@ -6,6 +6,51 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 import type { CatalogCompany } from "../../../src/features/finance/v2-types";
 
 const sources = {
+  CHDBusinessFY2017: {
+    ticker: "CHD",
+    name: "Church & Dwight Co., Inc.",
+    cik: "0000313927",
+    sector: "Consumer Staples",
+    kind: "annual",
+    accession: "0001564590-20-004956",
+    filedAt: "2020-02-18",
+    reportDate: "2019-12-31",
+    document: "chd-10k_20191231.htm",
+    startDate: "2017-01-01",
+    endDate: "2017-12-31",
+    fiscalYear: 2017,
+    fixture: "chd-fy2017-original-review.html"
+  },
+  CHDBusinessFY2025: {
+    ticker: "CHD",
+    name: "Church & Dwight Co., Inc.",
+    cik: "0000313927",
+    sector: "Consumer Staples",
+    kind: "annual",
+    accession: "0001193125-26-048139",
+    filedAt: "2026-02-12",
+    reportDate: "2025-12-31",
+    document: "chd-20251231.htm",
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+    fiscalYear: 2025,
+    fixture: "chd-fy2025-original-review.html"
+  },
+  CHDBusiness2026Q2: {
+    ticker: "CHD",
+    name: "Church & Dwight Co., Inc.",
+    cik: "0000313927",
+    sector: "Consumer Staples",
+    kind: "quarterly",
+    accession: "0001193125-26-327567",
+    filedAt: "2026-07-31",
+    reportDate: "2026-06-30",
+    document: "chd-20260630.htm",
+    startDate: "2026-04-01",
+    endDate: "2026-06-30",
+    fiscalYear: 2026,
+    fixture: "chd-2026-q2-original-review.html"
+  },
   AMEBusinessFY2017: {
     ticker: "AME",
     name: "AMETEK, Inc.",

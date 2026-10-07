@@ -30,6 +30,7 @@ import { serviceRevenueRowsProblem } from "../../src/features/finance/service-re
 import { albemarleRevenueProblem } from "../../src/features/finance/albemarle-revenue";
 import { originalStandaloneBusinessProblem } from "../../src/features/finance/standalone-business";
 import { ametekRevenueProblem } from "../../src/features/finance/ametek-revenue";
+import { churchDwightRevenueProblem } from "../../src/features/finance/church-dwight-revenue";
 import { originalBusinessRowsValid } from "../../src/features/finance/original-business-rows";
 import { normalizeReviewedFiscalLabel, albemarleFiscalLabelNote } from "./fiscal-label";
 
@@ -261,6 +262,9 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     if (period.revenueAdjustments?.some((item) => item.id === "source-rounding")) return;
     return business;
   }
+  if (proof.churchDwightRevenue && proof.method !== "reviewed-church-dwight-revenue") return;
+  if (proof.method === "reviewed-church-dwight-revenue")
+    return churchDwightRevenueProblem(period) ? undefined : business;
   if (proof.standaloneRevenue && proof.method !== "reviewed-original-standalone-revenue") return;
   if (proof.method === "reviewed-original-standalone-revenue")
     return originalStandaloneBusinessProblem(period) ? undefined : business;

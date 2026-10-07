@@ -13,7 +13,8 @@ export function originalRevenueGrid(
   html: string,
   parsed: ParsedFiling,
   cik: string,
-  scale: 3 | 6 = 3
+  scale: 3 | 6 = 3,
+  reviewedDecimals: readonly number[] = [-scale]
 ) {
   const units: ServiceRevenueRowsProof["units"] = [];
   for (const [unit] of html.matchAll(/<(?:[\w.-]+:)?unit\b[^>]*>[\s\S]*?<\/(?:[\w.-]+:)?unit>/gi)) {
@@ -92,7 +93,7 @@ export function originalRevenueGrid(
               unitRef &&
               units.some((u) => u.id === unitRef) &&
               Number(attribute(d, "scale")) === scale &&
-              Number(attribute(d, "decimals")) === -scale &&
+              reviewedDecimals.includes(Number(attribute(d, "decimals"))) &&
               /^(?:ixt:(?:numdotdecimal|num-dot-decimal|zerodash|fixed-zero))?$/.test(format) &&
               (sign === undefined || sign === "-"),
             "Unreviewed monetary declaration"
@@ -118,7 +119,7 @@ export function originalRevenueGrid(
           const amount = (zero ? 0 : Number(lexical) * 10 ** scale) * (sign === "-" ? -1 : 1);
           const f = refs
             .get(tag + "|" + contextId)
-            ?.find((f) => f.value === amount && f.decimals === -scale);
+            ?.find((f) => f.value === amount && f.decimals === Number(attribute(d, "decimals")));
           demand(
             f &&
               f.currency === "USD" &&
