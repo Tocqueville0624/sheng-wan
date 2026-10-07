@@ -95,7 +95,8 @@ export function BasicHistory({
                 id: p.id,
                 currency: p.displayCurrency,
                 metrics: p.metrics,
-                sources: p.metricSources
+                sources: p.metricSources,
+                originalStatementCorroboration: p.originalStatementCorroboration
               }))
             })}
           </metadata>

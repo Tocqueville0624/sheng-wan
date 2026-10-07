@@ -61,7 +61,8 @@ export function StatementMetrics({ company, period }: { company: CompanyV2; peri
               period: period.id,
               currency: period.displayCurrency,
               metrics: period.metrics,
-              sources: period.metricSources
+              sources: period.metricSources,
+              originalStatementCorroboration: period.originalStatementCorroboration
             })}
           </metadata>
           <rect width={width} height={height} fill={colors.paper} />

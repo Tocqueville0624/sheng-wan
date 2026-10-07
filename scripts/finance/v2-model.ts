@@ -31,6 +31,10 @@ import { albemarleRevenueProblem } from "../../src/features/finance/albemarle-re
 import { originalStandaloneBusinessProblem } from "../../src/features/finance/standalone-business";
 import { ametekRevenueProblem } from "../../src/features/finance/ametek-revenue";
 import { churchDwightRevenueProblem } from "../../src/features/finance/church-dwight-revenue";
+import {
+  corroborateOriginalStatement,
+  originalStatementCorroborationProblem
+} from "../../src/features/finance/statement-corroboration";
 import { originalBusinessRowsValid } from "../../src/features/finance/original-business-rows";
 import { normalizeReviewedFiscalLabel, albemarleFiscalLabelNote } from "./fiscal-label";
 
@@ -871,6 +875,20 @@ export function validateV2(company: CompanyV2) {
           throw new Error("Metric source does not match the SEC issuer.");
       }
       const m = p.metrics;
+      if (p.originalStatementCorroboration) {
+        const problem = originalStatementCorroborationProblem(
+          company.cik,
+          p,
+          p.originalStatementCorroboration
+        );
+        if (problem) throw new Error(problem);
+        const prior = p.originalStatementCorroboration.prior;
+        validateV2({
+          ...company,
+          annual: prior.kind === "annual" ? [prior] : [],
+          quarterly: prior.kind === "quarterly" ? [prior] : []
+        });
+      }
       validateSegmentGrossProfits(p);
       const adjustments = p.grossProfitAdjustments ?? [];
       if (
@@ -944,6 +962,13 @@ export function mergeV2(previous: CompanyV2 | undefined, incoming: CompanyV2): C
     for (const p of incoming[kind]) {
       const key = `${p.startDate}:${p.endDate}`;
       const old = byDates.get(key);
+      if (old && old.filedAt > p.filedAt) {
+        const proof = corroborateOriginalStatement(incoming.cik, old, p);
+        if (proof) {
+          byDates.set(key, { ...p, originalStatementCorroboration: proof });
+          continue;
+        }
+      }
       if (old && (old.filedAt > p.filedAt || (old.coverage.segments && !p.coverage.segments))) {
         if (p.filedAt > old.filedAt)
           merged.warnings.push(
@@ -985,7 +1010,17 @@ export function mergeV2(previous: CompanyV2 | undefined, incoming: CompanyV2): C
         });
         continue;
       }
-      byDates.set(key, p);
+      const retainedProof = old?.originalStatementCorroboration;
+      byDates.set(
+        key,
+        retainedProof &&
+          old.accession === p.accession &&
+          old.sourceUrl === p.sourceUrl &&
+          old.filedAt === p.filedAt &&
+          !originalStatementCorroborationProblem(incoming.cik, p, retainedProof)
+          ? { ...p, originalStatementCorroboration: retainedProof }
+          : p
+      );
     }
     merged[kind] = [...byDates.values()]
       .sort((a, b) => a.endDate.localeCompare(b.endDate))

@@ -325,6 +325,7 @@ export function StatementFlow({
               segmentSourceUrl: period.segmentSourceUrl,
               revenueAdjustments: period.revenueAdjustments,
               businessBreakdownSource: period.businessBreakdownSource,
+              originalStatementCorroboration: period.originalStatementCorroboration,
               netIncomeAttribution: parentNet ? "parent" : undefined,
               shareholderBridge: period.shareholderBridge,
               operatingItems: period.operatingItems,
@@ -588,6 +589,8 @@ export function StatementFlow({
         </svg>
       </div>
       <p className="chart-note">
+        {period.originalStatementCorroboration &&
+          `This complete original statement agrees with the previously saved reported figures from the ${period.originalStatementCorroboration.prior.filedAt} filing. Both source records are retained in SVG and CSV downloads. `}
         {operatingNetFlow &&
           "The primary statement reports operating income followed by signed gains, interest, income tax and consolidated net income. Every original row and ownership allocation is preserved; no pretax subtotal is inferred. Independently disclosed metrics remain in the statement table and exports. "}
         {directNetFlow &&

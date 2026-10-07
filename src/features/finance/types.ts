@@ -2,6 +2,7 @@ import type { MetricSource } from "./v2-types";
 import type { OriginalStandaloneBusinessProof } from "./standalone-business";
 import type { AlbemarleInlineIncomeProof } from "./albemarle-inline-income";
 import type { AlignInlineIncomeProof } from "./align-inline-income";
+import type { OriginalStatementCorroboration } from "./statement-corroboration";
 
 export type PeriodKind = "annual" | "quarterly";
 export type DataStatus = "verified" | "delayed" | "demo";
@@ -406,6 +407,9 @@ export type FinancialPeriod = {
     endDate: string;
   };
   derived: boolean;
+  /** An older complete original report independently reproduces all previously
+   * saved reported facts. The prior record and its provenance remain intact. */
+  originalStatementCorroboration?: OriginalStatementCorroboration;
   metrics: FinancialMetrics;
   grossProfitAdjustments?: { label: string; amount: number; sourceUrl: string }[];
   /** Signed, declared-precision rounding; all reported amounts remain unchanged. */

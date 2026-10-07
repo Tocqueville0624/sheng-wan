@@ -191,7 +191,8 @@ export function RevenueChart({
                 segmentBasis: period.segmentBasis,
                 segments: period.segments,
                 revenueAdjustments: period.revenueAdjustments,
-                businessBreakdownSource: period.businessBreakdownSource
+                businessBreakdownSource: period.businessBreakdownSource,
+                originalStatementCorroboration: period.originalStatementCorroboration
               }))
             })}
           </metadata>

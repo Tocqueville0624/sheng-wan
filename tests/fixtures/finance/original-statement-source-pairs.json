@@ -1,0 +1,2756 @@
+{
+  "scope": "Unmodified v2 records from the immutable 8e7dada corpus baseline and separately read SHA-pinned original SEC sources. CHD HTML is retained byte-for-byte for a full parser/merge regression; EOG/LEN/EXPE records exercise known-detail and business-reclassification guards.",
+  "rows": [
+    {
+      "identity": {
+        "ticker": "CHD",
+        "cik": "0000313927",
+        "name": "Church & Dwight",
+        "sector": "Consumer Staples",
+        "universe": "sp500"
+      },
+      "filing": {
+        "accession": "0001193125-26-200630",
+        "filedAt": "2026-05-01",
+        "reportDate": "2026-03-31",
+        "form": "10-Q",
+        "primaryDocument": "chd-20260331.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm"
+      },
+      "originalSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+        "bytes": 2439605,
+        "sha256": "29e6fc5680c844325b9d9f38a58c7c33984bbd3c6fbc16c11172bdb03f4eefc4"
+      },
+      "prior": {
+        "id": "2026-Q1",
+        "label": "Q1 FY2026",
+        "kind": "quarterly",
+        "fiscalYear": 2026,
+        "fiscalQuarter": 1,
+        "startDate": "2026-01-01",
+        "endDate": "2026-03-31",
+        "filedAt": "2026-07-31",
+        "accession": "0001193125-26-327567",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526327567/chd-20260630.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "netIncome": 216300000
+        },
+        "metricSources": {
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001193125-26-327567",
+            "filedAt": "2026-07-31",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526327567/chd-20260630.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      "original": {
+        "id": "2026-Q1",
+        "label": "Q1 FY2026",
+        "kind": "quarterly",
+        "fiscalYear": 2026,
+        "fiscalQuarter": 1,
+        "startDate": "2026-01-01",
+        "endDate": "2026-03-31",
+        "filedAt": "2026-05-01",
+        "accession": "0001193125-26-200630",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": true,
+        "metrics": {
+          "revenue": 1469300000,
+          "incomeTax": 56300000,
+          "pretaxIncome": 272600000,
+          "netIncome": 216300000,
+          "operatingIncome": 291000000,
+          "grossProfit": 681400000,
+          "costOfRevenue": 787900000,
+          "operatingExpenses": 390400000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Reported revenue",
+            "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+            "accession": "0001193125-26-200630",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+            "method": "reported",
+            "decimals": -5
+          },
+          "incomeTax": {
+            "label": "Income taxes",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001193125-26-200630",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+            "method": "reported",
+            "decimals": -5
+          },
+          "pretaxIncome": {
+            "label": "Income before Income Taxes",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001193125-26-200630",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+            "method": "reported",
+            "decimals": -5
+          },
+          "netIncome": {
+            "label": "Net Income",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001193125-26-200630",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+            "method": "reported",
+            "decimals": -5
+          },
+          "operatingIncome": {
+            "label": "Income from Operations",
+            "tag": "us-gaap:OperatingIncomeLoss",
+            "accession": "0001193125-26-200630",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+            "method": "reported",
+            "decimals": -5
+          },
+          "grossProfit": {
+            "label": "Gross Profit",
+            "tag": "us-gaap:GrossProfit",
+            "accession": "0001193125-26-200630",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+            "method": "reported",
+            "decimals": -5
+          },
+          "costOfRevenue": {
+            "label": "Cost of sales",
+            "tag": "us-gaap:CostOfRevenue",
+            "accession": "0001193125-26-200630",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+            "method": "reported",
+            "decimals": -5
+          },
+          "operatingExpenses": {
+            "label": "Reported gross profit less operating income (net)",
+            "tag": "us-gaap:GrossProfit - us-gaap:OperatingIncomeLoss",
+            "accession": "0001193125-26-200630",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+            "method": "calculated",
+            "inputs": [
+              "Gross Profit (us-gaap:GrossProfit): https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+              "Income from Operations (us-gaap:OperatingIncomeLoss): https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm"
+            ]
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": true,
+          "sankey": true
+        },
+        "operatingExpenseDetails": [
+          {
+            "id": "line-MarketingAndAdvertisingExpense",
+            "label": "Marketing expenses",
+            "amount": 139400000,
+            "tag": "us-gaap:MarketingAndAdvertisingExpense",
+            "decimals": -5
+          },
+          {
+            "id": "line-SellingGeneralAndAdministrativeExpense",
+            "label": "Selling, general and administrative expenses",
+            "amount": 251000000,
+            "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+            "decimals": -5
+          }
+        ],
+        "segments": [
+          {
+            "id": "reported-Household-Products",
+            "label": "Household Products",
+            "revenue": 641600000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+              "accession": "0001193125-26-200630",
+              "filedAt": "2026-05-01",
+              "startDate": "2026-01-01",
+              "endDate": "2026-03-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerDomesticMember",
+                "srt:ProductOrServiceAxis": "chd:HouseholdProductsMember"
+              },
+              "value": 641600000,
+              "decimals": -5,
+              "tableLabel": "Household Products",
+              "rowLabel": "Household Products",
+              "rowIndex": 4,
+              "columnIndex": 2
+            }
+          },
+          {
+            "id": "reported-Personal-Care-Products",
+            "label": "Personal Care Products",
+            "revenue": 476100000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+              "accession": "0001193125-26-200630",
+              "filedAt": "2026-05-01",
+              "startDate": "2026-01-01",
+              "endDate": "2026-03-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "chd:PersonalCareProductsMember",
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerDomesticMember"
+              },
+              "value": 476100000,
+              "decimals": -5,
+              "tableLabel": "Personal Care Products",
+              "rowLabel": "Personal Care Products",
+              "rowIndex": 5,
+              "columnIndex": 2
+            }
+          },
+          {
+            "id": "reported-Total-Consumer-International",
+            "label": "Total Consumer International",
+            "revenue": 273900000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+              "accession": "0001193125-26-200630",
+              "filedAt": "2026-05-01",
+              "startDate": "2026-01-01",
+              "endDate": "2026-03-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerInternationalMember"
+              },
+              "value": 273900000,
+              "decimals": -5,
+              "tableLabel": "Total Consumer International",
+              "rowLabel": "Total Consumer International",
+              "rowIndex": 7,
+              "columnIndex": 2
+            }
+          },
+          {
+            "id": "reported-Total-SPD",
+            "label": "Total SPD",
+            "revenue": 77700000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+              "accession": "0001193125-26-200630",
+              "filedAt": "2026-05-01",
+              "startDate": "2026-01-01",
+              "endDate": "2026-03-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "us-gaap:StatementBusinessSegmentsAxis": "chd:SpecialtyProductsDivisionMember",
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+              },
+              "value": 77700000,
+              "decimals": -5,
+              "tableLabel": "Total SPD",
+              "rowLabel": "Total SPD",
+              "rowIndex": 8,
+              "columnIndex": 2
+            }
+          }
+        ],
+        "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+        "segmentBasis": "Reported Household Products and Personal Care Products partition Consumer Domestic; Consumer International and Specialty Products Division (SPD) retain their reported business totals. Every original comparative and year-to-date column reconciles to its domestic subtotal, consolidated total and independent primary net sales. Domestic subtotals are not counted twice. Original million-dollar display and declared precision are retained; no business gross profit or missing classification is estimated.",
+        "businessBreakdownSource": {
+          "method": "reviewed-church-dwight-revenue",
+          "ruleId": "chd-original-product-hierarchy-v1",
+          "churchDwightRevenue": {
+            "ruleId": "chd-original-product-hierarchy-v1",
+            "reportDate": "2026-03-31",
+            "form": "10-Q",
+            "originalFiscalYear": 2026,
+            "units": [
+              {
+                "id": "U_USD",
+                "measure": "iso4217:USD"
+              }
+            ],
+            "tableIndex": 38,
+            "headerRows": [
+              {
+                "rowIndex": 0,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 2,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 6,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              },
+              {
+                "rowIndex": 1,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 6,
+                    "rowSpan": 1,
+                    "label": "Three Months Ended"
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              },
+              {
+                "rowIndex": 2,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 2,
+                    "rowSpan": 1,
+                    "label": "March 31,"
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 2,
+                    "rowSpan": 1,
+                    "label": "March 31,"
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              },
+              {
+                "rowIndex": 3,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 2,
+                    "rowSpan": 1,
+                    "label": "2026"
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 2,
+                    "rowSpan": 1,
+                    "label": "2025"
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              }
+            ],
+            "rows": [
+              {
+                "rowIndex": 4,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "Household Products"
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "$"
+                  },
+                  {
+                    "columnIndex": 2,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "641.6",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 641600000,
+                      "decimals": -5,
+                      "contextId": "C_b747550d-5470-4891-942d-aa673e48d3fe",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2026-01-01",
+                      "endDate": "2026-03-31",
+                      "dimensions": {
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                        "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerDomesticMember",
+                        "srt:ProductOrServiceAxis": "chd:HouseholdProductsMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_b747550d-5470-4891-942d-aa673e48d3fe",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_5aaa3b04-b84c-4e64-b421-aaceaf7d1aa1"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "$"
+                  },
+                  {
+                    "columnIndex": 6,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "614.9",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 614900000,
+                      "decimals": -5,
+                      "contextId": "C_384da8cb-01b7-44f3-9ea7-ba12a406ca6d",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2025-01-01",
+                      "endDate": "2025-03-31",
+                      "dimensions": {
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                        "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerDomesticMember",
+                        "srt:ProductOrServiceAxis": "chd:HouseholdProductsMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_384da8cb-01b7-44f3-9ea7-ba12a406ca6d",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_c8c34e22-7cd6-4150-9b90-d83fbc3eb4c9"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              },
+              {
+                "rowIndex": 5,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "Personal Care Products"
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 2,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "476.1",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 476100000,
+                      "decimals": -5,
+                      "contextId": "C_a69f5d75-1719-4791-a6d9-a7a4bf20e495",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2026-01-01",
+                      "endDate": "2026-03-31",
+                      "dimensions": {
+                        "srt:ProductOrServiceAxis": "chd:PersonalCareProductsMember",
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                        "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerDomesticMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_a69f5d75-1719-4791-a6d9-a7a4bf20e495",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_6c2be9f6-d5af-4ff0-8270-7377c66c51ec"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 6,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "514.9",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 514900000,
+                      "decimals": -5,
+                      "contextId": "C_19377985-f2eb-48cc-82ca-8a450c158287",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2025-01-01",
+                      "endDate": "2025-03-31",
+                      "dimensions": {
+                        "srt:ProductOrServiceAxis": "chd:PersonalCareProductsMember",
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                        "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerDomesticMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_19377985-f2eb-48cc-82ca-8a450c158287",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_bc03cd60-028a-4db6-ae67-677b1f1783b5"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              },
+              {
+                "rowIndex": 6,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "Total Consumer Domestic"
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 2,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "1,117.7",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 1117700000,
+                      "decimals": -5,
+                      "contextId": "C_c7a52061-9081-4b58-93f3-dd521e9fed10",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2026-01-01",
+                      "endDate": "2026-03-31",
+                      "dimensions": {
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                        "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerDomesticMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_c7a52061-9081-4b58-93f3-dd521e9fed10",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_bee6716f-eec2-42c4-be49-2b25242978a0"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 6,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "1,129.8",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 1129800000,
+                      "decimals": -5,
+                      "contextId": "C_4aee1fd5-ee82-475a-aae8-07ab3930ebc8",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2025-01-01",
+                      "endDate": "2025-03-31",
+                      "dimensions": {
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                        "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerDomesticMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_4aee1fd5-ee82-475a-aae8-07ab3930ebc8",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_8c212fb7-6f26-4e17-97cb-d77425d09b80"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              },
+              {
+                "rowIndex": 7,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "Total Consumer International"
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 2,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "273.9",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 273900000,
+                      "decimals": -5,
+                      "contextId": "C_bd35d7c6-8ab0-4b73-bc86-2780ccfb430d",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2026-01-01",
+                      "endDate": "2026-03-31",
+                      "dimensions": {
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                        "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerInternationalMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_bd35d7c6-8ab0-4b73-bc86-2780ccfb430d",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_de8faa4b-3681-4567-ae38-ad2021e40522"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 6,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "261.9",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 261899999.99999997,
+                      "decimals": -5,
+                      "contextId": "C_28308c96-cdc6-472b-836e-55f989d467ee",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2025-01-01",
+                      "endDate": "2025-03-31",
+                      "dimensions": {
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                        "us-gaap:StatementBusinessSegmentsAxis": "chd:ConsumerInternationalMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_28308c96-cdc6-472b-836e-55f989d467ee",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_b06d4146-3e95-49e3-a747-e63144e6eb07"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              },
+              {
+                "rowIndex": 8,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "Total SPD"
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 2,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "77.7",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 77700000,
+                      "decimals": -5,
+                      "contextId": "C_ed57f5b3-447f-4f8c-b21b-ccfa047310a2",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2026-01-01",
+                      "endDate": "2026-03-31",
+                      "dimensions": {
+                        "us-gaap:StatementBusinessSegmentsAxis": "chd:SpecialtyProductsDivisionMember",
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_ed57f5b3-447f-4f8c-b21b-ccfa047310a2",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_d0872f5f-6cf0-4ffc-b112-eacdd9c02188"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 6,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "75.4",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 75400000,
+                      "decimals": -5,
+                      "contextId": "C_0a549c72-423a-4338-b158-d8801daec782",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2025-01-01",
+                      "endDate": "2025-03-31",
+                      "dimensions": {
+                        "us-gaap:StatementBusinessSegmentsAxis": "chd:SpecialtyProductsDivisionMember",
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_0a549c72-423a-4338-b158-d8801daec782",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_925819de-c14e-4029-bb3c-dd6d320a6727"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              },
+              {
+                "rowIndex": 9,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "Total Consolidated Net Sales"
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "$"
+                  },
+                  {
+                    "columnIndex": 2,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "1,469.3",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 1469300000,
+                      "decimals": -5,
+                      "contextId": "C_52bb857f-2a6c-4d46-8bf3-fee606e38091",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2026-01-01",
+                      "endDate": "2026-03-31",
+                      "dimensions": {
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_52bb857f-2a6c-4d46-8bf3-fee606e38091",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_5e825ea4-36e3-4366-96bd-7c7c81fd0deb"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "$"
+                  },
+                  {
+                    "columnIndex": 6,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "1,467.1",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 1467100000,
+                      "decimals": -5,
+                      "contextId": "C_e2e7bf93-92ca-4acb-a817-f2ca75010247",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2025-01-01",
+                      "endDate": "2025-03-31",
+                      "dimensions": {
+                        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+                      },
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_e2e7bf93-92ca-4acb-a817-f2ca75010247",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_9e22a82f-99d9-4a6d-ab05-2411ff9ae3db"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              }
+            ],
+            "primary": {
+              "tableIndex": 8,
+              "title": "CHURCH & DWIGHT CO., INC. AND SUBSIDIARIES CONDENSED CONSOLIDATED STATEMENTS OF INCOME (Unaudited) (In millions, except per share data)",
+              "headerRows": [
+                {
+                  "rowIndex": 0,
+                  "cells": [
+                    {
+                      "columnIndex": 0,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 1,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 2,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 3,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 4,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 5,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 6,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 7,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 8,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    }
+                  ]
+                },
+                {
+                  "rowIndex": 1,
+                  "cells": [
+                    {
+                      "columnIndex": 0,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 1,
+                      "span": 6,
+                      "rowSpan": 1,
+                      "label": "Three Months Ended"
+                    },
+                    {
+                      "columnIndex": 7,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 8,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    }
+                  ]
+                },
+                {
+                  "rowIndex": 2,
+                  "cells": [
+                    {
+                      "columnIndex": 0,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 1,
+                      "span": 2,
+                      "rowSpan": 1,
+                      "label": "March 31,"
+                    },
+                    {
+                      "columnIndex": 3,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 4,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 5,
+                      "span": 2,
+                      "rowSpan": 1,
+                      "label": "March 31,"
+                    },
+                    {
+                      "columnIndex": 7,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 8,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    }
+                  ]
+                },
+                {
+                  "rowIndex": 3,
+                  "cells": [
+                    {
+                      "columnIndex": 0,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 1,
+                      "span": 2,
+                      "rowSpan": 1,
+                      "label": "2026"
+                    },
+                    {
+                      "columnIndex": 3,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 4,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 5,
+                      "span": 2,
+                      "rowSpan": 1,
+                      "label": "2025"
+                    },
+                    {
+                      "columnIndex": 7,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    },
+                    {
+                      "columnIndex": 8,
+                      "span": 1,
+                      "rowSpan": 1,
+                      "label": ""
+                    }
+                  ]
+                }
+              ],
+              "revenue": {
+                "rowIndex": 4,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "Net Sales"
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "$"
+                  },
+                  {
+                    "columnIndex": 2,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "1,469.3",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 1469300000,
+                      "decimals": -5,
+                      "contextId": "C_9b691b47-deeb-414f-97de-545817c861f9",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2026-01-01",
+                      "endDate": "2026-03-31",
+                      "dimensions": {},
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_9b691b47-deeb-414f-97de-545817c861f9",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_59942ae4-d590-4753-882e-1a312906f725"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "$"
+                  },
+                  {
+                    "columnIndex": 6,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "1,467.1",
+                    "fact": {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "value": 1467100000,
+                      "decimals": -5,
+                      "contextId": "C_bccc2251-c44a-4ba7-ac32-e0a3874fbfcf",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2025-01-01",
+                      "endDate": "2025-03-31",
+                      "dimensions": {},
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                          "contextId": "C_bccc2251-c44a-4ba7-ac32-e0a3874fbfcf",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_7b2cd235-8fc9-415a-aee6-89ea35e88dce"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 8,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              },
+              "tax": {
+                "rowIndex": 15,
+                "cells": [
+                  {
+                    "columnIndex": 0,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "Income taxes"
+                  },
+                  {
+                    "columnIndex": 1,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 2,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "56.3",
+                    "fact": {
+                      "tag": "us-gaap:IncomeTaxExpenseBenefit",
+                      "value": 56300000,
+                      "decimals": -5,
+                      "contextId": "C_9b691b47-deeb-414f-97de-545817c861f9",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2026-01-01",
+                      "endDate": "2026-03-31",
+                      "dimensions": {},
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:IncomeTaxExpenseBenefit",
+                          "contextId": "C_9b691b47-deeb-414f-97de-545817c861f9",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_ba274fd1-4f12-4301-b844-5ea06dede313"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 3,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 4,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 5,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 6,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": "62.0",
+                    "fact": {
+                      "tag": "us-gaap:IncomeTaxExpenseBenefit",
+                      "value": 62000000,
+                      "decimals": -5,
+                      "contextId": "C_bccc2251-c44a-4ba7-ac32-e0a3874fbfcf",
+                      "cik": "0000313927",
+                      "currency": "USD",
+                      "startDate": "2025-01-01",
+                      "endDate": "2025-03-31",
+                      "dimensions": {},
+                      "declarations": [
+                        {
+                          "tag": "us-gaap:IncomeTaxExpenseBenefit",
+                          "contextId": "C_bccc2251-c44a-4ba7-ac32-e0a3874fbfcf",
+                          "unitRef": "U_USD",
+                          "scale": 6,
+                          "decimals": "-5",
+                          "originalScale": "6",
+                          "format": "ixt:num-dot-decimal",
+                          "id": "F_d7916f63-d4da-4d24-8289-a5b84050dd0e"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnIndex": 7,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  },
+                  {
+                    "columnIndex": 8,
+                    "span": 1,
+                    "rowSpan": 1,
+                    "label": ""
+                  }
+                ]
+              }
+            }
+          },
+          "tableIndex": 38,
+          "totalTableIndex": 8,
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/313927/000119312526200630/chd-20260331.htm",
+          "accession": "0001193125-26-200630",
+          "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "revenue": 1469300000,
+          "revenueDecimals": -5,
+          "totalLabel": "Total Consolidated Net Sales",
+          "omittedSubtotals": []
+        }
+      }
+    },
+    {
+      "identity": {
+        "ticker": "EOG",
+        "cik": "0000821189",
+        "name": "EOG Resources",
+        "sector": "Energy",
+        "universe": "sp500"
+      },
+      "filing": {
+        "accession": "0000821189-24-000021",
+        "filedAt": "2024-05-02",
+        "reportDate": "2024-03-31",
+        "form": "10-Q",
+        "primaryDocument": "eog-20240331.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm"
+      },
+      "originalSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+        "bytes": 935303,
+        "sha256": "6d1c8c683298b412a9a26ad8393f0a907647c4dc00e01ca5b1b9f445ca6758cc"
+      },
+      "prior": {
+        "id": "2024-Q1",
+        "label": "Q1 FY2024",
+        "kind": "quarterly",
+        "fiscalYear": 2024,
+        "fiscalQuarter": 1,
+        "startDate": "2024-01-01",
+        "endDate": "2024-03-31",
+        "filedAt": "2025-05-01",
+        "accession": "0000821189-25-000022",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118925000022/eog-20250331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 6123000000,
+          "totalOperatingCosts": 3852000000,
+          "operatingIncome": 2271000000,
+          "pretaxIncome": 2300000000,
+          "incomeTax": 511000000,
+          "netIncome": 1789000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues",
+            "tag": "us-gaap:Revenues",
+            "accession": "0000821189-25-000022",
+            "filedAt": "2025-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118925000022/eog-20250331.htm",
+            "method": "reported"
+          },
+          "totalOperatingCosts": {
+            "label": "Costs and Expenses",
+            "tag": "us-gaap:CostsAndExpenses",
+            "accession": "0000821189-25-000022",
+            "filedAt": "2025-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118925000022/eog-20250331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "operatingIncome": {
+            "label": "Operating Income (Loss)",
+            "tag": "us-gaap:OperatingIncomeLoss",
+            "accession": "0000821189-25-000022",
+            "filedAt": "2025-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118925000022/eog-20250331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000821189-25-000022",
+            "filedAt": "2025-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118925000022/eog-20250331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000821189-25-000022",
+            "filedAt": "2025-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118925000022/eog-20250331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000821189-25-000022",
+            "filedAt": "2025-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118925000022/eog-20250331.htm",
+            "method": "reported",
+            "decimals": -6
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": true
+        },
+        "operatingCostDetails": [
+          {
+            "id": "line-OperatingLeaseExpense",
+            "label": "Lease and Well",
+            "amount": 396000000,
+            "tag": "us-gaap:OperatingLeaseExpense",
+            "decimals": -6
+          },
+          {
+            "id": "line-GatheringProcessingAndTransportationCosts",
+            "label": "Gathering, Processing and Transportation Costs",
+            "amount": 413000000,
+            "tag": "eog:GatheringProcessingAndTransportationCosts",
+            "decimals": -6
+          },
+          {
+            "id": "line-ExplorationExpense",
+            "label": "Exploration Costs",
+            "amount": 45000000,
+            "tag": "us-gaap:ExplorationExpense",
+            "decimals": -6
+          },
+          {
+            "id": "line-ResultsOfOperationsDryHoleCosts",
+            "label": "Dry Hole Costs",
+            "amount": 1000000,
+            "tag": "us-gaap:ResultsOfOperationsDryHoleCosts",
+            "decimals": -6
+          },
+          {
+            "id": "line-ImpairmentOfOilAndGasProperties",
+            "label": "Impairments",
+            "amount": 19000000,
+            "tag": "us-gaap:ImpairmentOfOilAndGasProperties",
+            "decimals": -6
+          },
+          {
+            "id": "line-MarketingCosts",
+            "label": "Marketing Costs",
+            "amount": 1404000000,
+            "tag": "eog:MarketingCosts",
+            "decimals": -6
+          },
+          {
+            "id": "line-DepreciationDepletionAndAmortization",
+            "label": "Depreciation, Depletion and Amortization",
+            "amount": 1074000000,
+            "tag": "us-gaap:DepreciationDepletionAndAmortization",
+            "decimals": -6
+          },
+          {
+            "id": "line-GeneralAndAdministrativeExpense",
+            "label": "General and Administrative",
+            "amount": 162000000,
+            "tag": "us-gaap:GeneralAndAdministrativeExpense",
+            "decimals": -6
+          },
+          {
+            "id": "line-TaxesOtherThanIncome",
+            "label": "Taxes Other Than Income",
+            "amount": 338000000,
+            "tag": "eog:TaxesOtherThanIncome",
+            "decimals": -6
+          }
+        ]
+      },
+      "original": {
+        "id": "2024-Q1",
+        "label": "Q1 FY2024",
+        "kind": "quarterly",
+        "fiscalYear": 2024,
+        "fiscalQuarter": 1,
+        "startDate": "2024-01-01",
+        "endDate": "2024-03-31",
+        "filedAt": "2024-05-02",
+        "accession": "0000821189-24-000021",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 6123000000,
+          "operatingIncome": 2271000000,
+          "pretaxIncome": 2300000000,
+          "incomeTax": 511000000,
+          "netIncome": 1789000000,
+          "totalOperatingCosts": 3852000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Reported revenue",
+            "tag": "us-gaap:Revenues",
+            "accession": "0000821189-24-000021",
+            "filedAt": "2024-05-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "operatingIncome": {
+            "label": "operatingIncome",
+            "tag": "us-gaap:OperatingIncomeLoss",
+            "accession": "0000821189-24-000021",
+            "filedAt": "2024-05-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "pretaxIncome": {
+            "label": "pretaxIncome",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000821189-24-000021",
+            "filedAt": "2024-05-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "incomeTax": {
+            "label": "incomeTax",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000821189-24-000021",
+            "filedAt": "2024-05-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "netIncome": {
+            "label": "netIncome",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000821189-24-000021",
+            "filedAt": "2024-05-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "totalOperatingCosts": {
+            "label": "Total operating costs and expenses",
+            "tag": "us-gaap:CostsAndExpenses",
+            "accession": "0000821189-24-000021",
+            "filedAt": "2024-05-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+            "method": "reported",
+            "decimals": -6
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": true,
+          "sankey": true
+        },
+        "operatingCostDetails": [
+          {
+            "id": "line-OperatingLeaseExpense",
+            "label": "Lease and Well",
+            "amount": 396000000,
+            "tag": "us-gaap:OperatingLeaseExpense",
+            "decimals": -6
+          },
+          {
+            "id": "line-GatheringProcessingAndTransportationCosts",
+            "label": "Gathering, Processing and Transportation Costs",
+            "amount": 413000000,
+            "tag": "eog:GatheringProcessingAndTransportationCosts",
+            "decimals": -6
+          },
+          {
+            "id": "line-ExplorationExpense",
+            "label": "Exploration Costs",
+            "amount": 45000000,
+            "tag": "us-gaap:ExplorationExpense",
+            "decimals": -6
+          },
+          {
+            "id": "line-ResultsOfOperationsDryHoleCosts",
+            "label": "Dry Hole Costs",
+            "amount": 1000000,
+            "tag": "us-gaap:ResultsOfOperationsDryHoleCosts",
+            "decimals": -6
+          },
+          {
+            "id": "line-ImpairmentOfOilAndGasProperties",
+            "label": "Impairments",
+            "amount": 19000000,
+            "tag": "us-gaap:ImpairmentOfOilAndGasProperties",
+            "decimals": -6
+          },
+          {
+            "id": "line-MarketingCosts",
+            "label": "Marketing Costs",
+            "amount": 1404000000,
+            "tag": "eog:MarketingCosts",
+            "decimals": -6
+          },
+          {
+            "id": "line-DepreciationDepletionAndAmortization",
+            "label": "Depreciation, Depletion and Amortization",
+            "amount": 1074000000,
+            "tag": "us-gaap:DepreciationDepletionAndAmortization",
+            "decimals": -6
+          },
+          {
+            "id": "line-GeneralAndAdministrativeExpense",
+            "label": "General and Administrative",
+            "amount": 162000000,
+            "tag": "us-gaap:GeneralAndAdministrativeExpense",
+            "decimals": -6
+          },
+          {
+            "id": "line-TaxesOtherThanIncome",
+            "label": "Taxes Other Than Income",
+            "amount": 338000000,
+            "tag": "eog:TaxesOtherThanIncome",
+            "decimals": -6
+          }
+        ],
+        "segments": [
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-eog-UnitedStatesSegmentMember",
+            "label": "United States",
+            "revenue": 6060000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+              "accession": "0000821189-24-000021",
+              "filedAt": "2024-05-02",
+              "startDate": "2024-01-01",
+              "endDate": "2024-03-31",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "us-gaap:StatementBusinessSegmentsAxis": "eog:UnitedStatesSegmentMember"
+              },
+              "value": 6060000000,
+              "decimals": -6,
+              "tableLabel": "United States",
+              "columnIndex": 4,
+              "rowIndex": 4
+            }
+          },
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-eog-TrinidadSegmentMember",
+            "label": "Trinidad",
+            "revenue": 63000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+              "accession": "0000821189-24-000021",
+              "filedAt": "2024-05-02",
+              "startDate": "2024-01-01",
+              "endDate": "2024-03-31",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "us-gaap:StatementBusinessSegmentsAxis": "eog:TrinidadSegmentMember"
+              },
+              "value": 63000000,
+              "decimals": -6,
+              "tableLabel": "Trinidad",
+              "columnIndex": 4,
+              "rowIndex": 5
+            }
+          },
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-eog-OtherInternationalMember",
+            "label": "Other International",
+            "revenue": 0,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+              "accession": "0000821189-24-000021",
+              "filedAt": "2024-05-02",
+              "startDate": "2024-01-01",
+              "endDate": "2024-03-31",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "us-gaap:StatementBusinessSegmentsAxis": "eog:OtherInternationalMember"
+              },
+              "value": 0,
+              "decimals": -6,
+              "tableLabel": "Other International",
+              "columnIndex": 4,
+              "rowIndex": 6
+            }
+          }
+        ],
+        "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+        "segmentBasis": "Reported business revenue from the total column of one source-table classification. Cross-axis interior cells are excluded to avoid double counting.",
+        "businessBreakdownSource": {
+          "method": "statement-revenue-matrix",
+          "tableIndex": 23,
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118924000021/eog-20240331.htm",
+          "accession": "0000821189-24-000021",
+          "revenueTag": "us-gaap:Revenues",
+          "revenue": 6123000000,
+          "revenueDecimals": -6,
+          "axis": "us-gaap:StatementBusinessSegmentsAxis",
+          "qualifiers": {},
+          "columnIndex": 4,
+          "rowIndex": 7,
+          "totalLabel": "Total",
+          "omittedSubtotals": []
+        }
+      }
+    },
+    {
+      "identity": {
+        "ticker": "LEN",
+        "cik": "0000920760",
+        "name": "Lennar",
+        "sector": "Consumer Discretionary",
+        "universe": "sp500"
+      },
+      "filing": {
+        "accession": "0001628280-22-001450",
+        "filedAt": "2022-01-28",
+        "reportDate": "2021-11-30",
+        "form": "10-K",
+        "primaryDocument": "len-20211130.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm"
+      },
+      "originalSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+        "bytes": 3693908,
+        "sha256": "6bca30cebcdad3ac4c2ec72948619411a5910df3d5e134211164c61dc371617f"
+      },
+      "prior": {
+        "id": "FY2021",
+        "label": "FY 2021",
+        "kind": "annual",
+        "fiscalYear": 2021,
+        "startDate": "2020-12-01",
+        "endDate": "2021-11-30",
+        "filedAt": "2024-01-26",
+        "accession": "0001628280-24-002371",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 27130676000,
+          "pretaxIncome": 5819058000,
+          "incomeTax": 1362509000,
+          "netIncome": 4430111000,
+          "noncontrollingInterestIncome": 26438000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues",
+            "tag": "us-gaap:Revenues",
+            "accession": "0001628280-24-002371",
+            "filedAt": "2024-01-26",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-24-002371",
+            "filedAt": "2024-01-26",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-24-002371",
+            "filedAt": "2024-01-26",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-24-002371",
+            "filedAt": "2024-01-26",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+            "method": "reported"
+          },
+          "noncontrollingInterestIncome": {
+            "label": "Net Income (Loss) Attributable to Noncontrolling Interest",
+            "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+            "accession": "0001628280-24-002371",
+            "filedAt": "2024-01-26",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": true,
+          "sankey": false
+        },
+        "segments": [
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-len-LennarHomebuildingEastCentralWestHoustonandOtherMember",
+            "label": "Homebuilding",
+            "revenue": 25545242000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+              "accession": "0001628280-24-002371",
+              "filedAt": "2024-01-26",
+              "startDate": "2020-12-01",
+              "endDate": "2021-11-30",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "us-gaap:StatementBusinessSegmentsAxis": "len:LennarHomebuildingEastCentralWestHoustonandOtherMember",
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+              },
+              "value": 25545242000,
+              "decimals": -3,
+              "tableLabel": "Homebuilding",
+              "columnIndex": 16,
+              "rowIndex": 4
+            }
+          },
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-len-LennarFinancialServicesMember",
+            "label": "Financial Services",
+            "revenue": 898745000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+              "accession": "0001628280-24-002371",
+              "filedAt": "2024-01-26",
+              "startDate": "2020-12-01",
+              "endDate": "2021-11-30",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "us-gaap:StatementBusinessSegmentsAxis": "len:LennarFinancialServicesMember",
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+              },
+              "value": 898745000,
+              "decimals": -3,
+              "tableLabel": "Financial Services",
+              "columnIndex": 16,
+              "rowIndex": 5
+            }
+          },
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-len-LennarMultifamilyMember",
+            "label": "Multifamily",
+            "revenue": 665232000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+              "accession": "0001628280-24-002371",
+              "filedAt": "2024-01-26",
+              "startDate": "2020-12-01",
+              "endDate": "2021-11-30",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "us-gaap:StatementBusinessSegmentsAxis": "len:LennarMultifamilyMember",
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+              },
+              "value": 665232000,
+              "decimals": -3,
+              "tableLabel": "Multifamily",
+              "columnIndex": 16,
+              "rowIndex": 6
+            }
+          },
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-len-LennarOtherMember",
+            "label": "Lennar Other",
+            "revenue": 21457000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+              "accession": "0001628280-24-002371",
+              "filedAt": "2024-01-26",
+              "startDate": "2020-12-01",
+              "endDate": "2021-11-30",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "len:LennarOtherMember"
+              },
+              "value": 21457000,
+              "decimals": -3,
+              "tableLabel": "Lennar Other",
+              "columnIndex": 16,
+              "rowIndex": 7
+            }
+          }
+        ],
+        "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+        "segmentBasis": "Reported business revenue from the total column of one source-table classification. Cross-axis interior cells are excluded to avoid double counting.",
+        "businessBreakdownSource": {
+          "method": "statement-revenue-matrix",
+          "tableIndex": 46,
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828024002371/len-20231130.htm",
+          "accession": "0001628280-24-002371",
+          "revenueTag": "us-gaap:Revenues",
+          "revenue": 27130676000,
+          "revenueDecimals": -3,
+          "axis": "us-gaap:StatementBusinessSegmentsAxis",
+          "qualifiers": {
+            "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+          },
+          "columnIndex": 16,
+          "rowIndex": 8,
+          "totalLabel": "Total revenues",
+          "omittedSubtotals": []
+        }
+      },
+      "original": {
+        "id": "FY2021",
+        "label": "FY 2021",
+        "kind": "annual",
+        "fiscalYear": 2021,
+        "startDate": "2020-12-01",
+        "endDate": "2021-11-30",
+        "filedAt": "2022-01-28",
+        "accession": "0001628280-22-001450",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": true,
+        "metrics": {
+          "revenue": 27130676000,
+          "incomeTax": 1362509000,
+          "pretaxIncome": 5819058000,
+          "netIncome": 4430111000,
+          "noncontrollingInterestIncome": 26438000,
+          "expensesAndOtherItems": 21311618000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Reported revenue",
+            "tag": "us-gaap:Revenues",
+            "accession": "0001628280-22-001450",
+            "filedAt": "2022-01-28",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+            "method": "reported",
+            "decimals": -3
+          },
+          "incomeTax": {
+            "label": "Provision for income taxes",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-22-001450",
+            "filedAt": "2022-01-28",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+            "method": "reported",
+            "decimals": -3
+          },
+          "pretaxIncome": {
+            "label": "Earnings before income taxes",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-22-001450",
+            "filedAt": "2022-01-28",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+            "method": "reported",
+            "decimals": -3
+          },
+          "netIncome": {
+            "label": "Net earnings attributable to Lennar",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-22-001450",
+            "filedAt": "2022-01-28",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+            "method": "reported",
+            "decimals": -3
+          },
+          "noncontrollingInterestIncome": {
+            "label": "Less: Net earnings (loss) attributable to noncontrolling interests",
+            "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+            "accession": "0001628280-22-001450",
+            "filedAt": "2022-01-28",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+            "method": "reported",
+            "decimals": -3
+          },
+          "expensesAndOtherItems": {
+            "label": "Revenue less pretax profit",
+            "tag": "us-gaap:Revenues - us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-22-001450",
+            "filedAt": "2022-01-28",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+            "method": "calculated",
+            "inputs": [
+              "Total revenues (us-gaap:Revenues): https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+              "Earnings before income taxes (us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest): https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm"
+            ]
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": true,
+          "sankey": true
+        },
+        "segments": [
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-len-LennarHomebuildingEastCentralWestHoustonandOtherMember",
+            "label": "Homebuilding",
+            "revenue": 25545242000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+              "accession": "0001628280-22-001450",
+              "filedAt": "2022-01-28",
+              "startDate": "2020-12-01",
+              "endDate": "2021-11-30",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "us-gaap:StatementBusinessSegmentsAxis": "len:LennarHomebuildingEastCentralWestHoustonandOtherMember",
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+              },
+              "value": 25545242000,
+              "decimals": -3,
+              "tableLabel": "Homebuilding",
+              "columnIndex": 4,
+              "rowIndex": 4
+            }
+          },
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-len-LennarFinancialServicesMember",
+            "label": "Financial Services",
+            "revenue": 898745000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+              "accession": "0001628280-22-001450",
+              "filedAt": "2022-01-28",
+              "startDate": "2020-12-01",
+              "endDate": "2021-11-30",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "us-gaap:StatementBusinessSegmentsAxis": "len:LennarFinancialServicesMember",
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+              },
+              "value": 898745000,
+              "decimals": -3,
+              "tableLabel": "Financial Services",
+              "columnIndex": 4,
+              "rowIndex": 5
+            }
+          },
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-len-LennarMultifamilyMember",
+            "label": "Multifamily",
+            "revenue": 665232000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+              "accession": "0001628280-22-001450",
+              "filedAt": "2022-01-28",
+              "startDate": "2020-12-01",
+              "endDate": "2021-11-30",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "us-gaap:StatementBusinessSegmentsAxis": "len:LennarMultifamilyMember",
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+              },
+              "value": 665232000,
+              "decimals": -3,
+              "tableLabel": "Multifamily",
+              "columnIndex": 4,
+              "rowIndex": 6
+            }
+          },
+          {
+            "id": "reported-us-gaap-StatementBusinessSegmentsAxis-len-LennarOtherMember",
+            "label": "Lennar Other",
+            "revenue": 21457000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+              "accession": "0001628280-22-001450",
+              "filedAt": "2022-01-28",
+              "startDate": "2020-12-01",
+              "endDate": "2021-11-30",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "len:LennarOtherMember"
+              },
+              "value": 21457000,
+              "decimals": -3,
+              "tableLabel": "Lennar Other",
+              "columnIndex": 4,
+              "rowIndex": 7
+            }
+          }
+        ],
+        "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+        "segmentBasis": "Reported business revenue from the total column of one source-table classification. Cross-axis interior cells are excluded to avoid double counting.",
+        "businessBreakdownSource": {
+          "method": "statement-revenue-matrix",
+          "tableIndex": 44,
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/920760/000162828022001450/len-20211130.htm",
+          "accession": "0001628280-22-001450",
+          "revenueTag": "us-gaap:Revenues",
+          "revenue": 27130676000,
+          "revenueDecimals": -3,
+          "axis": "us-gaap:StatementBusinessSegmentsAxis",
+          "qualifiers": {
+            "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+          },
+          "columnIndex": 4,
+          "rowIndex": 8,
+          "totalLabel": "Total revenues",
+          "omittedSubtotals": []
+        }
+      }
+    },
+    {
+      "identity": {
+        "ticker": "EXPE",
+        "cik": "0001324424",
+        "name": "Expedia Group",
+        "sector": "Consumer Discretionary",
+        "universe": "sp500"
+      },
+      "filing": {
+        "accession": "0001324424-20-000009",
+        "filedAt": "2020-02-14",
+        "reportDate": "2019-12-31",
+        "form": "10-K",
+        "primaryDocument": "q42019-10k.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm"
+      },
+      "originalSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+        "bytes": 4766780,
+        "sha256": "45e94709b2f7cfa958edd946948f651ab7b7ef728353c876b7d8bd3e87be4d7c"
+      },
+      "prior": {
+        "id": "FY2019",
+        "label": "FY 2019",
+        "kind": "annual",
+        "fiscalYear": 2019,
+        "startDate": "2019-01-01",
+        "endDate": "2019-12-31",
+        "filedAt": "2022-02-11",
+        "accession": "0001324424-22-000009",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 12067000000,
+          "operatingIncome": 903000000,
+          "pretaxIncome": 775000000,
+          "incomeTax": 203000000,
+          "netIncome": 565000000,
+          "noncontrollingInterestIncome": 7000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+            "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+            "accession": "0001324424-22-000009",
+            "filedAt": "2022-02-11",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+            "method": "reported"
+          },
+          "operatingIncome": {
+            "label": "Operating Income (Loss)",
+            "tag": "us-gaap:OperatingIncomeLoss",
+            "accession": "0001324424-22-000009",
+            "filedAt": "2022-02-11",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001324424-22-000009",
+            "filedAt": "2022-02-11",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001324424-22-000009",
+            "filedAt": "2022-02-11",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001324424-22-000009",
+            "filedAt": "2022-02-11",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+            "method": "reported"
+          },
+          "noncontrollingInterestIncome": {
+            "label": "Net Income (Loss) Attributable to Noncontrolling Interest",
+            "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+            "accession": "0001324424-22-000009",
+            "filedAt": "2022-02-11",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": true,
+          "sankey": false
+        },
+        "segments": [
+          {
+            "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-expe-LodgingMember",
+            "label": "Lodging",
+            "revenue": 8362000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+              "accession": "0001324424-22-000009",
+              "filedAt": "2022-02-11",
+              "startDate": "2019-01-01",
+              "endDate": "2019-12-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "expe:LodgingMember"
+              },
+              "value": 8362000000,
+              "decimals": -6,
+              "tableLabel": "Lodging"
+            }
+          },
+          {
+            "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-expe-AirMember",
+            "label": "Air",
+            "revenue": 869000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+              "accession": "0001324424-22-000009",
+              "filedAt": "2022-02-11",
+              "startDate": "2019-01-01",
+              "endDate": "2019-12-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "expe:AirMember"
+              },
+              "value": 869000000,
+              "decimals": -6,
+              "tableLabel": "Air"
+            }
+          },
+          {
+            "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-expe-AdvertisingandMediaCustomersMember",
+            "label": "Advertising and media",
+            "revenue": 1104000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+              "accession": "0001324424-22-000009",
+              "filedAt": "2022-02-11",
+              "startDate": "2019-01-01",
+              "endDate": "2019-12-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "expe:AdvertisingandMediaCustomersMember"
+              },
+              "value": 1104000000,
+              "decimals": -6,
+              "tableLabel": "Advertising and media"
+            }
+          },
+          {
+            "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-expe-OtherServicesMember",
+            "label": "Other (1)",
+            "revenue": 1732000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+              "accession": "0001324424-22-000009",
+              "filedAt": "2022-02-11",
+              "startDate": "2019-01-01",
+              "endDate": "2019-12-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "expe:OtherServicesMember"
+              },
+              "value": 1732000000,
+              "decimals": -6,
+              "tableLabel": "Other (1)"
+            }
+          }
+        ],
+        "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+        "segmentBasis": "Reported revenue sources in the cited statement table; subtotal rows are excluded to avoid double counting.",
+        "businessBreakdownSource": {
+          "method": "statement-revenue-rows",
+          "tableIndex": 87,
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442422000009/expe-20211231.htm",
+          "accession": "0001324424-22-000009",
+          "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "revenue": 12067000000,
+          "revenueDecimals": -6,
+          "axis": "srt:ProductOrServiceAxis",
+          "totalLabel": "Total revenue",
+          "omittedSubtotals": []
+        }
+      },
+      "original": {
+        "id": "FY2019",
+        "label": "FY 2019",
+        "kind": "annual",
+        "fiscalYear": 2019,
+        "startDate": "2019-01-01",
+        "endDate": "2019-12-31",
+        "filedAt": "2020-02-14",
+        "accession": "0001324424-20-000009",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": true,
+        "metrics": {
+          "revenue": 12067000000,
+          "incomeTax": 203000000,
+          "pretaxIncome": 775000000,
+          "netIncome": 565000000,
+          "noncontrollingInterestIncome": 7000000,
+          "operatingIncome": 903000000,
+          "totalOperatingCosts": 11164000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Reported revenue",
+            "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+            "accession": "0001324424-20-000009",
+            "filedAt": "2020-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "incomeTax": {
+            "label": "Provision for income taxes",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001324424-20-000009",
+            "filedAt": "2020-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "pretaxIncome": {
+            "label": "Income before income taxes",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001324424-20-000009",
+            "filedAt": "2020-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "netIncome": {
+            "label": "Net income attributable to Expedia Group, Inc.",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001324424-20-000009",
+            "filedAt": "2020-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "noncontrollingInterestIncome": {
+            "label": "Net (income) loss attributable to non-controlling interests",
+            "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+            "accession": "0001324424-20-000009",
+            "filedAt": "2020-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "operatingIncome": {
+            "label": "Operating income",
+            "tag": "us-gaap:OperatingIncomeLoss",
+            "accession": "0001324424-20-000009",
+            "filedAt": "2020-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "totalOperatingCosts": {
+            "label": "Sum of reported operating cost lines",
+            "tag": "us-gaap:CostOfRevenue + us-gaap:SellingAndMarketingExpense + expe:TechnologyandContentExpense + us-gaap:GeneralAndAdministrativeExpense + us-gaap:AmortizationOfIntangibleAssets + expe:LegalReservesOccupancyTaxAndOther + us-gaap:RestructuringCharges",
+            "accession": "0001324424-20-000009",
+            "filedAt": "2020-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+            "method": "calculated",
+            "inputs": [
+              "Cost of revenue (us-gaap:CostOfRevenue): https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+              "Selling and marketing (us-gaap:SellingAndMarketingExpense): https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+              "Technology and content (expe:TechnologyandContentExpense): https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+              "General and administrative (us-gaap:GeneralAndAdministrativeExpense): https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+              "Amortization of intangible assets (us-gaap:AmortizationOfIntangibleAssets): https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+              "Legal reserves, occupancy tax and other (expe:LegalReservesOccupancyTaxAndOther): https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+              "Restructuring and related reorganization charges (us-gaap:RestructuringCharges): https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm"
+            ]
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": true,
+          "sankey": true
+        },
+        "operatingCostDetails": [
+          {
+            "id": "line-CostOfRevenue",
+            "label": "Cost of revenue",
+            "amount": 2163000000,
+            "tag": "us-gaap:CostOfRevenue",
+            "decimals": -6
+          },
+          {
+            "id": "line-SellingAndMarketingExpense",
+            "label": "Selling and marketing",
+            "amount": 6135000000,
+            "tag": "us-gaap:SellingAndMarketingExpense",
+            "decimals": -6
+          },
+          {
+            "id": "line-TechnologyandContentExpense",
+            "label": "Technology and content",
+            "amount": 1763000000,
+            "tag": "expe:TechnologyandContentExpense",
+            "decimals": -6
+          },
+          {
+            "id": "line-GeneralAndAdministrativeExpense",
+            "label": "General and administrative",
+            "amount": 847000000,
+            "tag": "us-gaap:GeneralAndAdministrativeExpense",
+            "decimals": -6
+          },
+          {
+            "id": "line-AmortizationOfIntangibleAssets",
+            "label": "Amortization of intangible assets",
+            "amount": 198000000,
+            "tag": "us-gaap:AmortizationOfIntangibleAssets",
+            "decimals": -6
+          },
+          {
+            "id": "line-LegalReservesOccupancyTaxAndOther",
+            "label": "Legal reserves, occupancy tax and other",
+            "amount": 34000000,
+            "tag": "expe:LegalReservesOccupancyTaxAndOther",
+            "decimals": -6
+          },
+          {
+            "id": "line-RestructuringCharges",
+            "label": "Restructuring and related reorganization charges",
+            "amount": 24000000,
+            "tag": "us-gaap:RestructuringCharges",
+            "decimals": -6
+          }
+        ],
+        "segments": [
+          {
+            "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-expe-LodgingMember",
+            "label": "Lodging",
+            "revenue": 8472000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+              "accession": "0001324424-20-000009",
+              "filedAt": "2020-02-14",
+              "startDate": "2019-01-01",
+              "endDate": "2019-12-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "expe:LodgingMember"
+              },
+              "value": 8472000000,
+              "decimals": -6,
+              "tableLabel": "Lodging"
+            }
+          },
+          {
+            "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-expe-AirMember",
+            "label": "Air",
+            "revenue": 869000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+              "accession": "0001324424-20-000009",
+              "filedAt": "2020-02-14",
+              "startDate": "2019-01-01",
+              "endDate": "2019-12-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "expe:AirMember"
+              },
+              "value": 869000000,
+              "decimals": -6,
+              "tableLabel": "Air"
+            }
+          },
+          {
+            "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-expe-AdvertisingandMediaCustomersMember",
+            "label": "Advertising and media",
+            "revenue": 1103000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+              "accession": "0001324424-20-000009",
+              "filedAt": "2020-02-14",
+              "startDate": "2019-01-01",
+              "endDate": "2019-12-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "expe:AdvertisingandMediaCustomersMember"
+              },
+              "value": 1103000000,
+              "decimals": -6,
+              "tableLabel": "Advertising and media"
+            }
+          },
+          {
+            "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-expe-OtherServicesMember",
+            "label": "Other (2)",
+            "revenue": 1623000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+              "accession": "0001324424-20-000009",
+              "filedAt": "2020-02-14",
+              "startDate": "2019-01-01",
+              "endDate": "2019-12-31",
+              "currency": "USD",
+              "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+              "dimensions": {
+                "srt:ProductOrServiceAxis": "expe:OtherServicesMember"
+              },
+              "value": 1623000000,
+              "decimals": -6,
+              "tableLabel": "Other (2)"
+            }
+          }
+        ],
+        "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+        "segmentBasis": "Reported revenue sources in the cited statement table; subtotal rows are excluded to avoid double counting.",
+        "businessBreakdownSource": {
+          "method": "statement-revenue-rows",
+          "tableIndex": 225,
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1324424/000132442420000009/q42019-10k.htm",
+          "accession": "0001324424-20-000009",
+          "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "revenue": 12067000000,
+          "revenueDecimals": -6,
+          "axis": "srt:ProductOrServiceAxis",
+          "totalLabel": "Total revenue",
+          "omittedSubtotals": []
+        }
+      }
+    }
+  ]
+}

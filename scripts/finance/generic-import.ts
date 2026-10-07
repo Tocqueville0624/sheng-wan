@@ -71,10 +71,29 @@ export function genericFilingTodo(
     )
       missing.add(latest.accession);
   }
-  return filings
+  const selected = filings
     .filter((f) => /^(10-K|10-Q)(\/A)?$/.test(f.form) && missing.has(f.accession))
     .sort((a, b) => b.reportDate.localeCompare(a.reportDate) || b.filedAt.localeCompare(a.filedAt))
     .slice(0, limit);
+  // A later comparative disclosure can contain only a few facts for an older
+  // period. Its accession must not hide that period's own acquired report.
+  // Preserve every existing selection; use only the remaining source budget.
+  const selectedAccessions = new Set(selected.map((f) => f.accession));
+  const originals = eligible
+    .filter(
+      (f) =>
+        !selectedAccessions.has(f.accession) &&
+        candidates.some(
+          (p) =>
+            (!p.coverage.sankey || !p.coverage.segments) &&
+            p.displayCurrency === "USD" &&
+            p.endDate === f.reportDate &&
+            p.filedAt > f.filedAt &&
+            (p.kind === "annual" ? /^10-K/.test(f.form) : /^10-Q/.test(f.form))
+        )
+    )
+    .sort((a, b) => b.reportDate.localeCompare(a.reportDate) || b.filedAt.localeCompare(a.filedAt));
+  return [...selected, ...originals].slice(0, limit);
 }
 
 /**
