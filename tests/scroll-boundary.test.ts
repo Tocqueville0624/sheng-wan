@@ -70,9 +70,29 @@ describe("wheel intent classifier", () => {
   test("the quiet window adapts to cadence without exceeding interaction bounds", () => {
     const first = nextWheelFlow(15, 0);
     expect(wheelIdleDelay(undefined, 0)).toBe(WHEEL_IDLE_MS);
-    expect(wheelIdleDelay(first, 80)).toBe(MIN_WHEEL_IDLE_MS);
+    expect(wheelIdleDelay(first, 40)).toBe(MIN_WHEEL_IDLE_MS);
+    expect(wheelIdleDelay(first, 80)).toBeCloseTo(133.333333);
     expect(wheelIdleDelay(first, 150)).toBe(180);
     expect(wheelIdleDelay(first, 180)).toBe(MAX_WHEEL_IDLE_MS);
+  });
+
+  test("the recorded sustained input tolerates a two-frame delivery delay", () => {
+    // Actual browser failure: three steady intervals followed by 116.6ms;
+    // the old 110ms timer started releasing before the next trusted input.
+    const cadence = [99, 83.4, 83.4, 116.6, 99.9, 100, 83.3];
+    let time = 0;
+    let flow = nextWheelFlow(15, time);
+    let deadline = time + wheelIdleDelay(undefined, time);
+    for (const gap of cadence) {
+      time += gap;
+      expect(time).toBeLessThan(deadline);
+      const delay = wheelIdleDelay(flow, time);
+      expect(delay).toBeLessThanOrEqual(MAX_WHEEL_IDLE_MS);
+      expect(delay).toBeGreaterThanOrEqual(MIN_WHEEL_IDLE_MS);
+      flow = nextWheelFlow(15, time, flow);
+      expect(flow.phase).toBe("active");
+      deadline = time + delay;
+    }
   });
 
   test("equal 80-100ms input stays active without a release phase", () => {

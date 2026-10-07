@@ -79,7 +79,10 @@ export function wheelIdleDelay(previous: WheelFlow | undefined, time: number) {
   if (!previous || previous.phase !== "active") return WHEEL_IDLE_MS;
   const cadence = time - previous.time;
   if (cadence <= 0 || cadence >= NEW_GESTURE_MS) return WHEEL_IDLE_MS;
-  return Math.min(MAX_WHEEL_IDLE_MS, Math.max(MIN_WHEEL_IDLE_MS, cadence * 1.25));
+  // Two display frames of scheduling jitter must not turn a sustained pull into
+  // an inertial tail. Keep the existing upper bound and direct release duration.
+  const frameSlack = (1000 / 60) * 2;
+  return Math.min(MAX_WHEEL_IDLE_MS, Math.max(MIN_WHEEL_IDLE_MS, cadence * 1.25 + frameSlack));
 }
 
 /** Keep short pulls crisp while giving larger stretches enough time to settle. */
