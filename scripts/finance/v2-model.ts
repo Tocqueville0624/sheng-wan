@@ -32,6 +32,7 @@ import { originalStandaloneBusinessProblem } from "../../src/features/finance/st
 import { ametekRevenueProblem } from "../../src/features/finance/ametek-revenue";
 import { churchDwightRevenueProblem } from "../../src/features/finance/church-dwight-revenue";
 import { originalHierarchyProblem } from "../../src/features/finance/original-hierarchy-revenue";
+import { cencoraRevenueProblem } from "../../src/features/finance/cencora-revenue";
 import {
   corroborateOriginalStatement,
   originalStatementCorroborationProblem
@@ -267,6 +268,9 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     if (period.revenueAdjustments?.some((item) => item.id === "source-rounding")) return;
     return business;
   }
+  if (proof.cencoraRevenue && proof.method !== "reviewed-cencora-revenue") return;
+  if (proof.method === "reviewed-cencora-revenue")
+    return cencoraRevenueProblem(period) ? undefined : business;
   if (proof.originalBusinessHierarchy && proof.method !== "reviewed-original-business-hierarchy")
     return;
   if (proof.method === "reviewed-original-business-hierarchy")

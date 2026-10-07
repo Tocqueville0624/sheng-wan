@@ -1,0 +1,285 @@
+{
+  "ticker": "COR",
+  "cik": "0001140859",
+  "filing": {
+    "accession": "0001140859-21-000058",
+    "filedAt": "2021-11-23",
+    "reportDate": "2021-09-30",
+    "form": "10-K",
+    "primaryDocument": "abc-20210930.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm"
+  },
+  "period": {
+    "id": "FY2019",
+    "label": "FY 2019",
+    "kind": "annual",
+    "fiscalYear": 2019,
+    "startDate": "2018-10-01",
+    "endDate": "2019-09-30",
+    "filedAt": "2021-11-23",
+    "accession": "0001140859-21-000058",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 179589121000,
+      "costOfRevenue": 174450809000,
+      "grossProfit": 5138312000,
+      "operatingIncome": 1111923000,
+      "pretaxIncome": 967106000,
+      "incomeTax": 112971000,
+      "netIncome": 855365000,
+      "noncontrollingInterestIncome": -1230000,
+      "sellingGeneralAndAdministrative": 2663508000,
+      "operatingExpenses": 4026389000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenues",
+        "tag": "us-gaap:Revenues",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Goods and Services Sold",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "noncontrollingInterestIncome": {
+        "label": "Net Income (Loss) Attributable to Noncontrolling Interest",
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "operatingExpenses",
+        "tag": "grossProfit - operatingIncome",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+          "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    },
+    "operatingExpensesBasis": "expenses-and-other-items-net"
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+    "bytes": 2741568,
+    "sha256": "216e113d758df6ee2cb1f61982c7c79df0f71026b29f25503163d7e882dc50e4"
+  },
+  "excerptSha256": "f1dfd8b78bd6388c9a123bc310a15c1c1f14d0c85f1687ab5cbfea27c8151955",
+  "excerptBytes": 277134,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 27,
+      "fixtureIndex": 0,
+      "tableSha256": "ca4fd77b4bb121983b146896d7715eb4fe9713dda3466f514bbeb22261f462a4"
+    },
+    {
+      "originalIndex": 57,
+      "fixtureIndex": 1,
+      "tableSha256": "dad0571a16f76cc68463cfb8856a3755c2a5d9d7a38377f974a5c3e5414a050e"
+    }
+  ],
+  "expectedBusiness": [
+    {
+      "id": "reported-0001140859-Pharmaceutical-Distribution-Services",
+      "label": "Pharmaceutical Distribution Services",
+      "revenue": 172813537000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "startDate": "2018-10-01",
+        "endDate": "2019-09-30",
+        "currency": "USD",
+        "tag": "us-gaap:Revenues",
+        "dimensions": {
+          "us-gaap:StatementBusinessSegmentsAxis": "abc:PharmaceuticalDistributionMember",
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+        },
+        "value": 172813537000,
+        "decimals": -3,
+        "tableLabel": "Pharmaceutical Distribution Services",
+        "rowLabel": "Pharmaceutical Distribution Services",
+        "rowIndex": 3,
+        "columnIndex": 19
+      }
+    },
+    {
+      "id": "reported-0001140859-MWI-Animal-Health",
+      "label": "MWI Animal Health",
+      "revenue": 3975232000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "startDate": "2018-10-01",
+        "endDate": "2019-09-30",
+        "currency": "USD",
+        "tag": "us-gaap:Revenues",
+        "dimensions": {
+          "us-gaap:SubsegmentsAxis": "abc:MWIAnimalHealthMember",
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "us-gaap:AllOtherSegmentsMember"
+        },
+        "value": 3975232000,
+        "decimals": -3,
+        "tableLabel": "MWI Animal Health",
+        "rowLabel": "MWI Animal Health",
+        "rowIndex": 5,
+        "columnIndex": 18
+      }
+    },
+    {
+      "id": "reported-0001140859-Alliance-Healthcare",
+      "label": "Alliance Healthcare",
+      "revenue": 0,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "startDate": "2018-10-01",
+        "endDate": "2019-09-30",
+        "currency": "USD",
+        "tag": "us-gaap:Revenues",
+        "dimensions": {
+          "us-gaap:SubsegmentsAxis": "abc:AllianceHealthcareMember",
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "us-gaap:AllOtherSegmentsMember"
+        },
+        "value": 0,
+        "decimals": -3,
+        "tableLabel": "Alliance Healthcare",
+        "rowLabel": "Alliance Healthcare",
+        "rowIndex": 6,
+        "columnIndex": 18
+      }
+    },
+    {
+      "id": "reported-0001140859-Global-Commercialization-Services",
+      "label": "Global Commercialization Services",
+      "revenue": 2893109000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "startDate": "2018-10-01",
+        "endDate": "2019-09-30",
+        "currency": "USD",
+        "tag": "us-gaap:Revenues",
+        "dimensions": {
+          "us-gaap:SubsegmentsAxis": "abc:GlobalCommercializationServicesMember",
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "us-gaap:AllOtherSegmentsMember"
+        },
+        "value": 2893109000,
+        "decimals": -3,
+        "tableLabel": "Global Commercialization Services",
+        "rowLabel": "Global Commercialization Services",
+        "rowIndex": 7,
+        "columnIndex": 18
+      }
+    }
+  ],
+  "expectedAdjustments": [
+    {
+      "id": "reported-intersegment-eliminations",
+      "label": "Intersegment eliminations",
+      "revenue": -92757000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085921000058/abc-20210930.htm",
+        "accession": "0001140859-21-000058",
+        "filedAt": "2021-11-23",
+        "startDate": "2018-10-01",
+        "endDate": "2019-09-30",
+        "currency": "USD",
+        "tag": "us-gaap:Revenues",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:IntersegmentEliminationMember"
+        },
+        "value": -92757000,
+        "decimals": -3,
+        "tableLabel": "Intersegment eliminations",
+        "rowLabel": "Intersegment eliminations",
+        "rowIndex": 9,
+        "columnIndex": 18
+      }
+    }
+  ],
+  "sourceOnlyCurrentBusinessAccepted": true,
+  "scope": "Complete unmodified original primary/business monetary tables, original resources and fiscal declarations. Adjacent visible original text is HTML-escaped only. No amounts, contexts or dimensions synthesized. The FY2020 negative fixture preserves erroneous original annual-column quarter contexts and must be withheld."
+}

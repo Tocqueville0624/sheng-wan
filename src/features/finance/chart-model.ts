@@ -713,7 +713,17 @@ export function layoutStatementFlow(graph: StatementFlow) {
   const operatingExpenseY = Math.max(
     hasGrossStage ? mainBottom("gross") + 100 : mainBottom("revenue") + 100,
     mainBottom(anchor) + 130,
-    nonoperating?.tone === "expense" ? nonoperatingY + amountHeight("nonoperating") + 115 : 0
+    // The expense label is above its bar, while the next operating-cost
+    // caption starts 66 px above its own bar. Reserve the full wrapped
+    // non-operating title/value/percentage before placing that next caption;
+    // a very small monetary bar must not collapse their text clearance.
+    nonoperating?.tone === "expense"
+      ? nonoperatingY +
+          Math.max(
+            amountHeight("nonoperating") + 115,
+            wrapLabel(nonoperating.label, 17).length * 20 + 120
+          )
+      : 0
   );
   const costY = Math.max(mainBottom("revenue") + 90, mainBottom("gross") + 105);
   const operatingRoundingY =

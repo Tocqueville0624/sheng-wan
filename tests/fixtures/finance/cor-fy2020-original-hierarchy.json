@@ -1,0 +1,159 @@
+{
+  "ticker": "COR",
+  "cik": "0001140859",
+  "filing": {
+    "accession": "0001140859-22-000098",
+    "filedAt": "2022-11-22",
+    "reportDate": "2022-09-30",
+    "form": "10-K",
+    "primaryDocument": "abc-20220930.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm"
+  },
+  "period": {
+    "id": "FY2020",
+    "label": "FY 2020",
+    "kind": "annual",
+    "fiscalYear": 2020,
+    "startDate": "2019-10-01",
+    "endDate": "2020-09-30",
+    "filedAt": "2022-11-22",
+    "accession": "0001140859-22-000098",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 189893926000,
+      "costOfRevenue": 184702042000,
+      "grossProfit": 5191884000,
+      "operatingIncome": -5135354000,
+      "pretaxIncome": -5293831000,
+      "incomeTax": -1894273000,
+      "netIncome": -3408716000,
+      "noncontrollingInterestIncome": 9158000,
+      "sellingGeneralAndAdministrative": 2767217000,
+      "operatingExpenses": 10327238000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenues",
+        "tag": "us-gaap:Revenues",
+        "accession": "0001140859-22-000098",
+        "filedAt": "2022-11-22",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Goods and Services Sold",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0001140859-22-000098",
+        "filedAt": "2022-11-22",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0001140859-22-000098",
+        "filedAt": "2022-11-22",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001140859-22-000098",
+        "filedAt": "2022-11-22",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001140859-22-000098",
+        "filedAt": "2022-11-22",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001140859-22-000098",
+        "filedAt": "2022-11-22",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001140859-22-000098",
+        "filedAt": "2022-11-22",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "noncontrollingInterestIncome": {
+        "label": "Net Income (Loss) Attributable to Noncontrolling Interest",
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "accession": "0001140859-22-000098",
+        "filedAt": "2022-11-22",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0001140859-22-000098",
+        "filedAt": "2022-11-22",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "operatingExpenses",
+        "tag": "grossProfit - operatingIncome",
+        "accession": "0001140859-22-000098",
+        "filedAt": "2022-11-22",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+          "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    },
+    "operatingExpensesBasis": "expenses-and-other-items-net"
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1140859/000114085922000098/abc-20220930.htm",
+    "bytes": 2817274,
+    "sha256": "2841862647ab1d2eadecbaefd1946a2ec3993543dc0be5128142e6039fff8028"
+  },
+  "excerptSha256": "988dabb007dda19efc08b51ef70623e0802c7d77413d6ca4752eff8a022f7cad",
+  "excerptBytes": 276424,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 32,
+      "fixtureIndex": 0,
+      "tableSha256": "7d17d133405c829ac55203b6fc1c8fdd2e07760d4dcf5c584942405f0a4b148b"
+    },
+    {
+      "originalIndex": 62,
+      "fixtureIndex": 1,
+      "tableSha256": "d4591651e74a69ceae3c0fede54554a5f288ecdd7d64355333b9f47e4c3bfe15"
+    }
+  ],
+  "sourceOnlyCurrentBusinessAccepted": false,
+  "scope": "Complete unmodified original primary/business monetary tables, original resources and fiscal declarations. Adjacent visible original text is HTML-escaped only. No amounts, contexts or dimensions synthesized. The FY2020 negative fixture preserves erroneous original annual-column quarter contexts and must be withheld."
+}

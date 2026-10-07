@@ -63,7 +63,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.48";
+const ENGINE_VERSION = "finance-v2.49";
 const temporarySourceFailure = (error: unknown) =>
   error instanceof Error && /HTTP (429|5\d\d)|timeout/i.test(error.message);
 const MAX_DAILY_STEPS = 4000;
@@ -478,7 +478,7 @@ export class FinanceStore {
       task.job.message = `Reading statement and revenue sources: ${filing.reportDate} (${task.cursor + 1}/${task.todo.length}).`;
       try {
         const base = await this.company(identity);
-        const cacheKey = `generic:v36:${identity.cik}:${filing.accession}`;
+        const cacheKey = `generic:v37:${identity.cik}:${filing.accession}`;
         let periods = await this.ctx.storage.get<PeriodV2[]>(cacheKey);
         const fresh = await this.ctx.storage.get<PeriodV2[]>(`basic-periods:${task.job.id}`);
         if (!periods) {

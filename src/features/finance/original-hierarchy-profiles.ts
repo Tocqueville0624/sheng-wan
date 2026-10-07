@@ -651,6 +651,91 @@ export const averyBusinessProfiles: OriginalHierarchyProfile[] = [
       }
     ],
     branches: [4, 5, 6]
+  },
+  {
+    id: "avy-original-business-8",
+    rows: [
+      {
+        label: "U.S.",
+        dimensions: {
+          "srt:StatementGeographicalAxis": "country:US",
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:MaterialsGroupSegmentMember"
+        }
+      },
+      {
+        label: "Europe",
+        dimensions: {
+          "srt:StatementGeographicalAxis": "srt:EuropeMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:MaterialsGroupSegmentMember"
+        }
+      },
+      {
+        label: "Asia",
+        dimensions: {
+          "srt:StatementGeographicalAxis": "srt:AsiaMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:MaterialsGroupSegmentMember"
+        }
+      },
+      {
+        label: "Latin America",
+        dimensions: {
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:MaterialsGroupSegmentMember",
+          "srt:StatementGeographicalAxis": "srt:LatinAmericaMember"
+        }
+      },
+      {
+        label: "Other international",
+        dimensions: {
+          "srt:StatementGeographicalAxis": "avy:OtherInternationalMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:MaterialsGroupSegmentMember"
+        }
+      },
+      {
+        label: "Total Materials Group",
+        dimensions: {
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:MaterialsGroupSegmentMember"
+        }
+      },
+      {
+        label: "Apparel",
+        dimensions: {
+          "srt:ProductOrServiceAxis": "avy:ApparelMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:SolutionsGroupSegmentMember"
+        }
+      },
+      {
+        label: "Identification Solutions and Vestcom",
+        dimensions: {
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:SolutionsGroupSegmentMember",
+          "srt:ProductOrServiceAxis": "avy:IdentificationSolutionsAndVestcomMember"
+        }
+      },
+      {
+        label: "Total Solutions Group",
+        dimensions: {
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:SolutionsGroupSegmentMember"
+        }
+      },
+      {
+        label: "Net sales to unaffiliated customers",
+        dimensions: {}
+      }
+    ],
+    groups: [
+      {
+        parent: 5,
+        children: [0, 1, 2, 3, 4]
+      },
+      {
+        parent: 8,
+        children: [6, 7]
+      },
+      {
+        parent: 9,
+        children: [5, 8]
+      }
+    ],
+    branches: [5, 6, 7]
   }
 ];
 

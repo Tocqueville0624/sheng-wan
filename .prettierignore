@@ -68,3 +68,4 @@ tests/fixtures/finance/chd-*-original-review.html
 # Preserve original Avery Dennison and Baxter declarations and physical tables.
 tests/fixtures/finance/avy-*-original-hierarchy.html
 tests/fixtures/finance/bax-*-original-hierarchy.html
+tests/fixtures/finance/cor-*-original-hierarchy.html

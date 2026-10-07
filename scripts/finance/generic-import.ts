@@ -18,6 +18,7 @@ import { enrichAlbemarleBusinessPeriods } from "./albemarle-business-v2";
 import { enrichAmetekBusinessPeriods } from "./ametek-business-v2";
 import { enrichChurchDwightBusinessPeriods } from "./church-dwight-business-v2";
 import { enrichOriginalHierarchyBusinessPeriods } from "./original-hierarchy-business-v2";
+import { enrichCencoraBusinessPeriods } from "./cencora-business-v2";
 import { enrichAlbemarleInlineIncomePeriods } from "./albemarle-inline-income-v2";
 import { enrichAlignInlineIncomePeriods } from "./align-inline-income-v2";
 
@@ -133,10 +134,11 @@ export function readGenericFiling(
   apply(
     enrichOriginalHierarchyBusinessPeriods(html, identity, filing, [...updated.values()], parsed)
   );
+  apply(enrichCencoraBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   // This reviewed issuer stays fail-closed when its captions or corporate scope
   // change. A generic subset or another revenue classification is not a fallback.
   if (
-    !["0000915913", "0001037868", "0000313927"].includes(identity.cik) &&
+    !["0000915913", "0001037868", "0000313927", "0001140859"].includes(identity.cik) &&
     !(["0000008818", "0000010456"].includes(identity.cik) && parsed.fiscalYear >= 2023)
   ) {
     apply(enrichBusinessPeriods(html, identity, filing, [...updated.values()], parsed));

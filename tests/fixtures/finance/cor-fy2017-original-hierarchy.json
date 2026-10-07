@@ -1,0 +1,258 @@
+{
+  "ticker": "COR",
+  "cik": "0001140859",
+  "filing": {
+    "accession": "0001140859-19-000040",
+    "filedAt": "2019-11-19",
+    "reportDate": "2019-09-30",
+    "form": "10-K",
+    "primaryDocument": "a10-kx9302019.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm"
+  },
+  "period": {
+    "id": "FY2017",
+    "label": "FY 2017",
+    "kind": "annual",
+    "fiscalYear": 2017,
+    "startDate": "2016-10-01",
+    "endDate": "2017-09-30",
+    "filedAt": "2019-11-19",
+    "accession": "0001140859-19-000040",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 153143826000,
+      "costOfRevenue": 148597824000,
+      "grossProfit": 4546002000,
+      "operatingIncome": 1060342000,
+      "pretaxIncome": 917887000,
+      "incomeTax": 553403000,
+      "netIncome": 364484000,
+      "noncontrollingInterestIncome": 0,
+      "sellingGeneralAndAdministrative": 2128730000,
+      "operatingExpenses": 3485660000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenues",
+        "tag": "us-gaap:Revenues",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Goods and Services Sold",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Equity Method Investments, Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "noncontrollingInterestIncome": {
+        "label": "Net Income (Loss) Attributable to Noncontrolling Interest",
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "operatingExpenses",
+        "tag": "grossProfit - operatingIncome",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+          "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    },
+    "operatingExpensesBasis": "expenses-and-other-items-net"
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+    "bytes": 2888306,
+    "sha256": "0ae11ccb4ace4772d04b9efa8529e2021ec3f427ef6ce1791e3149ac11098d6a"
+  },
+  "excerptSha256": "a11e05c54440a8fb1d7923c8ab6fd2171f9f99667b08240045c49df205480a18",
+  "excerptBytes": 298819,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 47,
+      "fixtureIndex": 0,
+      "tableSha256": "cff1b304394c8acb6822a66f53c86fb02e3822d23d66b286faa84a951ebb486b"
+    },
+    {
+      "originalIndex": 69,
+      "fixtureIndex": 1,
+      "tableSha256": "a7730cb8eeca0eb79a7c759332db45156877baa8d7f992b921588900ada05b30"
+    }
+  ],
+  "expectedBusiness": [
+    {
+      "id": "reported-0001140859-Pharmaceutical-Distribution-Services",
+      "label": "Pharmaceutical Distribution Services",
+      "revenue": 147453495000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "startDate": "2016-10-01",
+        "endDate": "2017-09-30",
+        "currency": "USD",
+        "tag": "us-gaap:Revenues",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "abc:PharmaceuticalDistributionMember"
+        },
+        "value": 147453495000,
+        "decimals": -3,
+        "tableLabel": "Pharmaceutical Distribution Services",
+        "rowLabel": "Pharmaceutical Distribution Services",
+        "rowIndex": 4,
+        "columnIndex": 11
+      }
+    },
+    {
+      "id": "reported-0001140859-MWI-Animal-Health",
+      "label": "MWI Animal Health",
+      "revenue": 3636305000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "startDate": "2016-10-01",
+        "endDate": "2017-09-30",
+        "currency": "USD",
+        "tag": "us-gaap:Revenues",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "abc:MWIAnimalHealthMember"
+        },
+        "value": 3636305000,
+        "decimals": -3,
+        "tableLabel": "MWI Animal Health",
+        "rowLabel": "MWI Animal Health",
+        "rowIndex": 6,
+        "columnIndex": 10
+      }
+    },
+    {
+      "id": "reported-0001140859-Global-Commercialization-Services",
+      "label": "Global Commercialization Services",
+      "revenue": 2111558000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "startDate": "2016-10-01",
+        "endDate": "2017-09-30",
+        "currency": "USD",
+        "tag": "us-gaap:Revenues",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "abc:GlobalCommercializationServicesMember"
+        },
+        "value": 2111558000,
+        "decimals": -3,
+        "tableLabel": "Global Commercialization Services",
+        "rowLabel": "Global Commercialization Services",
+        "rowIndex": 7,
+        "columnIndex": 10
+      }
+    }
+  ],
+  "expectedAdjustments": [
+    {
+      "id": "reported-intersegment-eliminations",
+      "label": "Intersegment eliminations",
+      "revenue": -57532000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1140859/000114085919000040/a10-kx9302019.htm",
+        "accession": "0001140859-19-000040",
+        "filedAt": "2019-11-19",
+        "startDate": "2016-10-01",
+        "endDate": "2017-09-30",
+        "currency": "USD",
+        "tag": "us-gaap:Revenues",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:IntersegmentEliminationMember"
+        },
+        "value": -57532000,
+        "decimals": -3,
+        "tableLabel": "Intersegment eliminations",
+        "rowLabel": "Intersegment eliminations",
+        "rowIndex": 9,
+        "columnIndex": 10
+      }
+    }
+  ],
+  "sourceOnlyCurrentBusinessAccepted": true,
+  "scope": "Complete unmodified original primary/business monetary tables, original resources and fiscal declarations. Adjacent visible original text is HTML-escaped only. No amounts, contexts or dimensions synthesized. The FY2020 negative fixture preserves erroneous original annual-column quarter contexts and must be withheld."
+}

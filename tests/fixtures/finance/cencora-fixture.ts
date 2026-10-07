@@ -3,32 +3,26 @@ import { readGenericFiling } from "../../../scripts/finance/generic-import";
 import { companyFromFilingPeriods } from "../../../scripts/finance/current-filing";
 import type { CatalogCompany, PeriodV2 } from "../../../src/features/finance/v2-types";
 
-export const originalHierarchyCases = [
-  ["AVY", "FY2021"],
-  ["AVY", "FY2022"],
-  ["AVY", "2022-Q1"],
-  ["AVY", "2022-Q2"],
-  ["AVY", "FY2025"],
-  ["AVY", "2023-Q1"],
-  ["AVY", "2024-Q2"],
-  ["AVY", "2026-Q1"],
-  ["AVY", "2026-Q2"],
-  ["BAX", "FY2021"],
-  ["BAX", "FY2022"],
-  ["BAX", "FY2025"],
-  ["BAX", "2024-Q1"],
-  ["BAX", "2026-Q2"]
+export const cencoraCases = [
+  "FY2017",
+  "FY2019",
+  "FY2022",
+  "FY2025",
+  "2026-Q1",
+  "2026-Q2",
+  "2026-Q3",
+  "2021-Q2"
 ] as const;
 
-export function originalHierarchyFixture(ticker: "AVY" | "BAX", id: string, sourceOnly = false) {
-  const stem = `${ticker.toLowerCase()}-${id.toLowerCase()}-original-hierarchy`;
+export function cencoraFixture(id: string, sourceOnly = false) {
+  const stem = `cor-${id.toLowerCase()}-original-hierarchy`;
   const source = JSON.parse(readFileSync(new URL(`./${stem}.json`, import.meta.url), "utf8"));
   const html = readFileSync(new URL(`./${stem}.html`, import.meta.url), "utf8");
   const identity: CatalogCompany = {
-    ticker,
-    name: ticker === "AVY" ? "Avery Dennison" : "Baxter International",
+    ticker: "COR",
+    name: "Cencora",
     cik: source.cik,
-    sector: ticker === "AVY" ? "Materials" : "Health Care",
+    sector: "Health Care",
     universe: "sp500"
   };
   const retained = source.period as PeriodV2;

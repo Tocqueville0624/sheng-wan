@@ -2,22 +2,31 @@ import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import sharp from "sharp";
 import { originalHierarchyFixture } from "../fixtures/finance/original-hierarchy-fixture";
+import { cencoraFixture } from "../fixtures/finance/cencora-fixture";
 import { companyFromFilingPeriods } from "../../scripts/finance/current-filing";
 import { mockFinance } from "./finance-fixtures";
 
 for (const [ticker, id] of [
   ["AVY", "FY2022"],
+  ["AVY", "2022-Q1"],
+  ["AVY", "2022-Q2"],
   ["AVY", "FY2025"],
   ["AVY", "2026-Q1"],
   ["AVY", "2026-Q2"],
   ["BAX", "FY2021"],
   ["BAX", "FY2025"],
-  ["BAX", "2026-Q2"]
+  ["BAX", "2026-Q2"],
+  ["COR", "FY2017"],
+  ["COR", "FY2025"],
+  ["COR", "2021-Q2"],
+  ["COR", "2026-Q1"],
+  ["COR", "2026-Q2"],
+  ["COR", "2026-Q3"]
 ] as const)
   test(`${ticker} ${id}: original business leaves render proportionally and export their complete proof`, async ({
     page
   }, info) => {
-    const s = originalHierarchyFixture(ticker, id),
+    const s = ticker === "COR" ? cencoraFixture(id) : originalHierarchyFixture(ticker, id),
       period = s.period,
       company = companyFromFilingPeriods(s.identity, [period]);
     const errors: string[] = [];
@@ -33,6 +42,7 @@ for (const [ticker, id] of [
     expect(metadata.metrics).toEqual(period.metrics);
     expect(metadata.businessBreakdownSource).toEqual(period.businessBreakdownSource);
     expect(metadata.segments).toEqual(period.segments);
+    expect(metadata.revenueAdjustments).toEqual(period.revenueAdjustments);
     const h = Number(await chart.locator('[data-flow-bar="revenue"]').getAttribute("height"));
     for (const segment of period.segments!) {
       const branch = chart.locator(`[data-flow-bar="segment-${segment.id}"]`);
@@ -40,6 +50,14 @@ for (const [ticker, id] of [
         segment.revenue / period.metrics.revenue!,
         9
       );
+    }
+    if (ticker === "COR") {
+      await expect(chart.getByText("Pre-adjustment revenue", { exact: true })).toBeVisible();
+      await expect(
+        chart.getByText("Intersegment eliminations · decrease", { exact: true })
+      ).toBeVisible();
+      const businessTotal = period.segments!.reduce((n, b) => n + b.revenue, 0);
+      expect(businessTotal + period.revenueAdjustments![0].revenue).toBe(period.metrics.revenue);
     }
     for (const theme of ["light", "dark"] as const) {
       await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
@@ -69,12 +87,18 @@ for (const [ticker, id] of [
       });
       expect(clipped).toEqual([]);
       const overlaps = await chart.evaluate((element) => {
-        const texts = [...element.querySelectorAll("[data-flow-node] text")];
+        // Wrapped SVG text has a rectangular aggregate box spanning empty
+        // space beside shorter lines. Compare actual rendered lines instead.
+        const texts = [
+          ...element.querySelectorAll(
+            "[data-flow-node] text > tspan, [data-flow-node] text:not(:has(tspan))"
+          )
+        ];
         return texts.flatMap((a, i) =>
           texts.slice(i + 1).flatMap((b) => {
-            if (a.parentElement === b.parentElement) return [];
-            const x = (a as SVGTextElement).getBBox(),
-              y = (b as SVGTextElement).getBBox();
+            if (a.closest("[data-flow-node]") === b.closest("[data-flow-node]")) return [];
+            const x = (a as SVGGraphicsElement).getBBox(),
+              y = (b as SVGGraphicsElement).getBBox();
             return Math.min(x.x + x.width, y.x + y.width) - Math.max(x.x, y.x) > 0.5 &&
               Math.min(x.y + x.height, y.y + y.height) - Math.max(x.y, y.y) > 0.5
               ? [[a.textContent, b.textContent]]

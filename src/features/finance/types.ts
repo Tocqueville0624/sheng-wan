@@ -361,6 +361,20 @@ export type OriginalBusinessHierarchyProof = {
   primary: ServiceRevenueRowsProof["primary"];
   materialProducts?: { tableIndex: number; rows: ServiceRevenueRow[]; caption: string };
 };
+/** Original Cencora business hierarchy, including reported negative internal
+ * eliminations, all comparative/YTD columns and an independent primary anchor. */
+export type CencoraBusinessProof = {
+  ruleId: "cor-original-revenue-hierarchy-v1";
+  reportDate: string;
+  form: string;
+  originalFiscalYear: number;
+  originalFiscalPeriod: string;
+  units: ServiceRevenueRowsProof["units"];
+  tableIndex: number;
+  rows: ServiceRevenueRow[];
+  caption: string;
+  primary: ServiceRevenueRowsProof["primary"];
+};
 export type ProductPortfolioProof = {
   ruleId: "abbv-original-product-portfolios-v1";
   startDate: string;
@@ -486,7 +500,9 @@ export type FinancialPeriod = {
       | "reviewed-ametek-revenue"
       | "reviewed-church-dwight-revenue"
       | "reviewed-original-business-hierarchy"
+      | "reviewed-cencora-revenue"
       | "reviewed-original-standalone-revenue";
+    cencoraRevenue?: CencoraBusinessProof;
     standaloneRevenue?: OriginalStandaloneBusinessProof;
     ametekRevenue?: AmetekBusinessProof;
     churchDwightRevenue?: ChurchDwightBusinessProof;
