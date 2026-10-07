@@ -51,6 +51,7 @@ const retainedFields = [
   "operatingItems",
   "grossOperatingItems",
   "alignInlineIncome",
+  "dardenInlineIncome",
   "directNetItems",
   "operatingNetItems",
   "afterTaxTransactionItems",

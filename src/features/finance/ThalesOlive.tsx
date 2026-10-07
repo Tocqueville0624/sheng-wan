@@ -293,6 +293,7 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         "gross_operating_items",
         "operating_net_items",
         "align_inline_income",
+        "darden_inline_income",
         "original_statement_corroboration"
       ],
       ...periods.map((p) => [
@@ -336,6 +337,7 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         JSON.stringify(p.grossOperatingItems ?? null),
         JSON.stringify(p.operatingNetItems ?? null),
         JSON.stringify(p.alignInlineIncome ?? null),
+        JSON.stringify(p.dardenInlineIncome ?? null),
         JSON.stringify(p.originalStatementCorroboration ?? null)
       ])
     ];

@@ -1,3 +1,4 @@
+import type { DardenRevenueProof, DardenInlineIncomeProof } from "./darden-types";
 import type { MetricSource } from "./v2-types";
 import type { OriginalStandaloneBusinessProof } from "./standalone-business";
 import type { AlbemarleInlineIncomeProof } from "./albemarle-inline-income";
@@ -454,6 +455,7 @@ export type FinancialPeriod = {
   operatingItems?: OperatingItems;
   grossOperatingItems?: GrossOperatingItems;
   alignInlineIncome?: AlignInlineIncomeProof;
+  dardenInlineIncome?: DardenInlineIncomeProof;
   directNetItems?: DirectNetItems;
   operatingNetItems?: OperatingNetItems;
   afterTaxTransactionItems?: AfterTaxTransactionItems;
@@ -501,7 +503,9 @@ export type FinancialPeriod = {
       | "reviewed-church-dwight-revenue"
       | "reviewed-original-business-hierarchy"
       | "reviewed-cencora-revenue"
+      | "reviewed-darden-revenue"
       | "reviewed-original-standalone-revenue";
+    dardenRevenue?: DardenRevenueProof;
     cencoraRevenue?: CencoraBusinessProof;
     standaloneRevenue?: OriginalStandaloneBusinessProof;
     ametekRevenue?: AmetekBusinessProof;

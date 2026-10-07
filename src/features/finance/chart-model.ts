@@ -1,3 +1,5 @@
+import { dardenInlineIncomeProblem } from "./darden-inline-income";
+import type { PeriodV2 } from "./v2-types";
 import type {
   BusinessPeriod,
   FlowStatementPeriod,
@@ -115,6 +117,8 @@ export function revenueAdjustmentLabel(adjustment: RevenueSegment) {
 }
 
 export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
+  const dardenProblem = dardenInlineIncomeProblem(period as PeriodV2);
+  if (dardenProblem) return { ok: false, reason: dardenProblem };
   const shareholderProblem = shareholderBridgeProblem(period);
   if (shareholderProblem) return { ok: false, reason: shareholderProblem };
   if (period.operatingNetItems) {

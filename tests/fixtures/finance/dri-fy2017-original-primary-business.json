@@ -1,0 +1,277 @@
+{
+  "ticker": "DRI",
+  "cik": "0000940944",
+  "filing": {
+    "accession": "0000940944-19-000025",
+    "filedAt": "2019-07-19",
+    "reportDate": "2019-05-26",
+    "form": "10-K",
+    "primaryDocument": "dri-201910xk.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm"
+  },
+  "period": {
+    "id": "FY2017",
+    "label": "FY 2017",
+    "kind": "annual",
+    "fiscalYear": 2017,
+    "startDate": "2016-05-30",
+    "endDate": "2017-05-28",
+    "filedAt": "2019-07-19",
+    "accession": "0000940944-19-000025",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 7170200000,
+      "grossProfit": 1329700000,
+      "totalOperatingCosts": 6492700000,
+      "operatingIncome": 677500000,
+      "pretaxIncome": 637300000,
+      "incomeTax": 154800000,
+      "netIncome": 479100000,
+      "costOfRevenue": 5840500000,
+      "operatingExpenses": 652200000,
+      "discontinuedOperationsIncome": -3400000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "method": "reported"
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "method": "reported"
+      },
+      "totalOperatingCosts": {
+        "label": "Costs and Expenses",
+        "tag": "us-gaap:CostsAndExpenses",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "method": "reported"
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Equity Method Investments, Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "costOfRevenue": {
+        "label": "costOfRevenue",
+        "tag": "revenue - grossProfit",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+          "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm"
+        ]
+      },
+      "operatingExpenses": {
+        "label": "operatingExpenses",
+        "tag": "grossProfit - operatingIncome",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+          "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm"
+        ]
+      },
+      "discontinuedOperationsIncome": {
+        "label": "Losses from discontinued operations, net of tax benefit of $1.8, $4.8 and $4.2, respectively",
+        "tag": "us-gaap:IncomeLossFromDiscontinuedOperationsNetOfTax",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "method": "reported",
+        "decimals": -5
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    }
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+    "bytes": 3694567,
+    "sha256": "7628ee9a5650aa096b937812b4da11a5806365aacb0bee12d18715c208434080"
+  },
+  "excerptSha256": "6a2e9da160f601613a27da8c5a8875c0fc61aa2d80af887b4269f47405245ace",
+  "excerptBytes": 471434,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 83,
+      "fixtureIndex": 0,
+      "tableSha256": "08460e302f73432c4e3c540f68af66525409ee76cd501afb959f0fa234c1d584"
+    },
+    {
+      "originalIndex": 104,
+      "fixtureIndex": 1,
+      "tableSha256": "2aaeb9d047f06be356f5775ba989966a449356adef0cb0d188591a0e3a984835"
+    },
+    {
+      "originalIndex": 105,
+      "fixtureIndex": 2,
+      "tableSha256": "3413a90999504242b42e522dfa022eb07c0834c6207b8d11b25ca350755012eb"
+    },
+    {
+      "originalIndex": 106,
+      "fixtureIndex": 3,
+      "tableSha256": "565359ce0599a65a7e1713740746d0993825a61fcd04c64aa6aef4a4a7903fb6"
+    }
+  ],
+  "expectedBusiness": [
+    {
+      "id": "reported-Olive-Garden",
+      "label": "Olive Garden",
+      "revenue": 3938600000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "startDate": "2016-05-30",
+        "endDate": "2017-05-28",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "dri:OliveGardenMember"
+        },
+        "value": 3938600000,
+        "decimals": -5,
+        "tableLabel": "Olive Garden",
+        "rowLabel": "Sales",
+        "rowIndex": 4,
+        "columnIndex": 3
+      }
+    },
+    {
+      "id": "reported-LongHorn-Steakhouse",
+      "label": "LongHorn Steakhouse",
+      "revenue": 1622200000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "startDate": "2016-05-30",
+        "endDate": "2017-05-28",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "dri:LonghornSteakhouseMember"
+        },
+        "value": 1622200000,
+        "decimals": -5,
+        "tableLabel": "LongHorn Steakhouse",
+        "rowLabel": "Sales",
+        "rowIndex": 4,
+        "columnIndex": 6
+      }
+    },
+    {
+      "id": "reported-Fine-Dining",
+      "label": "Fine Dining",
+      "revenue": 535600000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "startDate": "2016-05-30",
+        "endDate": "2017-05-28",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "dri:FineDiningSegmentMember"
+        },
+        "value": 535600000,
+        "decimals": -5,
+        "tableLabel": "Fine Dining",
+        "rowLabel": "Sales",
+        "rowIndex": 4,
+        "columnIndex": 9
+      }
+    },
+    {
+      "id": "reported-Other-Business",
+      "label": "Other Business",
+      "revenue": 1073800000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094419000025/dri-201910xk.htm",
+        "accession": "0000940944-19-000025",
+        "filedAt": "2019-07-19",
+        "startDate": "2016-05-30",
+        "endDate": "2017-05-28",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "us-gaap:AllOtherSegmentsMember"
+        },
+        "value": 1073800000,
+        "decimals": -5,
+        "tableLabel": "Other Business",
+        "rowLabel": "Sales",
+        "rowIndex": 4,
+        "columnIndex": 12
+      }
+    }
+  ],
+  "expectedIncome": false,
+  "expectedFlow": true,
+  "sourceOnlyCurrent": [
+    {
+      "id": "FY2019",
+      "business": true,
+      "flow": true,
+      "income": false
+    }
+  ],
+  "scope": "Complete unmodified original primary/business tables and all original inline resources and fiscal declarations. Adjacent visible original text and original fiscal-calendar excerpt are HTML-escaped only. No amount, date, declaration or dimension is synthesized. Monetary tax-benefit annotations inside the original line label remain unchanged."
+}

@@ -1,0 +1,259 @@
+{
+  "ticker": "DRI",
+  "cik": "0000940944",
+  "filing": {
+    "accession": "0000940944-25-000003",
+    "filedAt": "2025-01-02",
+    "reportDate": "2024-11-24",
+    "form": "10-Q",
+    "primaryDocument": "dri-20241124.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm"
+  },
+  "period": {
+    "id": "2024-Q2",
+    "label": "Q2 FY2024",
+    "kind": "quarterly",
+    "fiscalYear": 2024,
+    "fiscalQuarter": 2,
+    "startDate": "2023-08-28",
+    "endDate": "2023-11-26",
+    "filedAt": "2025-01-02",
+    "accession": "0000940944-25-000003",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 2727300000,
+      "grossProfit": 513300000,
+      "totalOperatingCosts": 2448800000,
+      "operatingIncome": 278500000,
+      "pretaxIncome": 241400000,
+      "incomeTax": 29100000,
+      "netIncome": 212100000,
+      "costOfRevenue": 2214000000,
+      "operatingExpenses": 234800000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "method": "reported"
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "method": "reported"
+      },
+      "totalOperatingCosts": {
+        "label": "Costs and Expenses",
+        "tag": "us-gaap:CostsAndExpenses",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "method": "reported"
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "method": "reported"
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "method": "reported"
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "method": "reported"
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "costOfRevenue",
+        "tag": "revenue - grossProfit",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+          "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm"
+        ]
+      },
+      "operatingExpenses": {
+        "label": "operatingExpenses",
+        "tag": "grossProfit - operatingIncome",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+          "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": false
+    }
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+    "bytes": 1463952,
+    "sha256": "a863399933073a3304c0a29877920ca380f4d0e86dec87dacc606a155612bfad"
+  },
+  "excerptSha256": "2ac4c528a52ce3406409ac2ded8316afe1034a7eae3e911d91a81f5d37339393",
+  "excerptBytes": 333713,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 6,
+      "fixtureIndex": 0,
+      "tableSha256": "598004a5c600114ddff01a334e1c4d32a1e136b3dc7072ed8208e083cc10da9d"
+    },
+    {
+      "originalIndex": 21,
+      "fixtureIndex": 1,
+      "tableSha256": "ab70df1d50f4bcfc9c54b938f6068cc0c4379977b2669dd5449caedc83646662"
+    },
+    {
+      "originalIndex": 22,
+      "fixtureIndex": 2,
+      "tableSha256": "3f0282682071f6c88e1d84663fce8c875c3a268f7a4a5d9f178c7ea010d78236"
+    }
+  ],
+  "expectedBusiness": [
+    {
+      "id": "reported-Olive-Garden",
+      "label": "Olive Garden",
+      "revenue": 1251400000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "startDate": "2023-08-28",
+        "endDate": "2023-11-26",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "dri:OliveGardenSegmentMember"
+        },
+        "value": 1251400000,
+        "decimals": -5,
+        "tableLabel": "Olive Garden",
+        "rowLabel": "Sales",
+        "rowIndex": 3,
+        "columnIndex": 7
+      }
+    },
+    {
+      "id": "reported-LongHorn-Steakhouse",
+      "label": "LongHorn Steakhouse",
+      "revenue": 643000000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "startDate": "2023-08-28",
+        "endDate": "2023-11-26",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "dri:LongHornSteakhouseSegmentMember"
+        },
+        "value": 643000000,
+        "decimals": -5,
+        "tableLabel": "LongHorn Steakhouse",
+        "rowLabel": "Sales",
+        "rowIndex": 3,
+        "columnIndex": 13
+      }
+    },
+    {
+      "id": "reported-Fine-Dining",
+      "label": "Fine Dining",
+      "revenue": 318000000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "startDate": "2023-08-28",
+        "endDate": "2023-11-26",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "dri:FineDiningSegmentMember"
+        },
+        "value": 318000000,
+        "decimals": -5,
+        "tableLabel": "Fine Dining 2",
+        "rowLabel": "Sales",
+        "rowIndex": 3,
+        "columnIndex": 19
+      }
+    },
+    {
+      "id": "reported-Other-Business",
+      "label": "Other Business",
+      "revenue": 514900000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/940944/000094094425000003/dri-20241124.htm",
+        "accession": "0000940944-25-000003",
+        "filedAt": "2025-01-02",
+        "startDate": "2023-08-28",
+        "endDate": "2023-11-26",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "us-gaap:AllOtherSegmentsMember"
+        },
+        "value": 514900000,
+        "decimals": -5,
+        "tableLabel": "Other Business",
+        "rowLabel": "Sales",
+        "rowIndex": 3,
+        "columnIndex": 25
+      }
+    }
+  ],
+  "expectedIncome": true,
+  "expectedFlow": true,
+  "sourceOnlyCurrent": [
+    {
+      "id": "2025-Q2",
+      "business": true,
+      "flow": true,
+      "income": true
+    }
+  ],
+  "scope": "Complete unmodified original primary/business tables and all original inline resources and fiscal declarations. Adjacent visible original text and original fiscal-calendar excerpt are HTML-escaped only. No amount, date, declaration or dimension is synthesized. Monetary tax-benefit annotations inside the original line label remain unchanged."
+}

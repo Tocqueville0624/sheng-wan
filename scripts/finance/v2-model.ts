@@ -1,3 +1,4 @@
+import { dardenInlineIncomeProblem } from "../../src/features/finance/darden-inline-income";
 import { buildStatementFlow, segmentProblem } from "../../src/features/finance/chart-model";
 import { shareholderBridgeProblem } from "../../src/features/finance/shareholder-bridge";
 import { alignInlineIncomeProblem } from "../../src/features/finance/align-inline-income";
@@ -33,6 +34,7 @@ import { ametekRevenueProblem } from "../../src/features/finance/ametek-revenue"
 import { churchDwightRevenueProblem } from "../../src/features/finance/church-dwight-revenue";
 import { originalHierarchyProblem } from "../../src/features/finance/original-hierarchy-revenue";
 import { cencoraRevenueProblem } from "../../src/features/finance/cencora-revenue";
+import { dardenRevenueProblem } from "../../src/features/finance/darden-revenue";
 import {
   corroborateOriginalStatement,
   originalStatementCorroborationProblem
@@ -268,6 +270,9 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     if (period.revenueAdjustments?.some((item) => item.id === "source-rounding")) return;
     return business;
   }
+  if (proof.dardenRevenue && proof.method !== "reviewed-darden-revenue") return;
+  if (proof.method === "reviewed-darden-revenue")
+    return dardenRevenueProblem(period) ? undefined : business;
   if (proof.cencoraRevenue && proof.method !== "reviewed-cencora-revenue") return;
   if (proof.method === "reviewed-cencora-revenue")
     return cencoraRevenueProblem(period) ? undefined : business;
@@ -605,6 +610,7 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
 export function flowPeriod(period: PeriodV2): StatementChartPeriod | undefined {
   if (period.displayCurrency !== "USD") return;
   if (alignInlineIncomeProblem(period)) return;
+  if (dardenInlineIncomeProblem(period)) return;
   if (grossOperatingItemsProblem(period)) return;
   if (shareholderBridgeProblem(period)) return;
   if (period.businessBreakdownSource && !businessPeriod(period)) return;
@@ -951,7 +957,8 @@ export function validateV2(company: CompanyV2) {
           p.operatingItems ||
           p.grossOperatingItems ||
           p.directNetItems ||
-          p.operatingNetItems) &&
+          p.operatingNetItems ||
+          p.dardenInlineIncome) &&
         !flowPeriod(p)
       )
         throw new Error("Unsupported chart capability or unverified rounding precision.");

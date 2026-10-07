@@ -69,3 +69,6 @@ tests/fixtures/finance/chd-*-original-review.html
 tests/fixtures/finance/avy-*-original-hierarchy.html
 tests/fixtures/finance/bax-*-original-hierarchy.html
 tests/fixtures/finance/cor-*-original-hierarchy.html
+
+# Preserve unchanged Darden original primary rows, label notes and business tables.
+tests/fixtures/finance/dri-*-original-primary-business.html

@@ -331,6 +331,7 @@ export function StatementFlow({
               operatingItems: period.operatingItems,
               grossOperatingItems: period.grossOperatingItems,
               alignInlineIncome: period.alignInlineIncome,
+              dardenInlineIncome: period.dardenInlineIncome,
               directNetItems: period.directNetItems,
               operatingNetItems: period.operatingNetItems,
               afterTaxTransactionItems: period.afterTaxTransactionItems,
@@ -605,6 +606,8 @@ export function StatementFlow({
           `The intermediate consolidated net-income subtotal is reported as ${shortMoney(period.consolidatedIncomeSubtotal.amount)} and corroborates pretax profit minus tax within declared source precision. The exact running arithmetic and the final parent net-income amount are preserved independently. `}
         {period.afterTaxReconciliation &&
           `A separate after-tax source-rounding flow of ${shortMoney(period.afterTaxReconciliation.amount)} reconciles the final net-income scope within declared precision; reported net income is unchanged. `}
+        {period.dardenInlineIncome &&
+          "The original primary statement reports discontinued operations after tax. Their signed amount connects continuing income to net income; tax-benefit figures embedded in the line label are retained as annotations and are not deducted again. All comparative and cumulative primary columns and original declarations remain in the exports. "}
         {period.grossOperatingItems &&
           (period.alignInlineIncome
             ? "Reported impairment expense and litigation settlement gains enter operating profit separately. The original signed after-tax equity-method loss enters net income after tax. All comparative primary rows, original amounts and declarations remain in the exports. "
