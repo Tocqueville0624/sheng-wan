@@ -8,27 +8,28 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 
 /** All monetary inputs below are independently decoded from preserved original
  * XML declarations. No chart values, inline tags or financial facts are invented. */
-export async function standaloneBusinessFixture(ticker: "AME" | "ALB" | "UNH") {
-  if (ticker === "UNH") {
+export async function standaloneBusinessFixture(ticker: "AME" | "ALB" | "UNH" | "A") {
+  if (ticker === "UNH" || ticker === "A") {
+    const prefix = ticker === "A" ? "agilent" : "unitedhealth";
     const source = JSON.parse(
       readFileSync(
-        new URL("./unitedhealth-fy2016-original-separate-source.json", import.meta.url),
+        new URL(`./${prefix}-fy2016-original-separate-source.json`, import.meta.url),
         "utf8"
       )
     );
     const identity: CatalogCompany = {
       ticker,
-      name: "UnitedHealth Group Incorporated",
+      name: ticker === "A" ? "Agilent Technologies, Inc." : "UnitedHealth Group Incorporated",
       cik: source.cik,
       sector: "Health Care",
       universe: "sp500"
     };
     const html = readFileSync(
-      new URL("./unitedhealth-fy2016-original-separate-income-business.html", import.meta.url),
+      new URL(`./${prefix}-fy2016-original-separate-income-business.html`, import.meta.url),
       "utf8"
     );
     const xml = readFileSync(
-      new URL("./unitedhealth-fy2016-original-separate-financial.xml", import.meta.url),
+      new URL(`./${prefix}-fy2016-original-separate-financial.xml`, import.meta.url),
       "utf8"
     );
     const base = companyFromFilingPeriods(identity, [source.preservedPeriod]);
@@ -41,7 +42,7 @@ export async function standaloneBusinessFixture(ticker: "AME" | "ALB" | "UNH") {
       base
     );
     const period = periods.find((p) => p.id === "FY2016");
-    if (!period) throw Error("UnitedHealth original standalone period was withheld");
+    if (!period) throw Error(`${ticker} original standalone period was withheld`);
     return { company: companyFromFilingPeriods(identity, [period]), period };
   }
   const ame = ticker === "AME";
@@ -122,7 +123,7 @@ export async function standaloneBusinessFixture(ticker: "AME" | "ALB" | "UNH") {
   return { company, period };
 }
 
-export async function sourceOnlyFixture(ticker: "AME" | "ALB" | "UNH") {
+export async function sourceOnlyFixture(ticker: "AME" | "ALB" | "UNH" | "A") {
   const preserved = await standaloneBusinessFixture(ticker);
   const p = preserved.period;
   const identity: CatalogCompany = {
@@ -137,7 +138,7 @@ export async function sourceOnlyFixture(ticker: "AME" | "ALB" | "UNH") {
     accession: p.accession!,
     filedAt: p.filedAt,
     form: "10-K",
-    reportDate: "2018-12-31",
+    reportDate: ticker === "A" ? "2018-10-31" : "2018-12-31",
     sourceUrl: p.sourceUrl,
     directoryUrl: p.sourceUrl.slice(0, p.sourceUrl.lastIndexOf("/") + 1),
     primaryDocument: url.pathname.split("/").at(-1)!
@@ -145,7 +146,7 @@ export async function sourceOnlyFixture(ticker: "AME" | "ALB" | "UNH") {
   const read = (suffix: string) =>
     readFileSync(
       new URL(
-        `./${ticker === "UNH" ? "unitedhealth" : ticker.toLowerCase()}-fy2016-original-separate-${suffix}`,
+        `./${ticker === "A" ? "agilent" : ticker === "UNH" ? "unitedhealth" : ticker.toLowerCase()}-fy2016-original-separate-${suffix}`,
         import.meta.url
       ),
       "utf8"
@@ -156,12 +157,15 @@ export async function sourceOnlyFixture(ticker: "AME" | "ALB" | "UNH") {
     html: read("income-business.html"),
     xml: read("financial.xml"),
     instanceUrl:
-      filing.directoryUrl + `${ticker === "UNH" ? "unh" : ticker.toLowerCase()}-20181231.xml`,
+      filing.directoryUrl +
+      (ticker === "A"
+        ? "a-20181031.xml"
+        : `${ticker === "UNH" ? "unh" : ticker.toLowerCase()}-20181231.xml`),
     preserved
   };
 }
 
-export async function sourceOnlyBusinessFixture(ticker: "AME" | "ALB" | "UNH") {
+export async function sourceOnlyBusinessFixture(ticker: "AME" | "ALB" | "UNH" | "A") {
   const s = await sourceOnlyFixture(ticker);
   const periods = await readOriginalStandaloneBusinessFiling(
     s.html,

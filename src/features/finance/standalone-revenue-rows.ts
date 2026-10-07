@@ -15,6 +15,8 @@ export type OriginalStandaloneTableSelection = {
   units: { rowIndex: number; label: string } | { precedingTextSuffix: string };
   headers: { rowIndex: number; labels: string[]; selectedIndex: number; prefixLabel?: string };
   calendarYear: number;
+  /** Exact separately reviewed Agilent fiscal dates; legacy calendar profiles stay default. */
+  fiscalProfile?: "agilent-october";
   yearHeader?: { rowIndex: number; label: string };
   period: { startDate: string; endDate: string };
   rows: {
@@ -80,11 +82,18 @@ export function replayOriginalStandaloneRevenueTable(
         ]),
     "Changed original temporal or business column headers."
   );
+  const agilentFiscal =
+    selection.fiscalProfile === "agilent-october" && source.cik === "0001090872";
+  demand(selection.fiscalProfile === undefined || agilentFiscal, "Unreviewed fiscal profile.");
   demand(
     Number.isInteger(selection.calendarYear) &&
       selection.calendarYear >= 2009 &&
-      selection.period.startDate === `${selection.calendarYear}-01-01` &&
-      selection.period.endDate === `${selection.calendarYear}-12-31`,
+      (agilentFiscal
+        ? [2016, 2017, 2018].includes(selection.calendarYear) &&
+          selection.period.startDate === `${selection.calendarYear - 1}-11-01` &&
+          selection.period.endDate === `${selection.calendarYear}-10-31`
+        : selection.period.startDate === `${selection.calendarYear}-01-01` &&
+          selection.period.endDate === `${selection.calendarYear}-12-31`),
     "Unreviewed original calendar-year period."
   );
   const selectedHeader = selection.headers.labels[selection.headers.selectedIndex];
@@ -97,7 +106,10 @@ export function replayOriginalStandaloneRevenueTable(
     const anchor = selection.yearHeader;
     demand(
       anchor &&
-        anchor.label === String(selection.calendarYear) &&
+        anchor.label ===
+          (agilentFiscal
+            ? `Year ended October 31, ${selection.calendarYear}:`
+            : String(selection.calendarYear)) &&
         rows
           .find((r) => r.rowIndex === anchor.rowIndex)
           ?.cells.filter((c) => c.label)
@@ -108,11 +120,16 @@ export function replayOriginalStandaloneRevenueTable(
   }
   const scale = selection.scale ?? 3;
   demand(
-    scale === 3 || (scale === 6 && source.cik === "0000731766"),
+    scale === 3 || (scale === 6 && (source.cik === "0000731766" || agilentFiscal)),
     "Unreviewed original monetary scale profile."
   );
   const unitLabels =
-    scale === 3 ? thousandUnits : new Set(["(in millions, except per share data)"]);
+    scale === 3
+      ? thousandUnits
+      : new Set([
+          "(in millions, except per share data)",
+          ...(agilentFiscal ? ["(in millions)"] : [])
+        ]);
   const originalUnits = selection.units;
   if ("rowIndex" in originalUnits) {
     const unitRow = rows.find((r) => r.rowIndex === originalUnits.rowIndex);

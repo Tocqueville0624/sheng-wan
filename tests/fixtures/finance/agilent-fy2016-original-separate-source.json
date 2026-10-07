@@ -1,0 +1,131 @@
+{
+  "scope": "Two unchanged actual HTML excerpts (preceding original bytes and complete original primary/business tables) concatenated with newline. XML preserves actual root, contexts, unit, metadata and 96 financial declarations across all three fiscal years. Financial strings and inline declarations are not fabricated. Whole-source and excerpt hashes are separately recorded.",
+  "cik": "0001090872",
+  "filing": {
+    "accession": "0001090872-18-000019",
+    "filedAt": "2018-12-20",
+    "reportDate": "2018-10-31",
+    "form": "10-K",
+    "primaryDocument": "a-10312018x10k.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm"
+  },
+  "sourcePrimary": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+    "bytes": 3742223,
+    "sha256": "7a516b2ec12aab43c5f01c995fd614885914a83df95adbe61bc19aedc732fab0"
+  },
+  "sourceInstance": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-20181031.xml",
+    "bytes": 5259362,
+    "sha256": "4a2b0fe7c942e066d0c513dc759fc4e1fe0c8879678dc7618752081eefe0bd11"
+  },
+  "originalPrimaryTableIndex": 57,
+  "originalBusinessTableIndex": 111,
+  "excerptSha256": "9ae6eabdc3e680170a43ddb875b2f920392197974da54ec360ac108734782de6",
+  "instanceExcerptSha256": "ed8095e1eb48483a3bb5a53dcf02b97cce8955dd247570b64d05dd0d923a4513",
+  "preservedPeriod": {
+    "id": "FY2016",
+    "label": "FY 2016",
+    "kind": "annual",
+    "fiscalYear": 2016,
+    "startDate": "2015-11-01",
+    "endDate": "2016-10-31",
+    "filedAt": "2018-12-20",
+    "accession": "0001090872-18-000019",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": false,
+    "metrics": {
+      "revenue": 4202000000,
+      "costOfRevenue": 2005000000,
+      "totalOperatingCosts": 3587000000,
+      "operatingIncome": 615000000,
+      "pretaxIncome": 544000000,
+      "incomeTax": 82000000,
+      "netIncome": 462000000,
+      "researchAndDevelopment": 329000000,
+      "sellingGeneralAndAdministrative": 1253000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0001090872-18-000019",
+        "filedAt": "2018-12-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Goods and Services Sold",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0001090872-18-000019",
+        "filedAt": "2018-12-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+        "method": "reported"
+      },
+      "totalOperatingCosts": {
+        "label": "Costs and Expenses",
+        "tag": "us-gaap:CostsAndExpenses",
+        "accession": "0001090872-18-000019",
+        "filedAt": "2018-12-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+        "method": "reported"
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001090872-18-000019",
+        "filedAt": "2018-12-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+        "method": "reported"
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Equity Method Investments, Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "accession": "0001090872-18-000019",
+        "filedAt": "2018-12-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+        "method": "reported"
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001090872-18-000019",
+        "filedAt": "2018-12-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+        "method": "reported"
+      },
+      "netIncome": {
+        "label": "Net Income (Loss), Including Portion Attributable to Noncontrolling Interest",
+        "tag": "us-gaap:ProfitLoss",
+        "accession": "0001090872-18-000019",
+        "filedAt": "2018-12-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+        "method": "reported"
+      },
+      "researchAndDevelopment": {
+        "label": "Research and Development Expense",
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "accession": "0001090872-18-000019",
+        "filedAt": "2018-12-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+        "method": "reported"
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0001090872-18-000019",
+        "filedAt": "2018-12-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1090872/000109087218000019/a-10312018x10k.htm",
+        "method": "reported"
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    }
+  }
+}

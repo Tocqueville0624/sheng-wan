@@ -1,0 +1,347 @@
+<xbrli:xbrl xmlns:a="http://www.agilent.com/20181031" xmlns:acec="http://fasb.org/dis/acec/2018-01-31" xmlns:ap="http://fasb.org/dis/ap/2018-01-31" xmlns:aro="http://fasb.org/dis/aro/2018-01-31" xmlns:bc="http://fasb.org/dis/bc/2018-01-31" xmlns:bsoff="http://fasb.org/dis/bsoff/2018-01-31" xmlns:cc="http://fasb.org/dis/cc/2018-01-31" xmlns:cce="http://fasb.org/dis/cce/2018-01-31" xmlns:codification-part="http://fasb.org/codification-part/2018-01-31" xmlns:com="http://fasb.org/stm/com/2018-01-31" xmlns:con="http://fasb.org/dis/con/2018-01-31" xmlns:country="http://xbrl.sec.gov/country/2017-01-31" xmlns:country-all="http://xbrl.sec.gov/country-all/2017-01-31" xmlns:country-ent-all="http://xbrl.sec.gov/country-ent-all/2017-01-31" xmlns:country-ent-std="http://xbrl.sec.gov/country-ent-std/2017-01-31" xmlns:country-std="http://xbrl.sec.gov/country-std/2017-01-31" xmlns:crcgen="http://fasb.org/dis/crcgen/2018-01-31" xmlns:crcpb="http://fasb.org/dis/crcpb/2018-01-31" xmlns:crcrb="http://fasb.org/dis/crcrb/2018-01-31" xmlns:crcsbp="http://fasb.org/dis/crcsbp/2018-01-31" xmlns:ctbl="http://fasb.org/dis/ctbl/2018-01-31" xmlns:currency="http://xbrl.sec.gov/currency/2017-01-31" xmlns:currency-all="http://xbrl.sec.gov/currency-all/2017-01-31" xmlns:currency-ent-all="http://xbrl.sec.gov/currency-ent-all/2017-01-31" xmlns:currency-ent-std="http://xbrl.sec.gov/currency-ent-std/2017-01-31" xmlns:currency-std="http://xbrl.sec.gov/currency-std/2017-01-31" xmlns:dccpoa="http://fasb.org/dis/dccpoa/2018-01-31" xmlns:debt="http://fasb.org/dis/debt/2018-01-31" xmlns:dei="http://xbrl.sec.gov/dei/2018-01-31" xmlns:dei-all="http://xbrl.sec.gov/dei-all/2018-01-31" xmlns:dei-ent-all="http://xbrl.sec.gov/dei-ent-all/2018-01-31" xmlns:dei-ent-std="http://xbrl.sec.gov/dei-ent-std/2018-01-31" xmlns:dei-std="http://xbrl.sec.gov/dei-std/2018-01-31" xmlns:deprecated="http://www.xbrl.org/2009/arcrole/deprecated" xmlns:deprecated1="http://www.xbrl.org/2009/role/deprecated" xmlns:diha="http://fasb.org/dis/diha/2018-01-31" xmlns:disops="http://fasb.org/dis/disops/2018-01-31" xmlns:dr="http://fasb.org/dis/dr/2018-01-31" xmlns:edco="http://fasb.org/dis/edco/2018-01-31" xmlns:ei="http://fasb.org/dis/ei/2018-01-31" xmlns:emjv="http://fasb.org/dis/emjv/2018-01-31" xmlns:eps="http://fasb.org/dis/eps/2018-01-31" xmlns:equity="http://fasb.org/dis/equity/2018-01-31" xmlns:ero="http://fasb.org/dis/ero/2018-01-31" xmlns:eui="http://fasb.org/dis/eui/2018-01-31" xmlns:exch="http://xbrl.sec.gov/exch/2018-01-31" xmlns:exch-all="http://xbrl.sec.gov/exch-all/2018-01-31" xmlns:exch-ent-all="http://xbrl.sec.gov/exch-ent-all/2018-01-31" xmlns:exch-ent-std="http://xbrl.sec.gov/exch-ent-std/2018-01-31" xmlns:exch-std="http://xbrl.sec.gov/exch-std/2018-01-31" xmlns:fifvd="http://fasb.org/dis/fifvd/2018-01-31" xmlns:foct="http://fasb.org/dis/foct/2018-01-31" xmlns:fs-bd="http://fasb.org/dis/fs-bd/2018-01-31" xmlns:fs-bt="http://fasb.org/dis/fs-bt/2018-01-31" xmlns:fs-fhlb="http://fasb.org/dis/fs-fhlb/2018-01-31" xmlns:fs-ins="http://fasb.org/dis/fs-ins/2018-01-31" xmlns:fs-interest="http://fasb.org/dis/fs-interest/2018-01-31" xmlns:fs-mort="http://fasb.org/dis/fs-mort/2018-01-31" xmlns:guar="http://fasb.org/dis/guar/2018-01-31" xmlns:hco="http://fasb.org/dis/hco/2018-01-31" xmlns:iago="http://fasb.org/dis/iago/2018-01-31" xmlns:iaoi="http://fasb.org/dis/iaoi/2018-01-31" xmlns:ides="http://fasb.org/dis/ides/2018-01-31" xmlns:inctax="http://fasb.org/dis/inctax/2018-01-31" xmlns:inv="http://fasb.org/dis/inv/2018-01-31" xmlns:invco="http://fasb.org/dis/invco/2018-01-31" xmlns:invest="http://xbrl.sec.gov/invest/2013-01-31" xmlns:invest-all="http://xbrl.sec.gov/invest-all/2013-01-31" xmlns:invest-ent-all="http://xbrl.sec.gov/invest-ent-all/2013-01-31" xmlns:invest-ent-std="http://xbrl.sec.gov/invest-ent-std/2013-01-31" xmlns:invest-std="http://xbrl.sec.gov/invest-std/2013-01-31" xmlns:ir="http://fasb.org/dis/ir/2018-01-31" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:lea="http://fasb.org/dis/lea/2018-01-31" xmlns:leas="http://fasb.org/dis/leas/2018-01-31" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:naics="http://xbrl.sec.gov/naics/2017-01-31" xmlns:naics-all="http://xbrl.sec.gov/naics-all/2017-01-31" xmlns:naics-ent-all="http://xbrl.sec.gov/naics-ent-all/2017-01-31" xmlns:naics-ent-std="http://xbrl.sec.gov/naics-ent-std/2017-01-31" xmlns:naics-std="http://xbrl.sec.gov/naics-std/2017-01-31" xmlns:negated="http://www.xbrl.org/2009/role/negated" xmlns:net="http://www.xbrl.org/2009/role/net" xmlns:ni="http://fasb.org/dis/ni/2018-01-31" xmlns:nonnum="http://www.xbrl.org/dtr/type/non-numeric" xmlns:nt="http://fasb.org/dis/nt/2018-01-31" xmlns:num="http://www.xbrl.org/dtr/type/numeric" xmlns:ocpfs="http://fasb.org/dis/ocpfs/2018-01-31" xmlns:oi="http://fasb.org/dis/oi/2018-01-31" xmlns:otherexp="http://fasb.org/dis/otherexp/2018-01-31" xmlns:othliab="http://fasb.org/dis/othliab/2018-01-31" xmlns:pay="http://fasb.org/dis/pay/2018-01-31" xmlns:ppe="http://fasb.org/dis/ppe/2018-01-31" xmlns:rcc="http://fasb.org/dis/rcc/2018-01-31" xmlns:rd="http://fasb.org/dis/rd/2018-01-31" xmlns:re="http://fasb.org/dis/re/2018-01-31" xmlns:ref="http://www.xbrl.org/2006/ref" xmlns:reference="http://www.xbrl.org/2009/role/reference" xmlns:regop="http://fasb.org/dis/regop/2018-01-31" xmlns:reorg="http://fasb.org/dis/reorg/2018-01-31" xmlns:rlnro="http://fasb.org/dis/rlnro/2018-01-31" xmlns:rpd="http://fasb.org/dis/rpd/2018-01-31" xmlns:ru="http://fasb.org/dis/ru/2018-01-31" xmlns:scf-dbo="http://fasb.org/stm/scf-dbo/2018-01-31" xmlns:scf-dir="http://fasb.org/stm/scf-dir/2018-01-31" xmlns:scf-indir="http://fasb.org/stm/scf-indir/2018-01-31" xmlns:scf-indira="http://fasb.org/stm/scf-indira/2018-01-31" xmlns:scf-inv="http://fasb.org/stm/scf-inv/2018-01-31" xmlns:scf-re="http://fasb.org/stm/scf-re/2018-01-31" xmlns:scf-sbo="http://fasb.org/stm/scf-sbo/2018-01-31" xmlns:scf-sd="http://fasb.org/stm/scf-sd/2018-01-31" xmlns:schedoi-fednote="http://fasb.org/dis/schedoi-fednote/2018-01-31" xmlns:schedoi-hold="http://fasb.org/dis/schedoi-hold/2018-01-31" xmlns:schedoi-iiaa="http://fasb.org/dis/schedoi-iiaa/2018-01-31" xmlns:schedoi-oocw="http://fasb.org/dis/schedoi-oocw/2018-01-31" xmlns:schedoi-otsh="http://fasb.org/dis/schedoi-otsh/2018-01-31" xmlns:schedoi-shorthold="http://fasb.org/dis/schedoi-shorthold/2018-01-31" xmlns:schedoi-sumhold="http://fasb.org/dis/schedoi-sumhold/2018-01-31" xmlns:se="http://fasb.org/dis/se/2018-01-31" xmlns:sec-cndfir="http://fasb.org/dis/sec-cndfir/2018-01-31" xmlns:sec-mort="http://fasb.org/dis/sec-mort/2018-01-31" xmlns:sec-re="http://fasb.org/dis/sec-re/2018-01-31" xmlns:sec-reins="http://fasb.org/dis/sec-reins/2018-01-31" xmlns:sec-sum="http://fasb.org/dis/sec-sum/2018-01-31" xmlns:sec-supins="http://fasb.org/dis/sec-supins/2018-01-31" xmlns:sec-suppc="http://fasb.org/dis/sec-suppc/2018-01-31" xmlns:sec-vq="http://fasb.org/dis/sec-vq/2018-01-31" xmlns:sfp-clreo="http://fasb.org/stm/sfp-clreo/2018-01-31" xmlns:sfp-cls="http://fasb.org/stm/sfp-cls/2018-01-31" xmlns:sfp-dbo="http://fasb.org/stm/sfp-dbo/2018-01-31" xmlns:sfp-ibo="http://fasb.org/stm/sfp-ibo/2018-01-31" xmlns:sfp-sbo="http://fasb.org/stm/sfp-sbo/2018-01-31" xmlns:sfp-ucreo="http://fasb.org/stm/sfp-ucreo/2018-01-31" xmlns:sheci="http://fasb.org/stm/sheci/2018-01-31" xmlns:sic="http://xbrl.sec.gov/sic/2011-01-31" xmlns:sic-all="http://xbrl.sec.gov/sic-all/2011-01-31" xmlns:sic-ent-all="http://xbrl.sec.gov/sic-ent-all/2011-01-31" xmlns:sic-ent-std="http://xbrl.sec.gov/sic-ent-std/2011-01-31" xmlns:sic-std="http://xbrl.sec.gov/sic-std/2011-01-31" xmlns:soc="http://fasb.org/stm/soc/2018-01-31" xmlns:soi="http://fasb.org/stm/soi/2018-01-31" xmlns:soi-egm="http://fasb.org/stm/soi-egm/2018-01-31" xmlns:soi-indira="http://fasb.org/stm/soi-indira/2018-01-31" xmlns:soi-ins="http://fasb.org/stm/soi-ins/2018-01-31" xmlns:soi-int="http://fasb.org/stm/soi-int/2018-01-31" xmlns:soi-re="http://fasb.org/stm/soi-re/2018-01-31" xmlns:soi-reit="http://fasb.org/stm/soi-reit/2018-01-31" xmlns:soi-sbi="http://fasb.org/stm/soi-sbi/2018-01-31" xmlns:spc="http://fasb.org/stm/spc/2018-01-31" xmlns:sr="http://fasb.org/dis/sr/2018-01-31" xmlns:srt="http://fasb.org/srt/2018-01-31" xmlns:srt-all="http://fasb.org/srt-all/2018-01-31" xmlns:srt-roles="http://fasb.org/srt-roles/2018-01-31" xmlns:srt-std="http://fasb.org/srt-std/2018-01-31" xmlns:srt-types="http://fasb.org/srt-types/2018-01-31" xmlns:stpr="http://xbrl.sec.gov/stpr/2018-01-31" xmlns:stpr-all="http://xbrl.sec.gov/stpr-all-all-all/2018-01-31" xmlns:stpr-ent-all="http://xbrl.sec.gov/stpr-ent-all-all-all/2018-01-31" xmlns:stpr-ent-std="http://xbrl.sec.gov/stpr-ent-std-std-std/2018-01-31" xmlns:stpr-std="http://xbrl.sec.gov/stpr-std-std-std/2018-01-31" xmlns:te="http://fasb.org/dis/te/2018-01-31" xmlns:tin-part="http://fasb.org/tin-part/2018-01-31" xmlns:ts="http://fasb.org/dis/ts/2018-01-31" xmlns:us-arcroles="http://fasb.org/us-arcroles/2018-01-31" xmlns:us-gaap="http://fasb.org/us-gaap/2018-01-31" xmlns:us-gaap-all="http://fasb.org/us-gaap-all/2018-01-31" xmlns:us-gaap-ent-std="http://fasb.org/us-gaap-ent-std/2018-01-31" xmlns:us-gaap-entryPoint-all="http://fasb.org/us-gaap-entryPoint-all/2018-01-31" xmlns:us-gaap-std="http://fasb.org/us-gaap-std/2018-01-31" xmlns:us-roles="http://fasb.org/us-roles/2018-01-31" xmlns:us-types="http://fasb.org/us-types/2018-01-31" xmlns:utreg="http://www.xbrl.org/2009/utr" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:xbrldt="http://xbrl.org/2005/xbrldt" xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:xl="http://www.xbrl.org/2003/XLink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<xbrli:context id="FD2018Q4YTD">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2017-11-01</xbrli:startDate>
+			<xbrli:endDate>2018-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2016Q4YTD_srt_ProductOrServiceAxis_us-gaap_ServiceOtherMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="srt:ProductOrServiceAxis">us-gaap:ServiceOtherMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2015-11-01</xbrli:startDate>
+			<xbrli:endDate>2016-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2017Q4YTD">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2016-11-01</xbrli:startDate>
+			<xbrli:endDate>2017-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2016Q4YTD">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2015-11-01</xbrli:startDate>
+			<xbrli:endDate>2016-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2017Q4YTD_srt_ProductOrServiceAxis_us-gaap_ServiceOtherMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="srt:ProductOrServiceAxis">us-gaap:ServiceOtherMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2016-11-01</xbrli:startDate>
+			<xbrli:endDate>2017-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2016Q4YTD_srt_ProductOrServiceAxis_us-gaap_ProductMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="srt:ProductOrServiceAxis">us-gaap:ProductMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2015-11-01</xbrli:startDate>
+			<xbrli:endDate>2016-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2018Q4YTD_srt_ProductOrServiceAxis_us-gaap_ServiceOtherMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="srt:ProductOrServiceAxis">us-gaap:ServiceOtherMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2017-11-01</xbrli:startDate>
+			<xbrli:endDate>2018-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2018Q4YTD_srt_ProductOrServiceAxis_us-gaap_ProductMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="srt:ProductOrServiceAxis">us-gaap:ProductMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2017-11-01</xbrli:startDate>
+			<xbrli:endDate>2018-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2017Q4YTD_srt_ProductOrServiceAxis_us-gaap_ProductMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="srt:ProductOrServiceAxis">us-gaap:ProductMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2016-11-01</xbrli:startDate>
+			<xbrli:endDate>2017-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:AgilentCrossLabMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2017-11-01</xbrli:startDate>
+			<xbrli:endDate>2018-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:LifeSciencesandAppliedMarketsMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2017-11-01</xbrli:startDate>
+			<xbrli:endDate>2018-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:LifeSciencesandAppliedMarketsMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2016-11-01</xbrli:startDate>
+			<xbrli:endDate>2017-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:DiagnosticsAndGenomicsMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2016-11-01</xbrli:startDate>
+			<xbrli:endDate>2017-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:DiagnosticsAndGenomicsMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2017-11-01</xbrli:startDate>
+			<xbrli:endDate>2018-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:AgilentCrossLabMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2016-11-01</xbrli:startDate>
+			<xbrli:endDate>2017-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:AgilentCrossLabMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2015-11-01</xbrli:startDate>
+			<xbrli:endDate>2016-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:SegmentTotalMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2017-11-01</xbrli:startDate>
+			<xbrli:endDate>2018-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:LifeSciencesandAppliedMarketsMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2015-11-01</xbrli:startDate>
+			<xbrli:endDate>2016-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:SegmentTotalMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2015-11-01</xbrli:startDate>
+			<xbrli:endDate>2016-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:SegmentTotalMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2016-11-01</xbrli:startDate>
+			<xbrli:endDate>2017-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001090872</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">a:DiagnosticsAndGenomicsMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2015-11-01</xbrli:startDate>
+			<xbrli:endDate>2016-10-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:unit id="usd">
+		<xbrli:measure>iso4217:USD</xbrli:measure>
+	</xbrli:unit>
+<us-gaap:CostOfGoodsAndServicesSold contextRef="FD2016Q4YTD" decimals="-6" id="Fact-746FE5210EA3214E807FC27AD2DA11C9" unitRef="usd">2005000000</us-gaap:CostOfGoodsAndServicesSold>
+<us-gaap:CostOfGoodsAndServicesSold contextRef="FD2016Q4YTD_srt_ProductOrServiceAxis_us-gaap_ProductMember" decimals="-6" id="Fact-68515EE3222E7A5317FEC27AD2CB02B6" unitRef="usd">1457000000</us-gaap:CostOfGoodsAndServicesSold>
+<us-gaap:CostOfGoodsAndServicesSold contextRef="FD2016Q4YTD_srt_ProductOrServiceAxis_us-gaap_ServiceOtherMember" decimals="-6" id="Fact-8038AFB82416EFBFA2EFC27AD2EA9928" unitRef="usd">548000000</us-gaap:CostOfGoodsAndServicesSold>
+<us-gaap:CostOfGoodsAndServicesSold contextRef="FD2017Q4YTD" decimals="-6" id="Fact-355E6EE964C7412AEFEFC27AD2DA5766" unitRef="usd">2063000000</us-gaap:CostOfGoodsAndServicesSold>
+<us-gaap:CostOfGoodsAndServicesSold contextRef="FD2017Q4YTD_srt_ProductOrServiceAxis_us-gaap_ProductMember" decimals="-6" id="Fact-C8488F6FFF3876244E0EC27AD2CBD0DC" unitRef="usd">1462000000</us-gaap:CostOfGoodsAndServicesSold>
+<us-gaap:CostOfGoodsAndServicesSold contextRef="FD2017Q4YTD_srt_ProductOrServiceAxis_us-gaap_ServiceOtherMember" decimals="-6" id="Fact-D4CCC2E4EAC2DCF97451C27AD2EADA89" unitRef="usd">601000000</us-gaap:CostOfGoodsAndServicesSold>
+<us-gaap:CostOfGoodsAndServicesSold contextRef="FD2018Q4YTD" decimals="-6" id="Fact-13E422E541735848E0BDC27AD2EA21F4" unitRef="usd">2227000000</us-gaap:CostOfGoodsAndServicesSold>
+<us-gaap:CostOfGoodsAndServicesSold contextRef="FD2018Q4YTD_srt_ProductOrServiceAxis_us-gaap_ProductMember" decimals="-6" id="Fact-3EE60D5DA95F44A9794AC27AD2EA85B8" unitRef="usd">1588000000</us-gaap:CostOfGoodsAndServicesSold>
+<us-gaap:CostOfGoodsAndServicesSold contextRef="FD2018Q4YTD_srt_ProductOrServiceAxis_us-gaap_ServiceOtherMember" decimals="-6" id="Fact-A8579B6701D738208AFDC27AD2EA6C79" unitRef="usd">639000000</us-gaap:CostOfGoodsAndServicesSold>
+<us-gaap:CostsAndExpenses contextRef="FD2016Q4YTD" decimals="-6" id="Fact-E07AD8DC396586EB8784C27AD2DAA88A" unitRef="usd">3587000000</us-gaap:CostsAndExpenses>
+<us-gaap:CostsAndExpenses contextRef="FD2017Q4YTD" decimals="-6" id="Fact-D86522B9D86AF8039BD4C27AD2DAC61D" unitRef="usd">3631000000</us-gaap:CostsAndExpenses>
+<us-gaap:CostsAndExpenses contextRef="FD2018Q4YTD" decimals="-6" id="Fact-8BD1ED924501BFB6F72DC27AD2DA2B77" unitRef="usd">3986000000</us-gaap:CostsAndExpenses>
+<us-gaap:Depreciation contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-B9E4978D443B9D60D14CC27AD41C039A" unitRef="usd">28000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-DD867BE1590CAFABEA4CC27AD40DE3DB" unitRef="usd">31000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-F9B9B0A8D2C08DB9A623C27AD40D4945" unitRef="usd">36000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-4F55496B09BA63758B7DC27AD41CA784" unitRef="usd">95000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-0C12DB8A7D734696A33FC27AD40DA7D7" unitRef="usd">29000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-F78D0A77F776A3822453C27AD40D5CDA" unitRef="usd">30000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-4FCA17AEF2C7FFA0B6E2C27AD40DF069" unitRef="usd">35000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-325FFCB440F61B876BB5C27AD41C4A44" unitRef="usd">94000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-083845EBA61F8F2A5428C27AD41C912B" unitRef="usd">31000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-1CADE5E089886985804FC27AD39F9DD5" unitRef="usd">33000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-D3C7181E146E3EDEC945C27AD41C7088" unitRef="usd">38000000</us-gaap:Depreciation>
+<us-gaap:Depreciation contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-F86EEC6052297098215BC27AD40D42A2" unitRef="usd">102000000</us-gaap:Depreciation>
+<us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments contextRef="FD2016Q4YTD" decimals="-6" id="Fact-1A0B97FF4AE352A861A7C27AD2EA2A69" unitRef="usd">544000000</us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments>
+<us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments contextRef="FD2017Q4YTD" decimals="-6" id="Fact-6DA323326EFC748C23E6C27AD2FAEA44" unitRef="usd">803000000</us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments>
+<us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments contextRef="FD2018Q4YTD" decimals="-6" id="Fact-B3AB8D53DDFC83F8CF2CC27AD2FABFAB" unitRef="usd">946000000</us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments>
+<us-gaap:IncomeTaxExpenseBenefit contextRef="FD2016Q4YTD" decimals="-6" id="Fact-1753B5CC12F20803D848C27AD2EA4375" unitRef="usd">82000000</us-gaap:IncomeTaxExpenseBenefit>
+<us-gaap:IncomeTaxExpenseBenefit contextRef="FD2017Q4YTD" decimals="-6" id="Fact-BB844063F39904698B16C27AD2EA7EE8" unitRef="usd">119000000</us-gaap:IncomeTaxExpenseBenefit>
+<us-gaap:IncomeTaxExpenseBenefit contextRef="FD2018Q4YTD" decimals="-6" id="Fact-50E5B35A17DBC42E5274C27AD2DAFC0D" unitRef="usd">630000000</us-gaap:IncomeTaxExpenseBenefit>
+<us-gaap:InterestExpense contextRef="FD2016Q4YTD" decimals="-6" id="Fact-C9B57EE4BFB9228C8EA9C27AD2DA0DA6" unitRef="usd">72000000</us-gaap:InterestExpense>
+<us-gaap:InterestExpense contextRef="FD2017Q4YTD" decimals="-6" id="Fact-05154922005B0B45CBB2C27AD2FA73E6" unitRef="usd">79000000</us-gaap:InterestExpense>
+<us-gaap:InterestExpense contextRef="FD2018Q4YTD" decimals="-6" id="Fact-E47DD838F2CF854AA97DC27AD2EA1731" unitRef="usd">75000000</us-gaap:InterestExpense>
+<us-gaap:InvestmentIncomeInterest contextRef="FD2016Q4YTD" decimals="-6" id="Fact-E5887AD105B164306E33C27AD2DA5B8F" unitRef="usd">11000000</us-gaap:InvestmentIncomeInterest>
+<us-gaap:InvestmentIncomeInterest contextRef="FD2017Q4YTD" decimals="-6" id="Fact-36778E83230A4FC2A1C4C27AD2DA4A21" unitRef="usd">22000000</us-gaap:InvestmentIncomeInterest>
+<us-gaap:InvestmentIncomeInterest contextRef="FD2018Q4YTD" decimals="-6" id="Fact-4FED00E2E6C3F905BCDCC27AD2DAAAA0" unitRef="usd">38000000</us-gaap:InvestmentIncomeInterest>
+<us-gaap:OperatingIncomeLoss contextRef="FD2016Q4YTD" decimals="-6" id="Fact-2C17F01CEA857D114D0BC27AD2FAE390" unitRef="usd">615000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-6F05A216001439BBD200C27AD39F3B11" unitRef="usd">316000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-5C8F6AA45610184548ABC27AD41CF68D" unitRef="usd">131000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-A430AFBDB5B2CF3987A8C27AD39F2B15" unitRef="usd">412000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-9C02798383F386D2DF7AC27AD40D0742" unitRef="usd">859000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2017Q4YTD" decimals="-6" id="Fact-D8252EEF7AFA15117DC0C27AD2EAFB96" unitRef="usd">841000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-41AB27710B11556F4216C27AD41C7BB8" unitRef="usd">338000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-D63C400CA637881E9426C27AD40D0EE6" unitRef="usd">168000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-FB12CB68F34308B39330C27AD41C992D" unitRef="usd">468000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-B752E4D401B2E0EB4963C27AD40D4D26" unitRef="usd">974000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2018Q4YTD" decimals="-6" id="Fact-4D7BA79CD769CD79C3A0C27AD2EAE68F" unitRef="usd">928000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-4D8CEE39675BDE61A5CCC27AD39FF7C4" unitRef="usd">397000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-FD7A4F4B30AF1795DE1DC27AD40D1C96" unitRef="usd">178000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-C2E477F9D2283A129B53C27AD41CD86E" unitRef="usd">547000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OperatingIncomeLoss contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-A0309A1C8E4744F06249C27AD40D7D6B" unitRef="usd">1122000000</us-gaap:OperatingIncomeLoss>
+<us-gaap:OtherNonoperatingIncomeExpense contextRef="FD2016Q4YTD" decimals="-6" id="Fact-E980321C62F7226C9F81C27AD2FA05C6" unitRef="usd">-10000000</us-gaap:OtherNonoperatingIncomeExpense>
+<us-gaap:OtherNonoperatingIncomeExpense contextRef="FD2017Q4YTD" decimals="-6" id="Fact-BF15EE3BEB00D1403F34C27AD2CB4496" unitRef="usd">19000000</us-gaap:OtherNonoperatingIncomeExpense>
+<us-gaap:OtherNonoperatingIncomeExpense contextRef="FD2018Q4YTD" decimals="-6" id="Fact-BF0E21192B19E2A54636C27AD2DAF6CC" unitRef="usd">55000000</us-gaap:OtherNonoperatingIncomeExpense>
+<us-gaap:ProfitLoss contextRef="FD2016Q4YTD" decimals="-6" id="Fact-A13FC9E89D54ED893181C27AD2DADF35" unitRef="usd">462000000</us-gaap:ProfitLoss>
+<us-gaap:ProfitLoss contextRef="FD2017Q4YTD" decimals="-6" id="Fact-061EB949BCBE8AC43470C27AD2CBE55B" unitRef="usd">684000000</us-gaap:ProfitLoss>
+<us-gaap:ProfitLoss contextRef="FD2018Q4YTD" decimals="-6" id="Fact-9BE70FD59BEB80D1BF65C27AD2CBBE43" unitRef="usd">316000000</us-gaap:ProfitLoss>
+<us-gaap:ResearchAndDevelopmentExpense contextRef="FD2016Q4YTD" decimals="-6" id="Fact-B7B59F03D5B26984EAB5C27AD2CBE8C7" unitRef="usd">329000000</us-gaap:ResearchAndDevelopmentExpense>
+<us-gaap:ResearchAndDevelopmentExpense contextRef="FD2017Q4YTD" decimals="-6" id="Fact-A6E17F2EC8133A39C4CCC27AD2CBACA8" unitRef="usd">339000000</us-gaap:ResearchAndDevelopmentExpense>
+<us-gaap:ResearchAndDevelopmentExpense contextRef="FD2018Q4YTD" decimals="-6" id="Fact-66BB4033CEC2FE73EBFCC27AD2EA4E09" unitRef="usd">385000000</us-gaap:ResearchAndDevelopmentExpense>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2016Q4YTD" decimals="-6" id="Fact-7D8578B83BAB530AD80CC27AD2EA9BA8" unitRef="usd">4202000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2016Q4YTD_srt_ProductOrServiceAxis_us-gaap_ProductMember" decimals="-6" id="Fact-1A8CB7CF365370960102C27AD2CB16E9" unitRef="usd">3213000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2016Q4YTD_srt_ProductOrServiceAxis_us-gaap_ServiceOtherMember" decimals="-6" id="Fact-A1DE0B1320FFB1403F13C27AD2EA8D87" unitRef="usd">989000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-AE7EB6CDF6AD4384A200C27AD41C8E65" unitRef="usd">1420000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-BAEDC310B5231E66FF10C27AD39FE00C" unitRef="usd">790000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-7FC291B16273F4F6FFC0C27AD40D6FD5" unitRef="usd">1992000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-AF1F9F16C87C09820CB1C27AD40DA5D3" unitRef="usd">4202000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2017Q4YTD" decimals="-6" id="Fact-5032D0646394B3E4E8CCC27AD2EAB45A" unitRef="usd">4472000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2017Q4YTD_srt_ProductOrServiceAxis_us-gaap_ProductMember" decimals="-6" id="Fact-1D0FFB539CBC7AEF95C1C27AD2FA990A" unitRef="usd">3397000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2017Q4YTD_srt_ProductOrServiceAxis_us-gaap_ServiceOtherMember" decimals="-6" id="Fact-839C993DADC1824601DCC27AD2EAD627" unitRef="usd">1075000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-C4DC5A7F79B80464DC91C27AD39F3DC7" unitRef="usd">1531000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-675962F0DF1115CBEBE3C27AD40D3650" unitRef="usd">860000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-6A1D899A31C6175834A3C27AD41C6D57" unitRef="usd">2081000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-AD555C66C3BB861A9F1EC27AD40D32AB" unitRef="usd">4472000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2018Q4YTD" decimals="-6" id="Fact-1C5567246433E471BE90C27AD2DA8E6E" unitRef="usd">4914000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2018Q4YTD_srt_ProductOrServiceAxis_us-gaap_ProductMember" decimals="-6" id="Fact-DD39413D5A9D4C0FACD5C27AD2FA5692" unitRef="usd">3746000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2018Q4YTD_srt_ProductOrServiceAxis_us-gaap_ServiceOtherMember" decimals="-6" id="Fact-BDEA1B8724118B3114F9C27AD2DA04C2" unitRef="usd">1168000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-B7196153CF80C89A6580C27AD41C339A" unitRef="usd">1701000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-5DE949CD3CEEB5A64811C27AD39FBBD8" unitRef="usd">943000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-A7F2235CE79ABE905B39C27AD41C7C83" unitRef="usd">2270000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-03D8431FF0FF85D8800DC27AD41CC972" unitRef="usd">4914000000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:SellingGeneralAndAdministrativeExpense contextRef="FD2016Q4YTD" decimals="-6" id="Fact-3B6BBF76906A3F3A8DD1C27AD2DA963D" unitRef="usd">1253000000</us-gaap:SellingGeneralAndAdministrativeExpense>
+<us-gaap:SellingGeneralAndAdministrativeExpense contextRef="FD2017Q4YTD" decimals="-6" id="Fact-BCD3B9F393B5C883A560C27AD2FA9B4B" unitRef="usd">1229000000</us-gaap:SellingGeneralAndAdministrativeExpense>
+<us-gaap:SellingGeneralAndAdministrativeExpense contextRef="FD2018Q4YTD" decimals="-6" id="Fact-B6975FCDD7401CE27C66C27AD370CABB" unitRef="usd">1374000000</us-gaap:SellingGeneralAndAdministrativeExpense>
+<us-gaap:ShareBasedCompensation contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-48F501FA38DDFAEC73E2C27AD40DA886" unitRef="usd">21000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-B8644661B9D73646E3EBC27AD40DA415" unitRef="usd">10000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-9A07542DCA02B7B4AB39C27AD41C7C8D" unitRef="usd">29000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-4076F6703512A6CAFB6AC27AD41C3EB5" unitRef="usd">60000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-DF606C1729BFCE9601EFC27AD40D25EF" unitRef="usd">21000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-F0CCA49660BEA85206D9C27AD41CE2A5" unitRef="usd">10000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-F32C6FEA0CC7BE01259FC27AD40D61F1" unitRef="usd">30000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-3F7F8803FDFD88BA385BC27AD39FA356" unitRef="usd">61000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_AgilentCrossLabMember" decimals="-6" id="Fact-0D492935F4693E1A6472C27AD39FACB3" unitRef="usd">24000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_DiagnosticsAndGenomicsMember" decimals="-6" id="Fact-0264E1D6A1D0D82849B5C27AD40D1857" unitRef="usd">14000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_LifeSciencesandAppliedMarketsMember" decimals="-6" id="Fact-43A1384517C1D32CBA4FC27AD41C8106" unitRef="usd">33000000</us-gaap:ShareBasedCompensation>
+<us-gaap:ShareBasedCompensation contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_a_SegmentTotalMember" decimals="-6" id="Fact-B60402E840BE27EE5F31C27AD40D73C8" unitRef="usd">71000000</us-gaap:ShareBasedCompensation>
+<dei:DocumentFiscalPeriodFocus contextRef="FD2018Q4YTD" id="Fact-3ED8AF6CF75E39219FFEC27AD357F9D7">FY</dei:DocumentFiscalPeriodFocus>
+<dei:DocumentFiscalYearFocus contextRef="FD2018Q4YTD" id="Fact-D154C2A7707758262474C27AD357F198">2018</dei:DocumentFiscalYearFocus>
+<dei:DocumentPeriodEndDate contextRef="FD2018Q4YTD" id="Fact-3ABDCC7328CC4120EF22C27AD367EEB2">2018-10-31</dei:DocumentPeriodEndDate>
+</xbrli:xbrl>

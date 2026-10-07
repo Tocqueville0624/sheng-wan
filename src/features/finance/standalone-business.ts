@@ -5,6 +5,13 @@ import {
   unitedHealthStandaloneProblem,
   unitedHealthStandaloneMetrics
 } from "./unitedhealth-standalone";
+import {
+  agilentStandaloneRule,
+  agilentStandaloneBasis,
+  agilentStandaloneSegments,
+  agilentStandaloneProblem,
+  agilentStandaloneMetrics
+} from "./agilent-standalone";
 import type { OriginalStandaloneSourceProof } from "./standalone-source-proof";
 import { replayOriginalStandaloneSourceProof } from "./standalone-source-proof";
 import type { OriginalStandaloneTableSelection } from "./standalone-revenue-rows";
@@ -15,7 +22,8 @@ export type OriginalStandaloneBusinessProof = {
   ruleId:
     | "alb-original-separate-revenue-v1"
     | "ame-original-separate-closing-sales-v1"
-    | "unh-original-separate-primary-revenue-v1";
+    | "unh-original-separate-primary-revenue-v1"
+    | "agilent-original-separate-fiscal-segments-v1";
   reportDate: string;
   form: string;
   /** Only a first-import seed uses the complete reviewed primary metric profile. */
@@ -243,15 +251,18 @@ export const originalStandaloneBusinessBasis = (
 ) =>
   ruleId === unitedHealthStandaloneRule
     ? unitedHealthStandaloneBasis
-    : ruleId === "alb-original-separate-revenue-v1"
-      ? "Reported original Albemarle business and corporate net sales. The complete five-category revenue section reconciles to the independently reported primary net sales, preserving original XML scopes, signs, precision and fiscal columns. No residual or business gross profit is estimated."
-      : "Reported original AMETEK EIG/EMG consolidated closing sales in the geography-by-business table, independently matched to the primary statement and original XML. Geographic intersections are excluded. For FY2016, the MD&A business disclosure differs by $4,000 in each group; those separate values are not substituted, adjusted or described as a typo. No business gross profit is estimated.";
+    : ruleId === agilentStandaloneRule
+      ? agilentStandaloneBasis
+      : ruleId === "alb-original-separate-revenue-v1"
+        ? "Reported original Albemarle business and corporate net sales. The complete five-category revenue section reconciles to the independently reported primary net sales, preserving original XML scopes, signs, precision and fiscal columns. No residual or business gross profit is estimated."
+        : "Reported original AMETEK EIG/EMG consolidated closing sales in the geography-by-business table, independently matched to the primary statement and original XML. Geographic intersections are excluded. For FY2016, the MD&A business disclosure differs by $4,000 in each group; those separate values are not substituted, adjusted or described as a typo. No business gross profit is estimated.";
 
 export function originalStandaloneBusinessSegments(
   p: PeriodV2,
   proof: OriginalStandaloneBusinessProof
 ): RevenueSegment[] {
   if (proof.ruleId === unitedHealthStandaloneRule) return unitedHealthStandaloneSegments(p, proof);
+  if (proof.ruleId === agilentStandaloneRule) return agilentStandaloneSegments(p, proof);
   const s = proof.source,
     cik = s.cik;
   demand(
@@ -398,6 +409,7 @@ export function originalStandaloneReportedMetrics(
   primary: ReturnType<typeof replayOriginalStandaloneSourceProof>["joins"][number]
 ): Pick<PeriodV2, "metrics" | "metricSources"> {
   if (cik === "0000731766") return unitedHealthStandaloneMetrics(p, primary);
+  if (cik === "0001090872") return agilentStandaloneMetrics(p, primary);
   const bindings: readonly (readonly [keyof PeriodV2["metrics"], string])[] =
     cik === "0001037868"
       ? primaryAmetek.map(([, label, , key]) => [key, label] as const)
@@ -463,6 +475,8 @@ export function originalStandaloneReportedMetrics(
 export function originalStandaloneBusinessProblem(p: PeriodV2): string | undefined {
   if (p.businessBreakdownSource?.ruleId === unitedHealthStandaloneRule)
     return unitedHealthStandaloneProblem(p);
+  if (p.businessBreakdownSource?.ruleId === agilentStandaloneRule)
+    return agilentStandaloneProblem(p);
   try {
     const s = p.businessBreakdownSource,
       proof = s?.standaloneRevenue;

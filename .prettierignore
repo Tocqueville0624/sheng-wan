@@ -51,3 +51,7 @@ tests/fixtures/finance/unitedhealth-fy2019-original-primary-business.html
 
 tests/fixtures/finance/unitedhealth-fy2016-original-separate-income-business.html
 tests/fixtures/finance/unitedhealth-fy2016-original-separate-financial.xml
+
+# Preserve unchanged original Agilent separate HTML/XML financial source excerpts.
+tests/fixtures/finance/agilent-fy2016-original-separate-income-business.html
+tests/fixtures/finance/agilent-fy2016-original-separate-financial.xml
