@@ -379,7 +379,9 @@ export function buildSignedStatementFlow(
         options.hasGrossStage
           ? period.grossOperatingItems
             ? period.grossOperatingItems.operatingCosts.some((item) => item.amount < 0)
-              ? "Operating expenses (before reversals)"
+              ? period.grossOperatingItems.ruleId === "alb-original-separate-income-v1"
+                ? "Operating expenses (before business-sale gains)"
+                : "Operating expenses (before reversals)"
               : "Operating expenses"
             : period.operatingExpensesBasis
               ? "Operating expenses and other items (net)"

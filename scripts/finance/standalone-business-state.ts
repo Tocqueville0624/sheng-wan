@@ -17,6 +17,7 @@ import { originalStandaloneIndexUrl } from "./standalone-source-index";
 import { visibleText } from "./business-v2";
 import { businessPeriod, flowPeriod } from "./v2-model";
 import type { SecFiling } from "./sec-shared";
+import { enrichOriginalAlbemarleIncome } from "../../src/features/finance/standalone-income";
 
 const hash = async (s: string) =>
   Array.from(
@@ -54,6 +55,8 @@ const eligible = (p: PeriodV2, filing: SecFiling) =>
   p.filedAt === filing.filedAt &&
   p.fiscalYear >= 2016 &&
   p.fiscalYear <= 2018;
+const needsOriginalCapability = (p: PeriodV2, cik: string) =>
+  !p.coverage.segments || (cik === "0000915913" && p.fiscalYear === 2016 && !p.coverage.sankey);
 export function originalStandaloneBusinessRequired(
   identity: CatalogCompany,
   filing: SecFiling,
@@ -70,7 +73,10 @@ export function originalStandaloneBusinessRequired(
   const all = candidates(base, fresh);
   return [2016, 2017, 2018].some((year) => {
     const prior = all.filter((p) => p.fiscalYear === year);
-    return !prior.length || prior.some((p) => eligible(p, filing) && !p.coverage.segments);
+    return (
+      !prior.length ||
+      prior.some((p) => eligible(p, filing) && needsOriginalCapability(p, identity.cik))
+    );
   });
 }
 
@@ -139,7 +145,8 @@ export async function prepareOriginalStandaloneBusinessFiling(
     const prior = matching.find((p) => eligible(p, filing));
     // A different source/date interpretation for this fiscal year is preserved;
     // absence is the only condition that permits a new source-only candidate.
-    if (prior?.coverage.segments || (matching.length && !prior)) continue;
+    if ((prior && !needsOriginalCapability(prior, identity.cik)) || (matching.length && !prior))
+      continue;
     const business = layouts.filter((t) =>
       identity.cik === "0000915913"
         ? label(t, 5) === "Net sales:" &&
@@ -252,7 +259,8 @@ export async function finishOriginalStandaloneBusinessFiling(
   for (const binding of state.bindings) {
     const matching = all.filter((p) => p.fiscalYear === binding.fiscalYear);
     const prior = matching.find((p) => eligible(p, filing) && p.id === binding.id);
-    if (prior?.coverage.segments || (matching.length && !prior)) continue;
+    if ((prior && !needsOriginalCapability(prior, identity.cik)) || (matching.length && !prior))
+      continue;
     if (!prior && binding.primaryProfile !== "income-statement")
       throw Error("An original source-only candidate requires its full primary metric profile.");
     if (prior && binding.primaryProfile)
@@ -309,7 +317,7 @@ export async function finishOriginalStandaloneBusinessFiling(
         source: source.proof,
         ...(binding.primaryProfile ? { primaryProfile: binding.primaryProfile } : {})
       };
-      const next: PeriodV2 = {
+      let next: PeriodV2 = {
         ...p,
         segments: originalStandaloneBusinessSegments(p, proof),
         segmentSourceUrl: p.sourceUrl,
@@ -332,6 +340,8 @@ export async function finishOriginalStandaloneBusinessFiling(
       };
       if (!businessPeriod(next))
         throw Error("Original standalone business proof envelope did not validate.");
+      if (identity.cik === "0000915913" && next.fiscalYear === 2016)
+        next = enrichOriginalAlbemarleIncome(next, proof);
       next.coverage.sankey = !!flowPeriod(next);
       periods.push(next);
     } catch (error) {

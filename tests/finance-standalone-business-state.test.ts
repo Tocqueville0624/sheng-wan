@@ -35,14 +35,22 @@ describe("persistent original standalone acquisition state", () => {
       expect(p.segments).toEqual(s.preserved.period.segments);
       expect(p.metrics.revenue).toBe(s.preserved.period.metrics.revenue);
       expect(p.metrics.netIncome).toBe(s.preserved.period.metrics.netIncome);
-      expect(p.coverage).toEqual({ basics: true, segments: true, sankey: ticker === "AME" });
+      expect(p.coverage).toEqual({ basics: true, segments: true, sankey: true });
       expect(businessPeriod(p)).toBeTruthy();
-      expect(!!flowPeriod(p)).toBe(ticker === "AME");
-      expect(Object.values(p.metricSources).every((source) => source?.method === "reported")).toBe(
-        true
-      );
+      expect(flowPeriod(p)).toBeTruthy();
+      expect(
+        Object.entries(p.metricSources)
+          .filter(([key]) => key !== "operatingExpenses")
+          .every(([, source]) => source?.method === "reported")
+      ).toBe(true);
       expect(p.businessBreakdownSource?.standaloneRevenue?.primaryProfile).toBe("income-statement");
-      expect(p.metrics.operatingExpenses).toBeUndefined();
+      if (ticker === "ALB") {
+        expect(p.metrics.operatingExpenses).toBe(369326000);
+        expect(p.metricSources.operatingExpenses?.method).toBe("calculated");
+        expect(p.metricSources.operatingExpenses?.decimals).toBeUndefined();
+        expect(p.metrics.equityMethodIncome).toBe(59637000);
+        expect(p.metrics.discontinuedOperationsIncome).toBe(202131000);
+      } else expect(p.metrics.operatingExpenses).toBeUndefined();
       expect(result.periods.map((p) => p.id)).toEqual(["FY2016"]);
       validateV2(companyFromFilingPeriods(s.identity, result.periods));
       const altered = structuredClone(p);

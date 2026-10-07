@@ -113,10 +113,18 @@ for (const ticker of [
     const history = page.locator(".history-chart");
     await expect(history).toBeVisible();
     const chart = page.locator(".flow-chart");
-    if (!["IBM", "APD", "AOSAnnual", "ALBStandalone", "ALBSourceOnlyStandalone"].includes(ticker))
-      expect(period.coverage.sankey).toBe(true);
+    if (!["IBM", "APD", "AOSAnnual"].includes(ticker)) expect(period.coverage.sankey).toBe(true);
     if (period.coverage.sankey) {
       await expect(chart).toBeVisible();
+      if (ticker === "ALBStandalone" || ticker === "ALBSourceOnlyStandalone") {
+        const n = (id: string) => chart.locator(`[data-flow-node="${id}"]`);
+        await expect(n("operating-reversal-alb-original-income-9")).toContainText("$122.3M");
+        await expect(n("equity")).toContainText("$59.64M");
+        await expect(n("discontinued")).toContainText("$202.13M");
+        await expect(n("noncontrolling")).toContainText("$37.09M");
+        await expect(n("opex")).toContainText("before business-sale gains");
+        expect(period.metrics.operatingExpenses).toBe(369326000);
+      }
       await expect(chart.locator('[data-flow-bar^="segment-"]')).toHaveCount(
         reported[ticker].length
       );

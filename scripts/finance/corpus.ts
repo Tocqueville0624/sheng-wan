@@ -162,6 +162,7 @@ const parserVersion = hash(
       readFile("src/features/finance/standalone-revenue-rows.ts", "utf8"),
       readFile("src/features/finance/standalone-source-proof.ts", "utf8"),
       readFile("src/features/finance/standalone-business.ts", "utf8"),
+      readFile("src/features/finance/standalone-income.ts", "utf8"),
       readFile("src/features/finance/chart-model.ts", "utf8"),
       readFile("src/features/finance/signed-flow.ts", "utf8"),
       readFile("src/features/finance/shareholder-bridge.ts", "utf8"),

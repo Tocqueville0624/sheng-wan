@@ -477,7 +477,9 @@ export function StatementFlow({
           {period.operatingExpensesBasis && (
             <text x={50} y={footerTop + 74} fill={colors.muted} fontSize={13}>
               {period.grossOperatingItems
-                ? "Cost-of-sales restructuring and operating reversals stay separate. Expense branches retain original amounts."
+                ? period.grossOperatingItems.ruleId === "alb-original-separate-income-v1"
+                  ? "Reported business-sale gains and operating expenses stay separate. Expense branches retain original amounts."
+                  : "Cost-of-sales restructuring and operating reversals stay separate. Expense branches retain original amounts."
                 : "Operating items (net) = reported gross profit minus operating income. Expense components are not inferred."}
             </text>
           )}
@@ -597,7 +599,9 @@ export function StatementFlow({
         {period.afterTaxReconciliation &&
           `A separate after-tax source-rounding flow of ${shortMoney(period.afterTaxReconciliation.amount)} reconciles the final net-income scope within declared precision; reported net income is unchanged. `}
         {period.grossOperatingItems &&
-          "The primary statement separately reports restructuring costs before gross profit and signed operating expense lines. Positive expense components keep their original values; a reported negative cost is shown separately as a reversal. The net operating expense sum, original source rows and declared precision remain in the exports. "}
+          (period.grossOperatingItems.ruleId === "alb-original-separate-income-v1"
+            ? "Reported operating expenses and gains from business sales enter operating profit separately. After-tax equity-method income, discontinued operations and minority attribution enter net profit in their reported scopes. Net operating expenses are calculated from the original signed statement lines; the source rows and reported precision remain in the exports. "
+            : "The primary statement separately reports restructuring costs before gross profit and signed operating expense lines. Positive expense components keep their original values; a reported negative cost is shown separately as a reversal. The net operating expense sum, original source rows and declared precision remain in the exports. ")}
         {period.operatingExpensesBasis &&
           !period.grossOperatingItems &&
           "Operating expenses and other items (net) are the calculated difference between reported gross profit and operating income. Signed gains, equity income or rounded detail can prevent an exact expense partition; no component or balancing expense is invented. "}
@@ -679,7 +683,10 @@ export function StatementFlow({
                       {node.id === "opex" && period.operatingExpensesBasis && (
                         <small>
                           {period.grossOperatingItems
-                            ? " · sum of positive reported expense lines; reversals separate"
+                            ? period.grossOperatingItems.ruleId ===
+                              "alb-original-separate-income-v1"
+                              ? " · sum of reported expense lines; business-sale gains separate"
+                              : " · sum of positive reported expense lines; reversals separate"
                             : " · calculated from reported gross profit and operating income"}
                         </small>
                       )}

@@ -413,7 +413,7 @@ describe("standalone evidence replay and issuer business proof", () => {
       p.segments?.every((s) => s.grossProfit === undefined && s.grossProfitSource === undefined)
     ).toBe(true);
   });
-  it("imports all five original Albemarle business categories without filling missing profit-flow items", async () => {
+  it("imports all five original Albemarle business categories and actual primary income facts", async () => {
     const { p } = make();
     delete p.segments;
     delete p.segmentBasis;
@@ -447,9 +447,12 @@ describe("standalone evidence replay and issuer business proof", () => {
     expect(next[0].segments?.map((s) => s.revenue)).toEqual([
       668852000, 792425000, 1031501000, 180988000, 3437000
     ]);
-    expect(next[0].metrics).toEqual(p.metrics);
-    expect(next[0].coverage).toEqual({ basics: true, segments: true, sankey: false });
-    expect(flowPeriod(next[0])).toBeUndefined();
+    expect(next[0].metrics).toMatchObject(p.metrics);
+    expect(next[0].metricSources.revenue).toEqual(p.metricSources.revenue);
+    expect(next[0].metrics.equityMethodIncome).toBe(59637000);
+    expect(next[0].metrics.discontinuedOperationsIncome).toBe(202131000);
+    expect(next[0].coverage).toEqual({ basics: true, segments: true, sankey: true });
+    expect(flowPeriod(next[0])).toBeDefined();
     expect(p.segments).toBeUndefined();
   });
   it.each([

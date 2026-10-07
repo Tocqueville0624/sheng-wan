@@ -1,5 +1,6 @@
 import type { GrossOperatingItems } from "./types";
 import type { PeriodV2 } from "./v2-types";
+import { albOriginalIncomeRule, originalAlbemarleIncomeProblem } from "./standalone-income";
 
 export const flexGrossOperatingRule = {
   id: "flex-gross-operating-costs-v1",
@@ -68,6 +69,7 @@ type Candidate = Pick<
 export function grossOperatingItemsProblem(period: Candidate): string | undefined {
   const p = period.grossOperatingItems;
   if (!p) return;
+  if (p.ruleId === albOriginalIncomeRule) return originalAlbemarleIncomeProblem(period as PeriodV2);
   const rule = flexGrossOperatingRule;
   const valid = (l: GrossOperatingItems["cost"]) =>
     !!l.id &&

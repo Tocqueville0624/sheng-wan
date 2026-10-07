@@ -75,6 +75,8 @@ export type OperatingItems = {
 /** Reviewed primary gross and operating ledgers. Original costs stay separate;
  * a negative operating cost is a reported reversal, not a rescaled expense. */
 export type GrossOperatingItems = {
+  /** Original separate XML/HTML proof for reviewed standalone income ledgers. */
+  standaloneSource?: OriginalStandaloneBusinessProof;
   ruleId: string;
   sourceUrl: string;
   accession: string;

@@ -376,8 +376,9 @@ export function originalStandaloneBusinessSegments(
   });
 }
 
-/** Only actual joined primary facts become metrics. The reported total operating
- * cost line is not a gross-profit estimate; no residual or missing zero is added. */
+/** Reported metrics retain their original joined primary facts. ALB's net
+ * expense sum explicitly combines its original signed rows; no residual expense,
+ * unreported gross profit, missing zero or declared calculation precision. */
 export function originalStandaloneReportedMetrics(
   p: Pick<PeriodV2, "sourceUrl" | "accession" | "filedAt">,
   cik: string,
@@ -398,10 +399,7 @@ export function originalStandaloneReportedMetrics(
             "Income from continuing operations before income taxes and equity in net income of unconsolidated investments"
           ],
           ["incomeTax", "Income tax expense"],
-          [
-            "afterTaxSubsidiaryIncome",
-            "Equity in net income of unconsolidated investments (net of tax)"
-          ],
+          ["equityMethodIncome", "Equity in net income of unconsolidated investments (net of tax)"],
           ["discontinuedOperationsIncome", "Income from discontinued operations (net of tax)"],
           ["noncontrollingInterestIncome", "Net income attributable to noncontrolling interests"],
           ["netIncome", "Net income attributable to Albemarle Corporation"]
@@ -426,6 +424,23 @@ export function originalStandaloneReportedMetrics(
       filedAt: p.filedAt,
       method: "reported",
       decimals: f.decimals
+    };
+  }
+  if (cik === "0000915913") {
+    const costs = primary.monetaryRows.filter((r) => [7, 8, 9, 10].includes(r.rowIndex));
+    demand(costs.length === 4, "Incomplete original operating expense section.");
+    metrics.operatingExpenses = costs.reduce((sum, r) => sum + r.displayedWholeDollarValue, 0);
+    metricSources.operatingExpenses = {
+      label: "Sum of original operating expense and business-sale gain lines (net)",
+      tag: costs.map((r) => r.originalFact.tag).join(" + "),
+      sourceUrl: p.sourceUrl,
+      accession: p.accession!,
+      filedAt: p.filedAt,
+      method: "calculated",
+      inputs: costs.map(
+        (r) =>
+          `${r.label} (${r.originalFact.tag}, displayed effect ${r.displayedWholeDollarValue}): ${p.sourceUrl}`
+      )
     };
   }
   return { metrics, metricSources };
