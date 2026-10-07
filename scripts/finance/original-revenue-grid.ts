@@ -15,7 +15,8 @@ export function originalRevenueGrid(
   cik: string,
   scale: 3 | 6 = 3,
   reviewedDecimals: readonly number[] = [-scale],
-  physicalProfile?: "bac-original-96-columns" | "jpm-original-96-columns"
+  physicalProfile?: "bac-original-96-columns" | "jpm-original-96-columns",
+  resourceBodies: readonly string[] = []
 ) {
   demand(
     !physicalProfile ||
@@ -35,14 +36,18 @@ export function originalRevenueGrid(
   // 66 physical columns. No source cells are dropped to fit the generic limit.
   const maxColumns = physicalProfile ? 96 : 64;
   const units: ServiceRevenueRowsProof["units"] = [];
-  for (const [unit] of html.matchAll(/<(?:[\w.-]+:)?unit\b[^>]*>[\s\S]*?<\/(?:[\w.-]+:)?unit>/gi)) {
-    if (/<(?:[\w.-]+:)?divide\b/i.test(unit)) continue;
-    const measures = [
-      ...unit.matchAll(/<(?:[\w.-]+:)?measure\b[^>]*>([^<]*)<\/(?:[\w.-]+:)?measure>/gi)
-    ];
-    const id = attribute(unit.match(/^<[^>]*>/)![0], "id");
-    if (id && measures.length === 1 && measures[0][1] === "iso4217:USD")
-      units.push({ id, measure: "iso4217:USD" });
+  for (const resourceBody of [html, ...resourceBodies]) {
+    for (const [unit] of resourceBody.matchAll(
+      /<(?:[\w.-]+:)?unit\b[^>]*>[\s\S]*?<\/(?:[\w.-]+:)?unit>/gi
+    )) {
+      if (/<(?:[\w.-]+:)?divide\b/i.test(unit)) continue;
+      const measures = [
+        ...unit.matchAll(/<(?:[\w.-]+:)?measure\b[^>]*>([^<]*)<\/(?:[\w.-]+:)?measure>/gi)
+      ];
+      const id = attribute(unit.match(/^<[^>]*>/)![0], "id");
+      if (id && measures.length === 1 && measures[0][1] === "iso4217:USD")
+        units.push({ id, measure: "iso4217:USD" });
+    }
   }
   const refs = new Map<string, XbrlFact[]>(),
     groups = new Map<string, XbrlFact[]>();

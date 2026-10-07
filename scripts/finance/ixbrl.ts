@@ -535,3 +535,201 @@ export function extractInlinePeriods(
   }
   return periods.sort((a, b) => a.endDate.localeCompare(b.endDate));
 }
+
+/** Decode separate unchanged source documents. Numeric declarations belong only
+ * to the first financial document; contexts, units and fiscal declarations retain
+ * their original document/offset evidence. Callers must independently validate
+ * same-accession indexed document links and every projected source scope. */
+export function parseOriginalInlineDocumentSet(
+  documents: readonly { sourceUrl: string; html: string }[],
+  expectedCik: string
+): ParsedFiling & {
+  resources: {
+    sourceUrl: string;
+    offset: number;
+    endOffset: number;
+    originalHtml: string;
+    tag: string;
+  }[];
+} {
+  if (!/^\d{10}$/.test(expectedCik) || documents.length < 1 || documents.length > 2)
+    throw Error("Invalid original inline document set");
+  if (
+    documents.some(
+      (d) =>
+        new TextEncoder().encode(d.html).length > 24 * 1024 ** 2 ||
+        /<!DOCTYPE|<!ENTITY/i.test(d.html)
+    )
+  )
+    throw Error("Unsupported original document size or entity declaration");
+  const resources: {
+    sourceUrl: string;
+    offset: number;
+    endOffset: number;
+    originalHtml: string;
+    tag: string;
+  }[] = [];
+  let documentIndex = 0;
+  const parser = new XMLParser({
+    ignoreAttributes: false,
+    attributeNamePrefix: "@",
+    parseTagValue: false,
+    parseAttributeValue: false,
+    trimValues: true,
+    processEntities: false
+  });
+  const contexts = new Map<string, XbrlContext>();
+  const units = new Map<string, string>();
+  const numbers: XmlNode[] = [];
+  const metadata = new Map<string, string>();
+  const unitDefinitions = new Map<string, string>();
+  const canonicalResource = (v: unknown): string =>
+    JSON.stringify(v, (_, x: unknown) =>
+      x && typeof x === "object" && !Array.isArray(x)
+        ? Object.fromEntries(Object.entries(x).sort(([a], [b]) => a.localeCompare(b)))
+        : x
+    );
+  const visit = (name: string, node: XmlNode) => {
+    const local = name.split(":").at(-1);
+    if (local === "context") {
+      const dimensions: Record<string, string> = {};
+      for (const member of descendants(node, "explicitMember")) {
+        const axis = String(member["@dimension"]);
+        const value = text(member);
+        if (Object.hasOwn(dimensions, axis))
+          throw Error("Repeated original document-set dimension");
+        dimensions[axis] = value;
+      }
+      const id = String(node["@id"]);
+      const nextContext = {
+        id,
+        cik: findText(node, "identifier"),
+        start: findText(node, "startDate") || undefined,
+        end: findText(node, "endDate") || findText(node, "instant") || undefined,
+        dimensions,
+        typed: descendants(node, "typedMember").length > 0
+      };
+      if (Number(nextContext.cik) !== Number(expectedCik))
+        throw Error("Original document-set context issuer changed");
+      if (
+        contexts.has(id) &&
+        canonicalResource(contexts.get(id)) !== canonicalResource(nextContext)
+      )
+        throw Error("Conflicting original document-set context " + id);
+      contexts.set(id, nextContext);
+    } else if (local === "unit") {
+      const id = String(node["@id"]),
+        signature = canonicalResource(node);
+      if (unitDefinitions.has(id) && unitDefinitions.get(id) !== signature)
+        throw Error("Conflicting original document-set unit " + id);
+      unitDefinitions.set(id, signature);
+      const measure = findText(node, "measure");
+      if (!descendants(node, "divide").length && /^(?:iso4217:)?(?:USD|TWD)$/.test(measure))
+        units.set(String(node["@id"]), measure.split(":").at(-1)!);
+    } else if (local === "nonFraction" && documentIndex === 0) numbers.push(node);
+    // Fiscal declarations are read from their exact ordered original fragment below.
+    // Walking nested markup cannot establish the original lexical date order.
+  };
+  // Parse only financial fragments, never an entire multi-megabyte filing DOM.
+  // Each fragment is bounded; all existing precision/dimension checks still apply.
+  const openings = /<((?:[\w.-]+:)?(?:context|unit|nonFraction|nonNumeric))\b[^>]*>/g;
+  let count = 0;
+  for (const [index, document] of documents.entries()) {
+    documentIndex = index;
+    const html = document.html;
+    openings.lastIndex = 0;
+    for (let match = openings.exec(html); match; match = openings.exec(html)) {
+      const [opening, tag] = match;
+      if (
+        tag.endsWith("nonNumeric") &&
+        !/name=["']dei:Document(?:FiscalYearFocus|FiscalPeriodFocus|PeriodEndDate)["']/.test(
+          opening
+        )
+      )
+        continue;
+      if (/\/\s*>$/.test(opening)) {
+        walk(parser.parse(opening) as XmlNode, visit);
+        continue;
+      }
+      // Inline tags can nest (Apple nests FiscalYearEndDate inside PeriodEndDate).
+      // A lazy closing-tag regex truncates the year and silently invents a date.
+      const tags = new RegExp(`<\\/?${tag.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b[^>]*>`, "g");
+      tags.lastIndex = openings.lastIndex;
+      let depth = 1,
+        end = openings.lastIndex;
+      for (let token = tags.exec(html); token; token = tags.exec(html)) {
+        if (token.index - match.index > 262144) break;
+        if (token[0].startsWith("</")) depth--;
+        else if (!/\/\s*>$/.test(token[0])) depth++;
+        if (!depth) {
+          end = tags.lastIndex;
+          break;
+        }
+      }
+      if (depth || end - match.index > 262144 || ++count > 100000)
+        throw new Error("Inline XBRL exceeds safe extraction bounds.");
+      const fragment = html.slice(match.index, end);
+      if (!tag.endsWith("nonFraction"))
+        resources.push({
+          sourceUrl: document.sourceUrl,
+          offset: match.index,
+          endOffset: end,
+          originalHtml: fragment,
+          tag
+        });
+      walk(parser.parse(fragment) as XmlNode, visit);
+      if (tag.endsWith("nonNumeric")) {
+        const name = opening.match(/\bname=["']([^"']+)["']/)?.[1];
+        if (name) {
+          const raw = fragment
+            .replace(/<[^>]+>/g, "")
+            .replace(/&(?:nbsp|#160|#xa0);/gi, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+          const value =
+            name === "dei:DocumentPeriodEndDate" && Number.isFinite(Date.parse(raw))
+              ? new Date(raw).toISOString().slice(0, 10)
+              : raw;
+          if (metadata.has(name) && metadata.get(name) !== value)
+            throw Error("Conflicting original document-set fiscal declaration " + name);
+          metadata.set(name, value);
+        }
+      }
+      openings.lastIndex = end;
+    }
+  }
+  const facts: XbrlFact[] = [];
+  for (const node of numbers) {
+    const context = contexts.get(String(node["@contextRef"]));
+    const currency = units.get(String(node["@unitRef"]));
+    const value = numericValue(node);
+    if (context && currency && value !== undefined)
+      facts.push({
+        tag: String(node["@name"]),
+        context,
+        currency,
+        value,
+        decimals: node["@decimals"] === "INF" ? Infinity : Number(node["@decimals"] ?? -99)
+      });
+  }
+  if (!facts.length) throw new Error("No monetary inline-XBRL facts were found in the SEC filing.");
+  for (const tag of [
+    "dei:DocumentFiscalYearFocus",
+    "dei:DocumentFiscalPeriodFocus",
+    "dei:DocumentPeriodEndDate"
+  ])
+    if (!metadata.has(tag))
+      throw Error("Incomplete original document-set fiscal declaration " + tag);
+  const rawEnd = (metadata.get("dei:DocumentPeriodEndDate") ?? "").replace(
+    /&(?:nbsp|#160|#xa0);/gi,
+    " "
+  );
+  const parsedEnd = Date.parse(rawEnd);
+  return {
+    facts,
+    resources,
+    fiscalYear: Number(metadata.get("dei:DocumentFiscalYearFocus")),
+    fiscalPeriod: metadata.get("dei:DocumentFiscalPeriodFocus") ?? "FY",
+    periodEnd: Number.isFinite(parsedEnd) ? new Date(parsedEnd).toISOString().slice(0, 10) : ""
+  };
+}

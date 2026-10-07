@@ -1,0 +1,297 @@
+{
+  "cik": "0000072971",
+  "originalBodiesUnmodified": true,
+  "scope": "Complete original SEC financial HTML and same-accession cover bodies, losslessly compressed. Document-set metadata/resource fixtures only; original source URLs, bytes and SHA256 are retained. These fixtures are not public WFC business/queue acceptance.",
+  "sources": [
+    {
+      "id": "2024-12-31",
+      "filing": {
+        "accession": "0000072971-25-000066",
+        "filedAt": "2025-02-25",
+        "reportDate": "2024-12-31",
+        "form": "10-K",
+        "primaryDocument": "wfc-20241231.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297125000066/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297125000066/wfc-20241231.htm"
+      },
+      "financialSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297125000066/wfc-20241231_d2.htm",
+        "originalIndexRow": "<tr>\n            <td scope=\"row\">7</td>\n            <td scope=\"row\">EX-13</td>\n            <td scope=\"row\"><a href=\"/ix?doc=/Archives/edgar/data/72971/000007297125000066/wfc-20241231_d2.htm\">wfc-20241231_d2.htm</a> &nbsp;&nbsp;<span style=\"color: green\">iXBRL</span></td>\n            <td scope=\"row\">EX-13</td>\n            <td scope=\"row\">10903343</td>\n         </tr>",
+        "indexRowText": "7 EX-13 wfc-20241231_d2.htm iXBRL EX-13 10903343",
+        "name": "wfc-20241231_d2.htm",
+        "bytes": 10903461,
+        "sha256": "fbb2f4c9dd0e35748f6d388fb4eb40f2409552b5585c515545871079889f1a44"
+      },
+      "documents": [
+        {
+          "role": "financial",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297125000066/wfc-20241231_d2.htm",
+          "file": "2024-12-31-financial.html.gz",
+          "bytes": 10903461,
+          "sha256": "fbb2f4c9dd0e35748f6d388fb4eb40f2409552b5585c515545871079889f1a44",
+          "storedBytes": 548905
+        },
+        {
+          "role": "cover",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297125000066/wfc-20241231.htm",
+          "file": "2024-12-31-cover.html.gz",
+          "bytes": 1552201,
+          "sha256": "33263607d4aa5e6ec17a3e382c3411b4790f34033e3b9b33486c3984ced24229",
+          "storedBytes": 63514
+        }
+      ]
+    },
+    {
+      "id": "2023-12-31",
+      "filing": {
+        "accession": "0000072971-24-000064",
+        "filedAt": "2024-02-20",
+        "reportDate": "2023-12-31",
+        "form": "10-K",
+        "primaryDocument": "wfc-20231231.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297124000064/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297124000064/wfc-20231231.htm"
+      },
+      "financialSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297124000064/wfc-20231231_d2.htm",
+        "originalIndexRow": "<tr>\n            <td scope=\"row\">5</td>\n            <td scope=\"row\">EXHIBIT-13</td>\n            <td scope=\"row\"><a href=\"/ix?doc=/Archives/edgar/data/72971/000007297124000064/wfc-20231231_d2.htm\">wfc-20231231_d2.htm</a> &nbsp;&nbsp;<span style=\"color: green\">iXBRL</span></td>\n            <td scope=\"row\">EX-13</td>\n            <td scope=\"row\">11684627</td>\n         </tr>",
+        "indexRowText": "5 EXHIBIT-13 wfc-20231231_d2.htm iXBRL EX-13 11684627",
+        "name": "wfc-20231231_d2.htm",
+        "bytes": 11684745,
+        "sha256": "f26f16fccd88555d44916086a2dc8709e9467a9fffc01a9a8b1f15b2d08bf2bb"
+      },
+      "documents": [
+        {
+          "role": "financial",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297124000064/wfc-20231231_d2.htm",
+          "file": "2023-12-31-financial.html.gz",
+          "bytes": 11684745,
+          "sha256": "f26f16fccd88555d44916086a2dc8709e9467a9fffc01a9a8b1f15b2d08bf2bb",
+          "storedBytes": 592172
+        },
+        {
+          "role": "cover",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297124000064/wfc-20231231.htm",
+          "file": "2023-12-31-cover.html.gz",
+          "bytes": 1844474,
+          "sha256": "1505447674d00c4aff27bfaa9067b5515fade7ba494c9e9913937d6f5d2e341a",
+          "storedBytes": 65587
+        }
+      ]
+    },
+    {
+      "id": "2022-12-31",
+      "filing": {
+        "accession": "0000072971-23-000071",
+        "filedAt": "2023-02-21",
+        "reportDate": "2022-12-31",
+        "form": "10-K",
+        "primaryDocument": "wfc-20221231.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297123000071/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297123000071/wfc-20221231.htm"
+      },
+      "financialSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297123000071/wfc-20221231_d2.htm",
+        "originalIndexRow": "<tr>\n            <td scope=\"row\">5</td>\n            <td scope=\"row\">EX-13</td>\n            <td scope=\"row\"><a href=\"/ix?doc=/Archives/edgar/data/72971/000007297123000071/wfc-20221231_d2.htm\">wfc-20221231_d2.htm</a> &nbsp;&nbsp;<span style=\"color: green\">iXBRL</span></td>\n            <td scope=\"row\">EX-13</td>\n            <td scope=\"row\">14989137</td>\n         </tr>",
+        "indexRowText": "5 EX-13 wfc-20221231_d2.htm iXBRL EX-13 14989137",
+        "name": "wfc-20221231_d2.htm",
+        "bytes": 14989255,
+        "sha256": "4b1c928d924ce20be76d4f33c6c95be613486a0a2a9097e07588db4bf192caa6"
+      },
+      "documents": [
+        {
+          "role": "financial",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297123000071/wfc-20221231_d2.htm",
+          "file": "2022-12-31-financial.html.gz",
+          "bytes": 14989255,
+          "sha256": "4b1c928d924ce20be76d4f33c6c95be613486a0a2a9097e07588db4bf192caa6",
+          "storedBytes": 940405
+        },
+        {
+          "role": "cover",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297123000071/wfc-20221231.htm",
+          "file": "2022-12-31-cover.html.gz",
+          "bytes": 2119679,
+          "sha256": "b9d329de9c2d9c057df24d0c2bdd40df75e0dac49062db10dddc025fe0ae510a",
+          "storedBytes": 124303
+        }
+      ]
+    },
+    {
+      "id": "2021-12-31",
+      "filing": {
+        "accession": "0000072971-22-000096",
+        "filedAt": "2022-02-22",
+        "reportDate": "2021-12-31",
+        "form": "10-K",
+        "primaryDocument": "wfc-20211231.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297122000096/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297122000096/wfc-20211231.htm"
+      },
+      "financialSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297122000096/wfc-20211231_d2.htm",
+        "originalIndexRow": "<tr class=\"evenRow\">\n            <td scope=\"row\">6</td>\n            <td scope=\"row\">EX-13</td>\n            <td scope=\"row\"><a href=\"/ix?doc=/Archives/edgar/data/72971/000007297122000096/wfc-20211231_d2.htm\">wfc-20211231_d2.htm</a> &nbsp;&nbsp;<span style=\"color: green\">iXBRL</span></td>\n            <td scope=\"row\">EX-13</td>\n            <td scope=\"row\">16776400</td>\n         </tr>",
+        "indexRowText": "6 EX-13 wfc-20211231_d2.htm iXBRL EX-13 16776400",
+        "name": "wfc-20211231_d2.htm",
+        "bytes": 16776518,
+        "sha256": "96e934d0968b09be59054df5c4518e5a316ae991af00a1ce018cfcee2ea48f4a"
+      },
+      "documents": [
+        {
+          "role": "financial",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297122000096/wfc-20211231_d2.htm",
+          "file": "2021-12-31-financial.html.gz",
+          "bytes": 16776518,
+          "sha256": "96e934d0968b09be59054df5c4518e5a316ae991af00a1ce018cfcee2ea48f4a",
+          "storedBytes": 1027125
+        },
+        {
+          "role": "cover",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297122000096/wfc-20211231.htm",
+          "file": "2021-12-31-cover.html.gz",
+          "bytes": 2195013,
+          "sha256": "32c9c0dd1712d110c78c4b3abf9b1600b576a67efea5fe00d2705fd57521dc11",
+          "storedBytes": 129234
+        }
+      ]
+    },
+    {
+      "id": "2020-12-31",
+      "filing": {
+        "accession": "0000072971-21-000197",
+        "filedAt": "2021-02-23",
+        "reportDate": "2020-12-31",
+        "form": "10-K",
+        "primaryDocument": "wfc-20201231.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297121000197/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297121000197/wfc-20201231.htm"
+      },
+      "financialSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297121000197/wfc-20201231_d2.htm",
+        "originalIndexRow": "<tr class=\"evenRow\">\n            <td scope=\"row\">8</td>\n            <td scope=\"row\">EX-13</td>\n            <td scope=\"row\"><a href=\"/ix?doc=/Archives/edgar/data/72971/000007297121000197/wfc-20201231_d2.htm\">wfc-20201231_d2.htm</a> &nbsp;&nbsp;<span style=\"color: green\">iXBRL</span></td>\n            <td scope=\"row\">EX-13</td>\n            <td scope=\"row\">16859649</td>\n         </tr>",
+        "indexRowText": "8 EX-13 wfc-20201231_d2.htm iXBRL EX-13 16859649",
+        "name": "wfc-20201231_d2.htm",
+        "bytes": 16859767,
+        "sha256": "eb7a5d41905768be78049a9a6ad654e32fbc620eb59c2bb353b35cbd3a5c0067"
+      },
+      "documents": [
+        {
+          "role": "financial",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297121000197/wfc-20201231_d2.htm",
+          "file": "2020-12-31-financial.html.gz",
+          "bytes": 16859767,
+          "sha256": "eb7a5d41905768be78049a9a6ad654e32fbc620eb59c2bb353b35cbd3a5c0067",
+          "storedBytes": 1074212
+        },
+        {
+          "role": "cover",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297121000197/wfc-20201231.htm",
+          "file": "2020-12-31-cover.html.gz",
+          "bytes": 2493825,
+          "sha256": "e02052d827d1552852e8e3ceb71c34513067e2748b8241f1eaeb5d086c5bb67f",
+          "storedBytes": 146054
+        }
+      ]
+    },
+    {
+      "id": "2019-12-31",
+      "filing": {
+        "accession": "0000072971-20-000217",
+        "filedAt": "2020-02-27",
+        "reportDate": "2019-12-31",
+        "form": "10-K",
+        "primaryDocument": "wfc-12312019x10k.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297120000217/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297120000217/wfc-12312019x10k.htm"
+      },
+      "financialSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297120000217/wfc-12312019xex13.htm",
+        "originalIndexRow": "<tr>\n            <td scope=\"row\">7</td>\n            <td scope=\"row\">EXHIBIT 13</td>\n            <td scope=\"row\"><a href=\"/ix?doc=/Archives/edgar/data/72971/000007297120000217/wfc-12312019xex13.htm\">wfc-12312019xex13.htm</a> &nbsp;&nbsp;<span style=\"color: green\">iXBRL</span></td>\n            <td scope=\"row\">EX-13</td>\n            <td scope=\"row\">21593081</td>\n         </tr>",
+        "indexRowText": "7 EXHIBIT 13 wfc-12312019xex13.htm iXBRL EX-13 21593081",
+        "name": "wfc-12312019xex13.htm",
+        "bytes": 21593199,
+        "sha256": "0c3ccadba6bc9bfe4f97246e7663db50ba2fe2c7f46e1b70cffcecd53748eeb1"
+      },
+      "documents": [
+        {
+          "role": "financial",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297120000217/wfc-12312019xex13.htm",
+          "file": "2019-12-31-financial.html.gz",
+          "bytes": 21593199,
+          "sha256": "0c3ccadba6bc9bfe4f97246e7663db50ba2fe2c7f46e1b70cffcecd53748eeb1",
+          "storedBytes": 1075936
+        },
+        {
+          "role": "cover",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297120000217/wfc-12312019x10k.htm",
+          "file": "2019-12-31-cover.html.gz",
+          "bytes": 3717111,
+          "sha256": "7dbe7a25946ee1d9ad67038635637e8e3c72332196b50c6618a33ca4e5e1642d",
+          "storedBytes": 110030
+        }
+      ]
+    },
+    {
+      "id": "2025-12-31",
+      "filing": {
+        "accession": "0000072971-26-000133",
+        "filedAt": "2026-02-24",
+        "reportDate": "2025-12-31",
+        "form": "10-K",
+        "primaryDocument": "wfc-20251231_d2.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297126000133/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297126000133/wfc-20251231_d2.htm"
+      },
+      "financialSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297126000133/wfc-20251231.htm",
+        "bytes": 11595739,
+        "sha256": "a2590acd3484f2a260143b6bd962ebc495a1c0607871fd1e6cfd974f20256259"
+      },
+      "documents": [
+        {
+          "role": "financial",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297126000133/wfc-20251231.htm",
+          "file": "2025-12-31-financial.html.gz",
+          "bytes": 11595739,
+          "sha256": "a2590acd3484f2a260143b6bd962ebc495a1c0607871fd1e6cfd974f20256259",
+          "storedBytes": 562571
+        },
+        {
+          "role": "cover",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297126000133/wfc-20251231_d2.htm",
+          "file": "2025-12-31-cover.html.gz",
+          "bytes": 359732,
+          "sha256": "fc56c0ab85a4cba45594ac9d1ddaf007bc9e5842c759ac0a46266a0fdca06902",
+          "storedBytes": 34877
+        }
+      ]
+    },
+    {
+      "id": "2026-06-30",
+      "filing": {
+        "accession": "0000072971-26-000302",
+        "filedAt": "2026-07-28",
+        "reportDate": "2026-06-30",
+        "form": "10-Q",
+        "primaryDocument": "wfc-20260630.htm",
+        "directoryUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297126000302/",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/72971/000007297126000302/wfc-20260630.htm"
+      },
+      "financialSource": {
+        "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297126000302/wfc-20260630.htm",
+        "bytes": 10649061,
+        "sha256": "411ec9941ecdbc6af1132e05f9243bbe3b941235b333ef5ec2231ae82fc33f6b"
+      },
+      "documents": [
+        {
+          "role": "financial",
+          "url": "https://www.sec.gov/Archives/edgar/data/72971/000007297126000302/wfc-20260630.htm",
+          "file": "2026-06-30-financial.html.gz",
+          "bytes": 10649061,
+          "sha256": "411ec9941ecdbc6af1132e05f9243bbe3b941235b333ef5ec2231ae82fc33f6b",
+          "storedBytes": 428655
+        }
+      ]
+    }
+  ]
+}
