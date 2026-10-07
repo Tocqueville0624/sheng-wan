@@ -103,6 +103,21 @@ export function normalizeBasicPeriod(period: PeriodV2): PeriodV2 {
   return next;
 }
 
+/** Private source candidates can reread a validated saved prior. Public reads
+ * retain the current complete chart until its original source replacement passes.
+ */
+export function originalJpmCandidate(cik: string, period: PeriodV2): PeriodV2 {
+  const proof = period.originalStatementCorroboration;
+  return cik === "0000019617" &&
+    period.businessBreakdownSource?.jpmRevenue &&
+    businessPeriod(period) &&
+    flowPeriod(period) &&
+    proof &&
+    !originalStatementCorroborationProblem(cik, period, proof)
+    ? proof.prior
+    : period;
+}
+
 export function normalizeBasicCompany(company: CompanyV2): CompanyV2 {
   const labeledAnnual = company.annual.map((p) => normalizeReviewedFiscalLabel(company.cik, p));
   const fiscalLabelsChanged = labeledAnnual.some((p, i) => p !== company.annual[i]);
@@ -1000,7 +1015,19 @@ export function mergeV2(previous: CompanyV2 | undefined, incoming: CompanyV2): C
     );
     for (const p of incoming[kind]) {
       const key = `${p.startDate}:${p.endDate}`;
-      const old = byDates.get(key);
+      const saved = byDates.get(key);
+      const prior = saved && originalJpmCandidate(incoming.cik, saved);
+      const old =
+        prior &&
+        prior !== saved &&
+        p.businessBreakdownSource?.jpmRevenue &&
+        businessPeriod(p) &&
+        flowPeriod(p) &&
+        prior.sourceUrl === p.sourceUrl &&
+        prior.accession === p.accession &&
+        prior.filedAt === p.filedAt
+          ? prior
+          : saved;
       if (
         incoming.cik === "0000019617" &&
         old &&
@@ -1039,7 +1066,9 @@ export function mergeV2(previous: CompanyV2 | undefined, incoming: CompanyV2): C
         if (matches) {
           const next: PeriodV2 = {
             ...p,
-            ...old,
+            // Fresh Company Facts can own segments: undefined in memory. That
+            // absent public value must not erase newly validated source rows.
+            ...Object.fromEntries(Object.entries(old).filter(([, value]) => value !== undefined)),
             metrics: { ...p.metrics, ...old.metrics },
             metricSources: { ...p.metricSources, ...old.metricSources },
             coverage: { ...old.coverage }

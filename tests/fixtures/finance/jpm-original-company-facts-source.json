@@ -1,0 +1,6 @@
+{
+  "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000019617.json",
+  "bytes": 7973442,
+  "sha256": "1ba256b88d172b809505576b43254a8039039ecf9004eb1b528ddeaadf488913",
+  "scope": "Complete unchanged original SEC Company Facts response; lossless gzip."
+}

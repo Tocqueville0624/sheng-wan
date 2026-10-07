@@ -1,12 +1,19 @@
 import cloudRetained from "./fixtures/finance/jpm-original-retained-basic.json" with { type: "json" };
+import failedRefresh from "./fixtures/finance/jpm-original-failed-refresh.json" with { type: "json" };
 import { describe, it, expect } from "vitest";
 import { createHash } from "node:crypto";
 import { jpmCases, jpmFixture } from "./fixtures/finance/jpm-fixture";
-import { readGenericFiling } from "../scripts/finance/generic-import";
+import { genericCandidates, readGenericFiling } from "../scripts/finance/generic-import";
 import { enrichJpmBusinessPeriods } from "../scripts/finance/jpm-business-v2";
 import { parseInlineXbrl } from "../scripts/finance/ixbrl";
 import { originalRevenueGrid } from "../scripts/finance/original-revenue-grid";
-import { businessPeriod, flowPeriod, validateV2, mergeV2 } from "../scripts/finance/v2-model";
+import {
+  businessPeriod,
+  flowPeriod,
+  validateV2,
+  mergeV2,
+  normalizeBasicCompany
+} from "../scripts/finance/v2-model";
 import { companyFromFilingPeriods } from "../scripts/finance/current-filing";
 import { jpmRevenueProblem } from "../src/features/finance/jpm-revenue";
 import { decodeJpmRows, packJpmOriginalRows } from "../src/features/finance/jpm-original-rows";
@@ -36,6 +43,84 @@ const repack = (p: PeriodV2, groups: ServiceRevenueRow[][]) => {
 };
 
 describe("JPM original complete business net revenue and signed consolidation", () => {
+  it("recovers every original reported period from the actual failed refresh's validated prior records", () => {
+    const saved = failedRefresh.company as CompanyV2;
+    expect(normalizeBasicCompany(saved)).toBe(saved);
+    const candidates = genericCandidates(saved);
+    expect(candidates.filter((p) => p.kind === "annual")).toEqual(cloudRetained.company.annual);
+    expect(candidates.filter((p) => p.kind === "quarterly")).toEqual(
+      cloudRetained.company.quarterly
+    );
+    validateV2(saved);
+    for (const old of [...saved.annual, ...saved.quarterly]) {
+      const prior = [...cloudRetained.company.annual, ...cloudRetained.company.quarterly].find(
+        (p) => p.id === old.id
+      )!;
+      const source = [...fixtures.values()].find(
+        (s) => s.source.filing.sourceUrl === prior.sourceUrl
+      )!;
+      const before = companyFromFilingPeriods(source.identity, [old]);
+      const candidates = readGenericFiling(
+        source.html,
+        source.identity,
+        source.source.filing,
+        before,
+        []
+      );
+      const candidate = candidates.find((p) => p.id === prior.id)!;
+      expect(candidate).toBeDefined();
+      const after = mergeV2(before, companyFromFilingPeriods(source.identity, [candidate]));
+      const next = [...after.annual, ...after.quarterly].find((p) => p.id === prior.id)!;
+      expect(businessPeriod(next)).toBeDefined();
+      expect(flowPeriod(next)).toBeDefined();
+      for (const [field, value] of Object.entries(prior)) {
+        if (field === "metrics" || field === "metricSources")
+          expect(next[field]).toMatchObject(prior[field]);
+        else if (field !== "coverage") expect(next[field as keyof PeriodV2]).toEqual(value);
+      }
+      expect(next.originalStatementCorroboration).toBeUndefined();
+      expect(mergeV2(before, before).annual).toEqual(before.annual);
+    }
+  });
+  it("does not recover an unvalidated prior or remove a visible proof before replacement", () => {
+    const saved = structuredClone(failedRefresh.company) as CompanyV2;
+    const old = saved.annual.find((p) => p.originalStatementCorroboration)!;
+    const before = structuredClone(old);
+    old.originalStatementCorroboration!.prior.metrics.revenue! += 1;
+    const next = genericCandidates(saved).find((p) => p.id === old.id)!;
+    expect(next).toBe(old);
+    const other = { ...saved, cik: "0000070858" };
+    expect(genericCandidates(other).find((p) => p.id === old.id)).toBe(old);
+    expect(before.coverage.segments).toBe(true);
+  });
+  it("retains a new original business proof when live basic records own undefined segment fields", () => {
+    const saved = cloudRetained.company as CompanyV2;
+    for (const prior of [...saved.annual, ...saved.quarterly]) {
+      const source = [...fixtures.values()].find(
+        (s) => s.source.filing.sourceUrl === prior.sourceUrl
+      )!;
+      const live = { ...structuredClone(prior), segments: undefined };
+      const before = companyFromFilingPeriods(source.identity, [live]);
+      const candidate = readGenericFiling(
+        source.html,
+        source.identity,
+        source.source.filing,
+        before,
+        []
+      ).find((p) => p.id === prior.id)!;
+      const after = mergeV2(before, companyFromFilingPeriods(source.identity, [candidate]));
+      const next = [...after.annual, ...after.quarterly].find((p) => p.id === prior.id)!;
+      expect(businessPeriod(next)).toBeDefined();
+      expect(flowPeriod(next)).toBeDefined();
+      expect(next.derived).toBe(prior.derived);
+      expect(next.metricSources).toMatchObject(prior.metricSources);
+      expect(next.metrics).toMatchObject(prior.metrics);
+      for (const [field, value] of Object.entries(prior))
+        if (!["coverage", "metrics", "metricSources"].includes(field))
+          expect(next[field as keyof PeriodV2]).toEqual(value);
+    }
+  });
+
   it("preserves every field of all 30 actual pre-refresh cloud periods when missing original costs and business proofs are added", () => {
     const saved = cloudRetained.company as CompanyV2;
     for (const prior of [...saved.annual, ...saved.quarterly]) {

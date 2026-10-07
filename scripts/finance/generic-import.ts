@@ -1,3 +1,4 @@
+import { originalJpmCandidate } from "./v2-model";
 import { enrichJpmBusinessPeriods } from "./jpm-business-v2";
 import { enrichBacIncomePeriods } from "./bac-income-v2";
 import { enrichBacBusinessPeriods } from "./bac-business-v2";
@@ -34,8 +35,11 @@ export const GENERIC_FILING_LIMIT = 30;
 
 /** Saved periods plus newer Company Facts candidates from the running task, keyed by dates. */
 export function genericCandidates(base: CompanyV2, fresh: PeriodV2[] = []) {
-  const periods = new Map(
-    [...base.annual, ...base.quarterly].map((p) => [`${p.kind}:${p.startDate}:${p.endDate}`, p])
+  const periods = new Map<string, PeriodV2>(
+    [...base.annual, ...base.quarterly].map((period) => {
+      const p = originalJpmCandidate(base.cik, period);
+      return [`${p.kind}:${p.startDate}:${p.endDate}`, p] as const;
+    })
   );
   for (const p of fresh) {
     const key = `${p.kind}:${p.startDate}:${p.endDate}`;
