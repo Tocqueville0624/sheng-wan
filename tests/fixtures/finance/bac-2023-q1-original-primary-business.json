@@ -1,0 +1,4922 @@
+{
+  "identity": {
+    "ticker": "BAC",
+    "name": "Bank of America",
+    "cik": "0000070858",
+    "sector": "Financials",
+    "universe": "sp500"
+  },
+  "filing": {
+    "accession": "0000070858-23-000142",
+    "filedAt": "2023-05-01",
+    "reportDate": "2023-03-31",
+    "form": "10-Q",
+    "primaryDocument": "bac-20230331.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm"
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+    "bytes": 11560342,
+    "sha256": "ea2ee8e5495f22c67fcea18549b95d8828fa01b175a5e54083092aef504c07e6"
+  },
+  "excerptSha256": "0d16c160e7e1107d976bcfe0d268d54858a268a40ef4ca842570bb1bd7087750",
+  "excerptBytes": 296378,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 105,
+      "fixtureIndex": 0,
+      "tableSha256": "835264d841fde3489f5867303b3023ee32cce7623e81c0180b436725e6e2917d"
+    },
+    {
+      "originalIndex": 217,
+      "fixtureIndex": 1,
+      "tableSha256": "70a3b65186dc6341cf46ec79743f073a5aaf2f85f6be31dc22d32d7f8f6511d7"
+    },
+    {
+      "originalIndex": 221,
+      "fixtureIndex": 2,
+      "tableSha256": "2311d75690a96d7f48bbb0a450a2bacf40916d044e573484124be8b6df542e91"
+    }
+  ],
+  "expectedCurrent": {
+    "id": "2023-Q1",
+    "label": "Q1 FY2023",
+    "kind": "quarterly",
+    "fiscalYear": 2023,
+    "fiscalQuarter": 1,
+    "startDate": "2023-01-01",
+    "endDate": "2023-03-31",
+    "filedAt": "2023-05-01",
+    "accession": "0000070858-23-000142",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 26258000000,
+      "incomeTax": 928000000,
+      "pretaxIncome": 9089000000,
+      "netIncome": 8161000000,
+      "expensesAndOtherItems": 17169000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Reported revenue",
+        "tag": "us-gaap:Revenues",
+        "accession": "0000070858-23-000142",
+        "filedAt": "2023-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "incomeTax": {
+        "label": "Income tax expense",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000070858-23-000142",
+        "filedAt": "2023-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "pretaxIncome": {
+        "label": "Income before income taxes",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000070858-23-000142",
+        "filedAt": "2023-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "netIncome": {
+        "label": "Net income",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000070858-23-000142",
+        "filedAt": "2023-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "expensesAndOtherItems": {
+        "label": "Revenue less pretax profit",
+        "tag": "us-gaap:Revenues - us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000070858-23-000142",
+        "filedAt": "2023-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+        "method": "calculated",
+        "inputs": [
+          "Total revenue, net of interest expense (us-gaap:Revenues): https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+          "Income before income taxes (us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest): https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": true,
+      "sankey": true
+    },
+    "segments": [
+      {
+        "id": "bac-ConsumerBankingSegmentMember",
+        "label": "Consumer Banking",
+        "revenue": 10706000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+          "accession": "0000070858-23-000142",
+          "filedAt": "2023-05-01",
+          "startDate": "2023-01-01",
+          "endDate": "2023-03-31",
+          "currency": "USD",
+          "tag": "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+          "dimensions": {
+            "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+            "us-gaap:StatementBusinessSegmentsAxis": "bac:ConsumerBankingSegmentMember"
+          },
+          "value": 10706000000,
+          "decimals": -6,
+          "tableLabel": "Consumer Banking",
+          "rowLabel": "Total revenue, net of interest expense",
+          "columnIndex": 33
+        }
+      },
+      {
+        "id": "bac-GlobalWealthAndInvestmentManagementSegmentMember",
+        "label": "Global Wealth & Investment Management",
+        "revenue": 5315000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+          "accession": "0000070858-23-000142",
+          "filedAt": "2023-05-01",
+          "startDate": "2023-01-01",
+          "endDate": "2023-03-31",
+          "currency": "USD",
+          "tag": "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+          "dimensions": {
+            "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+            "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalWealthAndInvestmentManagementSegmentMember"
+          },
+          "value": 5315000000,
+          "decimals": -6,
+          "tableLabel": "Global Wealth & Investment Management",
+          "rowLabel": "Total revenue, net of interest expense",
+          "columnIndex": 45
+        }
+      },
+      {
+        "id": "bac-GlobalBankingSegmentMember",
+        "label": "Global Banking",
+        "revenue": 6203000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+          "accession": "0000070858-23-000142",
+          "filedAt": "2023-05-01",
+          "startDate": "2023-01-01",
+          "endDate": "2023-03-31",
+          "currency": "USD",
+          "tag": "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+          "dimensions": {
+            "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+            "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalBankingSegmentMember"
+          },
+          "value": 6203000000,
+          "decimals": -6,
+          "tableLabel": "Global Banking",
+          "rowLabel": "Total revenue, net of interest expense",
+          "columnIndex": 15
+        }
+      },
+      {
+        "id": "bac-GlobalMarketsSegmentMember",
+        "label": "Global Markets",
+        "revenue": 5626000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+          "accession": "0000070858-23-000142",
+          "filedAt": "2023-05-01",
+          "startDate": "2023-01-01",
+          "endDate": "2023-03-31",
+          "currency": "USD",
+          "tag": "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+          "dimensions": {
+            "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+            "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalMarketsSegmentMember"
+          },
+          "value": 5626000000,
+          "decimals": -6,
+          "tableLabel": "Global Markets",
+          "rowLabel": "Total revenue, net of interest expense",
+          "columnIndex": 33
+        }
+      }
+    ],
+    "revenueAdjustments": [
+      {
+        "id": "bac-CorporateReconcilingItemsAndEliminationsMember",
+        "label": "All Other",
+        "revenue": -1458000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+          "accession": "0000070858-23-000142",
+          "filedAt": "2023-05-01",
+          "startDate": "2023-01-01",
+          "endDate": "2023-03-31",
+          "currency": "USD",
+          "tag": "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+          "dimensions": {
+            "srt:ConsolidationItemsAxis": "bac:CorporateReconcilingItemsAndEliminationsMember"
+          },
+          "value": -1458000000,
+          "decimals": -6,
+          "tableLabel": "All Other",
+          "rowLabel": "Total revenue, net of interest expense",
+          "columnIndex": 45
+        }
+      },
+      {
+        "id": "bac-fte-basis-adjustment",
+        "label": "FTE basis adjustment",
+        "revenue": -134000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+          "accession": "0000070858-23-000142",
+          "filedAt": "2023-05-01",
+          "startDate": "2023-01-01",
+          "endDate": "2023-03-31",
+          "currency": "USD",
+          "tag": "us-gaap:Revenues",
+          "dimensions": {
+            "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsFullyTaxableEquivalentBasisAdjustmentMember"
+          },
+          "value": -134000000,
+          "decimals": -6,
+          "tableLabel": "FTE basis adjustment",
+          "rowIndex": 10,
+          "columnIndex": 6
+        }
+      }
+    ],
+    "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+    "segmentBasis": "Reported BAC business revenues are net of interest expense and presented on a fully taxable-equivalent (FTE) basis. All Other retains its reported signed contribution; the separately reported FTE basis adjustment is deducted to reconcile to GAAP consolidated revenue. Every original current, comparative and cumulative column is checked. Original comparative member names remain in the evidence; the independently reported nondimensional primary statement establishes the GAAP scope. Business gross profit and missing quarterly business splits are not estimated.",
+    "businessBreakdownSource": {
+      "method": "reviewed-bac-revenue",
+      "ruleId": "bac-original-complete-revenue-v1",
+      "bacRevenue": {
+        "ruleId": "bac-original-complete-revenue-v1",
+        "encoding": "bac-original-resource-tuples-v1",
+        "resources": {
+          "contexts": [
+            [
+              "i5f7d01749b7c443996379458b23dc9c8_D20230101-20230331",
+              "0000070858",
+              "USD",
+              "2023-01-01",
+              "2023-03-31",
+              {}
+            ],
+            [
+              "idc793a8d98544801ae779cb8304bd7a2_D20220101-20220331",
+              "0000070858",
+              "USD",
+              "2022-01-01",
+              "2022-03-31",
+              {}
+            ],
+            [
+              "i8a1e17be4d83465e94042e9c6b7fb22a_D20230101-20230331",
+              "0000070858",
+              "USD",
+              "2023-01-01",
+              "2023-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:ConsumerBankingSegmentMember"
+              }
+            ],
+            [
+              "i7f5fb542c181417e9b08d40375ca65cc_D20220101-20220331",
+              "0000070858",
+              "USD",
+              "2022-01-01",
+              "2022-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:ConsumerBankingSegmentMember"
+              }
+            ],
+            [
+              "ia4c4b1c6b6f944f798584d1d8b33d8f7_D20230101-20230331",
+              "0000070858",
+              "USD",
+              "2023-01-01",
+              "2023-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalWealthAndInvestmentManagementSegmentMember"
+              }
+            ],
+            [
+              "ib22878b3bf21472ba99c0a1d10c14bbf_D20220101-20220331",
+              "0000070858",
+              "USD",
+              "2022-01-01",
+              "2022-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalWealthAndInvestmentManagementSegmentMember"
+              }
+            ],
+            [
+              "i5aded074c3b941e2b9ca4a6ffb6dd18d_D20230101-20230331",
+              "0000070858",
+              "USD",
+              "2023-01-01",
+              "2023-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalBankingSegmentMember"
+              }
+            ],
+            [
+              "i7f2efc28060c4f1e858360e0488dc106_D20220101-20220331",
+              "0000070858",
+              "USD",
+              "2022-01-01",
+              "2022-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalBankingSegmentMember"
+              }
+            ],
+            [
+              "i8e8646d3f197443b816184b90a6e9585_D20230101-20230331",
+              "0000070858",
+              "USD",
+              "2023-01-01",
+              "2023-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalMarketsSegmentMember"
+              }
+            ],
+            [
+              "i45f9465ff6cc48e0af5ef0bcceabe695_D20220101-20220331",
+              "0000070858",
+              "USD",
+              "2022-01-01",
+              "2022-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalMarketsSegmentMember"
+              }
+            ],
+            [
+              "id19b9499aa8c446e8d81a75d151d5392_D20230101-20230331",
+              "0000070858",
+              "USD",
+              "2023-01-01",
+              "2023-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "bac:CorporateReconcilingItemsAndEliminationsMember"
+              }
+            ],
+            [
+              "i139958159be54468b0bfcace8f1887d9_D20220101-20220331",
+              "0000070858",
+              "USD",
+              "2022-01-01",
+              "2022-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "bac:CorporateReconcilingItemsAndEliminationsMember"
+              }
+            ],
+            [
+              "ib4052c3e222445e585a5d2f69749d92d_D20230101-20230331",
+              "0000070858",
+              "USD",
+              "2023-01-01",
+              "2023-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+              }
+            ],
+            [
+              "i281b23616dee4b1db337ba6e1f77cffd_D20220101-20220331",
+              "0000070858",
+              "USD",
+              "2022-01-01",
+              "2022-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+              }
+            ],
+            [
+              "if5f8fc1f835343ff8e8983cfec752b66_D20230101-20230331",
+              "0000070858",
+              "USD",
+              "2023-01-01",
+              "2023-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsAssetandLiabilityManagementActivitiesMember"
+              }
+            ],
+            [
+              "ie86bd56152024875a09066d586bed39c_D20220101-20220331",
+              "0000070858",
+              "USD",
+              "2022-01-01",
+              "2022-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsAssetandLiabilityManagementActivitiesMember"
+              }
+            ],
+            [
+              "i81745e1585bf42be8cd74019ba7bd610_D20230101-20230331",
+              "0000070858",
+              "USD",
+              "2023-01-01",
+              "2023-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsLiquidatingBusinessesEliminationsandOtherMember"
+              }
+            ],
+            [
+              "icb2090f7bea94149ab0e2d92abef6fe8_D20220101-20220331",
+              "0000070858",
+              "USD",
+              "2022-01-01",
+              "2022-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsLiquidatingBusinessesEliminationsandOtherMember"
+              }
+            ],
+            [
+              "ic38bf976eb5347fdab0d78c61b450de3_D20230101-20230331",
+              "0000070858",
+              "USD",
+              "2023-01-01",
+              "2023-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsFullyTaxableEquivalentBasisAdjustmentMember"
+              }
+            ],
+            [
+              "ia79578c2c3af4f35a2c4d5035cc873f5_D20220101-20220331",
+              "0000070858",
+              "USD",
+              "2022-01-01",
+              "2022-03-31",
+              {
+                "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsFullyTaxableEquivalentBasisAdjustmentMember"
+              }
+            ]
+          ],
+          "facts": [
+            [
+              "us-gaap:InterestAndDividendIncomeOperating",
+              28655000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzYtNS0xLTEtNzI5MjA4_77438c41-c97f-4ed4-820e-796605d8b0f7"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:InterestAndDividendIncomeOperating",
+              12894000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzYtNy0xLTEtNzI5MjA4_14a4a016-ece9-4826-aee4-c1cb10533a64"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:InterestExpense",
+              14207000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzctNS0xLTEtNzI5MjA4_c613de98-17ae-4874-b00d-4a79ba61010f"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:InterestExpense",
+              1322000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzctNy0xLTEtNzI5MjA4_d0935548-982a-4e17-9505-2cb7e510ef75"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:InterestIncomeExpenseNet",
+              14448000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzgtNS0xLTEtNzI5MjA4_1fe3aa46-a089-4a23-bbe4-4075e8a55cea"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:InterestIncomeExpenseNet",
+              11572000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzgtNy0xLTEtNzI5MjA4_8e27540f-226e-45c9-815c-b092b4bd4849"
+                ]
+              ]
+            ],
+            [
+              "bac:FeesAndCommissions1",
+              7894000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzExLTUtMS0xLTcyOTIwOA_717aa441-b796-478f-bd59-ba1dfae10580"
+                ]
+              ]
+            ],
+            [
+              "bac:FeesAndCommissions1",
+              8985000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzExLTctMS0xLTcyOTIwOA_439009d4-c577-45c3-a8b7-cf5ffd0c8b2a"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:TradingGainsLosses",
+              4712000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzEyLTUtMS0xLTcyOTIwOA_ef904b9b-add1-4667-aae8-29a1c74d18b1"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:TradingGainsLosses",
+              3238000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzEyLTctMS0xLTcyOTIwOA_67205ecc-241b-436f-a669-83a5a6869bac"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncomeOtherOperatingIncome",
+              -796000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzEzLTUtMS0xLTcyOTIwOA_d0031373-d2ff-41ca-a984-ad8300363bf1"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncomeOtherOperatingIncome",
+              -567000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzEzLTctMS0xLTcyOTIwOA_1a2b6f64-cd01-4827-a280-ef9e1f7a1843"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              11810000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzE0LTUtMS0xLTcyOTIwOA_58037e1a-c277-48af-a422-f09c513d98d6"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              11656000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzE0LTctMS0xLTcyOTIwOA_54c2c8c1-daed-4741-b825-793021b1dc5e"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:Revenues",
+              26258000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzE1LTUtMS0xLTcyOTIwOA_679cbc6f-8e08-42b6-82d5-0adc471d8a8c"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:Revenues",
+              23228000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzE1LTctMS0xLTcyOTIwOA_7d0c22a0-614d-4b5b-af16-eaad8f5eb46e"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              14582000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtNS0xLTEtNzI5MjA4_8a7e90ad-4c62-4605-bbc8-2810f9bbcf18"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              11678000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtNy0xLTEtNzI5MjA4_e7f19677-076a-4907-831d-3ba52c91d76d"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              8593000000,
+              -6,
+              2,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtMTEtMS0xLTcyOTIwOA_dde3f320-8973-4048-ba75-f9916842ab8f"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              6680000000,
+              -6,
+              3,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtMTMtMS0xLTcyOTIwOA_3ce9e1b6-7d22-4eb9-90f8-4e9616bbb18e"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              1876000000,
+              -6,
+              4,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtMTUtMS0xLTcyOTIwOA_5c4c6ffa-cb12-43d2-8e7c-8bbe6b00ab4d"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              1668000000,
+              -6,
+              5,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtMTctMS0xLTcyOTIwOA_f01b2132-eb33-485b-b6b4-4a199635c20e"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              11810000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtNS0xLTEtNzI5MjA4_8f877b34-edc5-47c7-b51c-273a24fde6ac"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              11656000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtNy0xLTEtNzI5MjA4_0322d272-c49b-491c-bf6b-f209664bf714"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              2113000000,
+              -6,
+              2,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtMTEtMS0xLTcyOTIwOA_88154d3c-f021-4613-ad83-d3d0d9c6dabf"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              2133000000,
+              -6,
+              3,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtMTMtMS0xLTcyOTIwOA_f61ae833-662d-4253-a7bc-68bf893ff77a"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              3439000000,
+              -6,
+              4,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtMTUtMS0xLTcyOTIwOA_ccc0803e-4828-45f6-ace3-034f3858e0b4"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              3808000000,
+              -6,
+              5,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtMTctMS0xLTcyOTIwOA_8b99bf39-f1c7-4b9a-9190-8df525c47336"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              26392000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctNS0xLTEtNzI5MjA4_185a766a-db09-4a4f-9540-88eb1f3540ca"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              23334000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctNy0xLTEtNzI5MjA4_7109be29-bffd-4002-8250-0ebf7a697a40"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              10706000000,
+              -6,
+              2,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctMTEtMS0xLTcyOTIwOA_e2e069c7-89db-4f25-bb03-7296376e5b30"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              8813000000,
+              -6,
+              3,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctMTMtMS0xLTcyOTIwOA_ce4e2ab0-a6ba-4432-a1a7-ca0b36448319"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              5315000000,
+              -6,
+              4,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctMTUtMS0xLTcyOTIwOA_4878057b-5dc2-4a96-9e23-5309c3ccaef4"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              5476000000,
+              -6,
+              5,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctMTctMS0xLTcyOTIwOA_9baec310-01cc-48b4-8998-78c0bbdbad97"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              3907000000,
+              -6,
+              6,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTUtMS0xLTcyOTIwOA_c0c0aa39-aa7c-4a7d-a7f0-4c227ab69767"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              2344000000,
+              -6,
+              7,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTctMS0xLTcyOTIwOA_ccbbb0ba-e56d-4a00-a21b-c2687683a0fd"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              109000000,
+              -6,
+              8,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTExLTEtMS03MjkyMDg_1f95e573-d445-48fa-908c-0912be212b1c"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              993000000,
+              -6,
+              9,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTEzLTEtMS03MjkyMDg_ba675973-866f-42e1-be0a-390d85c74cc9"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              97000000,
+              -6,
+              10,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTE1LTEtMS03MjkyMDg_0a78c533-d78d-49c1-a6ec-314ae7d8bb8b"
+                ]
+              ]
+            ],
+            [
+              "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+              -7000000,
+              -6,
+              11,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTE3LTEtMS03MjkyMDg_bc9d4fff-d938-4147-8732-f83c96c569b0"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              2296000000,
+              -6,
+              6,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTUtMS0xLTcyOTIwOA_dae304d3-63b5-4550-b29f-31ea57cc3965"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              2850000000,
+              -6,
+              7,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTctMS0xLTcyOTIwOA_f9da05f1-00b1-45b0-98d8-758a9f0532aa"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              5517000000,
+              -6,
+              8,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTExLTEtMS03MjkyMDg_c84cc32c-33fe-4577-99f1-ae3a3cfb3bd7"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              4299000000,
+              -6,
+              9,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTEzLTEtMS03MjkyMDg_2c83eed4-563b-4ec8-bc19-3b35b24fc308"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              -1555000000,
+              -6,
+              10,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTE1LTEtMS03MjkyMDg_30736d8a-e211-4edc-89b3-06970d576bcb"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:NoninterestIncome",
+              -1434000000,
+              -6,
+              11,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTE3LTEtMS03MjkyMDg_aa2908d4-8c9b-40e4-86df-0f07a7bf61cb"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              6203000000,
+              -6,
+              6,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTUtMS0xLTcyOTIwOA_15c98a6a-a722-4012-846e-1e3529825634"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              5194000000,
+              -6,
+              7,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTctMS0xLTcyOTIwOA_2c6ec537-f81e-4a91-993c-24960607c2a1"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              5626000000,
+              -6,
+              8,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTExLTEtMS03MjkyMDg_09bb0491-ff17-4c39-b226-7a67d8d9468d"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              5292000000,
+              -6,
+              9,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTEzLTEtMS03MjkyMDg_b1c3a913-df25-4411-81a5-2eec56012084"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              -1458000000,
+              -6,
+              10,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTE1LTEtMS03MjkyMDg_52f197ba-832d-48ee-a587-d9640709fd50"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              -1441000000,
+              -6,
+              11,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTE3LTEtMS03MjkyMDg_ea427a72-a62e-4c9a-a07b-f7bea0a38127"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              27850000000,
+              -6,
+              12,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzUtMi0xLTEtNzI5MjA4_abe1ee04-692d-46fb-8364-465b4ae4d3e0"
+                ]
+              ]
+            ],
+            [
+              "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              24775000000,
+              -6,
+              13,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzUtNC0xLTEtNzI5MjA4_57765d15-f76e-4219-9490-677c7cc92171"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:Revenues",
+              -225000000,
+              -6,
+              14,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzctMi0xLTEtNzI5MjA4_c1246473-ca16-4a84-ac93-bafb0cb2f62b"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:Revenues",
+              -67000000,
+              -6,
+              15,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzctNC0xLTEtNzI5MjA4_7d0349c3-526e-43ad-8082-6b2897d6ac30"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:Revenues",
+              -1233000000,
+              -6,
+              16,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzgtMi0xLTEtNzI5MjA4_f5787e58-cef2-4c8a-b30a-440d61dc1fb4"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:Revenues",
+              -1374000000,
+              -6,
+              17,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzgtNC0xLTEtNzI5MjA4_1e782871-7b38-4e25-a387-efd2403d9fbf"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:Revenues",
+              -134000000,
+              -6,
+              18,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzktMi0xLTEtNzI5MjA4_4fcd5ff1-9b49-4762-99db-faa35f5272f3"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:Revenues",
+              -106000000,
+              -6,
+              19,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "",
+                  "-",
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzktNC0xLTEtNzI5MjA4_e6e5df3a-09d2-4097-99a5-018a488797c1"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:Revenues",
+              26258000000,
+              -6,
+              0,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzEwLTItMS0xLTcyOTIwOA_3319b8c8-9ef9-4830-99f5-11a2c3d46b4e"
+                ]
+              ]
+            ],
+            [
+              "us-gaap:Revenues",
+              23228000000,
+              -6,
+              1,
+              [
+                [
+                  "usd",
+                  6,
+                  "-6",
+                  "6",
+                  "ixt:num-dot-decimal",
+                  null,
+                  "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzEwLTQtMS0xLTcyOTIwOA_1a5d19d6-8b21-4768-8348-f3cc5a56caff"
+                ]
+              ]
+            ]
+          ]
+        },
+        "reportDate": "2023-03-31",
+        "form": "10-Q",
+        "originalFiscalYear": 2023,
+        "originalFiscalPeriod": "Q1",
+        "units": [
+          {
+            "id": "usd",
+            "measure": "iso4217:USD"
+          }
+        ],
+        "primary": {
+          "tableIndex": 0,
+          "rows": [
+            [
+              0,
+              [
+                [0, 1, 1, ""],
+                [1, 1, 1, ""],
+                [2, 1, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 1, 1, ""],
+                [16, 1, 1, ""],
+                [17, 1, 1, ""],
+                [18, 1, 1, ""],
+                [19, 1, 1, ""],
+                [20, 1, 1, ""],
+                [21, 1, 1, ""],
+                [22, 1, 1, ""],
+                [23, 1, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              1,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [2, [[0, 12, 1, "Consolidated Statement of Income"]]],
+            [
+              3,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 9, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""]
+              ]
+            ],
+            [
+              4,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 9, 1, "Three Months Ended March 31"],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""]
+              ]
+            ],
+            [
+              5,
+              [
+                [0, 3, 1, "(In millions, except per share information)"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, "2023"],
+                [18, 3, 1, ""],
+                [21, 3, 1, "2022"],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              6,
+              [
+                [0, 3, 1, "Net interest income"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              7,
+              [
+                [0, 3, 1, "Interest income"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 1, 1, "$"],
+                [16, 1, 1, "28,655", 0],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 1, 1, "$"],
+                [22, 1, 1, "12,894", 1],
+                [23, 1, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              8,
+              [
+                [0, 3, 1, "Interest expense"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 2, 1, "14,207", 2],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 2, 1, "1,322", 3],
+                [23, 1, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              9,
+              [
+                [0, 3, 1, "Net interest income"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 2, 1, "14,448", 4],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 2, 1, "11,572", 5],
+                [23, 1, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              10,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              11,
+              [
+                [0, 3, 1, "Noninterest income"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              12,
+              [
+                [0, 3, 1, "Fees and commissions"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 2, 1, "7,894", 6],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 2, 1, "8,985", 7],
+                [23, 1, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              13,
+              [
+                [0, 3, 1, "Market making and similar activities"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 2, 1, "4,712", 8],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 2, 1, "3,238", 9],
+                [23, 1, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              14,
+              [
+                [0, 3, 1, "Other income"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 2, 1, "( 796 )", 10],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 2, 1, "( 567 )", 11],
+                [23, 1, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              15,
+              [
+                [0, 3, 1, "Total noninterest income"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 2, 1, "11,810", 12],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 2, 1, "11,656", 13],
+                [23, 1, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ],
+            [
+              16,
+              [
+                [0, 3, 1, "Total revenue, net of interest expense"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 2, 1, "26,258", 14],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 2, 1, "23,228", 15],
+                [23, 1, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""]
+              ]
+            ]
+          ]
+        },
+        "business": [
+          {
+            "tableIndex": 1,
+            "rows": [
+              [
+                0,
+                [
+                  [0, 1, 1, ""],
+                  [1, 1, 1, ""],
+                  [2, 1, 1, ""],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 1, 1, ""],
+                  [16, 1, 1, ""],
+                  [17, 1, 1, ""],
+                  [18, 1, 1, ""],
+                  [19, 1, 1, ""],
+                  [20, 1, 1, ""],
+                  [21, 1, 1, ""],
+                  [22, 1, 1, ""],
+                  [23, 1, 1, ""],
+                  [24, 1, 1, ""],
+                  [25, 1, 1, ""],
+                  [26, 1, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 1, 1, ""],
+                  [34, 1, 1, ""],
+                  [35, 1, 1, ""],
+                  [36, 1, 1, ""],
+                  [37, 1, 1, ""],
+                  [38, 1, 1, ""],
+                  [39, 1, 1, ""],
+                  [40, 1, 1, ""],
+                  [41, 1, 1, ""],
+                  [42, 1, 1, ""],
+                  [43, 1, 1, ""],
+                  [44, 1, 1, ""],
+                  [45, 1, 1, ""],
+                  [46, 1, 1, ""],
+                  [47, 1, 1, ""],
+                  [48, 1, 1, ""],
+                  [49, 1, 1, ""],
+                  [50, 1, 1, ""],
+                  [51, 1, 1, ""],
+                  [52, 1, 1, ""],
+                  [53, 1, 1, ""],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ],
+              [
+                1,
+                [
+                  [0, 3, 1, ""],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 3, 1, ""],
+                  [18, 3, 1, ""],
+                  [21, 3, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 3, 1, ""],
+                  [36, 3, 1, ""],
+                  [39, 3, 1, ""],
+                  [42, 3, 1, ""],
+                  [45, 3, 1, ""],
+                  [48, 3, 1, ""],
+                  [51, 3, 1, ""],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ],
+              [
+                2,
+                [
+                  [0, 3, 1, "Results of Business Segments and All Other"],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 3, 1, ""],
+                  [18, 3, 1, ""],
+                  [21, 3, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 3, 1, ""],
+                  [36, 3, 1, ""],
+                  [39, 3, 1, ""],
+                  [42, 3, 1, ""],
+                  [45, 3, 1, ""],
+                  [48, 3, 1, ""]
+                ]
+              ],
+              [
+                3,
+                [
+                  [0, 3, 1, ""],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 3, 1, ""],
+                  [18, 3, 1, ""],
+                  [21, 3, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 3, 1, ""],
+                  [36, 3, 1, ""],
+                  [39, 3, 1, ""],
+                  [42, 3, 1, ""],
+                  [45, 3, 1, ""],
+                  [48, 3, 1, ""],
+                  [51, 3, 1, ""],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ],
+              [
+                4,
+                [
+                  [0, 3, 1, "At and for the three months ended March 31"],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 9, 1, "Total Corporation (1)"],
+                  [18, 3, 1, ""],
+                  [21, 3, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 9, 1, "Consumer Banking"],
+                  [36, 3, 1, ""],
+                  [39, 9, 1, "Global Wealth & Investment Management"]
+                ]
+              ],
+              [
+                5,
+                [
+                  [0, 3, 1, "(Dollars in millions)"],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 3, 1, "2023"],
+                  [18, 3, 1, ""],
+                  [21, 3, 1, "2022"],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 3, 1, "2023"],
+                  [36, 3, 1, ""],
+                  [39, 3, 1, "2022"],
+                  [42, 3, 1, ""],
+                  [45, 3, 1, "2023"],
+                  [48, 3, 1, ""],
+                  [51, 3, 1, "2022"],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ],
+              [
+                6,
+                [
+                  [0, 3, 1, "Net interest income"],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 1, 1, "$"],
+                  [16, 1, 1, "14,582", 16],
+                  [17, 1, 1, ""],
+                  [18, 3, 1, ""],
+                  [21, 1, 1, "$"],
+                  [22, 1, 1, "11,678", 17],
+                  [23, 1, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 1, 1, "$"],
+                  [34, 1, 1, "8,593", 18],
+                  [35, 1, 1, ""],
+                  [36, 3, 1, ""],
+                  [39, 1, 1, "$"],
+                  [40, 1, 1, "6,680", 19],
+                  [41, 1, 1, ""],
+                  [42, 3, 1, ""],
+                  [45, 1, 1, "$"],
+                  [46, 1, 1, "1,876", 20],
+                  [47, 1, 1, ""],
+                  [48, 3, 1, ""],
+                  [51, 1, 1, "$"],
+                  [52, 1, 1, "1,668", 21],
+                  [53, 1, 1, ""],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ],
+              [
+                7,
+                [
+                  [0, 3, 1, "Noninterest income"],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 2, 1, "11,810", 22],
+                  [17, 1, 1, ""],
+                  [18, 3, 1, ""],
+                  [21, 2, 1, "11,656", 23],
+                  [23, 1, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 2, 1, "2,113", 24],
+                  [35, 1, 1, ""],
+                  [36, 3, 1, ""],
+                  [39, 2, 1, "2,133", 25],
+                  [41, 1, 1, ""],
+                  [42, 3, 1, ""],
+                  [45, 2, 1, "3,439", 26],
+                  [47, 1, 1, ""],
+                  [48, 3, 1, ""],
+                  [51, 2, 1, "3,808", 27],
+                  [53, 1, 1, ""],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ],
+              [
+                8,
+                [
+                  [0, 3, 1, "Total revenue, net of interest expense"],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 2, 1, "26,392", 28],
+                  [17, 1, 1, ""],
+                  [18, 3, 1, ""],
+                  [21, 2, 1, "23,334", 29],
+                  [23, 1, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 2, 1, "10,706", 30],
+                  [35, 1, 1, ""],
+                  [36, 3, 1, ""],
+                  [39, 2, 1, "8,813", 31],
+                  [41, 1, 1, ""],
+                  [42, 3, 1, ""],
+                  [45, 2, 1, "5,315", 32],
+                  [47, 1, 1, ""],
+                  [48, 3, 1, ""],
+                  [51, 2, 1, "5,476", 33],
+                  [53, 1, 1, ""],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ],
+              [
+                16,
+                [
+                  [0, 3, 1, ""],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 9, 1, "Global Banking"],
+                  [18, 3, 1, ""],
+                  [21, 3, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 9, 1, "Global Markets"],
+                  [36, 3, 1, ""],
+                  [39, 9, 1, "All Other"],
+                  [48, 3, 1, ""],
+                  [51, 3, 1, ""]
+                ]
+              ],
+              [
+                17,
+                [
+                  [0, 3, 1, ""],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 3, 1, "2023"],
+                  [18, 3, 1, ""],
+                  [21, 3, 1, "2022"],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 3, 1, "2023"],
+                  [36, 3, 1, ""],
+                  [39, 3, 1, "2022"],
+                  [42, 3, 1, ""],
+                  [45, 3, 1, "2023"],
+                  [48, 3, 1, ""],
+                  [51, 3, 1, "2022"],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ],
+              [
+                18,
+                [
+                  [0, 3, 1, "Net interest income"],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 1, 1, "$"],
+                  [16, 1, 1, "3,907", 34],
+                  [17, 1, 1, ""],
+                  [18, 3, 1, ""],
+                  [21, 1, 1, "$"],
+                  [22, 1, 1, "2,344", 35],
+                  [23, 1, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 1, 1, "$"],
+                  [34, 1, 1, "109", 36],
+                  [35, 1, 1, ""],
+                  [36, 3, 1, ""],
+                  [39, 1, 1, "$"],
+                  [40, 1, 1, "993", 37],
+                  [41, 1, 1, ""],
+                  [42, 3, 1, ""],
+                  [45, 1, 1, "$"],
+                  [46, 1, 1, "97", 38],
+                  [47, 1, 1, ""],
+                  [48, 3, 1, ""],
+                  [51, 1, 1, "$"],
+                  [52, 1, 1, "( 7 )", 39],
+                  [53, 1, 1, ""],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ],
+              [
+                19,
+                [
+                  [0, 3, 1, "Noninterest income"],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 2, 1, "2,296", 40],
+                  [17, 1, 1, ""],
+                  [18, 3, 1, ""],
+                  [21, 2, 1, "2,850", 41],
+                  [23, 1, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 2, 1, "5,517", 42],
+                  [35, 1, 1, ""],
+                  [36, 3, 1, ""],
+                  [39, 2, 1, "4,299", 43],
+                  [41, 1, 1, ""],
+                  [42, 3, 1, ""],
+                  [45, 2, 1, "( 1,555 )", 44],
+                  [47, 1, 1, ""],
+                  [48, 3, 1, ""],
+                  [51, 2, 1, "( 1,434 )", 45],
+                  [53, 1, 1, ""],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ],
+              [
+                20,
+                [
+                  [0, 3, 1, "Total revenue, net of interest expense"],
+                  [3, 3, 1, ""],
+                  [6, 3, 1, ""],
+                  [9, 3, 1, ""],
+                  [12, 3, 1, ""],
+                  [15, 2, 1, "6,203", 46],
+                  [17, 1, 1, ""],
+                  [18, 3, 1, ""],
+                  [21, 2, 1, "5,194", 47],
+                  [23, 1, 1, ""],
+                  [24, 3, 1, ""],
+                  [27, 3, 1, ""],
+                  [30, 3, 1, ""],
+                  [33, 2, 1, "5,626", 48],
+                  [35, 1, 1, ""],
+                  [36, 3, 1, ""],
+                  [39, 2, 1, "5,292", 49],
+                  [41, 1, 1, ""],
+                  [42, 3, 1, ""],
+                  [45, 2, 1, "( 1,458 )", 50],
+                  [47, 1, 1, ""],
+                  [48, 3, 1, ""],
+                  [51, 2, 1, "( 1,441 )", 51],
+                  [53, 1, 1, ""],
+                  [54, 3, 1, ""],
+                  [57, 3, 1, ""]
+                ]
+              ]
+            ]
+          }
+        ],
+        "reconciliation": {
+          "tableIndex": 2,
+          "rows": [
+            [
+              0,
+              [
+                [0, 1, 1, ""],
+                [1, 1, 1, ""],
+                [2, 1, 1, ""],
+                [3, 1, 1, ""],
+                [4, 1, 1, ""],
+                [5, 1, 1, ""],
+                [6, 1, 1, ""],
+                [7, 1, 1, ""],
+                [8, 1, 1, ""],
+                [9, 1, 1, ""],
+                [10, 1, 1, ""],
+                [11, 1, 1, ""],
+                [12, 1, 1, ""],
+                [13, 1, 1, ""],
+                [14, 1, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ],
+            [
+              1,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ],
+            [
+              2,
+              [
+                [0, 3, 1, "Business Segment Reconciliations"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ],
+            [
+              3,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ],
+            [
+              4,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 9, 1, "Three Months Ended March 31"],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""]
+              ]
+            ],
+            [
+              5,
+              [
+                [0, 3, 1, "(Dollars in millions)"],
+                [3, 3, 1, ""],
+                [6, 3, 1, "2023"],
+                [9, 3, 1, ""],
+                [12, 3, 1, "2022"],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ],
+            [
+              6,
+              [
+                [0, 3, 1, "Segments’ total revenue, net of interest expense"],
+                [3, 3, 1, ""],
+                [6, 1, 1, "$"],
+                [7, 1, 1, "27,850", 52],
+                [8, 1, 1, ""],
+                [9, 3, 1, ""],
+                [12, 1, 1, "$"],
+                [13, 1, 1, "24,775", 53],
+                [14, 1, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ],
+            [
+              7,
+              [
+                [0, 3, 1, "Adjustments (1) :"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ],
+            [
+              8,
+              [
+                [0, 3, 1, "Asset and liability management activities"],
+                [3, 3, 1, ""],
+                [6, 2, 1, "( 225 )", 54],
+                [8, 1, 1, ""],
+                [9, 3, 1, ""],
+                [12, 2, 1, "( 67 )", 55],
+                [14, 1, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ],
+            [
+              9,
+              [
+                [0, 3, 1, "Liquidating businesses, eliminations and other"],
+                [3, 3, 1, ""],
+                [6, 2, 1, "( 1,233 )", 56],
+                [8, 1, 1, ""],
+                [9, 3, 1, ""],
+                [12, 2, 1, "( 1,374 )", 57],
+                [14, 1, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ],
+            [
+              10,
+              [
+                [0, 3, 1, "FTE basis adjustment"],
+                [3, 3, 1, ""],
+                [6, 2, 1, "( 134 )", 58],
+                [8, 1, 1, ""],
+                [9, 3, 1, ""],
+                [12, 2, 1, "( 106 )", 59],
+                [14, 1, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ],
+            [
+              11,
+              [
+                [0, 3, 1, "Consolidated revenue, net of interest expense"],
+                [3, 3, 1, ""],
+                [6, 1, 1, "$"],
+                [7, 1, 1, "26,258", 60],
+                [8, 1, 1, ""],
+                [9, 3, 1, ""],
+                [12, 1, 1, "$"],
+                [13, 1, 1, "23,228", 61],
+                [14, 1, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""],
+                [24, 3, 1, ""],
+                [27, 3, 1, ""],
+                [30, 3, 1, ""]
+              ]
+            ]
+          ]
+        }
+      },
+      "tableIndex": 1,
+      "totalTableIndex": 0,
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+      "accession": "0000070858-23-000142",
+      "revenueTag": "us-gaap:Revenues",
+      "revenue": 26258000000,
+      "revenueDecimals": -6,
+      "totalLabel": "Total revenue, net of interest expense",
+      "omittedSubtotals": [],
+      "omittedZeroColumns": []
+    }
+  },
+  "retained": [
+    {
+      "prior": {
+        "id": "2022-Q1",
+        "label": "Q1 FY2022",
+        "kind": "quarterly",
+        "fiscalYear": 2022,
+        "fiscalQuarter": 1,
+        "startDate": "2022-01-01",
+        "endDate": "2022-03-31",
+        "filedAt": "2023-05-01",
+        "accession": "0000070858-23-000142",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": true,
+        "metrics": {
+          "revenue": 23228000000,
+          "pretaxIncome": 7879000000,
+          "incomeTax": 812000000,
+          "netIncome": 7067000000,
+          "expensesAndOtherItems": 15349000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues",
+            "tag": "us-gaap:Revenues",
+            "accession": "0000070858-23-000142",
+            "filedAt": "2023-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000070858-23-000142",
+            "filedAt": "2023-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000070858-23-000142",
+            "filedAt": "2023-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000070858-23-000142",
+            "filedAt": "2023-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "expensesAndOtherItems": {
+            "label": "Revenue less pretax profit",
+            "tag": "us-gaap:Revenues - us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000070858-23-000142",
+            "filedAt": "2023-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+            "method": "calculated",
+            "inputs": [
+              "Total revenue, net of interest expense (us-gaap:Revenues): https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+              "Income before income taxes (us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest): https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm"
+            ]
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": true
+        }
+      },
+      "expected": {
+        "id": "2022-Q1",
+        "label": "Q1 FY2022",
+        "kind": "quarterly",
+        "fiscalYear": 2022,
+        "fiscalQuarter": 1,
+        "startDate": "2022-01-01",
+        "endDate": "2022-03-31",
+        "filedAt": "2023-05-01",
+        "accession": "0000070858-23-000142",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": true,
+        "metrics": {
+          "revenue": 23228000000,
+          "pretaxIncome": 7879000000,
+          "incomeTax": 812000000,
+          "netIncome": 7067000000,
+          "expensesAndOtherItems": 15349000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues",
+            "tag": "us-gaap:Revenues",
+            "accession": "0000070858-23-000142",
+            "filedAt": "2023-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000070858-23-000142",
+            "filedAt": "2023-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000070858-23-000142",
+            "filedAt": "2023-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000070858-23-000142",
+            "filedAt": "2023-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+            "method": "reported",
+            "decimals": -6
+          },
+          "expensesAndOtherItems": {
+            "label": "Revenue less pretax profit",
+            "tag": "us-gaap:Revenues - us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000070858-23-000142",
+            "filedAt": "2023-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+            "method": "calculated",
+            "inputs": [
+              "Total revenue, net of interest expense (us-gaap:Revenues): https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+              "Income before income taxes (us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest): https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm"
+            ]
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": true,
+          "sankey": true
+        },
+        "segments": [
+          {
+            "id": "bac-ConsumerBankingSegmentMember",
+            "label": "Consumer Banking",
+            "revenue": 8813000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+              "accession": "0000070858-23-000142",
+              "filedAt": "2023-05-01",
+              "startDate": "2022-01-01",
+              "endDate": "2022-03-31",
+              "currency": "USD",
+              "tag": "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              "dimensions": {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:ConsumerBankingSegmentMember"
+              },
+              "value": 8813000000,
+              "decimals": -6,
+              "tableLabel": "Consumer Banking",
+              "rowLabel": "Total revenue, net of interest expense",
+              "columnIndex": 39
+            }
+          },
+          {
+            "id": "bac-GlobalWealthAndInvestmentManagementSegmentMember",
+            "label": "Global Wealth & Investment Management",
+            "revenue": 5476000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+              "accession": "0000070858-23-000142",
+              "filedAt": "2023-05-01",
+              "startDate": "2022-01-01",
+              "endDate": "2022-03-31",
+              "currency": "USD",
+              "tag": "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              "dimensions": {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalWealthAndInvestmentManagementSegmentMember"
+              },
+              "value": 5476000000,
+              "decimals": -6,
+              "tableLabel": "Global Wealth & Investment Management",
+              "rowLabel": "Total revenue, net of interest expense",
+              "columnIndex": 51
+            }
+          },
+          {
+            "id": "bac-GlobalBankingSegmentMember",
+            "label": "Global Banking",
+            "revenue": 5194000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+              "accession": "0000070858-23-000142",
+              "filedAt": "2023-05-01",
+              "startDate": "2022-01-01",
+              "endDate": "2022-03-31",
+              "currency": "USD",
+              "tag": "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              "dimensions": {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalBankingSegmentMember"
+              },
+              "value": 5194000000,
+              "decimals": -6,
+              "tableLabel": "Global Banking",
+              "rowLabel": "Total revenue, net of interest expense",
+              "columnIndex": 21
+            }
+          },
+          {
+            "id": "bac-GlobalMarketsSegmentMember",
+            "label": "Global Markets",
+            "revenue": 5292000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+              "accession": "0000070858-23-000142",
+              "filedAt": "2023-05-01",
+              "startDate": "2022-01-01",
+              "endDate": "2022-03-31",
+              "currency": "USD",
+              "tag": "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              "dimensions": {
+                "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalMarketsSegmentMember"
+              },
+              "value": 5292000000,
+              "decimals": -6,
+              "tableLabel": "Global Markets",
+              "rowLabel": "Total revenue, net of interest expense",
+              "columnIndex": 39
+            }
+          }
+        ],
+        "revenueAdjustments": [
+          {
+            "id": "bac-CorporateReconcilingItemsAndEliminationsMember",
+            "label": "All Other",
+            "revenue": -1441000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+              "accession": "0000070858-23-000142",
+              "filedAt": "2023-05-01",
+              "startDate": "2022-01-01",
+              "endDate": "2022-03-31",
+              "currency": "USD",
+              "tag": "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+              "dimensions": {
+                "srt:ConsolidationItemsAxis": "bac:CorporateReconcilingItemsAndEliminationsMember"
+              },
+              "value": -1441000000,
+              "decimals": -6,
+              "tableLabel": "All Other",
+              "rowLabel": "Total revenue, net of interest expense",
+              "columnIndex": 51
+            }
+          },
+          {
+            "id": "bac-fte-basis-adjustment",
+            "label": "FTE basis adjustment",
+            "revenue": -106000000,
+            "revenueSource": {
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+              "accession": "0000070858-23-000142",
+              "filedAt": "2023-05-01",
+              "startDate": "2022-01-01",
+              "endDate": "2022-03-31",
+              "currency": "USD",
+              "tag": "us-gaap:Revenues",
+              "dimensions": {
+                "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsFullyTaxableEquivalentBasisAdjustmentMember"
+              },
+              "value": -106000000,
+              "decimals": -6,
+              "tableLabel": "FTE basis adjustment",
+              "rowIndex": 10,
+              "columnIndex": 12
+            }
+          }
+        ],
+        "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+        "segmentBasis": "Reported BAC business revenues are net of interest expense and presented on a fully taxable-equivalent (FTE) basis. All Other retains its reported signed contribution; the separately reported FTE basis adjustment is deducted to reconcile to GAAP consolidated revenue. Every original current, comparative and cumulative column is checked. Original comparative member names remain in the evidence; the independently reported nondimensional primary statement establishes the GAAP scope. Business gross profit and missing quarterly business splits are not estimated.",
+        "businessBreakdownSource": {
+          "method": "reviewed-bac-revenue",
+          "ruleId": "bac-original-complete-revenue-v1",
+          "bacRevenue": {
+            "ruleId": "bac-original-complete-revenue-v1",
+            "encoding": "bac-original-resource-tuples-v1",
+            "resources": {
+              "contexts": [
+                [
+                  "i5f7d01749b7c443996379458b23dc9c8_D20230101-20230331",
+                  "0000070858",
+                  "USD",
+                  "2023-01-01",
+                  "2023-03-31",
+                  {}
+                ],
+                [
+                  "idc793a8d98544801ae779cb8304bd7a2_D20220101-20220331",
+                  "0000070858",
+                  "USD",
+                  "2022-01-01",
+                  "2022-03-31",
+                  {}
+                ],
+                [
+                  "i8a1e17be4d83465e94042e9c6b7fb22a_D20230101-20230331",
+                  "0000070858",
+                  "USD",
+                  "2023-01-01",
+                  "2023-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "bac:ConsumerBankingSegmentMember"
+                  }
+                ],
+                [
+                  "i7f5fb542c181417e9b08d40375ca65cc_D20220101-20220331",
+                  "0000070858",
+                  "USD",
+                  "2022-01-01",
+                  "2022-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "bac:ConsumerBankingSegmentMember"
+                  }
+                ],
+                [
+                  "ia4c4b1c6b6f944f798584d1d8b33d8f7_D20230101-20230331",
+                  "0000070858",
+                  "USD",
+                  "2023-01-01",
+                  "2023-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalWealthAndInvestmentManagementSegmentMember"
+                  }
+                ],
+                [
+                  "ib22878b3bf21472ba99c0a1d10c14bbf_D20220101-20220331",
+                  "0000070858",
+                  "USD",
+                  "2022-01-01",
+                  "2022-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalWealthAndInvestmentManagementSegmentMember"
+                  }
+                ],
+                [
+                  "i5aded074c3b941e2b9ca4a6ffb6dd18d_D20230101-20230331",
+                  "0000070858",
+                  "USD",
+                  "2023-01-01",
+                  "2023-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalBankingSegmentMember"
+                  }
+                ],
+                [
+                  "i7f2efc28060c4f1e858360e0488dc106_D20220101-20220331",
+                  "0000070858",
+                  "USD",
+                  "2022-01-01",
+                  "2022-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalBankingSegmentMember"
+                  }
+                ],
+                [
+                  "i8e8646d3f197443b816184b90a6e9585_D20230101-20230331",
+                  "0000070858",
+                  "USD",
+                  "2023-01-01",
+                  "2023-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalMarketsSegmentMember"
+                  }
+                ],
+                [
+                  "i45f9465ff6cc48e0af5ef0bcceabe695_D20220101-20220331",
+                  "0000070858",
+                  "USD",
+                  "2022-01-01",
+                  "2022-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "bac:GlobalMarketsSegmentMember"
+                  }
+                ],
+                [
+                  "id19b9499aa8c446e8d81a75d151d5392_D20230101-20230331",
+                  "0000070858",
+                  "USD",
+                  "2023-01-01",
+                  "2023-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "bac:CorporateReconcilingItemsAndEliminationsMember"
+                  }
+                ],
+                [
+                  "i139958159be54468b0bfcace8f1887d9_D20220101-20220331",
+                  "0000070858",
+                  "USD",
+                  "2022-01-01",
+                  "2022-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "bac:CorporateReconcilingItemsAndEliminationsMember"
+                  }
+                ],
+                [
+                  "ib4052c3e222445e585a5d2f69749d92d_D20230101-20230331",
+                  "0000070858",
+                  "USD",
+                  "2023-01-01",
+                  "2023-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+                  }
+                ],
+                [
+                  "i281b23616dee4b1db337ba6e1f77cffd_D20220101-20220331",
+                  "0000070858",
+                  "USD",
+                  "2022-01-01",
+                  "2022-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+                  }
+                ],
+                [
+                  "if5f8fc1f835343ff8e8983cfec752b66_D20230101-20230331",
+                  "0000070858",
+                  "USD",
+                  "2023-01-01",
+                  "2023-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsAssetandLiabilityManagementActivitiesMember"
+                  }
+                ],
+                [
+                  "ie86bd56152024875a09066d586bed39c_D20220101-20220331",
+                  "0000070858",
+                  "USD",
+                  "2022-01-01",
+                  "2022-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsAssetandLiabilityManagementActivitiesMember"
+                  }
+                ],
+                [
+                  "i81745e1585bf42be8cd74019ba7bd610_D20230101-20230331",
+                  "0000070858",
+                  "USD",
+                  "2023-01-01",
+                  "2023-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsLiquidatingBusinessesEliminationsandOtherMember"
+                  }
+                ],
+                [
+                  "icb2090f7bea94149ab0e2d92abef6fe8_D20220101-20220331",
+                  "0000070858",
+                  "USD",
+                  "2022-01-01",
+                  "2022-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsLiquidatingBusinessesEliminationsandOtherMember"
+                  }
+                ],
+                [
+                  "ic38bf976eb5347fdab0d78c61b450de3_D20230101-20230331",
+                  "0000070858",
+                  "USD",
+                  "2023-01-01",
+                  "2023-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsFullyTaxableEquivalentBasisAdjustmentMember"
+                  }
+                ],
+                [
+                  "ia79578c2c3af4f35a2c4d5035cc873f5_D20220101-20220331",
+                  "0000070858",
+                  "USD",
+                  "2022-01-01",
+                  "2022-03-31",
+                  {
+                    "srt:ConsolidationItemsAxis": "bac:SegmentReconcilingItemsFullyTaxableEquivalentBasisAdjustmentMember"
+                  }
+                ]
+              ],
+              "facts": [
+                [
+                  "us-gaap:InterestAndDividendIncomeOperating",
+                  28655000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzYtNS0xLTEtNzI5MjA4_77438c41-c97f-4ed4-820e-796605d8b0f7"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:InterestAndDividendIncomeOperating",
+                  12894000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzYtNy0xLTEtNzI5MjA4_14a4a016-ece9-4826-aee4-c1cb10533a64"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:InterestExpense",
+                  14207000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzctNS0xLTEtNzI5MjA4_c613de98-17ae-4874-b00d-4a79ba61010f"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:InterestExpense",
+                  1322000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzctNy0xLTEtNzI5MjA4_d0935548-982a-4e17-9505-2cb7e510ef75"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:InterestIncomeExpenseNet",
+                  14448000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzgtNS0xLTEtNzI5MjA4_1fe3aa46-a089-4a23-bbe4-4075e8a55cea"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:InterestIncomeExpenseNet",
+                  11572000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzgtNy0xLTEtNzI5MjA4_8e27540f-226e-45c9-815c-b092b4bd4849"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:FeesAndCommissions1",
+                  7894000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzExLTUtMS0xLTcyOTIwOA_717aa441-b796-478f-bd59-ba1dfae10580"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:FeesAndCommissions1",
+                  8985000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzExLTctMS0xLTcyOTIwOA_439009d4-c577-45c3-a8b7-cf5ffd0c8b2a"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:TradingGainsLosses",
+                  4712000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzEyLTUtMS0xLTcyOTIwOA_ef904b9b-add1-4667-aae8-29a1c74d18b1"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:TradingGainsLosses",
+                  3238000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzEyLTctMS0xLTcyOTIwOA_67205ecc-241b-436f-a669-83a5a6869bac"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncomeOtherOperatingIncome",
+                  -796000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzEzLTUtMS0xLTcyOTIwOA_d0031373-d2ff-41ca-a984-ad8300363bf1"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncomeOtherOperatingIncome",
+                  -567000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzEzLTctMS0xLTcyOTIwOA_1a2b6f64-cd01-4827-a280-ef9e1f7a1843"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  11810000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzE0LTUtMS0xLTcyOTIwOA_58037e1a-c277-48af-a422-f09c513d98d6"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  11656000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzE0LTctMS0xLTcyOTIwOA_54c2c8c1-daed-4741-b825-793021b1dc5e"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:Revenues",
+                  26258000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzE1LTUtMS0xLTcyOTIwOA_679cbc6f-8e08-42b6-82d5-0adc471d8a8c"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:Revenues",
+                  23228000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8yMDUvZnJhZzpmZDIyMjA5OGVjOGI0MDE4OTUzMmUwNDI1Mjk2ZjAzYS90YWJsZTpjNDcwZDRmNGE4MDA0NDU3OTkwYTU4YzVlZTFjYjQ1Ny90YWJsZXJhbmdlOmM0NzBkNGY0YTgwMDQ0NTc5OTBhNThjNWVlMWNiNDU3XzE1LTctMS0xLTcyOTIwOA_7d0c22a0-614d-4b5b-af16-eaad8f5eb46e"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  14582000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtNS0xLTEtNzI5MjA4_8a7e90ad-4c62-4605-bbc8-2810f9bbcf18"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  11678000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtNy0xLTEtNzI5MjA4_e7f19677-076a-4907-831d-3ba52c91d76d"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  8593000000,
+                  -6,
+                  2,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtMTEtMS0xLTcyOTIwOA_dde3f320-8973-4048-ba75-f9916842ab8f"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  6680000000,
+                  -6,
+                  3,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtMTMtMS0xLTcyOTIwOA_3ce9e1b6-7d22-4eb9-90f8-4e9616bbb18e"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  1876000000,
+                  -6,
+                  4,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtMTUtMS0xLTcyOTIwOA_5c4c6ffa-cb12-43d2-8e7c-8bbe6b00ab4d"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  1668000000,
+                  -6,
+                  5,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzUtMTctMS0xLTcyOTIwOA_f01b2132-eb33-485b-b6b4-4a199635c20e"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  11810000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtNS0xLTEtNzI5MjA4_8f877b34-edc5-47c7-b51c-273a24fde6ac"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  11656000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtNy0xLTEtNzI5MjA4_0322d272-c49b-491c-bf6b-f209664bf714"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  2113000000,
+                  -6,
+                  2,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtMTEtMS0xLTcyOTIwOA_88154d3c-f021-4613-ad83-d3d0d9c6dabf"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  2133000000,
+                  -6,
+                  3,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtMTMtMS0xLTcyOTIwOA_f61ae833-662d-4253-a7bc-68bf893ff77a"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  3439000000,
+                  -6,
+                  4,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtMTUtMS0xLTcyOTIwOA_ccc0803e-4828-45f6-ace3-034f3858e0b4"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  3808000000,
+                  -6,
+                  5,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzYtMTctMS0xLTcyOTIwOA_8b99bf39-f1c7-4b9a-9190-8df525c47336"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  26392000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctNS0xLTEtNzI5MjA4_185a766a-db09-4a4f-9540-88eb1f3540ca"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  23334000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctNy0xLTEtNzI5MjA4_7109be29-bffd-4002-8250-0ebf7a697a40"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  10706000000,
+                  -6,
+                  2,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctMTEtMS0xLTcyOTIwOA_e2e069c7-89db-4f25-bb03-7296376e5b30"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  8813000000,
+                  -6,
+                  3,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctMTMtMS0xLTcyOTIwOA_ce4e2ab0-a6ba-4432-a1a7-ca0b36448319"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  5315000000,
+                  -6,
+                  4,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctMTUtMS0xLTcyOTIwOA_4878057b-5dc2-4a96-9e23-5309c3ccaef4"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  5476000000,
+                  -6,
+                  5,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzctMTctMS0xLTcyOTIwOA_9baec310-01cc-48b4-8998-78c0bbdbad97"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  3907000000,
+                  -6,
+                  6,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTUtMS0xLTcyOTIwOA_c0c0aa39-aa7c-4a7d-a7f0-4c227ab69767"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  2344000000,
+                  -6,
+                  7,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTctMS0xLTcyOTIwOA_ccbbb0ba-e56d-4a00-a21b-c2687683a0fd"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  109000000,
+                  -6,
+                  8,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTExLTEtMS03MjkyMDg_1f95e573-d445-48fa-908c-0912be212b1c"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  993000000,
+                  -6,
+                  9,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTEzLTEtMS03MjkyMDg_ba675973-866f-42e1-be0a-390d85c74cc9"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  97000000,
+                  -6,
+                  10,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTE1LTEtMS03MjkyMDg_0a78c533-d78d-49c1-a6ec-314ae7d8bb8b"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:InterestIncomeExpenseNetFullTaxEquivalentBasis",
+                  -7000000,
+                  -6,
+                  11,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE3LTE3LTEtMS03MjkyMDg_bc9d4fff-d938-4147-8732-f83c96c569b0"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  2296000000,
+                  -6,
+                  6,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTUtMS0xLTcyOTIwOA_dae304d3-63b5-4550-b29f-31ea57cc3965"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  2850000000,
+                  -6,
+                  7,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTctMS0xLTcyOTIwOA_f9da05f1-00b1-45b0-98d8-758a9f0532aa"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  5517000000,
+                  -6,
+                  8,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTExLTEtMS03MjkyMDg_c84cc32c-33fe-4577-99f1-ae3a3cfb3bd7"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  4299000000,
+                  -6,
+                  9,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTEzLTEtMS03MjkyMDg_2c83eed4-563b-4ec8-bc19-3b35b24fc308"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  -1555000000,
+                  -6,
+                  10,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTE1LTEtMS03MjkyMDg_30736d8a-e211-4edc-89b3-06970d576bcb"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:NoninterestIncome",
+                  -1434000000,
+                  -6,
+                  11,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE4LTE3LTEtMS03MjkyMDg_aa2908d4-8c9b-40e4-86df-0f07a7bf61cb"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  6203000000,
+                  -6,
+                  6,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTUtMS0xLTcyOTIwOA_15c98a6a-a722-4012-846e-1e3529825634"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  5194000000,
+                  -6,
+                  7,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTctMS0xLTcyOTIwOA_2c6ec537-f81e-4a91-993c-24960607c2a1"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  5626000000,
+                  -6,
+                  8,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTExLTEtMS03MjkyMDg_09bb0491-ff17-4c39-b226-7a67d8d9468d"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  5292000000,
+                  -6,
+                  9,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTEzLTEtMS03MjkyMDg_b1c3a913-df25-4411-81a5-2eec56012084"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  -1458000000,
+                  -6,
+                  10,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTE1LTEtMS03MjkyMDg_52f197ba-832d-48ee-a587-d9640709fd50"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  -1441000000,
+                  -6,
+                  11,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTpkZDllYWMyZTNlNDA0MjUwOGNhOTlhZWFmMmE3ZGVkZi90YWJsZXJhbmdlOmRkOWVhYzJlM2U0MDQyNTA4Y2E5OWFlYWYyYTdkZWRmXzE5LTE3LTEtMS03MjkyMDg_ea427a72-a62e-4c9a-a07b-f7bea0a38127"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  27850000000,
+                  -6,
+                  12,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzUtMi0xLTEtNzI5MjA4_abe1ee04-692d-46fb-8364-465b4ae4d3e0"
+                    ]
+                  ]
+                ],
+                [
+                  "bac:RevenuesNetOfInterestExpenseFullTaxEquivalentBasis",
+                  24775000000,
+                  -6,
+                  13,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzUtNC0xLTEtNzI5MjA4_57765d15-f76e-4219-9490-677c7cc92171"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:Revenues",
+                  -225000000,
+                  -6,
+                  14,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzctMi0xLTEtNzI5MjA4_c1246473-ca16-4a84-ac93-bafb0cb2f62b"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:Revenues",
+                  -67000000,
+                  -6,
+                  15,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzctNC0xLTEtNzI5MjA4_7d0349c3-526e-43ad-8082-6b2897d6ac30"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:Revenues",
+                  -1233000000,
+                  -6,
+                  16,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzgtMi0xLTEtNzI5MjA4_f5787e58-cef2-4c8a-b30a-440d61dc1fb4"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:Revenues",
+                  -1374000000,
+                  -6,
+                  17,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzgtNC0xLTEtNzI5MjA4_1e782871-7b38-4e25-a387-efd2403d9fbf"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:Revenues",
+                  -134000000,
+                  -6,
+                  18,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzktMi0xLTEtNzI5MjA4_4fcd5ff1-9b49-4762-99db-faa35f5272f3"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:Revenues",
+                  -106000000,
+                  -6,
+                  19,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "",
+                      "-",
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzktNC0xLTEtNzI5MjA4_e6e5df3a-09d2-4097-99a5-018a488797c1"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:Revenues",
+                  26258000000,
+                  -6,
+                  0,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzEwLTItMS0xLTcyOTIwOA_3319b8c8-9ef9-4830-99f5-11a2c3d46b4e"
+                    ]
+                  ]
+                ],
+                [
+                  "us-gaap:Revenues",
+                  23228000000,
+                  -6,
+                  1,
+                  [
+                    [
+                      "usd",
+                      6,
+                      "-6",
+                      "6",
+                      "ixt:num-dot-decimal",
+                      null,
+                      "id3VybDovL2RvY3MudjEvZG9jOmU3NzY3NjIzMDk3ZjQzMjhhZjZiNzVjNDg1ZmE2YjM2L3NlYzplNzc2NzYyMzA5N2Y0MzI4YWY2Yjc1YzQ4NWZhNmIzNl8zMzQvZnJhZzo0ZmMxNmU5MDZhMTc0MTRhYTc2N2M3ODYyNDEyOTU4Yi90YWJsZTo1ZTk5MTliN2QzYWE0NDI0OTUyODU5ZGUzYzk1YTBhYy90YWJsZXJhbmdlOjVlOTkxOWI3ZDNhYTQ0MjQ5NTI4NTlkZTNjOTVhMGFjXzEwLTQtMS0xLTcyOTIwOA_1a5d19d6-8b21-4768-8348-f3cc5a56caff"
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "reportDate": "2023-03-31",
+            "form": "10-Q",
+            "originalFiscalYear": 2023,
+            "originalFiscalPeriod": "Q1",
+            "units": [
+              {
+                "id": "usd",
+                "measure": "iso4217:USD"
+              }
+            ],
+            "primary": {
+              "tableIndex": 0,
+              "rows": [
+                [
+                  0,
+                  [
+                    [0, 1, 1, ""],
+                    [1, 1, 1, ""],
+                    [2, 1, 1, ""],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 1, 1, ""],
+                    [16, 1, 1, ""],
+                    [17, 1, 1, ""],
+                    [18, 1, 1, ""],
+                    [19, 1, 1, ""],
+                    [20, 1, 1, ""],
+                    [21, 1, 1, ""],
+                    [22, 1, 1, ""],
+                    [23, 1, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  1,
+                  [
+                    [0, 3, 1, ""],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [2, [[0, 12, 1, "Consolidated Statement of Income"]]],
+                [
+                  3,
+                  [
+                    [0, 3, 1, ""],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 9, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""]
+                  ]
+                ],
+                [
+                  4,
+                  [
+                    [0, 3, 1, ""],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 9, 1, "Three Months Ended March 31"],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""]
+                  ]
+                ],
+                [
+                  5,
+                  [
+                    [0, 3, 1, "(In millions, except per share information)"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 3, 1, "2023"],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, "2022"],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  6,
+                  [
+                    [0, 3, 1, "Net interest income"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  7,
+                  [
+                    [0, 3, 1, "Interest income"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 1, 1, "$"],
+                    [16, 1, 1, "28,655", 0],
+                    [17, 1, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 1, 1, "$"],
+                    [22, 1, 1, "12,894", 1],
+                    [23, 1, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  8,
+                  [
+                    [0, 3, 1, "Interest expense"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 2, 1, "14,207", 2],
+                    [17, 1, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 2, 1, "1,322", 3],
+                    [23, 1, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  9,
+                  [
+                    [0, 3, 1, "Net interest income"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 2, 1, "14,448", 4],
+                    [17, 1, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 2, 1, "11,572", 5],
+                    [23, 1, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  10,
+                  [
+                    [0, 3, 1, ""],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  11,
+                  [
+                    [0, 3, 1, "Noninterest income"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  12,
+                  [
+                    [0, 3, 1, "Fees and commissions"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 2, 1, "7,894", 6],
+                    [17, 1, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 2, 1, "8,985", 7],
+                    [23, 1, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  13,
+                  [
+                    [0, 3, 1, "Market making and similar activities"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 2, 1, "4,712", 8],
+                    [17, 1, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 2, 1, "3,238", 9],
+                    [23, 1, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  14,
+                  [
+                    [0, 3, 1, "Other income"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 2, 1, "( 796 )", 10],
+                    [17, 1, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 2, 1, "( 567 )", 11],
+                    [23, 1, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  15,
+                  [
+                    [0, 3, 1, "Total noninterest income"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 2, 1, "11,810", 12],
+                    [17, 1, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 2, 1, "11,656", 13],
+                    [23, 1, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ],
+                [
+                  16,
+                  [
+                    [0, 3, 1, "Total revenue, net of interest expense"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 2, 1, "26,258", 14],
+                    [17, 1, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 2, 1, "23,228", 15],
+                    [23, 1, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""]
+                  ]
+                ]
+              ]
+            },
+            "business": [
+              {
+                "tableIndex": 1,
+                "rows": [
+                  [
+                    0,
+                    [
+                      [0, 1, 1, ""],
+                      [1, 1, 1, ""],
+                      [2, 1, 1, ""],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 1, 1, ""],
+                      [16, 1, 1, ""],
+                      [17, 1, 1, ""],
+                      [18, 1, 1, ""],
+                      [19, 1, 1, ""],
+                      [20, 1, 1, ""],
+                      [21, 1, 1, ""],
+                      [22, 1, 1, ""],
+                      [23, 1, 1, ""],
+                      [24, 1, 1, ""],
+                      [25, 1, 1, ""],
+                      [26, 1, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 1, 1, ""],
+                      [34, 1, 1, ""],
+                      [35, 1, 1, ""],
+                      [36, 1, 1, ""],
+                      [37, 1, 1, ""],
+                      [38, 1, 1, ""],
+                      [39, 1, 1, ""],
+                      [40, 1, 1, ""],
+                      [41, 1, 1, ""],
+                      [42, 1, 1, ""],
+                      [43, 1, 1, ""],
+                      [44, 1, 1, ""],
+                      [45, 1, 1, ""],
+                      [46, 1, 1, ""],
+                      [47, 1, 1, ""],
+                      [48, 1, 1, ""],
+                      [49, 1, 1, ""],
+                      [50, 1, 1, ""],
+                      [51, 1, 1, ""],
+                      [52, 1, 1, ""],
+                      [53, 1, 1, ""],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    1,
+                    [
+                      [0, 3, 1, ""],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 3, 1, ""],
+                      [18, 3, 1, ""],
+                      [21, 3, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 3, 1, ""],
+                      [36, 3, 1, ""],
+                      [39, 3, 1, ""],
+                      [42, 3, 1, ""],
+                      [45, 3, 1, ""],
+                      [48, 3, 1, ""],
+                      [51, 3, 1, ""],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    2,
+                    [
+                      [0, 3, 1, "Results of Business Segments and All Other"],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 3, 1, ""],
+                      [18, 3, 1, ""],
+                      [21, 3, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 3, 1, ""],
+                      [36, 3, 1, ""],
+                      [39, 3, 1, ""],
+                      [42, 3, 1, ""],
+                      [45, 3, 1, ""],
+                      [48, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    3,
+                    [
+                      [0, 3, 1, ""],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 3, 1, ""],
+                      [18, 3, 1, ""],
+                      [21, 3, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 3, 1, ""],
+                      [36, 3, 1, ""],
+                      [39, 3, 1, ""],
+                      [42, 3, 1, ""],
+                      [45, 3, 1, ""],
+                      [48, 3, 1, ""],
+                      [51, 3, 1, ""],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    4,
+                    [
+                      [0, 3, 1, "At and for the three months ended March 31"],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 9, 1, "Total Corporation (1)"],
+                      [18, 3, 1, ""],
+                      [21, 3, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 9, 1, "Consumer Banking"],
+                      [36, 3, 1, ""],
+                      [39, 9, 1, "Global Wealth & Investment Management"]
+                    ]
+                  ],
+                  [
+                    5,
+                    [
+                      [0, 3, 1, "(Dollars in millions)"],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 3, 1, "2023"],
+                      [18, 3, 1, ""],
+                      [21, 3, 1, "2022"],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 3, 1, "2023"],
+                      [36, 3, 1, ""],
+                      [39, 3, 1, "2022"],
+                      [42, 3, 1, ""],
+                      [45, 3, 1, "2023"],
+                      [48, 3, 1, ""],
+                      [51, 3, 1, "2022"],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    6,
+                    [
+                      [0, 3, 1, "Net interest income"],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 1, 1, "$"],
+                      [16, 1, 1, "14,582", 16],
+                      [17, 1, 1, ""],
+                      [18, 3, 1, ""],
+                      [21, 1, 1, "$"],
+                      [22, 1, 1, "11,678", 17],
+                      [23, 1, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 1, 1, "$"],
+                      [34, 1, 1, "8,593", 18],
+                      [35, 1, 1, ""],
+                      [36, 3, 1, ""],
+                      [39, 1, 1, "$"],
+                      [40, 1, 1, "6,680", 19],
+                      [41, 1, 1, ""],
+                      [42, 3, 1, ""],
+                      [45, 1, 1, "$"],
+                      [46, 1, 1, "1,876", 20],
+                      [47, 1, 1, ""],
+                      [48, 3, 1, ""],
+                      [51, 1, 1, "$"],
+                      [52, 1, 1, "1,668", 21],
+                      [53, 1, 1, ""],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    7,
+                    [
+                      [0, 3, 1, "Noninterest income"],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 2, 1, "11,810", 22],
+                      [17, 1, 1, ""],
+                      [18, 3, 1, ""],
+                      [21, 2, 1, "11,656", 23],
+                      [23, 1, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 2, 1, "2,113", 24],
+                      [35, 1, 1, ""],
+                      [36, 3, 1, ""],
+                      [39, 2, 1, "2,133", 25],
+                      [41, 1, 1, ""],
+                      [42, 3, 1, ""],
+                      [45, 2, 1, "3,439", 26],
+                      [47, 1, 1, ""],
+                      [48, 3, 1, ""],
+                      [51, 2, 1, "3,808", 27],
+                      [53, 1, 1, ""],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    8,
+                    [
+                      [0, 3, 1, "Total revenue, net of interest expense"],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 2, 1, "26,392", 28],
+                      [17, 1, 1, ""],
+                      [18, 3, 1, ""],
+                      [21, 2, 1, "23,334", 29],
+                      [23, 1, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 2, 1, "10,706", 30],
+                      [35, 1, 1, ""],
+                      [36, 3, 1, ""],
+                      [39, 2, 1, "8,813", 31],
+                      [41, 1, 1, ""],
+                      [42, 3, 1, ""],
+                      [45, 2, 1, "5,315", 32],
+                      [47, 1, 1, ""],
+                      [48, 3, 1, ""],
+                      [51, 2, 1, "5,476", 33],
+                      [53, 1, 1, ""],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    16,
+                    [
+                      [0, 3, 1, ""],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 9, 1, "Global Banking"],
+                      [18, 3, 1, ""],
+                      [21, 3, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 9, 1, "Global Markets"],
+                      [36, 3, 1, ""],
+                      [39, 9, 1, "All Other"],
+                      [48, 3, 1, ""],
+                      [51, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    17,
+                    [
+                      [0, 3, 1, ""],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 3, 1, "2023"],
+                      [18, 3, 1, ""],
+                      [21, 3, 1, "2022"],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 3, 1, "2023"],
+                      [36, 3, 1, ""],
+                      [39, 3, 1, "2022"],
+                      [42, 3, 1, ""],
+                      [45, 3, 1, "2023"],
+                      [48, 3, 1, ""],
+                      [51, 3, 1, "2022"],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    18,
+                    [
+                      [0, 3, 1, "Net interest income"],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 1, 1, "$"],
+                      [16, 1, 1, "3,907", 34],
+                      [17, 1, 1, ""],
+                      [18, 3, 1, ""],
+                      [21, 1, 1, "$"],
+                      [22, 1, 1, "2,344", 35],
+                      [23, 1, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 1, 1, "$"],
+                      [34, 1, 1, "109", 36],
+                      [35, 1, 1, ""],
+                      [36, 3, 1, ""],
+                      [39, 1, 1, "$"],
+                      [40, 1, 1, "993", 37],
+                      [41, 1, 1, ""],
+                      [42, 3, 1, ""],
+                      [45, 1, 1, "$"],
+                      [46, 1, 1, "97", 38],
+                      [47, 1, 1, ""],
+                      [48, 3, 1, ""],
+                      [51, 1, 1, "$"],
+                      [52, 1, 1, "( 7 )", 39],
+                      [53, 1, 1, ""],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    19,
+                    [
+                      [0, 3, 1, "Noninterest income"],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 2, 1, "2,296", 40],
+                      [17, 1, 1, ""],
+                      [18, 3, 1, ""],
+                      [21, 2, 1, "2,850", 41],
+                      [23, 1, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 2, 1, "5,517", 42],
+                      [35, 1, 1, ""],
+                      [36, 3, 1, ""],
+                      [39, 2, 1, "4,299", 43],
+                      [41, 1, 1, ""],
+                      [42, 3, 1, ""],
+                      [45, 2, 1, "( 1,555 )", 44],
+                      [47, 1, 1, ""],
+                      [48, 3, 1, ""],
+                      [51, 2, 1, "( 1,434 )", 45],
+                      [53, 1, 1, ""],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ],
+                  [
+                    20,
+                    [
+                      [0, 3, 1, "Total revenue, net of interest expense"],
+                      [3, 3, 1, ""],
+                      [6, 3, 1, ""],
+                      [9, 3, 1, ""],
+                      [12, 3, 1, ""],
+                      [15, 2, 1, "6,203", 46],
+                      [17, 1, 1, ""],
+                      [18, 3, 1, ""],
+                      [21, 2, 1, "5,194", 47],
+                      [23, 1, 1, ""],
+                      [24, 3, 1, ""],
+                      [27, 3, 1, ""],
+                      [30, 3, 1, ""],
+                      [33, 2, 1, "5,626", 48],
+                      [35, 1, 1, ""],
+                      [36, 3, 1, ""],
+                      [39, 2, 1, "5,292", 49],
+                      [41, 1, 1, ""],
+                      [42, 3, 1, ""],
+                      [45, 2, 1, "( 1,458 )", 50],
+                      [47, 1, 1, ""],
+                      [48, 3, 1, ""],
+                      [51, 2, 1, "( 1,441 )", 51],
+                      [53, 1, 1, ""],
+                      [54, 3, 1, ""],
+                      [57, 3, 1, ""]
+                    ]
+                  ]
+                ]
+              }
+            ],
+            "reconciliation": {
+              "tableIndex": 2,
+              "rows": [
+                [
+                  0,
+                  [
+                    [0, 1, 1, ""],
+                    [1, 1, 1, ""],
+                    [2, 1, 1, ""],
+                    [3, 1, 1, ""],
+                    [4, 1, 1, ""],
+                    [5, 1, 1, ""],
+                    [6, 1, 1, ""],
+                    [7, 1, 1, ""],
+                    [8, 1, 1, ""],
+                    [9, 1, 1, ""],
+                    [10, 1, 1, ""],
+                    [11, 1, 1, ""],
+                    [12, 1, 1, ""],
+                    [13, 1, 1, ""],
+                    [14, 1, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ],
+                [
+                  1,
+                  [
+                    [0, 3, 1, ""],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ],
+                [
+                  2,
+                  [
+                    [0, 3, 1, "Business Segment Reconciliations"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ],
+                [
+                  3,
+                  [
+                    [0, 3, 1, ""],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ],
+                [
+                  4,
+                  [
+                    [0, 3, 1, ""],
+                    [3, 3, 1, ""],
+                    [6, 9, 1, "Three Months Ended March 31"],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""]
+                  ]
+                ],
+                [
+                  5,
+                  [
+                    [0, 3, 1, "(Dollars in millions)"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, "2023"],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, "2022"],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ],
+                [
+                  6,
+                  [
+                    [0, 3, 1, "Segments’ total revenue, net of interest expense"],
+                    [3, 3, 1, ""],
+                    [6, 1, 1, "$"],
+                    [7, 1, 1, "27,850", 52],
+                    [8, 1, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 1, 1, "$"],
+                    [13, 1, 1, "24,775", 53],
+                    [14, 1, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ],
+                [
+                  7,
+                  [
+                    [0, 3, 1, "Adjustments (1) :"],
+                    [3, 3, 1, ""],
+                    [6, 3, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 3, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ],
+                [
+                  8,
+                  [
+                    [0, 3, 1, "Asset and liability management activities"],
+                    [3, 3, 1, ""],
+                    [6, 2, 1, "( 225 )", 54],
+                    [8, 1, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 2, 1, "( 67 )", 55],
+                    [14, 1, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ],
+                [
+                  9,
+                  [
+                    [0, 3, 1, "Liquidating businesses, eliminations and other"],
+                    [3, 3, 1, ""],
+                    [6, 2, 1, "( 1,233 )", 56],
+                    [8, 1, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 2, 1, "( 1,374 )", 57],
+                    [14, 1, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ],
+                [
+                  10,
+                  [
+                    [0, 3, 1, "FTE basis adjustment"],
+                    [3, 3, 1, ""],
+                    [6, 2, 1, "( 134 )", 58],
+                    [8, 1, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 2, 1, "( 106 )", 59],
+                    [14, 1, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ],
+                [
+                  11,
+                  [
+                    [0, 3, 1, "Consolidated revenue, net of interest expense"],
+                    [3, 3, 1, ""],
+                    [6, 1, 1, "$"],
+                    [7, 1, 1, "26,258", 60],
+                    [8, 1, 1, ""],
+                    [9, 3, 1, ""],
+                    [12, 1, 1, "$"],
+                    [13, 1, 1, "23,228", 61],
+                    [14, 1, 1, ""],
+                    [15, 3, 1, ""],
+                    [18, 3, 1, ""],
+                    [21, 3, 1, ""],
+                    [24, 3, 1, ""],
+                    [27, 3, 1, ""],
+                    [30, 3, 1, ""]
+                  ]
+                ]
+              ]
+            }
+          },
+          "tableIndex": 1,
+          "totalTableIndex": 0,
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085823000142/bac-20230331.htm",
+          "accession": "0000070858-23-000142",
+          "revenueTag": "us-gaap:Revenues",
+          "revenue": 23228000000,
+          "revenueDecimals": -6,
+          "totalLabel": "Total revenue, net of interest expense",
+          "omittedSubtotals": [],
+          "omittedZeroColumns": []
+        }
+      }
+    }
+  ],
+  "scope": "Complete unmodified original primary/business/reconciliation tables and original FTE footnotes, with every actually referenced original context/unit and balanced fiscal declaration. Whole-source/excerpt financial metrics, sources, branches and deductions agree. No synthetic source values or business classifications."
+}

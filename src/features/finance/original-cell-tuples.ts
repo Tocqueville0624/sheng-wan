@@ -34,6 +34,15 @@ export function encodeOriginalRows(rows: ServiceRevenueRow[]): OriginalRowTuple[
 }
 
 export function decodeOriginalRows(rows: OriginalRowTuple[]): ServiceRevenueRow[] {
+  return decodeRows(rows, 64);
+}
+
+/** Finite BAC source geometry, including every hidden original spacer cell. */
+export function decodeBacOriginalRows(rows: OriginalRowTuple[]): ServiceRevenueRow[] {
+  return decodeRows(rows, 96);
+}
+
+function decodeRows(rows: OriginalRowTuple[], maxColumns: 64 | 96): ServiceRevenueRow[] {
   demand(Array.isArray(rows) && rows.length <= 200, "Invalid original row encoding.");
   return rows.map((row) => {
     demand(
@@ -55,9 +64,10 @@ export function decodeOriginalRows(rows: OriginalRowTuple[]): ServiceRevenueRow[
             [4, 5].includes(cell.length) &&
             [cell[0], cell[1], cell[2]].every(Number.isInteger) &&
             cell[0] >= 0 &&
-            cell[0] <= 64 &&
+            cell[0] <= maxColumns &&
             cell[1] >= 1 &&
             cell[1] <= 64 &&
+            cell[0] + cell[1] <= maxColumns &&
             cell[2] >= 1 &&
             cell[2] <= 2 &&
             typeof cell[3] === "string" &&

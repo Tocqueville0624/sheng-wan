@@ -124,8 +124,11 @@ describe("AbbVie original product portfolio partitions", () => {
           dimensions: {},
           calculation: { method: "sum-of-reported-products" }
         });
-        expect(s.revenueSource!.calculation!.products.length).toBeGreaterThan(0);
-        for (const id of s.revenueSource!.calculation!.products)
+        const calculation = s.revenueSource!.calculation!;
+        if (calculation.method !== "sum-of-reported-products")
+          throw Error("Expected original product-sum provenance");
+        expect(calculation.products.length).toBeGreaterThan(0);
+        for (const id of calculation.products)
           expect(
             proof.products.some(
               (product) => product.id === id && (product.portfolio ?? product.label) === s.label
@@ -322,7 +325,10 @@ describe("AbbVie original product portfolio partitions", () => {
         p.segments![0].revenue++;
       },
       (p) => {
-        p.segments![0].revenueSource!.calculation!.products.pop();
+        const calculation = p.segments![0].revenueSource!.calculation!;
+        if (calculation.method !== "sum-of-reported-products")
+          throw Error("Expected original product-sum provenance");
+        calculation.products.pop();
       },
       (p) => {
         p.segments![0].revenueSource!.tag = "us-gaap:Revenues";

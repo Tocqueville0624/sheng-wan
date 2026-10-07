@@ -42,6 +42,14 @@ export function originalReviewedMillionDollarRows(
   return originalDollarRows(rows, units, cik, 6, [-5, -6]);
 }
 
+/** BAC's reviewed 66-column matrices retain hidden original spacers. */
+export function originalBacMillionDollarRows(
+  rows: ServiceRevenueRow[],
+  units: ServiceRevenueRowsProof["units"]
+) {
+  return originalDollarRows(rows, units, "0000070858", 6, [-6], 96);
+}
+
 /** Independently replay an original decimal display as exact integer dollars.
  * This value is for reconciliation only, never a replacement for reported facts. */
 export function originalExactMillionDollars(c: ServiceRevenueRow["cells"][number]): bigint {
@@ -64,7 +72,8 @@ function originalDollarRows(
   units: ServiceRevenueRowsProof["units"],
   cik: string,
   scale: 3 | 6,
-  reviewedDecimals: readonly number[] = [-scale]
+  reviewedDecimals: readonly number[] = [-scale],
+  maxColumns: 64 | 96 = 64
 ) {
   demand(/^\d{10}$/.test(cik) && Number(cik) > 0, "Invalid original issuer identity");
   const occupied = new Set<string>();
@@ -83,7 +92,7 @@ function originalDollarRows(
     for (const c of row.cells) {
       while (occupied.has(`${row.rowIndex}:${column}`)) column++;
       demand(
-        integer(c.columnIndex, 64) &&
+        integer(c.columnIndex, maxColumns) &&
           c.columnIndex === column &&
           integer(c.span, 64) &&
           c.span >= 1 &&
@@ -101,7 +110,7 @@ function originalDollarRows(
           occupied.add(k);
         }
       column += c.span;
-      demand(column <= 64, "Oversized original row");
+      demand(column <= maxColumns, "Oversized original row");
       if (!c.fact) continue;
       const f = c.fact,
         d = f.declarations?.[0];

@@ -1,3 +1,4 @@
+import { bacRevenueProblem } from "../../src/features/finance/bac-revenue";
 import { amdRevenueProblem } from "../../src/features/finance/amd-revenue";
 import { amdIncomeFlowView } from "../../src/features/finance/amd-inline-income";
 import { dardenInlineIncomeProblem } from "../../src/features/finance/darden-inline-income";
@@ -272,6 +273,9 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     if (period.revenueAdjustments?.some((item) => item.id === "source-rounding")) return;
     return business;
   }
+  if (proof.bacRevenue && proof.method !== "reviewed-bac-revenue") return;
+  if (proof.method === "reviewed-bac-revenue")
+    return bacRevenueProblem(period) ? undefined : business;
   if (proof.amdRevenue && proof.method !== "reviewed-amd-revenue") return;
   if (proof.method === "reviewed-amd-revenue")
     return amdRevenueProblem(period) ? undefined : business;

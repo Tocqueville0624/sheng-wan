@@ -14,8 +14,21 @@ export function originalRevenueGrid(
   parsed: ParsedFiling,
   cik: string,
   scale: 3 | 6 = 3,
-  reviewedDecimals: readonly number[] = [-scale]
+  reviewedDecimals: readonly number[] = [-scale],
+  physicalProfile?: "bac-original-96-columns"
 ) {
+  demand(
+    !physicalProfile ||
+      (physicalProfile === "bac-original-96-columns" &&
+        cik === "0000070858" &&
+        scale === 6 &&
+        reviewedDecimals.length === 1 &&
+        reviewedDecimals[0] === -6),
+    "Unreviewed original physical column profile"
+  );
+  // BAC retains actual hidden spacer cells: its reviewed business matrix has
+  // 66 physical columns. No source cells are dropped to fit the generic limit.
+  const maxColumns = physicalProfile ? 96 : 64;
   const units: ServiceRevenueRowsProof["units"] = [];
   for (const [unit] of html.matchAll(/<(?:[\w.-]+:)?unit\b[^>]*>[\s\S]*?<\/(?:[\w.-]+:)?unit>/gi)) {
     if (/<(?:[\w.-]+:)?divide\b/i.test(unit)) continue;
@@ -59,7 +72,7 @@ export function originalRevenueGrid(
               Number.isInteger(rowSpan) &&
               rowSpan >= 1 &&
               rowSpan <= 2 &&
-              columnIndex + span <= 64,
+              columnIndex + span <= maxColumns,
             "Invalid original cell span"
           );
           const c: ServiceRevenueRow["cells"][number] = {

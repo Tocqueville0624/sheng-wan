@@ -75,3 +75,7 @@ tests/fixtures/finance/dri-*-original-primary-business.html
 
 # Preserve unchanged AMD original tables, contexts and monetary declarations.
 tests/fixtures/finance/amd-*-original-primary-business.html
+
+# Preserve unchanged BAC original tables, inline resources and FTE footnotes.
+tests/fixtures/finance/bac-*-original-primary-business.html
+tests/fixtures/finance/bac-2020-q1-conflicting-original-primary-business.html

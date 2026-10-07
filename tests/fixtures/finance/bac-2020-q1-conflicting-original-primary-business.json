@@ -1,0 +1,121 @@
+{
+  "identity": {
+    "ticker": "BAC",
+    "name": "Bank of America",
+    "cik": "0000070858",
+    "sector": "Financials",
+    "universe": "sp500"
+  },
+  "filing": {
+    "accession": "0000070858-20-000023",
+    "filedAt": "2020-05-01",
+    "reportDate": "2020-03-31",
+    "form": "10-Q",
+    "primaryDocument": "bac-0331202010xq.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/bac-0331202010xq.htm"
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/bac-0331202010xq.htm",
+    "bytes": 13017707,
+    "sha256": "1433ba4ca4df88f02f0fea5545679f362fb400fd4b75013c52ed21b4e6aded12"
+  },
+  "excerptSha256": "b9d49c67807bd3aef87ed9c9e05545c582654fdff8357582b16dc172aff7c6b7",
+  "excerptBytes": 295046,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 241,
+      "fixtureIndex": 0,
+      "tableSha256": "b4ff1fd0a958a9669c5cbcdcc62de5c8ce33e73116c6d4f7cc075a2209766f44"
+    },
+    {
+      "originalIndex": 470,
+      "fixtureIndex": 1,
+      "tableSha256": "2bdfe29646c82174980607fbd9e04dd13261b6dda84d259a142e4b03bb447de2"
+    },
+    {
+      "originalIndex": 476,
+      "fixtureIndex": 2,
+      "tableSha256": "00f3810a9761b3155c1a9c4ae2b22c4e02d1201a570971376c31927c8dc0fe04"
+    }
+  ],
+  "expectedCurrent": {
+    "id": "2020-Q1",
+    "label": "Q1 FY2020",
+    "kind": "quarterly",
+    "fiscalYear": 2020,
+    "fiscalQuarter": 1,
+    "startDate": "2020-01-01",
+    "endDate": "2020-03-31",
+    "filedAt": "2020-05-01",
+    "accession": "0000070858-20-000023",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/bac-0331202010xq.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 22767000000,
+      "incomeTax": 521000000,
+      "pretaxIncome": 4531000000,
+      "netIncome": 4010000000,
+      "expensesAndOtherItems": 18236000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Reported revenue",
+        "tag": "us-gaap:Revenues",
+        "accession": "0000070858-20-000023",
+        "filedAt": "2020-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/bac-0331202010xq.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "incomeTax": {
+        "label": "Income tax expense",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000070858-20-000023",
+        "filedAt": "2020-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/bac-0331202010xq.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "pretaxIncome": {
+        "label": "Income before income taxes",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000070858-20-000023",
+        "filedAt": "2020-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/bac-0331202010xq.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "netIncome": {
+        "label": "Net income",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000070858-20-000023",
+        "filedAt": "2020-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/bac-0331202010xq.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "expensesAndOtherItems": {
+        "label": "Revenue less pretax profit",
+        "tag": "us-gaap:Revenues - us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000070858-20-000023",
+        "filedAt": "2020-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/bac-0331202010xq.htm",
+        "method": "calculated",
+        "inputs": [
+          "Total revenue, net of interest expense (us-gaap:Revenues): https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/bac-0331202010xq.htm",
+          "Income before income taxes (us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest): https://www.sec.gov/Archives/edgar/data/70858/000007085820000023/bac-0331202010xq.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    }
+  },
+  "retained": [],
+  "scope": "Actual original contradictory reconciliation, preserved without changing its positive liquidating-business amount. Source-only business proof must be withheld. A later original comparative column supplies the retained-period business evidence."
+}

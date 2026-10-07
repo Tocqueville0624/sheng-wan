@@ -1,4 +1,5 @@
 import { accountingTolerance } from "../../src/features/finance/chart-model";
+import { bacRevenueProblem } from "../../src/features/finance/bac-revenue";
 import type { FinancialMetrics, StatementLine } from "../../src/features/finance/types";
 import type { CatalogCompany, MetricSource, PeriodV2 } from "../../src/features/finance/v2-types";
 import { attribute, factKey, halfUnit, precise, visibleText } from "./business-v2";
@@ -173,6 +174,28 @@ export function readStatementRows(
           (l) => l.fact.tag === revenueSource!.tag && l.fact.value === m.revenue
         )
       : -1;
+  let originalBacAnchor = false;
+  if (
+    anchor < 0 &&
+    period.businessBreakdownSource?.bacRevenue &&
+    tableIndex === period.businessBreakdownSource.bacRevenue.primary.tableIndex &&
+    !bacRevenueProblem(period)
+  ) {
+    // BAC's complete original revenue proof independently binds this extension
+    // to the preserved GAAP total. Keep the indexed revenue provenance unchanged.
+    const matches = lines.flatMap((l, i) =>
+      l &&
+      l.fact.tag === "bac:RevenuesNetOfInterestExpenseBeforeProvisionForLoanLoss" &&
+      l.label === "Total revenue, net of interest expense" &&
+      l.fact.value === m.revenue
+        ? [i]
+        : []
+    );
+    if (matches.length === 1) {
+      anchor = matches[0];
+      originalBacAnchor = true;
+    }
+  }
   if (m.revenue === undefined) {
     // A missing Company Facts line can be recovered from an explicit standard
     // revenue total in this primary statement. The entire subsequent accounting
@@ -443,7 +466,10 @@ export function readStatementRows(
     };
     return true;
   };
-  if (iR !== anchor || m.revenue === undefined || revenue.fact.tag !== revenueSource?.tag) {
+  if (
+    !originalBacAnchor &&
+    (iR !== anchor || m.revenue === undefined || revenue.fact.tag !== revenueSource?.tag)
+  ) {
     metrics.revenue = revenueValue;
     sources.revenue = reported(revenue);
   }

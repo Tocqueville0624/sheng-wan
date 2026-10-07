@@ -170,6 +170,11 @@ const parserVersion = hash(
       readFile("scripts/finance/cencora-business-v2.ts", "utf8"),
       readFile("src/features/finance/cencora-revenue.ts", "utf8"),
       readFile("src/features/finance/cencora-business-profiles.ts", "utf8"),
+      readFile("scripts/finance/bac-business-v2.ts", "utf8"),
+      readFile("scripts/finance/bac-income-v2.ts", "utf8"),
+      readFile("src/features/finance/bac-revenue.ts", "utf8"),
+      readFile("src/features/finance/bac-types.ts", "utf8"),
+      readFile("src/features/finance/bac-original-rows.ts", "utf8"),
       readFile("scripts/finance/amd-business-v2.ts", "utf8"),
       readFile("src/features/finance/amd-revenue.ts", "utf8"),
       readFile("src/features/finance/amd-source.ts", "utf8"),
@@ -263,10 +268,10 @@ for (const entry of corpus.issuers) {
       const source = (url: string) =>
         readPinnedCorpusSource(url, entry.sourceRecords, readSecCache);
       let seed = bundledData.companies.find((c) => c.cik === entry.cik) as CompanyV2 | undefined;
-      // Match a real refresh's retained history for the finite AMD reader.
+      // Match a real refresh's retained history for finite AMD/BAC readers.
       // Source-only first imports still run without a seed. Do not reconstruct
       // already verified business IDs from scratch during an offline refresh.
-      if (entry.cik === "0000002488") {
+      if (["0000002488", "0000070858"].includes(entry.cik)) {
         try {
           seed = JSON.parse(
             await readFile(path.join(directory, "companies", `${entry.cik}.json`), "utf8")

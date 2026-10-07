@@ -1,4 +1,5 @@
 import type { AmdRevenueProof, AmdInlineIncomeProof } from "./amd-types";
+import type { BacRevenueProof } from "./bac-types";
 import type { DardenRevenueProof, DardenInlineIncomeProof } from "./darden-types";
 import type { MetricSource } from "./v2-types";
 import type { OriginalStandaloneBusinessProof } from "./standalone-business";
@@ -215,7 +216,9 @@ export type RevenueSegment = {
   grossProfitSource?: SegmentGrossProfitSource;
   revenueSource?: {
     /** Explicit arithmetic over original reported product rows, never a reported QName. */
-    calculation?: { method: "sum-of-reported-products"; products: string[] };
+    calculation?:
+      | { method: "sum-of-reported-products"; products: string[] }
+      | { method: "deduct-reported-fte-adjustment" };
     sourceUrl: string;
     accession: string;
     filedAt: string;
@@ -507,8 +510,10 @@ export type FinancialPeriod = {
       | "reviewed-cencora-revenue"
       | "reviewed-darden-revenue"
       | "reviewed-amd-revenue"
+      | "reviewed-bac-revenue"
       | "reviewed-original-standalone-revenue";
     amdRevenue?: AmdRevenueProof;
+    bacRevenue?: BacRevenueProof;
     dardenRevenue?: DardenRevenueProof;
     cencoraRevenue?: CencoraBusinessProof;
     standaloneRevenue?: OriginalStandaloneBusinessProof;
