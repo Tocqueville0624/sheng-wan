@@ -42,6 +42,11 @@ export function decodeBacOriginalRows(rows: OriginalRowTuple[]): ServiceRevenueR
   return decodeRows(rows, 96);
 }
 
+/** Finite JPM source geometry, including every original hidden spacer. */
+export function decodeJpmOriginalRows(rows: OriginalRowTuple[]): ServiceRevenueRow[] {
+  return decodeRows(rows, 96);
+}
+
 function decodeRows(rows: OriginalRowTuple[], maxColumns: 64 | 96): ServiceRevenueRow[] {
   demand(Array.isArray(rows) && rows.length <= 200, "Invalid original row encoding.");
   return rows.map((row) => {

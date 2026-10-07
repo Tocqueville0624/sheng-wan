@@ -1,3 +1,4 @@
+import { enrichJpmBusinessPeriods } from "./jpm-business-v2";
 import { enrichBacIncomePeriods } from "./bac-income-v2";
 import { enrichBacBusinessPeriods } from "./bac-business-v2";
 import { enrichAmdBusinessPeriods } from "./amd-business-v2";
@@ -145,6 +146,7 @@ export function readGenericFiling(
   apply(enrichDardenBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichAmdBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichAmdIncomePeriods(html, identity, filing, [...updated.values()], parsed));
+  apply(enrichJpmBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichBacBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichBacIncomePeriods(html, identity, filing, [...updated.values()], parsed));
   // This reviewed issuer stays fail-closed when its captions or corporate scope
@@ -157,7 +159,8 @@ export function readGenericFiling(
       "0001140859",
       "0000940944",
       "0000002488",
-      "0000070858"
+      "0000070858",
+      "0000019617"
     ].includes(identity.cik) &&
     !(["0000008818", "0000010456"].includes(identity.cik) && parsed.fiscalYear >= 2023)
   ) {

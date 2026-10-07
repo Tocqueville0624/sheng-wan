@@ -79,3 +79,6 @@ tests/fixtures/finance/amd-*-original-primary-business.html
 # Preserve unchanged BAC original tables, inline resources and FTE footnotes.
 tests/fixtures/finance/bac-*-original-primary-business.html
 tests/fixtures/finance/bac-2020-q1-conflicting-original-primary-business.html
+
+# Preserve unchanged JPM original primary and business matrices and merger notes.
+tests/fixtures/finance/jpm-*-original-primary-business.html

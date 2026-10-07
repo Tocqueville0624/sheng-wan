@@ -15,7 +15,7 @@ export function originalRevenueGrid(
   cik: string,
   scale: 3 | 6 = 3,
   reviewedDecimals: readonly number[] = [-scale],
-  physicalProfile?: "bac-original-96-columns"
+  physicalProfile?: "bac-original-96-columns" | "jpm-original-96-columns"
 ) {
   demand(
     !physicalProfile ||
@@ -23,10 +23,15 @@ export function originalRevenueGrid(
         cik === "0000070858" &&
         scale === 6 &&
         reviewedDecimals.length === 1 &&
+        reviewedDecimals[0] === -6) ||
+      (physicalProfile === "jpm-original-96-columns" &&
+        cik === "0000019617" &&
+        scale === 6 &&
+        reviewedDecimals.length === 1 &&
         reviewedDecimals[0] === -6),
     "Unreviewed original physical column profile"
   );
-  // BAC retains actual hidden spacer cells: its reviewed business matrix has
+  // BAC and JPM retain actual hidden spacer cells: their reviewed matrices have
   // 66 physical columns. No source cells are dropped to fit the generic limit.
   const maxColumns = physicalProfile ? 96 : 64;
   const units: ServiceRevenueRowsProof["units"] = [];

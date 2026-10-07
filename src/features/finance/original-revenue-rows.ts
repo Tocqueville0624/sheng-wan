@@ -50,6 +50,14 @@ export function originalBacMillionDollarRows(
   return originalDollarRows(rows, units, "0000070858", 6, [-6], 96);
 }
 
+/** JPM's reviewed original matrices preserve all hidden physical spacer cells. */
+export function originalJpmMillionDollarRows(
+  rows: ServiceRevenueRow[],
+  units: ServiceRevenueRowsProof["units"]
+) {
+  return originalDollarRows(rows, units, "0000019617", 6, [-6], 96);
+}
+
 /** Independently replay an original decimal display as exact integer dollars.
  * This value is for reconciliation only, never a replacement for reported facts. */
 export function originalExactMillionDollars(c: ServiceRevenueRow["cells"][number]): bigint {

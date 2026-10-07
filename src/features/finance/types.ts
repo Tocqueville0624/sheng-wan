@@ -1,3 +1,4 @@
+import type { JpmRevenueProof } from "./jpm-types";
 import type { AmdRevenueProof, AmdInlineIncomeProof } from "./amd-types";
 import type { BacRevenueProof } from "./bac-types";
 import type { DardenRevenueProof, DardenInlineIncomeProof } from "./darden-types";
@@ -511,9 +512,11 @@ export type FinancialPeriod = {
       | "reviewed-darden-revenue"
       | "reviewed-amd-revenue"
       | "reviewed-bac-revenue"
+      | "reviewed-jpm-revenue"
       | "reviewed-original-standalone-revenue";
     amdRevenue?: AmdRevenueProof;
     bacRevenue?: BacRevenueProof;
+    jpmRevenue?: JpmRevenueProof;
     dardenRevenue?: DardenRevenueProof;
     cencoraRevenue?: CencoraBusinessProof;
     standaloneRevenue?: OriginalStandaloneBusinessProof;

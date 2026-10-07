@@ -1,3 +1,4 @@
+import { jpmRevenueProblem } from "../../src/features/finance/jpm-revenue";
 import { bacRevenueProblem } from "../../src/features/finance/bac-revenue";
 import { amdRevenueProblem } from "../../src/features/finance/amd-revenue";
 import { amdIncomeFlowView } from "../../src/features/finance/amd-inline-income";
@@ -273,6 +274,9 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     if (period.revenueAdjustments?.some((item) => item.id === "source-rounding")) return;
     return business;
   }
+  if (proof.jpmRevenue && proof.method !== "reviewed-jpm-revenue") return;
+  if (proof.method === "reviewed-jpm-revenue")
+    return jpmRevenueProblem(period) ? undefined : business;
   if (proof.bacRevenue && proof.method !== "reviewed-bac-revenue") return;
   if (proof.method === "reviewed-bac-revenue")
     return bacRevenueProblem(period) ? undefined : business;
@@ -997,6 +1001,56 @@ export function mergeV2(previous: CompanyV2 | undefined, incoming: CompanyV2): C
     for (const p of incoming[kind]) {
       const key = `${p.startDate}:${p.endDate}`;
       const old = byDates.get(key);
+      if (
+        incoming.cik === "0000019617" &&
+        old &&
+        old.sourceUrl === p.sourceUrl &&
+        old.accession === p.accession &&
+        old.filedAt === p.filedAt &&
+        old.id === p.id &&
+        old.kind === p.kind &&
+        old.fiscalYear === p.fiscalYear &&
+        old.fiscalQuarter === p.fiscalQuarter &&
+        old.reportingCurrency === p.reportingCurrency &&
+        old.displayCurrency === p.displayCurrency &&
+        !old.fx &&
+        !p.fx &&
+        p.businessBreakdownSource?.jpmRevenue &&
+        businessPeriod(p)
+      ) {
+        // An original source can supplement absent business/cost proof while the
+        // saved period retains every original field, including its derived flag.
+        // A field's own calculated provenance remains explicit on a new metric.
+        const matches =
+          Object.entries(old.metrics).every(
+            ([field, value]) => p.metrics[field as keyof FinancialMetrics] === value
+          ) &&
+          Object.entries(old.metricSources).every(([field, source]) => {
+            const next = p.metricSources[field as keyof FinancialMetrics];
+            return (
+              next &&
+              source.tag === next.tag &&
+              source.method === next.method &&
+              source.sourceUrl === next.sourceUrl &&
+              source.accession === next.accession &&
+              source.filedAt === next.filedAt
+            );
+          });
+        if (matches) {
+          const next: PeriodV2 = {
+            ...p,
+            ...old,
+            metrics: { ...p.metrics, ...old.metrics },
+            metricSources: { ...p.metricSources, ...old.metricSources },
+            coverage: { ...old.coverage }
+          };
+          next.coverage.segments = !!businessPeriod(next);
+          next.coverage.sankey = !!flowPeriod(next);
+          if (next.coverage.segments && (!old.coverage.sankey || next.coverage.sankey))
+            byDates.set(key, next);
+        }
+        continue;
+      }
       if (
         incoming.cik === "0000002488" &&
         old &&

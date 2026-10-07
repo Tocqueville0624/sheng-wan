@@ -1,0 +1,1813 @@
+{
+  "company": {
+    "schemaVersion": 2,
+    "ticker": "JPM",
+    "name": "JPMorgan Chase",
+    "cik": "0000019617",
+    "accent": "#337d9f",
+    "reportingCurrency": "USD",
+    "latestPeriod": "Q2 FY2026",
+    "dataStatus": "verified",
+    "version": "e660bf9533102004df03",
+    "updatedAt": "2026-09-05T23:18:53.978Z",
+    "annual": [
+      {
+        "id": "FY2016",
+        "label": "FY 2016",
+        "kind": "annual",
+        "fiscalYear": 2016,
+        "startDate": "2016-01-01",
+        "endDate": "2016-12-31",
+        "filedAt": "2019-02-26",
+        "accession": "0000019617-19-000054",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961719000054/corp10k2018.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 96569000000,
+          "pretaxIncome": 34536000000,
+          "incomeTax": 9803000000,
+          "netIncome": 24733000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-19-000054",
+            "filedAt": "2019-02-26",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961719000054/corp10k2018.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-19-000054",
+            "filedAt": "2019-02-26",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961719000054/corp10k2018.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-19-000054",
+            "filedAt": "2019-02-26",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961719000054/corp10k2018.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-19-000054",
+            "filedAt": "2019-02-26",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961719000054/corp10k2018.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "FY2017",
+        "label": "FY 2017",
+        "kind": "annual",
+        "fiscalYear": 2017,
+        "startDate": "2017-01-01",
+        "endDate": "2017-12-31",
+        "filedAt": "2020-02-25",
+        "accession": "0000019617-20-000257",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961720000257/corp10k2019.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 100705000000,
+          "pretaxIncome": 35900000000,
+          "incomeTax": 11459000000,
+          "netIncome": 24441000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-20-000257",
+            "filedAt": "2020-02-25",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961720000257/corp10k2019.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-20-000257",
+            "filedAt": "2020-02-25",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961720000257/corp10k2019.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-20-000257",
+            "filedAt": "2020-02-25",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961720000257/corp10k2019.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-20-000257",
+            "filedAt": "2020-02-25",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961720000257/corp10k2019.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "FY2018",
+        "label": "FY 2018",
+        "kind": "annual",
+        "fiscalYear": 2018,
+        "startDate": "2018-01-01",
+        "endDate": "2018-12-31",
+        "filedAt": "2021-02-23",
+        "accession": "0000019617-21-000236",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000236/jpm-20201231.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 108783000000,
+          "pretaxIncome": 40764000000,
+          "incomeTax": 8290000000,
+          "netIncome": 32474000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-21-000236",
+            "filedAt": "2021-02-23",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000236/jpm-20201231.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-21-000236",
+            "filedAt": "2021-02-23",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000236/jpm-20201231.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-21-000236",
+            "filedAt": "2021-02-23",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000236/jpm-20201231.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-21-000236",
+            "filedAt": "2021-02-23",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000236/jpm-20201231.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "FY2019",
+        "label": "FY 2019",
+        "kind": "annual",
+        "fiscalYear": 2019,
+        "startDate": "2019-01-01",
+        "endDate": "2019-12-31",
+        "filedAt": "2022-02-22",
+        "accession": "0000019617-22-000272",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000272/jpm-20211231.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 115720000000,
+          "pretaxIncome": 44866000000,
+          "incomeTax": 8435000000,
+          "netIncome": 36431000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-22-000272",
+            "filedAt": "2022-02-22",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000272/jpm-20211231.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-22-000272",
+            "filedAt": "2022-02-22",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000272/jpm-20211231.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-22-000272",
+            "filedAt": "2022-02-22",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000272/jpm-20211231.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-22-000272",
+            "filedAt": "2022-02-22",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000272/jpm-20211231.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "FY2020",
+        "label": "FY 2020",
+        "kind": "annual",
+        "fiscalYear": 2020,
+        "startDate": "2020-01-01",
+        "endDate": "2020-12-31",
+        "filedAt": "2023-02-21",
+        "accession": "0000019617-23-000231",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000231/jpm-20221231.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 119951000000,
+          "pretaxIncome": 35815000000,
+          "incomeTax": 6684000000,
+          "netIncome": 29131000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-23-000231",
+            "filedAt": "2023-02-21",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000231/jpm-20221231.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-23-000231",
+            "filedAt": "2023-02-21",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000231/jpm-20221231.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-23-000231",
+            "filedAt": "2023-02-21",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000231/jpm-20221231.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-23-000231",
+            "filedAt": "2023-02-21",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000231/jpm-20221231.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "FY2021",
+        "label": "FY 2021",
+        "kind": "annual",
+        "fiscalYear": 2021,
+        "startDate": "2021-01-01",
+        "endDate": "2021-12-31",
+        "filedAt": "2024-02-16",
+        "accession": "0000019617-24-000225",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000225/jpm-20231231.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 121649000000,
+          "pretaxIncome": 59562000000,
+          "incomeTax": 11228000000,
+          "netIncome": 48334000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-24-000225",
+            "filedAt": "2024-02-16",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000225/jpm-20231231.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-24-000225",
+            "filedAt": "2024-02-16",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000225/jpm-20231231.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-24-000225",
+            "filedAt": "2024-02-16",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000225/jpm-20231231.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-24-000225",
+            "filedAt": "2024-02-16",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000225/jpm-20231231.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "FY2022",
+        "label": "FY 2022",
+        "kind": "annual",
+        "fiscalYear": 2022,
+        "startDate": "2022-01-01",
+        "endDate": "2022-12-31",
+        "filedAt": "2025-02-14",
+        "accession": "0000019617-25-000270",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000270/jpm-20241231.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 128695000000,
+          "pretaxIncome": 46166000000,
+          "incomeTax": 8490000000,
+          "netIncome": 37676000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-25-000270",
+            "filedAt": "2025-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000270/jpm-20241231.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-25-000270",
+            "filedAt": "2025-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000270/jpm-20241231.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-25-000270",
+            "filedAt": "2025-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000270/jpm-20241231.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-25-000270",
+            "filedAt": "2025-02-14",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000270/jpm-20241231.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "FY2023",
+        "label": "FY 2023",
+        "kind": "annual",
+        "fiscalYear": 2023,
+        "startDate": "2023-01-01",
+        "endDate": "2023-12-31",
+        "filedAt": "2026-02-13",
+        "accession": "0001628280-26-008131",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 158104000000,
+          "pretaxIncome": 61612000000,
+          "incomeTax": 12060000000,
+          "netIncome": 49552000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "FY2024",
+        "label": "FY 2024",
+        "kind": "annual",
+        "fiscalYear": 2024,
+        "startDate": "2024-01-01",
+        "endDate": "2024-12-31",
+        "filedAt": "2026-02-13",
+        "accession": "0001628280-26-008131",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 177556000000,
+          "pretaxIncome": 75081000000,
+          "incomeTax": 16610000000,
+          "netIncome": 58471000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "FY2025",
+        "label": "FY 2025",
+        "kind": "annual",
+        "fiscalYear": 2025,
+        "startDate": "2025-01-01",
+        "endDate": "2025-12-31",
+        "filedAt": "2026-02-13",
+        "accession": "0001628280-26-008131",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 182447000000,
+          "pretaxIncome": 72595000000,
+          "incomeTax": 15547000000,
+          "netIncome": 57048000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-26-008131",
+            "filedAt": "2026-02-13",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      }
+    ],
+    "quarterly": [
+      {
+        "id": "2020-Q1",
+        "label": "Q1 FY2020",
+        "kind": "quarterly",
+        "fiscalYear": 2020,
+        "fiscalQuarter": 1,
+        "startDate": "2020-01-01",
+        "endDate": "2020-03-31",
+        "filedAt": "2021-05-04",
+        "accession": "0000019617-21-000292",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000292/jpm-20210331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 28286000000,
+          "pretaxIncome": 3210000000,
+          "incomeTax": 345000000,
+          "netIncome": 2865000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-21-000292",
+            "filedAt": "2021-05-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000292/jpm-20210331.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-21-000292",
+            "filedAt": "2021-05-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000292/jpm-20210331.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-21-000292",
+            "filedAt": "2021-05-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000292/jpm-20210331.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-21-000292",
+            "filedAt": "2021-05-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000292/jpm-20210331.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2020-Q2",
+        "label": "Q2 FY2020",
+        "kind": "quarterly",
+        "fiscalYear": 2020,
+        "fiscalQuarter": 2,
+        "startDate": "2020-04-01",
+        "endDate": "2020-06-30",
+        "filedAt": "2021-08-02",
+        "accession": "0000019617-21-000373",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000373/jpm-20210630.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 33075000000,
+          "pretaxIncome": 5660000000,
+          "incomeTax": 973000000,
+          "netIncome": 4687000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-21-000373",
+            "filedAt": "2021-08-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000373/jpm-20210630.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-21-000373",
+            "filedAt": "2021-08-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000373/jpm-20210630.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-21-000373",
+            "filedAt": "2021-08-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000373/jpm-20210630.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-21-000373",
+            "filedAt": "2021-08-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000373/jpm-20210630.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2020-Q3",
+        "label": "Q3 FY2020",
+        "kind": "quarterly",
+        "fiscalYear": 2020,
+        "fiscalQuarter": 3,
+        "startDate": "2020-07-01",
+        "endDate": "2020-09-30",
+        "filedAt": "2021-11-02",
+        "accession": "0000019617-21-000458",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000458/jpm-20210930.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 29255000000,
+          "pretaxIncome": 11769000000,
+          "incomeTax": 2326000000,
+          "netIncome": 9443000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-21-000458",
+            "filedAt": "2021-11-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000458/jpm-20210930.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-21-000458",
+            "filedAt": "2021-11-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000458/jpm-20210930.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-21-000458",
+            "filedAt": "2021-11-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000458/jpm-20210930.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-21-000458",
+            "filedAt": "2021-11-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961721000458/jpm-20210930.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2021-Q1",
+        "label": "Q1 FY2021",
+        "kind": "quarterly",
+        "fiscalYear": 2021,
+        "fiscalQuarter": 1,
+        "startDate": "2021-01-01",
+        "endDate": "2021-03-31",
+        "filedAt": "2022-05-03",
+        "accession": "0000019617-22-000319",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000319/jpm-20220331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 32266000000,
+          "pretaxIncome": 17697000000,
+          "incomeTax": 3397000000,
+          "netIncome": 14300000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-22-000319",
+            "filedAt": "2022-05-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000319/jpm-20220331.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-22-000319",
+            "filedAt": "2022-05-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000319/jpm-20220331.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-22-000319",
+            "filedAt": "2022-05-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000319/jpm-20220331.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-22-000319",
+            "filedAt": "2022-05-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000319/jpm-20220331.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2021-Q2",
+        "label": "Q2 FY2021",
+        "kind": "quarterly",
+        "fiscalYear": 2021,
+        "fiscalQuarter": 2,
+        "startDate": "2021-04-01",
+        "endDate": "2021-06-30",
+        "filedAt": "2022-08-03",
+        "accession": "0000019617-22-000422",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000422/jpm-20220630.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 30479000000,
+          "pretaxIncome": 15097000000,
+          "incomeTax": 3149000000,
+          "netIncome": 11948000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-22-000422",
+            "filedAt": "2022-08-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000422/jpm-20220630.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-22-000422",
+            "filedAt": "2022-08-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000422/jpm-20220630.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-22-000422",
+            "filedAt": "2022-08-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000422/jpm-20220630.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-22-000422",
+            "filedAt": "2022-08-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000422/jpm-20220630.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2021-Q3",
+        "label": "Q3 FY2021",
+        "kind": "quarterly",
+        "fiscalYear": 2021,
+        "fiscalQuarter": 3,
+        "startDate": "2021-07-01",
+        "endDate": "2021-09-30",
+        "filedAt": "2022-11-03",
+        "accession": "0000019617-22-000492",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000492/jpm-20220930.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 29647000000,
+          "pretaxIncome": 14111000000,
+          "incomeTax": 2424000000,
+          "netIncome": 11687000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-22-000492",
+            "filedAt": "2022-11-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000492/jpm-20220930.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-22-000492",
+            "filedAt": "2022-11-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000492/jpm-20220930.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-22-000492",
+            "filedAt": "2022-11-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000492/jpm-20220930.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-22-000492",
+            "filedAt": "2022-11-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961722000492/jpm-20220930.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2022-Q1",
+        "label": "Q1 FY2022",
+        "kind": "quarterly",
+        "fiscalYear": 2022,
+        "fiscalQuarter": 1,
+        "startDate": "2022-01-01",
+        "endDate": "2022-03-31",
+        "filedAt": "2023-05-03",
+        "accession": "0000019617-23-000310",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000310/jpm-20230331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 30717000000,
+          "pretaxIncome": 10063000000,
+          "incomeTax": 1781000000,
+          "netIncome": 8282000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-23-000310",
+            "filedAt": "2023-05-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000310/jpm-20230331.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-23-000310",
+            "filedAt": "2023-05-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000310/jpm-20230331.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-23-000310",
+            "filedAt": "2023-05-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000310/jpm-20230331.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-23-000310",
+            "filedAt": "2023-05-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000310/jpm-20230331.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2022-Q2",
+        "label": "Q2 FY2022",
+        "kind": "quarterly",
+        "fiscalYear": 2022,
+        "fiscalQuarter": 2,
+        "startDate": "2022-04-01",
+        "endDate": "2022-06-30",
+        "filedAt": "2023-08-03",
+        "accession": "0000019617-23-000432",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000432/jpm-20230630.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 30715000000,
+          "pretaxIncome": 10865000000,
+          "incomeTax": 2216000000,
+          "netIncome": 8649000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-23-000432",
+            "filedAt": "2023-08-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000432/jpm-20230630.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-23-000432",
+            "filedAt": "2023-08-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000432/jpm-20230630.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-23-000432",
+            "filedAt": "2023-08-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000432/jpm-20230630.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-23-000432",
+            "filedAt": "2023-08-03",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000432/jpm-20230630.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2022-Q3",
+        "label": "Q3 FY2022",
+        "kind": "quarterly",
+        "fiscalYear": 2022,
+        "fiscalQuarter": 3,
+        "startDate": "2022-07-01",
+        "endDate": "2022-09-30",
+        "filedAt": "2023-11-01",
+        "accession": "0000019617-23-000524",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000524/jpm-20230930.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 32716000000,
+          "pretaxIncome": 12001000000,
+          "incomeTax": 2264000000,
+          "netIncome": 9737000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-23-000524",
+            "filedAt": "2023-11-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000524/jpm-20230930.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-23-000524",
+            "filedAt": "2023-11-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000524/jpm-20230930.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-23-000524",
+            "filedAt": "2023-11-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000524/jpm-20230930.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-23-000524",
+            "filedAt": "2023-11-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961723000524/jpm-20230930.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2023-Q1",
+        "label": "Q1 FY2023",
+        "kind": "quarterly",
+        "fiscalYear": 2023,
+        "fiscalQuarter": 1,
+        "startDate": "2023-01-01",
+        "endDate": "2023-03-31",
+        "filedAt": "2024-05-01",
+        "accession": "0000019617-24-000326",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000326/jpm-20240331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 38349000000,
+          "pretaxIncome": 15967000000,
+          "incomeTax": 3345000000,
+          "netIncome": 12622000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-24-000326",
+            "filedAt": "2024-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000326/jpm-20240331.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-24-000326",
+            "filedAt": "2024-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000326/jpm-20240331.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-24-000326",
+            "filedAt": "2024-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000326/jpm-20240331.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-24-000326",
+            "filedAt": "2024-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000326/jpm-20240331.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2023-Q2",
+        "label": "Q2 FY2023",
+        "kind": "quarterly",
+        "fiscalYear": 2023,
+        "fiscalQuarter": 2,
+        "startDate": "2023-04-01",
+        "endDate": "2023-06-30",
+        "filedAt": "2024-08-02",
+        "accession": "0000019617-24-000453",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000453/jpm-20240630.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 41307000000,
+          "pretaxIncome": 17586000000,
+          "incomeTax": 3114000000,
+          "netIncome": 14472000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-24-000453",
+            "filedAt": "2024-08-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000453/jpm-20240630.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-24-000453",
+            "filedAt": "2024-08-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000453/jpm-20240630.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-24-000453",
+            "filedAt": "2024-08-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000453/jpm-20240630.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-24-000453",
+            "filedAt": "2024-08-02",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000453/jpm-20240630.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2023-Q3",
+        "label": "Q3 FY2023",
+        "kind": "quarterly",
+        "fiscalYear": 2023,
+        "fiscalQuarter": 3,
+        "startDate": "2023-07-01",
+        "endDate": "2023-09-30",
+        "filedAt": "2024-10-30",
+        "accession": "0000019617-24-000611",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000611/jpm-20240930.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 39874000000,
+          "pretaxIncome": 16733000000,
+          "incomeTax": 3582000000,
+          "netIncome": 13151000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-24-000611",
+            "filedAt": "2024-10-30",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000611/jpm-20240930.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-24-000611",
+            "filedAt": "2024-10-30",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000611/jpm-20240930.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-24-000611",
+            "filedAt": "2024-10-30",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000611/jpm-20240930.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-24-000611",
+            "filedAt": "2024-10-30",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000611/jpm-20240930.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2024-Q1",
+        "label": "Q1 FY2024",
+        "kind": "quarterly",
+        "fiscalYear": 2024,
+        "fiscalQuarter": 1,
+        "startDate": "2024-01-01",
+        "endDate": "2024-03-31",
+        "filedAt": "2025-05-01",
+        "accession": "0000019617-25-000421",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000421/jpm-20250331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 41934000000,
+          "pretaxIncome": 17293000000,
+          "incomeTax": 3874000000,
+          "netIncome": 13419000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-25-000421",
+            "filedAt": "2025-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000421/jpm-20250331.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-25-000421",
+            "filedAt": "2025-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000421/jpm-20250331.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-25-000421",
+            "filedAt": "2025-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000421/jpm-20250331.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-25-000421",
+            "filedAt": "2025-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000421/jpm-20250331.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2024-Q2",
+        "label": "Q2 FY2024",
+        "kind": "quarterly",
+        "fiscalYear": 2024,
+        "fiscalQuarter": 2,
+        "startDate": "2024-04-01",
+        "endDate": "2024-06-30",
+        "filedAt": "2025-08-05",
+        "accession": "0000019617-25-000615",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000615/jpm-20250630.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 50200000000,
+          "pretaxIncome": 23435000000,
+          "incomeTax": 5286000000,
+          "netIncome": 18149000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0000019617-25-000615",
+            "filedAt": "2025-08-05",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000615/jpm-20250630.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0000019617-25-000615",
+            "filedAt": "2025-08-05",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000615/jpm-20250630.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0000019617-25-000615",
+            "filedAt": "2025-08-05",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000615/jpm-20250630.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0000019617-25-000615",
+            "filedAt": "2025-08-05",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000001961725000615/jpm-20250630.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2024-Q3",
+        "label": "Q3 FY2024",
+        "kind": "quarterly",
+        "fiscalYear": 2024,
+        "fiscalQuarter": 3,
+        "startDate": "2024-07-01",
+        "endDate": "2024-09-30",
+        "filedAt": "2025-11-04",
+        "accession": "0001628280-25-048859",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828025048859/jpm-20250930.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 42654000000,
+          "pretaxIncome": 16978000000,
+          "incomeTax": 4080000000,
+          "netIncome": 12898000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0001628280-25-048859",
+            "filedAt": "2025-11-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828025048859/jpm-20250930.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-25-048859",
+            "filedAt": "2025-11-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828025048859/jpm-20250930.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-25-048859",
+            "filedAt": "2025-11-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828025048859/jpm-20250930.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-25-048859",
+            "filedAt": "2025-11-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828025048859/jpm-20250930.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2025-Q1",
+        "label": "Q1 FY2025",
+        "kind": "quarterly",
+        "fiscalYear": 2025,
+        "fiscalQuarter": 1,
+        "startDate": "2025-01-01",
+        "endDate": "2025-03-31",
+        "filedAt": "2026-05-01",
+        "accession": "0001628280-26-029344",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 45310000000,
+          "pretaxIncome": 18408000000,
+          "incomeTax": 3765000000,
+          "netIncome": 14643000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0001628280-26-029344",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-26-029344",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-26-029344",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-26-029344",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2025-Q2",
+        "label": "Q2 FY2025",
+        "kind": "quarterly",
+        "fiscalYear": 2025,
+        "fiscalQuarter": 2,
+        "startDate": "2025-04-01",
+        "endDate": "2025-06-30",
+        "filedAt": "2026-08-06",
+        "accession": "0001628280-26-054343",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 44912000000,
+          "pretaxIncome": 18284000000,
+          "incomeTax": 3297000000,
+          "netIncome": 14987000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0001628280-26-054343",
+            "filedAt": "2026-08-06",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-26-054343",
+            "filedAt": "2026-08-06",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-26-054343",
+            "filedAt": "2026-08-06",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-26-054343",
+            "filedAt": "2026-08-06",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2025-Q3",
+        "label": "Q3 FY2025",
+        "kind": "quarterly",
+        "fiscalYear": 2025,
+        "fiscalQuarter": 3,
+        "startDate": "2025-07-01",
+        "endDate": "2025-09-30",
+        "filedAt": "2025-11-04",
+        "accession": "0001628280-25-048859",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828025048859/jpm-20250930.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 46427000000,
+          "pretaxIncome": 18743000000,
+          "incomeTax": 4350000000,
+          "netIncome": 14393000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0001628280-25-048859",
+            "filedAt": "2025-11-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828025048859/jpm-20250930.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-25-048859",
+            "filedAt": "2025-11-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828025048859/jpm-20250930.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-25-048859",
+            "filedAt": "2025-11-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828025048859/jpm-20250930.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-25-048859",
+            "filedAt": "2025-11-04",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828025048859/jpm-20250930.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2026-Q1",
+        "label": "Q1 FY2026",
+        "kind": "quarterly",
+        "fiscalYear": 2026,
+        "fiscalQuarter": 1,
+        "startDate": "2026-01-01",
+        "endDate": "2026-03-31",
+        "filedAt": "2026-05-01",
+        "accession": "0001628280-26-029344",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 49836000000,
+          "pretaxIncome": 20479000000,
+          "incomeTax": 3985000000,
+          "netIncome": 16494000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0001628280-26-029344",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-26-029344",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-26-029344",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-26-029344",
+            "filedAt": "2026-05-01",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026029344/jpm-20260331.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      },
+      {
+        "id": "2026-Q2",
+        "label": "Q2 FY2026",
+        "kind": "quarterly",
+        "fiscalYear": 2026,
+        "fiscalQuarter": 2,
+        "startDate": "2026-04-01",
+        "endDate": "2026-06-30",
+        "filedAt": "2026-08-06",
+        "accession": "0001628280-26-054343",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+        "reportingCurrency": "USD",
+        "displayCurrency": "USD",
+        "derived": false,
+        "metrics": {
+          "revenue": 57347000000,
+          "pretaxIncome": 27516000000,
+          "incomeTax": 6361000000,
+          "netIncome": 21155000000
+        },
+        "metricSources": {
+          "revenue": {
+            "label": "Revenues, Net of Interest Expense",
+            "tag": "us-gaap:RevenuesNetOfInterestExpense",
+            "accession": "0001628280-26-054343",
+            "filedAt": "2026-08-06",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+            "method": "reported"
+          },
+          "pretaxIncome": {
+            "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+            "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+            "accession": "0001628280-26-054343",
+            "filedAt": "2026-08-06",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+            "method": "reported"
+          },
+          "incomeTax": {
+            "label": "Income Tax Expense (Benefit)",
+            "tag": "us-gaap:IncomeTaxExpenseBenefit",
+            "accession": "0001628280-26-054343",
+            "filedAt": "2026-08-06",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+            "method": "reported"
+          },
+          "netIncome": {
+            "label": "Net Income (Loss) Attributable to Parent",
+            "tag": "us-gaap:NetIncomeLoss",
+            "accession": "0001628280-26-054343",
+            "filedAt": "2026-08-06",
+            "sourceUrl": "https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm",
+            "method": "reported"
+          }
+        },
+        "coverage": {
+          "basics": true,
+          "segments": false,
+          "sankey": false
+        }
+      }
+    ],
+    "warnings": [
+      "Business-category data requires a reviewed filing adapter. Basic metrics can have different reporting scopes; missing metrics are not zero."
+    ],
+    "checkedAt": "2026-09-05T23:18:53.978Z"
+  },
+  "source": "Actual protected cloud response before first JPM original-matrix refresh, 2026-10-07. Complete reported financial fields retained; no source values synthesized."
+}
