@@ -6,6 +6,7 @@ import type {
 } from "./types";
 import type { PeriodV2 } from "./v2-types";
 import { sameDimensions } from "./business-rules";
+import { OriginalRevenueRowsError, originalThousandDollarRows } from "./original-revenue-rows";
 
 export const albemarleRevenueBasis =
   "Reported Albemarle business revenue under the original filing's classification. Every original business row or column, corporate amount, blank and subtotal is checked against the independent consolidated net-sales row. No business revenue or gross profit is estimated; a blank remains unfilled.";
@@ -32,88 +33,14 @@ const segment = (member: string) => ({
 const current = (c: ServiceRevenueCell, p: PeriodV2) =>
   c.fact?.startDate === p.startDate && c.fact.endDate === p.endDate;
 function physicalRows(rows: ServiceRevenueRow[], units: AlbemarleBusinessProof["units"]) {
-  const occupied = new Set<string>();
-  let prior = -1;
-  for (const row of rows) {
-    demand(
-      integer(row.rowIndex, 200) &&
-        row.rowIndex > prior &&
-        Array.isArray(row.cells) &&
-        row.cells.length >= 1 &&
-        row.cells.length <= 64,
-      "Invalid original revenue rows"
-    );
-    prior = row.rowIndex;
-    let column = 0;
-    for (const c of row.cells) {
-      while (occupied.has(`${row.rowIndex}:${column}`)) column++;
-      demand(
-        integer(c.columnIndex, 64) &&
-          c.columnIndex === column &&
-          integer(c.span, 64) &&
-          c.span >= 1 &&
-          integer(c.rowSpan, 2) &&
-          c.rowSpan >= 1 &&
-          (!c.fact || c.rowSpan === 1) &&
-          typeof c.label === "string" &&
-          c.label.length <= 250,
-        "Invalid original physical cell"
-      );
-      for (let y = 0; y < c.rowSpan; y++)
-        for (let x = 0; x < c.span; x++) {
-          const k = `${row.rowIndex + y}:${column + x}`;
-          demand(!occupied.has(k), "Overlapping source cells");
-          occupied.add(k);
-        }
-      column += c.span;
-      demand(column <= 64, "Oversized original row");
-      if (!c.fact) continue;
-      const f = c.fact,
-        d = f.declarations?.[0];
-      demand(
-        f.currency === "USD" &&
-          Number(f.cik) === 915913 &&
-          f.contextId &&
-          date(f.startDate) &&
-          date(f.endDate) &&
-          f.startDate < f.endDate &&
-          f.dimensions &&
-          Number.isSafeInteger(f.value) &&
-          f.decimals === -3 &&
-          !f.corroboratingContexts?.length &&
-          d &&
-          Array.isArray(f.declarations) &&
-          f.declarations.length >= 1 &&
-          f.declarations.length <= 2 &&
-          f.declarations.every(
-            (x) =>
-              x.tag === f.tag &&
-              x.contextId === f.contextId &&
-              x.unitRef === d.unitRef &&
-              x.scale === 3 &&
-              x.decimals === "-3" &&
-              x.originalScale === "3" &&
-              x.format === d.format &&
-              x.sign === d.sign
-          ) &&
-          units.some((u) => u.id === d.unitRef && u.measure === "iso4217:USD") &&
-          /^(?:ixt:(?:numdotdecimal|num-dot-decimal|zerodash|fixed-zero))?$/.test(d.format) &&
-          (d.sign === undefined || d.sign === "-"),
-        "Invalid original monetary proof"
-      );
-      const lexical = c.label.replace(/[,\s$]/g, "").replace(/^[(-]|\)$/g, "");
-      const zero = /^ixt:(?:zerodash|fixed-zero)$/.test(d.format);
-      demand(
-        zero
-          ? /^[—–-]$/.test(lexical) && f.value === 0 && d.sign === undefined
-          : /^\d+(?:\.\d+)?$/.test(lexical) &&
-              Number(lexical) * 1000 === Math.abs(f.value) &&
-              (d.sign === "-") === f.value < 0,
-        "Displayed revenue differs from the original fact"
-      );
-    }
+  try {
+    originalThousandDollarRows(rows, units, "0000915913");
+  } catch (e) {
+    if (e instanceof OriginalRevenueRowsError) throw new AlbemarleRevenueProofError(e.message);
+    throw e;
   }
 }
+
 const month = (p: PeriodV2) =>
   (
     ({ "03": "March", "06": "June", "09": "September", "12": "December" }) as Record<string, string>

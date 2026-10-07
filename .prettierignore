@@ -17,3 +17,12 @@ tests/fixtures/finance/*-service-revenue.html
 tests/fixtures/finance/*-business-revenue.html
 # Preserve the original bytes of the recorded Git metadata migration audit.
 docs/history/rewrite-audit.json
+
+# Unchanged original AMETEK source tables and declarations
+tests/fixtures/finance/ame-fy2017-business-revenue.html
+tests/fixtures/finance/ame-fy2021-business-revenue.html
+tests/fixtures/finance/ame-fy2025-business-revenue.html
+tests/fixtures/finance/ame-2020-q1-business-revenue.html
+tests/fixtures/finance/ame-2023-q2-business-revenue.html
+tests/fixtures/finance/ame-2026-q1-business-revenue.html
+tests/fixtures/finance/ame-2026-q2-business-revenue.html

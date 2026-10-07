@@ -12,7 +12,12 @@ for (const key of [
   "ALBBusinessFY2025",
   "ALBBusiness2026Q2",
   "ALBBusinessFY2017",
-  "ALBBusinessFY2021"
+  "ALBBusinessFY2021",
+  "AMEBusinessFY2025",
+  "AMEBusiness2026Q2",
+  "AMEBusinessFY2017",
+  "AMEBusinessFY2021",
+  "AMEBusiness2020Q1"
 ] as const)
   test(`${key}: original business revenue partition renders proportionally and exports`, async ({
     page
@@ -39,6 +44,15 @@ for (const key of [
       expect(metadata.businessBreakdownSource.albemarleRevenue.primary.tableIndex).toBe(
         period.kind === "annual" ? 1 : 0
       );
+    } else if (company.ticker === "AME") {
+      expect(metadata.businessBreakdownSource.method).toBe("reviewed-ametek-revenue");
+      expect(metadata.businessBreakdownSource.ametekRevenue.primary.title).toBe(
+        "AMETEK, Inc. Consolidated Statement of Income"
+      );
+      expect(metadata.segments.map((s: { label: string }) => s.label)).toEqual([
+        "Electronic Instruments",
+        "Electromechanical"
+      ]);
     } else {
       expect(metadata.businessBreakdownSource.method).toBe("reviewed-service-revenue-rows");
       expect(metadata.businessBreakdownSource.serviceRevenueRows.primary.tableIndex).toBe(0);

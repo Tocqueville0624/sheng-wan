@@ -107,6 +107,7 @@ if (selected)
     if (!corpus.issuers.some((c) => c.tickers.includes(ticker)))
       throw new Error(`Unknown corpus ticker: ${ticker}`);
 const parserFiles = [
+  "ametek-business-v2",
   "albemarle-business-v2",
   "original-revenue-grid",
   "fiscal-label",
@@ -141,6 +142,8 @@ const parserVersion = hash(
       readFile("src/features/finance/product-portfolios.ts", "utf8"),
       readFile("src/features/finance/service-revenue-rows.ts", "utf8"),
       readFile("src/features/finance/albemarle-revenue.ts", "utf8"),
+      readFile("src/features/finance/ametek-revenue.ts", "utf8"),
+      readFile("src/features/finance/original-revenue-rows.ts", "utf8"),
       readFile("src/features/finance/chart-model.ts", "utf8"),
       readFile("src/features/finance/signed-flow.ts", "utf8"),
       readFile("src/features/finance/shareholder-bridge.ts", "utf8"),

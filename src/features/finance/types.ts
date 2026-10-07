@@ -311,6 +311,19 @@ export type AlbemarleBusinessProof = {
   rows: ServiceRevenueRow[];
   primary: ServiceRevenueRowsProof["primary"];
 };
+/** Complete original AMETEK EIG/EMG closing row, including temporal headings,
+ * original comparative/YTD cells and an independent primary net-sales anchor. */
+export type AmetekBusinessProof = {
+  ruleId: "ame-original-closing-sales-v1";
+  reportDate: string;
+  form: string;
+  originalFiscalYear: number;
+  units: ServiceRevenueRowsProof["units"];
+  tableIndex: number;
+  headerRows: ServiceRevenueRow[];
+  revenue: ServiceRevenueRow;
+  primary: ServiceRevenueRowsProof["primary"];
+};
 export type ProductPortfolioProof = {
   ruleId: "abbv-original-product-portfolios-v1";
   startDate: string;
@@ -428,7 +441,9 @@ export type FinancialPeriod = {
       | "reviewed-segment-table"
       | "reported-product-portfolios"
       | "reviewed-service-revenue-rows"
-      | "reviewed-albemarle-revenue";
+      | "reviewed-albemarle-revenue"
+      | "reviewed-ametek-revenue";
+    ametekRevenue?: AmetekBusinessProof;
     albemarleRevenue?: AlbemarleBusinessProof;
     productPortfolios?: ProductPortfolioProof;
     serviceRevenueRows?: ServiceRevenueRowsProof;

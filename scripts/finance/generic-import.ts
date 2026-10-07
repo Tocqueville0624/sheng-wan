@@ -15,6 +15,7 @@ import { enrichOperatingNetPeriods } from "./operating-net-v2";
 import { enrichProductPortfolioPeriods } from "./product-portfolio-v2";
 import { enrichServiceRevenuePeriods } from "./service-revenue-v2";
 import { enrichAlbemarleBusinessPeriods } from "./albemarle-business-v2";
+import { enrichAmetekBusinessPeriods } from "./ametek-business-v2";
 
 /** Generic (unreviewed-issuer) imports share these steps between the Worker and CLI audits. */
 export const GENERIC_FILING_LIMIT = 30;
@@ -104,9 +105,10 @@ export function readGenericFiling(
   apply(enrichOperatingNetPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichShareholderPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichAlbemarleBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
+  apply(enrichAmetekBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   // This reviewed issuer stays fail-closed when its captions or corporate scope
   // change. A generic subset or another revenue classification is not a fallback.
-  if (identity.cik !== "0000915913") {
+  if (!["0000915913", "0001037868"].includes(identity.cik)) {
     apply(enrichBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
     apply(enrichReviewedBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
     apply(enrichMatrixBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
