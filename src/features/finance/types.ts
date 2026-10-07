@@ -345,6 +345,22 @@ export type ChurchDwightBusinessProof = {
   rows: ServiceRevenueRow[];
   primary: ServiceRevenueRowsProof["primary"];
 };
+/** Original disaggregated business/product hierarchy. Parent subtotals and
+ * geographic corroboration are retained separately from the disjoint leaves. */
+export type OriginalBusinessHierarchyProof = {
+  ruleId: "avy-original-business-hierarchy-v1" | "bax-original-business-hierarchy-v1";
+  reportDate: string;
+  form: string;
+  originalFiscalYear: number;
+  originalFiscalPeriod: string;
+  units: ServiceRevenueRowsProof["units"];
+  tableIndex: number;
+  rows: ServiceRevenueRow[];
+  caption: string;
+  fiscalCalendar: string;
+  primary: ServiceRevenueRowsProof["primary"];
+  materialProducts?: { tableIndex: number; rows: ServiceRevenueRow[]; caption: string };
+};
 export type ProductPortfolioProof = {
   ruleId: "abbv-original-product-portfolios-v1";
   startDate: string;
@@ -469,10 +485,12 @@ export type FinancialPeriod = {
       | "reviewed-albemarle-revenue"
       | "reviewed-ametek-revenue"
       | "reviewed-church-dwight-revenue"
+      | "reviewed-original-business-hierarchy"
       | "reviewed-original-standalone-revenue";
     standaloneRevenue?: OriginalStandaloneBusinessProof;
     ametekRevenue?: AmetekBusinessProof;
     churchDwightRevenue?: ChurchDwightBusinessProof;
+    originalBusinessHierarchy?: OriginalBusinessHierarchyProof;
     albemarleRevenue?: AlbemarleBusinessProof;
     productPortfolios?: ProductPortfolioProof;
     serviceRevenueRows?: ServiceRevenueRowsProof;

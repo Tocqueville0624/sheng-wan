@@ -1,0 +1,213 @@
+{
+  "ticker": "AVY",
+  "cik": "0000008818",
+  "filing": {
+    "accession": "0000008818-26-000109",
+    "filedAt": "2026-05-05",
+    "reportDate": "2026-03-31",
+    "form": "10-Q",
+    "primaryDocument": "avy-20260331.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm"
+  },
+  "period": {
+    "id": "2026-Q1",
+    "label": "Q1 FY2026",
+    "kind": "quarterly",
+    "fiscalYear": 2026,
+    "fiscalQuarter": 1,
+    "startDate": "2026-01-01",
+    "endDate": "2026-03-31",
+    "filedAt": "2026-05-05",
+    "accession": "0000008818-26-000109",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 2298500000,
+      "costOfRevenue": 1633700000,
+      "grossProfit": 664800000,
+      "pretaxIncome": 240400000,
+      "incomeTax": 72300000,
+      "netIncome": 168100000,
+      "sellingGeneralAndAdministrative": 375100000,
+      "expensesAndOtherItems": 424400000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Goods and Services Sold",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "method": "reported"
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "method": "reported",
+        "decimals": -5
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "method": "reported"
+      },
+      "expensesAndOtherItems": {
+        "label": "Gross profit less pretax profit",
+        "tag": "us-gaap:GrossProfit - us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "method": "calculated",
+        "inputs": [
+          "Gross profit (us-gaap:GrossProfit): https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+          "Income before taxes (us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest): https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    }
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+    "bytes": 996785,
+    "sha256": "e40fff1c676eb046bdfbca56072062f761fddf1ebb059bb04d9c73441a30da87"
+  },
+  "excerptSha256": "b6d178621f70f25cca48267c33167a696a8ceb9c411badd401310cc70ae8e0ae",
+  "excerptBytes": 144535,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 9,
+      "fixtureIndex": 0,
+      "tableSha256": "64e3f0eb72f96d95daf6be399b8cea3a563fed3c25746fe9e6947cb2aeda6408"
+    },
+    {
+      "originalIndex": 27,
+      "fixtureIndex": 1,
+      "tableSha256": "5a38431427963949ddd7d65cf3759b6a0796267a0ed1f5a552bfd357a14eeb3d"
+    }
+  ],
+  "expectedBusiness": [
+    {
+      "id": "reported-0000008818-Materials-Group",
+      "label": "Materials Group",
+      "revenue": 1649300000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "startDate": "2026-01-01",
+        "endDate": "2026-03-31",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:MaterialsGroupSegmentMember"
+        },
+        "value": 1649300000,
+        "decimals": -5,
+        "tableLabel": "Total Materials Group",
+        "rowLabel": "Total Materials Group",
+        "rowIndex": 9,
+        "columnIndex": 15
+      }
+    },
+    {
+      "id": "reported-0000008818-Apparel-and-other",
+      "label": "Apparel and other",
+      "revenue": 438000000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "startDate": "2026-01-01",
+        "endDate": "2026-03-31",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "srt:ProductOrServiceAxis": "avy:ApparelAndOtherMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:SolutionsGroupSegmentMember"
+        },
+        "value": 438000000,
+        "decimals": -5,
+        "tableLabel": "Apparel and other",
+        "rowLabel": "Apparel and other",
+        "rowIndex": 11,
+        "columnIndex": 15
+      }
+    },
+    {
+      "id": "reported-0000008818-Identification-Solutions-and-Vestcom",
+      "label": "Identification Solutions and Vestcom",
+      "revenue": 211200000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/8818/000000881826000109/avy-20260331.htm",
+        "accession": "0000008818-26-000109",
+        "filedAt": "2026-05-05",
+        "startDate": "2026-01-01",
+        "endDate": "2026-03-31",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+          "srt:ProductOrServiceAxis": "avy:IdentificationSolutionsAndVestcomMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "avy:SolutionsGroupSegmentMember"
+        },
+        "value": 211200000,
+        "decimals": -5,
+        "tableLabel": "Identification Solutions and Vestcom",
+        "rowLabel": "Identification Solutions and Vestcom",
+        "rowIndex": 12,
+        "columnIndex": 15
+      }
+    }
+  ],
+  "scope": "Test-only packaging. Complete original monetary tables, namespaces, header resources and fiscal declarations are unchanged pinned SEC markup. Visible preceding/following text and calendar excerpts are copied from the original source with HTML escaping only. Excerpt indexes are mapped to whole-source indexes; no amounts, contexts, dates or classifications are synthesized."
+}

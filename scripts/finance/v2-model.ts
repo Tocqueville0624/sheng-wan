@@ -31,6 +31,7 @@ import { albemarleRevenueProblem } from "../../src/features/finance/albemarle-re
 import { originalStandaloneBusinessProblem } from "../../src/features/finance/standalone-business";
 import { ametekRevenueProblem } from "../../src/features/finance/ametek-revenue";
 import { churchDwightRevenueProblem } from "../../src/features/finance/church-dwight-revenue";
+import { originalHierarchyProblem } from "../../src/features/finance/original-hierarchy-revenue";
 import {
   corroborateOriginalStatement,
   originalStatementCorroborationProblem
@@ -266,6 +267,10 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     if (period.revenueAdjustments?.some((item) => item.id === "source-rounding")) return;
     return business;
   }
+  if (proof.originalBusinessHierarchy && proof.method !== "reviewed-original-business-hierarchy")
+    return;
+  if (proof.method === "reviewed-original-business-hierarchy")
+    return originalHierarchyProblem(period) ? undefined : business;
   if (proof.churchDwightRevenue && proof.method !== "reviewed-church-dwight-revenue") return;
   if (proof.method === "reviewed-church-dwight-revenue")
     return churchDwightRevenueProblem(period) ? undefined : business;

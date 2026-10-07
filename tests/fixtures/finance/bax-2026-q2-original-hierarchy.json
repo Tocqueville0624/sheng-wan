@@ -1,0 +1,303 @@
+{
+  "ticker": "BAX",
+  "cik": "0000010456",
+  "filing": {
+    "accession": "0001628280-26-051118",
+    "filedAt": "2026-07-30",
+    "reportDate": "2026-06-30",
+    "form": "10-Q",
+    "primaryDocument": "bax-20260630.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm"
+  },
+  "period": {
+    "id": "2026-Q2",
+    "label": "Q2 FY2026",
+    "kind": "quarterly",
+    "fiscalYear": 2026,
+    "fiscalQuarter": 2,
+    "startDate": "2026-04-01",
+    "endDate": "2026-06-30",
+    "filedAt": "2026-07-30",
+    "accession": "0001628280-26-051118",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 2960000000,
+      "costOfRevenue": 1928000000,
+      "grossProfit": 1032000000,
+      "operatingIncome": 217000000,
+      "pretaxIncome": 158000000,
+      "incomeTax": 23000000,
+      "netIncome": 126000000,
+      "noncontrollingInterestIncome": 0,
+      "researchAndDevelopment": 129000000,
+      "sellingGeneralAndAdministrative": 735000000,
+      "operatingExpenses": 815000000,
+      "discontinuedOperationsIncome": -9000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Goods and Services Sold",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "noncontrollingInterestIncome": {
+        "label": "Net Income (Loss) Attributable to Noncontrolling Interest",
+        "tag": "us-gaap:NetIncomeLossAttributableToNoncontrollingInterest",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "researchAndDevelopment": {
+        "label": "Research and Development Expense",
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported"
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "operatingExpenses",
+        "tag": "grossProfit - operatingIncome",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "calculated",
+        "inputs": [
+          "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+          "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm"
+        ]
+      },
+      "discontinuedOperationsIncome": {
+        "label": "Income (loss) from discontinued operations, net of tax",
+        "tag": "us-gaap:IncomeLossFromDiscontinuedOperationsNetOfTax",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    },
+    "operatingExpensesBasis": "expenses-and-other-items-net"
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+    "bytes": 1949181,
+    "sha256": "4fb20047e7e7199411085c608d86d138c07e52290ef83eed4a21b46af279ae9e"
+  },
+  "excerptSha256": "381b78a64b6b93fe8571a02c29606d10fa78b2c1190eb7b3cef2cbfd2752bdcc",
+  "excerptBytes": 340478,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 10,
+      "fixtureIndex": 0,
+      "tableSha256": "4be47bcff1e6318ecd917f41b399255fd206fb6e28a377471481b2d319d1d652"
+    },
+    {
+      "originalIndex": 56,
+      "fixtureIndex": 1,
+      "tableSha256": "28400f85cc080176ce19818aceb814852ea7d9ad951e972cba90e27b606c6ee0"
+    }
+  ],
+  "expectedBusiness": [
+    {
+      "id": "reported-0000010456-Infusion-Therapies---Platforms",
+      "label": "Infusion Therapies & Platforms",
+      "revenue": 1745000000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "startDate": "2026-04-01",
+        "endDate": "2026-06-30",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ProductOrServiceAxis": "bax:InfusionTherapiesAndPlatformsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "bax:MedicalProductsAndTherapiesMember",
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+        },
+        "value": 1745000000,
+        "decimals": -6,
+        "tableLabel": "Infusion Therapies & Platforms",
+        "rowLabel": "Infusion Therapies & Platforms",
+        "rowIndex": 4,
+        "columnIndex": 10
+      }
+    },
+    {
+      "id": "reported-0000010456-Advanced-Surgery",
+      "label": "Advanced Surgery",
+      "revenue": 331000000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "startDate": "2026-04-01",
+        "endDate": "2026-06-30",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ProductOrServiceAxis": "bax:AdvancedSurgeryMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "bax:MedicalProductsAndTherapiesMember",
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+        },
+        "value": 331000000,
+        "decimals": -6,
+        "tableLabel": "Advanced Surgery",
+        "rowLabel": "Advanced Surgery",
+        "rowIndex": 5,
+        "columnIndex": 9
+      }
+    },
+    {
+      "id": "reported-0000010456-Care---Connectivity-Solutions",
+      "label": "Care & Connectivity Solutions",
+      "revenue": 502000000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "startDate": "2026-04-01",
+        "endDate": "2026-06-30",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ProductOrServiceAxis": "bax:CareAndConnectivitySolutionsMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "bax:HealthcareSystemsAndTechnologiesMember",
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+        },
+        "value": 502000000,
+        "decimals": -6,
+        "tableLabel": "Care & Connectivity Solutions",
+        "rowLabel": "Care & Connectivity Solutions",
+        "rowIndex": 7,
+        "columnIndex": 9
+      }
+    },
+    {
+      "id": "reported-0000010456-Front-Line-Care",
+      "label": "Front Line Care",
+      "revenue": 299000000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "startDate": "2026-04-01",
+        "endDate": "2026-06-30",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ProductOrServiceAxis": "bax:FrontLineCareMember",
+          "us-gaap:StatementBusinessSegmentsAxis": "bax:HealthcareSystemsAndTechnologiesMember",
+          "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember"
+        },
+        "value": 299000000,
+        "decimals": -6,
+        "tableLabel": "Front Line Care",
+        "rowLabel": "Front Line Care",
+        "rowIndex": 8,
+        "columnIndex": 9
+      }
+    },
+    {
+      "id": "reported-0000010456-Other",
+      "label": "Other",
+      "revenue": 83000000,
+      "revenueSource": {
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/10456/000162828026051118/bax-20260630.htm",
+        "accession": "0001628280-26-051118",
+        "filedAt": "2026-07-30",
+        "startDate": "2026-04-01",
+        "endDate": "2026-06-30",
+        "currency": "USD",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "dimensions": {
+          "srt:ConsolidationItemsAxis": "us-gaap:CorporateNonSegmentMember"
+        },
+        "value": 83000000,
+        "decimals": -6,
+        "tableLabel": "Other",
+        "rowLabel": "Other",
+        "rowIndex": 10,
+        "columnIndex": 9
+      }
+    }
+  ],
+  "scope": "Test-only packaging. Complete original monetary tables, namespaces, header resources and fiscal declarations are unchanged pinned SEC markup. Visible preceding/following text and calendar excerpts are copied from the original source with HTML escaping only. Excerpt indexes are mapped to whole-source indexes; no amounts, contexts, dates or classifications are synthesized."
+}
