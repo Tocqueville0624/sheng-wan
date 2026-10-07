@@ -1,9 +1,10 @@
 import { spawnSync } from "node:child_process";
 import { createRequire } from "node:module";
 import path from "node:path";
+import { readdirSync } from "node:fs";
 
 const cli = createRequire(import.meta.url).resolve("@playwright/test/cli");
-const args = process.argv.slice(2);
+const args = process.argv.slice(2).filter((arg) => arg !== "--");
 const explicitProject = args.some((arg) => /^--project(?:=|$)/.test(arg));
 const explicitOutput = args.some((arg) => /^--output(?:=|$)/.test(arg));
 
@@ -20,19 +21,32 @@ const run = (options: string[], logs?: string) => {
 };
 
 if (process.env.CI && !explicitProject) {
-  // Long Linux runs have lost the shared local Worker during viewport checks.
-  // Keep every test and the single browser worker, but give each project a fresh
-  // server process. Separate output directories preserve both sets of evidence.
+  // A project-long Worker can lose its proxy connection after successive heavy
+  // export fixtures. Isolate each suite and viewport in a fresh server process;
+  // keep every test, one browser worker, and all failure evidence. A failed suite
+  // still fails the run immediately; this is not a retry of failed assertions.
+  const suites = args.length
+    ? [undefined]
+    : readdirSync("tests/e2e")
+        .filter((name) => /\.spec\.ts$/.test(name))
+        .sort();
   for (const project of ["desktop", "mobile"]) {
-    const status = run(
-      [
-        ...args,
-        `--project=${project}`,
-        ...(!explicitOutput ? [`--output=test-results/${project}`] : [])
-      ],
-      path.resolve("test-results/browser-server-logs")
-    );
-    if (status) process.exit(status);
+    for (const suite of suites) {
+      const status = run(
+        [
+          ...(suite ? [`tests/e2e/${suite}`] : []),
+          ...args,
+          `--project=${project}`,
+          ...(!explicitOutput
+            ? [
+                `--output=test-results/${project}${suite ? "/" + suite.replace(/\.spec\.ts$/, "") : ""}`
+              ]
+            : [])
+        ],
+        path.resolve("test-results/browser-server-logs")
+      );
+      if (status) process.exit(status);
+    }
   }
 } else {
   process.exitCode = run(args);

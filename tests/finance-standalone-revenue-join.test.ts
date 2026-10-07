@@ -1,5 +1,16 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { replayOriginalStandaloneSourceProof } from "../src/features/finance/standalone-source-proof";
+import {
+  originalStandaloneBusinessSelections,
+  originalStandaloneBusinessSegments,
+  originalStandaloneBusinessBasis,
+  originalStandaloneBusinessProblem,
+  type OriginalStandaloneBusinessProof
+} from "../src/features/finance/standalone-business";
+import { businessPeriod, flowPeriod } from "../scripts/finance/v2-model";
+import { readOriginalStandaloneBusinessFiling } from "../scripts/finance/standalone-business-v2";
+import type { CompanyV2, PeriodV2 } from "../src/features/finance/v2-types";
 import {
   joinOriginalStandaloneRevenueRows,
   OriginalStandaloneRevenueJoinError,
@@ -198,7 +209,16 @@ describe("original separate XML and physical annual revenue joins", () => {
             "Consolidated Statement of Income (In thousands, except per share amounts)"
         },
         headers: { rowIndex: 2, labels: ["2018", "2017", "2016"], selectedIndex: 2 },
-        rows: [{ rowIndex: 3, label: "Net sales", columns: ranges, tag, dimensions: {} }]
+        rows: [
+          { rowIndex: 3, label: "Net sales", columns: ranges, tag, dimensions: {} },
+          {
+            rowIndex: 16,
+            label: "Provision for income taxes",
+            columns: ranges,
+            tag: "us-gaap:IncomeTaxExpenseBenefit",
+            dimensions: {}
+          }
+        ]
       },
       {
         tableIndex: 1,
@@ -315,5 +335,428 @@ describe("original separate XML and physical annual revenue joins", () => {
     const q = structuredClone(primary);
     q.rows[0].label = "Total revenues";
     expect(() => joinOriginalStandaloneRevenueRows(source, [q])).toThrow(/row or column/);
+  });
+});
+
+describe("standalone evidence replay and issuer business proof", () => {
+  const make = () => {
+    const selections = originalStandaloneBusinessSelections(source.cik, 2018, 2016, 1, 2);
+    const joined = joinOriginalStandaloneRevenueRows(source, selections);
+    const proof: OriginalStandaloneBusinessProof = {
+      ruleId: "alb-original-separate-revenue-v1",
+      reportDate: "2018-12-31",
+      form: "10-K",
+      source: joined.proof
+    };
+    const p: PeriodV2 = {
+      id: "FY2016",
+      label: "FY 2016",
+      kind: "annual",
+      fiscalYear: 2016,
+      startDate: "2016-01-01",
+      endDate: "2016-12-31",
+      filedAt: "2019-02-27",
+      accession: source.accession,
+      sourceUrl: source.primaryUrl,
+      reportingCurrency: "USD",
+      displayCurrency: "USD",
+      derived: true,
+      metrics: { revenue: 2677203000, incomeTax: 96263000 },
+      metricSources: {
+        revenue: {
+          label: "Revenues",
+          tag: "us-gaap:Revenues",
+          sourceUrl: source.primaryUrl,
+          accession: source.accession,
+          filedAt: "2019-02-27",
+          method: "reported"
+        }
+      },
+      coverage: { basics: true, segments: true, sankey: false }
+    };
+    p.segments = originalStandaloneBusinessSegments(p, proof);
+    p.segmentSourceUrl = p.sourceUrl;
+    p.segmentBasis = originalStandaloneBusinessBasis(proof.ruleId);
+    p.businessBreakdownSource = {
+      method: "reviewed-original-standalone-revenue",
+      standaloneRevenue: proof,
+      ruleId: proof.ruleId,
+      tableIndex: 2,
+      totalTableIndex: 1,
+      sourceUrl: p.sourceUrl,
+      accession: p.accession!,
+      revenueTag: "us-gaap:Revenues",
+      revenue: p.metrics.revenue!,
+      revenueDecimals: -3,
+      totalLabel: "Total net sales",
+      omittedSubtotals: []
+    };
+    return { joined, proof, p };
+  };
+  it("re-decodes original declarations after JSON storage without trusting parsed amount copies", () => {
+    const { proof, p } = make();
+    const saved = JSON.parse(JSON.stringify(proof.source));
+    const replay = replayOriginalStandaloneSourceProof(saved);
+    expect(replay.joins[1].monetaryRows.map((r) => r.originalFact.value)).toEqual([
+      668852000, 792425000, 1031501000, 180988000, 3437000, 2677203000
+    ]);
+    expect(saved).not.toHaveProperty("facts");
+    expect(originalStandaloneBusinessProblem(JSON.parse(JSON.stringify(p)))).toBeUndefined();
+    expect(businessPeriod(p)?.segments?.map((s) => s.label)).toEqual([
+      "Lithium",
+      "Bromine Specialties",
+      "Catalysts",
+      "All Other",
+      "Corporate"
+    ]);
+    expect(
+      p.segments?.every((s) => s.grossProfit === undefined && s.grossProfitSource === undefined)
+    ).toBe(true);
+  });
+  it("imports all five original Albemarle business categories without filling missing profit-flow items", async () => {
+    const { p } = make();
+    delete p.segments;
+    delete p.segmentBasis;
+    delete p.segmentSourceUrl;
+    delete p.businessBreakdownSource;
+    p.coverage = { basics: true, segments: false, sankey: false };
+    const next = await readOriginalStandaloneBusinessFiling(
+      source.primaryHtml,
+      source.instanceXml,
+      source.instanceUrl,
+      {
+        ticker: "ALB",
+        name: "Albemarle Corporation",
+        cik: source.cik,
+        sector: "Materials",
+        universe: "sp500"
+      },
+      {
+        accession: source.accession,
+        filedAt: p.filedAt,
+        reportDate: "2018-12-31",
+        form: "10-K",
+        primaryDocument: "a1231201810-kdocument.htm",
+        sourceUrl: source.primaryUrl,
+        directoryUrl: "https://www.sec.gov/Archives/edgar/data/915913/000091591319000021/"
+      },
+      undefined,
+      [p]
+    );
+    expect(next).toHaveLength(1);
+    expect(next[0].segments?.map((s) => s.revenue)).toEqual([
+      668852000, 792425000, 1031501000, 180988000, 3437000
+    ]);
+    expect(next[0].metrics).toEqual(p.metrics);
+    expect(next[0].coverage).toEqual({ basics: true, segments: true, sankey: false });
+    expect(flowPeriod(next[0])).toBeUndefined();
+    expect(p.segments).toBeUndefined();
+  });
+  it.each([
+    [
+      "altered original monetary lexical",
+      (p: PeriodV2) => {
+        const x = p.businessBreakdownSource!.standaloneRevenue!.source.originalXml;
+        x.declarations = x.declarations.map((s) => s.replace(">2677203000<", ">2677203001<"));
+      }
+    ],
+    [
+      "altered original year context",
+      (p: PeriodV2) => {
+        const x = p.businessBreakdownSource!.standaloneRevenue!.source.originalXml;
+        x.contexts = x.contexts.map((s) => s.replace("2016-01-01", "2015-01-01"));
+      }
+    ],
+    [
+      "altered original units",
+      (p: PeriodV2) => {
+        const x = p.businessBreakdownSource!.standaloneRevenue!.source.originalXml;
+        x.units = x.units.map((s) => s.replace("iso4217:USD", "iso4217:CAD"));
+      }
+    ],
+    [
+      "changed original business namespace",
+      (p: PeriodV2) => {
+        const x = p.businessBreakdownSource!.standaloneRevenue!.source.originalXml;
+        x.root = x.root.replace("http://www.albemarle.com/20181231", "https://example.invalid/alb");
+      }
+    ],
+    [
+      "synthetic inline cell",
+      (p: PeriodV2) => {
+        const t = p.businessBreakdownSource!.standaloneRevenue!.source.tables[1];
+        t.rows[6].cells[0].fact = {} as NonNullable<(typeof t.rows)[6]["cells"][0]["fact"]>;
+      }
+    ],
+    [
+      "omitted original physical row",
+      (p: PeriodV2) => {
+        p.businessBreakdownSource!.standaloneRevenue!.source.tables[1].rows.splice(5, 1);
+      }
+    ],
+    [
+      "altered business scope",
+      (p: PeriodV2) => {
+        p.businessBreakdownSource!.standaloneRevenue!.source.tables[1].selection.rows[0].dimensions =
+          {};
+      }
+    ],
+    [
+      "altered fiscal metadata",
+      (p: PeriodV2) => {
+        const x = p.businessBreakdownSource!.standaloneRevenue!.source.originalXml;
+        x.metadata = x.metadata.map((s) => s.replace(">2018<", ">2016<"));
+      }
+    ],
+    [
+      "altered original report date",
+      (p: PeriodV2) => {
+        p.businessBreakdownSource!.standaloneRevenue!.reportDate = "2017-12-31";
+      }
+    ],
+    [
+      "changed visible monetary value",
+      (p: PeriodV2) => {
+        const t = p.businessBreakdownSource!.standaloneRevenue!.source.tables[1];
+        t.rows[6].cells.find((c) => c.label === "668,852")!.label = "668,853";
+      }
+    ],
+    [
+      "renamed original business",
+      (p: PeriodV2) => {
+        p.businessBreakdownSource!.standaloneRevenue!.source.tables[1].rows[6].cells[0].label =
+          "New business";
+      }
+    ],
+    [
+      "altered segment amount",
+      (p: PeriodV2) => {
+        p.segments![0].revenue++;
+      }
+    ],
+    [
+      "different proof method",
+      (p: PeriodV2) => {
+        p.businessBreakdownSource!.method = "statement-revenue-rows";
+      }
+    ],
+    [
+      "foreign instance accession",
+      (p: PeriodV2) => {
+        const s = p.businessBreakdownSource!.standaloneRevenue!.source;
+        s.instanceSource.url = s.instanceSource.url.replace(
+          "000091591319000021",
+          "000091591319000022"
+        );
+      }
+    ]
+  ])("withholds %s when reading stored charts", (_label, mutate) => {
+    const { p } = make();
+    mutate(p);
+    expect(originalStandaloneBusinessProblem(p)).toBeDefined();
+    expect(businessPeriod(p)).toBeUndefined();
+  });
+  it("withholds a locally rebound original context namespace", () => {
+    const { proof } = make();
+    const x = proof.source.originalXml;
+    x.contexts[0] = x.contexts[0].replace(
+      /<xbrli:context /,
+      '<xbrli:context xmlns:us-gaap="https://example.invalid/" '
+    );
+    expect(() => replayOriginalStandaloneSourceProof(proof.source)).toThrow(/namespace/);
+  });
+});
+
+describe("original standalone AMETEK business import", () => {
+  const ame: OriginalStandaloneSource = {
+    cik: "0001037868",
+    accession: "0001193125-19-046947",
+    primaryUrl:
+      "https://www.sec.gov/Archives/edgar/data/1037868/000119312519046947/d640432d10k.htm",
+    primaryHtml: read("ame-fy2016-original-separate-income-business.html"),
+    instanceUrl:
+      "https://www.sec.gov/Archives/edgar/data/1037868/000119312519046947/ame-20181231.xml",
+    instanceXml: read("ame-original-standalone.xml")
+  };
+  const makePeriod = (): PeriodV2 => {
+    const filedAt = "2019-02-21",
+      metrics = {
+        revenue: 3840087000,
+        costOfRevenue: 2585499000,
+        totalOperatingCosts: 3049108000,
+        operatingIncome: 790979000,
+        pretaxIncome: 693103000,
+        incomeTax: 180945000,
+        netIncome: 512158000
+      };
+    const tags = {
+      revenue: "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax",
+      costOfRevenue: "us-gaap:CostOfGoodsAndServicesSold",
+      totalOperatingCosts: "us-gaap:CostsAndExpenses",
+      operatingIncome: "us-gaap:OperatingIncomeLoss",
+      pretaxIncome:
+        "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      incomeTax: "us-gaap:IncomeTaxExpenseBenefit",
+      netIncome: "us-gaap:NetIncomeLoss"
+    };
+    return {
+      id: "FY2016",
+      label: "FY 2016",
+      kind: "annual",
+      fiscalYear: 2016,
+      startDate: "2016-01-01",
+      endDate: "2016-12-31",
+      filedAt,
+      accession: ame.accession,
+      sourceUrl: ame.primaryUrl,
+      reportingCurrency: "USD",
+      displayCurrency: "USD",
+      derived: false,
+      metrics,
+      metricSources: Object.fromEntries(
+        Object.entries(tags).map(([key, tag]) => [
+          key,
+          {
+            label: key,
+            tag,
+            sourceUrl: ame.primaryUrl,
+            accession: ame.accession,
+            filedAt,
+            method: "reported"
+          }
+        ])
+      ),
+      coverage: { basics: true, segments: false, sankey: true }
+    };
+  };
+  it("validates complete closing EIG/EMG revenue with original independent primary tax and total", () => {
+    const p = makePeriod(),
+      joined = joinOriginalStandaloneRevenueRows(
+        ame,
+        originalStandaloneBusinessSelections(ame.cik, 2018, 2016, 0, 1)
+      );
+    const proof: OriginalStandaloneBusinessProof = {
+      ruleId: "ame-original-separate-closing-sales-v1",
+      reportDate: "2018-12-31",
+      form: "10-K",
+      source: joined.proof
+    };
+    expect(originalStandaloneBusinessSegments(p, proof).map((s) => s.revenue)).toEqual([
+      2360281000, 1479806000
+    ]);
+    expect(originalStandaloneBusinessBasis(proof.ruleId)).toContain("MD&A");
+    expect(
+      replayOriginalStandaloneSourceProof(
+        JSON.parse(JSON.stringify(joined.proof))
+      ).joins[0].monetaryRows.map((r) => r.originalFact.value)
+    ).toEqual([3840087000, 180945000]);
+  });
+  it("reads an actual standalone filing through the shared importer without altering prior financial metrics", async () => {
+    const p = makePeriod(),
+      prior = JSON.stringify([
+        p.metrics,
+        p.metricSources,
+        p.startDate,
+        p.endDate,
+        p.filedAt,
+        p.sourceUrl,
+        p.derived
+      ]);
+    const identity = {
+      ticker: "AME",
+      name: "AMETEK, Inc.",
+      cik: ame.cik,
+      sector: "Industrials",
+      universe: "sp500" as const
+    };
+    const filing = {
+      accession: ame.accession,
+      filedAt: p.filedAt,
+      reportDate: "2018-12-31",
+      form: "10-K",
+      primaryDocument: "d640432d10k.htm",
+      sourceUrl: ame.primaryUrl,
+      directoryUrl: "https://www.sec.gov/Archives/edgar/data/1037868/000119312519046947/"
+    };
+    const result = await readOriginalStandaloneBusinessFiling(
+      ame.primaryHtml,
+      ame.instanceXml,
+      ame.instanceUrl,
+      identity,
+      filing,
+      undefined,
+      [p]
+    );
+    expect(result).toHaveLength(1);
+    const next = result[0];
+    expect(next.coverage).toEqual({ basics: true, segments: true, sankey: true });
+    expect(next.segments?.map((s) => s.revenue)).toEqual([2360281000, 1479806000]);
+    expect(businessPeriod(next)).toBeDefined();
+    expect(flowPeriod(next)).toBeDefined();
+    expect(
+      JSON.stringify([
+        next.metrics,
+        next.metricSources,
+        next.startDate,
+        next.endDate,
+        next.filedAt,
+        next.sourceUrl,
+        next.derived
+      ])
+    ).toBe(prior);
+    expect(originalStandaloneBusinessProblem(JSON.parse(JSON.stringify(next)))).toBeUndefined();
+    expect(p.coverage.segments).toBe(false);
+    expect(p.segments).toBeUndefined();
+  });
+  it("preserves richer same-filing statements when Company Facts supplies a shorter candidate", async () => {
+    const p = makePeriod();
+    const basic: PeriodV2 = {
+      ...p,
+      metrics: { revenue: p.metrics.revenue, incomeTax: p.metrics.incomeTax },
+      coverage: { basics: true, segments: false, sankey: false }
+    };
+    const base: CompanyV2 = {
+      schemaVersion: 2,
+      ticker: "AME",
+      name: "AMETEK, Inc.",
+      cik: ame.cik,
+      accent: "#337d9f",
+      reportingCurrency: "USD",
+      latestPeriod: p.label,
+      dataStatus: "verified",
+      version: "fixture",
+      updatedAt: "2026-10-06T00:00:00Z",
+      warnings: [],
+      annual: [p],
+      quarterly: []
+    };
+    const result = await readOriginalStandaloneBusinessFiling(
+      ame.primaryHtml,
+      ame.instanceXml,
+      ame.instanceUrl,
+      {
+        ticker: "AME",
+        name: "AMETEK, Inc.",
+        cik: ame.cik,
+        sector: "Industrials",
+        universe: "sp500"
+      },
+      {
+        accession: ame.accession,
+        filedAt: p.filedAt,
+        reportDate: "2018-12-31",
+        form: "10-K",
+        primaryDocument: "d640432d10k.htm",
+        sourceUrl: ame.primaryUrl,
+        directoryUrl: "https://www.sec.gov/Archives/edgar/data/1037868/000119312519046947/"
+      },
+      base,
+      [basic]
+    );
+    expect(result).toHaveLength(1);
+    expect(result[0].metrics).toEqual(p.metrics);
+    expect(result[0].metricSources).toEqual(p.metricSources);
+    expect(result[0].coverage).toEqual({ basics: true, segments: true, sankey: true });
+    expect(base.annual[0].coverage.segments).toBe(false);
   });
 });

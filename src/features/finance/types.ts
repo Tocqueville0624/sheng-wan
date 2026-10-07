@@ -1,4 +1,5 @@
 import type { MetricSource } from "./v2-types";
+import type { OriginalStandaloneBusinessProof } from "./standalone-business";
 
 export type PeriodKind = "annual" | "quarterly";
 export type DataStatus = "verified" | "delayed" | "demo";
@@ -442,7 +443,9 @@ export type FinancialPeriod = {
       | "reported-product-portfolios"
       | "reviewed-service-revenue-rows"
       | "reviewed-albemarle-revenue"
-      | "reviewed-ametek-revenue";
+      | "reviewed-ametek-revenue"
+      | "reviewed-original-standalone-revenue";
+    standaloneRevenue?: OriginalStandaloneBusinessProof;
     ametekRevenue?: AmetekBusinessProof;
     albemarleRevenue?: AlbemarleBusinessProof;
     productPortfolios?: ProductPortfolioProof;

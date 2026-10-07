@@ -11,6 +11,8 @@ export default defineConfig(
       ".wrangler/**",
       ".cache/finance/**",
       "dist/**",
+      "test-results/**",
+      "playwright-report/**",
       "node_modules/**",
       "public/media/**",
       "src/env.d.ts"

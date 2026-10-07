@@ -3,9 +3,12 @@ import { readFile } from "node:fs/promises";
 import sharp from "sharp";
 import { businessFixture } from "../fixtures/finance/business-fixtures";
 import { reviewedFixture } from "../fixtures/finance/reviewed-fixtures";
+import { standaloneBusinessFixture } from "../fixtures/finance/standalone-business-fixtures";
 import { mockFinance } from "./finance-fixtures";
 
 const reported = {
+  AMEStandalone: [2360281000, 1479806000],
+  ALBStandalone: [668852000, 792425000, 1031501000, 180988000, 3437000],
   GEHC2024Q2: [3207e6, 1632e6],
   GEHC2024Q3: [3201e6, 1662e6],
   GEHC2025Q1: [3117e6, 1660e6],
@@ -33,6 +36,8 @@ const reported = {
 };
 
 for (const ticker of [
+  "AMEStandalone",
+  "ALBStandalone",
   "GEHC2024Q2",
   "GEHC2024Q3",
   "GEHC2025Q1",
@@ -62,29 +67,31 @@ for (const ticker of [
     page
   }, info) => {
     const { company, period } =
-      ticker === "GEHC2024Q2" ||
-      ticker === "GEHC2024Q3" ||
-      ticker === "GEHC2025Q1" ||
-      ticker === "GEHC2026Q2" ||
-      ticker === "ABT" ||
-      ticker === "ABTAnnual" ||
-      ticker === "WMT" ||
-      ticker === "MMM" ||
-      ticker === "MMMAnnual" ||
-      ticker === "JNJ" ||
-      ticker === "APD" ||
-      ticker === "AMAT" ||
-      ticker === "DHR" ||
-      ticker === "KO" ||
-      ticker === "GRMN" ||
-      ticker === "LII" ||
-      ticker === "MAS" ||
-      ticker === "VLTO" ||
-      ticker === "AOS" ||
-      ticker === "AOSAnnual" ||
-      ticker === "DOV"
-        ? reviewedFixture(ticker)
-        : businessFixture(ticker);
+      ticker === "AMEStandalone" || ticker === "ALBStandalone"
+        ? await standaloneBusinessFixture(ticker === "AMEStandalone" ? "AME" : "ALB")
+        : ticker === "GEHC2024Q2" ||
+            ticker === "GEHC2024Q3" ||
+            ticker === "GEHC2025Q1" ||
+            ticker === "GEHC2026Q2" ||
+            ticker === "ABT" ||
+            ticker === "ABTAnnual" ||
+            ticker === "WMT" ||
+            ticker === "MMM" ||
+            ticker === "MMMAnnual" ||
+            ticker === "JNJ" ||
+            ticker === "APD" ||
+            ticker === "AMAT" ||
+            ticker === "DHR" ||
+            ticker === "KO" ||
+            ticker === "GRMN" ||
+            ticker === "LII" ||
+            ticker === "MAS" ||
+            ticker === "VLTO" ||
+            ticker === "AOS" ||
+            ticker === "AOSAnnual" ||
+            ticker === "DOV"
+          ? reviewedFixture(ticker)
+          : businessFixture(ticker);
     expect(period.segments!.map((segment) => segment.revenue)).toEqual(reported[ticker]);
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
@@ -97,7 +104,7 @@ for (const ticker of [
     const history = page.locator(".history-chart");
     await expect(history).toBeVisible();
     const chart = page.locator(".flow-chart");
-    if (ticker !== "IBM" && ticker !== "APD" && ticker !== "AOSAnnual")
+    if (!["IBM", "APD", "AOSAnnual", "ALBStandalone"].includes(ticker))
       expect(period.coverage.sankey).toBe(true);
     if (period.coverage.sankey) {
       await expect(chart).toBeVisible();
@@ -323,6 +330,19 @@ for (const ticker of [
       );
       expect(csv).toContain("4393000000");
       expect(csv).toContain("statement-revenue-rows");
+    }
+    if (ticker.endsWith("Standalone")) {
+      const downloaded = page.waitForEvent("download");
+      await page.getByRole("button", { name: "Download CSV", exact: true }).click();
+      const path = info.outputPath(`${ticker.toLowerCase()}-original-source-history.csv`);
+      await (await downloaded).saveAs(path);
+      const csv = await readFile(path, "utf8");
+      expect(csv).toContain("reviewed-original-standalone-revenue");
+      expect(csv).toContain("original-separate-xbrl-html-v1");
+      for (const segment of period.segments!) expect(csv).toContain(String(segment.revenue));
+      expect(csv).toContain(
+        period.businessBreakdownSource!.standaloneRevenue!.source.instanceSource.url
+      );
     }
     expect(errors).toEqual([]);
     const screenshot = info.outputPath(`${ticker.toLowerCase()}-business-page.png`);

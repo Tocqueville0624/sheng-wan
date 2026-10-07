@@ -1,0 +1,61 @@
+<xbrli:xbrl xmlns:ame="http://www.amtexinc.com/20181231" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:deprecated="http://www.xbrl.org/2009/arcrole/deprecated" xmlns:country="http://xbrl.sec.gov/country/2017-01-31" xmlns:currency="http://xbrl.sec.gov/currency/2017-01-31" xmlns:dei="http://xbrl.sec.gov/dei/2018-01-31" xmlns:exch="http://xbrl.sec.gov/exch/2018-01-31" xmlns:invest="http://xbrl.sec.gov/invest/2013-01-31" xmlns:naics="http://xbrl.sec.gov/naics/2017-01-31" xmlns:sic="http://xbrl.sec.gov/sic/2011-01-31" xmlns:stpr="http://xbrl.sec.gov/stpr/2018-01-31" xmlns:us-gaap="http://fasb.org/us-gaap/2018-01-31" xmlns:xl="http://www.xbrl.org/2003/XLink" xmlns:utr="http://www.xbrl.org/2009/utr" xmlns:srt="http://fasb.org/srt/2018-01-31">
+<xbrli:context id="P01_01_2018To12_31_2018">
+<xbrli:entity>
+<xbrli:identifier scheme="http://www.sec.gov/CIK">0001037868</xbrli:identifier>
+</xbrli:entity>
+<xbrli:period>
+<xbrli:startDate>2018-01-01</xbrli:startDate>
+<xbrli:endDate>2018-12-31</xbrli:endDate>
+</xbrli:period>
+</xbrli:context>
+<xbrli:context id="P01_01_2016To12_31_2016">
+<xbrli:entity>
+<xbrli:identifier scheme="http://www.sec.gov/CIK">0001037868</xbrli:identifier>
+</xbrli:entity>
+<xbrli:period>
+<xbrli:startDate>2016-01-01</xbrli:startDate>
+<xbrli:endDate>2016-12-31</xbrli:endDate>
+</xbrli:period>
+</xbrli:context>
+<xbrli:context id="P01_01_2016To12_31_2016_ElectronicInstrumentsGroupMemberusgaapStatementBusinessSegmentsAxis">
+<xbrli:entity>
+<xbrli:identifier scheme="http://www.sec.gov/CIK">0001037868</xbrli:identifier>
+<xbrli:segment>
+<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">ame:ElectronicInstrumentsGroupMember</xbrldi:explicitMember>
+</xbrli:segment>
+</xbrli:entity>
+<xbrli:period>
+<xbrli:startDate>2016-01-01</xbrli:startDate>
+<xbrli:endDate>2016-12-31</xbrli:endDate>
+</xbrli:period>
+</xbrli:context>
+<xbrli:context id="P01_01_2016To12_31_2016_ElectromechanicalGroupMemberusgaapStatementBusinessSegmentsAxis">
+<xbrli:entity>
+<xbrli:identifier scheme="http://www.sec.gov/CIK">0001037868</xbrli:identifier>
+<xbrli:segment>
+<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">ame:ElectromechanicalGroupMember</xbrldi:explicitMember>
+</xbrli:segment>
+</xbrli:entity>
+<xbrli:period>
+<xbrli:startDate>2016-01-01</xbrli:startDate>
+<xbrli:endDate>2016-12-31</xbrli:endDate>
+</xbrli:period>
+</xbrli:context>
+<xbrli:unit id="Unit_USD">
+<xbrli:measure>iso4217:USD</xbrli:measure>
+</xbrli:unit>
+<us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax id="Factid_3659780" contextRef="P01_01_2016To12_31_2016" unitRef="Unit_USD" decimals="-3">3840087000</us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax>
+<us-gaap:CostOfGoodsAndServicesSold id="Factid_3659783" contextRef="P01_01_2016To12_31_2016" unitRef="Unit_USD" decimals="-3">2585499000</us-gaap:CostOfGoodsAndServicesSold>
+<us-gaap:CostsAndExpenses id="Factid_3659789" contextRef="P01_01_2016To12_31_2016" unitRef="Unit_USD" decimals="-3">3049108000</us-gaap:CostsAndExpenses>
+<us-gaap:OperatingIncomeLoss id="Factid_3659792" contextRef="P01_01_2016To12_31_2016" unitRef="Unit_USD" decimals="-3">790979000</us-gaap:OperatingIncomeLoss>
+<us-gaap:IncomeTaxExpenseBenefit id="Factid_3659804" contextRef="P01_01_2016To12_31_2016" unitRef="Unit_USD" decimals="-3">180945000</us-gaap:IncomeTaxExpenseBenefit>
+<us-gaap:NetIncomeLoss id="Factid_3659807" contextRef="P01_01_2016To12_31_2016" unitRef="Unit_USD" decimals="-3">512158000</us-gaap:NetIncomeLoss>
+<us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest id="Factid_3660248" contextRef="P01_01_2016To12_31_2016" unitRef="Unit_USD" decimals="-3">693103000</us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest>
+<us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax id="Factid_3661399" contextRef="P01_01_2016To12_31_2016_ElectronicInstrumentsGroupMemberusgaapStatementBusinessSegmentsAxis" unitRef="Unit_USD" decimals="-3">2360281000</us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax id="Factid_3661400" contextRef="P01_01_2016To12_31_2016_ElectromechanicalGroupMemberusgaapStatementBusinessSegmentsAxis" unitRef="Unit_USD" decimals="-3">1479806000</us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax>
+<us-gaap:IncomeTaxExpenseBenefit id="Factid_3659802" contextRef="P01_01_2018To12_31_2018" unitRef="Unit_USD" decimals="-3">209812000</us-gaap:IncomeTaxExpenseBenefit>
+<dei:DocumentPeriodEndDate id="Factid_3659762" contextRef="P01_01_2018To12_31_2018">2018-12-31</dei:DocumentPeriodEndDate>
+<dei:DocumentFiscalYearFocus id="Factid_3659763" contextRef="P01_01_2018To12_31_2018">2018</dei:DocumentFiscalYearFocus>
+<dei:DocumentFiscalPeriodFocus id="Factid_3659764" contextRef="P01_01_2018To12_31_2018">FY</dei:DocumentFiscalPeriodFocus>
+</xbrli:xbrl>
+

@@ -9,6 +9,11 @@ import { parseInlineXbrl } from "./ixbrl";
 import { issuerSources, type SecSource } from "./issuer-sources";
 import { flowPeriod, mergeV2, normalizeBasicCompany } from "./v2-model";
 import { companyFromFilingPeriods, missingStandardHistory } from "./current-filing";
+import {
+  originalStandaloneBusinessRequired,
+  readOriginalStandaloneBusinessFiling
+} from "./standalone-business-v2";
+import { originalStandaloneIndexUrl, originalStandaloneXmlUrls } from "./standalone-source-index";
 
 /** Returns an SEC response body; the CLI caches, tests may supply fixtures. */
 export type AuditSource = SecSource;
@@ -99,6 +104,36 @@ export async function auditCompanyDataset(
   for (const filing of todo) {
     try {
       const html = await source(filing.sourceUrl);
+      if (
+        !/<(?:[\w.-]+:)?nonFraction\b/i.test(html) &&
+        originalStandaloneBusinessRequired(identity, filing, company, basicPeriods)
+      ) {
+        try {
+          const index = await source(originalStandaloneIndexUrl(identity.cik, filing));
+          const urls = originalStandaloneXmlUrls(index, identity.cik, filing);
+          if (urls.length !== 1)
+            throw Error("Original standalone instance requires attachment review.");
+          const periods = await readOriginalStandaloneBusinessFiling(
+            html,
+            await source(urls[0]),
+            urls[0],
+            identity,
+            filing,
+            company,
+            basicPeriods
+          );
+          if (!periods.length)
+            throw Error("Reviewed original standalone layout did not yield a business partition.");
+          company = publish(company, periods);
+        } catch (error) {
+          warnings.push(
+            `${filing.reportDate}: standalone source: ${error instanceof Error ? error.message : error}`
+          );
+        }
+        // Standalone reports have no inline declarations; the previous inline
+        // reader has no new periods to compare from this original source.
+        continue;
+      }
       company = publish(
         company,
         readGenericFiling(html, identity, filing, company, basicPeriods, industrySic)

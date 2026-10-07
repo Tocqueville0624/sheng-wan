@@ -17,8 +17,14 @@ import { extractFactsV2, parseFactsDocument } from "./facts-v2";
 import { genericFilingTodo } from "./generic-import";
 import { issuerSources } from "./issuer-sources";
 import { fetchSec, readSecCache } from "./sec-client";
+import {
+  readPinnedCorpusSource,
+  registerCachedOriginalStandaloneSources,
+  type CorpusSourceRecord
+} from "./corpus-source-records";
+import { originalStandaloneIndexUrl, originalStandaloneXmlUrls } from "./standalone-source-index";
 
-type SourceRecord = { url: string; bytes: number; sha256: string };
+type SourceRecord = CorpusSourceRecord;
 type IssuerRecord = {
   cik: string;
   ticker: string;
@@ -52,6 +58,9 @@ const catalog = catalogData as FinanceCatalog;
 const args = process.argv.slice(2).filter((arg) => arg !== "--");
 const option = (name: string) => args[args.indexOf(name) + 1];
 const audit = args.includes("--audit");
+const registerAttachments = args.includes("--register-cached-attachments");
+if (audit && registerAttachments)
+  throw Error("Register acquired attachments before offline audit.");
 const force = args.includes("--force");
 const limit = args.includes("--limit") ? Number(option("--limit")) : Infinity;
 if (!args.includes("--all") && !args.includes("--tickers"))
@@ -107,6 +116,11 @@ if (selected)
     if (!corpus.issuers.some((c) => c.tickers.includes(ticker)))
       throw new Error(`Unknown corpus ticker: ${ticker}`);
 const parserFiles = [
+  "standalone-xbrl",
+  "standalone-revenue-reader",
+  "standalone-business-v2",
+  "standalone-source-index",
+  "corpus-source-records",
   "ametek-business-v2",
   "albemarle-business-v2",
   "original-revenue-grid",
@@ -144,6 +158,9 @@ const parserVersion = hash(
       readFile("src/features/finance/albemarle-revenue.ts", "utf8"),
       readFile("src/features/finance/ametek-revenue.ts", "utf8"),
       readFile("src/features/finance/original-revenue-rows.ts", "utf8"),
+      readFile("src/features/finance/standalone-revenue-rows.ts", "utf8"),
+      readFile("src/features/finance/standalone-source-proof.ts", "utf8"),
+      readFile("src/features/finance/standalone-business.ts", "utf8"),
       readFile("src/features/finance/chart-model.ts", "utf8"),
       readFile("src/features/finance/signed-flow.ts", "utf8"),
       readFile("src/features/finance/shareholder-bridge.ts", "utf8"),
@@ -161,7 +178,28 @@ for (const entry of corpus.issuers) {
   if (selected && !entry.tickers.some((ticker) => selected.has(ticker))) continue;
   if (processed >= limit) break;
   const identity = catalog.companies.find((c) => c.cik === entry.cik)!;
-  if (audit) {
+  if (registerAttachments) {
+    processed++;
+    let registered = 0;
+    for (const filing of entry.filingTargets) {
+      try {
+        const additions = await registerCachedOriginalStandaloneSources(
+          entry.cik,
+          filing,
+          entry.sourceRecords,
+          readSecCache
+        );
+        entry.sourceRecords.push(...additions);
+        registered += additions.length;
+      } catch (error) {
+        process.stdout.write(
+          `${entry.ticker} attachment inventory withheld: ${error instanceof Error ? error.message : error}\n`
+        );
+      }
+    }
+    await persist();
+    process.stdout.write(`${entry.ticker}: registered ${registered} original attachment sources\n`);
+  } else if (audit) {
     const sourceVersion = hash(
       JSON.stringify({
         download: entry.download,
@@ -185,11 +223,8 @@ for (const entry of corpus.issuers) {
       continue;
     processed++;
     try {
-      const source = async (url: string) => {
-        const cached = await readSecCache(url);
-        if (cached === undefined) throw new Error(`Unacquired source: ${url}`);
-        return cached;
-      };
+      const source = (url: string) =>
+        readPinnedCorpusSource(url, entry.sourceRecords, readSecCache);
       const seed = bundledData.companies.find((c) => c.cik === entry.cik) as CompanyV2 | undefined;
       const result = await auditCompanyDataset(identity, source, 30, seed);
       const capability = (p: PeriodV2 | undefined) =>
@@ -270,7 +305,12 @@ for (const entry of corpus.issuers) {
       entry.filingTargets = corpusFilings(acquired.filings, supplement);
       for (const filing of entry.filingTargets) {
         try {
-          await source(filing.sourceUrl);
+          const html = await source(filing.sourceUrl);
+          if (!/<(?:[\w.-]+:)?nonFraction\b/i.test(html)) {
+            const index = await source(originalStandaloneIndexUrl(entry.cik, filing));
+            for (const url of originalStandaloneXmlUrls(index, entry.cik, filing))
+              await source(url);
+          }
         } catch (error) {
           entry.errors.push(
             `${filing.accession}: ${error instanceof Error ? error.message : error}`
