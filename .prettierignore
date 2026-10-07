@@ -26,3 +26,7 @@ tests/fixtures/finance/ame-2020-q1-business-revenue.html
 tests/fixtures/finance/ame-2023-q2-business-revenue.html
 tests/fixtures/finance/ame-2026-q1-business-revenue.html
 tests/fixtures/finance/ame-2026-q2-business-revenue.html
+
+# Preserve original separate-XBRL primary/business HTML source bytes.
+tests/fixtures/finance/alb-fy2016-original-separate-income-business.html
+tests/fixtures/finance/ame-fy2016-original-separate-income-business.html
