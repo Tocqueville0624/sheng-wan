@@ -10,7 +10,15 @@ export type BusinessRule = {
   separateTotal?: boolean;
   /** A complete, consecutive original revenue section, including its closing
    * total and comparative columns. Only the reviewed USD scales participate. */
-  originalRows?: { scale: 3 | 6; closingLabel: string; annualHeading?: "for-years-ended" };
+  originalRows?: {
+    scale: 3 | 6;
+    closingLabel: string;
+    annualHeading?: "for-years-ended";
+    /** Finite original Align segment profile: units precede the tables and the
+     * independent primary revenue has a different visible row label. */
+    profile?: "algn-operating-segments";
+    primaryLabel?: string;
+  };
   /** A reviewed external-customer row, distinct from gross/intersegment sales.
    * Every source column is accounted for, including duplicate totals and blanks.
    */
@@ -31,6 +39,34 @@ export type BusinessRule = {
 };
 
 export const businessRules: BusinessRule[] = [
+  ...["Member", "SegmentMember"].map<BusinessRule>((suffix, index) => ({
+    id: `algn-original-operating-segments-${index}-rows-v1`,
+    cik: "0001097149",
+    totalTag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    totalLabel: "Total net revenues",
+    layout: "rows",
+    separateTotal: true,
+    originalRows: {
+      scale: 3,
+      closingLabel: "Total net revenues",
+      primaryLabel: "Net revenues",
+      profile: "algn-operating-segments"
+    },
+    basis:
+      "Reported Clear Aligner and Systems and Services revenue in the complete original segment section. Every comparative and cumulative column reconciles to both the segment total and independent primary net revenue. The original operating-segment and consolidation scopes are retained; no business revenue or profit is estimated.",
+    branches: [
+      ["Clear Aligner", "ClearAligner"],
+      ["Systems and Services", "SystemsAndServices"]
+    ].map(([label, member]) => ({
+      label,
+      rowLabel: label,
+      tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      dimensions: {
+        "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+        "us-gaap:StatementBusinessSegmentsAxis": `algn:${member}${suffix}`
+      }
+    }))
+  })),
   {
     id: "unh-original-premiums-products-services-investment-rows-v1",
     cik: "0000731766",

@@ -111,7 +111,13 @@ export function readOriginalStandalonePreparedRevenueRows(
     (source.cik === "0001090872" &&
       s.fiscalProfile === "agilent-october" &&
       s.scale === 6 &&
-      [2016, 2017, 2018].some((year) => start === `${year - 1}-11-01` && end === `${year}-10-31`));
+      [2016, 2017, 2018].some(
+        (year) => start === `${year - 1}-11-01` && end === `${year}-10-31`
+      )) ||
+    (source.cik === "0001097149" &&
+      source.accession === "0001097149-19-000009" &&
+      s.scale === undefined &&
+      [2016, 2017, 2018].some((year) => start === `${year}-01-01` && end === `${year}-12-31`));
   const neededFacts = instance.facts.filter((f) =>
     selections.some((s) =>
       s.rows.some(

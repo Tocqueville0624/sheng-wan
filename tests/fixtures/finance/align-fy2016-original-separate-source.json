@@ -1,0 +1,130 @@
+{
+  "scope": "Two unchanged original HTML excerpts concatenated with newline. Actual root, contexts, units and 45 original financial XML declarations across all three years; 48 physical source-cell bindings. Whole-source and excerpt hashes are distinct. No synthesized inline XML or invented facts.",
+  "cik": "0001097149",
+  "filing": {
+    "accession": "0001097149-19-000009",
+    "filedAt": "2019-02-28",
+    "reportDate": "2018-12-31",
+    "form": "10-K",
+    "primaryDocument": "algn-20181231x10k.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm"
+  },
+  "sourcePrimary": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+    "bytes": 2555347,
+    "sha256": "df8568ae4bcc84d61d222fb310e960984fc1096d922d117b39ea5808231f02ce"
+  },
+  "sourceInstance": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231.xml",
+    "bytes": 3092706,
+    "sha256": "ae473da98403edf32f090398f8d25d653b9749c47d7cf058deca8057000cbe4f"
+  },
+  "originalTableIndexes": [189, 238],
+  "excerptSha256": "ec2e3a1484f893de07456745b51343b974748a8b557a194b8aaadcc1ba61486e",
+  "instanceExcerptSha256": "513638d4af645e5e6fa0c72b8f3b7964bb9881268f56c545ac654ee8e24a750b",
+  "preservedPeriod": {
+    "id": "FY2016",
+    "label": "FY 2016",
+    "kind": "annual",
+    "fiscalYear": 2016,
+    "startDate": "2016-01-01",
+    "endDate": "2016-12-31",
+    "filedAt": "2019-02-28",
+    "accession": "0001097149-19-000009",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": false,
+    "metrics": {
+      "revenue": 1079874000,
+      "costOfRevenue": 264580000,
+      "grossProfit": 815294000,
+      "operatingExpenses": 566373000,
+      "operatingIncome": 248921000,
+      "pretaxIncome": 242566000,
+      "incomeTax": 51200000,
+      "netIncome": 189682000,
+      "researchAndDevelopment": 75720000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0001097149-19-000009",
+        "filedAt": "2019-02-28",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Revenue",
+        "tag": "us-gaap:CostOfRevenue",
+        "accession": "0001097149-19-000009",
+        "filedAt": "2019-02-28",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+        "method": "reported"
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0001097149-19-000009",
+        "filedAt": "2019-02-28",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "Operating Expenses",
+        "tag": "us-gaap:OperatingExpenses",
+        "accession": "0001097149-19-000009",
+        "filedAt": "2019-02-28",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+        "method": "reported"
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001097149-19-000009",
+        "filedAt": "2019-02-28",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+        "method": "reported"
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Equity Method Investments, Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "accession": "0001097149-19-000009",
+        "filedAt": "2019-02-28",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+        "method": "reported"
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001097149-19-000009",
+        "filedAt": "2019-02-28",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+        "method": "reported"
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001097149-19-000009",
+        "filedAt": "2019-02-28",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+        "method": "reported"
+      },
+      "researchAndDevelopment": {
+        "label": "Research and Development Expense",
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "accession": "0001097149-19-000009",
+        "filedAt": "2019-02-28",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714919000009/algn-20181231x10k.htm",
+        "method": "reported"
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": false
+    }
+  }
+}

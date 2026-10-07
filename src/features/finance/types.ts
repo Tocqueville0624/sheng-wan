@@ -1,6 +1,7 @@
 import type { MetricSource } from "./v2-types";
 import type { OriginalStandaloneBusinessProof } from "./standalone-business";
 import type { AlbemarleInlineIncomeProof } from "./albemarle-inline-income";
+import type { AlignInlineIncomeProof } from "./align-inline-income";
 
 export type PeriodKind = "annual" | "quarterly";
 export type DataStatus = "verified" | "delayed" | "demo";
@@ -405,6 +406,7 @@ export type FinancialPeriod = {
   shareholderBridge?: ShareholderIncomeBridge;
   operatingItems?: OperatingItems;
   grossOperatingItems?: GrossOperatingItems;
+  alignInlineIncome?: AlignInlineIncomeProof;
   directNetItems?: DirectNetItems;
   operatingNetItems?: OperatingNetItems;
   afterTaxTransactionItems?: AfterTaxTransactionItems;
@@ -460,6 +462,9 @@ export type FinancialPeriod = {
       units: ServiceRevenueRowsProof["units"];
       /** Independent primary revenue, with its original headers and blanks. */
       primaryRows?: ServiceRevenueRow[];
+      /** Unchanged original text immediately preceding the reviewed table. */
+      precedingText?: string;
+      primaryPrecedingText?: string;
     };
     ruleId?: string;
     tableIndex: number;

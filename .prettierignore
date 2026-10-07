@@ -55,3 +55,9 @@ tests/fixtures/finance/unitedhealth-fy2016-original-separate-financial.xml
 # Preserve unchanged original Agilent separate HTML/XML financial source excerpts.
 tests/fixtures/finance/agilent-fy2016-original-separate-income-business.html
 tests/fixtures/finance/agilent-fy2016-original-separate-financial.xml
+
+# Preserve unchanged original Align Technology HTML/XML source excerpts.
+tests/fixtures/finance/align-fy2016-original-separate-income-business.html
+tests/fixtures/finance/align-fy2016-original-separate-financial.xml
+tests/fixtures/finance/align-*-original-primary-business.html
+tests/fixtures/finance/align-fy2019-original-income.html

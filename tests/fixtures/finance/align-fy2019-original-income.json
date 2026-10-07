@@ -1,0 +1,344 @@
+{
+  "scope": "Original raw source tables, external titles, namespace, contexts, units and fiscal declarations copied unchanged from pinned SEC bytes. Table indexes map the excerpt separately from the original. No synthetic facts.",
+  "cik": "0001097149",
+  "ticker": "ALGN",
+  "filing": {
+    "accession": "0001097149-22-000011",
+    "filedAt": "2022-02-25",
+    "reportDate": "2021-12-31",
+    "form": "10-K",
+    "primaryDocument": "algn-20211231.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm"
+  },
+  "sourceSha256": "241d6e9c2c506339116349b7c76e8a3963e2d8d4613aa9918c8e28ceeacdc820",
+  "sourceBytes": 2949583,
+  "excerptSha256": "db11995ceef7b9662c58a68b3ce584f6ce9d0508e83eef8dce2a661808dd3a8e",
+  "excerptBytes": 282839,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 24,
+      "fixtureIndex": 0
+    }
+  ],
+  "preservedPeriod": {
+    "id": "FY2019",
+    "label": "FY 2019",
+    "kind": "annual",
+    "fiscalYear": 2019,
+    "startDate": "2019-01-01",
+    "endDate": "2019-12-31",
+    "filedAt": "2022-02-25",
+    "accession": "0001097149-22-000011",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": false,
+    "metrics": {
+      "revenue": 2406796000,
+      "costOfRevenue": 662899000,
+      "grossProfit": 1743897000,
+      "operatingExpenses": 1201404000,
+      "operatingIncome": 542493000,
+      "pretaxIncome": 562651000,
+      "incomeTax": 112347000,
+      "netIncome": 442776000,
+      "researchAndDevelopment": 157361000,
+      "sellingGeneralAndAdministrative": 1072053000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Revenue",
+        "tag": "us-gaap:CostOfRevenue",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported"
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "Operating Expenses",
+        "tag": "us-gaap:OperatingExpenses",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported"
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported"
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported"
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported"
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported"
+      },
+      "researchAndDevelopment": {
+        "label": "Research and Development Expense",
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported"
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported"
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": true,
+      "sankey": false
+    },
+    "segments": [
+      {
+        "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-algn-ClearAlignerMember",
+        "label": "Clear Aligner",
+        "revenue": 2025750000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+          "accession": "0001097149-22-000011",
+          "filedAt": "2022-02-25",
+          "startDate": "2019-01-01",
+          "endDate": "2019-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "algn:ClearAlignerMember"
+          },
+          "value": 2025750000,
+          "decimals": -3,
+          "tableLabel": "Clear Aligner"
+        },
+        "grossProfit": 1499713000,
+        "grossProfitSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+          "accession": "0001097149-22-000011",
+          "filedAt": "2022-02-25",
+          "startDate": "2019-01-01",
+          "endDate": "2019-12-31",
+          "reportingCurrency": "USD",
+          "method": "reported",
+          "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "tag": "us-gaap:GrossProfit",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "algn:ClearAlignerMember"
+          },
+          "value": 1499713000
+        }
+      },
+      {
+        "id": "reported-us-gaap-RevenueFromContractWithCustomerExcludingAssessedTax-algn-SystemsAndServicesMember",
+        "label": "Systems and Services",
+        "revenue": 381046000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+          "accession": "0001097149-22-000011",
+          "filedAt": "2022-02-25",
+          "startDate": "2019-01-01",
+          "endDate": "2019-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "algn:SystemsAndServicesMember"
+          },
+          "value": 381046000,
+          "decimals": -3,
+          "tableLabel": "Systems and Services"
+        },
+        "grossProfit": 244184000,
+        "grossProfitSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+          "accession": "0001097149-22-000011",
+          "filedAt": "2022-02-25",
+          "startDate": "2019-01-01",
+          "endDate": "2019-12-31",
+          "reportingCurrency": "USD",
+          "method": "reported",
+          "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "tag": "us-gaap:GrossProfit",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "algn:SystemsAndServicesMember"
+          },
+          "value": 244184000
+        }
+      }
+    ],
+    "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+    "segmentBasis": "Revenue by reported operating segment, using one classification from the cited statement table.",
+    "businessBreakdownSource": {
+      "method": "statement-revenue-rows",
+      "tableIndex": 64,
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+      "accession": "0001097149-22-000011",
+      "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue": 2406796000,
+      "revenueDecimals": -3,
+      "axis": "us-gaap:StatementBusinessSegmentsAxis",
+      "totalLabel": "Total net revenues",
+      "omittedSubtotals": []
+    }
+  },
+  "period": {
+    "id": "FY2021",
+    "label": "FY 2021",
+    "kind": "annual",
+    "fiscalYear": 2021,
+    "startDate": "2021-01-01",
+    "endDate": "2021-12-31",
+    "filedAt": "2022-02-25",
+    "accession": "0001097149-22-000011",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": false,
+    "metrics": {
+      "revenue": 3952584000,
+      "incomeTax": 240403000,
+      "pretaxIncome": 1012423000,
+      "netIncome": 772020000,
+      "operatingIncome": 976400000,
+      "grossProfit": 2935355000,
+      "costOfRevenue": 1017229000,
+      "operatingExpenses": 1958955000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Reported revenue",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "incomeTax": {
+        "label": "Provision for (benefit from) income taxes",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "pretaxIncome": {
+        "label": "Net income before provision for (benefit from) income taxes and equity in losses of investee",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "netIncome": {
+        "label": "Net income",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "operatingIncome": {
+        "label": "Income from operations",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "grossProfit": {
+        "label": "Gross profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "costOfRevenue": {
+        "label": "Cost of net revenues",
+        "tag": "us-gaap:CostOfRevenue",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "operatingExpenses": {
+        "label": "Total operating expenses",
+        "tag": "us-gaap:OperatingExpenses",
+        "accession": "0001097149-22-000011",
+        "filedAt": "2022-02-25",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714922000011/algn-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    },
+    "operatingExpenseDetails": [
+      {
+        "id": "line-SellingGeneralAndAdministrativeExpense",
+        "label": "Selling, general and administrative",
+        "amount": 1708640000,
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "decimals": -3
+      },
+      {
+        "id": "line-ResearchAndDevelopmentExpense",
+        "label": "Research and development",
+        "amount": 250315000,
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "decimals": -3
+      }
+    ]
+  }
+}

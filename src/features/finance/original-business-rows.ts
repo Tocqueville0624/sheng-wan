@@ -26,6 +26,30 @@ export function originalBusinessRowsProblem(period: PeriodV2, rule: BusinessRule
   try {
     demand(proof && rule.layout === "rows" && !period.revenueAdjustments?.length);
     const p = proof!;
+    const align = rule.originalRows.profile === "algn-operating-segments";
+    demand(
+      rule.originalRows.profile === undefined ||
+        (align &&
+          rule.cik === "0001097149" &&
+          rule.originalRows.scale === 3 &&
+          rule.separateTotal &&
+          rule.originalRows.primaryLabel === "Net revenues")
+    );
+    if (align) {
+      demand(
+        typeof p.precedingText === "string" &&
+          p.precedingText.length <= 16000 &&
+          p.precedingText.endsWith(
+            "Summarized financial information by reportable segment is as follows (in thousands):"
+          ) &&
+          typeof p.primaryPrecedingText === "string" &&
+          p.primaryPrecedingText.length <= 16000 &&
+          [
+            "ALIGN TECHNOLOGY, INC. AND SUBSIDIARIES CONSOLIDATED STATEMENTS OF OPERATIONS (in thousands, except per share data)",
+            "ALIGN TECHNOLOGY, INC. CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS (in thousands, except per share data) (unaudited)"
+          ].some((suffix) => p.primaryPrecedingText!.endsWith(suffix))
+      );
+    } else demand(p.precedingText === undefined && p.primaryPrecedingText === undefined);
     const url = new URL(period.sourceUrl);
     demand(
       url.origin === "https://www.sec.gov" &&
@@ -60,7 +84,7 @@ export function originalBusinessRowsProblem(period: PeriodV2, rule: BusinessRule
         ? `|For the Years Ended ${dateHeading},?`
         : "";
     const header = new RegExp(
-      `^(?:(?:(?:Three|Six|Nine) Months|Year) Ended(?: ${dateHeading})?,?|${dateHeading}|\\d{4}|\\(in (?:thousands|millions)(?:,[^)]*)?\\)|Revenues:${annualHeading})$`,
+      `^(?:(?:(?:Three|Six|Nine) Months|Year) Ended(?: ${dateHeading})?,?|${dateHeading}|\\d{4}|\\(in (?:thousands|millions)(?:,[^)]*)?\\)|Revenues:${align ? "|Net revenues" : ""}${annualHeading})$`,
       "i"
     );
     demand(
@@ -68,9 +92,10 @@ export function originalBusinessRowsProblem(period: PeriodV2, rule: BusinessRule
       "Unknown row before the original revenue section"
     );
     demand(
-      new RegExp(rule.originalRows.scale === 3 ? "in thousands" : "in millions", "i").test(
-        headers.flatMap((r) => r.cells.map((c) => c.label)).join(" ")
-      )
+      align ||
+        new RegExp(rule.originalRows.scale === 3 ? "in thousands" : "in millions", "i").test(
+          headers.flatMap((r) => r.cells.map((c) => c.label)).join(" ")
+        )
     );
     const headings = (column: number) =>
       headers.flatMap((r) => r.cells.filter((c) => covers(c, column)).map((c) => c.label));
@@ -181,7 +206,7 @@ export function originalBusinessRowsProblem(period: PeriodV2, rule: BusinessRule
       demand(
         primary.length === 1 &&
           primary[0] === p.primaryRows.at(-1) &&
-          label(primary[0]) === rule.totalLabel
+          label(primary[0]) === (rule.originalRows.primaryLabel ?? rule.totalLabel)
       );
       const matching = facts(primary[0]).filter(
         (c) => c.fact!.startDate === period.startDate && c.fact!.endDate === period.endDate
@@ -195,6 +220,52 @@ export function originalBusinessRowsProblem(period: PeriodV2, rule: BusinessRule
       demand(facts(primary[0]).length === totals.length);
       for (const c of facts(primary[0])) {
         const f = c.fact!;
+        if (align) {
+          const primaryHeaders = p.primaryRows.slice(0, primary[0].rowIndex);
+          demand(
+            primaryHeaders.every((r) => r.cells.every((c) => !c.label || header.test(c.label)))
+          );
+          const matchingHeading = primaryHeaders
+            .flatMap((r) => r.cells.filter((h) => covers(h, c.columnIndex)).map((h) => h.label))
+            .join(" ");
+          demand(new RegExp(`\\b${f.endDate.slice(0, 4)}\\b`).test(matchingHeading));
+          // All actual primary and segment scopes must match; physical date and
+          // duration headings also identify the independent primary column.
+          const sourceHeadings = primaryHeaders
+            .flatMap((r) => r.cells.map((h) => h.label))
+            .join(" ");
+          const sourceDates = [...sourceHeadings.matchAll(monthPattern)];
+          const scopedDates = [...matchingHeading.matchAll(monthPattern)];
+          const uniqueDates = new Set(sourceDates.map((m) => `${m[1]} ${m[2]}`));
+          const date = scopedDates[0] ?? (uniqueDates.size === 1 ? sourceDates[0] : undefined);
+          demand(
+            date &&
+              new Date(`${date[1]} ${date[2]}, ${f.endDate.slice(0, 4)}`)
+                .toISOString()
+                .slice(0, 10) === f.endDate
+          );
+          const allDurations = new Set(sourceHeadings.match(durationPattern));
+          const durationText =
+            matchingHeading.match(durationPattern)?.join(" ") ??
+            (allDurations.size === 1 ? [...allDurations][0] : "");
+          const months = /Three Months/i.test(durationText)
+            ? 3
+            : /Six Months/i.test(durationText)
+              ? 6
+              : /Nine Months/i.test(durationText)
+                ? 9
+                : /Years? Ended/i.test(durationText)
+                  ? 12
+                  : 0;
+          demand(
+            months &&
+              Math.abs(
+                (Date.parse(f.endDate) - Date.parse(f.startDate)) / 86400000 + 1 - months * 30.44
+              ) <= 10
+          );
+          demand(p.primaryRows.slice(0, primary[0].rowIndex).every((r) => !facts(r).length));
+          demand(primary[0].cells.slice(1).every((h) => h.fact || /^[\s$()—–-]*$/.test(h.label)));
+        }
         const sameScope = totals.filter(
           (t) => t.fact!.startDate === f.startDate && t.fact!.endDate === f.endDate
         );

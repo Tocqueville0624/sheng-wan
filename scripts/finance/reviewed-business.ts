@@ -76,7 +76,7 @@ export function enrichReviewedBusinessPeriods(
             const label = sourceLabel(
               visibleText(row.match(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/i)?.[1] ?? "")
             );
-            if (label !== rule.totalLabel) continue;
+            if (label !== (rule.originalRows?.primaryLabel ?? rule.totalLabel)) continue;
             const total = [...row.matchAll(/<ix:nonFraction\b[^>]*>/gi)].flatMap(([opening]) => {
               const f = refs.get(
                 `${attribute(opening, "name")}|${attribute(opening, "contextRef")}`
@@ -268,8 +268,29 @@ export function enrichReviewedBusinessPeriods(
             next.businessBreakdownSource!.originalRevenueRows = {
               rows: prefix(table, rule.originalRows.closingLabel),
               units: original.units,
+              ...(rule.originalRows.profile === "algn-operating-segments"
+                ? {
+                    precedingText: visibleText(
+                      html.slice(
+                        Math.max(0, tables[tableIndex].index! - 8000),
+                        tables[tableIndex].index!
+                      )
+                    ),
+                    primaryPrecedingText: visibleText(
+                      html.slice(
+                        Math.max(0, tables[separateTotal!.tableIndex].index! - 8000),
+                        tables[separateTotal!.tableIndex].index!
+                      )
+                    )
+                  }
+                : {}),
               ...(separateTotal
-                ? { primaryRows: prefix(tables[separateTotal.tableIndex][0], rule.totalLabel) }
+                ? {
+                    primaryRows: prefix(
+                      tables[separateTotal.tableIndex][0],
+                      rule.originalRows.primaryLabel ?? rule.totalLabel
+                    )
+                  }
                 : {})
             };
           } catch (error) {

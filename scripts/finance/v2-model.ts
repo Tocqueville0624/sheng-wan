@@ -1,5 +1,6 @@
 import { buildStatementFlow, segmentProblem } from "../../src/features/finance/chart-model";
 import { shareholderBridgeProblem } from "../../src/features/finance/shareholder-bridge";
+import { alignInlineIncomeProblem } from "../../src/features/finance/align-inline-income";
 import {
   grossOperatingItemsProblem,
   grossOperatingRoundingBound
@@ -586,6 +587,7 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
 
 export function flowPeriod(period: PeriodV2): StatementChartPeriod | undefined {
   if (period.displayCurrency !== "USD") return;
+  if (alignInlineIncomeProblem(period)) return;
   if (grossOperatingItemsProblem(period)) return;
   if (shareholderBridgeProblem(period)) return;
   if (period.businessBreakdownSource && !businessPeriod(period)) return;

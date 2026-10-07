@@ -1,0 +1,1564 @@
+{
+  "scope": "Original raw source tables, external titles, namespace, contexts, units and fiscal declarations copied unchanged from pinned SEC bytes. Table indexes map the excerpt separately from the original. No synthetic facts.",
+  "cik": "0001097149",
+  "ticker": "ALGN",
+  "filing": {
+    "accession": "0001097149-26-000014",
+    "filedAt": "2026-02-27",
+    "reportDate": "2025-12-31",
+    "form": "10-K",
+    "primaryDocument": "algn-20251231.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm"
+  },
+  "sourceSha256": "79277d483ad9d483684394939147561ba56e90a37103e71569822af1558abf0a",
+  "sourceBytes": 2450165,
+  "excerptSha256": "0a6741f9a71807f7b423c9e8a060f9b6c94b8844f2ec2c51ec64a5a90a207e37",
+  "excerptBytes": 233468,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 26,
+      "fixtureIndex": 0
+    },
+    {
+      "originalIndex": 72,
+      "fixtureIndex": 1
+    }
+  ],
+  "preservedPeriod": {
+    "id": "FY2025",
+    "label": "FY 2025",
+    "kind": "annual",
+    "fiscalYear": 2025,
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "filedAt": "2026-02-27",
+    "accession": "0001097149-26-000014",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": false,
+    "metrics": {
+      "revenue": 4034964000,
+      "costOfRevenue": 1323951000,
+      "grossProfit": 2711013000,
+      "operatingExpenses": 2165258000,
+      "operatingIncome": 545755000,
+      "pretaxIncome": 585287000,
+      "incomeTax": 174936000,
+      "netIncome": 410351000,
+      "researchAndDevelopment": 369911000,
+      "sellingGeneralAndAdministrative": 1755791000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported"
+      },
+      "costOfRevenue": {
+        "label": "Cost of Revenue",
+        "tag": "us-gaap:CostOfRevenue",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported"
+      },
+      "grossProfit": {
+        "label": "Gross Profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "Operating Expenses",
+        "tag": "us-gaap:OperatingExpenses",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported"
+      },
+      "operatingIncome": {
+        "label": "Operating Income (Loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported"
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported"
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported"
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported"
+      },
+      "researchAndDevelopment": {
+        "label": "Research and Development Expense",
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported"
+      },
+      "sellingGeneralAndAdministrative": {
+        "label": "Selling, General and Administrative Expense",
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported"
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    }
+  },
+  "period": {
+    "id": "FY2025",
+    "label": "FY 2025",
+    "kind": "annual",
+    "fiscalYear": 2025,
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "filedAt": "2026-02-27",
+    "accession": "0001097149-26-000014",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": false,
+    "metrics": {
+      "revenue": 4034964000,
+      "incomeTax": 174936000,
+      "pretaxIncome": 585287000,
+      "netIncome": 410351000,
+      "operatingIncome": 545755000,
+      "grossProfit": 2711013000,
+      "costOfRevenue": 1323951000,
+      "operatingExpenses": 2165258000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Reported revenue",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "incomeTax": {
+        "label": "Provision for income taxes",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "pretaxIncome": {
+        "label": "Net income before provision for income taxes",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "netIncome": {
+        "label": "Net income",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "operatingIncome": {
+        "label": "Income from operations",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "grossProfit": {
+        "label": "Gross profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "costOfRevenue": {
+        "label": "Cost of net revenues",
+        "tag": "us-gaap:CostOfRevenue",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "operatingExpenses": {
+        "label": "Total operating expenses",
+        "tag": "us-gaap:OperatingExpenses",
+        "accession": "0001097149-26-000014",
+        "filedAt": "2026-02-27",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+        "method": "reported",
+        "decimals": -3
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": true,
+      "sankey": true
+    },
+    "segments": [
+      {
+        "id": "reported-Clear-Aligner",
+        "label": "Clear Aligner",
+        "revenue": 3245404000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+          "accession": "0001097149-26-000014",
+          "filedAt": "2026-02-27",
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+            "us-gaap:StatementBusinessSegmentsAxis": "algn:ClearAlignerMember"
+          },
+          "value": 3245404000,
+          "decimals": -3,
+          "tableLabel": "Clear Aligner",
+          "rowLabel": "Clear Aligner"
+        }
+      },
+      {
+        "id": "reported-Systems-and-Services",
+        "label": "Systems and Services",
+        "revenue": 789560000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+          "accession": "0001097149-26-000014",
+          "filedAt": "2026-02-27",
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+            "us-gaap:StatementBusinessSegmentsAxis": "algn:SystemsAndServicesMember"
+          },
+          "value": 789560000,
+          "decimals": -3,
+          "tableLabel": "Systems and Services",
+          "rowLabel": "Systems and Services"
+        }
+      }
+    ],
+    "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+    "segmentBasis": "Reported Clear Aligner and Systems and Services revenue in the complete original segment section. Every comparative and cumulative column reconciles to both the segment total and independent primary net revenue. The original operating-segment and consolidation scopes are retained; no business revenue or profit is estimated.",
+    "businessBreakdownSource": {
+      "method": "reviewed-segment-table",
+      "ruleId": "algn-original-operating-segments-0-rows-v1",
+      "tableIndex": 1,
+      "totalTableIndex": 0,
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1097149/000109714926000014/algn-20251231.htm",
+      "accession": "0001097149-26-000014",
+      "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue": 4034964000,
+      "revenueDecimals": -3,
+      "totalLabel": "Total net revenues",
+      "omittedSubtotals": [],
+      "originalRevenueRows": {
+        "rows": [
+          {
+            "rowIndex": 0,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 1,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 2,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 4,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 5,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 7,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 10,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 11,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 13,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 16,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 17,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 19,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 1,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 15,
+                "rowSpan": 1,
+                "label": "Year Ended December 31,"
+              }
+            ]
+          },
+          {
+            "rowIndex": 2,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "2025"
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "2024"
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "2023"
+              }
+            ]
+          },
+          {
+            "rowIndex": 3,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "Net revenues"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 4,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 5,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "Clear Aligner"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 7,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "3,245,404",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 3245404000,
+                  "decimals": -3,
+                  "contextId": "c-235",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2025-01-01",
+                  "endDate": "2025-12-31",
+                  "dimensions": {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "algn:ClearAlignerMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-235",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-1228"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 13,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "3,230,122",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 3230122000,
+                  "decimals": -3,
+                  "contextId": "c-236",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2024-01-01",
+                  "endDate": "2024-12-31",
+                  "dimensions": {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "algn:ClearAlignerMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-236",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-1229"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 19,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "3,199,329",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 3199329000,
+                  "decimals": -3,
+                  "contextId": "c-237",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-12-31",
+                  "dimensions": {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "algn:ClearAlignerMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-237",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-1230"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 6,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "Systems and Services"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "789,560",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 789560000,
+                  "decimals": -3,
+                  "contextId": "c-238",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2025-01-01",
+                  "endDate": "2025-12-31",
+                  "dimensions": {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "algn:SystemsAndServicesMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-238",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-1231"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "768,890",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 768890000,
+                  "decimals": -3,
+                  "contextId": "c-239",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2024-01-01",
+                  "endDate": "2024-12-31",
+                  "dimensions": {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "algn:SystemsAndServicesMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-239",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-1232"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "662,931",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 662931000,
+                  "decimals": -3,
+                  "contextId": "c-240",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-12-31",
+                  "dimensions": {
+                    "srt:ConsolidationItemsAxis": "us-gaap:OperatingSegmentsMember",
+                    "us-gaap:StatementBusinessSegmentsAxis": "algn:SystemsAndServicesMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-240",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-1233"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 7,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 8,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 9,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 10,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "Total net revenues"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 7,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "4,034,964",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 4034964000,
+                  "decimals": -3,
+                  "contextId": "c-1",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2025-01-01",
+                  "endDate": "2025-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-1",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-1234"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 13,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "3,999,012",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 3999012000,
+                  "decimals": -3,
+                  "contextId": "c-4",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2024-01-01",
+                  "endDate": "2024-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-4",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-1235"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 19,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "3,862,260",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 3862260000,
+                  "decimals": -3,
+                  "contextId": "c-5",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-5",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-1236"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          }
+        ],
+        "units": [
+          {
+            "id": "usd",
+            "measure": "iso4217:USD"
+          }
+        ],
+        "precedingText": "r:#ffffff;border-top:3pt double #000000;padding:2px 1pt 2px 0;text-align:right;vertical-align:bottom\"/> $ 5.81 Shares used in computing net income per share: Basic 72,542 74,877 76,426 Diluted 72,588 74,993 76,568 ments\" format=\"ixt-sec:numwordsen\" scale=\"0\" id=\"f-1226\">two reportable segments: Clear Aligner segment and Imaging Systems and CAD/CAM services (“Systems and Services”) segment, which are based on our predominant product lines. Our CODM uses gross profit and income from operations to assess each reportable segment’s performance, by reviewing each measure against internal forecasts and historical performance. Our CODM may also benchmark each segment’s performance against our competitors and external expectations. 93 Summarized financial information by reportable segment is as follows (in thousands):",
+        "primaryPrecedingText": "xbrli:context> 0001097149 us-gaap:AllowanceForCreditLossMember 2022-12-31 0001097149 us-gaap:AllowanceForCreditLossMember 2023-01-01 2023-12-31 0001097149 us-gaap:AllowanceForCreditLossMember 2023-12-31 0001097149 us-gaap:AllowanceForCreditLossMember 2024-01-01 2024-12-31 0001097149 us-gaap:AllowanceForCreditLossMember 2024-12-31 0001097149 us-gaap:AllowanceForCreditLossMember 2025-01-01 2025-12-31 0001097149 us-gaap:AllowanceForCreditLossMember 2025-12-31 0001097149 us-gaap:ValuationAllowanceOfDeferredTaxAssetsMember 2022-12-31 0001097149 us-gaap:ValuationAllowanceOfDeferredTaxAssetsMember 2023-01-01 2023-12-31 0001097149 us-gaap:ValuationAllowanceOfDeferredTaxAssetsMember 2023-12-31 0001097149 us-gaap:ValuationAllowanceOfDeferredTaxAssetsMember 2024-01-01 2024-12-31 0001097149 us-gaap:ValuationAllowanceOfDeferredTaxAssetsMember 2024-12-31 0001097149 us-gaap:ValuationAllowanceOfDeferredTaxAssetsMember 2025-01-01 2025-12-31 0001097149 us-gaap:ValuationAllowanceOfDeferredTaxAssetsMember 2025-12-31 December 31 , 2025 -1\" name=\"dei:AuditorLocation\" id=\"f-53\">San Jose, California February 27, 2026 We have served as the Company’s auditor since 1997. 59 ALIGN TECHNOLOGY, INC. AND SUBSIDIARIES CONSOLIDATED STATEMENTS OF OPERATIONS (in thousands, except per share data)",
+        "primaryRows": [
+          {
+            "rowIndex": 0,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 1,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 2,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 4,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 5,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 7,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 10,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 11,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 13,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 16,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 17,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 19,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 1,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 15,
+                "rowSpan": 1,
+                "label": "Year Ended December 31,"
+              }
+            ]
+          },
+          {
+            "rowIndex": 2,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "2025"
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "2024"
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "2023"
+              }
+            ]
+          },
+          {
+            "rowIndex": 3,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "Net revenues"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 7,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "4,034,964",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 4034964000,
+                  "decimals": -3,
+                  "contextId": "c-1",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2025-01-01",
+                  "endDate": "2025-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-1",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-54"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 13,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "3,999,012",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 3999012000,
+                  "decimals": -3,
+                  "contextId": "c-4",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2024-01-01",
+                  "endDate": "2024-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-4",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-55"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 19,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "3,862,260",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 3862260000,
+                  "decimals": -3,
+                  "contextId": "c-5",
+                  "cik": "0001097149",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-5",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-56"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -329,6 +329,7 @@ export function StatementFlow({
               shareholderBridge: period.shareholderBridge,
               operatingItems: period.operatingItems,
               grossOperatingItems: period.grossOperatingItems,
+              alignInlineIncome: period.alignInlineIncome,
               directNetItems: period.directNetItems,
               operatingNetItems: period.operatingNetItems,
               afterTaxTransactionItems: period.afterTaxTransactionItems,
@@ -602,11 +603,14 @@ export function StatementFlow({
         {period.afterTaxReconciliation &&
           `A separate after-tax source-rounding flow of ${shortMoney(period.afterTaxReconciliation.amount)} reconciles the final net-income scope within declared precision; reported net income is unchanged. `}
         {period.grossOperatingItems &&
-          (["alb-original-separate-income-v1", "alb-original-inline-operating-gains-v1"].includes(
-            period.grossOperatingItems.ruleId
-          )
-            ? `Reported operating expenses and gains from business sales enter operating profit separately. After-tax equity-method income, ${period.grossOperatingItems.ruleId === "alb-original-separate-income-v1" ? "discontinued operations and " : ""}minority attribution enter net profit in their reported scopes. Net operating expenses are calculated from the original signed statement lines; the source rows and reported precision remain in the exports. `
-            : "The primary statement separately reports restructuring costs before gross profit and signed operating expense lines. Positive expense components keep their original values; a reported negative cost is shown separately as a reversal. The net operating expense sum, original source rows and declared precision remain in the exports. ")}
+          (period.alignInlineIncome
+            ? "Reported impairment expense and litigation settlement gains enter operating profit separately. The original signed after-tax equity-method loss enters net income after tax. All comparative primary rows, original amounts and declarations remain in the exports. "
+            : [
+                  "alb-original-separate-income-v1",
+                  "alb-original-inline-operating-gains-v1"
+                ].includes(period.grossOperatingItems.ruleId)
+              ? `Reported operating expenses and gains from business sales enter operating profit separately. After-tax equity-method income, ${period.grossOperatingItems.ruleId === "alb-original-separate-income-v1" ? "discontinued operations and " : ""}minority attribution enter net profit in their reported scopes. Net operating expenses are calculated from the original signed statement lines; the source rows and reported precision remain in the exports. `
+              : "The primary statement separately reports restructuring costs before gross profit and signed operating expense lines. Positive expense components keep their original values; a reported negative cost is shown separately as a reversal. The net operating expense sum, original source rows and declared precision remain in the exports. ")}
         {period.operatingExpensesBasis &&
           !period.grossOperatingItems &&
           "Operating expenses and other items (net) are the calculated difference between reported gross profit and operating income. Signed gains, equity income or rounded detail can prevent an exact expense partition; no component or balancing expense is invented. "}

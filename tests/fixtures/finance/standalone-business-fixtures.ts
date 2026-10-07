@@ -8,9 +8,9 @@ import type { SecFiling } from "../../../scripts/finance/sec-shared";
 
 /** All monetary inputs below are independently decoded from preserved original
  * XML declarations. No chart values, inline tags or financial facts are invented. */
-export async function standaloneBusinessFixture(ticker: "AME" | "ALB" | "UNH" | "A") {
-  if (ticker === "UNH" || ticker === "A") {
-    const prefix = ticker === "A" ? "agilent" : "unitedhealth";
+export async function standaloneBusinessFixture(ticker: "AME" | "ALB" | "UNH" | "A" | "ALGN") {
+  if (ticker === "UNH" || ticker === "A" || ticker === "ALGN") {
+    const prefix = ticker === "A" ? "agilent" : ticker === "ALGN" ? "align" : "unitedhealth";
     const source = JSON.parse(
       readFileSync(
         new URL(`./${prefix}-fy2016-original-separate-source.json`, import.meta.url),
@@ -19,7 +19,12 @@ export async function standaloneBusinessFixture(ticker: "AME" | "ALB" | "UNH" | 
     );
     const identity: CatalogCompany = {
       ticker,
-      name: ticker === "A" ? "Agilent Technologies, Inc." : "UnitedHealth Group Incorporated",
+      name:
+        ticker === "A"
+          ? "Agilent Technologies, Inc."
+          : ticker === "ALGN"
+            ? "Align Technology, Inc."
+            : "UnitedHealth Group Incorporated",
       cik: source.cik,
       sector: "Health Care",
       universe: "sp500"
@@ -123,7 +128,7 @@ export async function standaloneBusinessFixture(ticker: "AME" | "ALB" | "UNH" | 
   return { company, period };
 }
 
-export async function sourceOnlyFixture(ticker: "AME" | "ALB" | "UNH" | "A") {
+export async function sourceOnlyFixture(ticker: "AME" | "ALB" | "UNH" | "A" | "ALGN") {
   const preserved = await standaloneBusinessFixture(ticker);
   const p = preserved.period;
   const identity: CatalogCompany = {
@@ -146,7 +151,7 @@ export async function sourceOnlyFixture(ticker: "AME" | "ALB" | "UNH" | "A") {
   const read = (suffix: string) =>
     readFileSync(
       new URL(
-        `./${ticker === "A" ? "agilent" : ticker === "UNH" ? "unitedhealth" : ticker.toLowerCase()}-fy2016-original-separate-${suffix}`,
+        `./${ticker === "A" ? "agilent" : ticker === "ALGN" ? "align" : ticker === "UNH" ? "unitedhealth" : ticker.toLowerCase()}-fy2016-original-separate-${suffix}`,
         import.meta.url
       ),
       "utf8"
@@ -165,7 +170,7 @@ export async function sourceOnlyFixture(ticker: "AME" | "ALB" | "UNH" | "A") {
   };
 }
 
-export async function sourceOnlyBusinessFixture(ticker: "AME" | "ALB" | "UNH" | "A") {
+export async function sourceOnlyBusinessFixture(ticker: "AME" | "ALB" | "UNH" | "A" | "ALGN") {
   const s = await sourceOnlyFixture(ticker);
   const periods = await readOriginalStandaloneBusinessFiling(
     s.html,

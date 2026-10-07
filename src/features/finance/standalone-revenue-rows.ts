@@ -145,8 +145,16 @@ export function replayOriginalStandaloneRevenueTable(
     );
   } else {
     const suffix = originalUnits.precedingTextSuffix;
+    const alignOriginalUnits =
+      source.cik === "0001097149" &&
+      scale === 3 &&
+      [
+        "ALIGN TECHNOLOGY, INC. AND SUBSIDIARIES CONSOLIDATED STATEMENTS OF OPERATIONS (in thousands, except per share data)",
+        "The following information relates to these segments (in thousands):"
+      ].includes(suffix);
     demand(
-      [...unitLabels].some((u) => suffix.endsWith(u)) && table.precedingText.endsWith(suffix),
+      (alignOriginalUnits || [...unitLabels].some((u) => suffix.endsWith(u))) &&
+        table.precedingText.endsWith(suffix),
       "Missing original preceding statement heading and units."
     );
   }

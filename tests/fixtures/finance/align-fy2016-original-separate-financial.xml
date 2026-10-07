@@ -1,0 +1,152 @@
+<xbrli:xbrl xmlns:acec="http://fasb.org/dis/acec/2018-01-31" xmlns:algn="http://www.aligntech.com/20181231" xmlns:ap="http://fasb.org/dis/ap/2018-01-31" xmlns:aro="http://fasb.org/dis/aro/2018-01-31" xmlns:bc="http://fasb.org/dis/bc/2018-01-31" xmlns:bsoff="http://fasb.org/dis/bsoff/2018-01-31" xmlns:cc="http://fasb.org/dis/cc/2018-01-31" xmlns:cce="http://fasb.org/dis/cce/2018-01-31" xmlns:codification-part="http://fasb.org/codification-part/2018-01-31" xmlns:com="http://fasb.org/stm/com/2018-01-31" xmlns:con="http://fasb.org/dis/con/2018-01-31" xmlns:country="http://xbrl.sec.gov/country/2017-01-31" xmlns:country-all="http://xbrl.sec.gov/country-all/2017-01-31" xmlns:country-ent-all="http://xbrl.sec.gov/country-ent-all/2017-01-31" xmlns:country-ent-std="http://xbrl.sec.gov/country-ent-std/2017-01-31" xmlns:country-std="http://xbrl.sec.gov/country-std/2017-01-31" xmlns:crcgen="http://fasb.org/dis/crcgen/2018-01-31" xmlns:crcpb="http://fasb.org/dis/crcpb/2018-01-31" xmlns:crcrb="http://fasb.org/dis/crcrb/2018-01-31" xmlns:crcsbp="http://fasb.org/dis/crcsbp/2018-01-31" xmlns:ctbl="http://fasb.org/dis/ctbl/2018-01-31" xmlns:currency="http://xbrl.sec.gov/currency/2017-01-31" xmlns:currency-all="http://xbrl.sec.gov/currency-all/2017-01-31" xmlns:currency-ent-all="http://xbrl.sec.gov/currency-ent-all/2017-01-31" xmlns:currency-ent-std="http://xbrl.sec.gov/currency-ent-std/2017-01-31" xmlns:currency-std="http://xbrl.sec.gov/currency-std/2017-01-31" xmlns:dccpoa="http://fasb.org/dis/dccpoa/2018-01-31" xmlns:debt="http://fasb.org/dis/debt/2018-01-31" xmlns:dei="http://xbrl.sec.gov/dei/2018-01-31" xmlns:dei-all="http://xbrl.sec.gov/dei-all/2018-01-31" xmlns:dei-ent-all="http://xbrl.sec.gov/dei-ent-all/2018-01-31" xmlns:dei-ent-std="http://xbrl.sec.gov/dei-ent-std/2018-01-31" xmlns:dei-std="http://xbrl.sec.gov/dei-std/2018-01-31" xmlns:deprecated="http://www.xbrl.org/2009/arcrole/deprecated" xmlns:deprecated1="http://www.xbrl.org/2009/role/deprecated" xmlns:diha="http://fasb.org/dis/diha/2018-01-31" xmlns:disops="http://fasb.org/dis/disops/2018-01-31" xmlns:dr="http://fasb.org/dis/dr/2018-01-31" xmlns:edco="http://fasb.org/dis/edco/2018-01-31" xmlns:ei="http://fasb.org/dis/ei/2018-01-31" xmlns:emjv="http://fasb.org/dis/emjv/2018-01-31" xmlns:eps="http://fasb.org/dis/eps/2018-01-31" xmlns:equity="http://fasb.org/dis/equity/2018-01-31" xmlns:ero="http://fasb.org/dis/ero/2018-01-31" xmlns:eui="http://fasb.org/dis/eui/2018-01-31" xmlns:exch="http://xbrl.sec.gov/exch/2018-01-31" xmlns:exch-all="http://xbrl.sec.gov/exch-all/2018-01-31" xmlns:exch-ent-all="http://xbrl.sec.gov/exch-ent-all/2018-01-31" xmlns:exch-ent-std="http://xbrl.sec.gov/exch-ent-std/2018-01-31" xmlns:exch-std="http://xbrl.sec.gov/exch-std/2018-01-31" xmlns:fifvd="http://fasb.org/dis/fifvd/2018-01-31" xmlns:foct="http://fasb.org/dis/foct/2018-01-31" xmlns:fs-bd="http://fasb.org/dis/fs-bd/2018-01-31" xmlns:fs-bt="http://fasb.org/dis/fs-bt/2018-01-31" xmlns:fs-fhlb="http://fasb.org/dis/fs-fhlb/2018-01-31" xmlns:fs-ins="http://fasb.org/dis/fs-ins/2018-01-31" xmlns:fs-interest="http://fasb.org/dis/fs-interest/2018-01-31" xmlns:fs-mort="http://fasb.org/dis/fs-mort/2018-01-31" xmlns:guar="http://fasb.org/dis/guar/2018-01-31" xmlns:hco="http://fasb.org/dis/hco/2018-01-31" xmlns:iago="http://fasb.org/dis/iago/2018-01-31" xmlns:iaoi="http://fasb.org/dis/iaoi/2018-01-31" xmlns:ides="http://fasb.org/dis/ides/2018-01-31" xmlns:inctax="http://fasb.org/dis/inctax/2018-01-31" xmlns:inv="http://fasb.org/dis/inv/2018-01-31" xmlns:invco="http://fasb.org/dis/invco/2018-01-31" xmlns:invest="http://xbrl.sec.gov/invest/2013-01-31" xmlns:invest-all="http://xbrl.sec.gov/invest-all/2013-01-31" xmlns:invest-ent-all="http://xbrl.sec.gov/invest-ent-all/2013-01-31" xmlns:invest-ent-std="http://xbrl.sec.gov/invest-ent-std/2013-01-31" xmlns:invest-std="http://xbrl.sec.gov/invest-std/2013-01-31" xmlns:ir="http://fasb.org/dis/ir/2018-01-31" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:lea="http://fasb.org/dis/lea/2018-01-31" xmlns:leas="http://fasb.org/dis/leas/2018-01-31" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:naics="http://xbrl.sec.gov/naics/2017-01-31" xmlns:naics-all="http://xbrl.sec.gov/naics-all/2017-01-31" xmlns:naics-ent-all="http://xbrl.sec.gov/naics-ent-all/2017-01-31" xmlns:naics-ent-std="http://xbrl.sec.gov/naics-ent-std/2017-01-31" xmlns:naics-std="http://xbrl.sec.gov/naics-std/2017-01-31" xmlns:negated="http://www.xbrl.org/2009/role/negated" xmlns:net="http://www.xbrl.org/2009/role/net" xmlns:ni="http://fasb.org/dis/ni/2018-01-31" xmlns:nonnum="http://www.xbrl.org/dtr/type/non-numeric" xmlns:nt="http://fasb.org/dis/nt/2018-01-31" xmlns:num="http://www.xbrl.org/dtr/type/numeric" xmlns:ocpfs="http://fasb.org/dis/ocpfs/2018-01-31" xmlns:oi="http://fasb.org/dis/oi/2018-01-31" xmlns:otherexp="http://fasb.org/dis/otherexp/2018-01-31" xmlns:othliab="http://fasb.org/dis/othliab/2018-01-31" xmlns:pay="http://fasb.org/dis/pay/2018-01-31" xmlns:ppe="http://fasb.org/dis/ppe/2018-01-31" xmlns:rcc="http://fasb.org/dis/rcc/2018-01-31" xmlns:rd="http://fasb.org/dis/rd/2018-01-31" xmlns:re="http://fasb.org/dis/re/2018-01-31" xmlns:ref="http://www.xbrl.org/2006/ref" xmlns:reference="http://www.xbrl.org/2009/role/reference" xmlns:regop="http://fasb.org/dis/regop/2018-01-31" xmlns:reorg="http://fasb.org/dis/reorg/2018-01-31" xmlns:rlnro="http://fasb.org/dis/rlnro/2018-01-31" xmlns:rpd="http://fasb.org/dis/rpd/2018-01-31" xmlns:ru="http://fasb.org/dis/ru/2018-01-31" xmlns:scf-dbo="http://fasb.org/stm/scf-dbo/2018-01-31" xmlns:scf-dir="http://fasb.org/stm/scf-dir/2018-01-31" xmlns:scf-indir="http://fasb.org/stm/scf-indir/2018-01-31" xmlns:scf-indira="http://fasb.org/stm/scf-indira/2018-01-31" xmlns:scf-inv="http://fasb.org/stm/scf-inv/2018-01-31" xmlns:scf-re="http://fasb.org/stm/scf-re/2018-01-31" xmlns:scf-sbo="http://fasb.org/stm/scf-sbo/2018-01-31" xmlns:scf-sd="http://fasb.org/stm/scf-sd/2018-01-31" xmlns:schedoi-fednote="http://fasb.org/dis/schedoi-fednote/2018-01-31" xmlns:schedoi-hold="http://fasb.org/dis/schedoi-hold/2018-01-31" xmlns:schedoi-iiaa="http://fasb.org/dis/schedoi-iiaa/2018-01-31" xmlns:schedoi-oocw="http://fasb.org/dis/schedoi-oocw/2018-01-31" xmlns:schedoi-otsh="http://fasb.org/dis/schedoi-otsh/2018-01-31" xmlns:schedoi-shorthold="http://fasb.org/dis/schedoi-shorthold/2018-01-31" xmlns:schedoi-sumhold="http://fasb.org/dis/schedoi-sumhold/2018-01-31" xmlns:se="http://fasb.org/dis/se/2018-01-31" xmlns:sec-cndfir="http://fasb.org/dis/sec-cndfir/2018-01-31" xmlns:sec-mort="http://fasb.org/dis/sec-mort/2018-01-31" xmlns:sec-re="http://fasb.org/dis/sec-re/2018-01-31" xmlns:sec-reins="http://fasb.org/dis/sec-reins/2018-01-31" xmlns:sec-sum="http://fasb.org/dis/sec-sum/2018-01-31" xmlns:sec-supins="http://fasb.org/dis/sec-supins/2018-01-31" xmlns:sec-suppc="http://fasb.org/dis/sec-suppc/2018-01-31" xmlns:sec-vq="http://fasb.org/dis/sec-vq/2018-01-31" xmlns:sfp-clreo="http://fasb.org/stm/sfp-clreo/2018-01-31" xmlns:sfp-cls="http://fasb.org/stm/sfp-cls/2018-01-31" xmlns:sfp-dbo="http://fasb.org/stm/sfp-dbo/2018-01-31" xmlns:sfp-ibo="http://fasb.org/stm/sfp-ibo/2018-01-31" xmlns:sfp-sbo="http://fasb.org/stm/sfp-sbo/2018-01-31" xmlns:sfp-ucreo="http://fasb.org/stm/sfp-ucreo/2018-01-31" xmlns:sheci="http://fasb.org/stm/sheci/2018-01-31" xmlns:sic="http://xbrl.sec.gov/sic/2011-01-31" xmlns:sic-all="http://xbrl.sec.gov/sic-all/2011-01-31" xmlns:sic-ent-all="http://xbrl.sec.gov/sic-ent-all/2011-01-31" xmlns:sic-ent-std="http://xbrl.sec.gov/sic-ent-std/2011-01-31" xmlns:sic-std="http://xbrl.sec.gov/sic-std/2011-01-31" xmlns:soc="http://fasb.org/stm/soc/2018-01-31" xmlns:soi="http://fasb.org/stm/soi/2018-01-31" xmlns:soi-egm="http://fasb.org/stm/soi-egm/2018-01-31" xmlns:soi-indira="http://fasb.org/stm/soi-indira/2018-01-31" xmlns:soi-ins="http://fasb.org/stm/soi-ins/2018-01-31" xmlns:soi-int="http://fasb.org/stm/soi-int/2018-01-31" xmlns:soi-re="http://fasb.org/stm/soi-re/2018-01-31" xmlns:soi-reit="http://fasb.org/stm/soi-reit/2018-01-31" xmlns:soi-sbi="http://fasb.org/stm/soi-sbi/2018-01-31" xmlns:spc="http://fasb.org/stm/spc/2018-01-31" xmlns:sr="http://fasb.org/dis/sr/2018-01-31" xmlns:srt="http://fasb.org/srt/2018-01-31" xmlns:srt-all="http://fasb.org/srt-all/2018-01-31" xmlns:srt-roles="http://fasb.org/srt-roles/2018-01-31" xmlns:srt-std="http://fasb.org/srt-std/2018-01-31" xmlns:srt-types="http://fasb.org/srt-types/2018-01-31" xmlns:stpr="http://xbrl.sec.gov/stpr/2018-01-31" xmlns:stpr-all="http://xbrl.sec.gov/stpr-all-all-all/2018-01-31" xmlns:stpr-ent-all="http://xbrl.sec.gov/stpr-ent-all-all-all/2018-01-31" xmlns:stpr-ent-std="http://xbrl.sec.gov/stpr-ent-std-std-std/2018-01-31" xmlns:stpr-std="http://xbrl.sec.gov/stpr-std-std-std/2018-01-31" xmlns:te="http://fasb.org/dis/te/2018-01-31" xmlns:tin-part="http://fasb.org/tin-part/2018-01-31" xmlns:ts="http://fasb.org/dis/ts/2018-01-31" xmlns:us-arcroles="http://fasb.org/us-arcroles/2018-01-31" xmlns:us-gaap="http://fasb.org/us-gaap/2018-01-31" xmlns:us-gaap-all="http://fasb.org/us-gaap-all/2018-01-31" xmlns:us-gaap-ent-std="http://fasb.org/us-gaap-ent-std/2018-01-31" xmlns:us-gaap-entryPoint-all="http://fasb.org/us-gaap-entryPoint-all/2018-01-31" xmlns:us-gaap-std="http://fasb.org/us-gaap-std/2018-01-31" xmlns:us-roles="http://fasb.org/us-roles/2018-01-31" xmlns:us-types="http://fasb.org/us-types/2018-01-31" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:xbrldt="http://xbrl.org/2005/xbrldt" xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:xl="http://www.xbrl.org/2003/XLink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<xbrli:context id="FD2018Q4YTD">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001097149</xbrli:identifier>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2018-01-01</xbrli:startDate>
+			<xbrli:endDate>2018-12-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2016Q4YTD">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001097149</xbrli:identifier>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2016-01-01</xbrli:startDate>
+			<xbrli:endDate>2016-12-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2017Q4YTD">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001097149</xbrli:identifier>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2017-01-01</xbrli:startDate>
+			<xbrli:endDate>2017-12-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignExpressliteMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001097149</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">algn:InvisalignExpressliteMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2018-01-01</xbrli:startDate>
+			<xbrli:endDate>2018-12-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignExpressliteMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001097149</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">algn:InvisalignExpressliteMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2016-01-01</xbrli:startDate>
+			<xbrli:endDate>2016-12-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignFullMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001097149</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">algn:InvisalignFullMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2017-01-01</xbrli:startDate>
+			<xbrli:endDate>2017-12-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignFullMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001097149</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">algn:InvisalignFullMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2018-01-01</xbrli:startDate>
+			<xbrli:endDate>2018-12-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignFullMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001097149</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">algn:InvisalignFullMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2016-01-01</xbrli:startDate>
+			<xbrli:endDate>2016-12-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:context id="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignExpressliteMember">
+		<xbrli:entity>
+			<xbrli:identifier scheme="http://www.sec.gov/CIK">0001097149</xbrli:identifier>
+			<xbrli:segment>
+				<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">algn:InvisalignExpressliteMember</xbrldi:explicitMember>
+			</xbrli:segment>
+		</xbrli:entity>
+		<xbrli:period>
+			<xbrli:startDate>2017-01-01</xbrli:startDate>
+			<xbrli:endDate>2017-12-31</xbrli:endDate>
+		</xbrli:period>
+	</xbrli:context>
+<xbrli:unit id="usd">
+		<xbrli:measure>iso4217:USD</xbrli:measure>
+	</xbrli:unit>
+<dei:DocumentFiscalPeriodFocus contextRef="FD2018Q4YTD" id="Fact-76CD3123C5E75C083EB71AF05C77EC16">FY</dei:DocumentFiscalPeriodFocus>
+<dei:DocumentFiscalYearFocus contextRef="FD2018Q4YTD" id="Fact-BFE3ACCB16EE7FB4E5261AF05D040337">2018</dei:DocumentFiscalYearFocus>
+<dei:DocumentPeriodEndDate contextRef="FD2018Q4YTD" id="Fact-3A877DBC11AE6A99498E1AF05D0417F6">2018-12-31</dei:DocumentPeriodEndDate>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2018Q4YTD" decimals="-3" id="Fact-C70EF775801AD299EBED1AF05C875C93" unitRef="usd">1966492000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:CostOfRevenue contextRef="FD2018Q4YTD" decimals="-3" id="Fact-CADE7CAD504DA6ADABA11AF05C874E27" unitRef="usd">518625000</us-gaap:CostOfRevenue>
+<us-gaap:GrossProfit contextRef="FD2018Q4YTD" decimals="-3" id="Fact-3307D09729B4D64838EF1AF05C87E8B2" unitRef="usd">1447867000</us-gaap:GrossProfit>
+<us-gaap:SellingAndMarketingExpense contextRef="FD2018Q4YTD" decimals="-3" id="Fact-A8F224622A1C8DBF7A301AF05C874BF2" unitRef="usd">852404000</us-gaap:SellingAndMarketingExpense>
+<us-gaap:ResearchAndDevelopmentExpense contextRef="FD2018Q4YTD" decimals="-3" id="Fact-D33F9E4A58785BAEE91B1AF05C969944" unitRef="usd">128899000</us-gaap:ResearchAndDevelopmentExpense>
+<us-gaap:OperatingExpenses contextRef="FD2018Q4YTD" decimals="-3" id="Fact-9685D4774470192750791AF05C87C0CF" unitRef="usd">981303000</us-gaap:OperatingExpenses>
+<us-gaap:OperatingIncomeLoss contextRef="FD2018Q4YTD" decimals="-3" id="Fact-638BB13762263B4C66C01AF05C96E2B6" unitRef="usd">466564000</us-gaap:OperatingIncomeLoss>
+<us-gaap:InterestIncomeOperating contextRef="FD2018Q4YTD" decimals="-3" id="Fact-EC8731D31B65F89BC67003A67BB5F995" unitRef="usd">8576000</us-gaap:InterestIncomeOperating>
+<us-gaap:OtherNonoperatingIncomeExpense contextRef="FD2018Q4YTD" decimals="-3" id="Fact-2187B0C43DF18B8174B31AF05C96E566" unitRef="usd">-8489000</us-gaap:OtherNonoperatingIncomeExpense>
+<us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments contextRef="FD2018Q4YTD" decimals="-3" id="Fact-471FBC332A938D1FC95C1AF05C87AB2F" unitRef="usd">466651000</us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments>
+<us-gaap:IncomeTaxExpenseBenefit contextRef="FD2018Q4YTD" decimals="-3" id="Fact-60F44F6149CE8D02C95D1AF05C871EE4" unitRef="usd">57723000</us-gaap:IncomeTaxExpenseBenefit>
+<us-gaap:IncomeLossFromEquityMethodInvestments contextRef="FD2018Q4YTD" decimals="-3" id="Fact-5F05BCEEA43899A5A3011AF05C77E91E" unitRef="usd">-8693000</us-gaap:IncomeLossFromEquityMethodInvestments>
+<us-gaap:NetIncomeLoss contextRef="FD2018Q4YTD" decimals="-3" id="Fact-FD88D4A2936B0C7A97A71AF05C96D478" unitRef="usd">400235000</us-gaap:NetIncomeLoss>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignFullMember" decimals="-3" id="Fact-3C5072EE72111F54C0ED1AF05C87BC80" unitRef="usd">1691467000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2018Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignExpressliteMember" decimals="-3" id="Fact-4E38B26C78512FF648D11AF05C963497" unitRef="usd">275025000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2017Q4YTD" decimals="-3" id="Fact-BFD809589DB16D40AECC1AF05C960952" unitRef="usd">1473413000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:CostOfRevenue contextRef="FD2017Q4YTD" decimals="-3" id="Fact-9103ADA777A630DE48B21AF05C96097E" unitRef="usd">356466000</us-gaap:CostOfRevenue>
+<us-gaap:GrossProfit contextRef="FD2017Q4YTD" decimals="-3" id="Fact-224BFF24C89B3DC7B1651AF05C87534E" unitRef="usd">1116947000</us-gaap:GrossProfit>
+<us-gaap:SellingAndMarketingExpense contextRef="FD2017Q4YTD" decimals="-3" id="Fact-712CC8100020CDA34B4B1AF05C773070" unitRef="usd">665777000</us-gaap:SellingAndMarketingExpense>
+<us-gaap:ResearchAndDevelopmentExpense contextRef="FD2017Q4YTD" decimals="-3" id="Fact-3310AC05DF478F73FA301AF05C87B9FE" unitRef="usd">97559000</us-gaap:ResearchAndDevelopmentExpense>
+<us-gaap:OperatingExpenses contextRef="FD2017Q4YTD" decimals="-3" id="Fact-754522CF2533E55C8A9E1AF05C967C6E" unitRef="usd">763336000</us-gaap:OperatingExpenses>
+<us-gaap:OperatingIncomeLoss contextRef="FD2017Q4YTD" decimals="-3" id="Fact-81D20DDC8919132BDEF91AF05C96571B" unitRef="usd">353611000</us-gaap:OperatingIncomeLoss>
+<us-gaap:InterestIncomeOperating contextRef="FD2017Q4YTD" decimals="-3" id="Fact-AB814F55C1931DABE3D803A67BA934B7" unitRef="usd">6948000</us-gaap:InterestIncomeOperating>
+<us-gaap:OtherNonoperatingIncomeExpense contextRef="FD2017Q4YTD" decimals="-3" id="Fact-665C537F7BC16DB6D9541AF05C872C34" unitRef="usd">4240000</us-gaap:OtherNonoperatingIncomeExpense>
+<us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments contextRef="FD2017Q4YTD" decimals="-3" id="Fact-8A89AB8012851AD84D9D1AF05C96B22E" unitRef="usd">364799000</us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments>
+<us-gaap:IncomeTaxExpenseBenefit contextRef="FD2017Q4YTD" decimals="-3" id="Fact-041FDC012A2C8C1373F41AF05C96A450" unitRef="usd">130162000</us-gaap:IncomeTaxExpenseBenefit>
+<us-gaap:IncomeLossFromEquityMethodInvestments contextRef="FD2017Q4YTD" decimals="-3" id="Fact-958585437ECB9492CEDB1AF05C96B722" unitRef="usd">-3219000</us-gaap:IncomeLossFromEquityMethodInvestments>
+<us-gaap:NetIncomeLoss contextRef="FD2017Q4YTD" decimals="-3" id="Fact-2D8D30248D3F30112D6B1AF05C77C50A" unitRef="usd">231418000</us-gaap:NetIncomeLoss>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignFullMember" decimals="-3" id="Fact-3A39CAF1D427C180552D1AF05C9667F8" unitRef="usd">1309262000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2017Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignExpressliteMember" decimals="-3" id="Fact-BE24F20BD5A705F732DB1AF05C96BEB3" unitRef="usd">164151000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2016Q4YTD" decimals="-3" id="Fact-64DF964A14BB3A4C5E0A1AF05C87A895" unitRef="usd">1079874000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:CostOfRevenue contextRef="FD2016Q4YTD" decimals="-3" id="Fact-2229315B5170167616B11AF05C878F63" unitRef="usd">264580000</us-gaap:CostOfRevenue>
+<us-gaap:GrossProfit contextRef="FD2016Q4YTD" decimals="-3" id="Fact-43845AFE04B1C957DA291AF05C77BC6E" unitRef="usd">815294000</us-gaap:GrossProfit>
+<us-gaap:SellingAndMarketingExpense contextRef="FD2016Q4YTD" decimals="-3" id="Fact-669B7260EB3DDBB406411AF05C774537" unitRef="usd">490653000</us-gaap:SellingAndMarketingExpense>
+<us-gaap:ResearchAndDevelopmentExpense contextRef="FD2016Q4YTD" decimals="-3" id="Fact-F4754B6BD4130C81341A1AF05C9654BB" unitRef="usd">75720000</us-gaap:ResearchAndDevelopmentExpense>
+<us-gaap:OperatingExpenses contextRef="FD2016Q4YTD" decimals="-3" id="Fact-54936DFCDF4DD1F305061AF05C960C90" unitRef="usd">566373000</us-gaap:OperatingExpenses>
+<us-gaap:OperatingIncomeLoss contextRef="FD2016Q4YTD" decimals="-3" id="Fact-F5825753E9FA6BD859F21AF05C871791" unitRef="usd">248921000</us-gaap:OperatingIncomeLoss>
+<us-gaap:InterestIncomeOperating contextRef="FD2016Q4YTD" decimals="-3" id="Fact-AA99BC5478760153E90F03A67BBD09D9" unitRef="usd">4213000</us-gaap:InterestIncomeOperating>
+<us-gaap:OtherNonoperatingIncomeExpense contextRef="FD2016Q4YTD" decimals="-3" id="Fact-F8BE62A669DBB1AAFC091AF05C963361" unitRef="usd">-10568000</us-gaap:OtherNonoperatingIncomeExpense>
+<us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments contextRef="FD2016Q4YTD" decimals="-3" id="Fact-CA7396BDCC2334F596291AF05C96F0C0" unitRef="usd">242566000</us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments>
+<us-gaap:IncomeTaxExpenseBenefit contextRef="FD2016Q4YTD" decimals="-3" id="Fact-1E80E66C4121C7B786151AF05C876AFA" unitRef="usd">51200000</us-gaap:IncomeTaxExpenseBenefit>
+<us-gaap:IncomeLossFromEquityMethodInvestments contextRef="FD2016Q4YTD" decimals="-3" id="Fact-128BFAE8EA3C30FEBEA81AF05C779682" unitRef="usd">-1684000</us-gaap:IncomeLossFromEquityMethodInvestments>
+<us-gaap:NetIncomeLoss contextRef="FD2016Q4YTD" decimals="-3" id="Fact-241298BA3C5052DE90C61AF05C9666E4" unitRef="usd">189682000</us-gaap:NetIncomeLoss>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignFullMember" decimals="-3" id="Fact-4CB0907074811EFB43DC1AF05C870C75" unitRef="usd">958327000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+<us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax contextRef="FD2016Q4YTD_us-gaap_StatementBusinessSegmentsAxis_algn_InvisalignExpressliteMember" decimals="-3" id="Fact-C9509267EAAC1D8519971AF05C965A60" unitRef="usd">121547000</us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax>
+</xbrli:xbrl>

@@ -2,6 +2,7 @@ import type { GrossOperatingItems } from "./types";
 import type { PeriodV2 } from "./v2-types";
 import { albOriginalIncomeRule, originalAlbemarleIncomeProblem } from "./standalone-income";
 import { albInlineIncomeRule, albemarleInlineIncomeProblem } from "./albemarle-inline-income";
+import { alignInlineIncomeRule, alignInlineIncomeProblem } from "./align-inline-income";
 
 export const flexGrossOperatingRule = {
   id: "flex-gross-operating-costs-v1",
@@ -58,6 +59,7 @@ type Candidate = Pick<
   | "reportingCurrency"
   | "metrics"
   | "grossOperatingItems"
+  | "alignInlineIncome"
   | "grossProfitAdjustments"
   | "operatingReconciliation"
   | "operatingExpenseDetails"
@@ -72,6 +74,7 @@ export function grossOperatingItemsProblem(period: Candidate): string | undefine
   if (!p) return;
   if (p.ruleId === albOriginalIncomeRule) return originalAlbemarleIncomeProblem(period as PeriodV2);
   if (p.ruleId === albInlineIncomeRule) return albemarleInlineIncomeProblem(period as PeriodV2);
+  if (p.ruleId === alignInlineIncomeRule) return alignInlineIncomeProblem(period as PeriodV2);
   const rule = flexGrossOperatingRule;
   const valid = (l: GrossOperatingItems["cost"]) =>
     !!l.id &&
