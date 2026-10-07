@@ -1,0 +1,1084 @@
+{
+  "ticker": "AMD",
+  "cik": "0000002488",
+  "filing": {
+    "accession": "0000002488-24-000056",
+    "filedAt": "2024-05-01",
+    "reportDate": "2024-03-30",
+    "form": "10-Q",
+    "primaryDocument": "amd-20240330.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm"
+  },
+  "originalSource": {
+    "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+    "bytes": 1006496,
+    "sha256": "43473e101e8dee1dc4f61b89fdc82f1591306a069da2fc8494bafdc7aec38fb0"
+  },
+  "excerptSha256": "e95eae9970387fa651ae7009f816321e6dc4941197d166af30d659e789bedd7d",
+  "excerptBytes": 188008,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 9,
+      "fixtureIndex": 0,
+      "tableSha256": "de003cd4ea04148899026e806df30d59b04c651ba140b10a1d49d692d4925f76"
+    },
+    {
+      "originalIndex": 17,
+      "fixtureIndex": 1,
+      "tableSha256": "10d09c0f4074e4e18f21793ad8828ace569837a6a5c9408bd96ec0afafa5c257"
+    },
+    {
+      "originalIndex": 32,
+      "fixtureIndex": 2,
+      "tableSha256": "b8fcf8bf13d512613a0383299a881a556d814bec6ecd0482f949fa9311311e5b"
+    }
+  ],
+  "expectedCurrent": {
+    "id": "2024-Q1",
+    "label": "Q1 FY2024",
+    "kind": "quarterly",
+    "fiscalYear": 2024,
+    "fiscalQuarter": 1,
+    "startDate": "2023-12-31",
+    "endDate": "2024-03-30",
+    "filedAt": "2024-05-01",
+    "accession": "0000002488-24-000056",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 5473000000,
+      "incomeTax": -52000000,
+      "pretaxIncome": 64000000,
+      "netIncome": 123000000,
+      "equityMethodIncome": 7000000,
+      "operatingIncome": 36000000,
+      "grossProfit": 2560000000,
+      "costOfRevenue": 2913000000,
+      "operatingExpenses": 2524000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Reported revenue",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0000002488-24-000056",
+        "filedAt": "2024-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "incomeTax": {
+        "label": "Income tax provision (benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000002488-24-000056",
+        "filedAt": "2024-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "pretaxIncome": {
+        "label": "Income (loss) before income taxes and equity income",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+        "accession": "0000002488-24-000056",
+        "filedAt": "2024-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "netIncome": {
+        "label": "Net income (loss)",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000002488-24-000056",
+        "filedAt": "2024-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "equityMethodIncome": {
+        "label": "Equity income in investee",
+        "tag": "us-gaap:IncomeLossFromEquityMethodInvestments",
+        "accession": "0000002488-24-000056",
+        "filedAt": "2024-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "operatingIncome": {
+        "label": "Operating income (loss)",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0000002488-24-000056",
+        "filedAt": "2024-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "grossProfit": {
+        "label": "Gross profit",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0000002488-24-000056",
+        "filedAt": "2024-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "costOfRevenue": {
+        "label": "Total cost of sales",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0000002488-24-000056",
+        "filedAt": "2024-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "operatingExpenses": {
+        "label": "Reported gross profit less operating income (net)",
+        "tag": "us-gaap:GrossProfit - us-gaap:OperatingIncomeLoss",
+        "accession": "0000002488-24-000056",
+        "filedAt": "2024-05-01",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+        "method": "calculated",
+        "inputs": [
+          "Gross profit (us-gaap:GrossProfit): https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+          "Operating income (loss) (us-gaap:OperatingIncomeLoss): https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": true,
+      "sankey": true
+    },
+    "operatingExpensesBasis": "expenses-and-other-items-net",
+    "segments": [
+      {
+        "id": "reported-Data-Center",
+        "label": "Data Center",
+        "revenue": 2337000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+          "accession": "0000002488-24-000056",
+          "filedAt": "2024-05-01",
+          "startDate": "2023-12-31",
+          "endDate": "2024-03-30",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "amd:ClientMember"
+          },
+          "value": 2337000000,
+          "decimals": -6,
+          "tableLabel": "Data Center",
+          "rowLabel": "Data Center",
+          "rowIndex": 5,
+          "columnIndex": 16
+        }
+      },
+      {
+        "id": "reported-Client",
+        "label": "Client",
+        "revenue": 1368000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+          "accession": "0000002488-24-000056",
+          "filedAt": "2024-05-01",
+          "startDate": "2023-12-31",
+          "endDate": "2024-03-30",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "amd:GamingMember"
+          },
+          "value": 1368000000,
+          "decimals": -6,
+          "tableLabel": "Client",
+          "rowLabel": "Client",
+          "rowIndex": 6,
+          "columnIndex": 15
+        }
+      },
+      {
+        "id": "reported-Gaming",
+        "label": "Gaming",
+        "revenue": 922000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+          "accession": "0000002488-24-000056",
+          "filedAt": "2024-05-01",
+          "startDate": "2023-12-31",
+          "endDate": "2024-03-30",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "amd:DataCenterMember"
+          },
+          "value": 922000000,
+          "decimals": -6,
+          "tableLabel": "Gaming",
+          "rowLabel": "Gaming",
+          "rowIndex": 7,
+          "columnIndex": 15
+        }
+      },
+      {
+        "id": "reported-Embedded",
+        "label": "Embedded",
+        "revenue": 846000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+          "accession": "0000002488-24-000056",
+          "filedAt": "2024-05-01",
+          "startDate": "2023-12-31",
+          "endDate": "2024-03-30",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "us-gaap:StatementBusinessSegmentsAxis": "amd:EmbeddedMember"
+          },
+          "value": 846000000,
+          "decimals": -6,
+          "tableLabel": "Embedded",
+          "rowLabel": "Embedded",
+          "rowIndex": 8,
+          "columnIndex": 15
+        }
+      }
+    ],
+    "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+    "segmentBasis": "Reported AMD business revenues from the complete original revenue section. All current, comparative and year-to-date columns reconcile to the independent primary statement. Client and Gaming are counted separately; their reported parent subtotal is corroboration only. No annual mix or business gross profit is estimated. The original inline member names for Data Center, Client and Gaming disagree with their printed row captions. The chart follows the reported captions, independently corroborated by the identical complete MD&A table; the original member names remain unchanged in the source evidence.",
+    "businessBreakdownSource": {
+      "method": "reviewed-amd-revenue",
+      "ruleId": "amd-original-complete-revenue-v1",
+      "amdRevenue": {
+        "reportDate": "2024-03-30",
+        "form": "10-Q",
+        "originalFiscalYear": 2024,
+        "originalFiscalPeriod": "Q1",
+        "fiscalCalendar": "period amounts have been reclassified to conform to current period presentation. The Company uses a 52- or 53-week fiscal year ending on the last Saturday in December. The three months ended March 30, 2024 and April 1, 2023 each consisted of 13 weeks. Use of Estimates. The preparation of consolidated financial statements in ",
+        "units": [
+          {
+            "id": "usd",
+            "measure": "iso4217:USD"
+          }
+        ],
+        "ruleId": "amd-original-complete-revenue-v1",
+        "encoding": "original-cell-tuples-v1",
+        "tableIndex": 1,
+        "rows": [
+          [
+            0,
+            [
+              [0, 1, 1, ""],
+              [1, 1, 1, ""],
+              [2, 1, 1, ""],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [15, 1, 1, ""],
+              [16, 1, 1, ""],
+              [17, 1, 1, ""],
+              [18, 1, 1, ""],
+              [19, 1, 1, ""],
+              [20, 1, 1, ""],
+              [21, 1, 1, ""],
+              [22, 1, 1, ""],
+              [23, 1, 1, ""]
+            ]
+          ],
+          [
+            1,
+            [
+              [0, 3, 1, ""],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 9, 1, "Three Months Ended"]
+            ]
+          ],
+          [
+            2,
+            [
+              [0, 3, 1, ""],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [15, 3, 1, "March 30, 2024"],
+              [18, 3, 1, ""],
+              [21, 3, 1, "April 1, 2023"]
+            ]
+          ],
+          [
+            3,
+            [
+              [0, 3, 1, ""],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [15, 9, 1, "(In millions)"]
+            ]
+          ],
+          [
+            4,
+            [
+              [0, 3, 1, "Net revenue:"],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [15, 3, 1, ""],
+              [18, 3, 1, ""],
+              [21, 3, 1, ""]
+            ]
+          ],
+          [
+            5,
+            [
+              [0, 3, 1, "Data Center"],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [15, 1, 1, "$"],
+              [
+                16,
+                1,
+                1,
+                "2,337",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 2337000000,
+                  "decimals": -6,
+                  "contextId": "c-40",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-12-31",
+                  "endDate": "2024-03-30",
+                  "dimensions": {
+                    "us-gaap:StatementBusinessSegmentsAxis": "amd:ClientMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-40",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-298"
+                    }
+                  ]
+                }
+              ],
+              [17, 1, 1, ""],
+              [18, 3, 1, ""],
+              [21, 1, 1, "$"],
+              [
+                22,
+                1,
+                1,
+                "1,295",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 1295000000,
+                  "decimals": -6,
+                  "contextId": "c-41",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-04-01",
+                  "dimensions": {
+                    "us-gaap:StatementBusinessSegmentsAxis": "amd:ClientMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-41",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-299"
+                    }
+                  ]
+                }
+              ],
+              [23, 1, 1, ""]
+            ]
+          ],
+          [
+            6,
+            [
+              [0, 3, 1, "Client"],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [
+                15,
+                2,
+                1,
+                "1,368",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 1368000000,
+                  "decimals": -6,
+                  "contextId": "c-42",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-12-31",
+                  "endDate": "2024-03-30",
+                  "dimensions": {
+                    "us-gaap:StatementBusinessSegmentsAxis": "amd:GamingMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-42",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-300"
+                    }
+                  ]
+                }
+              ],
+              [17, 1, 1, ""],
+              [18, 3, 1, ""],
+              [
+                21,
+                2,
+                1,
+                "739",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 739000000,
+                  "decimals": -6,
+                  "contextId": "c-43",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-04-01",
+                  "dimensions": {
+                    "us-gaap:StatementBusinessSegmentsAxis": "amd:GamingMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-43",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "",
+                      "id": "f-301"
+                    }
+                  ]
+                }
+              ],
+              [23, 1, 1, ""]
+            ]
+          ],
+          [
+            7,
+            [
+              [0, 3, 1, "Gaming"],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [
+                15,
+                2,
+                1,
+                "922",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 922000000,
+                  "decimals": -6,
+                  "contextId": "c-44",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-12-31",
+                  "endDate": "2024-03-30",
+                  "dimensions": {
+                    "us-gaap:StatementBusinessSegmentsAxis": "amd:DataCenterMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-44",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "",
+                      "id": "f-302"
+                    }
+                  ]
+                }
+              ],
+              [17, 1, 1, ""],
+              [18, 3, 1, ""],
+              [
+                21,
+                2,
+                1,
+                "1,757",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 1757000000,
+                  "decimals": -6,
+                  "contextId": "c-45",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-04-01",
+                  "dimensions": {
+                    "us-gaap:StatementBusinessSegmentsAxis": "amd:DataCenterMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-45",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-303"
+                    }
+                  ]
+                }
+              ],
+              [23, 1, 1, ""]
+            ]
+          ],
+          [
+            8,
+            [
+              [0, 3, 1, "Embedded"],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [
+                15,
+                2,
+                1,
+                "846",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 846000000,
+                  "decimals": -6,
+                  "contextId": "c-46",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-12-31",
+                  "endDate": "2024-03-30",
+                  "dimensions": {
+                    "us-gaap:StatementBusinessSegmentsAxis": "amd:EmbeddedMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-46",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "",
+                      "id": "f-304"
+                    }
+                  ]
+                }
+              ],
+              [17, 1, 1, ""],
+              [18, 3, 1, ""],
+              [
+                21,
+                2,
+                1,
+                "1,562",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 1562000000,
+                  "decimals": -6,
+                  "contextId": "c-47",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-04-01",
+                  "dimensions": {
+                    "us-gaap:StatementBusinessSegmentsAxis": "amd:EmbeddedMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-47",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-305"
+                    }
+                  ]
+                }
+              ],
+              [23, 1, 1, ""]
+            ]
+          ],
+          [
+            9,
+            [
+              [0, 3, 1, "Total net revenue"],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [15, 1, 1, "$"],
+              [
+                16,
+                1,
+                1,
+                "5,473",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 5473000000,
+                  "decimals": -6,
+                  "contextId": "c-1",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-12-31",
+                  "endDate": "2024-03-30",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-1",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-306"
+                    }
+                  ]
+                }
+              ],
+              [17, 1, 1, ""],
+              [18, 3, 1, ""],
+              [21, 1, 1, "$"],
+              [
+                22,
+                1,
+                1,
+                "5,353",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 5353000000,
+                  "decimals": -6,
+                  "contextId": "c-3",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-04-01",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-3",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-307"
+                    }
+                  ]
+                }
+              ],
+              [23, 1, 1, ""]
+            ]
+          ]
+        ],
+        "primary": {
+          "tableIndex": 0,
+          "title": "Condensed Consolidated Statements of Operations (Unaudited)",
+          "headerRows": [
+            [
+              0,
+              [
+                [0, 1, 1, ""],
+                [1, 1, 1, ""],
+                [2, 1, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 1, 1, ""],
+                [16, 1, 1, ""],
+                [17, 1, 1, ""],
+                [18, 1, 1, ""],
+                [19, 1, 1, ""],
+                [20, 1, 1, ""],
+                [21, 1, 1, ""],
+                [22, 1, 1, ""],
+                [23, 1, 1, ""]
+              ]
+            ],
+            [
+              1,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 9, 1, "Three Months Ended"]
+              ]
+            ],
+            [
+              2,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, "March 30, 2024"],
+                [18, 3, 1, ""],
+                [21, 3, 1, "April 1, 2023"]
+              ]
+            ],
+            [
+              3,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 9, 1, "(In millions, except per share amounts)"]
+              ]
+            ]
+          ],
+          "revenue": [
+            4,
+            [
+              [0, 3, 1, "Net revenue"],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [15, 1, 1, "$"],
+              [
+                16,
+                1,
+                1,
+                "5,473",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 5473000000,
+                  "decimals": -6,
+                  "contextId": "c-1",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-12-31",
+                  "endDate": "2024-03-30",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-1",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-30"
+                    }
+                  ]
+                }
+              ],
+              [17, 1, 1, ""],
+              [18, 3, 1, ""],
+              [21, 1, 1, "$"],
+              [
+                22,
+                1,
+                1,
+                "5,353",
+                {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 5353000000,
+                  "decimals": -6,
+                  "contextId": "c-3",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-04-01",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "c-3",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "f-31"
+                    }
+                  ]
+                }
+              ],
+              [23, 1, 1, ""]
+            ]
+          ],
+          "tax": [
+            20,
+            [
+              [0, 3, 1, "Income tax provision (benefit)"],
+              [3, 3, 1, ""],
+              [6, 3, 1, ""],
+              [9, 3, 1, ""],
+              [12, 3, 1, ""],
+              [
+                15,
+                2,
+                1,
+                "( 52 )",
+                {
+                  "tag": "us-gaap:IncomeTaxExpenseBenefit",
+                  "value": -52000000,
+                  "decimals": -6,
+                  "contextId": "c-1",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-12-31",
+                  "endDate": "2024-03-30",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:IncomeTaxExpenseBenefit",
+                      "contextId": "c-1",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "",
+                      "sign": "-",
+                      "id": "f-56"
+                    }
+                  ]
+                }
+              ],
+              [17, 1, 1, ""],
+              [18, 3, 1, ""],
+              [
+                21,
+                2,
+                1,
+                "13",
+                {
+                  "tag": "us-gaap:IncomeTaxExpenseBenefit",
+                  "value": 13000000,
+                  "decimals": -6,
+                  "contextId": "c-3",
+                  "cik": "0000002488",
+                  "currency": "USD",
+                  "startDate": "2023-01-01",
+                  "endDate": "2023-04-01",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:IncomeTaxExpenseBenefit",
+                      "contextId": "c-3",
+                      "unitRef": "usd",
+                      "scale": 6,
+                      "decimals": "-6",
+                      "originalScale": "6",
+                      "format": "",
+                      "id": "f-57"
+                    }
+                  ]
+                }
+              ],
+              [23, 1, 1, ""]
+            ]
+          ]
+        },
+        "classificationBasis": "original-row-captions-corroborated-by-mda",
+        "independentMda": {
+          "tableIndex": 2,
+          "rows": [
+            [
+              0,
+              [
+                [0, 1, 1, ""],
+                [1, 1, 1, ""],
+                [2, 1, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 1, 1, ""],
+                [16, 1, 1, ""],
+                [17, 1, 1, ""],
+                [18, 1, 1, ""],
+                [19, 1, 1, ""],
+                [20, 1, 1, ""],
+                [21, 1, 1, ""],
+                [22, 1, 1, ""],
+                [23, 1, 1, ""]
+              ]
+            ],
+            [
+              1,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 9, 1, "Three Months Ended"]
+              ]
+            ],
+            [
+              2,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, "March 30, 2024"],
+                [18, 3, 1, ""],
+                [21, 3, 1, "April 1, 2023"]
+              ]
+            ],
+            [
+              3,
+              [
+                [0, 3, 1, ""],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 9, 1, "(In millions)"]
+              ]
+            ],
+            [
+              4,
+              [
+                [0, 3, 1, "Net revenue:"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 3, 1, ""],
+                [18, 3, 1, ""],
+                [21, 3, 1, ""]
+              ]
+            ],
+            [
+              5,
+              [
+                [0, 3, 1, "Data Center"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 1, 1, "$"],
+                [16, 1, 1, "2,337"],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 1, 1, "$"],
+                [22, 1, 1, "1,295"],
+                [23, 1, 1, ""]
+              ]
+            ],
+            [
+              6,
+              [
+                [0, 3, 1, "Client"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 2, 1, "1,368"],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 2, 1, "739"],
+                [23, 1, 1, ""]
+              ]
+            ],
+            [
+              7,
+              [
+                [0, 3, 1, "Gaming"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 2, 1, "922"],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 2, 1, "1,757"],
+                [23, 1, 1, ""]
+              ]
+            ],
+            [
+              8,
+              [
+                [0, 3, 1, "Embedded"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 2, 1, "846"],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 2, 1, "1,562"],
+                [23, 1, 1, ""]
+              ]
+            ],
+            [
+              9,
+              [
+                [0, 3, 1, "Total net revenue"],
+                [3, 3, 1, ""],
+                [6, 3, 1, ""],
+                [9, 3, 1, ""],
+                [12, 3, 1, ""],
+                [15, 1, 1, "$"],
+                [16, 1, 1, "5,473"],
+                [17, 1, 1, ""],
+                [18, 3, 1, ""],
+                [21, 1, 1, "$"],
+                [22, 1, 1, "5,353"],
+                [23, 1, 1, ""]
+              ]
+            ]
+          ]
+        }
+      },
+      "tableIndex": 1,
+      "totalTableIndex": 0,
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000056/amd-20240330.htm",
+      "accession": "0000002488-24-000056",
+      "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue": 5473000000,
+      "revenueDecimals": -6,
+      "totalLabel": "Total net revenue",
+      "omittedSubtotals": [],
+      "omittedZeroColumns": []
+    }
+  },
+  "retained": [],
+  "scope": "Complete unmodified original primary and business tables, independent MD&A when required, all original inline resources and fiscal declarations. Adjacent original visible text and calendar are HTML escaped only. No source values, contexts, dimensions, signs or dates synthesized. Full-source and compact excerpt results agree; not live acceptance."
+}

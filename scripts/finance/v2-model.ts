@@ -1,3 +1,5 @@
+import { amdRevenueProblem } from "../../src/features/finance/amd-revenue";
+import { amdIncomeFlowView } from "../../src/features/finance/amd-inline-income";
 import { dardenInlineIncomeProblem } from "../../src/features/finance/darden-inline-income";
 import { buildStatementFlow, segmentProblem } from "../../src/features/finance/chart-model";
 import { shareholderBridgeProblem } from "../../src/features/finance/shareholder-bridge";
@@ -270,6 +272,9 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
     if (period.revenueAdjustments?.some((item) => item.id === "source-rounding")) return;
     return business;
   }
+  if (proof.amdRevenue && proof.method !== "reviewed-amd-revenue") return;
+  if (proof.method === "reviewed-amd-revenue")
+    return amdRevenueProblem(period) ? undefined : business;
   if (proof.dardenRevenue && proof.method !== "reviewed-darden-revenue") return;
   if (proof.method === "reviewed-darden-revenue")
     return dardenRevenueProblem(period) ? undefined : business;
@@ -609,6 +614,15 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
 
 export function flowPeriod(period: PeriodV2): StatementChartPeriod | undefined {
   if (period.displayCurrency !== "USD") return;
+  if (period.amdInlineIncome) {
+    try {
+      if (period.businessBreakdownSource && !businessPeriod(period)) return;
+      const view = amdIncomeFlowView(period);
+      return buildStatementFlow(view).ok ? (period as FlowStatementPeriod) : undefined;
+    } catch {
+      return;
+    }
+  }
   if (alignInlineIncomeProblem(period)) return;
   if (dardenInlineIncomeProblem(period)) return;
   if (grossOperatingItemsProblem(period)) return;
@@ -958,7 +972,8 @@ export function validateV2(company: CompanyV2) {
           p.grossOperatingItems ||
           p.directNetItems ||
           p.operatingNetItems ||
-          p.dardenInlineIncome) &&
+          p.dardenInlineIncome ||
+          p.amdInlineIncome) &&
         !flowPeriod(p)
       )
         throw new Error("Unsupported chart capability or unverified rounding precision.");

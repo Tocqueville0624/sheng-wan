@@ -1,3 +1,5 @@
+import { enrichAmdBusinessPeriods } from "./amd-business-v2";
+import { enrichAmdIncomePeriods } from "./amd-income-v2";
 import type { CatalogCompany, CompanyV2, PeriodV2 } from "../../src/features/finance/v2-types";
 import { enrichBusinessPeriods } from "./business-v2";
 import { parseInlineXbrl } from "./ixbrl";
@@ -139,10 +141,12 @@ export function readGenericFiling(
   apply(enrichCencoraBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichDardenInlineIncomePeriods(html, identity, filing, [...updated.values()], parsed));
   apply(enrichDardenBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
+  apply(enrichAmdBusinessPeriods(html, identity, filing, [...updated.values()], parsed));
+  apply(enrichAmdIncomePeriods(html, identity, filing, [...updated.values()], parsed));
   // This reviewed issuer stays fail-closed when its captions or corporate scope
   // change. A generic subset or another revenue classification is not a fallback.
   if (
-    !["0000915913", "0001037868", "0000313927", "0001140859", "0000940944"].includes(
+    !["0000915913", "0001037868", "0000313927", "0001140859", "0000940944", "0000002488"].includes(
       identity.cik
     ) &&
     !(["0000008818", "0000010456"].includes(identity.cik) && parsed.fiscalYear >= 2023)

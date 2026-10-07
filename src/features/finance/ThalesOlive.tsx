@@ -294,7 +294,8 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         "operating_net_items",
         "align_inline_income",
         "darden_inline_income",
-        "original_statement_corroboration"
+        "original_statement_corroboration",
+        "amd_inline_income"
       ],
       ...periods.map((p) => [
         selection.ticker,
@@ -338,7 +339,8 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         JSON.stringify(p.operatingNetItems ?? null),
         JSON.stringify(p.alignInlineIncome ?? null),
         JSON.stringify(p.dardenInlineIncome ?? null),
-        JSON.stringify(p.originalStatementCorroboration ?? null)
+        JSON.stringify(p.originalStatementCorroboration ?? null),
+        JSON.stringify(p.amdInlineIncome ?? null)
       ])
     ];
     downloadFile(

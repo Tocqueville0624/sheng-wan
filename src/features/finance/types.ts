@@ -1,3 +1,4 @@
+import type { AmdRevenueProof, AmdInlineIncomeProof } from "./amd-types";
 import type { DardenRevenueProof, DardenInlineIncomeProof } from "./darden-types";
 import type { MetricSource } from "./v2-types";
 import type { OriginalStandaloneBusinessProof } from "./standalone-business";
@@ -456,6 +457,7 @@ export type FinancialPeriod = {
   grossOperatingItems?: GrossOperatingItems;
   alignInlineIncome?: AlignInlineIncomeProof;
   dardenInlineIncome?: DardenInlineIncomeProof;
+  amdInlineIncome?: AmdInlineIncomeProof;
   directNetItems?: DirectNetItems;
   operatingNetItems?: OperatingNetItems;
   afterTaxTransactionItems?: AfterTaxTransactionItems;
@@ -504,7 +506,9 @@ export type FinancialPeriod = {
       | "reviewed-original-business-hierarchy"
       | "reviewed-cencora-revenue"
       | "reviewed-darden-revenue"
+      | "reviewed-amd-revenue"
       | "reviewed-original-standalone-revenue";
+    amdRevenue?: AmdRevenueProof;
     dardenRevenue?: DardenRevenueProof;
     cencoraRevenue?: CencoraBusinessProof;
     standaloneRevenue?: OriginalStandaloneBusinessProof;

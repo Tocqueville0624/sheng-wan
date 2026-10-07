@@ -72,3 +72,6 @@ tests/fixtures/finance/cor-*-original-hierarchy.html
 
 # Preserve unchanged Darden original primary rows, label notes and business tables.
 tests/fixtures/finance/dri-*-original-primary-business.html
+
+# Preserve unchanged AMD original tables, contexts and monetary declarations.
+tests/fixtures/finance/amd-*-original-primary-business.html

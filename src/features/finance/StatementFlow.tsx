@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import type { CompanyDataset, FinancialMetrics, StatementChartPeriod } from "./types";
-import type { MetricSource } from "./v2-types";
+import type { MetricSource, PeriodV2 } from "./v2-types";
+import { originalAmdInlineIncome } from "./amd-inline-income";
 import {
   buildStatementFlow,
   businessGrossMargin,
@@ -191,6 +192,10 @@ export function StatementFlow({
     );
   }
   const layout = layoutStatementFlow(result.graph);
+  const amdScope = period.amdInlineIncome
+    ? originalAmdInlineIncome(period as PeriodV2, period.amdInlineIncome)
+    : undefined;
+  const flowMetrics = amdScope?.metrics ?? period.metrics;
   const signedAccounting = result.graph.signedAccounting;
   const hasLoss = result.graph.nodes.some(
     (node) => node.group === "main" && (node.signedAmount ?? node.amount) < 0
@@ -219,6 +224,12 @@ export function StatementFlow({
     directOperatingFlow && period.metricSources?.totalOperatingCosts?.method === "calculated";
   const rounding = period.operatingReconciliation;
   const precisionNotes = [
+    ...(amdScope?.retainedPretaxIncludesEquity
+      ? [
+          `Original statement pretax income: ${shortMoney(flowMetrics.pretaxIncome!)} before after-tax equity income of ${shortMoney(flowMetrics.equityMethodIncome!)}.`,
+          `Saved inclusive pretax metric: ${shortMoney(period.metrics.pretaxIncome!)}; its original value and source remain unchanged.`
+        ]
+      : []),
     ...(period.shareholderBridge
       ? [
           `Common-shareholder income: ${shortMoney(period.shareholderBridge.common.amount)} after reported allocations. The preceding net income is unchanged.`
@@ -320,6 +331,8 @@ export function StatementFlow({
               sourceUrl,
               metricSources: period.metricSources ?? {},
               metrics: period.metrics,
+              chartMetrics: amdScope?.metrics,
+              amdInlineIncome: period.amdInlineIncome,
               segments: period.segments,
               segmentBasis: period.segmentBasis,
               segmentSourceUrl: period.segmentSourceUrl,
@@ -684,7 +697,7 @@ export function StatementFlow({
                       : node.id === "noncontrolling"
                         ? period.metrics.noncontrollingInterestIncome!
                         : node.id === "discontinued"
-                          ? period.metrics.discontinuedOperationsIncome!
+                          ? flowMetrics.discontinuedOperationsIncome!
                           : node.id === "subsidiary"
                             ? period.metrics.afterTaxSubsidiaryIncome!
                             : node.id === "after-tax-transaction"

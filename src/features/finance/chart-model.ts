@@ -1,4 +1,5 @@
 import { dardenInlineIncomeProblem } from "./darden-inline-income";
+import { amdIncomeFlowView } from "./amd-inline-income";
 import type { PeriodV2 } from "./v2-types";
 import type {
   BusinessPeriod,
@@ -117,6 +118,16 @@ export function revenueAdjustmentLabel(adjustment: RevenueSegment) {
 }
 
 export function buildStatementFlow(period: StatementChartPeriod): FlowResult {
+  if (period.amdInlineIncome) {
+    try {
+      return buildStatementFlow(amdIncomeFlowView(period as PeriodV2));
+    } catch (error) {
+      return {
+        ok: false,
+        reason: error instanceof Error ? error.message : "Unverified original AMD income scopes."
+      };
+    }
+  }
   const dardenProblem = dardenInlineIncomeProblem(period as PeriodV2);
   if (dardenProblem) return { ok: false, reason: dardenProblem };
   const shareholderProblem = shareholderBridgeProblem(period);
