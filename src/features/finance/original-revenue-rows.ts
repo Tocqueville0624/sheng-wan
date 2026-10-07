@@ -18,6 +18,25 @@ export function originalThousandDollarRows(
   units: ServiceRevenueRowsProof["units"],
   cik: string
 ) {
+  return originalDollarRows(rows, units, cik, 3);
+}
+
+/** Million-dollar declarations are supported only through a separately reviewed
+ * caller. The original thousand-dollar contract remains unchanged. */
+export function originalMillionDollarRows(
+  rows: ServiceRevenueRow[],
+  units: ServiceRevenueRowsProof["units"],
+  cik: string
+) {
+  return originalDollarRows(rows, units, cik, 6);
+}
+
+function originalDollarRows(
+  rows: ServiceRevenueRow[],
+  units: ServiceRevenueRowsProof["units"],
+  cik: string,
+  scale: 3 | 6
+) {
   demand(/^\d{10}$/.test(cik) && Number(cik) > 0, "Invalid original issuer identity");
   const occupied = new Set<string>();
   let prior = -1;
@@ -66,7 +85,7 @@ export function originalThousandDollarRows(
           f.startDate < f.endDate &&
           f.dimensions &&
           Number.isSafeInteger(f.value) &&
-          f.decimals === -3 &&
+          f.decimals === -scale &&
           !f.corroboratingContexts?.length &&
           d &&
           Array.isArray(f.declarations) &&
@@ -77,9 +96,9 @@ export function originalThousandDollarRows(
               x.tag === f.tag &&
               x.contextId === f.contextId &&
               x.unitRef === d.unitRef &&
-              x.scale === 3 &&
-              x.decimals === "-3" &&
-              x.originalScale === "3" &&
+              x.scale === scale &&
+              x.decimals === String(-scale) &&
+              x.originalScale === String(scale) &&
               x.format === d.format &&
               x.sign === d.sign
           ) &&
@@ -94,7 +113,7 @@ export function originalThousandDollarRows(
         zero
           ? /^[—–-]$/.test(lexical) && f.value === 0 && d.sign === undefined
           : /^\d+(?:\.\d+)?$/.test(lexical) &&
-              Number(lexical) * 1000 === Math.abs(f.value) &&
+              Number(lexical) * 10 ** scale === Math.abs(f.value) &&
               (d.sign === "-") === f.value < 0,
         "Displayed revenue differs from the original fact"
       );

@@ -1,0 +1,179 @@
+{
+  "ticker": "HOOD",
+  "cik": "0001783879",
+  "filing": {
+    "accession": "0001783879-26-000029",
+    "filedAt": "2026-02-20",
+    "reportDate": "2025-12-31",
+    "form": "10-K/A",
+    "primaryDocument": "hood-20251231.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm"
+  },
+  "sourceSha256": "3cc19730e53fc7b349f4c6c74709f5c95891747fad7da410374fbcf752181226",
+  "sourceBytes": 3294826,
+  "excerptSha256": "20518edaf5634d32a82710a5e7c028d8ce6111dc5f03b35eb1a0a98058633fa4",
+  "excerptBytes": 281691,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 47,
+      "fixtureIndex": 0,
+      "primary": true,
+      "business": false
+    }
+  ],
+  "period": {
+    "id": "FY2025",
+    "label": "FY 2025",
+    "kind": "annual",
+    "fiscalYear": 2025,
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "filedAt": "2026-02-20",
+    "accession": "0001783879-26-000029",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 4473000000,
+      "incomeTax": 225000000,
+      "pretaxIncome": 2108000000,
+      "netIncome": 1883000000,
+      "expensesAndOtherItems": 2365000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Reported revenue",
+        "tag": "us-gaap:Revenues",
+        "accession": "0001783879-26-000029",
+        "filedAt": "2026-02-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "incomeTax": {
+        "label": "Provision for (benefit from) income taxes",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001783879-26-000029",
+        "filedAt": "2026-02-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "pretaxIncome": {
+        "label": "Income (loss) before income taxes",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001783879-26-000029",
+        "filedAt": "2026-02-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "netIncome": {
+        "label": "Net income (loss) attributable to Robinhood",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001783879-26-000029",
+        "filedAt": "2026-02-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "expensesAndOtherItems": {
+        "label": "Revenue less pretax profit",
+        "tag": "us-gaap:Revenues - us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001783879-26-000029",
+        "filedAt": "2026-02-20",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+        "method": "calculated",
+        "inputs": [
+          "Total net revenues (us-gaap:Revenues): https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+          "Income (loss) before income taxes (us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest): https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": true,
+      "sankey": true
+    },
+    "segments": [
+      {
+        "id": "reported-Transaction-based-revenues",
+        "label": "Transaction-based revenues",
+        "revenue": 2628000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+          "accession": "0001783879-26-000029",
+          "filedAt": "2026-02-20",
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ProductOrServiceAxis": "hood:TransactionBasedRevenuesMember"
+          },
+          "value": 2628000000,
+          "decimals": -6,
+          "tableLabel": "Transaction-based revenues",
+          "rowLabel": "Transaction-based revenues"
+        }
+      },
+      {
+        "id": "reported-Net-interest-revenues",
+        "label": "Net interest revenues",
+        "revenue": 1514000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+          "accession": "0001783879-26-000029",
+          "filedAt": "2026-02-20",
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:InterestIncomeExpenseNet",
+          "dimensions": {},
+          "value": 1514000000,
+          "decimals": -6,
+          "tableLabel": "Net interest revenues",
+          "rowLabel": "Net interest revenues"
+        }
+      },
+      {
+        "id": "reported-Other-revenues",
+        "label": "Other revenues",
+        "revenue": 331000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+          "accession": "0001783879-26-000029",
+          "filedAt": "2026-02-20",
+          "startDate": "2025-01-01",
+          "endDate": "2025-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ProductOrServiceAxis": "us-gaap:FinancialServiceOtherMember"
+          },
+          "value": 331000000,
+          "decimals": -6,
+          "tableLabel": "Other revenues",
+          "rowLabel": "Other revenues"
+        }
+      }
+    ],
+    "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+    "segmentBasis": "Reported transaction-based revenues, net interest revenues and other revenues in the original financial statement. The complete revenue categories reconcile to the statement's closing total. Net interest stays reported net; no gross interest, business profit or residual revenue is estimated.",
+    "businessBreakdownSource": {
+      "method": "reviewed-segment-table",
+      "ruleId": "hood-original-transaction-net-interest-other-rows-v1",
+      "tableIndex": 0,
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000029/hood-20251231.htm",
+      "accession": "0001783879-26-000029",
+      "revenueTag": "us-gaap:Revenues",
+      "revenue": 4473000000,
+      "revenueDecimals": -6,
+      "totalLabel": "Total net revenues",
+      "omittedSubtotals": []
+    }
+  },
+  "sourceScope": "Every raw monetary table, context, unit, namespace and DEI declaration is copied unchanged from pinned original SEC bytes. Selected tables have documented excerpt indexes; whole-source indexes are not fabricated. This private preparation is not tracked/runtime/browser acceptance."
+}

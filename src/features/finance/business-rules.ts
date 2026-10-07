@@ -8,6 +8,9 @@ export type BusinessRule = {
   totalLabel: string;
   layout?: "columns" | "rows";
   separateTotal?: boolean;
+  /** A complete, consecutive original revenue section, including its closing
+   * total and comparative columns. Only the reviewed USD scales participate. */
+  originalRows?: { scale: 3 | 6; closingLabel: string };
   /** A reviewed external-customer row, distinct from gross/intersegment sales.
    * Every source column is accounted for, including duplicate totals and blanks.
    */
@@ -28,6 +31,66 @@ export type BusinessRule = {
 };
 
 export const businessRules: BusinessRule[] = [
+  ...["Systems Revenue", "Systems revenue", "System revenue"].map<BusinessRule>(
+    (rowLabel, index) => ({
+      id: `lrcx-original-systems-support-${index}-rows-v1`,
+      cik: "0000707549",
+      totalTag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      totalLabel: "Revenue",
+      layout: "rows",
+      separateTotal: true,
+      originalRows: { scale: 3, closingLabel: "" },
+      basis:
+        "Reported systems revenue and customer support-related revenue and other in the complete original revenue table. Both source categories reconcile to the independently reported primary revenue. Business profits and residual revenue are not estimated.",
+      branches: [
+        ["Systems", rowLabel, "lrcx:SystemMember"],
+        [
+          "Customer support-related revenue and other",
+          "Customer support-related revenue and other",
+          "lrcx:CustomerSupportandOtherMember"
+        ]
+      ].map(([label, rowLabel, member]) => ({
+        label,
+        rowLabel,
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: { "srt:ProductOrServiceAxis": member }
+      }))
+    })
+  ),
+  ...[
+    { member: "us-gaap:FinancialServiceOtherMember", scale: 6 as const },
+    { member: "hood:SubscriptionRevenuesMember", scale: 6 as const },
+    { member: "hood:SubscriptionRevenuesMember", scale: 3 as const }
+  ].map<BusinessRule>(({ member, scale }, index) => ({
+    id: `hood-original-transaction-net-interest-other-${index}-rows-v1`,
+    cik: "0001783879",
+    totalTag: "us-gaap:Revenues",
+    totalLabel: "Total net revenues",
+    layout: "rows",
+    originalRows: { scale, closingLabel: "Total net revenues" },
+    basis:
+      "Reported transaction-based revenues, net interest revenues and other revenues in the complete original financial-statement revenue section. Net interest retains its reported net scope; gross interest, business profits and residual revenue are not estimated.",
+    branches: [
+      {
+        label: "Transaction-based revenues",
+        rowLabel: "Transaction-based revenues",
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: { "srt:ProductOrServiceAxis": "hood:TransactionBasedRevenuesMember" }
+      },
+      {
+        label: "Net interest revenues",
+        rowLabel: "Net interest revenues",
+        tag: "us-gaap:InterestIncomeExpenseNet",
+        dimensions: {} as Record<string, string>
+      },
+      {
+        label: "Other revenues",
+        rowLabel: "Other revenues",
+        tag: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        dimensions: { "srt:ProductOrServiceAxis": member }
+      }
+    ]
+  })),
   {
     id: "iex-external-customers-columns-v1",
     cik: "0000832101",

@@ -29,6 +29,7 @@ import { serviceRevenueRowsProblem } from "../../src/features/finance/service-re
 import { albemarleRevenueProblem } from "../../src/features/finance/albemarle-revenue";
 import { originalStandaloneBusinessProblem } from "../../src/features/finance/standalone-business";
 import { ametekRevenueProblem } from "../../src/features/finance/ametek-revenue";
+import { originalBusinessRowsValid } from "../../src/features/finance/original-business-rows";
 import { normalizeReviewedFiscalLabel, albemarleFiscalLabelNote } from "./fiscal-label";
 
 /** Standard cost tags can describe only one activity (for example franchise rent).
@@ -296,9 +297,11 @@ export function businessPeriod(period: PeriodV2): BusinessPeriod | undefined {
       (proof.totalTableIndex !== undefined &&
         (!Number.isInteger(proof.totalTableIndex) || proof.totalTableIndex < 0)) ||
       period.segments!.length !== rule.branches.length ||
-      !externalCustomerColumnsValid(period, rule))
+      !externalCustomerColumnsValid(period, rule) ||
+      !originalBusinessRowsValid(period, rule, proof.originalRevenueRows))
   )
     return;
+  if (proof.originalRevenueRows && !rule?.originalRows) return;
   const halfUnit = (decimals: number) =>
     Number.isInteger(decimals) && decimals >= -18 && decimals <= 18 ? 0.5 * 10 ** -decimals : NaN;
   if (

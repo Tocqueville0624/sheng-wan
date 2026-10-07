@@ -31,3 +31,14 @@ tests/fixtures/finance/ame-2026-q2-business-revenue.html
 # Preserve original separate-XBRL primary/business HTML source bytes.
 tests/fixtures/finance/alb-fy2016-original-separate-income-business.html
 tests/fixtures/finance/ame-fy2016-original-separate-income-business.html
+
+# Unchanged original Lam Research and Robinhood revenue sections.
+tests/fixtures/finance/lam-fy2026-original-primary-business.html
+tests/fixtures/finance/lam-2026-q3-original-primary-business.html
+tests/fixtures/finance/robinhood-fy2025-original-primary-business.html
+tests/fixtures/finance/robinhood-2026-q2-original-primary-business.html
+tests/fixtures/finance/lam-2022-q2-original-primary-business.html
+tests/fixtures/finance/robinhood-fy2023-original-primary-business.html
+tests/fixtures/finance/robinhood-fy2021-thousands-original-primary-business.html
+tests/fixtures/finance/lam-2026-q1-original-primary-business.html
+tests/fixtures/finance/robinhood-2026-q1-original-primary-business.html

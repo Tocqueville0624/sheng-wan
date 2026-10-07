@@ -455,6 +455,12 @@ export type FinancialPeriod = {
     albemarleRevenue?: AlbemarleBusinessProof;
     productPortfolios?: ProductPortfolioProof;
     serviceRevenueRows?: ServiceRevenueRowsProof;
+    originalRevenueRows?: {
+      rows: ServiceRevenueRow[];
+      units: ServiceRevenueRowsProof["units"];
+      /** Independent primary revenue, with its original headers and blanks. */
+      primaryRows?: ServiceRevenueRow[];
+    };
     ruleId?: string;
     tableIndex: number;
     /** When the segment table omits a total, the primary consolidated table supplies it. */

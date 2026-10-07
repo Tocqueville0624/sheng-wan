@@ -1,0 +1,210 @@
+{
+  "ticker": "LRCX",
+  "cik": "0000707549",
+  "filing": {
+    "accession": "0000707549-26-000037",
+    "filedAt": "2026-08-07",
+    "reportDate": "2026-06-28",
+    "form": "10-K",
+    "primaryDocument": "lrcx-20260628.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm"
+  },
+  "sourceSha256": "56fcf732ce3441619b27543cb0fd57d0f452810ddddaf9ae4df11686c3af987e",
+  "sourceBytes": 1920273,
+  "excerptSha256": "f81d9d39daacc424a77ee0bbe9e1eceb43becac4ccd50de5e97b4c75ccbf3bcb",
+  "excerptBytes": 170780,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 27,
+      "fixtureIndex": 0,
+      "primary": true,
+      "business": false
+    },
+    {
+      "originalIndex": 33,
+      "fixtureIndex": 1,
+      "primary": false,
+      "business": true
+    }
+  ],
+  "period": {
+    "id": "FY2026",
+    "label": "FY 2026",
+    "kind": "annual",
+    "fiscalYear": 2026,
+    "startDate": "2025-06-30",
+    "endDate": "2026-06-28",
+    "filedAt": "2026-08-07",
+    "accession": "0000707549-26-000037",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": false,
+    "metrics": {
+      "revenue": 23232690000,
+      "incomeTax": 997077000,
+      "pretaxIncome": 8262473000,
+      "netIncome": 7265396000,
+      "operatingIncome": 8199795000,
+      "grossProfit": 11725308000,
+      "costOfRevenue": 11507382000,
+      "operatingExpenses": 3525513000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Reported revenue",
+        "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        "accession": "0000707549-26-000037",
+        "filedAt": "2026-08-07",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "incomeTax": {
+        "label": "Income tax expense",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0000707549-26-000037",
+        "filedAt": "2026-08-07",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "pretaxIncome": {
+        "label": "Income before income taxes",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0000707549-26-000037",
+        "filedAt": "2026-08-07",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "netIncome": {
+        "label": "Net income",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0000707549-26-000037",
+        "filedAt": "2026-08-07",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "operatingIncome": {
+        "label": "Operating income",
+        "tag": "us-gaap:OperatingIncomeLoss",
+        "accession": "0000707549-26-000037",
+        "filedAt": "2026-08-07",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "grossProfit": {
+        "label": "Gross margin",
+        "tag": "us-gaap:GrossProfit",
+        "accession": "0000707549-26-000037",
+        "filedAt": "2026-08-07",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "costOfRevenue": {
+        "label": "Total cost of goods sold",
+        "tag": "us-gaap:CostOfGoodsAndServicesSold",
+        "accession": "0000707549-26-000037",
+        "filedAt": "2026-08-07",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "operatingExpenses": {
+        "label": "Total operating expenses",
+        "tag": "us-gaap:OperatingExpenses",
+        "accession": "0000707549-26-000037",
+        "filedAt": "2026-08-07",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+        "method": "reported",
+        "decimals": -3
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": true,
+      "sankey": true
+    },
+    "operatingExpenseDetails": [
+      {
+        "id": "line-ResearchAndDevelopmentExpense",
+        "label": "Research and development",
+        "amount": 2375873000,
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "decimals": -3
+      },
+      {
+        "id": "line-SellingGeneralAndAdministrativeExpense",
+        "label": "Selling, general, and administrative",
+        "amount": 1149640000,
+        "tag": "us-gaap:SellingGeneralAndAdministrativeExpense",
+        "decimals": -3
+      }
+    ],
+    "segments": [
+      {
+        "id": "reported-Systems",
+        "label": "Systems",
+        "revenue": 14885488000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+          "accession": "0000707549-26-000037",
+          "filedAt": "2026-08-07",
+          "startDate": "2025-06-30",
+          "endDate": "2026-06-28",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ProductOrServiceAxis": "lrcx:SystemMember"
+          },
+          "value": 14885488000,
+          "decimals": -3,
+          "tableLabel": "Systems",
+          "rowLabel": "Systems Revenue"
+        }
+      },
+      {
+        "id": "reported-Customer-support-related-revenue-and-other",
+        "label": "Customer support-related revenue and other",
+        "revenue": 8347202000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+          "accession": "0000707549-26-000037",
+          "filedAt": "2026-08-07",
+          "startDate": "2025-06-30",
+          "endDate": "2026-06-28",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ProductOrServiceAxis": "lrcx:CustomerSupportandOtherMember"
+          },
+          "value": 8347202000,
+          "decimals": -3,
+          "tableLabel": "Customer support-related revenue and other",
+          "rowLabel": "Customer support-related revenue and other"
+        }
+      }
+    ],
+    "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+    "segmentBasis": "Reported systems revenue and customer support-related revenue and other in the original source table. Both complete source categories reconcile to independently reported primary revenue. No amount or business gross profit is estimated.",
+    "businessBreakdownSource": {
+      "method": "reviewed-segment-table",
+      "ruleId": "lrcx-original-systems-support-rows-v1",
+      "tableIndex": 1,
+      "totalTableIndex": 0,
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+      "accession": "0000707549-26-000037",
+      "revenueTag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+      "revenue": 23232690000,
+      "revenueDecimals": -3,
+      "totalLabel": "Revenue",
+      "omittedSubtotals": []
+    }
+  },
+  "sourceScope": "Every raw monetary table, context, unit, namespace and DEI declaration is copied unchanged from pinned original SEC bytes. Selected tables have documented excerpt indexes; whole-source indexes are not fabricated. This private preparation is not tracked/runtime/browser acceptance."
+}

@@ -1,0 +1,1192 @@
+{
+  "ticker": "HOOD",
+  "cik": "0001783879",
+  "filing": {
+    "accession": "0001783879-22-000044",
+    "filedAt": "2022-02-24",
+    "reportDate": "2021-12-31",
+    "form": "10-K",
+    "primaryDocument": "hood-20211231.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm"
+  },
+  "sourceSha256": "25bc83d510cbf354414882b01bef11d976f0422a3c8130c2f54f6b69584eb79c",
+  "sourceBytes": 3171586,
+  "excerptSha256": "cb0d08dc106eaf3ad5f388a823d8493d96ff7af0a2c693d26c9bf5113d3634f2",
+  "excerptBytes": 278300,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 30,
+      "fixtureIndex": 0,
+      "primary": true,
+      "business": false
+    }
+  ],
+  "period": {
+    "id": "FY2021",
+    "label": "FY 2021",
+    "kind": "annual",
+    "fiscalYear": 2021,
+    "startDate": "2021-01-01",
+    "endDate": "2021-12-31",
+    "filedAt": "2022-02-24",
+    "accession": "0001783879-22-000044",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 1815143000,
+      "incomeTax": 2000000,
+      "pretaxIncome": -3684432000,
+      "netIncome": -3686432000,
+      "expensesAndOtherItems": 5499575000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Reported revenue",
+        "tag": "us-gaap:Revenues",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "incomeTax": {
+        "label": "Provision for (benefit from) income taxes",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "pretaxIncome": {
+        "label": "Income (loss) before income tax",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "netIncome": {
+        "label": "Net income (loss)",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "expensesAndOtherItems": {
+        "label": "Revenue less pretax profit",
+        "tag": "us-gaap:Revenues - us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "calculated",
+        "inputs": [
+          "Total net revenues (us-gaap:Revenues): https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+          "Income (loss) before income tax (us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest): https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": true,
+      "sankey": true
+    },
+    "segments": [
+      {
+        "id": "reported-Transaction-based-revenues",
+        "label": "Transaction-based revenues",
+        "revenue": 1402350000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+          "accession": "0001783879-22-000044",
+          "filedAt": "2022-02-24",
+          "startDate": "2021-01-01",
+          "endDate": "2021-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ProductOrServiceAxis": "hood:TransactionBasedRevenuesMember"
+          },
+          "value": 1402350000,
+          "decimals": -3,
+          "tableLabel": "Transaction-based revenues",
+          "rowLabel": "Transaction-based revenues"
+        }
+      },
+      {
+        "id": "reported-Net-interest-revenues",
+        "label": "Net interest revenues",
+        "revenue": 256962000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+          "accession": "0001783879-22-000044",
+          "filedAt": "2022-02-24",
+          "startDate": "2021-01-01",
+          "endDate": "2021-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:InterestIncomeExpenseNet",
+          "dimensions": {},
+          "value": 256962000,
+          "decimals": -3,
+          "tableLabel": "Net interest revenues",
+          "rowLabel": "Net interest revenues"
+        }
+      },
+      {
+        "id": "reported-Other-revenues",
+        "label": "Other revenues",
+        "revenue": 155831000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+          "accession": "0001783879-22-000044",
+          "filedAt": "2022-02-24",
+          "startDate": "2021-01-01",
+          "endDate": "2021-12-31",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ProductOrServiceAxis": "hood:SubscriptionRevenuesMember"
+          },
+          "value": 155831000,
+          "decimals": -3,
+          "tableLabel": "Other revenues",
+          "rowLabel": "Other revenues"
+        }
+      }
+    ],
+    "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+    "segmentBasis": "Reported transaction-based revenues, net interest revenues and other revenues in the complete original financial-statement revenue section. Net interest retains its reported net scope; gross interest, business profits and residual revenue are not estimated.",
+    "businessBreakdownSource": {
+      "method": "reviewed-segment-table",
+      "ruleId": "hood-original-transaction-net-interest-other-2-rows-v1",
+      "tableIndex": 0,
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+      "accession": "0001783879-22-000044",
+      "revenueTag": "us-gaap:Revenues",
+      "revenue": 1815143000,
+      "revenueDecimals": -3,
+      "totalLabel": "Total net revenues",
+      "omittedSubtotals": [],
+      "originalRevenueRows": {
+        "rows": [
+          {
+            "rowIndex": 0,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 1,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 2,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 4,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 5,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 7,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 10,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 11,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 13,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 16,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 17,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 19,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 21,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 24,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 1,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 15,
+                "rowSpan": 1,
+                "label": "Year ended December 31,"
+              },
+              {
+                "columnIndex": 21,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 24,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 2,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "(in thousands, except share and per share data)"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "2019"
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "2020"
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "2021"
+              },
+              {
+                "columnIndex": 21,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 24,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 3,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "Revenues:"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 21,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 24,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 4,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "Transaction-based revenues"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 7,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "170,831",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 170831000,
+                  "decimals": -3,
+                  "contextId": "ib33a155ac27b494fadb6ac62fc53bd29_D20190101-20191231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2019-01-01",
+                  "endDate": "2019-12-31",
+                  "dimensions": {
+                    "srt:ProductOrServiceAxis": "hood:TransactionBasedRevenuesMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "ib33a155ac27b494fadb6ac62fc53bd29_D20190101-20191231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfMy0yLTEtMS0xMTY1ODM_4ac7d958-27ba-463f-b695-76b3544188b7"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 13,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "720,133",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 720133000,
+                  "decimals": -3,
+                  "contextId": "i4b08c0344e2b4b57ba3737218309d5f2_D20200101-20201231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2020-01-01",
+                  "endDate": "2020-12-31",
+                  "dimensions": {
+                    "srt:ProductOrServiceAxis": "hood:TransactionBasedRevenuesMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "i4b08c0344e2b4b57ba3737218309d5f2_D20200101-20201231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfMy00LTEtMS0xMTY1ODM_99592b0d-3891-4e0f-97f5-1d2c008c6c9a"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "$"
+              },
+              {
+                "columnIndex": 19,
+                "span": 1,
+                "rowSpan": 1,
+                "label": "1,402,350",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 1402350000,
+                  "decimals": -3,
+                  "contextId": "ie273f095cad94fb4a88921be0b33a59e_D20210101-20211231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2021-01-01",
+                  "endDate": "2021-12-31",
+                  "dimensions": {
+                    "srt:ProductOrServiceAxis": "hood:TransactionBasedRevenuesMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "ie273f095cad94fb4a88921be0b33a59e_D20210101-20211231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfMy04LTEtMS0xMTY1ODM_02c1ff78-e671-420c-ba10-8f9248358dde"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 21,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 24,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 5,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "Net interest revenues"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "70,639",
+                "fact": {
+                  "tag": "us-gaap:InterestIncomeExpenseNet",
+                  "value": 70639000,
+                  "decimals": -3,
+                  "contextId": "i4ebc715fc3164790b4a24d7a34871254_D20190101-20191231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2019-01-01",
+                  "endDate": "2019-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:InterestIncomeExpenseNet",
+                      "contextId": "i4ebc715fc3164790b4a24d7a34871254_D20190101-20191231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfNC0yLTEtMS0xMTY1ODM_9e5be792-5ab5-4801-81a1-3e6b8e2b9c2a"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "177,437",
+                "fact": {
+                  "tag": "us-gaap:InterestIncomeExpenseNet",
+                  "value": 177437000,
+                  "decimals": -3,
+                  "contextId": "i9b57ee4238d04b5a8bfc302e7e6ebbbc_D20200101-20201231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2020-01-01",
+                  "endDate": "2020-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:InterestIncomeExpenseNet",
+                      "contextId": "i9b57ee4238d04b5a8bfc302e7e6ebbbc_D20200101-20201231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfNC00LTEtMS0xMTY1ODM_5ad56546-8c04-4432-a3ba-05af978372f3"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "256,962",
+                "fact": {
+                  "tag": "us-gaap:InterestIncomeExpenseNet",
+                  "value": 256962000,
+                  "decimals": -3,
+                  "contextId": "i7a8ed080e6f04038b83d4611345d9ab6_D20210101-20211231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2021-01-01",
+                  "endDate": "2021-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:InterestIncomeExpenseNet",
+                      "contextId": "i7a8ed080e6f04038b83d4611345d9ab6_D20210101-20211231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfNC04LTEtMS0xMTY1ODM_7a090edd-f376-4049-b161-42bb3111e970"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 21,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 24,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 6,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "Other revenues"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "36,063",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 36063000,
+                  "decimals": -3,
+                  "contextId": "ia7093509e83049f2a2999ca5d3872bff_D20190101-20191231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2019-01-01",
+                  "endDate": "2019-12-31",
+                  "dimensions": {
+                    "srt:ProductOrServiceAxis": "hood:SubscriptionRevenuesMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "ia7093509e83049f2a2999ca5d3872bff_D20190101-20191231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfNS0yLTEtMS0xMTY1ODM_6518a624-9754-4680-b19a-6e42c1c4accb"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "61,263",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 61263000,
+                  "decimals": -3,
+                  "contextId": "i16b13a33a71c4e73aef23c4427ebf276_D20200101-20201231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2020-01-01",
+                  "endDate": "2020-12-31",
+                  "dimensions": {
+                    "srt:ProductOrServiceAxis": "hood:SubscriptionRevenuesMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "i16b13a33a71c4e73aef23c4427ebf276_D20200101-20201231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfNS00LTEtMS0xMTY1ODM_0e704cee-512f-4f2f-bcbc-dc5148667a36"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "155,831",
+                "fact": {
+                  "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                  "value": 155831000,
+                  "decimals": -3,
+                  "contextId": "ic2cace9cf4114e82988b5f3128df77f4_D20210101-20211231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2021-01-01",
+                  "endDate": "2021-12-31",
+                  "dimensions": {
+                    "srt:ProductOrServiceAxis": "hood:SubscriptionRevenuesMember"
+                  },
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+                      "contextId": "ic2cace9cf4114e82988b5f3128df77f4_D20210101-20211231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfNS04LTEtMS0xMTY1ODM_6ee3ff5b-6c3a-4ea0-9b8d-f0824dd6d92e"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 21,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 24,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          },
+          {
+            "rowIndex": 7,
+            "cells": [
+              {
+                "columnIndex": 0,
+                "span": 3,
+                "rowSpan": 1,
+                "label": "Total net revenues"
+              },
+              {
+                "columnIndex": 3,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 6,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "277,533",
+                "fact": {
+                  "tag": "us-gaap:Revenues",
+                  "value": 277533000,
+                  "decimals": -3,
+                  "contextId": "i4ebc715fc3164790b4a24d7a34871254_D20190101-20191231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2019-01-01",
+                  "endDate": "2019-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:Revenues",
+                      "contextId": "i4ebc715fc3164790b4a24d7a34871254_D20190101-20191231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfNi0yLTEtMS0xMTY1ODM_8e9c2892-94a3-4452-98cb-8b9f4edd1005"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 8,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 9,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 12,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "958,833",
+                "fact": {
+                  "tag": "us-gaap:Revenues",
+                  "value": 958833000,
+                  "decimals": -3,
+                  "contextId": "i9b57ee4238d04b5a8bfc302e7e6ebbbc_D20200101-20201231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2020-01-01",
+                  "endDate": "2020-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:Revenues",
+                      "contextId": "i9b57ee4238d04b5a8bfc302e7e6ebbbc_D20200101-20201231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfNi00LTEtMS0xMTY1ODM_2f0ce6b3-0743-419b-a6c1-c6d0e096021c"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 14,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 15,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 18,
+                "span": 2,
+                "rowSpan": 1,
+                "label": "1,815,143",
+                "fact": {
+                  "tag": "us-gaap:Revenues",
+                  "value": 1815143000,
+                  "decimals": -3,
+                  "contextId": "i7a8ed080e6f04038b83d4611345d9ab6_D20210101-20211231",
+                  "cik": "0001783879",
+                  "currency": "USD",
+                  "startDate": "2021-01-01",
+                  "endDate": "2021-12-31",
+                  "dimensions": {},
+                  "declarations": [
+                    {
+                      "tag": "us-gaap:Revenues",
+                      "contextId": "i7a8ed080e6f04038b83d4611345d9ab6_D20210101-20211231",
+                      "unitRef": "usd",
+                      "scale": 3,
+                      "decimals": "-3",
+                      "originalScale": "3",
+                      "format": "ixt:num-dot-decimal",
+                      "id": "id3VybDovL2RvY3MudjEvZG9jOmVlYTEzZGUzMTgzNDQyYmY5ODExZTY1NTE3NTI2MTdmL3NlYzplZWExM2RlMzE4MzQ0MmJmOTgxMWU2NTUxNzUyNjE3Zl8xOS9mcmFnOmZjNjBjNzIxZDczYjQ0OTI5YzljZWM0ZjEyMWQwYzYzL3RhYmxlOjRkY2JjYjY4OWI2ZDRjMzNiMzlkMmI1Mjg3MTEyMzdlL3RhYmxlcmFuZ2U6NGRjYmNiNjg5YjZkNGMzM2IzOWQyYjUyODcxMTIzN2VfNi04LTEtMS0xMTY1ODM_81d13166-75e9-479d-ab3a-482598cd3ac9"
+                    }
+                  ]
+                }
+              },
+              {
+                "columnIndex": 20,
+                "span": 1,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 21,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              },
+              {
+                "columnIndex": 24,
+                "span": 3,
+                "rowSpan": 1,
+                "label": ""
+              }
+            ]
+          }
+        ],
+        "units": [
+          {
+            "id": "usd",
+            "measure": "iso4217:USD"
+          }
+        ]
+      }
+    }
+  },
+  "sourceScope": "Every raw monetary table, context, unit, namespace and DEI declaration is copied unchanged from pinned original SEC bytes. Selected tables have documented excerpt indexes; whole-source indexes are not fabricated. This private preparation is not tracked/runtime/browser acceptance.",
+  "preservedPeriod": {
+    "id": "FY2019",
+    "label": "FY 2019",
+    "kind": "annual",
+    "fiscalYear": 2019,
+    "startDate": "2019-01-01",
+    "endDate": "2019-12-31",
+    "filedAt": "2022-02-24",
+    "accession": "0001783879-22-000044",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 277533000,
+      "operatingExpenses": 384463000,
+      "pretaxIncome": -107587000,
+      "incomeTax": -1018000,
+      "netIncome": -106569000,
+      "researchAndDevelopment": 27700000,
+      "expensesAndOtherItems": 385120000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Revenues",
+        "tag": "us-gaap:Revenues",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "reported"
+      },
+      "operatingExpenses": {
+        "label": "Operating Expenses",
+        "tag": "us-gaap:OperatingExpenses",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "reported"
+      },
+      "pretaxIncome": {
+        "label": "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "incomeTax": {
+        "label": "Income Tax Expense (Benefit)",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "netIncome": {
+        "label": "Net Income (Loss) Attributable to Parent",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "reported",
+        "decimals": -3
+      },
+      "researchAndDevelopment": {
+        "label": "Research and Development Expense",
+        "tag": "us-gaap:ResearchAndDevelopmentExpense",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "reported"
+      },
+      "expensesAndOtherItems": {
+        "label": "Revenue less pretax profit",
+        "tag": "us-gaap:Revenues - us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001783879-22-000044",
+        "filedAt": "2022-02-24",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+        "method": "calculated",
+        "inputs": [
+          "Total net revenues (us-gaap:Revenues): https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm",
+          "Income (loss) before income tax (us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest): https://www.sec.gov/Archives/edgar/data/1783879/000178387922000044/hood-20211231.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": false,
+      "sankey": true
+    }
+  }
+}

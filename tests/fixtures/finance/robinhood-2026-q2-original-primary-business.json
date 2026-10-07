@@ -1,0 +1,190 @@
+{
+  "ticker": "HOOD",
+  "cik": "0001783879",
+  "filing": {
+    "accession": "0001783879-26-000114",
+    "filedAt": "2026-07-30",
+    "reportDate": "2026-06-30",
+    "form": "10-Q",
+    "primaryDocument": "hood-20260630.htm",
+    "directoryUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm"
+  },
+  "sourceSha256": "532a0be79be61665dceecc1b5e6c074ddcbea51e09133818c78670bc1f18c692",
+  "sourceBytes": 2968548,
+  "excerptSha256": "4fae04c269370c207f3bd016b2d32c8b9b35957367d1997d63bbc4fc8b8a2954",
+  "excerptBytes": 256992,
+  "tableIndexMapping": [
+    {
+      "originalIndex": 11,
+      "fixtureIndex": 0,
+      "primary": true,
+      "business": false
+    }
+  ],
+  "period": {
+    "id": "2026-Q2",
+    "label": "Q2 FY2026",
+    "kind": "quarterly",
+    "fiscalYear": 2026,
+    "fiscalQuarter": 2,
+    "startDate": "2026-04-01",
+    "endDate": "2026-06-30",
+    "filedAt": "2026-07-30",
+    "accession": "0001783879-26-000114",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+    "reportingCurrency": "USD",
+    "displayCurrency": "USD",
+    "derived": true,
+    "metrics": {
+      "revenue": 1308000000,
+      "incomeTax": 136000000,
+      "pretaxIncome": 709000000,
+      "netIncome": 561000000,
+      "noncontrollingInterestIncome": 12000000,
+      "expensesAndOtherItems": 599000000
+    },
+    "metricSources": {
+      "revenue": {
+        "label": "Reported revenue",
+        "tag": "us-gaap:Revenues",
+        "accession": "0001783879-26-000114",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "incomeTax": {
+        "label": "Provision for income taxes",
+        "tag": "us-gaap:IncomeTaxExpenseBenefit",
+        "accession": "0001783879-26-000114",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "pretaxIncome": {
+        "label": "Income before income taxes",
+        "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001783879-26-000114",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "netIncome": {
+        "label": "Net income attributable to Robinhood",
+        "tag": "us-gaap:NetIncomeLoss",
+        "accession": "0001783879-26-000114",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "noncontrollingInterestIncome": {
+        "label": "Less: Net income (loss) attributable to non-controlling interests",
+        "tag": "us-gaap:NetIncomeLossAttributableToRedeemableNoncontrollingInterest",
+        "accession": "0001783879-26-000114",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+        "method": "reported",
+        "decimals": -6
+      },
+      "expensesAndOtherItems": {
+        "label": "Revenue less pretax profit",
+        "tag": "us-gaap:Revenues - us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+        "accession": "0001783879-26-000114",
+        "filedAt": "2026-07-30",
+        "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+        "method": "calculated",
+        "inputs": [
+          "Total net revenues (us-gaap:Revenues): https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+          "Income before income taxes (us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest): https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm"
+        ]
+      }
+    },
+    "coverage": {
+      "basics": true,
+      "segments": true,
+      "sankey": true
+    },
+    "segments": [
+      {
+        "id": "reported-Transaction-based-revenues",
+        "label": "Transaction-based revenues",
+        "revenue": 776000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+          "accession": "0001783879-26-000114",
+          "filedAt": "2026-07-30",
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-30",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ProductOrServiceAxis": "hood:TransactionBasedRevenuesMember"
+          },
+          "value": 776000000,
+          "decimals": -6,
+          "tableLabel": "Transaction-based revenues",
+          "rowLabel": "Transaction-based revenues"
+        }
+      },
+      {
+        "id": "reported-Net-interest-revenues",
+        "label": "Net interest revenues",
+        "revenue": 389000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+          "accession": "0001783879-26-000114",
+          "filedAt": "2026-07-30",
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-30",
+          "currency": "USD",
+          "tag": "us-gaap:InterestIncomeExpenseNet",
+          "dimensions": {},
+          "value": 389000000,
+          "decimals": -6,
+          "tableLabel": "Net interest revenues",
+          "rowLabel": "Net interest revenues"
+        }
+      },
+      {
+        "id": "reported-Other-revenues",
+        "label": "Other revenues",
+        "revenue": 143000000,
+        "revenueSource": {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+          "accession": "0001783879-26-000114",
+          "filedAt": "2026-07-30",
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-30",
+          "currency": "USD",
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "dimensions": {
+            "srt:ProductOrServiceAxis": "us-gaap:FinancialServiceOtherMember"
+          },
+          "value": 143000000,
+          "decimals": -6,
+          "tableLabel": "Other revenues",
+          "rowLabel": "Other revenues"
+        }
+      }
+    ],
+    "segmentSourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+    "segmentBasis": "Reported transaction-based revenues, net interest revenues and other revenues in the original financial statement. The complete revenue categories reconcile to the statement's closing total. Net interest stays reported net; no gross interest, business profit or residual revenue is estimated.",
+    "businessBreakdownSource": {
+      "method": "reviewed-segment-table",
+      "ruleId": "hood-original-transaction-net-interest-other-rows-v1",
+      "tableIndex": 0,
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000114/hood-20260630.htm",
+      "accession": "0001783879-26-000114",
+      "revenueTag": "us-gaap:Revenues",
+      "revenue": 1308000000,
+      "revenueDecimals": -6,
+      "totalLabel": "Total net revenues",
+      "omittedSubtotals": []
+    }
+  },
+  "sourceScope": "Every raw monetary table, context, unit, namespace and DEI declaration is copied unchanged from pinned original SEC bytes. Selected tables have documented excerpt indexes; whole-source indexes are not fabricated. This private preparation is not tracked/runtime/browser acceptance."
+}

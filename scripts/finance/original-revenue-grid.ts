@@ -9,7 +9,12 @@ const demand = (value: unknown, reason: string): void => {
 
 /** Read the actual physical cells and numeric declarations. A parsed fact alone
  * cannot replace the visible original amount or its source coordinates. */
-export function originalRevenueGrid(html: string, parsed: ParsedFiling, cik: string) {
+export function originalRevenueGrid(
+  html: string,
+  parsed: ParsedFiling,
+  cik: string,
+  scale: 3 | 6 = 3
+) {
   const units: ServiceRevenueRowsProof["units"] = [];
   for (const [unit] of html.matchAll(/<(?:[\w.-]+:)?unit\b[^>]*>[\s\S]*?<\/(?:[\w.-]+:)?unit>/gi)) {
     if (/<(?:[\w.-]+:)?divide\b/i.test(unit)) continue;
@@ -86,8 +91,8 @@ export function originalRevenueGrid(html: string, parsed: ParsedFiling, cik: str
               contextId &&
               unitRef &&
               units.some((u) => u.id === unitRef) &&
-              Number(attribute(d, "scale")) === 3 &&
-              Number(attribute(d, "decimals")) === -3 &&
+              Number(attribute(d, "scale")) === scale &&
+              Number(attribute(d, "decimals")) === -scale &&
               /^(?:ixt:(?:numdotdecimal|num-dot-decimal|zerodash|fixed-zero))?$/.test(format) &&
               (sign === undefined || sign === "-"),
             "Unreviewed monetary declaration"
@@ -110,10 +115,10 @@ export function originalRevenueGrid(html: string, parsed: ParsedFiling, cik: str
             zero ? /^[—–-]$/.test(lexical) : /^\d+(?:\.\d+)?$/.test(lexical),
             "Invalid original displayed amount"
           );
-          const amount = (zero ? 0 : Number(lexical) * 1000) * (sign === "-" ? -1 : 1);
+          const amount = (zero ? 0 : Number(lexical) * 10 ** scale) * (sign === "-" ? -1 : 1);
           const f = refs
             .get(tag + "|" + contextId)
-            ?.find((f) => f.value === amount && f.decimals === -3);
+            ?.find((f) => f.value === amount && f.decimals === -scale);
           demand(
             f &&
               f.currency === "USD" &&
@@ -138,7 +143,7 @@ export function originalRevenueGrid(html: string, parsed: ParsedFiling, cik: str
               tag: tag!,
               contextId: contextId!,
               unitRef: unitRef!,
-              scale: 3,
+              scale,
               decimals: attribute(x, "decimals")!,
               originalScale: attribute(x, "scale")!,
               format,

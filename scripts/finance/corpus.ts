@@ -155,6 +155,7 @@ const parserVersion = hash(
     await Promise.all([
       ...parserFiles.map((name) => readFile(`scripts/finance/${name}.ts`, "utf8")),
       readFile("src/features/finance/business-rules.ts", "utf8"),
+      readFile("src/features/finance/original-business-rows.ts", "utf8"),
       readFile("src/features/finance/product-portfolios.ts", "utf8"),
       readFile("src/features/finance/service-revenue-rows.ts", "utf8"),
       readFile("src/features/finance/albemarle-revenue.ts", "utf8"),

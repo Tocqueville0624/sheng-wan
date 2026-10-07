@@ -10,6 +10,7 @@ import type { ParsedFiling, XbrlFact } from "./ixbrl";
 import type { SecFiling } from "./sec-shared";
 import { businessPeriod, flowPeriod } from "./v2-model";
 import { readExternalBusinessColumns } from "./external-business";
+import { InvalidRevenueGrid, originalRevenueGrid } from "./original-revenue-grid";
 
 /** A reviewed vertical segment table: each source section provides its own revenue
  * subtotal. Corporate revenue must be an actual reported row, never a residual.
@@ -233,6 +234,49 @@ export function enrichReviewedBusinessPeriods(
             : undefined,
           coverage: { ...period.coverage, segments: true }
         };
+        if (rule.originalRows) {
+          try {
+            const original = originalRevenueGrid(
+              html,
+              parsed,
+              identity.cik,
+              rule.originalRows.scale
+            );
+            const prefix = (raw: string, closingLabel: string) => {
+              const originalRows = [...raw.matchAll(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi)];
+              const closing = originalRows.findIndex(([row]) => {
+                const first =
+                  row.match(/<t[dh]\b[^>]*\/>|<t[dh]\b[^>]*>[\s\S]*?<\/t[dh]>/i)?.[0] ?? "";
+                return (
+                  sourceLabel(visibleText(first)) === closingLabel &&
+                  [...row.matchAll(/<ix:nonFraction\b[^>]*>/gi)].some(([opening]) => {
+                    const fact = refs.get(
+                      `${attribute(opening, "name")}|${attribute(opening, "contextRef")}`
+                    );
+                    return (
+                      fact &&
+                      fact.tag === rule.totalTag &&
+                      !Object.keys(fact.context.dimensions).length &&
+                      fact.value === period.metrics.revenue
+                    );
+                  })
+                );
+              });
+              if (closing < 0) throw new InvalidRevenueGrid("Missing original closing revenue row");
+              return original.grid(raw, new Set(Array.from({ length: closing + 1 }, (_, i) => i)));
+            };
+            next.businessBreakdownSource!.originalRevenueRows = {
+              rows: prefix(table, rule.originalRows.closingLabel),
+              units: original.units,
+              ...(separateTotal
+                ? { primaryRows: prefix(tables[separateTotal.tableIndex][0], rule.totalLabel) }
+                : {})
+            };
+          } catch (error) {
+            if (!(error instanceof InvalidRevenueGrid)) throw error;
+            continue;
+          }
+        }
         if (!businessPeriod(next)) continue;
         next.coverage.sankey = !!flowPeriod(next);
         selected = next;
