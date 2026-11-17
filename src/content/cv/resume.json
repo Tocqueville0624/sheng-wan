@@ -1,44 +1,112 @@
 {
   "education": [
     {
-      "date": "September 2024–present",
       "title": "University of Washington",
-      "subtitle": "PhD in Political Science (in progress)",
-      "details": ["Subfields: Political Theory, Comparative Politics, Political Methodology"]
+      "subtitle": "Ph.D., Political Science",
+      "date": "2024–present",
+      "details": [
+        "Subfields: Political Methodology, Comparative Politics, Political Theory",
+        "Coursework: Causal Inference, Mixed-Methods Design, Maximum Likelihood Estimation, Data Visualization"
+      ]
     },
     {
-      "date": "June 2026",
       "title": "University of Washington",
-      "subtitle": "MA in Political Science",
-      "details": []
+      "subtitle": "M.A., Political Science",
+      "date": "2026"
     },
     {
-      "date": "May 2024",
       "title": "University of Virginia",
-      "subtitle": "BA in Politics (Foreign Affairs)",
-      "details": []
+      "subtitle": "B.A., Politics (Foreign Affairs)",
+      "date": "2024"
     }
+  ],
+  "experience": [
+    {
+      "title": "AI Model Evaluator & Data Specialist",
+      "subtitle": "Outlier AI, Mercor, and Handshake AI",
+      "date": "2024–present",
+      "details": [
+        "Designed evaluation rubrics for assessing the accuracy, instruction-following, harmfulness, and writing quality of LLM responses.",
+        "Wrote political science and political theory prompts and reference answers to test multi-step deductive reasoning. Rated pairs of responses and wrote feedback for training data.",
+        "Produced RLHF preference rankings with written rationales and designed adversarial prompts to test model safety, factuality, and instruction-following.",
+        "Evaluated Chinese language model outputs for accuracy, fluency, and cultural fit, flagging localization issues.",
+        "Reviewed peer annotations across five or more projects and gave calibration feedback on how to apply project guidelines."
+      ]
+    },
+    {
+      "title": "Does Digital Feminism Provoke Population-Level Backlash? Evidence from the #MeToo Movement in China",
+      "subtitle": "Working paper presented at the Midwest Political Science Association (MPSA) Annual Conference, April 2026",
+      "details": [
+        "Designed a difference-in-differences study of attitude change around China’s 2018 #MeToo movement using eight waves of the Chinese General Social Survey (2010–2023, 70,000+ pooled respondents).",
+        "Cleaned and imputed repeated cross-sectional survey data and harmonized five attitude items into a gender-egalitarianism index for consistent measurement across waves.",
+        "Assessed pre-treatment trends using event-study estimates. Used placebo public opinion outcomes and qualitative analysis to examine whether broader liberalization could explain the results.",
+        "Estimated how attitude change varied by gender and internet exposure. Found no evidence of a population-level male backlash."
+      ]
+    },
+    {
+      "title": "Teaching Assistant & Guest Lecturer",
+      "subtitle": "University of Washington",
+      "date": "2024–present",
+      "details": [
+        "Led weekly discussion sections for five undergraduate courses, communicating theories and research methods to more than 50 students per quarter.",
+        "Delivered a guest lecture to 80 students on Tocqueville’s Democracy in America (POL S 310, January 2026)."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Product Search Quality Analysis",
+      "url": "https://github.com/Tocqueville0624/product-search-quality",
+      "date": "2026",
+      "details": [
+        "Built a local PySpark and Spark SQL pipeline to clean, join, and analyze 1.82 million query–product judgments from the public Amazon ESCI dataset.",
+        "Trained a search relevance classifier using 17 text-match features and logistic regression. Kept queries separate across training, validation, and test sets to prevent data leakage.",
+        "In an offline audit simulation, prioritizing low-confidence “Exact match” predictions found 32.9 errors per 100 checks, versus 19.9 expected under random sampling at the same 10% review budget."
+      ]
+    },
+    {
+      "title": "Amelia-Torch: Missing-Data Imputation with PyTorch",
+      "url": "https://github.com/Tocqueville0624/amelia-torch",
+      "date": "2026",
+      "details": [
+        "Implemented Amelia’s missing-data imputation method in PyTorch with CPU and GPU execution and interfaces for Python and R.",
+        "Benchmarked three public datasets of 100,000 rows each. On the 90-variable task, native PyTorch CUDA completed five imputations in 22.1 seconds, versus 230.6 seconds for serial R Amelia and 121.7 seconds with four R workers (10.43× and 5.50× speedups on the same host, RTX 3080, float64).",
+        "Built automated tests and reference comparisons to check numerical behavior and preserve observed data. Documented narrower native feature coverage, workload-specific performance, and remaining statistical validation gaps."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "label": "Data Analysis & Tools",
+      "value": "R (tidyverse, fixest, ggplot2), Python (pandas), SQL (basic), LaTeX"
+    },
+    {
+      "label": "Project Tools",
+      "value": "PyTorch, PySpark, Spark SQL"
+    },
+    {
+      "label": "Causal Inference & Research Design",
+      "value": "Maximum likelihood estimation, difference-in-differences, synthetic controls, regression discontinuity, instrumental variables"
+    },
+    {
+      "label": "Survey Research",
+      "value": "National survey data (CGSS, 70,000+ respondents), index construction, cross-wave harmonization, weighting"
+    },
+    {
+      "label": "AI Evaluation",
+      "value": "Rubric design, RLHF preference data, red-teaming, multimodal annotation, annotation quality review"
+    }
+  ],
+  "languages": [
+    "Mandarin Chinese (native)",
+    "English (fluent)",
+    "Japanese (intermediate, two years of university coursework)"
   ],
   "awards": [
     {
-      "date": "June 2025",
       "title": "Humane Studies Fellowship",
       "subtitle": "Institute for Humane Studies (IHS)",
-      "details": []
-    }
-  ],
-  "conferences": [
-    {
-      "date": "April 2026",
-      "title": "Does Digital Feminism Provoke Population-Level Backlash? Evidence from Post-MeToo China",
-      "subtitle": "Midwest Political Science Association Conference",
-      "details": []
-    },
-    {
-      "date": "April 2026",
-      "title": "Limits and Promise of Standpoint Theory in Politics: Knowledge, Justice, and an Aristotelian Perspective",
-      "subtitle": "Western Political Science Association Annual Meeting",
-      "details": []
+      "date": "2025"
     }
   ],
   "teaching": [
@@ -82,23 +150,5 @@
       "terms": ["Winter 2025"],
       "url": "https://www.washington.edu/students/crscat/polisci.html"
     }
-  ],
-  "papers": [
-    {
-      "title": "Does Digital Feminism Provoke Population-Level Backlash? Evidence from Post-MeToo China",
-      "description": "Explores the causal relationship between individuals’ exposure to online feminist discourse and their attitudes toward gender equality using a difference-in-differences strategy centered on the MeToo movement."
-    }
-  ],
-  "skills": [
-    {
-      "label": "Languages",
-      "value": "Chinese (native), English (proficient), Japanese (intermediate)"
-    },
-    { "label": "Statistical analysis", "value": "R and RStudio" },
-    {
-      "label": "Prompt engineering and LLM evaluations",
-      "value": "Experience across 10+ projects at Outlier AI and Handshake AI"
-    }
-  ],
-  "memberships": ["American Political Science Association"]
+  ]
 }
