@@ -2,8 +2,9 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
-const datedEntry = z.object({
-  date: z.string(),
+const resumeEntry = z.object({
+  date: z.string().optional(),
+  url: z.url().optional(),
   title: z.string(),
   subtitle: z.string().optional(),
   details: z.array(z.string()).default([])
@@ -12,9 +13,10 @@ const datedEntry = z.object({
 const cv = defineCollection({
   loader: glob({ pattern: "**/*.json", base: "./src/content/cv" }),
   schema: z.object({
-    education: z.array(datedEntry),
-    awards: z.array(datedEntry),
-    conferences: z.array(datedEntry),
+    education: z.array(resumeEntry),
+    awards: z.array(resumeEntry),
+    experience: z.array(resumeEntry),
+    projects: z.array(resumeEntry),
     teaching: z.array(
       z.object({
         code: z.string(),
@@ -25,19 +27,13 @@ const cv = defineCollection({
         url: z.url()
       })
     ),
-    papers: z.array(
-      z.object({
-        title: z.string(),
-        description: z.string()
-      })
-    ),
     skills: z.array(
       z.object({
         label: z.string(),
         value: z.string()
       })
     ),
-    memberships: z.array(z.string())
+    languages: z.array(z.string())
   })
 });
 
