@@ -177,19 +177,26 @@ test("requested typography, contact icons and simple controls are preserved", as
   );
   await expect(page.getByRole("link", { name: "Explore research" })).toHaveCount(0);
   await expect(page.locator(".contact-row")).toContainText("Contact Me:");
-  await expect(page.locator(".contact-row .social-links a")).toHaveCount(3);
-  await expect(page.locator(".site-footer .contact-icon")).toHaveCount(3);
+  await expect(page.locator(".contact-row .social-links a")).toHaveCount(2);
+  await expect(page.locator(".site-footer .contact-icon")).toHaveCount(2);
   for (const link of await page.locator(".social-links a").all()) {
-    await expect(link).toHaveAttribute("aria-label", /Email|LinkedIn|GitHub/);
+    await expect(link).toHaveAttribute("aria-label", /LinkedIn|GitHub/);
   }
+  const resumeHref = await page.getByRole("link", { name: "View Resume" }).getAttribute("href");
   await page.goto("/cv/");
+  await expect(page.locator('a[href^="tel:"], a[href^="mailto:"]')).toHaveCount(0);
+  const resumeDownload = page.getByRole("link", { name: "Download résumé (PDF)" });
+  await expect(resumeDownload).toHaveAttribute("href", resumeHref!);
+  await expect(resumeDownload).toHaveAttribute("download");
+  await expect(page.getByRole("link", { name: "Download academic CV (PDF)" })).toHaveAttribute(
+    "href",
+    "/downloads/sheng-wan-cv.pdf"
+  );
   expect(
     await page.locator(".cv-header h1").evaluate((el) => parseFloat(getComputedStyle(el).fontSize))
   ).toBeLessThan(80);
   expect(
-    await page
-      .getByRole("link", { name: "Download PDF" })
-      .evaluate((el) => parseFloat(getComputedStyle(el).borderRadius))
+    await resumeDownload.evaluate((el) => parseFloat(getComputedStyle(el).borderRadius))
   ).toBeLessThanOrEqual(8);
   await page.goto("/research/");
   expect(
