@@ -1,37 +1,53 @@
 ---
-import { getCollection } from "astro:content";
+import { getEntry } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { site } from "@/config/site";
 
-const [resume] = await getCollection("cv");
+const resume = await getEntry("cv", "resume");
 if (!resume) throw new Error("CV content is missing");
 const cv = resume.data;
+const sections = [
+  { id: "education", title: "Education", entries: cv.education },
+  { id: "experience", title: "Professional Experience", entries: cv.experience },
+  { id: "projects", title: "Personal Projects", entries: cv.projects }
+];
 ---
 
-<BaseLayout title="Curriculum Vitae" description={`Curriculum vitae for ${site.name}.`}>
+<BaseLayout
+  title="Résumé"
+  description={`Professional experience, projects, education, and skills of ${site.name}.`}
+>
   <header class="page-intro shell cv-header">
     <div>
-      <p class="eyebrow">Curriculum Vitae</p>
-      <h1 class="page-title">Sheng Wan</h1>
+      <p class="eyebrow">Résumé</p>
+      <h1 class="page-title">{site.name}</h1>
       <ul class="cv-contact">
-        <li>{site.office}</li>
-        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-        <li><a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
+        <li>Seattle, WA</li>
+        <li><a href={site.links.github}>GitHub</a></li>
+        <li><a href="/">shengwan.org</a></li>
       </ul>
     </div>
-    <a class="button button--primary" href="/downloads/sheng-wan-cv.pdf" download>Download PDF</a>
+    <div class="cv-downloads">
+      <a class="button button--primary" href="/downloads/sheng-wan-resume-summer-2027.pdf" download
+        >Download résumé (PDF)</a
+      >
+      <a href="/downloads/sheng-wan-cv.pdf" download>Download academic CV (PDF)</a>
+    </div>
   </header>
 
   <div class="shell">
-    <section class="cv-section" aria-labelledby="education-heading">
-      <h2 id="education-heading">Education</h2>
-      <ol class="cv-list">
-        {
-          cv.education.map((entry) => (
-            <li class="cv-entry">
-              <div>
-                <h3>{entry.title}</h3>
-                {entry.subtitle && <p class="entry-subtitle">{entry.subtitle}</p>}
+    {
+      sections.map(({ id, title, entries }) => (
+        <section class="cv-section" aria-labelledby={id}>
+          <h2 id={id}>{title}</h2>
+          <ul class="cv-list">
+            {entries.map((entry) => (
+              <li class="cv-entry">
+                <div>
+                  <h3>{entry.url ? <a href={entry.url}>{entry.title}</a> : entry.title}</h3>
+                  {entry.subtitle && <p class="entry-subtitle">{entry.subtitle}</p>}
+                </div>
+                {entry.date && <span class="entry-date">{entry.date}</span>}
                 {entry.details.length > 0 && (
                   <ul class="entry-details">
                     {entry.details.map((detail) => (
@@ -39,103 +55,47 @@ const cv = resume.data;
                     ))}
                   </ul>
                 )}
-              </div>
-              <time>{entry.date}</time>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
-
-    <section class="cv-section" aria-labelledby="awards-heading">
-      <h2 id="awards-heading">Awards & Fellowships</h2>
-      <ol class="cv-list">
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+    <section class="cv-section" aria-labelledby="skills">
+      <h2 id="skills">Skills</h2>
+      <ul class="cv-list cv-list--compact">
         {
-          cv.awards.map((entry) => (
-            <li class="cv-entry">
-              <div>
-                <>
-                  <h3>{entry.title}</h3>
-                  <p class="entry-subtitle">{entry.subtitle}</p>
-                </>
-              </div>
-              <time>{entry.date}</time>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
-
-    <section class="cv-section" aria-labelledby="conferences-heading">
-      <h2 id="conferences-heading">Conference Presentations</h2>
-      <ol class="cv-list">
-        {
-          cv.conferences.map((entry) => (
-            <li class="cv-entry">
-              <div>
-                <>
-                  <h3>“{entry.title}”</h3>
-                  <p class="entry-subtitle">{entry.subtitle}</p>
-                </>
-              </div>
-              <time>{entry.date}</time>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
-
-    <section class="cv-section" aria-labelledby="teaching-heading">
-      <h2 id="teaching-heading">Teaching</h2>
-      <ol class="cv-list">
-        {
-          cv.teaching.map((course) => (
-            <li class="cv-entry">
-              <div>
-                <h3>
-                  {course.role}, {course.code}: {course.title}
-                </h3>
-                <p class="entry-subtitle">{course.institution}</p>
-              </div>
-              <time>{course.terms.join(", ")}</time>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
-
-    <section class="cv-section" aria-labelledby="papers-heading">
-      <h2 id="papers-heading">Papers in Progress</h2>
-      <ol class="cv-list">
-        {
-          cv.papers.map((paper) => (
+          cv.skills.map(({ label, value }) => (
             <li>
-              <>
-                <h3>{paper.title}</h3>
-                <p>{paper.description}</p>
-              </>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
-
-    <section class="cv-section" aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Skills</h2>
-      <ul class="cv-list">
-        {
-          cv.skills.map((skill) => (
-            <li>
-              <strong>{skill.label}:</strong> {skill.value}
+              <strong>{label}:</strong> {value}
             </li>
           ))
         }
       </ul>
     </section>
-
-    <section class="cv-section" aria-labelledby="memberships-heading">
-      <h2 id="memberships-heading">Memberships</h2>
-      <ul class="cv-list">{cv.memberships.map((membership) => <li>{membership}</li>)}</ul>
+    <section class="cv-section" aria-labelledby="languages">
+      <h2 id="languages">Languages</h2>
+      <ul class="cv-list cv-list--compact">
+        {cv.languages.map((language) => <li>{language}</li>)}
+      </ul>
+    </section>
+    <section class="cv-section" aria-labelledby="awards">
+      <h2 id="awards">Awards &amp; Fellowships</h2>
+      <ul class="cv-list">
+        {
+          cv.awards.map((award) => (
+            <li class="cv-entry">
+              <div>
+                <>
+                  <h3>{award.title}</h3>
+                  <p class="entry-subtitle">{award.subtitle}</p>
+                </>
+              </div>
+              <span class="entry-date">{award.date}</span>
+            </li>
+          ))
+        }
+      </ul>
     </section>
   </div>
 </BaseLayout>
