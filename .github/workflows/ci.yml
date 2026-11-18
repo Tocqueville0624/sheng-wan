@@ -29,7 +29,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm verify
       - name: Save verified site
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: verified-site
           path: dist/
@@ -65,7 +65,7 @@ jobs:
           CI_BROWSER_PROJECT: ${{ matrix.project }}
       - name: Save browser failure evidence
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: browser-failures-${{ matrix.project }}
           path: |
