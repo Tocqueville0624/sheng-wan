@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { parseInlineXbrl, extractInlinePeriods } from "../scripts/finance/ixbrl";
 import { companies } from "../scripts/finance/companies";
+import { latestPendingEarnings, parseFilings } from "../scripts/finance/sec-shared";
 import { assertSecUrl } from "../scripts/finance/sec-client";
 import { assertPublishableManifest, validatePeriod } from "../scripts/finance/validate";
 import { averageRate, parseH10TaiwanDollar } from "../scripts/finance/fed";
@@ -100,6 +101,30 @@ describe("SEC inline-XBRL parsing", () => {
     expect(period.metrics.grossProfit).toBe(40_000_000);
     expect(period.segments?.[0].revenue).toBe(100_000_000);
     expect(period.derived).toBe(true);
+  });
+
+  it("links only SEC results announcements newer than the full financial statement", () => {
+    const recent = {
+      accessionNumber: ["0001045810-26-000088", "0001045810-26-000075"],
+      filingDate: ["2026-11-17", "2026-08-26"],
+      reportDate: ["2026-11-17", "2026-07-26"],
+      form: ["8-K", "10-Q"],
+      primaryDocument: ["nvda-20261117.htm", "nvda-20260726.htm"],
+      items: ["2.02,9.01", ""]
+    };
+    expect(latestPendingEarnings(parseFilings("0001045810", recent))).toEqual({
+      filedAt: "2026-11-17",
+      sourceUrl:
+        "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/nvda-20261117.htm"
+    });
+    expect(
+      latestPendingEarnings(parseFilings("0001045810", { ...recent, items: ["5.02,9.01", ""] }))
+    ).toBeNull();
+    expect(
+      latestPendingEarnings(
+        parseFilings("0001045810", { ...recent, filingDate: ["2026-11-17", "2026-11-17"] })
+      )
+    ).toBeNull();
   });
 
   it("requires both FY2027 Microsoft operating segments in the same period and reconciles them to total revenue", () => {

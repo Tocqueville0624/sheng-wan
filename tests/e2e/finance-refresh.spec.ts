@@ -21,8 +21,35 @@ test("a newer validated company updates without requiring the whole company univ
   await page.goto("/playground/thales-olive/");
   await expect(page.locator(".finance-source")).toContainText(next.version);
   await expect(page.locator(".table-panel tbody tr")).toHaveCount(next.annual.length);
+  await expect(page.getByRole("combobox", { name: "Period", exact: true })).toHaveValue(
+    next.annual.at(-1)!.id
+  );
+  expect(new URL(page.url()).searchParams.has("statement")).toBe(false);
   await expect(page.locator(".finance-update")).toContainText("Last SEC check:");
   await expect(page.getByRole("button", { name: "Check latest SEC filings" })).toBeEnabled();
+});
+
+test("an issuer's new earnings notice links to the SEC while charts retain filed values", async ({
+  page
+}) => {
+  const company = savedCompanies.find((c) => c.ticker === "NVDA")!;
+  const earningsRelease = {
+    filedAt: "2026-11-17",
+    sourceUrl:
+      "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/nvda-20261117.htm"
+  };
+  await mockFinance(page);
+  await page.route("**/api/finance/v2/companies/NVDA", (route) =>
+    route.fulfill({ json: { company, earningsRelease, job: null, available: true } })
+  );
+  await page.goto("/playground/thales-olive/?ticker=NVDA&period=quarterly");
+  await expect(page.getByRole("link", { name: /Earnings announcement/ })).toHaveAttribute(
+    "href",
+    earningsRelease.sourceUrl
+  );
+  await expect(page.locator(".kpi-grid")).toContainText(
+    amount(company.quarterly.at(-1)!.metrics.revenue)
+  );
 });
 
 const rejected: { name: string; change: (c: CompanyV2) => void }[] = [

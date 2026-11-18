@@ -1,7 +1,7 @@
 import { setTimeout as sleep } from "node:timers/promises";
 import { companies } from "./companies";
 import { companyFilings } from "./sec-client";
-import type { SecFiling } from "./sec-shared";
+import { latestPendingEarnings, type SecFiling } from "./sec-shared";
 import {
   pendingJob,
   type CompanyResponse,
@@ -54,12 +54,26 @@ async function sync({ ticker, cik }: (typeof companies)[number]) {
         (p.filedAt > filing.filedAt ||
           (p.filedAt === filing.filedAt && p.accession === filing.accession))
     );
+  const release = latestPendingEarnings(filings);
   const current = (body: CompanyResponse) =>
-    matches(body, "annual", annual) && matches(body, "quarterly", quarterly);
+    matches(body, "annual", annual) &&
+    matches(body, "quarterly", quarterly) &&
+    (body.earningsRelease?.sourceUrl ?? null) === (release?.sourceUrl ?? null);
   const before = await request<CompanyResponse>(path);
   if (!current(before)) {
     if (!before.available) throw new Error("The production update service is unavailable.");
-    let { job } = await request<{ job: FinanceJob }>(path + "/refresh", "POST");
+    const enqueue = () => request<{ job: FinanceJob; reused: boolean }>(path + "/refresh", "POST");
+    const queued = await enqueue();
+    let job = queued.job;
+    if (queued.reused && !pendingJob(job)) {
+      // A release can arrive during the website's shared one-hour check window.
+      const nextCheck = Date.parse(job.createdAt) + 60 * 60_000 + 1000;
+      if (nextCheck > Date.now() && nextCheck < deadline) {
+        console.log(ticker + ": waiting for the previous check to expire.");
+        await sleep(nextCheck - Date.now());
+        ({ job } = await enqueue());
+      }
+    }
     console.log(ticker + ": tracking " + job.id);
     const jobDeadline = Math.min(deadline, Date.now() + 10 * 60_000);
     while (pendingJob(job) && Date.now() < jobDeadline) {
@@ -69,7 +83,7 @@ async function sync({ ticker, cik }: (typeof companies)[number]) {
     if (pendingJob(job) || job.state === "failed") throw new Error(job.state + ": " + job.message);
     if (!current(await request<CompanyResponse>(path)))
       throw new Error(
-        "The live charts still lack the reviewed annual or quarterly statement after refresh: " +
+        "Live filings or the pending earnings announcement still differ from the SEC after refresh: " +
           annual.reportDate +
           " / " +
           quarterly.reportDate

@@ -78,6 +78,7 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
   const [catalogMeta, setCatalogMeta] = useState<FinanceCatalog>();
   const [query, setQuery] = useState("");
   const [limit, setLimit] = useState(24);
+  const [releases, setReleases] = useState<Record<string, CompanyResponse["earningsRelease"]>>({});
   const [job, setJob] = useState<FinanceJob | null>(null);
   const [available, setAvailable] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -91,6 +92,7 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
   const catalogRef = useRef(catalog);
   catalogRef.current = catalog;
   const company = datasets[selection.ticker];
+  const release = releases[selection.ticker];
   const periods = company?.[selection.kind] ?? [];
   const current = periods.find((p) => p.id === selection.id) ?? periods.at(-1);
   const identity = catalog.find((c) => c.ticker === selection.ticker);
@@ -166,6 +168,7 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
         datasetRef.current = { ...datasetRef.current, [ticker]: response.company };
         setDatasets((prior) => ({ ...prior, [ticker]: response.company! }));
       }
+      setReleases((prior) => ({ ...prior, [ticker]: response.earningsRelease }));
       setAvailable(response.available);
       setJob(response.job);
       activeJob = response.job;
@@ -217,14 +220,6 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
       clearTimeout(timer);
     };
   }, [hydrated, selection.ticker, reload]);
-  useEffect(() => {
-    if (hydrated && current && current.id !== selection.id) {
-      const next = { ...selection, id: current.id };
-      history.replaceState({}, "", selectionUrl(next));
-      setSelection(next);
-    }
-  }, [hydrated, current, selection]);
-
   const refresh = async () => {
     const ticker = selection.ticker;
     setSubmitting(true);
@@ -445,6 +440,12 @@ export default function ThalesOlive({ initialCompany, featured, canonicalHost }:
               : "Choose Get SEC data to import this company. No values are estimated."}
           </p>
           <p>Last SEC check: {date(company?.checkedAt)}</p>
+          {release && (
+            <p>
+              <a href={release.sourceUrl}>Earnings announcement · {release.filedAt} (SEC 8-K)</a>{" "}
+              Charts use the latest filed annual or quarterly statement.
+            </p>
+          )}
         </div>
         <div>
           <button
