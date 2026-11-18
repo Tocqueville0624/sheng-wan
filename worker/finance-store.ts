@@ -63,7 +63,7 @@ export const catalog = catalogData as FinanceCatalog;
 const bundled = bundledData as FinanceHistory;
 const DAY = 86400000,
   HOUR = 3600000;
-const ENGINE_VERSION = "finance-v2.56";
+const ENGINE_VERSION = "finance-v2.57";
 const temporarySourceFailure = (error: unknown) =>
   error instanceof Error && /HTTP (429|5\d\d)|timeout/i.test(error.message);
 const MAX_DAILY_STEPS = 4000;

@@ -226,8 +226,8 @@ describe("source-grounded business gross profit", () => {
     const company = structuredClone(
       snapshot.companies.find((company) => company.ticker === "AAPL")!
     ) as CompanyDataset;
-    const index = company.annual.findIndex((period) => period.id === "FY2025");
-    company.annual[index] = enrichApple(company.annual[index]);
+    const index = 0;
+    company.annual = [enrichApple(withoutGrossProfit(actualPeriod("AAPL")))];
     const richer = upgradeCompany(company);
     const legacy = structuredClone(richer);
     legacy.annual[index].segments = withoutGrossProfit(company.annual[index]).segments;

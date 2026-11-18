@@ -78,7 +78,10 @@ if (process.env.CI && !explicitProject) {
     : readdirSync("tests/e2e")
         .filter((name) => /\.spec\.ts$/.test(name))
         .sort();
-  for (const project of ["desktop", "mobile"]) {
+  const selected = process.env.CI_BROWSER_PROJECT;
+  if (selected && !["desktop", "mobile"].includes(selected))
+    throw new Error("Invalid CI browser project.");
+  for (const project of selected ? [selected] : ["desktop", "mobile"]) {
     for (const suite of suites) {
       const options = [...(suite ? [`tests/e2e/${suite}`] : []), ...args, `--project=${project}`];
       for (const batch of suite ? batches(options) : [{ grep: undefined, suffix: "" }]) {

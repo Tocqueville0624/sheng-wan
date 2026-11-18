@@ -84,6 +84,30 @@ export const filingAdapters: Record<string, FilingAdapter> = {
     ],
     segmentBasis:
       "Revenue by reportable operating segment; comparative periods use the classification in the cited filing.",
+    segmentAlternatives: [
+      {
+        segmentBasis:
+          "Revenue by reportable operating segment under Microsoft's FY2027 structure; comparative periods use the classification in the cited filing.",
+        segments: [
+          {
+            id: "agents-and-infra",
+            label: "Agents and Infra",
+            tag: contractRevenue,
+            dimensions: { [businessAxis]: "msft:AgentsAndInfraMember" },
+            grossProfitTags: ["us-gaap:GrossProfit"],
+            costOfRevenueTags: ["us-gaap:CostOfGoodsAndServicesSold"]
+          },
+          {
+            id: "devices-and-consumer",
+            label: "Devices and Consumer",
+            tag: contractRevenue,
+            dimensions: { [businessAxis]: "msft:DevicesAndConsumerMember" },
+            grossProfitTags: ["us-gaap:GrossProfit"],
+            costOfRevenueTags: ["us-gaap:CostOfGoodsAndServicesSold"]
+          }
+        ]
+      }
+    ],
     segments: [
       {
         id: "productivity",

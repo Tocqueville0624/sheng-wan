@@ -19,7 +19,7 @@
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
     "build:production": "PUBLIC_SITE_URL=https://shengwan.org PUBLIC_SITE_INDEXABLE=true pnpm build",
     "preview": "pnpm build && wrangler dev",
-    "deploy": "pnpm build:production && wrangler deploy --env production",
+    "deploy": "pnpm build:production && sh scripts/deployment/publish.sh",
     "deploy:preview": "PUBLIC_SITE_INDEXABLE=false pnpm build && wrangler deploy",
     "deploy:staging": "PUBLIC_SITE_INDEXABLE=false pnpm build && wrangler deploy --env staging",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",

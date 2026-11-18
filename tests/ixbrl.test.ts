@@ -6,7 +6,7 @@ import { assertPublishableManifest, validatePeriod } from "../scripts/finance/va
 import { averageRate, parseH10TaiwanDollar } from "../scripts/finance/fed";
 import snapshot from "../src/data/generated/finance.json";
 import type { FinanceManifest } from "../src/features/finance/types";
-import type { FilingAdapter } from "../scripts/finance/adapters";
+import { filingAdapters, type FilingAdapter } from "../scripts/finance/adapters";
 const crawled = snapshot as FinanceManifest;
 
 // A deliberately tiny synthetic parser fixture, never a published finance dataset.
@@ -100,6 +100,36 @@ describe("SEC inline-XBRL parsing", () => {
     expect(period.metrics.grossProfit).toBe(40_000_000);
     expect(period.segments?.[0].revenue).toBe(100_000_000);
     expect(period.derived).toBe(true);
+  });
+
+  it("requires both FY2027 Microsoft operating segments in the same period and reconciles them to total revenue", () => {
+    const tag = "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax";
+    const group = (member: string, value: string) =>
+      context(
+        member,
+        '<xbrldi:explicitMember dimension="us-gaap:StatementBusinessSegmentsAxis">msft:' +
+          member +
+          "</xbrldi:explicitMember>"
+      ) + fact(tag, value, member);
+    const agents = group("AgentsAndInfraMember", "76,795");
+    const devices = group("DevicesAndConsumerMember", "15,484");
+    const read = (extra: string) =>
+      extractInlinePeriods(
+        parseInlineXbrl(
+          fixture(extra)
+            .replaceAll("0000320193", "0000789019")
+            .replace(fact("us-gaap:Revenues", "100"), fact(tag, "92,279"))
+        ),
+        companies.find((c) => c.ticker === "MSFT")!,
+        filingAdapters.MSFT,
+        "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm",
+        "2026-10-28"
+      );
+    expect(read(agents + devices)[0].segments?.map((s) => s.revenue)).toEqual([
+      76_795_000_000, 15_484_000_000
+    ]);
+    expect(read(agents)).toEqual([]);
+    expect(() => read(agents + group("DevicesAndConsumerMember", "14,000"))).toThrow();
   });
 
   it("prefers precise statement facts over rounded narrative repeats", () => {

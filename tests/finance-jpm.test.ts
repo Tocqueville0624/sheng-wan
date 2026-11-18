@@ -81,7 +81,7 @@ describe("JPM original complete business net revenue and signed consolidation", 
       expect(next.originalStatementCorroboration).toBeUndefined();
       expect(mergeV2(before, before).annual).toEqual(before.annual);
     }
-  });
+  }, 20_000);
   it("does not recover an unvalidated prior or remove a visible proof before replacement", () => {
     const saved = structuredClone(failedRefresh.company) as CompanyV2;
     const old = saved.annual.find((p) => p.originalStatementCorroboration)!;

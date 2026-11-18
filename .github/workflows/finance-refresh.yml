@@ -3,9 +3,35 @@ on:
   schedule:
     - cron: "27 14 * * *"
   workflow_dispatch:
+    inputs:
+      ticker:
+        description: "Featured ticker to check on Olive (leave blank for all seven)"
+        type: string
+        required: false
 permissions:
   contents: read
+concurrency:
+  group: official-finance-refresh
+  cancel-in-progress: false
 jobs:
+  olive:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 95
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.18.0
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Check SEC filings and update the live Olive charts
+        env:
+          TICKER: ${{ inputs.ticker }}
+        run: node --import tsx scripts/finance/sync-olive.ts "$TICKER"
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 15

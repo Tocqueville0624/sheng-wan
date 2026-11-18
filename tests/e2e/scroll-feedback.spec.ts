@@ -225,8 +225,8 @@ test("Olive horizontal charts and Playground popovers keep ownership", async ({ 
   await expect(page.locator("astro-island[ssr]")).toHaveCount(0);
   const chart = page.getByRole("region", { name: "Scrollable business revenue chart" });
   await chart.scrollIntoViewIfNeeded();
-  const pageY = await page.evaluate(() => scrollY);
   await chart.hover();
+  const pageY = await page.evaluate(() => scrollY);
   const chartWheel = await wheelEvent(page, 300, 0);
   expect(chartWheel.prevented).toBe(false);
   await expect.poll(() => chart.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
