@@ -720,31 +720,7 @@ export function layoutStatementFlow(graph: StatementFlow) {
       : operatingY - 25 - netGainHeight
   };
   const mainBottom = (id: string) => mainY[id] + amountHeight(id);
-  const nonoperatingY =
-    nonoperating?.tone === "profit"
-      ? upperSourceY
-      : Math.max(mainBottom("operating"), mainBottom("pretax")) + 105;
   const taxY = Math.max(mainBottom("net") + 100, mainBottom("pretax") + 80);
-  const operatingExpenseY = Math.max(
-    hasGrossStage ? mainBottom("gross") + 100 : mainBottom("revenue") + 100,
-    mainBottom(anchor) + 130,
-    // The expense label is above its bar, while the next operating-cost
-    // caption starts 66 px above its own bar. Reserve the full wrapped
-    // non-operating title/value/percentage before placing that next caption;
-    // a very small monetary bar must not collapse their text clearance.
-    nonoperating?.tone === "expense"
-      ? nonoperatingY +
-          Math.max(
-            amountHeight("nonoperating") + 115,
-            wrapLabel(nonoperating.label, 17).length * 20 + 120
-          )
-      : 0
-  );
-  const costY = Math.max(mainBottom("revenue") + 90, mainBottom("gross") + 105);
-  const operatingRoundingY =
-    operatingRounding?.tone === "profit"
-      ? upperSourceY
-      : operatingExpenseY + (costParent?.amount ?? 0) * scale + 115;
   const equityY =
     equity?.tone === "profit"
       ? netSourceYs.get("equity")!
@@ -785,17 +761,44 @@ export function layoutStatementFlow(graph: StatementFlow) {
               : equity?.tone === "expense"
                 ? equityY + equity.amount * scale
                 : taxY + (tax?.amount ?? 0) * scale) + 110;
-  let detailY = Math.max(
-    operatingExpenseY + 5,
-    tax ? taxY + tax.amount * scale + 115 : 0,
-    equity?.tone === "expense" ? equityY + equity.amount * scale + 115 : 0,
-    subsidiary?.tone === "expense" ? subsidiaryY + subsidiary.amount * scale + 115 : 0,
-    discontinued?.tone === "expense" ? discontinuedY + discontinued.amount * scale + 115 : 0,
-    noncontrolling?.tone === "expense" ? noncontrollingY + noncontrolling.amount * scale + 115 : 0,
-    afterTaxRounding?.tone === "expense"
-      ? afterTaxRoundingY + afterTaxRounding.amount * scale + 115
+  const netExpenseBottom = Math.max(
+    tax ? taxY + tax.amount * scale : 0,
+    equity?.tone === "expense" ? equityY + equity.amount * scale : 0,
+    subsidiary?.tone === "expense" ? subsidiaryY + subsidiary.amount * scale : 0,
+    discontinued?.tone === "expense" ? discontinuedY + discontinued.amount * scale : 0,
+    noncontrolling?.tone === "expense" ? noncontrollingY + noncontrolling.amount * scale : 0,
+    afterTaxRounding?.tone === "expense" ? afterTaxRoundingY + afterTaxRounding.amount * scale : 0
+  );
+  const nonoperatingY =
+    nonoperating?.tone === "profit"
+      ? upperSourceY
+      : Math.max(
+          Math.max(mainBottom("operating"), mainBottom("pretax")) + 105,
+          // Its right-facing caption spans the outgoing pretax ribbons, even when
+          // an equity loss is thin enough to render only as a dotted leader.
+          netExpenseBottom + 35
+        );
+  const operatingExpenseY = Math.max(
+    hasGrossStage ? mainBottom("gross") + 100 : mainBottom("revenue") + 100,
+    mainBottom(anchor) + 130,
+    // The expense label is above its bar, while the next operating-cost
+    // caption starts 66 px above its own bar. Reserve the full wrapped
+    // non-operating title/value/percentage before placing that next caption;
+    // a very small monetary bar must not collapse their text clearance.
+    nonoperating?.tone === "expense"
+      ? nonoperatingY +
+          Math.max(
+            amountHeight("nonoperating") + 115,
+            wrapLabel(nonoperating.label, 17).length * 20 + 120
+          )
       : 0
   );
+  const costY = Math.max(mainBottom("revenue") + 90, mainBottom("gross") + 105);
+  const operatingRoundingY =
+    operatingRounding?.tone === "profit"
+      ? upperSourceY
+      : operatingExpenseY + (costParent?.amount ?? 0) * scale + 115;
+  let detailY = Math.max(operatingExpenseY + 5, netExpenseBottom + 115);
   let adjustmentY = Math.max(
     costY + 50,
     revenueCenter + ((revenueBase?.amount ?? 0) * scale) / 2 + 110
