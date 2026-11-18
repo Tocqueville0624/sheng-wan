@@ -14,6 +14,7 @@ export function assertSecUrl(value: string) {
 }
 export type SecFiling = {
   accession: string;
+  earningsAnnouncement?: boolean;
   filedAt: string;
   reportDate: string;
   form: string;
@@ -23,6 +24,7 @@ export type SecFiling = {
 };
 export type RecentFilings = {
   accessionNumber: string[];
+  items?: string[];
   filingDate: string[];
   reportDate: string[];
   form: string[];
@@ -60,6 +62,10 @@ export function parseFilings(cik: string, recent: RecentFilings): SecFiling[] {
       return [
         {
           accession,
+          ...(recent.form[index] === "8-K" &&
+          recent.items?.[index]?.split(",").some((item) => item.trim() === "2.02")
+            ? { earningsAnnouncement: true }
+            : {}),
           filedAt,
           reportDate,
           form: recent.form[index],
@@ -70,6 +76,14 @@ export function parseFilings(cik: string, recent: RecentFilings): SecFiling[] {
       ];
     })
     .sort((a, b) => b.filedAt.localeCompare(a.filedAt));
+}
+
+// Item 2.02 identifies a results announcement. Its filing date is not the quarter end.
+export function latestPendingEarnings(filings: SecFiling[]) {
+  const results = filings.find((f) => f.earningsAnnouncement);
+  const statement = filings.find((f) => f.form === "10-Q" || f.form === "10-K");
+  if (!results || !statement || results.filedAt <= statement.filedAt) return null;
+  return { filedAt: results.filedAt, sourceUrl: results.sourceUrl };
 }
 
 export async function readBounded(response: Response, limit = 24 * 1024 * 1024): Promise<string> {

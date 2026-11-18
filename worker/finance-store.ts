@@ -41,6 +41,7 @@ import {
 import {
   SEC_USER_AGENT,
   assertSecUrl,
+  latestPendingEarnings,
   parseFilings,
   readBounded,
   type RecentFilings,
@@ -206,6 +207,9 @@ export class FinanceStore {
       return json({
         company: company ?? null,
         job: task?.job ?? null,
+        earningsRelease: await this.ctx.storage.get<CompanyResponse["earningsRelease"]>(
+          "earnings:" + identity.cik
+        ),
         available: true
       } satisfies CompanyResponse);
     }
@@ -364,9 +368,9 @@ export class FinanceStore {
         );
       task.industrySic = /^\d{4}$/.test(submissions.sic ?? "") ? submissions.sic : undefined;
       const cutoff = `${new Date().getUTCFullYear() - 11}-01-01`;
-      task.filings = parseFilings(identity.cik, submissions.filings.recent).filter((f) =>
-        /^(10-K|10-Q|20-F|6-K)(\/A)?$/.test(f.form)
-      );
+      const recent = parseFilings(identity.cik, submissions.filings.recent);
+      await this.ctx.storage.put("earnings:" + identity.cik, latestPendingEarnings(recent));
+      task.filings = recent.filter((f) => /^(10-K|10-Q|20-F|6-K)(\/A)?$/.test(f.form));
       task.archives = submissions.filings.files
         .filter((f) => f.filingTo >= cutoff && /^CIK\d+-submissions-\d+\.json$/.test(f.name))
         .sort((a, b) => b.filingTo.localeCompare(a.filingTo))
